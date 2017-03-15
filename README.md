@@ -22,7 +22,8 @@ Nov - Phocuswrigth
 ##!INTERNAL TODO 
 1. Working Credentials of travelport, amadeus & sabre  [ISAAC/SANDRA] IN PROGRESS
 2. Find out a team (at least 2 , most 3) for Daniel   [ISAAC] IN PROGRESS
-3. 
+3. Confirm end date with Skytouch  [DANIEL]
+4. 
 
 
 #!PUBLIC Scope
