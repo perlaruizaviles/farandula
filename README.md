@@ -19,11 +19,15 @@ Jun - First Real client integration
 Jul - Hackaton Campus party
 Nov - Phocuswrigth
 
-## 
+##!INTERNAL TODO 
+1. Working Credentials of travelport, amadeus & sabre  [ISAAC/SANDRA] IN PROGRESS
+2. Find out a team (at least 2 , most 3) for Daniel   [ISAAC] IN PROGRESS
+3. 
 
 
 #!PUBLIC Scope
 Lang Supported: Java (y Android), iOS, Ruby, .NET, Go, Javascript (Node.JS)    
+GDS Supported: Sabre, Amadeus, Travelport 
 Features Soportadas 
     Components: Air & Hotel
     Booking path  *use the best GDS feature for the client
