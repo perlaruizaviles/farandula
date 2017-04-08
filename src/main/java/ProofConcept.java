@@ -19,65 +19,35 @@ public class ProofConcept {
         String result = "";
 
         try {
-
-            String json = "{\n" +
-                    " \"OTA_AirLowFareSearchRQ\": {\n" +
-                    "     \"Target\": \"Production\",\n" +
-                    "       \"POS\": {\n" +
-                    "            \"Source\": [{\n" +
-                    "                \"PseudoCityCode\":\"F9CE\",\n" +
-                    "                \"RequestorID\": {\n" +
-                    "                    \"Type\": \"1\",\n" +
-                    "                  \t\"ID\": \"1\",\n" +
-                    "                    \"CompanyName\": {\n" +
-                    "                        \n" +
-                    "                  \t}\n" +
-                    "             \t}\n" +
-                    "         \t}]\n" +
-                    "        },\n" +
-                    "        \"OriginDestinationInformation\": [{\n" +
-                    "          \"RPH\": \"1\",\n" +
-                    "           \"DepartureDateTime\": \"2017-08-07T11:00:00\",\n" +
-                    "           \"OriginLocation\": {\n" +
-                    "             \"LocationCode\": \"BOS\"\n" +
-                    "         },\n" +
-                    "            \"DestinationLocation\": {\n" +
-                    "                \"LocationCode\": \"MEX\"\n" +
-                    "         },\n" +
-                    "            \"TPA_Extensions\": {\n" +
-                    "             \"SegmentType\": {\n" +
-                    "                    \"Code\": \"O\"\n" +
-                    "               }\n" +
-                    "         }\n" +
-                    "     },\n" +
-                    "        {\n" +
-                    "         \"RPH\": \"2\",\n" +
-                    "           \"DepartureDateTime\": \"2017-08-18T11:00:00\",\n" +
-                    "           \"OriginLocation\": {\n" +
-                    "             \"LocationCode\": \"MEX\"\n" +
-                    "         },\n" +
-                    "            \"DestinationLocation\": {\n" +
-                    "                \"LocationCode\": \"BOS\"\n" +
-                    "         },\n" +
-                    "            \"TPA_Extensions\": {\n" +
-                    "             \"SegmentType\": {\n" +
-                    "                    \"Code\": \"O\"\n" +
-                    "               }\n" +
-                    "         }\n" +
-                    "     }],\n" +
-                    "        \"TravelerInfoSummary\": {\n" +
-                    "            \"SeatsRequested\": [1],\n" +
-                    "          \"AirTravelerAvail\": [{\n" +
-                    "              \"PassengerTypeQuantity\": [{\n" +
-                    "                 \"Code\": \"ADT\",\n" +
-                    "                    \"Quantity\": 1\n" +
-                    "               }]\n" +
-                    "            }]\n" +
-                    "        }\n" +
-                    "     }\n" +
-                    " }\n" +
+            
+            String json = "{\n" + "\n" + " \"OTA_AirLowFareSearchRQ\": {\n" + "\n" + "     \"Target\": \"Production\",\n" + "\n" + "       \"POS\": {\n" + "\n" +
+                    "            \"Source\": [{\n" + "\n" + "                \"PseudoCityCode\":\"F9CE\",\n" + "\n" + "                \"RequestorID\": {\n" +
+                    "\n" + "                    \"Type\": \"1\",\n" + "\n" + "                  \"ID\": \"1\",\n" + "\n" +
+                    "                    \"CompanyName\": {\n" + "\n" + "                        \n" + "\n" + "                  }\n" + "\n" +
+                    "             }\n" + "\n" + "         }]\n" + "\n" + "        },\n" + "\n" + "        \"OriginDestinationInformation\": [{\n" + "\n" +
+                    "          \"RPH\": \"1\",\n" + "\n" + "           \"DepartureDateTime\": \"2017-08-07T11:00:00\",\n" + "\n" +
+                    "           \"OriginLocation\": {\n" + "\n" + "             \"LocationCode\": \"MEX\"\n" + "\n" + "         },\n" + "\n" +
+                    "            \"DestinationLocation\": {\n" + "\n" + "                \"LocationCode\": \"BOS\"\n" + "\n" + "         },\n" + "\n" +
+                    "            \"TPA_Extensions\": {\n" + "\n" + "             \"SegmentType\": {\n" + "\n" + "                    \"Code\": \"O\"\n" + "\n" +
+                    "               }\n" + "\n" + "         }\n" + "\n" + "     },\n" + "\n" + "        {\n" + "\n" + "         \"RPH\": \"2\",\n" + "\n" +
+                    "           \"DepartureDateTime\": \"2017-08-08T11:00:00\",\n" + "\n" + "           \"OriginLocation\": {\n" + "\n" +
+                    "             \"LocationCode\": \"BOS\"\n" + "\n" + "         },\n" + "\n" + "            \"DestinationLocation\": {\n" + "\n" +
+                    "                \"LocationCode\": \"MEX\"\n" + "\n" + "         },\n" + "\n" + "            \"TPA_Extensions\": {\n" + "\n" +
+                    "             \"SegmentType\": {\n" + "\n" + "                    \"Code\": \"O\"\n" + "\n" + "               }\n" + "\n" + "         }\n" +
+                    "\n" + "     }],\n" + "\n" + "       \"TravelPreferences\": {\n" + "\n" + "          \"ValidInterlineTicket\": true,\n" + "\n" +
+                    "           \"CabinPref\": [{\n" + "\n" + "             \"Cabin\": \"Y\",\n" + "\n" + "             \"PreferLevel\": \"Preferred\"\n" + "\n" +
+                    "            }],\n" + "\n" + "           \"TPA_Extensions\": {\n" + "\n" + "             \"TripType\": {\n" + "\n" +
+                    "                   \"Value\": \"Return\"\n" + "\n" + "             },\n" + "\n" + "                \"LongConnectTime\": {\n" + "\n" +
+                    "                    \"Min\": 780,\n" + "\n" + "                 \"Max\": 1200,\n" + "\n" + "                    \"Enable\": true\n" + "\n" +
+                    "              },\n" + "\n" + "                \"ExcludeCallDirectCarriers\": {\n" + "\n" + "                  \"Enabled\": true\n" + "\n" +
+                    "             }\n" + "\n" + "         }\n" + "\n" + "     },\n" + "\n" + "        \"TravelerInfoSummary\": {\n" + "\n" +
+                    "            \"SeatsRequested\": [1],\n" + "\n" + "          \"AirTravelerAvail\": [{\n" + "\n" +
+                    "              \"PassengerTypeQuantity\": [{\n" + "\n" + "                 \"Code\": \"ADT\",\n" + "\n" +
+                    "                    \"Quantity\": 1\n" + "\n" + "               }]\n" + "\n" + "            }]\n" + "\n" + "        },\n" + "\n" +
+                    "        \"TPA_Extensions\": {\n" + "\n" + "         \"IntelliSellTransaction\": {\n" + "\n" + "             \"RequestType\": {\n" + "\n" +
+                    "                    \"Name\": \"50ITINS\"\n" + "\n" + "             }\n" + "\n" + "         }\n" + "\n" + "     }\n" + "\n" + " }\n" + "\n" +
                     "}";
-
+            
             URL url = new URL("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=50&offset=1\n");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -127,7 +97,7 @@ public class ProofConcept {
                 "&origin=MEX" +
                 "&destination=LON" +
                 "&departure_date=2017-08-07" +
-                "&return_date=2017-08-18" +
+                "&return_date=2017-08-08" +
                 "&adults=1";
 
         String result = "";
