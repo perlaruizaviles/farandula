@@ -28,7 +28,7 @@ module Farandula
 				@access_token = parsed_obj.access_token 
 				@token_type	 	= parsed_obj.token_type
 				@expires_in 	= parsed_obj.expires_in
-				
+				 
 			rescue RestClient::Unauthorized => e 
 				raise UnauthorizedError.new(e)
 			end 
