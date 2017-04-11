@@ -42,7 +42,7 @@ module Farandula
       def build_credentials(client_id, client_secret) 
         encoded_id.    = Base64.strict_encode64(client_id) 
         encoded_secret = Base64.strict_encode64(client_secret)
-        encoded.       = Base64.strict_encode64("#{encoded_id}:#{encoded_secret}")
+        encoded        = Base64.strict_encode64("#{encoded_id}:#{encoded_secret}")
         "Basic #{encoded}"
       end 
     #private ends
