@@ -1,18 +1,26 @@
 package com.nearsoft.farandula;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import com.nearsoft.farandula.models.Flight;
+import com.nearsoft.farandula.models.SearchCommand;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+
+//TODO consider create an specic trip manager for each API or create a connector/plugin framework
 public class TripManager {
 
+    //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
+    private SearchCommand _searchCommand;
 
     public TripManager(AccessManager accessManager) {
         _accessManager = accessManager;
@@ -32,12 +40,20 @@ public class TripManager {
     }
 
     private void buildAvailResponse(Response response) throws IOException {
+
+        //JsonObject object = jsonReader.readObject();
         System.out.println(response.body().string());
     }
 
     private Request buildRequestForAvail() {
         final Request.Builder builder = new Request.Builder();
-        builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=50&offset=1");
+
+        if ( _searchCommand.getOffSet() > 0 ){
+            builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=" + _searchCommand.getOffSet() + "&offset=1");
+        }else{
+            builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=50&offset=1");
+        }
+
         builder.post(RequestBody.create(MediaType.parse("application/json"), s));
         return builder.build();
     }
@@ -78,4 +94,24 @@ public class TripManager {
         "        \"TPA_Extensions\": {\n" + "\n" + "         \"IntelliSellTransaction\": {\n" + "\n" + "             \"RequestType\": {\n" + "\n" +
         "                    \"Name\": \"50ITINS\"\n" + "\n" + "             }\n" + "\n" + "         }\n" + "\n" + "     }\n" + "\n" + " }\n" + "\n" +
         "}";
+
+    public static TripManager sabre() throws IOException, FarandulaException {
+        Properties props = new Properties();
+
+            props.load( TripManager.class.getResourceAsStream("/config.properties"));
+            //TODO check if we really need final here
+            final Creds creds = new Creds( props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
+            TripManager tripManager = new TripManager(creds );
+
+
+       return tripManager;
+    }
+
+    public List<Flight> executeAvail(SearchCommand searchCommand) {
+
+        //TODO execute search and
+         this.getAvail(searchCommand);
+
+        return null;
+    }
 }
