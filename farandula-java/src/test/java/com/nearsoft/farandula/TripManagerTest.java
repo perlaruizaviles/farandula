@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TripManagerTest {
 
     @Test
-    public void avail(){
+    public void avail() throws Exception {
 
         LocalDate departingDate = LocalDate.now();
         LocalDate returningDate = departingDate.plusDays(2);

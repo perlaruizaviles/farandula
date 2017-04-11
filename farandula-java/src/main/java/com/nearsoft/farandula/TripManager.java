@@ -1,6 +1,7 @@
 package com.nearsoft.farandula;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -30,22 +31,35 @@ public class TripManager {
         _accessManager = new AccessManager(creds);
     }
 
-    public void getAvail() throws FarandulaException {
+    public List<Flight> getAvail( SearchCommand search ) throws FarandulaException {
+
+        //TODO check if this is correct or if is better to send the object to 'buildRequestForAvail' method
+        _searchCommand = search;
+
         try {
-            final Response response = buildHttpClient().newCall(buildRequestForAvail()).execute();
-            buildAvailResponse(response);
+            final Response response = buildHttpClient().newCall(buildRequestForAvail( )).execute();
+            String result =  response.body().toString();
+            System.out.println( response.body().string());
+
+            //Todo create objects??
+            return buildAvailResponse( result );
+
         } catch (IOException e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
         }
+
     }
 
-    private void buildAvailResponse(Response response) throws IOException {
+    private List<Flight> buildAvailResponse(String response) throws IOException {
 
         //JsonObject object = jsonReader.readObject();
-        System.out.println(response.body().string());
+
+        List<Flight> resultList = new ArrayList<>();
+
+        return resultList;
     }
 
-    private Request buildRequestForAvail() {
+    private Request buildRequestForAvail( ) {
         final Request.Builder builder = new Request.Builder();
 
         if ( _searchCommand.getOffSet() > 0 ){
@@ -107,11 +121,11 @@ public class TripManager {
        return tripManager;
     }
 
-    public List<Flight> executeAvail(SearchCommand searchCommand) {
+    public List<Flight> executeAvail(SearchCommand searchCommand) throws FarandulaException {
 
         //TODO execute search and
-         this.getAvail(searchCommand);
 
-        return null;
+        return this.getAvail(searchCommand);
+
     }
 }

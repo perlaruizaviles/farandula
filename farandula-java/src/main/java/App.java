@@ -3,6 +3,7 @@ import java.util.Properties;
 import com.nearsoft.farandula.Creds;
 import com.nearsoft.farandula.FarandulaException;
 import com.nearsoft.farandula.TripManager;
+import com.nearsoft.farandula.models.SearchCommand;
 
 public class App {
 
@@ -12,6 +13,6 @@ public class App {
 
         final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
         final TripManager tripManager = new TripManager(creds);
-        tripManager.getAvail();
+        tripManager.getAvail( new SearchCommand());
     }
 }
