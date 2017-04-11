@@ -22,12 +22,12 @@ module Farandula
 					Authorization: build_credentials(client_id, client_secret)
 				}
 
-				response 	 = RestClient.post("https://api.test.sabre.com/v2/auth/token", payload, headers)
+				response	 = RestClient.post("https://api.test.sabre.com/v2/auth/token", payload, headers)
 				parsed_obj = Hashie::Mash.new(JSON.parse(response))
 
-				@access_token = parsed_obj.access_token 
-				@token_type	 	= parsed_obj.token_type
-				@expires_in 	= parsed_obj.expires_in
+				@access_token	= parsed_obj.access_token 
+				@token_type		= parsed_obj.token_type
+				@expires_in		= parsed_obj.expires_in
 				 
 			rescue RestClient::Unauthorized => e 
 				raise UnauthorizedError.new(e)
@@ -43,7 +43,7 @@ module Farandula
 			def build_credentials(client_id, client_secret) 
 				encoded_id 		 = Base64.strict_encode64(client_id) 
 				encoded_secret = Base64.strict_encode64(client_secret)
-				encoded 			 = Base64.strict_encode64("#{encoded_id}:#{encoded_secret}")
+				encoded 		   = Base64.strict_encode64("#{encoded_id}:#{encoded_secret}")
 				"Basic #{encoded}"
 			end 
 		#private ends
