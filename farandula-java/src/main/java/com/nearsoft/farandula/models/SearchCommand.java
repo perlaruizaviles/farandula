@@ -111,9 +111,7 @@ public class SearchCommand {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+    public void setType(String type) { this.type = type; }
 
     public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;

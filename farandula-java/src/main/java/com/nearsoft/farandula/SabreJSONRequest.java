@@ -56,6 +56,7 @@ public class SabreJSONRequest {
                 "               }\n" +
                 "         }\n" +
                 "     }],\n" +
+                /*
                 "       \"TravelPreferences\": {\n" +
                 "          \"ValidInterlineTicket\": true,\n" +
                 "           \"CabinPref\": [{\n" +
@@ -76,6 +77,7 @@ public class SabreJSONRequest {
                 "             }\n" +
                 "         }\n" +
                 "     },\n" +
+                */
                 "        \"TravelerInfoSummary\": {\n" +
                 "            \"SeatsRequested\": [" + search.getPassengers().size() + "],\n" +
                 "          \"AirTravelerAvail\": [{\n" +
