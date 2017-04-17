@@ -13,7 +13,6 @@ import static com.nearsoft.farandula.models.CriteriaType.PRICE;
 /**
  * Created by pruiz on 4/10/17.
  */
-//TODO find a better name and package for this,
 public class SearchCommand {
 
     private String type = "roundTrip";

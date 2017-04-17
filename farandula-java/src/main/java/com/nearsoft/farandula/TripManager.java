@@ -8,11 +8,12 @@ import com.nearsoft.farandula.models.Airleg;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.SearchCommand;
 import com.nearsoft.farandula.models.Segment;
+import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -55,16 +56,21 @@ public class TripManager {
             jsonSegmentArray.forEach( g -> {
 
                 Map<String, Object > segmentMap = (Map<String, Object>) g;
-                Segment seg = new Segment();
                 //Todo change segment id and PATH
-                seg.setId("");
-                seg.setAirlineIconPath("");
-                Map<String, Object > airlineData = (Map<String, Object>) segmentMap.get("OperatingAirline");
-                Map<String, Object > departureAirportData = (Map<String, Object>) segmentMap.get("DepartureAirport");
-                Map<String, Object > arrivalAirportData = (Map<String, Object>) segmentMap.get("ArrivalAirport");
+                //airline
                 JSONArray jsonEquipmentArray = (JSONArray) segmentMap.get("Equipment");
                 Map<String, Object > equipmentData = (Map<String, Object>) jsonEquipmentArray.get(0);
+                Map<String, Object > airlineData = (Map<String, Object>) segmentMap.get("OperatingAirline");
+                //departure
+                Map<String, Object > departureAirportData = (Map<String, Object>) segmentMap.get("DepartureAirport");
+                Map<String, Object > departureTimeZone = (Map<String, Object>) segmentMap.get("DepartureTimeZone");
+                //arrival
+                Map<String, Object > arrivalAirportData = (Map<String, Object>) segmentMap.get("ArrivalAirport");
+                Map<String, Object > arrivalTimeZone = (Map<String, Object>) segmentMap.get("ArrivalTimeZone");
 
+                Segment seg = new Segment();
+                seg.setId("");
+                seg.setAirlineIconPath("");
                 seg.setAirlineName( (String)airlineData.get("Code")  );
                 seg.setFlightNumber( (String)segmentMap.get("FlightNumber"));
                 seg.setDepartureAirportCode( (String)departureAirportData.get("LocationCode") );
@@ -77,11 +83,30 @@ public class TripManager {
                 seg.setArrivalDate( arrivalDateTime );
                 seg.setAirplaneData( (String) equipmentData.get("AirEquipType") );
 
-                //TODO
-                //check DepartureTimeZone and ArrivalTimeZone to know if is the same zone,
-                //if is the same make the operation
-                //else check time zone first.
-                seg.setTimeFlight( (String)segmentMap.get("ArrivalDateTime")   );
+                //to obtain the flight time of this segment.
+                long diffInHours = 0;
+                long diffInMinutes = 0;
+                String timeFlight = "";
+                if ( departureTimeZone.get("GMTOffset").equals( arrivalTimeZone.get("GMTOffset") ) ){
+                    diffInHours = java.time.Duration.between(departureDateTime, arrivalDateTime)
+                            .toHours();
+                    diffInMinutes = Duration.between( departureDateTime, arrivalDateTime )
+                            .toMinutes();
+                    timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
+
+                }else{
+                    String GMT_ZONE_departure = departureTimeZone.get("GMTOffset").toString();
+                    String GMT_ZONE_arrival = arrivalTimeZone.get("GMTOffset").toString();
+                    Instant timeStampDeparture = departureDateTime.toInstant(
+                            ZoneOffset.of(GMTFormatter.GMTformatter( GMT_ZONE_departure )) );
+                    Instant timeStampArrival = arrivalDateTime.toInstant(
+                            ZoneOffset.of(GMTFormatter.GMTformatter( GMT_ZONE_arrival )) );
+                    diffInHours = Duration.between( timeStampDeparture, timeStampArrival ).toHours();
+                    diffInMinutes = Duration.between( timeStampDeparture, timeStampArrival ).toMinutes();
+                    timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
+                }
+                seg.setTimeFlight( timeFlight );
+
                 segments.add(seg);
 
             });
