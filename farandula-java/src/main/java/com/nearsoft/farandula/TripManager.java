@@ -17,6 +17,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 //TODO consider create an specic trip manager for each API or create a connector/plugin framework
 public class TripManager {
@@ -33,8 +34,9 @@ public class TripManager {
 
         try {
             //TODO implement a mock client that returns a hardcoded response, for faster dev cycles.
-            final Response response = buildHttpClient().newCall(buildRequestForAvail( search )).execute();
-            return buildAvailResponse(response.body().byteStream());
+            Request request = buildRequestForAvail(search);
+            InputStream responseStream = sendRequest(request);
+            return buildAvailResponse(responseStream);
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
@@ -42,23 +44,28 @@ public class TripManager {
 
     }
 
+    //TODO during testing override this method to return a hardcoded response  using a stub.
+    InputStream sendRequest(Request request) throws IOException, FarandulaException {
+        final Response response = buildHttpClient().newCall(request).execute();
+        return response.body().byteStream();
+    }
+
     List<Flight> buildAvailResponse(InputStream response) throws IOException {
 
-        List<Flight> resultFlights = new LinkedList<>();
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
-        //Todo we should find a better functional way to construct the result flight( map/collect )
-        pricedItineraries.forEach( f ->  {
-            Flight currentFly = new Flight();
-            currentFly.setLegs(buildAirLegs( (Map<String, Object>) f) );
-            //TODO change this PNR and ID
-            currentFly.setPNR("tempPNR");
-            currentFly.setId("tempID");
-            resultFlights.add(currentFly);
+        return  pricedItineraries
+                .stream()
+                .map( f ->  {
+                    Flight currentFly = new Flight();
+                    currentFly.setLegs(buildAirLegs( (Map<String, Object>) f) );
+                    //TODO change this PNR and ID
+                    currentFly.setPNR("tempPNR");
+                    currentFly.setId("tempID");
+                    return currentFly;
 
-        });
+                }).collect(Collectors.toCollection( LinkedList::new ) );
 
-        return resultFlights;
     }
 
     private List<Airleg> buildAirLegs( Map<String, Object> pricedItinerary) {
@@ -67,31 +74,27 @@ public class TripManager {
         Map<String, Object> originDestinationOptions = (Map<String, Object>) airItinerary.get("OriginDestinationOptions");
         JSONArray originDestinationOption = (JSONArray) originDestinationOptions.get("OriginDestinationOption");
 
-        List<Airleg> airlegList = new LinkedList<>();
-        originDestinationOption.forEach( option ->  {
+        return originDestinationOption
+                .stream()
+                .map( option -> {
+                    JSONArray jsonSegmentArray = (JSONArray) ((Map<String, Object>) option).get("FlightSegment");
+                    return jsonSegmentArray.stream()
+                            .map(g ->  buildSegment((Map<String, Object>) g))
+                            .collect( Collectors.toCollection( LinkedList::new  ));
+                })
+                .filter( segments -> !segments.isEmpty() )
+                .map( segments -> {
+                    Airleg leg = new Airleg();
+                    leg.setId("tempID");
+                    leg.setDepartureAirportCode(segments.get(0).getDepartureAirportCode());
+                    leg.setDepartingDate(segments.get(0).getDepartingDate());
+                    leg.setArrivalAirportCode(segments.get(segments.size() - 1).getArrivalAirportCode());
+                    leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
+                    leg.setSegments(segments);
+                    return leg;
 
-            JSONArray jsonSegmentArray = (JSONArray) ( (Map<String, Object>) option).get("FlightSegment");
-            List<Segment> segments = new LinkedList<>() ;
-            //Todo we should find a better functional way to contruct the result flight( map/collect )
-            jsonSegmentArray.forEach( g -> {
-                segments.add( buildSegment( (Map<String, Object>) g) );
-            });
-
-            if ( !segments.isEmpty() ) {
-                Airleg leg = new Airleg();
-                leg.setId("tempID");
-                leg.setDepartureAirportCode( segments.get(0).getDepartureAirportCode() );
-                leg.setDepartingDate( segments.get(0).getDepartingDate() );
-                leg.setArrivalAirportCode( segments.get(segments.size() - 1).getArrivalAirportCode() );
-                leg.setArrivalDate( segments.get(segments.size() - 1).getArrivalDate() );
-                leg.setSegments( segments );
-                airlegList.add( leg );
-            }
-
-        } );
-
-        return airlegList;
-
+                })
+                .collect( Collectors.toCollection( LinkedList::new  ) );
 
     }
 

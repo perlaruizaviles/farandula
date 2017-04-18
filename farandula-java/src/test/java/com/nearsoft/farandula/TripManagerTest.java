@@ -6,9 +6,11 @@ import com.jayway.jsonpath.JsonPath;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
+import okhttp3.Request;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,12 +49,14 @@ public class TripManagerTest {
     @Test
     public void avail() throws Exception {
 
+
+        TripManager tripManagerStub = createStub();
         //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
 
         int limit = 2;
-        //TODO  implement a mock
+        //TODO  find a way to pass the stub (tripManagerStub) to Luisa
         List<Flight> flights=  Luisa.findMeFlights()
                 .from("DFW")
                 .to("CDG")
@@ -75,6 +79,17 @@ public class TripManagerTest {
             assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
         });
 
+    }
+
+    private TripManager createStub() {
+        return new TripManager(null){
+            @Override
+            InputStream sendRequest(Request request) throws IOException, FarandulaException {
+
+                //TODO here return a resource
+                return null;
+            }
+        };
     }
 
     @Test
