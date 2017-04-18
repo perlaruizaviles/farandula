@@ -7,41 +7,15 @@ public class GMTFormatter {
 
     public static String GMTformatter( String GMT_ZONE){
 
-        //format code
-        String GMT_ZONE_FORMATTED="";
-        if ( GMT_ZONE.startsWith("-")  ){
-            GMT_ZONE_FORMATTED = "-";
-            GMT_ZONE = GMT_ZONE.substring(1);
-        }else{
-            GMT_ZONE_FORMATTED = "+";
-        }
-
-        if ( GMT_ZONE.indexOf(".") != -1 ) {
-
-            if (GMT_ZONE.substring(0, GMT_ZONE.indexOf(".")).length() == 1) {
-                GMT_ZONE_FORMATTED += "0" + GMT_ZONE.substring(0, GMT_ZONE.indexOf("."));
-            } else {
-                GMT_ZONE_FORMATTED += GMT_ZONE.substring(0, GMT_ZONE.indexOf("."));
-            }
-
-            GMT_ZONE = GMT_ZONE.substring(GMT_ZONE.indexOf(".") + 1);
-            if (GMT_ZONE.equals("0")) {
-                GMT_ZONE_FORMATTED += ":00";
-            } else {
-                GMT_ZONE_FORMATTED += ":30";
-            }
-
-        }else{
-            // case when the number is like 1,2,3,4,5 ... instead 01,02,03,04,05.......
-            if( GMT_ZONE.length() == 1 ) {
-                GMT_ZONE_FORMATTED += "0" + GMT_ZONE;
-            }else{
-                GMT_ZONE_FORMATTED += GMT_ZONE;
-            }
-            GMT_ZONE_FORMATTED += ":00";
-        }
+        double GMT_ZONE_VALUE = Double.parseDouble(GMT_ZONE);
+        int GMT_ZONE_INTEGER = (int)Math.floor(Math.abs(GMT_ZONE_VALUE));
+        String GMT_ZONE_FORMATTED = (GMT_ZONE_VALUE < 0.0 ? "-" : "+") // "-" o "+" this helps to set the -' or '+' signal
+            + String.format("%02d", GMT_ZONE_INTEGER)  // adding 0 if is necessary
+            + ":"
+            + (GMT_ZONE_VALUE % 1 == 0 ? "00" : "30");   // "00" or "30" depending of the decimal part
 
         return GMT_ZONE_FORMATTED;
+
     }
 
 }
