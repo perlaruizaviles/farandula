@@ -11,6 +11,7 @@ public class SabreJSONRequest {
 
     public static String getRoundTrip(SearchCommand search) {
 
+        //TODO move this to a json file resource, and add some placeholders (template interpolation)
         return "{\n" +
                 " \"OTA_AirLowFareSearchRQ\": {\n" +
                 "     \"Target\": \"Production\",\n" +
@@ -56,7 +57,6 @@ public class SabreJSONRequest {
                 "               }\n" +
                 "         }\n" +
                 "     }],\n" +
-                /*
                 "       \"TravelPreferences\": {\n" +
                 "          \"ValidInterlineTicket\": true,\n" +
                 "           \"CabinPref\": [{\n" +
@@ -77,7 +77,6 @@ public class SabreJSONRequest {
                 "             }\n" +
                 "         }\n" +
                 "     },\n" +
-                */
                 "        \"TravelerInfoSummary\": {\n" +
                 "            \"SeatsRequested\": [" + search.getPassengers().size() + "],\n" +
                 "          \"AirTravelerAvail\": [{\n" +

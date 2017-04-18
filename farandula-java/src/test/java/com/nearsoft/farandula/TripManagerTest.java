@@ -14,10 +14,7 @@ import java.util.List;
 
 import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
 import static com.nearsoft.farandula.models.CriteriaType.PRICE;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TripManagerTest {
 
@@ -54,6 +51,8 @@ public class TripManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
 
+        int limit = 2;
+        //TODO  implement a mock
         List<Flight> flights=  Luisa.findMeFlights()
                 .from("DFW")
                 .to("CDG")
@@ -62,23 +61,19 @@ public class TripManagerTest {
                 .forPassegers(Passenger.adults(1) )
                 .type( "roundTrip")
                 .sortBy( PRICE,MINSTOPS )
-                .limitTo(2)
+                .limitTo(limit)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
 
-        assertThat( flights.size(), equalTo(100) );
+        assertTrue( flights.size() > 0);
 
         Flight bestFlight = flights.get(0);
 
         assertNotNull( bestFlight );
 
-/*
-
         assertAll("First should be the best Flight", () -> {
             assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
-            assertEquals("CDG",   bestFlight.getLegs().get(100).getArrivalAirportCode() );
+            assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
         });
-
-*/
 
     }
 

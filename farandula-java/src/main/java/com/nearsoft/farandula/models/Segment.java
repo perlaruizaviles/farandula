@@ -1,6 +1,7 @@
 package com.nearsoft.farandula.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by pruiz on 4/12/17.
@@ -16,8 +17,8 @@ public class Segment {
     String arrivalAirportCode;
     LocalDateTime arrivalDate;
     String airplaneData;
-    // i'm not sure about this, bcs this could be calculated on time.
     String timeFlight;
+    List<Passenger> passengersList;
 
     public String getId() {
         return id;
