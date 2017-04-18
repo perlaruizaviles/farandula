@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -97,7 +98,6 @@ public class TripManagerTest {
 
         TripManager manager = new TripManager( null );
 
-        //Todo we should create resources folder under test
         manager.buildAvailResponse( this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  ) );
 
     }
