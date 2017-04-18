@@ -44,7 +44,7 @@ public class TripManager {
 
     List<Flight> buildAvailResponse(InputStream response) throws IOException {
 
-        LinkedList<Flight> resultFlights = new LinkedList<>();
+        List<Flight> resultFlights = new LinkedList<>();
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
         //Todo we should find a better functional way to construct the result flight( map/collect )
@@ -67,11 +67,11 @@ public class TripManager {
         Map<String, Object> originDestinationOptions = (Map<String, Object>) airItinerary.get("OriginDestinationOptions");
         JSONArray originDestinationOption = (JSONArray) originDestinationOptions.get("OriginDestinationOption");
 
-        LinkedList<Airleg> airlegList = new LinkedList<>();
+        List<Airleg> airlegList = new LinkedList<>();
         originDestinationOption.forEach( option ->  {
 
             JSONArray jsonSegmentArray = (JSONArray) ( (Map<String, Object>) option).get("FlightSegment");
-            LinkedList<Segment> segments = new LinkedList<>() ;
+            List<Segment> segments = new LinkedList<>() ;
             //Todo we should find a better functional way to contruct the result flight( map/collect )
             jsonSegmentArray.forEach( g -> {
                 segments.add( buildSegment( (Map<String, Object>) g) );

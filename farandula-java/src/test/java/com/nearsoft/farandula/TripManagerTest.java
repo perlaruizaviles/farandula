@@ -30,8 +30,8 @@ public class TripManagerTest {
         search
                 .from("DFW")
                 .to("CDG")
-                .departingAt ( departingDate) //TODO ask kim about the coloquial slang for depature date
-                .returningAt( returningDate)//TODO ask kim about the coloquial slang for return date
+                .departingAt ( departingDate)
+                .returningAt( returningDate)
                 .forPassegers(Passenger.adults(1) )
                 .type( "roundTrip")
                 .sortBy( PRICE,MINSTOPS )
@@ -56,8 +56,8 @@ public class TripManagerTest {
         List<Flight> flights=  Luisa.findMeFlights()
                 .from("DFW")
                 .to("CDG")
-                .departingAt ( departingDate) //TODO ask kim about the coloquial slang for depature date
-                .returningAt( returningDate)//TODO ask kim about the coloquial slang for return date
+                .departingAt ( departingDate)
+                .returningAt( returningDate)
                 .forPassegers(Passenger.adults(1) )
                 .type( "roundTrip")
                 .sortBy( PRICE,MINSTOPS )
