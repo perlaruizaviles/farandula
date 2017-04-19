@@ -17,6 +17,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 //TODO consider create an specic trip manager for each API or create a connector/plugin framework
@@ -33,7 +34,6 @@ public class TripManager {
     public List<Flight> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
-            //TODO implement a mock client that returns a hardcoded response, for faster dev cycles.
             Request request = buildRequestForAvail(search);
             InputStream responseStream = sendRequest(request);
             return buildAvailResponse(responseStream);
@@ -44,7 +44,6 @@ public class TripManager {
 
     }
 
-    //TODO during testing override this method to return a hardcoded response  using a stub.
     InputStream sendRequest(Request request) throws IOException, FarandulaException {
         final Response response = buildHttpClient().newCall(request).execute();
         return response.body().byteStream();
@@ -59,9 +58,9 @@ public class TripManager {
                 .map( f ->  {
                     Flight currentFly = new Flight();
                     currentFly.setLegs(buildAirLegs( (Map<String, Object>) f) );
-                    //TODO change this PNR and ID
+                    //TODO change this PNR
                     currentFly.setPNR("tempPNR");
-                    currentFly.setId("tempID");
+                    currentFly.setId( ((Map<String, Object>) f).get("SequenceNumber").toString()  );
                     return currentFly;
 
                 }).collect(Collectors.toCollection( LinkedList::new ) );
@@ -113,7 +112,7 @@ public class TripManager {
         Map<String, Object > arrivalTimeZone = (Map<String, Object>) segmentMap.get("ArrivalTimeZone");
 
         Segment seg = new Segment();
-        seg.setId("");
+//        seg.setId("");
         seg.setAirlineIconPath("");
         seg.setAirlineName( (String)airlineData.get("Code")  );
         seg.setFlightNumber( (String)segmentMap.get("FlightNumber"));
@@ -201,8 +200,16 @@ public class TripManager {
     }
 
     public List<Flight> executeAvail(SearchCommand searchCommand) throws FarandulaException {
-
         return this.getAvail(searchCommand);
+    }
 
+    private static Supplier<TripManager> supplier = () -> new TripManager(null);
+
+    public static void setSupplier(Supplier<TripManager> supplier) {
+        TripManager.supplier = supplier;
+    }
+
+    public static TripManager getInstance() {
+        return supplier.get();
     }
 }

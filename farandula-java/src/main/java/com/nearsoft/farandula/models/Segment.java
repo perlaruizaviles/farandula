@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class Segment {
 
-    String id;
     String airlineIconPath;
     String airlineName;
     String flightNumber;
@@ -19,14 +18,6 @@ public class Segment {
     String airplaneData;
     String timeFlight;
     List<Passenger> passengersList;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getAirlineIconPath() {
         return airlineIconPath;

@@ -8,10 +8,8 @@ import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
 import okhttp3.Request;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,8 +23,6 @@ public class TripManagerTest {
     void buildJsonFromSearch() throws IOException, FarandulaException {
 
         TripManager manager = new TripManager(null);
-
-        //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
         SearchCommand search = new SearchCommand();
@@ -48,16 +44,49 @@ public class TripManagerTest {
     }
 
     @Test
-    public void avail() throws Exception {
+    public void fakeAvail() throws Exception {
 
+        TripManager.setSupplier(() -> createStub() );
 
-        TripManager tripManagerStub = createStub();
         //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
-
         int limit = 2;
-        //TODO  find a way to pass the stub (tripManagerStub) to Luisa
+        List<Flight> flights=  Luisa.findMeFlights()
+                .departingAt ( departingDate)
+                .returningAt( returningDate)
+                .limitTo(limit)
+                .execute();
+
+        assertTrue( flights.size() > 0);
+
+        Flight bestFlight = flights.get(0);
+
+        assertNotNull( bestFlight );
+
+        assertAll("First should be the best Flight", () -> {
+            assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
+            assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
+        });
+
+    }
+
+
+    @Test
+    public void realAvail() throws Exception {
+
+        TripManager.setSupplier(() -> {
+            try {
+                return createTripManagerSabre();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
+        LocalDateTime returningDate = departingDate.plusDays(1);
+        int limit = 2;
         List<Flight> flights=  Luisa.findMeFlights()
                 .from("DFW")
                 .to("CDG")
@@ -82,13 +111,16 @@ public class TripManagerTest {
 
     }
 
+    private TripManager createTripManagerSabre() throws IOException, FarandulaException {
+
+        return TripManager.sabre( );
+    }
+
     private TripManager createStub() {
         return new TripManager(null){
             @Override
             InputStream sendRequest(Request request) throws IOException, FarandulaException {
-
-                //TODO here return a resource
-                return null;
+                return this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  );
             }
         };
     }

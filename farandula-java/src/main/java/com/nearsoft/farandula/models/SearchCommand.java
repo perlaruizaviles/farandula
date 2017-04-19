@@ -66,7 +66,7 @@ public class SearchCommand {
 
     public List<Flight> execute() throws IOException, FarandulaException {
 
-        return TripManager.sabre()
+        return TripManager.getInstance()
                  .executeAvail(this);
     }
 
