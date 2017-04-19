@@ -1,8 +1,14 @@
 package com.nearsoft.farandula;
 
 import com.nearsoft.farandula.models.SearchCommand;
+import org.apache.commons.lang3.text.StrSubstitutor;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by pruiz on 4/12/17.
@@ -11,91 +17,32 @@ public class SabreJSONRequest {
 
     public static String getRoundTrip(SearchCommand search) {
 
-        //TODO move this to a json file resource, and add some placeholders (template interpolation)
-        return "{\n" +
-                " \"OTA_AirLowFareSearchRQ\": {\n" +
-                "     \"Target\": \"Production\",\n" +
-                "       \"POS\": {\n" +
-                "            \"Source\": [{\n" +
-                "                \"PseudoCityCode\":\"F9CE\",\n" +
-                "                \"RequestorID\": {\n" +
-                "                    \"Type\": \"1\",\n" +
-                "                  \"ID\": \"1\",\n" +
-                "                    \"CompanyName\": {\n" +
-                "                        \n" +
-                "                  }\n" +
-                "             }\n" +
-                "         }]\n" +
-                "        },\n" +
-                "        \"OriginDestinationInformation\": [{\n" +
-                "          \"RPH\": \"1\",\n" +
-                "           \"DepartureDateTime\": \""+  search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)  + "\",\n" +
-                "           \"OriginLocation\": {\n" +
-                "             \"LocationCode\": \"" +  search.getDepartureAirport()  +"\"\n" +
-                "         },\n" +
-                "            \"DestinationLocation\": {\n" +
-                "                \"LocationCode\": \"" + search.getArrivalAirport() + "\"\n" +
-                "         },\n" +
-                "            \"TPA_Extensions\": {\n" +
-                "             \"SegmentType\": {\n" +
-                "                    \"Code\": \"O\"\n" +
-                "               }\n" +
-                "         }\n" +
-                "     },\n" +
-                "        {\n" +
-                "         \"RPH\": \"2\",\n" +
-                "           \"DepartureDateTime\": \"" +  search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)   + "\",\n" +
-                "           \"OriginLocation\": {\n" +
-                "             \"LocationCode\": \"" + search.getArrivalAirport() + "\"\n" +
-                "         },\n" +
-                "            \"DestinationLocation\": {\n" +
-                "                \"LocationCode\": \""+ search.getDepartureAirport() + "\"\n" +
-                "         },\n" +
-                "            \"TPA_Extensions\": {\n" +
-                "             \"SegmentType\": {\n" +
-                "                    \"Code\": \"O\"\n" +
-                "               }\n" +
-                "         }\n" +
-                "     }],\n" +
-                "       \"TravelPreferences\": {\n" +
-                "          \"ValidInterlineTicket\": true,\n" +
-                "           \"CabinPref\": [{\n" +
-                "             \"Cabin\": \"Y\",\n" +
-                "             \"PreferLevel\": \"Preferred\"\n" +
-                "            }],\n" +
-                "           \"TPA_Extensions\": {\n" +
-                "             \"TripType\": {\n" +
-                "                   \"Value\": \"Return\"\n" +
-                "             },\n" +
-                "                \"LongConnectTime\": {\n" +
-                "                    \"Min\": 780,\n" +
-                "                 \"Max\": 1200,\n" +
-                "                    \"Enable\": true\n" +
-                "              },\n" +
-                "                \"ExcludeCallDirectCarriers\": {\n" +
-                "                  \"Enabled\": true\n" +
-                "             }\n" +
-                "         }\n" +
-                "     },\n" +
-                "        \"TravelerInfoSummary\": {\n" +
-                "            \"SeatsRequested\": [" + search.getPassengers().size() + "],\n" +
-                "          \"AirTravelerAvail\": [{\n" +
-                "              \"PassengerTypeQuantity\": [{\n" +
-                "                 \"Code\": \"ADT\",\n" +
-                "                    \"Quantity\": 1\n" +
-                "               }]\n" +
-                "            }]\n" +
-                "        },\n" +
-                "        \"TPA_Extensions\": {\n" +
-                "         \"IntelliSellTransaction\": {\n" +
-                "             \"RequestType\": {\n" +
-                "                    \"Name\": \"50ITINS\"\n" +
-                "             }\n" +
-                "         }\n" +
-                "     }\n" +
-                " }\n" +
-                "}";
+        //TODO in future we can check this using 'handlebars' or another lib, research is required.
 
+        Map valuesMap = new HashMap();
+        valuesMap.put("departureAirport",  search.getDepartureAirport()  );
+        valuesMap.put("arrivalAirport",  search.getArrivalAirport() );
+        valuesMap.put("passengersNumber",  search.getPassengers().size() );
+        valuesMap.put("departingDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) );
+        valuesMap.put("returningDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+
+        StrSubstitutor sub = new StrSubstitutor(valuesMap);
+        String jsonFileContent  = new BufferedReader(new InputStreamReader(
+                    SabreJSONRequest.class.getClass().getResourceAsStream( "/SabreJSON/request/RoundTrip.json" ) ))
+                .lines()
+                .collect(Collectors.joining("\n") );
+
+        return sub.replace(jsonFileContent);
+
+    }
+
+
+    private static String getMultiCity(SearchCommand search) {
+        return "";
+    }
+
+    private static String getOneWay(SearchCommand search) {
+        return "";
     }
 
     public static String getRequest(SearchCommand search) {
@@ -117,11 +64,4 @@ public class SabreJSONRequest {
 
     }
 
-    private static String getMultiCity(SearchCommand search) {
-        return "";
-    }
-
-    private static String getOneWay(SearchCommand search) {
-        return "";
-    }
 }
