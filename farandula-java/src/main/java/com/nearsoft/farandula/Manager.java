@@ -13,11 +13,8 @@ public interface Manager {
 
 
     //TODO #9 verify that this is the minimum required/common methods
-    OkHttpClient buildHttpClient( );
-    List<Flight> executeAvail(SearchCommand searchCommand ) throws FarandulaException;
-    List<Flight> buildAvailResponse(InputStream response) throws IOException;
     List<Flight> getAvail(SearchCommand search) throws FarandulaException;
-    InputStream sendRequest( Request request ) throws IOException, FarandulaException;
-    List<Object> getResponse( InputStream response );
+    //get seats
+
 
 }

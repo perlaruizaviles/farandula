@@ -17,31 +17,32 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 //TODO consider create an specific trip manager for each API or create a connector/plugin framework
-public class TripManager {
+public class SabreTripManager implements Manager {
 
     //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
 
-    public TripManager(Creds creds) {
+    public SabreTripManager(Creds creds) {
         _accessManager = new AccessManager(creds);
     }
 
-    public static TripManager sabre() throws IOException, FarandulaException {
+    public static SabreTripManager prepareSabre() throws IOException, FarandulaException {
 
         Properties props = new Properties();
-        props.load(TripManager.class.getResourceAsStream("/config.properties"));
+        props.load(SabreTripManager.class.getResourceAsStream("/config.properties"));
         final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
-        TripManager tripManager = new TripManager(creds);
+        SabreTripManager tripManager = new SabreTripManager(creds);
         return tripManager;
 
     }
 
-    private OkHttpClient buildHttpClient() throws FarandulaException {
+
+    private OkHttpClient createHttpClient() throws FarandulaException {
         if (_builder.interceptors().isEmpty()) {
             _builder.addInterceptor(new AuthInterceptor(_accessManager.getAccessToken()));
             _builder.connectTimeout(1, TimeUnit.MINUTES);
@@ -50,22 +51,25 @@ public class TripManager {
         return _builder.build();
     }
 
-    public List<Flight> executeAvail(SearchCommand searchCommand) throws FarandulaException {
-        return this.getAvail(searchCommand);
-    }
 
+
+    @Override
     public List<Flight> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
             Request request = buildRequestForAvail(search);
             InputStream responseStream = sendRequest(request);
-            return buildAvailResponse(responseStream);
+            Stream<Flight> flightStream = parseAvailResponse(responseStream);
+
+            //TODO consider here add some hook capabilities to post-process the stream
+            return flightStream.collect(Collectors.toCollection( LinkedList::new ) );
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
         }
 
     }
+
 
     private Request buildRequestForAvail( SearchCommand search ) throws IOException {
         final Request.Builder builder = new Request.Builder();
@@ -82,26 +86,29 @@ public class TripManager {
         return builder.build();
     }
 
+
     InputStream sendRequest(Request request) throws IOException, FarandulaException {
-        final Response response = buildHttpClient().newCall(request).execute();
+        final Response response = createHttpClient().newCall(request).execute();
         return response.body().byteStream();
     }
 
-    List<Flight> buildAvailResponse(InputStream response) throws IOException {
+
+
+
+    Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
 
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
-        return  pricedItineraries
+        Stream<Flight> flightStream = pricedItineraries
                 .stream()
-                .map( f ->  {
+                .map(f -> {
                     Flight currentFly = new Flight();
-                    currentFly.setLegs(buildAirLegs( (Map<String, Object>) f) );
-                    //TODO change this PNR
-                    currentFly.setPNR("tempPNR");
-                    currentFly.setId( ((Map<String, Object>) f).get("SequenceNumber").toString()  );
+                    currentFly.setLegs(buildAirLegs((Map<String, Object>) f));
+                    currentFly.setId(((Map<String, Object>) f).get("SequenceNumber").toString());
                     return currentFly;
 
-                }).collect(Collectors.toCollection( LinkedList::new ) );
+                });
+        return  flightStream;
 
     }
 
@@ -190,17 +197,6 @@ public class TripManager {
         return seg;
     }
 
-    private static Supplier<TripManager> supplier = () -> new TripManager(null);
-
-    public static void setSupplier(Supplier<TripManager> supplier) {
-        TripManager.supplier = supplier;
-    }
-
-    public static TripManager getInstance() {
-        return supplier.get();
-    }
-
-    //TODO should be part of search???
     String buildJsonFromSearch(SearchCommand search) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();

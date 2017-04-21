@@ -36,13 +36,13 @@ public class AmadeusManager implements Manager {
     public AmadeusManager() throws IOException, FarandulaException {
 
         Properties props = new Properties();
-        props.load(TripManager.class.getResourceAsStream("/config.properties"));
+        props.load(this.getClass().getResourceAsStream("/config.properties"));
         apiKey = props.getProperty("amadeus.apikey") ;
 
     }
 
-    @Override
-    public OkHttpClient buildHttpClient() {
+
+    private OkHttpClient buildHttpClient() {
         if (_builder.interceptors().isEmpty()) {
             _builder.connectTimeout(1, TimeUnit.MINUTES);
             _builder.readTimeout(1, TimeUnit.MINUTES);
@@ -50,10 +50,8 @@ public class AmadeusManager implements Manager {
         return _builder.build();
     }
 
-    @Override
-    public List<Flight> executeAvail(SearchCommand searchCommand) throws FarandulaException {
-        return this.getAvail(searchCommand);
-    }
+
+
 
     @Override
     public List<Flight> getAvail(SearchCommand search) throws FarandulaException {
@@ -191,14 +189,11 @@ public class AmadeusManager implements Manager {
         return builder.build() ;
     }
 
-    @Override
-    public InputStream sendRequest(Request request) throws IOException, FarandulaException {
+
+    InputStream sendRequest(Request request) throws IOException, FarandulaException {
         final Response response = buildHttpClient().newCall( request).execute();
         return response.body().byteStream();
     }
 
-    @Override
-    public List<Object> getResponse(InputStream response) {
-        return null;
-    }
+
 }
