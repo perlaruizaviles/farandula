@@ -1,0 +1,5045 @@
+{
+  "currency": "USD",
+  "results": [
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T17:50",
+                "arrives_at": "2017-07-08T10:05",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1536",
+                "aircraft": "789",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T21:10",
+                "arrives_at": "2017-07-08T21:25",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "327",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-09T11:55",
+                "arrives_at": "2017-07-09T15:45",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "193",
+                "aircraft": "744",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T17:50",
+                "arrives_at": "2017-07-08T10:05",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1536",
+                "aircraft": "789",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T21:10",
+                "arrives_at": "2017-07-08T21:25",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "327",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-09T12:50",
+                "arrives_at": "2017-07-09T17:00",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1530",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "1866.21",
+        "price_per_adult": {
+          "total_fare": "1866.21",
+          "tax": "393.21"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T17:50",
+                "arrives_at": "2017-07-08T10:05",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1536",
+                "aircraft": "789",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T18:10",
+                "arrives_at": "2017-07-08T18:25",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "323",
+                "aircraft": "321",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 8
+                }
+              },
+              {
+                "departs_at": "2017-07-09T11:55",
+                "arrives_at": "2017-07-09T15:45",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "193",
+                "aircraft": "744",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "1866.21",
+        "price_per_adult": {
+          "total_fare": "1866.21",
+          "tax": "393.21"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T17:50",
+                "arrives_at": "2017-07-08T10:05",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "48",
+                "aircraft": "789",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "V",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T14:05",
+                "arrives_at": "2017-07-08T14:25",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6555",
+                "aircraft": "321",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "V",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-09T09:15",
+                "arrives_at": "2017-07-09T13:15",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "51",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "1916.21",
+        "price_per_adult": {
+          "total_fare": "1916.21",
+          "tax": "393.21"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:25",
+                "arrives_at": "2017-07-07T14:55",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ORD",
+                  "terminal": "1"
+                },
+                "marketing_airline": "LH",
+                "operating_airline": "UA",
+                "flight_number": "7469",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 4
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:20",
+                "arrives_at": "2017-07-08T09:30",
+                "origin": {
+                  "airport": "ORD",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "1"
+                },
+                "marketing_airline": "LH",
+                "operating_airline": "UA",
+                "flight_number": "9335",
+                "aircraft": "777",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 4
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T19:35",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "FRA",
+                  "terminal": "1"
+                },
+                "marketing_airline": "LH",
+                "operating_airline": "LH",
+                "flight_number": "1041",
+                "aircraft": "321",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-09T10:10",
+                "arrives_at": "2017-07-09T14:05",
+                "origin": {
+                  "airport": "FRA",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "LH",
+                "operating_airline": "LH",
+                "flight_number": "438",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "1976.79",
+        "price_per_adult": {
+          "total_fare": "1976.79",
+          "tax": "445.79"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T11:15",
+                "arrives_at": "2017-07-07T15:15",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "marketing_airline": "UA",
+                "operating_airline": "UA",
+                "flight_number": "8652",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T19:35",
+                "arrives_at": "2017-07-08T08:45",
+                "origin": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "UA",
+                "operating_airline": "AC",
+                "flight_number": "8252",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T14:45",
+                "arrives_at": "2017-07-08T16:00",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "FRA",
+                  "terminal": "1"
+                },
+                "marketing_airline": "UA",
+                "operating_airline": "LH",
+                "flight_number": "9323",
+                "aircraft": "321",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 4
+                }
+              },
+              {
+                "departs_at": "2017-07-09T10:10",
+                "arrives_at": "2017-07-09T14:05",
+                "origin": {
+                  "airport": "FRA",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "UA",
+                "operating_airline": "LH",
+                "flight_number": "8864",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 4
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "2258.16",
+        "price_per_adult": {
+          "total_fare": "2258.16",
+          "tax": "427.16"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T11:50",
+                "arrives_at": "2017-07-07T16:35",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "YUL"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "7728",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:55",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "YUL"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "SN",
+                "operating_airline": "AC",
+                "flight_number": "9636",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 4
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:05",
+                "arrives_at": "2017-07-08T15:05",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "marketing_airline": "SN",
+                "operating_airline": "AC",
+                "flight_number": "9637",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 4
+                }
+              },
+              {
+                "departs_at": "2017-07-08T16:35",
+                "arrives_at": "2017-07-08T18:42",
+                "origin": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "7667",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 8
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "3370.50",
+        "price_per_adult": {
+          "total_fare": "3370.50",
+          "tax": "390.50"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T11:50",
+                "arrives_at": "2017-07-07T16:35",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "YUL"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "7728",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:55",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "YUL"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "SN",
+                "operating_airline": "AC",
+                "flight_number": "9636",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 4
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:05",
+                "arrives_at": "2017-07-08T15:05",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "marketing_airline": "SN",
+                "operating_airline": "AC",
+                "flight_number": "9637",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 4
+                }
+              },
+              {
+                "departs_at": "2017-07-08T16:35",
+                "arrives_at": "2017-07-08T18:42",
+                "origin": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "UA",
+                "operating_airline": "UA",
+                "flight_number": "8601",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "3444.50",
+        "price_per_adult": {
+          "total_fare": "3444.50",
+          "tax": "390.50"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:25",
+                "arrives_at": "2017-07-07T17:11",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "BOS",
+                  "terminal": "B"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "1172",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:50",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "BOS",
+                  "terminal": "B"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "146",
+                "aircraft": "757",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6433",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-08T11:55",
+                "arrives_at": "2017-07-08T15:45",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6154",
+                "aircraft": "744",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:30",
+                "arrives_at": "2017-07-07T16:55",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "PHL",
+                  "terminal": "0"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "702",
+                "aircraft": "321",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:20",
+                "arrives_at": "2017-07-08T07:55",
+                "origin": {
+                  "airport": "PHL",
+                  "terminal": "A"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "754",
+                "aircraft": "332",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6433",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-08T11:55",
+                "arrives_at": "2017-07-08T15:45",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6154",
+                "aircraft": "744",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T10:20",
+                "arrives_at": "2017-07-07T15:01",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "24",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:15",
+                "arrives_at": "2017-07-08T06:45",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "44",
+                "aircraft": "763",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6433",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-08T11:55",
+                "arrives_at": "2017-07-08T15:45",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6154",
+                "aircraft": "744",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:25",
+                "arrives_at": "2017-07-07T17:11",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "BOS",
+                  "terminal": "B"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "1172",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:50",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "BOS",
+                  "terminal": "B"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "146",
+                "aircraft": "757",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6433",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-08T12:50",
+                "arrives_at": "2017-07-08T17:00",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "81",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:30",
+                "arrives_at": "2017-07-07T16:55",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "PHL",
+                  "terminal": "0"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "702",
+                "aircraft": "321",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:20",
+                "arrives_at": "2017-07-08T07:55",
+                "origin": {
+                  "airport": "PHL",
+                  "terminal": "A"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "754",
+                "aircraft": "332",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6433",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-08T12:50",
+                "arrives_at": "2017-07-08T17:00",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "81",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T10:20",
+                "arrives_at": "2017-07-07T15:01",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "24",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:15",
+                "arrives_at": "2017-07-08T06:45",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "44",
+                "aircraft": "763",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "BA",
+                "flight_number": "6433",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-08T12:50",
+                "arrives_at": "2017-07-08T17:00",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "AA",
+                "operating_airline": "AA",
+                "flight_number": "81",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "3478.71",
+        "price_per_adult": {
+          "total_fare": "3478.71",
+          "tax": "397.71"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:25",
+                "arrives_at": "2017-07-07T17:11",
+                "origin": {
+                  "airport": "DFW"
+                },
+                "destination": {
+                  "airport": "BOS",
+                  "terminal": "B"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "2509",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:50",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "BOS",
+                  "terminal": "B"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1508",
+                "aircraft": "757",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "307",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T11:55",
+                "arrives_at": "2017-07-08T15:45",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "193",
+                "aircraft": "744",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:30",
+                "arrives_at": "2017-07-07T16:55",
+                "origin": {
+                  "airport": "DFW"
+                },
+                "destination": {
+                  "airport": "PHL"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "2514",
+                "aircraft": "321",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:20",
+                "arrives_at": "2017-07-08T07:55",
+                "origin": {
+                  "airport": "PHL",
+                  "terminal": "A"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1615",
+                "aircraft": "332",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "307",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T11:55",
+                "arrives_at": "2017-07-08T15:45",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "193",
+                "aircraft": "744",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T10:20",
+                "arrives_at": "2017-07-07T15:01",
+                "origin": {
+                  "airport": "DFW"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "4340",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:15",
+                "arrives_at": "2017-07-08T06:45",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1534",
+                "aircraft": "763",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "307",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T11:55",
+                "arrives_at": "2017-07-08T15:45",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "193",
+                "aircraft": "744",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:25",
+                "arrives_at": "2017-07-07T17:11",
+                "origin": {
+                  "airport": "DFW"
+                },
+                "destination": {
+                  "airport": "BOS",
+                  "terminal": "B"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "2509",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:50",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "BOS",
+                  "terminal": "B"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1508",
+                "aircraft": "757",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "307",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T12:50",
+                "arrives_at": "2017-07-08T17:00",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1530",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:30",
+                "arrives_at": "2017-07-07T16:55",
+                "origin": {
+                  "airport": "DFW"
+                },
+                "destination": {
+                  "airport": "PHL"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "2514",
+                "aircraft": "321",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:20",
+                "arrives_at": "2017-07-08T07:55",
+                "origin": {
+                  "airport": "PHL",
+                  "terminal": "A"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1615",
+                "aircraft": "332",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "307",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T12:50",
+                "arrives_at": "2017-07-08T17:00",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1530",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T10:20",
+                "arrives_at": "2017-07-07T15:01",
+                "origin": {
+                  "airport": "DFW"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "4340",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:15",
+                "arrives_at": "2017-07-08T06:45",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1534",
+                "aircraft": "763",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:30",
+                "arrives_at": "2017-07-08T10:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LHR",
+                  "terminal": "5"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "BA",
+                "flight_number": "307",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T12:50",
+                "arrives_at": "2017-07-08T17:00",
+                "origin": {
+                  "airport": "LHR",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "BA",
+                "operating_airline": "AA",
+                "flight_number": "1530",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "3478.71",
+        "price_per_adult": {
+          "total_fare": "3478.71",
+          "tax": "397.71"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:30",
+                "arrives_at": "2017-07-07T17:11",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "B"
+                },
+                "destination": {
+                  "airport": "YUL"
+                },
+                "marketing_airline": "WS",
+                "operating_airline": "WS",
+                "flight_number": "5620",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "Q",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:55",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "YUL"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "SN",
+                "operating_airline": "AC",
+                "flight_number": "9636",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 4
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:05",
+                "arrives_at": "2017-07-08T15:05",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "marketing_airline": "SN",
+                "operating_airline": "AC",
+                "flight_number": "9637",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 4
+                }
+              },
+              {
+                "departs_at": "2017-07-08T16:35",
+                "arrives_at": "2017-07-08T18:42",
+                "origin": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "UA",
+                "operating_airline": "UA",
+                "flight_number": "8601",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4136.00",
+        "price_per_adult": {
+          "total_fare": "4136.00",
+          "tax": "373.00"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T11:50",
+                "arrives_at": "2017-07-07T16:35",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "YUL"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "7728",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:55",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "YUL"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "884",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "O",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T15:10",
+                "arrives_at": "2017-07-08T16:45",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "YUL"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "885",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "O",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-09T08:10",
+                "arrives_at": "2017-07-09T11:15",
+                "origin": {
+                  "airport": "YUL"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "7727",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4403.16",
+        "price_per_adult": {
+          "total_fare": "4403.16",
+          "tax": "385.16"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T11:50",
+                "arrives_at": "2017-07-07T16:35",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "YUL"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "7728",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:55",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "YUL"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "884",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "O",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:05",
+                "arrives_at": "2017-07-08T15:05",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "881",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "O",
+                  "seats_remaining": 6
+                }
+              },
+              {
+                "departs_at": "2017-07-08T16:35",
+                "arrives_at": "2017-07-08T18:42",
+                "origin": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "7667",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 5
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4497.00",
+        "price_per_adult": {
+          "total_fare": "4497.00",
+          "tax": "373.00"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T11:50",
+                "arrives_at": "2017-07-07T16:35",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "YUL"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "7728",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:55",
+                "arrives_at": "2017-07-08T07:45",
+                "origin": {
+                  "airport": "YUL"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "884",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "O",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:05",
+                "arrives_at": "2017-07-08T15:05",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "marketing_airline": "AC",
+                "operating_airline": "AC",
+                "flight_number": "881",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "O",
+                  "seats_remaining": 6
+                }
+              },
+              {
+                "departs_at": "2017-07-08T16:35",
+                "arrives_at": "2017-07-08T18:42",
+                "origin": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "UA",
+                "operating_airline": "UA",
+                "flight_number": "8601",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4497.00",
+        "price_per_adult": {
+          "total_fare": "4497.00",
+          "tax": "373.00"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T13:08",
+                "arrives_at": "2017-07-07T16:58",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "6116",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:05",
+                "arrives_at": "2017-07-08T08:05",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "98",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T15:20",
+                "arrives_at": "2017-07-07T19:17",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "5687",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T20:45",
+                "arrives_at": "2017-07-08T10:40",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8573",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4756.63",
+        "price_per_adult": {
+          "total_fare": "4756.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T15:35",
+                "arrives_at": "2017-07-07T18:47",
+                "origin": {
+                  "airport": "DAL",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "74",
+                "aircraft": "717",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "T",
+                  "seats_remaining": 1
+                }
+              },
+              {
+                "departs_at": "2017-07-07T20:20",
+                "arrives_at": "2017-07-08T10:50",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8672",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4831.63",
+        "price_per_adult": {
+          "total_fare": "4831.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:32",
+                "arrives_at": "2017-07-07T15:42",
+                "origin": {
+                  "airport": "DAL",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "1448",
+                "aircraft": "320",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "T",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:25",
+                "arrives_at": "2017-07-08T07:50",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8517",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4831.63",
+        "price_per_adult": {
+          "total_fare": "4831.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:15",
+                "arrives_at": "2017-07-07T15:40",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "1710",
+                "aircraft": "M88",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "U",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:25",
+                "arrives_at": "2017-07-08T07:50",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8517",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T09:55",
+                "arrives_at": "2017-07-07T13:05",
+                "origin": {
+                  "airport": "DAL",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "1186",
+                "aircraft": "717",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "U",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T15:34",
+                "arrives_at": "2017-07-08T06:10",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "82",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4835.63",
+        "price_per_adult": {
+          "total_fare": "4835.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T16:05",
+                "arrives_at": "2017-07-07T18:40",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "2868",
+                "aircraft": "319",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "K",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T19:50",
+                "arrives_at": "2017-07-08T11:15",
+                "origin": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8500",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T12:15",
+                "arrives_at": "2017-07-07T14:45",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "5697",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "K",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T16:20",
+                "arrives_at": "2017-07-08T07:30",
+                "origin": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "140",
+                "aircraft": "777",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4851.63",
+        "price_per_adult": {
+          "total_fare": "4851.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T11:00",
+                "arrives_at": "2017-07-07T14:19",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "2310",
+                "aircraft": "M88",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T15:34",
+                "arrives_at": "2017-07-08T06:10",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "82",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T09:30",
+                "arrives_at": "2017-07-07T12:41",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "1243",
+                "aircraft": "M88",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T15:34",
+                "arrives_at": "2017-07-08T06:10",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "82",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4856.63",
+        "price_per_adult": {
+          "total_fare": "4856.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T15:45",
+                "arrives_at": "2017-07-07T19:00",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "1513",
+                "aircraft": "M88",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T20:20",
+                "arrives_at": "2017-07-08T10:50",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8672",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T14:45",
+                "arrives_at": "2017-07-07T18:02",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "1171",
+                "aircraft": "717",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T20:20",
+                "arrives_at": "2017-07-08T10:50",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8672",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4872.63",
+        "price_per_adult": {
+          "total_fare": "4872.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T13:00",
+                "arrives_at": "2017-07-07T17:09",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "YYZ",
+                  "terminal": "3"
+                },
+                "marketing_airline": "WS",
+                "operating_airline": "AA",
+                "flight_number": "5007",
+                "aircraft": "M80",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "Y",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-07T19:35",
+                "arrives_at": "2017-07-08T08:45",
+                "origin": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "SN",
+                "operating_airline": "AC",
+                "flight_number": "9638",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "Y",
+                  "seats_remaining": 4
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:05",
+                "arrives_at": "2017-07-08T15:05",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "marketing_airline": "SN",
+                "operating_airline": "AC",
+                "flight_number": "9637",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 4
+                }
+              },
+              {
+                "departs_at": "2017-07-08T16:35",
+                "arrives_at": "2017-07-08T18:42",
+                "origin": {
+                  "airport": "YYZ",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "UA",
+                "operating_airline": "UA",
+                "flight_number": "8601",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "S",
+                  "seats_remaining": 7
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4882.36",
+        "price_per_adult": {
+          "total_fare": "4882.36",
+          "tax": "376.36"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T13:15",
+                "arrives_at": "2017-07-07T16:32",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "2505",
+                "aircraft": "717",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:25",
+                "arrives_at": "2017-07-08T07:50",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8517",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:40",
+                "arrives_at": "2017-07-08T15:55",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "1020",
+                "aircraft": "388",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T18:20",
+                "arrives_at": "2017-07-08T21:16",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "4"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "4034",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4926.63",
+        "price_per_adult": {
+          "total_fare": "4926.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T13:08",
+                "arrives_at": "2017-07-07T16:58",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "6116",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:05",
+                "arrives_at": "2017-07-08T08:05",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "98",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T15:30",
+                "arrives_at": "2017-07-08T18:20",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8572",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T19:55",
+                "arrives_at": "2017-07-08T21:40",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "5722",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "U",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T15:20",
+                "arrives_at": "2017-07-07T19:17",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "5687",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T20:45",
+                "arrives_at": "2017-07-08T10:40",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8573",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T15:30",
+                "arrives_at": "2017-07-08T18:20",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8572",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T19:55",
+                "arrives_at": "2017-07-08T21:40",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "5722",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "U",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "4966.63",
+        "price_per_adult": {
+          "total_fare": "4966.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T13:08",
+                "arrives_at": "2017-07-07T16:58",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "6116",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:05",
+                "arrives_at": "2017-07-08T08:05",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "98",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T10:20",
+                "arrives_at": "2017-07-08T13:14",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "99",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T15:35",
+                "arrives_at": "2017-07-08T17:25",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "6094",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "L",
+                  "seats_remaining": 2
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "5004.63",
+        "price_per_adult": {
+          "total_fare": "5004.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T13:08",
+                "arrives_at": "2017-07-07T16:58",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "6116",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:05",
+                "arrives_at": "2017-07-08T08:05",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "98",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:50",
+                "arrives_at": "2017-07-08T15:50",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8510",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T17:55",
+                "arrives_at": "2017-07-08T20:25",
+                "origin": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "3711",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "L",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T15:20",
+                "arrives_at": "2017-07-07T19:17",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "5687",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T20:45",
+                "arrives_at": "2017-07-08T10:40",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8573",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:50",
+                "arrives_at": "2017-07-08T15:50",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8510",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T17:55",
+                "arrives_at": "2017-07-08T20:25",
+                "origin": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "3711",
+                "aircraft": "CR9",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "L",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T13:08",
+                "arrives_at": "2017-07-07T16:58",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "6116",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T18:05",
+                "arrives_at": "2017-07-08T08:05",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "98",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:50",
+                "arrives_at": "2017-07-08T15:50",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8510",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T19:40",
+                "arrives_at": "2017-07-08T22:08",
+                "origin": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "2582",
+                "aircraft": "717",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "L",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        },
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T15:20",
+                "arrives_at": "2017-07-07T19:17",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "5687",
+                "aircraft": "E75",
+                "booking_info": {
+                  "travel_class": "PREMIUM_ECONOMY",
+                  "booking_code": "W",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T20:45",
+                "arrives_at": "2017-07-08T10:40",
+                "origin": {
+                  "airport": "DTW",
+                  "terminal": "EM"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8573",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T13:50",
+                "arrives_at": "2017-07-08T15:50",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "AF",
+                "flight_number": "8510",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T19:40",
+                "arrives_at": "2017-07-08T22:08",
+                "origin": {
+                  "airport": "MSP",
+                  "terminal": "1"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "DL",
+                "operating_airline": "DL",
+                "flight_number": "2582",
+                "aircraft": "717",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "L",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "5009.63",
+        "price_per_adult": {
+          "total_fare": "5009.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T11:00",
+                "arrives_at": "2017-07-07T14:19",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "KL",
+                "operating_airline": "DL",
+                "flight_number": "5739",
+                "aircraft": "M88",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T15:17",
+                "arrives_at": "2017-07-08T05:50",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "AMS"
+                },
+                "marketing_airline": "KL",
+                "operating_airline": "DL",
+                "flight_number": "6038",
+                "aircraft": "333",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T06:45",
+                "arrives_at": "2017-07-08T08:00",
+                "origin": {
+                  "airport": "AMS"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2F"
+                },
+                "marketing_airline": "KL",
+                "operating_airline": "KL",
+                "flight_number": "1223",
+                "aircraft": "73W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T14:30",
+                "arrives_at": "2017-07-08T15:50",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2F"
+                },
+                "destination": {
+                  "airport": "AMS"
+                },
+                "marketing_airline": "KL",
+                "operating_airline": "KL",
+                "flight_number": "1234",
+                "aircraft": "73J",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "B",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T17:00",
+                "arrives_at": "2017-07-08T20:15",
+                "origin": {
+                  "airport": "AMS"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "marketing_airline": "KL",
+                "operating_airline": "KL",
+                "flight_number": "621",
+                "aircraft": "772",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T22:30",
+                "arrives_at": "2017-07-08T23:44",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "KL",
+                "operating_airline": "DL",
+                "flight_number": "5266",
+                "aircraft": "320",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "5076.75",
+        "price_per_adult": {
+          "total_fare": "5076.75",
+          "tax": "384.75"
+        },
+        "restrictions": {
+          "refundable": true,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T17:50",
+                "arrives_at": "2017-07-08T10:05",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "IB",
+                "operating_airline": "AA",
+                "flight_number": "4190",
+                "aircraft": "789",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T12:15",
+                "arrives_at": "2017-07-08T14:15",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "ORD",
+                  "terminal": "5"
+                },
+                "marketing_airline": "IB",
+                "operating_airline": "AA",
+                "flight_number": "4115",
+                "aircraft": "789",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T16:50",
+                "arrives_at": "2017-07-08T19:19",
+                "origin": {
+                  "airport": "ORD",
+                  "terminal": "3"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "marketing_airline": "IB",
+                "operating_airline": "AA",
+                "flight_number": "7041",
+                "aircraft": "M80",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "5108.13",
+        "price_per_adult": {
+          "total_fare": "5108.13",
+          "tax": "374.13"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T10:20",
+                "arrives_at": "2017-07-07T15:01",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "marketing_airline": "AY",
+                "operating_airline": "AA",
+                "flight_number": "4057",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:15",
+                "arrives_at": "2017-07-08T06:45",
+                "origin": {
+                  "airport": "JFK",
+                  "terminal": "8"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "AY",
+                "operating_airline": "AA",
+                "flight_number": "5810",
+                "aircraft": "763",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T11:35",
+                "arrives_at": "2017-07-08T15:00",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "D"
+                },
+                "marketing_airline": "AY",
+                "operating_airline": "AA",
+                "flight_number": "5777",
+                "aircraft": "789",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "H",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "5108.13",
+        "price_per_adult": {
+          "total_fare": "5108.13",
+          "tax": "374.13"
+        },
+        "restrictions": {
+          "refundable": false,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T13:15",
+                "arrives_at": "2017-07-07T16:32",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "marketing_airline": "AF",
+                "operating_airline": "DL",
+                "flight_number": "2717",
+                "aircraft": "717",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T17:25",
+                "arrives_at": "2017-07-08T07:50",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "marketing_airline": "AF",
+                "operating_airline": "AF",
+                "flight_number": "681",
+                "aircraft": "77W",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T15:40",
+                "arrives_at": "2017-07-08T19:24",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2E"
+                },
+                "destination": {
+                  "airport": "ATL",
+                  "terminal": "I"
+                },
+                "marketing_airline": "AF",
+                "operating_airline": "DL",
+                "flight_number": "8984",
+                "aircraft": "764",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-08T20:50",
+                "arrives_at": "2017-07-08T22:06",
+                "origin": {
+                  "airport": "ATL",
+                  "terminal": "S"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "E"
+                },
+                "marketing_airline": "AF",
+                "operating_airline": "DL",
+                "flight_number": "5986",
+                "aircraft": "320",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "5112.63",
+        "price_per_adult": {
+          "total_fare": "5112.63",
+          "tax": "378.63"
+        },
+        "restrictions": {
+          "refundable": true,
+          "change_penalties": true
+        }
+      }
+    },
+    {
+      "itineraries": [
+        {
+          "outbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-07T09:05",
+                "arrives_at": "2017-07-07T10:42",
+                "origin": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "LAX",
+                  "terminal": "0"
+                },
+                "marketing_airline": "TN",
+                "operating_airline": "AA",
+                "flight_number": "1191",
+                "aircraft": "32B",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              },
+              {
+                "departs_at": "2017-07-07T13:30",
+                "arrives_at": "2017-07-08T09:30",
+                "origin": {
+                  "airport": "LAX",
+                  "terminal": "B"
+                },
+                "destination": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "marketing_airline": "TN",
+                "operating_airline": "TN",
+                "flight_number": "8",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          },
+          "inbound": {
+            "flights": [
+              {
+                "departs_at": "2017-07-08T11:30",
+                "arrives_at": "2017-07-08T14:20",
+                "origin": {
+                  "airport": "CDG",
+                  "terminal": "2A"
+                },
+                "destination": {
+                  "airport": "LAX",
+                  "terminal": "B"
+                },
+                "marketing_airline": "TN",
+                "operating_airline": "TN",
+                "flight_number": "7",
+                "aircraft": "343",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 7
+                }
+              },
+              {
+                "departs_at": "2017-07-08T17:20",
+                "arrives_at": "2017-07-08T22:36",
+                "origin": {
+                  "airport": "LAX",
+                  "terminal": "0"
+                },
+                "destination": {
+                  "airport": "DFW",
+                  "terminal": "0"
+                },
+                "marketing_airline": "TN",
+                "operating_airline": "AA",
+                "flight_number": "1186",
+                "aircraft": "738",
+                "booking_info": {
+                  "travel_class": "ECONOMY",
+                  "booking_code": "M",
+                  "seats_remaining": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fare": {
+        "total_price": "9420.63",
+        "price_per_adult": {
+          "total_fare": "9420.63",
+          "tax": "244.63"
+        },
+        "restrictions": {
+          "refundable": true,
+          "change_penalties": false
+        }
+      }
+    }
+  ]
+}
