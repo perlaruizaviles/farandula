@@ -27,13 +27,13 @@ import java.util.stream.Collectors;
 /**
  * Created by pruiz on 4/20/17.
  */
-public class AmadeusManager implements Manager {
+public class AmadeusFlightManager implements FlightManager {
 
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
 
     private String apiKey;
 
-    public AmadeusManager() throws IOException, FarandulaException {
+    public AmadeusFlightManager() throws IOException, FarandulaException {
 
         Properties props = new Properties();
         props.load(this.getClass().getResourceAsStream("/config.properties"));

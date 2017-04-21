@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public interface Manager {
+public interface FlightManager {
 
 
     //TODO #9 verify that this is the minimum required/common methods

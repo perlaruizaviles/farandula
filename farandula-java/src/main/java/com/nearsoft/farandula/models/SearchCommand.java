@@ -1,9 +1,8 @@
 package com.nearsoft.farandula.models;
 
-import com.nearsoft.farandula.AmadeusManager;
 import com.nearsoft.farandula.FarandulaException;
-import com.nearsoft.farandula.Manager;
-import com.nearsoft.farandula.SabreTripManager;
+import com.nearsoft.farandula.FlightManager;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,10 +24,10 @@ public class SearchCommand {
     private CriteriaType[] criterias  = new CriteriaType[]{PRICE};
     private int offSet;
 
-    private Manager manager;
+    private FlightManager flightManager;
 
-    public SearchCommand(Manager manager) {
-        this.manager = manager;
+    public SearchCommand(FlightManager flightManager) {
+        this.flightManager = flightManager;
     }
 
     public SearchCommand from(String airportCode) {
@@ -74,7 +73,7 @@ public class SearchCommand {
     public List<Flight> execute() throws IOException, FarandulaException {
 
         //FIXME here there is a code smell , why we are passing `this` to executeAvail.
-        return manager
+        return flightManager
                  .getAvail(this);
     }
 

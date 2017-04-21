@@ -6,7 +6,6 @@ import com.jayway.jsonpath.JsonPath;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import okhttp3.Request;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
 import static com.nearsoft.farandula.models.CriteriaType.PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TripManagerTest {
+public class TripFlightManagerTest {
 
     @Test
     public void fakeAvail() throws Exception {
@@ -93,7 +92,7 @@ public class TripManagerTest {
     @Test
     void buildJsonFromSearch() throws IOException, FarandulaException {
 
-        SabreTripManager manager = new SabreTripManager(null);
+        SabreTripFlightManager manager = new SabreTripFlightManager(null);
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
         SearchCommand search = new SearchCommand(null);
@@ -114,12 +113,12 @@ public class TripManagerTest {
 
     }
 
-    private SabreTripManager createTripManagerSabre() throws IOException, FarandulaException {
-        return SabreTripManager.prepareSabre( );
+    private SabreTripFlightManager createTripManagerSabre() throws IOException, FarandulaException {
+        return SabreTripFlightManager.prepareSabre( );
     }
 
-    private SabreTripManager createSabreStub() {
-        return new SabreTripManager(null){
+    private SabreTripFlightManager createSabreStub() {
+        return new SabreTripFlightManager(null){
             @Override
             InputStream sendRequest(Request request) throws IOException, FarandulaException{
                 return this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  );
@@ -130,7 +129,7 @@ public class TripManagerTest {
     @Test
     public void  buildAvailResponse() throws IOException {
 
-        SabreTripManager manager = new SabreTripManager( null );
+        SabreTripFlightManager manager = new SabreTripFlightManager( null );
 
         manager.parseAvailResponse( this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  ) );
 

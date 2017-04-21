@@ -1,7 +1,7 @@
 import com.nearsoft.farandula.Creds;
 import com.nearsoft.farandula.FarandulaException;
 import com.nearsoft.farandula.Luisa;
-import com.nearsoft.farandula.SabreTripManager;
+import com.nearsoft.farandula.SabreTripFlightManager;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.Passenger;
 
@@ -17,10 +17,10 @@ public class App {
 
     public static void main(String[] args) throws FarandulaException, IOException {
         final Properties props = new Properties();
-        props.load(SabreTripManager.class.getResourceAsStream("/config.properties"));
+        props.load(SabreTripFlightManager.class.getResourceAsStream("/config.properties"));
 
         final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
-        final SabreTripManager tripManager = new SabreTripManager(creds);
+        final SabreTripFlightManager tripManager = new SabreTripFlightManager(creds);
 
         Luisa.setSupplier(() -> tripManager);
 

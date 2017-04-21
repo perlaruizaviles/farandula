@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by pruiz on 4/20/17.
  */
-class AmadeusManagerTest {
+class AmadeusFlightManagerTest {
 
     @Test
     void executeAvail() throws FarandulaException, IOException {
@@ -35,7 +35,7 @@ class AmadeusManagerTest {
                 .sortBy(PRICE, MINSTOPS)
                 .limitTo(50);
 
-        Manager amadeus = new AmadeusManager();
+        FlightManager amadeus = new AmadeusFlightManager();
         List<Flight> flightList = amadeus.getAvail(search);
 
         System.out.println("Check, flightList.size:"+ flightList.size());
@@ -78,8 +78,8 @@ class AmadeusManagerTest {
 
     }
 
-    private Manager createStub() throws IOException, FarandulaException {
-        return new AmadeusManager() {
+    private FlightManager createStub() throws IOException, FarandulaException {
+        return new AmadeusFlightManager() {
 
             @Override
             InputStream sendRequest(Request request) throws IOException, FarandulaException {

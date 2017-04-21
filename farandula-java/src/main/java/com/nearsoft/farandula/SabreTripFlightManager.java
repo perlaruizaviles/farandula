@@ -21,22 +21,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 //TODO consider create an specific trip manager for each API or create a connector/plugin framework
-public class SabreTripManager implements Manager {
+public class SabreTripFlightManager implements FlightManager {
 
     //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
 
-    public SabreTripManager(Creds creds) {
+    public SabreTripFlightManager(Creds creds) {
         _accessManager = new AccessManager(creds);
     }
 
-    public static SabreTripManager prepareSabre() throws IOException, FarandulaException {
+    public static SabreTripFlightManager prepareSabre() throws IOException, FarandulaException {
 
         Properties props = new Properties();
-        props.load(SabreTripManager.class.getResourceAsStream("/config.properties"));
+        props.load(SabreTripFlightManager.class.getResourceAsStream("/config.properties"));
         final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
-        SabreTripManager tripManager = new SabreTripManager(creds);
+        SabreTripFlightManager tripManager = new SabreTripFlightManager(creds);
         return tripManager;
 
     }
