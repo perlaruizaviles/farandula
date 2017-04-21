@@ -1,7 +1,8 @@
 package com.nearsoft.farandula;
 
-import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.SearchCommand;
+
+import java.util.function.Supplier;
 
 /**
  * Created by pruiz on 4/10/17.
@@ -9,12 +10,17 @@ import com.nearsoft.farandula.models.SearchCommand;
 public class Luisa {
 
     public static SearchCommand findMeFlights() {
-        return new SearchCommand();
-    }
-    public static BookCommand bookMeThisFligth(Flight flight) {
-        return new BookCommand();
+        return new SearchCommand(getInstance());
     }
 
-    private static class BookCommand extends SearchCommand {
+    private static Supplier<FlightManager> supplier = () -> new SabreTripFlightManager(null);
+
+    public static void setSupplier(Supplier<FlightManager> aSupplier) {
+        supplier = aSupplier;
     }
+
+    public static FlightManager getInstance() {
+        return supplier.get();
+    }
+
 }

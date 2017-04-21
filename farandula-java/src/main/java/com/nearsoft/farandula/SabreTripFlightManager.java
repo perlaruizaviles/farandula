@@ -1,5 +1,7 @@
 package com.nearsoft.farandula;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
 import com.nearsoft.farandula.models.Airleg;
@@ -9,59 +11,58 @@ import com.nearsoft.farandula.models.Segment;
 import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-/**
- * Created by pruiz on 4/20/17.
- */
-public class AmadeusManager implements Manager {
+//TODO consider create an specific trip manager for each API or create a connector/plugin framework
+public class SabreTripFlightManager implements FlightManager {
 
+    //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
+    private final AccessManager _accessManager;
 
-    private String apiKey;
+    public SabreTripFlightManager(Creds creds) {
+        _accessManager = new AccessManager(creds);
+    }
 
-    public AmadeusManager() throws IOException, FarandulaException {
+    public static SabreTripFlightManager prepareSabre() throws IOException, FarandulaException {
 
         Properties props = new Properties();
-        props.load(TripManager.class.getResourceAsStream("/config.properties"));
-        apiKey = props.getProperty("amadeus.apikey") ;
+        props.load(SabreTripFlightManager.class.getResourceAsStream("/config.properties"));
+        final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
+        SabreTripFlightManager tripManager = new SabreTripFlightManager(creds);
+        return tripManager;
 
     }
 
-    @Override
-    public OkHttpClient buildHttpClient() {
+
+    private OkHttpClient createHttpClient() throws FarandulaException {
         if (_builder.interceptors().isEmpty()) {
+            _builder.addInterceptor(new AuthInterceptor(_accessManager.getAccessToken()));
             _builder.connectTimeout(1, TimeUnit.MINUTES);
             _builder.readTimeout(1, TimeUnit.MINUTES);
         }
         return _builder.build();
     }
 
-    @Override
-    public List<Flight> executeAvail(SearchCommand searchCommand) throws FarandulaException {
-        return this.getAvail(searchCommand);
-    }
+
 
     @Override
     public List<Flight> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
-            Request request = buildRequestForAvail( search );
+            Request request = buildRequestForAvail(search);
             InputStream responseStream = sendRequest(request);
-            return buildAvailResponse(responseStream);
+            Stream<Flight> flightStream = parseAvailResponse(responseStream);
+
+            //TODO consider here add some hook capabilities to post-process the stream
+            return flightStream.collect(Collectors.toCollection( LinkedList::new ) );
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
@@ -69,25 +70,49 @@ public class AmadeusManager implements Manager {
 
     }
 
-    public List<Flight> buildAvailResponse(InputStream response) throws IOException {
+
+    private Request buildRequestForAvail( SearchCommand search ) throws IOException {
+        final Request.Builder builder = new Request.Builder();
+
+        if ( search.getOffSet() > 0) {
+            builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=" + search.getOffSet() + "&offset=1");
+        } else {
+            builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=50&offset=1");
+        }
+
+        String jsonRequest = buildJsonFromSearch( search );
+
+        builder.post(RequestBody.create(MediaType.parse("application/json"), jsonRequest));
+        return builder.build();
+    }
+
+
+    InputStream sendRequest(Request request) throws IOException, FarandulaException {
+        final Response response = createHttpClient().newCall(request).execute();
+        return response.body().byteStream();
+    }
+
+
+
+
+    Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
 
         ReadContext ctx = JsonPath.parse(response);
-        JSONArray pricedItineraries = ctx.read("$..results[*]");
-        return  pricedItineraries
+        JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
+        Stream<Flight> flightStream = pricedItineraries
                 .stream()
-                .map( f ->  {
+                .map(f -> {
                     Flight currentFly = new Flight();
-                    currentFly.setLegs(buildAirLegs( (Map<String, Object>) f) );
-                    //TODO change this PNR
-                    currentFly.setPNR("tempPNR");
-                    currentFly.setId( ((Map<String, Object>) f).get("SequenceNumber").toString()  );
+                    currentFly.setLegs(buildAirLegs((Map<String, Object>) f));
+                    currentFly.setId(((Map<String, Object>) f).get("SequenceNumber").toString());
                     return currentFly;
 
-                }).collect(Collectors.toCollection( LinkedList::new ) );
+                });
+        return  flightStream;
 
     }
 
-    private List<Airleg> buildAirLegs(Map<String, Object> pricedItinerary) {
+    private List<Airleg> buildAirLegs( Map<String, Object> pricedItinerary) {
 
         Map<String, Object> airItinerary = (Map<String, Object>) pricedItinerary.get("AirItinerary");
         Map<String, Object> originDestinationOptions = (Map<String, Object>) airItinerary.get("OriginDestinationOptions");
@@ -117,7 +142,7 @@ public class AmadeusManager implements Manager {
 
     }
 
-    private Segment buildSegment(Map<String, Object> g) {
+    private Segment buildSegment( Map<String, Object> g) {
         Map<String, Object > segmentMap = g;
         //Todo change segment id and PATH
         //airline
@@ -172,33 +197,15 @@ public class AmadeusManager implements Manager {
         return seg;
     }
 
-    public Request buildRequestForAvail(SearchCommand search) {
+    String buildJsonFromSearch(SearchCommand search) throws IOException {
 
-        final Request.Builder builder = new Request.Builder();
-        String departureDate = search.getDepartingDate().format( DateTimeFormatter.ISO_LOCAL_DATE );
-        String arrivalDate = search.getReturningDate().format( DateTimeFormatter.ISO_LOCAL_DATE );
-        String api = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
-        String url_api = api +
-                "apikey=" +  apiKey
-                + "&origin=" + search.getDepartureAirport()
-                + "&destination=" + search.getArrivalAirport()
-                + "&departure_date=" + departureDate
-                + "&return_date=" + arrivalDate
-                + "&adults=" + search.getPassengers().size()
-                + "&number_of_results=" + search.getOffSet() ;
-        builder.url( url_api);
-        builder.get();
-        return builder.build() ;
+        ObjectMapper mapper = new ObjectMapper();
+
+        //SabreJSONRequest.getRequest helps to create the JSON request depending of the search object
+        JsonNode rootNode = mapper.readTree( SabreJSONRequest.getRequest( search ) );
+
+        return rootNode.toString();
+
     }
 
-    @Override
-    public InputStream sendRequest(Request request) throws IOException, FarandulaException {
-        final Response response = buildHttpClient().newCall( request).execute();
-        return response.body().byteStream();
-    }
-
-    @Override
-    public List<Object> getResponse(InputStream response) {
-        return null;
-    }
 }

@@ -17,36 +17,14 @@ import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
 import static com.nearsoft.farandula.models.CriteriaType.PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TripManagerTest {
-
-    @Test
-    void buildJsonFromSearch() throws IOException, FarandulaException {
-
-        TripManager manager = new TripManager(null);
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
-        LocalDateTime returningDate = departingDate.plusDays(1);
-        SearchCommand search = new SearchCommand();
-        search
-                .from("DFW")
-                .to("CDG")
-                .departingAt ( departingDate)
-                .returningAt( returningDate)
-                .forPassegers(Passenger.adults(1) )
-                .type( "roundTrip")
-                .sortBy( PRICE,MINSTOPS )
-                .limitTo(2);
-
-        String jsonRequestString =  manager.buildJsonFromSearch( search );
-        DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
-        String locationCode = jsonRequest.read( "$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
-        assertEquals( "DFW", locationCode );
-
-    }
+public class TripFlightManagerTest {
 
     @Test
     public void fakeAvail() throws Exception {
 
-        TripManager.setSupplier(() -> createStub() );
+
+        //TODO
+        Luisa.setSupplier(() -> createSabreStub() );
 
         //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
@@ -71,11 +49,10 @@ public class TripManagerTest {
 
     }
 
-
     @Test
     public void realAvail() throws Exception {
 
-        TripManager.setSupplier(() -> {
+        Luisa.setSupplier(() -> {
             try {
                 return createTripManagerSabre();
             } catch (Exception e) {
@@ -111,15 +88,39 @@ public class TripManagerTest {
 
     }
 
-    private TripManager createTripManagerSabre() throws IOException, FarandulaException {
 
-        return TripManager.sabre( );
+    @Test
+    void buildJsonFromSearch() throws IOException, FarandulaException {
+
+        SabreTripFlightManager manager = new SabreTripFlightManager(null);
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
+        LocalDateTime returningDate = departingDate.plusDays(1);
+        SearchCommand search = new SearchCommand(null);
+        search
+                .from("DFW")
+                .to("CDG")
+                .departingAt ( departingDate)
+                .returningAt( returningDate)
+                .forPassegers(Passenger.adults(1) )
+                .type( "roundTrip")
+                .sortBy( PRICE,MINSTOPS )
+                .limitTo(2);
+
+        String jsonRequestString =  manager.buildJsonFromSearch( search );
+        DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
+        String locationCode = jsonRequest.read( "$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
+        assertEquals( "DFW", locationCode );
+
     }
 
-    private TripManager createStub() {
-        return new TripManager(null){
+    private SabreTripFlightManager createTripManagerSabre() throws IOException, FarandulaException {
+        return SabreTripFlightManager.prepareSabre( );
+    }
+
+    private SabreTripFlightManager createSabreStub() {
+        return new SabreTripFlightManager(null){
             @Override
-            InputStream sendRequest(Request request) throws IOException, FarandulaException {
+            InputStream sendRequest(Request request) throws IOException, FarandulaException{
                 return this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  );
             }
         };
@@ -128,9 +129,9 @@ public class TripManagerTest {
     @Test
     public void  buildAvailResponse() throws IOException {
 
-        TripManager manager = new TripManager( null );
+        SabreTripFlightManager manager = new SabreTripFlightManager( null );
 
-        manager.buildAvailResponse( this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  ) );
+        manager.parseAvailResponse( this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  ) );
 
     }
 
