@@ -22,6 +22,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class AmadeusManagerTest {
 
+    //TODO #10 we need to make sure that that we execute at least a round trip search
+
     @Test
     void executeAvail() throws FarandulaException, IOException {
 
