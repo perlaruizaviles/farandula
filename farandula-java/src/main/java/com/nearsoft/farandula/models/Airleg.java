@@ -62,5 +62,6 @@ public class Airleg {
     public void setSegments(List<Segment> segments) {
         this.segments = segments;
     }
+
 }
 

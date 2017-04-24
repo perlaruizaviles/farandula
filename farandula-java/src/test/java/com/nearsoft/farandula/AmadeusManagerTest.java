@@ -23,32 +23,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class AmadeusManagerTest {
 
     //TODO #10 we need to make sure that that we execute at least a round trip search
-
-    @Test
-    void executeAvail() throws FarandulaException, IOException {
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
-        LocalDateTime returningDate = departingDate.plusDays(1);
-        SearchCommand search = new SearchCommand()
-                .from("DFW")
-                .to("CDG")
-                .departingAt ( departingDate)
-                .returningAt( returningDate)
-                .forPassegers(Passenger.adults(1) )
-                .type( "roundTrip")
-                .sortBy( PRICE,MINSTOPS )
-                .limitTo(50);
-
-        Manager amadeus = new AmadeusManager();
-        amadeus.executeAvail( search );
-
-        System.out.println("Check");
-    }
-
     @Test
     public void fakeAvail() throws Exception {
 
-        AmadeusManager.setSupplier(() -> createStub() );
+        //TODO
+        Luisa.setSupplier(() -> {
+            try {
+                return createAmadeusStub();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (FarandulaException e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
 
         //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
@@ -73,16 +61,44 @@ class AmadeusManagerTest {
 
     }
 
-    private AmadeusManager createStub() throws IOException, FarandulaException {
-        return new AmadeusManager( ){
-
+    private FlightManager createAmadeusStub() throws IOException, FarandulaException {
+        return new AmadeusFlightManager(){
             @Override
-            public InputStream sendRequest(Request request) throws IOException, FarandulaException {
+            InputStream sendRequest(Request request) throws IOException, FarandulaException{
                 return this.getClass().getResourceAsStream( "/AmadeusAvailResponse.json"  );
             }
         };
     }
 
+    @Test
+    void buildLinkFromSearch() throws IOException, FarandulaException {
+
+        AmadeusFlightManager manager = new AmadeusFlightManager();
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
+        LocalDateTime returningDate = departingDate.plusDays(1);
+        SearchCommand search = new SearchCommand(null);
+        search
+                .from("DFW")
+                .to("CDG")
+                .departingAt ( departingDate)
+                .returningAt( returningDate)
+                .forPassegers(Passenger.adults(1) )
+                .type( "roundTrip")
+                .sortBy( PRICE,MINSTOPS )
+                .limitTo(2);
+
+        String searchURL =  manager.buildTargetURLFromSearch( search );
+        String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
+                "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" +
+                "&origin=DFW" +
+                "&destination=CDG" +
+                "&departure_date=2017-07-07" +
+                "&return_date=2017-07-08" +
+                "&adults=1" +
+                "&number_of_results=2";
+        assertEquals(expectedURL, searchURL );
+
+    }
 
 
 }

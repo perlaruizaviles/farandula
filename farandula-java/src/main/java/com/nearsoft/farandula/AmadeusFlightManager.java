@@ -17,10 +17,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -50,9 +47,6 @@ public class AmadeusFlightManager implements FlightManager {
         return _builder.build();
     }
 
-
-
-
     @Override
     public List<Flight> getAvail(SearchCommand search) throws FarandulaException {
 
@@ -70,123 +64,117 @@ public class AmadeusFlightManager implements FlightManager {
     public List<Flight> buildAvailResponse(InputStream response) throws IOException {
 
         ReadContext ctx = JsonPath.parse(response);
-        JSONArray pricedItineraries = ctx.read("$..results[*]");
+        JSONArray pricedItineraries = ctx.read("$..results[*].itineraries[*]");
         return  pricedItineraries
                 .stream()
                 .map( f ->  {
                     Flight currentFly = new Flight();
-                    currentFly.setLegs(buildAirLegs( (Map<String, Object>) f) );
+                    currentFly.setLegs( buildAirLegs( (Map<String, Object>) f) );
                     //TODO change this PNR
                     currentFly.setPNR("tempPNR");
-                    currentFly.setId( ((Map<String, Object>) f).get("SequenceNumber").toString()  );
+                    //TODO how to set the ID for amadeus??
                     return currentFly;
 
                 }).collect(Collectors.toCollection( LinkedList::new ) );
 
     }
 
-    private List<Airleg> buildAirLegs(Map<String, Object> pricedItinerary) {
+    private List<Airleg> buildAirLegs(Map<String, Object> itinerary) {
 
-        Map<String, Object> airItinerary = (Map<String, Object>) pricedItinerary.get("AirItinerary");
-        Map<String, Object> originDestinationOptions = (Map<String, Object>) airItinerary.get("OriginDestinationOptions");
-        JSONArray originDestinationOption = (JSONArray) originDestinationOptions.get("OriginDestinationOption");
+        List<Airleg> results =  new LinkedList<>();
 
-        return originDestinationOption
-                .stream()
-                .map( option -> {
-                    JSONArray jsonSegmentArray = (JSONArray) ((Map<String, Object>) option).get("FlightSegment");
-                    return jsonSegmentArray.stream()
-                            .map(g ->  buildSegment((Map<String, Object>) g))
-                            .collect( Collectors.toCollection( LinkedList::new  ));
-                })
-                .filter( segments -> !segments.isEmpty() )
-                .map( segments -> {
-                    Airleg leg = new Airleg();
-                    leg.setId("tempID");
-                    leg.setDepartureAirportCode(segments.get(0).getDepartureAirportCode());
-                    leg.setDepartingDate(segments.get(0).getDepartingDate());
-                    leg.setArrivalAirportCode(segments.get(segments.size() - 1).getArrivalAirportCode());
-                    leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
-                    leg.setSegments(segments);
-                    return leg;
+        //adds departure leg
+        Map<String, Object> outbound = (Map<String, Object>) itinerary.get("outbound");
+        JSONArray outboundFlights = (JSONArray) outbound.get("flights");
+        results.add( getAirleg(outboundFlights) );
 
-                })
-                .collect( Collectors.toCollection( LinkedList::new  ) );
+        //adds arrival leg
+        Map<String, Object> inbound = (Map<String, Object>) itinerary.get("inbound");
+        JSONArray inboundFlights = (JSONArray) inbound.get("flights");
+        results.add( getAirleg( inboundFlights) );
+
+        return results;
 
     }
 
-    private Segment buildSegment(Map<String, Object> g) {
-        Map<String, Object > segmentMap = g;
-        //Todo change segment id and PATH
-        //airline
-        JSONArray jsonEquipmentArray = (JSONArray) segmentMap.get("Equipment");
-        Map<String, Object > equipmentData = (Map<String, Object>) jsonEquipmentArray.get(0);
-        Map<String, Object > airlineData = (Map<String, Object>) segmentMap.get("OperatingAirline");
+    private Airleg getAirleg(JSONArray outboundFlights) {
+        LinkedList<Segment> segmentsOtbound = outboundFlights
+                .stream()
+                .map(segment -> {
+                    return buildSegment((Map<String, Object>) segment);
+                })
+                .collect(Collectors.toCollection(LinkedList::new));
+        Airleg leg = new Airleg();
+        leg.setId("tempID");
+        leg.setDepartureAirportCode(segmentsOtbound.get(0).getDepartureAirportCode());
+        leg.setDepartingDate(segmentsOtbound.get(0).getDepartingDate());
+        leg.setArrivalAirportCode(segmentsOtbound.get(segmentsOtbound.size() - 1).getArrivalAirportCode());
+        leg.setArrivalDate(segmentsOtbound.get(segmentsOtbound.size() - 1).getArrivalDate());
+        leg.setSegments(segmentsOtbound);
+        return leg;
+    }
+
+    private Segment buildSegment(Map<String, Object> segmentMap) {
+
         //departure
-        Map<String, Object > departureAirportData = (Map<String, Object>) segmentMap.get("DepartureAirport");
-        Map<String, Object > departureTimeZone = (Map<String, Object>) segmentMap.get("DepartureTimeZone");
+        Map<String, Object > departureAirportData = (Map<String, Object>) segmentMap.get("origin");
+        //Map<String, Object > departureTimeZone = (Map<String, Object>) segmentMap.get("DepartureTimeZone");
+
         //arrival
-        Map<String, Object > arrivalAirportData = (Map<String, Object>) segmentMap.get("ArrivalAirport");
-        Map<String, Object > arrivalTimeZone = (Map<String, Object>) segmentMap.get("ArrivalTimeZone");
+        Map<String, Object > arrivalAirportData = (Map<String, Object>) segmentMap.get("destination");
+        //Map<String, Object > arrivalTimeZone = (Map<String, Object>) segmentMap.get("ArrivalTimeZone");
 
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
-        seg.setAirlineName( (String)airlineData.get("Code")  );
-        seg.setFlightNumber( (String)segmentMap.get("FlightNumber"));
-        seg.setDepartureAirportCode( (String)departureAirportData.get("LocationCode") );
+        seg.setAirlineName(  (String)segmentMap.get("marketing_airline")  );
+        //also there is an operative airline
+        seg.setFlightNumber( (String)segmentMap.get("flight_number"));
+        seg.setDepartureAirportCode( (String)departureAirportData.get("airport") );
+        //also there is terminal
         LocalDateTime departureDateTime = LocalDateTime.parse (
-                (String)segmentMap.get("DepartureDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
+                (String)segmentMap.get("departs_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         seg.setDepartingDate( departureDateTime );
-        seg.setArrivalAirportCode( (String)arrivalAirportData.get("LocationCode") );
+
+        seg.setArrivalAirportCode( (String)arrivalAirportData.get("airport") );
         LocalDateTime arrivalDateTime = LocalDateTime.parse (
-                (String)segmentMap.get("ArrivalDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
+                (String)segmentMap.get("arrives_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         seg.setArrivalDate( arrivalDateTime );
-        seg.setAirplaneData( (String) equipmentData.get("AirEquipType") );
+        seg.setAirplaneData( (String) segmentMap.get("aircraft") );
 
         //to obtain the flight time of this segment.
-        long diffInHours = 0;
-        long diffInMinutes = 0;
-        String timeFlight = "";
-        if ( departureTimeZone.get("GMTOffset").equals( arrivalTimeZone.get("GMTOffset") ) ){
-            diffInHours = Duration.between(departureDateTime, arrivalDateTime)
-                    .toHours();
-            diffInMinutes = Duration.between( departureDateTime, arrivalDateTime )
-                    .toMinutes();
-            timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
-
-        }else{
-            String GMT_ZONE_departure = departureTimeZone.get("GMTOffset").toString();
-            String GMT_ZONE_arrival = arrivalTimeZone.get("GMTOffset").toString();
-            Instant timeStampDeparture = departureDateTime.toInstant(
-                    ZoneOffset.of(GMTFormatter.GMTformatter( GMT_ZONE_departure )) );
-            Instant timeStampArrival = arrivalDateTime.toInstant(
-                    ZoneOffset.of(GMTFormatter.GMTformatter( GMT_ZONE_arrival )) );
-            diffInHours = Duration.between( timeStampDeparture, timeStampArrival ).toHours();
-            diffInMinutes = Duration.between( timeStampDeparture, timeStampArrival ).toMinutes();
-            timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
-        }
+        //TODO amadeus doesn't provide GMT zone
+        long diffInHours = Duration.between(departureDateTime, arrivalDateTime).toHours();
+        long diffInMinutes = Duration.between( departureDateTime, arrivalDateTime ).toMinutes();
+        String timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
         seg.setTimeFlight( timeFlight );
 
+        //there is class information
+        //"booking_info": {
+        //    "travel_class": "ECONOMY"
         return seg;
     }
 
     public Request buildRequestForAvail(SearchCommand search) {
 
         final Request.Builder builder = new Request.Builder();
+        String url_api = buildTargetURLFromSearch(search);
+        builder.url( url_api);
+        builder.get();
+        return builder.build() ;
+    }
+
+    String buildTargetURLFromSearch(SearchCommand search) {
         String departureDate = search.getDepartingDate().format( DateTimeFormatter.ISO_LOCAL_DATE );
         String arrivalDate = search.getReturningDate().format( DateTimeFormatter.ISO_LOCAL_DATE );
         String api = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
-        String url_api = api +
+        return api +
                 "apikey=" +  apiKey
                 + "&origin=" + search.getDepartureAirport()
                 + "&destination=" + search.getArrivalAirport()
                 + "&departure_date=" + departureDate
                 + "&return_date=" + arrivalDate
                 + "&adults=" + search.getPassengers().size()
-                + "&number_of_results=" + search.getOffSet() ;
-        builder.url( url_api);
-        builder.get();
-        return builder.build() ;
+                + "&number_of_results=" + search.getOffSet();
     }
 
 
@@ -194,6 +182,5 @@ public class AmadeusFlightManager implements FlightManager {
         final Response response = buildHttpClient().newCall( request).execute();
         return response.body().byteStream();
     }
-
 
 }
