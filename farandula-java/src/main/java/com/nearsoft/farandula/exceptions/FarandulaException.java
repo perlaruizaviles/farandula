@@ -1,4 +1,4 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.exceptions;
 
 public class FarandulaException extends Exception {
 

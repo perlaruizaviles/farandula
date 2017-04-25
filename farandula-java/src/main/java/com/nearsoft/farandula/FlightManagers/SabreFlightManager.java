@@ -1,9 +1,14 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.FlightManagers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
+import com.nearsoft.farandula.Auth.AccessManager;
+import com.nearsoft.farandula.Auth.AuthInterceptor;
+import com.nearsoft.farandula.Auth.Creds;
+import com.nearsoft.farandula.exceptions.ErrorType;
+import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.Airleg;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.SearchCommand;
@@ -11,6 +16,8 @@ import com.nearsoft.farandula.models.Segment;
 import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
+import com.nearsoft.farandula.requests.json.sabre.SabreJSONRequest;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.*;
@@ -21,22 +28,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 //TODO consider create an specific trip manager for each API or create a connector/plugin framework
-public class SabreTripFlightManager implements FlightManager {
+public class SabreFlightManager implements FlightManager {
 
     //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
 
-    public SabreTripFlightManager(Creds creds) {
+    public SabreFlightManager(Creds creds) {
         _accessManager = new AccessManager(creds);
     }
 
-    public static SabreTripFlightManager prepareSabre() throws IOException, FarandulaException {
+    public static SabreFlightManager prepareSabre() throws IOException, FarandulaException {
 
         Properties props = new Properties();
-        props.load(SabreTripFlightManager.class.getResourceAsStream("/config.properties"));
+        props.load(SabreFlightManager.class.getResourceAsStream("/config.properties"));
         final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
-        SabreTripFlightManager tripManager = new SabreTripFlightManager(creds);
+        SabreFlightManager tripManager = new SabreFlightManager(creds);
         return tripManager;
 
     }
@@ -88,7 +95,7 @@ public class SabreTripFlightManager implements FlightManager {
         return response.body().byteStream();
     }
 
-    Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
+    public Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
 
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
@@ -194,7 +201,7 @@ public class SabreTripFlightManager implements FlightManager {
         return seg;
     }
 
-    String buildJsonFromSearch(SearchCommand search) throws IOException {
+    public static String buildJsonFromSearch(SearchCommand search) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
 

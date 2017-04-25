@@ -1,4 +1,4 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.Auth;
 
 public class Creds {
 

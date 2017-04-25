@@ -1,7 +1,9 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.FlightManagers;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
+import com.nearsoft.farandula.exceptions.ErrorType;
+import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.Airleg;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.SearchCommand;
@@ -230,7 +232,7 @@ public class AmadeusFlightManager implements FlightManager {
         return builder.build() ;
     }
 
-    String buildTargetURLFromSearch(SearchCommand search) {
+    public String buildTargetURLFromSearch(SearchCommand search) {
         String departureDate = search.getDepartingDate().format( DateTimeFormatter.ISO_LOCAL_DATE );
         String arrivalDate = search.getReturningDate().format( DateTimeFormatter.ISO_LOCAL_DATE );
         String api = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";

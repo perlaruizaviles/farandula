@@ -1,4 +1,4 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.requests.json.sabre;
 
 import com.nearsoft.farandula.models.SearchCommand;
 import org.apache.commons.lang3.text.StrSubstitutor;

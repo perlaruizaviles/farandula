@@ -1,6 +1,7 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.Auth;
 
 import java.io.IOException;
+
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

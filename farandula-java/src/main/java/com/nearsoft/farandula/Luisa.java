@@ -1,5 +1,7 @@
 package com.nearsoft.farandula;
 
+import com.nearsoft.farandula.FlightManagers.FlightManager;
+import com.nearsoft.farandula.FlightManagers.SabreFlightManager;
 import com.nearsoft.farandula.models.SearchCommand;
 
 import java.util.function.Supplier;
@@ -14,7 +16,7 @@ public class Luisa {
         return new SearchCommand(getInstance());
     }
 
-    private static Supplier<FlightManager> supplier = () -> new SabreTripFlightManager(null);
+    private static Supplier<FlightManager> supplier = () -> new SabreFlightManager(null);
 
     public static void setSupplier(Supplier<FlightManager> aSupplier) {
         supplier = aSupplier;

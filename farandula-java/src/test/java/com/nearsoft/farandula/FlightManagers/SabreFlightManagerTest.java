@@ -1,13 +1,16 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.FlightManagers;
 
+
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
+import com.nearsoft.farandula.FlightManagers.SabreFlightManager;
+import com.nearsoft.farandula.Luisa;
+import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
 import okhttp3.Request;
 import org.junit.jupiter.api.Test;
-
-import javax.sound.midi.Soundbank;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -17,26 +20,13 @@ import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
 import static com.nearsoft.farandula.models.CriteriaType.PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Created by pruiz on 4/20/17.
- */
-class AmadeusManagerTest {
+public class SabreFlightManagerTest {
 
-    //TODO #10 we need to make sure that that we execute at least a round trip search
     @Test
     public void fakeAvail() throws Exception {
 
         //TODO
-        Luisa.setSupplier(() -> {
-            try {
-                return createAmadeusStub();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (FarandulaException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        Luisa.setSupplier(() -> createSabreStub() );
 
         //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
@@ -61,28 +51,18 @@ class AmadeusManagerTest {
 
     }
 
-    private FlightManager createAmadeusStub() throws IOException, FarandulaException {
-        return new AmadeusFlightManager(){
-            @Override
-            InputStream sendRequest(Request request) throws IOException, FarandulaException{
-                return this.getClass().getResourceAsStream( "/AmadeusAvailResponse.json"  );
-            }
-        };
-    }
-
     @Test
     public void realAvail() throws Exception {
 
         Luisa.setSupplier(() -> {
             try {
-                return createTripManagerAmadeus();
+                return createTripManagerSabre();
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
         });
 
-        //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
         int limit = 2;
@@ -110,28 +90,15 @@ class AmadeusManagerTest {
 
     }
 
-    private AmadeusFlightManager createTripManagerAmadeus() throws IOException, FarandulaException {
-        return  AmadeusFlightManager.prepareAmadeus();
-    }
 
     @Test
-    void buildLinkFromSearch() throws IOException, FarandulaException {
+    void buildJsonFromSearch() throws IOException, FarandulaException {
 
-        Luisa.setSupplier( ()->{
-            try {
-                return createTripManagerAmadeus();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (FarandulaException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
-        AmadeusFlightManager manager = new AmadeusFlightManager();
+        SabreFlightManager manager = new SabreFlightManager(null);
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
-
-        SearchCommand search = new SearchCommand( Luisa.getInstance() )
+        SearchCommand search = new SearchCommand(null);
+        search
                 .from("DFW")
                 .to("CDG")
                 .departingAt ( departingDate)
@@ -141,25 +108,32 @@ class AmadeusManagerTest {
                 .sortBy( PRICE,MINSTOPS )
                 .limitTo(2);
 
-        String searchURL =  manager.buildTargetURLFromSearch( search );
-        String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
-                "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" +
-                "&origin=DFW" +
-                "&destination=CDG" +
-                "&departure_date=2017-07-07" +
-                "&return_date=2017-07-08" +
-                "&adults=1" +
-                "&number_of_results=2";
-        assertEquals(expectedURL, searchURL );
+        String jsonRequestString =  manager.buildJsonFromSearch( search );
+        DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
+        String locationCode = jsonRequest.read( "$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
+        assertEquals( "DFW", locationCode );
 
+    }
+
+    private SabreFlightManager createTripManagerSabre() throws IOException, FarandulaException {
+        return SabreFlightManager.prepareSabre( );
+    }
+
+    private SabreFlightManager createSabreStub() {
+        return new SabreFlightManager(null){
+            @Override
+            InputStream sendRequest(Request request) throws IOException, FarandulaException{
+                return this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  );
+            }
+        };
     }
 
     @Test
     public void  buildAvailResponse() throws IOException {
 
-        AmadeusFlightManager manager = new AmadeusFlightManager( );
+        SabreFlightManager manager = new SabreFlightManager( null );
 
-        manager.parseAvailResponse( this.getClass().getResourceAsStream( "/AmadeusAvailResponse.json"  ) );
+        manager.parseAvailResponse( this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  ) );
 
     }
 

@@ -1,12 +1,9 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.FlightManagers;
 
+import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.SearchCommand;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 public interface FlightManager {
