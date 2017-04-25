@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tools {
+    nodejs 'NodeJS 7.9.0'
+  }
   stages {
     stage('Checkout') {
       steps {
@@ -7,17 +10,22 @@ pipeline {
       }
     }
 
-    stage('Dummy') {
+    stage('Frontend') {
       steps {
         dir('demos/client') {
-          sh 'pwd'
+          sh 'npm prune'
+          sh 'npm install'
+          sh 'npm test'
         }
       }
     }
   }
   post {
     always {
-      sh 'echo \'DONE\''
+      dir('demos/client') {
+        sh 'npm prune'
+        sh 'rm node_modules -rf'
+      }
     }
 
     failure {
