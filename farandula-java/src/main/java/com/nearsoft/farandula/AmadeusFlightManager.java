@@ -195,27 +195,22 @@ public class AmadeusFlightManager implements FlightManager {
         }
 
         getTimeZone( seg.getArrivalAirportCode() );
-        long diffInHours = 0, diffInMinutes = 0;
-        String timeFlight = "";
+        long diffInMinutes = 0;
         if ( departureTimeZone.equals(arrivalTimeZone) ){
-            diffInHours = Duration.between(departureDateTime, arrivalDateTime).toHours();
             diffInMinutes = Duration.between( departureDateTime, arrivalDateTime ).toMinutes();
-            timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
         }else{
             if ( departureTimeZone.isEmpty() || arrivalTimeZone.isEmpty() ){
                 //todo check this case, what should we do when is impossible to get the zone,
                 // example when location is 'xyz'
-                timeFlight = "Error calculating the flight time, arrival or departure location is missing.";
+                diffInMinutes = 0;
             }else {
                 ZonedDateTime departureWithZone = departureDateTime.atZone(ZoneId.of(departureTimeZone));
                 ZonedDateTime arrivalWithZone = arrivalDateTime.atZone(ZoneId.of(arrivalTimeZone));
-                diffInHours = Duration.between(departureWithZone, arrivalWithZone).toHours();
                 diffInMinutes = Duration.between(departureWithZone, arrivalWithZone).toMinutes();
-                timeFlight = diffInHours + " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
             }
         }
 
-        seg.setTimeFlight( timeFlight );
+        seg.setDuration( diffInMinutes );
 
         return seg;
     }

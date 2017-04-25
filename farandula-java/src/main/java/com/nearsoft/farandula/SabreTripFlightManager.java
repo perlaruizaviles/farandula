@@ -176,16 +176,10 @@ public class SabreTripFlightManager implements FlightManager {
         seg.setArrivalDate( arrivalDateTime );
 
         //to obtain the flight time of this segment.
-        long diffInHours = 0;
         long diffInMinutes = 0;
-        String timeFlight = "";
         if ( departureTimeZone.get("GMTOffset").equals( arrivalTimeZone.get("GMTOffset") ) ){
-            diffInHours = Duration.between(departureDateTime, arrivalDateTime)
-                    .toHours();
             diffInMinutes = Duration.between( departureDateTime, arrivalDateTime )
                     .toMinutes();
-            timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
-
         }else{
             String GMT_ZONE_departure = departureTimeZone.get("GMTOffset").toString();
             String GMT_ZONE_arrival = arrivalTimeZone.get("GMTOffset").toString();
@@ -193,11 +187,9 @@ public class SabreTripFlightManager implements FlightManager {
                     ZoneOffset.of(GMTFormatter.GMTformatter( GMT_ZONE_departure )) );
             Instant timeStampArrival = arrivalDateTime.toInstant(
                     ZoneOffset.of(GMTFormatter.GMTformatter( GMT_ZONE_arrival )) );
-            diffInHours = Duration.between( timeStampDeparture, timeStampArrival ).toHours();
             diffInMinutes = Duration.between( timeStampDeparture, timeStampArrival ).toMinutes();
-            timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
         }
-        seg.setTimeFlight( timeFlight );
+        seg.setDuration( diffInMinutes );
 
         return seg;
     }

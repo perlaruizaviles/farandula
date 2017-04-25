@@ -17,7 +17,7 @@ import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
 import static com.nearsoft.farandula.models.CriteriaType.PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TripFlightManagerTest {
+public class SabreFlightManagerTest {
 
     @Test
     public void fakeAvail() throws Exception {

@@ -18,7 +18,7 @@ public class Segment {
     String arrivalTerminal;
     LocalDateTime arrivalDate;
     String airplaneData;
-    String timeFlight;
+    long duration;
     String travelClass;
 
     public String getAirlineIconPath() {
@@ -117,11 +117,11 @@ public class Segment {
         this.airplaneData = airplaneData;
     }
 
-    public String getTimeFlight() {
-        return timeFlight;
+    public long getDuration() {
+        return duration;
     }
 
-    public void setTimeFlight(String timeFlight) {
-        this.timeFlight = timeFlight;
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 }
