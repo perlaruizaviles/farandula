@@ -70,14 +70,29 @@ class AmadeusManagerTest {
         };
     }
 
+    private AmadeusFlightManager createTripManagerAmadeus() throws IOException, FarandulaException {
+        return  AmadeusFlightManager.prepareAmadeus();
+    }
+
     @Test
     void buildLinkFromSearch() throws IOException, FarandulaException {
 
+        Luisa.setSupplier( ()->{
+            try {
+                return createTripManagerAmadeus();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (FarandulaException e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
         AmadeusFlightManager manager = new AmadeusFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
-        SearchCommand search = new SearchCommand(null);
-        search
+
+        SearchCommand search =   Luisa
+                .findMeFlights()
                 .from("DFW")
                 .to("CDG")
                 .departingAt ( departingDate)

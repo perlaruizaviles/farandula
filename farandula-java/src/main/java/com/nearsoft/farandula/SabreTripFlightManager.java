@@ -41,7 +41,6 @@ public class SabreTripFlightManager implements FlightManager {
 
     }
 
-
     private OkHttpClient createHttpClient() throws FarandulaException {
         if (_builder.interceptors().isEmpty()) {
             _builder.addInterceptor(new AuthInterceptor(_accessManager.getAccessToken()));
@@ -50,8 +49,6 @@ public class SabreTripFlightManager implements FlightManager {
         }
         return _builder.build();
     }
-
-
 
     @Override
     public List<Flight> getAvail(SearchCommand search) throws FarandulaException {
@@ -86,14 +83,10 @@ public class SabreTripFlightManager implements FlightManager {
         return builder.build();
     }
 
-
     InputStream sendRequest(Request request) throws IOException, FarandulaException {
         final Response response = createHttpClient().newCall(request).execute();
         return response.body().byteStream();
     }
-
-
-
 
     Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
 
@@ -148,7 +141,9 @@ public class SabreTripFlightManager implements FlightManager {
         //airline
         JSONArray jsonEquipmentArray = (JSONArray) segmentMap.get("Equipment");
         Map<String, Object > equipmentData = (Map<String, Object>) jsonEquipmentArray.get(0);
-        Map<String, Object > airlineData = (Map<String, Object>) segmentMap.get("OperatingAirline");
+        Map<String, Object > operativeAirlineData = (Map<String, Object>) segmentMap.get("OperatingAirline");
+        Map<String, Object > marketingAirlineData = (Map<String, Object>) segmentMap.get("MarketingAirline");
+
         //departure
         Map<String, Object > departureAirportData = (Map<String, Object>) segmentMap.get("DepartureAirport");
         Map<String, Object > departureTimeZone = (Map<String, Object>) segmentMap.get("DepartureTimeZone");
@@ -156,19 +151,29 @@ public class SabreTripFlightManager implements FlightManager {
         Map<String, Object > arrivalAirportData = (Map<String, Object>) segmentMap.get("ArrivalAirport");
         Map<String, Object > arrivalTimeZone = (Map<String, Object>) segmentMap.get("ArrivalTimeZone");
 
+        //flight data
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
-        seg.setAirlineName( (String)airlineData.get("Code")  );
+        seg.setOperatingAirline( (String)operativeAirlineData.get("Code")  );
+        seg.setMarketingAirline( (String)marketingAirlineData.get("Code")  );
         seg.setFlightNumber( (String)segmentMap.get("FlightNumber"));
+        seg.setAirplaneData( (String) equipmentData.get("AirEquipType") );
+        //TODO travel class for SABRE
+        seg.setTravelClass("");
+
+        //departure info
         seg.setDepartureAirportCode( (String)departureAirportData.get("LocationCode") );
+        seg.setDepartureTerminal( (String)departureAirportData.get("TerminalID" ) );
         LocalDateTime departureDateTime = LocalDateTime.parse (
                 (String)segmentMap.get("DepartureDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         seg.setDepartingDate( departureDateTime );
+
+        //arrival info
         seg.setArrivalAirportCode( (String)arrivalAirportData.get("LocationCode") );
+        seg.setArrivalTerminal( (String) arrivalAirportData.get("TerminalID") );
         LocalDateTime arrivalDateTime = LocalDateTime.parse (
                 (String)segmentMap.get("ArrivalDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         seg.setArrivalDate( arrivalDateTime );
-        seg.setAirplaneData( (String) equipmentData.get("AirEquipType") );
 
         //to obtain the flight time of this segment.
         long diffInHours = 0;

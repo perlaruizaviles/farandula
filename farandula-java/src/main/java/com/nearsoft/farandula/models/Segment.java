@@ -1,7 +1,6 @@
 package com.nearsoft.farandula.models;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Created by pruiz on 4/12/17.
@@ -9,15 +8,18 @@ import java.util.List;
 public class Segment {
 
     String airlineIconPath;
-    String airlineName;
+    String operatingAirline;
+    String marketingAirline;
     String flightNumber;
     String departureAirportCode;
+    String departureTerminal;
     LocalDateTime departingDate;
     String arrivalAirportCode;
+    String arrivalTerminal;
     LocalDateTime arrivalDate;
     String airplaneData;
     String timeFlight;
-    List<Passenger> passengersList;
+    String travelClass;
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -27,12 +29,20 @@ public class Segment {
         this.airlineIconPath = airlineIconPath;
     }
 
-    public String getAirlineName() {
-        return airlineName;
+    public String getOperatingAirline() {
+        return operatingAirline;
     }
 
-    public void setAirlineName(String airlineName) {
-        this.airlineName = airlineName;
+    public void setOperatingAirline(String operatingAirline) {
+        this.operatingAirline = operatingAirline;
+    }
+
+    public String getMarketingAirline() {
+        return marketingAirline;
+    }
+
+    public void setMarketingAirline(String marketingAirline) {
+        this.marketingAirline = marketingAirline;
     }
 
     public String getFlightNumber() {
@@ -41,6 +51,14 @@ public class Segment {
 
     public void setFlightNumber(String flightNumber) {
         this.flightNumber = flightNumber;
+    }
+
+    public String getTravelClass() {
+        return travelClass;
+    }
+
+    public void setTravelClass(String travelClass) {
+        this.travelClass = travelClass;
     }
 
     public String getDepartureAirportCode() {
@@ -59,6 +77,14 @@ public class Segment {
         this.departingDate = departingDate;
     }
 
+    public String getDepartureTerminal() {
+        return departureTerminal;
+    }
+
+    public void setDepartureTerminal(String departureTerminal) {
+        this.departureTerminal = departureTerminal;
+    }
+
     public String getArrivalAirportCode() {
         return arrivalAirportCode;
     }
@@ -73,6 +99,14 @@ public class Segment {
 
     public void setArrivalDate(LocalDateTime arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+
+    public String getArrivalTerminal() {
+        return arrivalTerminal;
+    }
+
+    public void setArrivalTerminal(String arrivalTerminal) {
+        this.arrivalTerminal = arrivalTerminal;
     }
 
     public String getAirplaneData() {

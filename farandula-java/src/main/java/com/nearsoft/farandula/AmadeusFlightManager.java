@@ -6,16 +6,12 @@ import com.nearsoft.farandula.models.Airleg;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.SearchCommand;
 import com.nearsoft.farandula.models.Segment;
-import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -28,16 +24,19 @@ public class AmadeusFlightManager implements FlightManager {
 
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
 
-    private String apiKey;
+    private static String apiKey;
 
-    public AmadeusFlightManager() throws IOException, FarandulaException {
+    private Map<String, String> locationsMap = new HashMap<>();
+
+    public static AmadeusFlightManager prepareAmadeus() throws IOException, FarandulaException {
 
         Properties props = new Properties();
-        props.load(this.getClass().getResourceAsStream("/config.properties"));
+        props.load(AmadeusFlightManager.class.getResourceAsStream("/config.properties"));
         apiKey = props.getProperty("amadeus.apikey") ;
+        AmadeusFlightManager manager =  new AmadeusFlightManager();
+        return manager;
 
     }
-
 
     private OkHttpClient buildHttpClient() {
         if (_builder.interceptors().isEmpty()) {
@@ -60,6 +59,28 @@ public class AmadeusFlightManager implements FlightManager {
         }
 
     }
+
+    public String getTimeZone(String location_code) throws IOException, FarandulaException {
+
+        String url_api = buildLocationURL(  location_code ) ;
+        Request request =  buildRequest( url_api );
+        Response response = buildHttpClient().newCall( request).execute();
+        InputStream responseStream = response.body().byteStream();
+        ReadContext context = JsonPath.parse(responseStream);
+        JSONArray airports = context.read("$..airports[*]");
+
+        List<String> timezones = airports
+                .stream()
+                .filter( airport -> ((Map<String, Object>)airport).get("code").equals(location_code))
+                .map( airport -> {
+                    return (String)((Map<String, Object>)airport).get("timezone");
+                } )
+                .collect( Collectors.toCollection( ArrayList::new ) );
+
+        return timezones.size()> 0 ? timezones.get(0) : "" ;
+
+    }
+
 
     public List<Flight> buildAvailResponse(InputStream response) throws IOException {
 
@@ -97,13 +118,21 @@ public class AmadeusFlightManager implements FlightManager {
 
     }
 
-    private Airleg getAirleg(JSONArray outboundFlights) {
+    private Airleg getAirleg(JSONArray outboundFlights)  {
         LinkedList<Segment> segmentsOtbound = outboundFlights
                 .stream()
                 .map(segment -> {
-                    return buildSegment((Map<String, Object>) segment);
+                    try {
+                        return buildSegment((Map<String, Object>) segment);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (FarandulaException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
                 })
                 .collect(Collectors.toCollection(LinkedList::new));
+
         Airleg leg = new Airleg();
         leg.setId("tempID");
         leg.setDepartureAirportCode(segmentsOtbound.get(0).getDepartureAirportCode());
@@ -114,50 +143,91 @@ public class AmadeusFlightManager implements FlightManager {
         return leg;
     }
 
-    private Segment buildSegment(Map<String, Object> segmentMap) {
+    private Segment buildSegment(Map<String, Object> segmentMap) throws IOException, FarandulaException {
 
         //departure
         Map<String, Object > departureAirportData = (Map<String, Object>) segmentMap.get("origin");
-        //Map<String, Object > departureTimeZone = (Map<String, Object>) segmentMap.get("DepartureTimeZone");
 
         //arrival
         Map<String, Object > arrivalAirportData = (Map<String, Object>) segmentMap.get("destination");
-        //Map<String, Object > arrivalTimeZone = (Map<String, Object>) segmentMap.get("ArrivalTimeZone");
 
+        //booking_info
+        Map<String, Object > bookingInfoData = (Map<String, Object>) segmentMap.get("booking_info");
+
+        //flight information
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
-        seg.setAirlineName(  (String)segmentMap.get("marketing_airline")  );
-        //also there is an operative airline
-        seg.setFlightNumber( (String)segmentMap.get("flight_number"));
+        seg.setOperatingAirline(  (String)segmentMap.get("operative_airline")  );
+        seg.setMarketingAirline(  (String)segmentMap.get("marketing_airline")  );
+        seg.setFlightNumber( (String)segmentMap.get("flight_number") );
+        seg.setAirplaneData( (String) segmentMap.get("aircraft") );
+        seg.setTravelClass( (String) bookingInfoData.get( "travel_class" ) );
+
+        //departure stuff
         seg.setDepartureAirportCode( (String)departureAirportData.get("airport") );
-        //also there is terminal
+        seg.setDepartureTerminal((String)departureAirportData.get("terminal") );
         LocalDateTime departureDateTime = LocalDateTime.parse (
                 (String)segmentMap.get("departs_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         seg.setDepartingDate( departureDateTime );
 
+        //arrival stuff
         seg.setArrivalAirportCode( (String)arrivalAirportData.get("airport") );
+        seg.setDepartureTerminal((String)arrivalAirportData.get("terminal") );
         LocalDateTime arrivalDateTime = LocalDateTime.parse (
                 (String)segmentMap.get("arrives_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         seg.setArrivalDate( arrivalDateTime );
-        seg.setAirplaneData( (String) segmentMap.get("aircraft") );
 
-        //to obtain the flight time of this segment.
-        //TODO amadeus doesn't provide GMT zone
-        long diffInHours = Duration.between(departureDateTime, arrivalDateTime).toHours();
-        long diffInMinutes = Duration.between( departureDateTime, arrivalDateTime ).toMinutes();
-        String timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
+        //TODO CHECK this block is to improve the performance.
+        String departureTimeZone = "";
+        if ( locationsMap.containsKey( seg.getDepartureAirportCode() ) ){
+            departureTimeZone = locationsMap.get( seg.getDepartureAirportCode() );
+        }else{
+            departureTimeZone = getTimeZone( seg.getDepartureAirportCode() );
+            locationsMap.put( seg.getDepartureAirportCode(), departureTimeZone );
+        }
+
+        String arrivalTimeZone = "";
+        if ( locationsMap.containsKey( seg.getArrivalAirportCode() ) ){
+            arrivalTimeZone = locationsMap.get( seg.getArrivalAirportCode() );
+        }else{
+            arrivalTimeZone = getTimeZone( seg.getArrivalAirportCode() );
+            locationsMap.put( seg.getArrivalAirportCode(), arrivalTimeZone );
+        }
+
+        getTimeZone( seg.getArrivalAirportCode() );
+        long diffInHours = 0, diffInMinutes = 0;
+        String timeFlight = "";
+        if ( departureTimeZone.equals(arrivalTimeZone) ){
+            diffInHours = Duration.between(departureDateTime, arrivalDateTime).toHours();
+            diffInMinutes = Duration.between( departureDateTime, arrivalDateTime ).toMinutes();
+            timeFlight = diffInHours +  " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
+        }else{
+            if ( departureTimeZone.isEmpty() || arrivalTimeZone.isEmpty() ){
+                //todo check this case, what should we do when is impossible to get the zone,
+                // example when location is 'xyz'
+                timeFlight = "Error calculating the flight time, arrival or departure location is missing.";
+            }else {
+                ZonedDateTime departureWithZone = departureDateTime.atZone(ZoneId.of(departureTimeZone));
+                ZonedDateTime arrivalWithZone = arrivalDateTime.atZone(ZoneId.of(arrivalTimeZone));
+                diffInHours = Duration.between(departureWithZone, arrivalWithZone).toHours();
+                diffInMinutes = Duration.between(departureWithZone, arrivalWithZone).toMinutes();
+                timeFlight = diffInHours + " h " + (diffInMinutes - (60 * diffInHours)) + " m.";
+            }
+        }
+
         seg.setTimeFlight( timeFlight );
 
-        //there is class information
-        //"booking_info": {
-        //    "travel_class": "ECONOMY"
         return seg;
     }
 
     public Request buildRequestForAvail(SearchCommand search) {
 
-        final Request.Builder builder = new Request.Builder();
         String url_api = buildTargetURLFromSearch(search);
+        return buildRequest( url_api );
+    }
+
+    public Request buildRequest( String url_api ){
+        final Request.Builder builder = new Request.Builder();
         builder.url( url_api);
         builder.get();
         return builder.build() ;
@@ -177,6 +247,13 @@ public class AmadeusFlightManager implements FlightManager {
                 + "&number_of_results=" + search.getOffSet();
     }
 
+    String buildLocationURL(String location) {
+
+        String api = "http://api.sandbox.amadeus.com/v1.2/location/"
+                + location
+                + "/?apikey=" + apiKey;
+        return api;
+    }
 
     InputStream sendRequest(Request request) throws IOException, FarandulaException {
         final Response response = buildHttpClient().newCall( request).execute();

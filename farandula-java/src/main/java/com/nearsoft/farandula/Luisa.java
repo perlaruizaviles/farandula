@@ -9,6 +9,7 @@ import java.util.function.Supplier;
  */
 public class Luisa {
 
+
     public static SearchCommand findMeFlights() {
         return new SearchCommand(getInstance());
     }
