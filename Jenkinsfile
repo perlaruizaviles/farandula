@@ -10,7 +10,7 @@ pipeline {
     stage('Checkout') {
       steps {
         checkout scm
-        echo 'Currently at branch: ${env.BRANCH_NAME}'
+        echo "Currently at branch: ${env.BRANCH_NAME}"
       }
     }
 
