@@ -9,7 +9,7 @@ pipeline {
 
     stage('Dummy') {
       steps {
-        sh 'cd demos/client'
+        sh 'cd demos/client && pwd'
         sh 'pwd'
       }
     }
