@@ -3,6 +3,9 @@ pipeline {
   tools {
     nodejs 'NodeJS 7.9.0'
   }
+  environment {
+    CI = 'true'
+  }
   stages {
     stage('Checkout') {
       steps {
