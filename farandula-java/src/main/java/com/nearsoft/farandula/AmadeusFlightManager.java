@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by pruiz on 4/20/17.
@@ -52,7 +53,8 @@ public class AmadeusFlightManager implements FlightManager {
         try {
             Request request = buildRequestForAvail( search );
             InputStream responseStream = sendRequest(request);
-            return buildAvailResponse(responseStream);
+            Stream<Flight> flightStream = parseAvailResponse(responseStream);
+            return flightStream.collect(Collectors.toCollection( LinkedList::new ));
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
@@ -82,7 +84,7 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
 
-    public List<Flight> buildAvailResponse(InputStream response) throws IOException {
+    public Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
 
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..results[*].itineraries[*]");
@@ -96,7 +98,7 @@ public class AmadeusFlightManager implements FlightManager {
                     //TODO how to set the ID for amadeus??
                     return currentFly;
 
-                }).collect(Collectors.toCollection( LinkedList::new ) );
+                });
 
     }
 

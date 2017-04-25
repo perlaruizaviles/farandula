@@ -21,8 +21,7 @@ public class SabreFlightManagerTest {
 
     @Test
     public void fakeAvail() throws Exception {
-
-
+        
         //TODO
         Luisa.setSupplier(() -> createSabreStub() );
 

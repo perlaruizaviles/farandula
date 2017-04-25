@@ -70,6 +70,46 @@ class AmadeusManagerTest {
         };
     }
 
+    @Test
+    public void realAvail() throws Exception {
+
+        Luisa.setSupplier(() -> {
+            try {
+                return createTripManagerAmadeus();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+
+        //2017-07-07T11:00:00
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
+        LocalDateTime returningDate = departingDate.plusDays(1);
+        int limit = 2;
+        List<Flight> flights=  Luisa.findMeFlights()
+                .from("DFW")
+                .to("CDG")
+                .departingAt ( departingDate)
+                .returningAt( returningDate)
+                .forPassegers(Passenger.adults(1) )
+                .type( "roundTrip")
+                .sortBy( PRICE,MINSTOPS )
+                .limitTo(limit)
+                .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
+
+        assertTrue( flights.size() > 0);
+
+        Flight bestFlight = flights.get(0);
+
+        assertNotNull( bestFlight );
+
+        assertAll("First should be the best Flight", () -> {
+            assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
+            assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
+        });
+
+    }
+
     private AmadeusFlightManager createTripManagerAmadeus() throws IOException, FarandulaException {
         return  AmadeusFlightManager.prepareAmadeus();
     }
@@ -91,8 +131,7 @@ class AmadeusManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
 
-        SearchCommand search =   Luisa
-                .findMeFlights()
+        SearchCommand search = new SearchCommand( Luisa.getInstance() )
                 .from("DFW")
                 .to("CDG")
                 .departingAt ( departingDate)
@@ -115,5 +154,13 @@ class AmadeusManagerTest {
 
     }
 
+    @Test
+    public void  buildAvailResponse() throws IOException {
+
+        AmadeusFlightManager manager = new AmadeusFlightManager( );
+
+        manager.parseAvailResponse( this.getClass().getResourceAsStream( "/AmadeusAvailResponse.json"  ) );
+
+    }
 
 }
