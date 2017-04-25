@@ -9,7 +9,8 @@ pipeline {
 
     stage('Dummy') {
       steps {
-        sh 'echo \'Hello Jenkins\''
+        sh 'cd demos/client'
+        sh 'pwd'
       }
     }
   }
