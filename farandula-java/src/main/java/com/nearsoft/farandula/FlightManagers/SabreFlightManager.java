@@ -18,8 +18,7 @@ import net.minidev.json.JSONArray;
 import okhttp3.*;
 import com.nearsoft.farandula.requests.json.sabre.SabreJSONRequest;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -27,7 +26,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static sun.security.x509.AlgorithmId.get;
 
 //TODO consider create an specific trip manager for each API or create a connector/plugin framework
 public class SabreFlightManager implements FlightManager {
@@ -35,7 +33,7 @@ public class SabreFlightManager implements FlightManager {
     //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
-    private Map<String, String> classTravelMap = new HashMap<>();
+    private static Map<String, String> codeToClassMap = new HashMap<>();
 
     public SabreFlightManager(Creds creds) {
         _accessManager = new AccessManager(creds);
@@ -48,6 +46,19 @@ public class SabreFlightManager implements FlightManager {
         final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
         SabreFlightManager tripManager = new SabreFlightManager(creds);
         return tripManager;
+
+    }
+
+    private static void fillCodeToClassMap( ) throws IOException {
+
+        BufferedReader reader = new BufferedReader( new InputStreamReader(
+                SabreFlightManager.class.getResourceAsStream( "/Sabre/cabinCodes.properties" ) ));
+        String line;
+        while( (line = reader.readLine() )!=null  ){
+            String[] array = line.split("=");
+            codeToClassMap.put( array[0], array[1] );
+        }
+        reader.close();
 
     }
 
@@ -100,6 +111,7 @@ public class SabreFlightManager implements FlightManager {
 
     public Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
 
+        fillCodeToClassMap();
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
         Stream<Flight> flightStream = pricedItineraries
@@ -117,7 +129,7 @@ public class SabreFlightManager implements FlightManager {
                     int cabinIndex = 0;
                     for (Airleg leg : legs) {
                         for (Segment segment : leg.getSegments()) {
-                            segment.setTravelClass( cabinsBySegment.get(0).get( cabinIndex ));
+                            segment.setTravelClass( ConvertCodeToClass( cabinsBySegment.get(0).get( cabinIndex ) ) );
                             cabinIndex++;
                         }
                     }
@@ -134,6 +146,15 @@ public class SabreFlightManager implements FlightManager {
 
     }
 
+    private String ConvertCodeToClass(String s) {
+
+        if ( codeToClassMap.containsKey( s ) ){
+            return codeToClassMap.get( s );
+        }
+
+        return "Other";
+    }
+
     private ArrayList<List<String>> extractCabinsInfo(JSONArray airItineraryPricingInfoMap) {
 
         ArrayList<List<String>> cabinsBySegment = airItineraryPricingInfoMap
@@ -148,7 +169,6 @@ public class SabreFlightManager implements FlightManager {
                             })
                             .collect(Collectors.toCollection(ArrayList::new));
 
-                    System.out.println("cabins :" + cabins);
                     return cabins;
                 }).collect(Collectors.toCollection(ArrayList::new));
 

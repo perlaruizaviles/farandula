@@ -49,7 +49,7 @@ public class SabreFlightManagerTest {
             Airleg airleg = bestFlight.getLegs().get(0);
             assertEquals("DFW",   airleg.getDepartureAirportCode());
             assertEquals("CDG",   airleg.getArrivalAirportCode() );
-            assertEquals( "Y", airleg.getSegments().get(0).getTravelClass() );
+            assertEquals( "Economy/Coach", airleg.getSegments().get(0).getTravelClass() );
         });
 
     }

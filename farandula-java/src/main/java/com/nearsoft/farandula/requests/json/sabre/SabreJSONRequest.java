@@ -28,7 +28,7 @@ public class SabreJSONRequest {
 
         StrSubstitutor sub = new StrSubstitutor(valuesMap);
         String jsonFileContent  = new BufferedReader(new InputStreamReader(
-                    SabreJSONRequest.class.getClass().getResourceAsStream( "/SabreJSON/request/RoundTrip.json" ) ))
+                    SabreJSONRequest.class.getClass().getResourceAsStream("/Sabre/JSON/request/RoundTrip.json") ))
                 .lines()
                 .collect(Collectors.joining("\n") );
 
