@@ -8,6 +8,6 @@ it('renders without crashing', () => {
 });
 
 test('multiplies some numbers', () => {
-  expect(2*3).toEqual(6);
+  expect(2*3).toEqual(1);
   expect(3*3).toEqual(9);
 });
