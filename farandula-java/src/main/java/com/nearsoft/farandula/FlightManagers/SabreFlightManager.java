@@ -35,18 +35,34 @@ public class SabreFlightManager implements FlightManager {
     private final AccessManager _accessManager;
     private static Map<String, String> codeToClassMap = new HashMap<>();
 
-    public SabreFlightManager(Creds creds) {
+
+
+
+
+    public SabreFlightManager() {
+        //TODO consider later to add aconstructor with arguments clientId & clientSecret
+        Creds creds = new Creds(clientId, clientSecret);
         _accessManager = new AccessManager(creds);
     }
 
-    public static SabreFlightManager prepareSabre() throws IOException, FarandulaException {
+    private static  String clientId;
+
+    private static  String clientSecret;
+
+    static {
 
         Properties props = new Properties();
-        props.load(SabreFlightManager.class.getResourceAsStream("/config.properties"));
-        final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
-        SabreFlightManager tripManager = new SabreFlightManager(creds);
-        return tripManager;
+        try {
+            props.load(SabreFlightManager.class.getResourceAsStream("/config.properties"));
+            clientId = props.getProperty("sabre.client_id");
+            clientSecret = props.getProperty("sabre.client_secret");
 
+
+            fillCodeToClassMap();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void fillCodeToClassMap( ) throws IOException {
@@ -109,7 +125,6 @@ public class SabreFlightManager implements FlightManager {
 
     public Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
 
-        fillCodeToClassMap();
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
         Stream<Flight> flightStream = pricedItineraries

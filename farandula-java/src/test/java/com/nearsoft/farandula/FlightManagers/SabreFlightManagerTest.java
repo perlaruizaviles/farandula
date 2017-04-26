@@ -27,7 +27,14 @@ public class SabreFlightManagerTest {
     public void fakeAvail() throws Exception {
 
         //TODO
-        Luisa.setSupplier(() -> createSabreStub() );
+        Luisa.setSupplier(() -> {
+            try {
+                return createSabreStub();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
 
         //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
@@ -87,8 +94,10 @@ public class SabreFlightManagerTest {
         assertNotNull( bestFlight );
 
         assertAll("First should be the best Flight", () -> {
+            Airleg airleg = bestFlight.getLegs().get(0);
             assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
             assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
+            assertEquals( "Economy/Coach", bestFlight.getLegs().get(0).getSegments().get(0).getTravelClass() );
         });
 
     }
@@ -97,7 +106,7 @@ public class SabreFlightManagerTest {
     @Test
     void buildJsonFromSearch() throws IOException, FarandulaException {
 
-        SabreFlightManager manager = new SabreFlightManager(null);
+        SabreFlightManager manager = new SabreFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
         SearchCommand search = new SearchCommand(null);
@@ -119,22 +128,25 @@ public class SabreFlightManagerTest {
     }
 
     private SabreFlightManager createTripManagerSabre() throws IOException, FarandulaException {
-        return SabreFlightManager.prepareSabre( );
+        return new SabreFlightManager();
     }
 
-    private SabreFlightManager createSabreStub() {
-        return new SabreFlightManager(null){
+    private SabreFlightManager createSabreStub() throws IOException {
+
+        SabreFlightManager supplierStub = new SabreFlightManager() {
             @Override
-            InputStream sendRequest(Request request) throws IOException, FarandulaException{
-                return this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  );
+            InputStream sendRequest(Request request) throws IOException, FarandulaException {
+                return this.getClass().getResourceAsStream("/sabreAvailResponse.json");
             }
         };
+        return supplierStub;
+
     }
 
     @Test
     public void  buildAvailResponse() throws IOException {
 
-        SabreFlightManager manager = new SabreFlightManager( null );
+        SabreFlightManager manager = new SabreFlightManager(  );
 
         manager.parseAvailResponse( this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  ) );
 

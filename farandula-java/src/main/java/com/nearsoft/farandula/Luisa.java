@@ -16,7 +16,7 @@ public class Luisa {
         return new SearchCommand(getInstance());
     }
 
-    private static Supplier<FlightManager> supplier = () -> new SabreFlightManager(null);
+    private static Supplier<FlightManager> supplier = () -> new SabreFlightManager();
 
     public static void setSupplier(Supplier<FlightManager> aSupplier) {
         supplier = aSupplier;

@@ -16,11 +16,7 @@ import static com.nearsoft.farandula.models.CriteriaType.PRICE;
 public class App {
 
     public static void main(String[] args) throws FarandulaException, IOException {
-        final Properties props = new Properties();
-        props.load(SabreFlightManager.class.getResourceAsStream("/config.properties"));
-
-        final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
-        final SabreFlightManager tripManager = new SabreFlightManager(creds);
+        final SabreFlightManager tripManager = new SabreFlightManager();
 
         Luisa.setSupplier(() -> tripManager);
 

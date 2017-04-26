@@ -1,7 +1,5 @@
 package com.nearsoft.farandula.FlightManagers;
 
-import com.nearsoft.farandula.FlightManagers.AmadeusFlightManager;
-import com.nearsoft.farandula.FlightManagers.FlightManager;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.Flight;
@@ -64,12 +62,13 @@ class AmadeusManagerTest {
     }
 
     private FlightManager createAmadeusStub() throws IOException, FarandulaException {
-        return new AmadeusFlightManager(){
+        AmadeusFlightManager manager = new AmadeusFlightManager() {
             @Override
-            InputStream sendRequest(Request request) throws IOException, FarandulaException{
-                return this.getClass().getResourceAsStream( "/AmadeusAvailResponse.json"  );
+            InputStream sendRequest(Request request) throws IOException, FarandulaException {
+                return this.getClass().getResourceAsStream("/AmadeusAvailResponse.json");
             }
         };
+        return manager;
     }
 
     @Test
@@ -77,7 +76,7 @@ class AmadeusManagerTest {
 
         Luisa.setSupplier(() -> {
             try {
-                return createTripManagerAmadeus();
+                return  new AmadeusFlightManager();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -112,23 +111,13 @@ class AmadeusManagerTest {
 
     }
 
-    private AmadeusFlightManager createTripManagerAmadeus() throws IOException, FarandulaException {
-        return  AmadeusFlightManager.prepareAmadeus();
-    }
-
     @Test
     void buildLinkFromSearch() throws IOException, FarandulaException {
 
-        Luisa.setSupplier( ()->{
-            try {
-                return createTripManagerAmadeus();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (FarandulaException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        Luisa.setSupplier( ()->
+            new AmadeusFlightManager()
+        );
+
         AmadeusFlightManager manager = new AmadeusFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
