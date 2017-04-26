@@ -51,14 +51,12 @@ public class SabreFlightManager implements FlightManager {
 
     private static void fillCodeToClassMap( ) throws IOException {
 
-        BufferedReader reader = new BufferedReader( new InputStreamReader(
-                SabreFlightManager.class.getResourceAsStream( "/Sabre/cabinCodes.properties" ) ));
-        String line;
-        while( (line = reader.readLine() )!=null  ){
-            String[] array = line.split("=");
-            codeToClassMap.put( array[0], array[1] );
+        Properties properties = new Properties();
+        properties.load(SabreFlightManager.class.getResourceAsStream("/Sabre/cabinCodes.properties"));
+        for(String key : properties.stringPropertyNames()) {
+            String value = properties.getProperty(key);
+            codeToClassMap.put( key, value);
         }
-        reader.close();
 
     }
 
