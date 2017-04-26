@@ -1,21 +1,15 @@
-import React, { Component } from 'react';
-import AirportFieldDemo from './components/AirportField.demo.js';
+import React from 'react';
+import {Provider} from 'react-redux';
 
-class App extends Component {
- render() {
-   return (
-    <div>
-       <div>
-        <h2>Welcome to Quantum Show Business</h2>
-      </div>
-      <p>
-        This is a <strong>work in progress</strong>.
-      </p>
-      
-      <AirportFieldDemo/>
-    </div>
-   );
- }
-}
+import store from './store';
+import makeRouter from './router';
+
+const router = makeRouter(store);
+
+const App = () => (
+  <Provider>
+    {router}
+  </Provider>
+);
 
 export default App;
