@@ -6,6 +6,7 @@ import com.jayway.jsonpath.JsonPath;
 import com.nearsoft.farandula.FlightManagers.SabreFlightManager;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
+import com.nearsoft.farandula.models.Airleg;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
@@ -45,8 +46,10 @@ public class SabreFlightManagerTest {
         assertNotNull( bestFlight );
 
         assertAll("First should be the best Flight", () -> {
-            assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
-            assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
+            Airleg airleg = bestFlight.getLegs().get(0);
+            assertEquals("DFW",   airleg.getDepartureAirportCode());
+            assertEquals("CDG",   airleg.getArrivalAirportCode() );
+            assertEquals( "Y", airleg.getSegments().get(0).getTravelClass() );
         });
 
     }

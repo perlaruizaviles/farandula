@@ -27,12 +27,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static sun.security.x509.AlgorithmId.get;
+
 //TODO consider create an specific trip manager for each API or create a connector/plugin framework
 public class SabreFlightManager implements FlightManager {
 
     //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
+    private Map<String, String> classTravelMap = new HashMap<>();
 
     public SabreFlightManager(Creds creds) {
         _accessManager = new AccessManager(creds);
@@ -101,27 +104,89 @@ public class SabreFlightManager implements FlightManager {
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
         Stream<Flight> flightStream = pricedItineraries
                 .stream()
-                .map(f -> {
+                .map(pricedItinerary -> {
+
+                    List<Airleg> legs = buildAirLegs((Map<String, Object>) pricedItinerary);
+                    JSONArray airItineraryPricingInfo = (JSONArray) getValueOf(pricedItinerary, "AirItineraryPricingInfo");
+                    if ( airItineraryPricingInfo.size() >1  ){
+
+                        throw new RuntimeException("We don't support multiple AirPricingInfo");
+                    }
+
+                    ArrayList<List<String>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
+                    int cabinIndex = 0;
+                    for (Airleg leg : legs) {
+                        for (Segment segment : leg.getSegments()) {
+                            segment.setTravelClass( cabinsBySegment.get(0).get( cabinIndex ));
+                            cabinIndex++;
+                        }
+                    }
+
                     Flight currentFly = new Flight();
-                    currentFly.setLegs(buildAirLegs((Map<String, Object>) f));
-                    currentFly.setId(((Map<String, Object>) f).get("SequenceNumber").toString());
+                    currentFly.setLegs(legs);
+                    currentFly.setId(getValueOf( pricedItinerary, "SequenceNumber").toString());
+
                     return currentFly;
 
                 });
+
         return  flightStream;
+
+    }
+
+    private ArrayList<List<String>> extractCabinsInfo(JSONArray airItineraryPricingInfoMap) {
+
+        ArrayList<List<String>> cabinsBySegment = airItineraryPricingInfoMap
+                .stream()
+                .map(itineraryPricing -> {
+
+                    JSONArray fareInfosArray = getValueOf(itineraryPricing, "FareInfos.FareInfo", JSONArray.class);
+                    List<String> cabins = fareInfosArray
+                            .stream()
+                            .map(fareInfo -> {
+                                return getValueOf(fareInfo, "TPA_Extensions.Cabin.Cabin", String.class);
+                            })
+                            .collect(Collectors.toCollection(ArrayList::new));
+
+                    System.out.println("cabins :" + cabins);
+                    return cabins;
+                }).collect(Collectors.toCollection(ArrayList::new));
+
+        return cabinsBySegment;
+    }
+
+
+    //TODO extract this methods to a helper class
+    private Object getValueOf(Object stringObjectMap, String keyName) {
+
+        return  getValueOf(stringObjectMap, keyName,Object.class);
+    }
+
+    private <T> T getValueOf(Object stringObjectMap, String keyName, Class<T> type) {
+        int indexSeparator = keyName.indexOf(".");
+        if (indexSeparator == -1 ){
+            Map<String, Object> theMap = (Map<String, Object>) stringObjectMap;
+
+            return type.cast(theMap.get(keyName));
+        }else{
+            String currentKey = keyName.substring(0, indexSeparator);
+            String newKeyPath = keyName.substring(indexSeparator+1, keyName.length() );
+            Object currentMap = ((Map<String, Object>) stringObjectMap).get(currentKey);
+            return getValueOf(currentMap, newKeyPath,type);
+        }
 
     }
 
     private List<Airleg> buildAirLegs( Map<String, Object> pricedItinerary) {
 
-        Map<String, Object> airItinerary = (Map<String, Object>) pricedItinerary.get("AirItinerary");
-        Map<String, Object> originDestinationOptions = (Map<String, Object>) airItinerary.get("OriginDestinationOptions");
-        JSONArray originDestinationOption = (JSONArray) originDestinationOptions.get("OriginDestinationOption");
+        Map<String, Object> airItinerary = (Map<String, Object>)getValueOf(pricedItinerary, "AirItinerary");
+        Map<String, Object> originDestinationOptions = (Map<String, Object>) getValueOf(airItinerary, "OriginDestinationOptions");
+        JSONArray originDestinationOption = (JSONArray) getValueOf(originDestinationOptions, "OriginDestinationOption");
 
         return originDestinationOption
                 .stream()
                 .map( option -> {
-                    JSONArray jsonSegmentArray = (JSONArray) ((Map<String, Object>) option).get("FlightSegment");
+                    JSONArray jsonSegmentArray = (JSONArray) getValueOf( option, "FlightSegment");
                     return jsonSegmentArray.stream()
                             .map(g ->  buildSegment((Map<String, Object>) g))
                             .collect( Collectors.toCollection( LinkedList::new  ));
@@ -146,50 +211,50 @@ public class SabreFlightManager implements FlightManager {
         Map<String, Object > segmentMap = g;
         //Todo change segment id and PATH
         //airline
-        JSONArray jsonEquipmentArray = (JSONArray) segmentMap.get("Equipment");
+        JSONArray jsonEquipmentArray = (JSONArray) getValueOf(segmentMap, "Equipment");
         Map<String, Object > equipmentData = (Map<String, Object>) jsonEquipmentArray.get(0);
-        Map<String, Object > operativeAirlineData = (Map<String, Object>) segmentMap.get("OperatingAirline");
-        Map<String, Object > marketingAirlineData = (Map<String, Object>) segmentMap.get("MarketingAirline");
+        Map<String, Object > operativeAirlineData = (Map<String, Object>) getValueOf(segmentMap, "OperatingAirline");
+        Map<String, Object > marketingAirlineData = (Map<String, Object>) getValueOf(segmentMap, "MarketingAirline");
 
         //departure
-        Map<String, Object > departureAirportData = (Map<String, Object>) segmentMap.get("DepartureAirport");
-        Map<String, Object > departureTimeZone = (Map<String, Object>) segmentMap.get("DepartureTimeZone");
+        Map<String, Object > departureAirportData = (Map<String, Object>) getValueOf(segmentMap, "DepartureAirport");
+        Map<String, Object > departureTimeZone = (Map<String, Object>) getValueOf(segmentMap, "DepartureTimeZone");
         //arrival
-        Map<String, Object > arrivalAirportData = (Map<String, Object>) segmentMap.get("ArrivalAirport");
-        Map<String, Object > arrivalTimeZone = (Map<String, Object>) segmentMap.get("ArrivalTimeZone");
+        Map<String, Object > arrivalAirportData = (Map<String, Object>) getValueOf(segmentMap, "ArrivalAirport");
+        Map<String, Object > arrivalTimeZone = (Map<String, Object>) getValueOf(segmentMap, "ArrivalTimeZone");
 
         //flight data
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
-        seg.setOperatingAirline( (String)operativeAirlineData.get("Code")  );
-        seg.setMarketingAirline( (String)marketingAirlineData.get("Code")  );
-        seg.setFlightNumber( (String)segmentMap.get("FlightNumber"));
-        seg.setAirplaneData( (String) equipmentData.get("AirEquipType") );
+        seg.setOperatingAirline( (String) getValueOf(operativeAirlineData, "Code"));
+        seg.setMarketingAirline( (String) getValueOf(marketingAirlineData, "Code"));
+        seg.setFlightNumber( (String) getValueOf(segmentMap, "FlightNumber"));
+        seg.setAirplaneData( (String) getValueOf(equipmentData, "AirEquipType"));
         //TODO travel class for SABRE
         seg.setTravelClass("");
 
         //departure info
-        seg.setDepartureAirportCode( (String)departureAirportData.get("LocationCode") );
-        seg.setDepartureTerminal( (String)departureAirportData.get("TerminalID" ) );
+        seg.setDepartureAirportCode( (String) getValueOf(departureAirportData, "LocationCode"));
+        seg.setDepartureTerminal( (String) getValueOf(departureAirportData, "TerminalID"));
         LocalDateTime departureDateTime = LocalDateTime.parse (
-                (String)segmentMap.get("DepartureDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
+                (String) getValueOf(segmentMap, "DepartureDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         seg.setDepartingDate( departureDateTime );
 
         //arrival info
-        seg.setArrivalAirportCode( (String)arrivalAirportData.get("LocationCode") );
-        seg.setArrivalTerminal( (String) arrivalAirportData.get("TerminalID") );
+        seg.setArrivalAirportCode( (String) getValueOf(arrivalAirportData, "LocationCode"));
+        seg.setArrivalTerminal( (String) getValueOf(arrivalAirportData, "TerminalID"));
         LocalDateTime arrivalDateTime = LocalDateTime.parse (
-                (String)segmentMap.get("ArrivalDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
+                (String) getValueOf(segmentMap, "ArrivalDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME );
         seg.setArrivalDate( arrivalDateTime );
 
         //to obtain the flight time of this segment.
         long diffInMinutes = 0;
-        if ( departureTimeZone.get("GMTOffset").equals( arrivalTimeZone.get("GMTOffset") ) ){
+        if ( getValueOf(departureTimeZone, "GMTOffset").equals(getValueOf(arrivalTimeZone, "GMTOffset")) ){
             diffInMinutes = Duration.between( departureDateTime, arrivalDateTime )
                     .toMinutes();
         }else{
-            String GMT_ZONE_departure = departureTimeZone.get("GMTOffset").toString();
-            String GMT_ZONE_arrival = arrivalTimeZone.get("GMTOffset").toString();
+            String GMT_ZONE_departure = getValueOf(departureTimeZone, "GMTOffset").toString();
+            String GMT_ZONE_arrival = getValueOf(arrivalTimeZone, "GMTOffset").toString();
             Instant timeStampDeparture = departureDateTime.toInstant(
                     ZoneOffset.of(GMTFormatter.GMTformatter( GMT_ZONE_departure )) );
             Instant timeStampArrival = arrivalDateTime.toInstant(
