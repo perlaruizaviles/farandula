@@ -7,7 +7,7 @@ import makeRouter from './router';
 const router = makeRouter(store);
 
 const App = () => (
-  <Provider>
+  <Provider store={store}>
     {router}
   </Provider>
 );
