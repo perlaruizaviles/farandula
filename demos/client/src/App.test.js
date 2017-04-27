@@ -1,13 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {shallow, mount} from 'enzyme';
 import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+
+// Shallow smoke rendering test
+it('renders without crashing (shallow)', () => {
+  shallow(<App/>);
 });
 
-test('multiplies some numbers', () => {
-  expect(2*3).toEqual(6);
-  expect(3*3).toEqual(9);
+// Full smoke rendering test
+it('renders without crashing (full)', () => {
+  mount(<App/>);
 });
