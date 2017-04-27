@@ -5,6 +5,7 @@
   "dependencies": {
     "faker": "^4.1.0",
     "immutable": "^3.8.1",
+    "inflection": "^1.12.0",
     "lodash": "^4.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
