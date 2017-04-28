@@ -13,6 +13,11 @@ const ComponentShowcase = ({router: {push}, location: {pathname},
                  onClick={() => push('/components/flight-options')}>
         Flight Options Menu
       </Menu.Item>
+      <Menu.Item active={pathname === '/components/trip-menu'}
+                 onClick={() => push('/components/trip-menu')}>
+        Round Trip Option
+      </Menu.Item>
+
     </Menu>
     <Segment>
       {props.children}
