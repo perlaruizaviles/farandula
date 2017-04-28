@@ -17,6 +17,10 @@ const ComponentShowcase = ({router: {push}, location: {pathname},
                  onClick={() => push('/components/trip-menu')}>
         Round Trip Option
       </Menu.Item>
+      <Menu.Item active={pathname === '/components/date-flight-picker'}
+                 onClick={() => push('/components/date-flight-picker')}>
+        Date Flight picker
+      </Menu.Item>
 
     </Menu>
     <Segment>
