@@ -6,7 +6,7 @@ import Main from './components/Main';
 import Welcome from './components/Welcome';
 import ComponentShowcase from './components/ComponentShowcase';
 import AirportFieldDemo from './components/AirportField.demo';
-import FlightOptionsMenuDemo from './components/FlightOptionsMenu.demo';
+import FlightOptionsMenuDemo from './containers/FlightOptionsMenu';
 import TripMenuDemo from './components/TripMenu.demo';
 import DateFlightPickerDemo from './components/DateFlightPicker.demo';
 

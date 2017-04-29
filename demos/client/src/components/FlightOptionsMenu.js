@@ -37,7 +37,7 @@ const ageRangeString = (ageRange) => {
   return (low <= 0 ? 'under' : low + ' -') + (isFinite(high) ? ' ' + high : '');
 };
 
-const FlightOptionsMenu = ({settings, options, ...props}) => {
+const FlightOptionsMenu = ({settings, options, onCabinClick, onMorePassengerClick, onLessPassengerClick}) => {
   const settingsDescription = settingsString(settings, options);
   const cabinOption = findOptionById(options, 'cabin', settings.get('cabin'));
   return (
@@ -52,11 +52,15 @@ const FlightOptionsMenu = ({settings, options, ...props}) => {
             <Dropdown.Menu>
               {
                 options.get('cabin')
-                  .map(cabin => (
-                    <Dropdown.Item key={cabin.get('id')}>
-                      {titleize(cabin.get('name'))}
-                    </Dropdown.Item>
-                ))
+                  .map(cabin => {
+                    const id = cabin.get('id');
+                    return (
+                      <Dropdown.Item key={id} onClick={e => onCabinClick(id)}>
+                        {titleize(cabin.get('name'))}
+                      </Dropdown.Item>
+                    )
+                  }
+                )
               }
             </Dropdown.Menu>
           </Dropdown>
@@ -77,9 +81,9 @@ const FlightOptionsMenu = ({settings, options, ...props}) => {
                       </Grid.Column>
                       <Grid.Column width={6} textAlign="center">
                         <Button.Group size="mini">
-                          <Button compact>-</Button>
+                          <Button compact onClick={() => onLessPassengerClick(id)}>-</Button>
                           <Button.Or text={count}/>
-                          <Button compact>+</Button>
+                          <Button compact onClick={() => onMorePassengerClick(id)}>+</Button>
                         </Button.Group>
                       </Grid.Column>
                       <Grid.Column width={4} textAlign="right">

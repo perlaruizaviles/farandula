@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
-
-/*
-    import specific component reducers
- */
+import flightSettings from './flightSettings';
+import flightOptions from './flightOptions';
 
 const reducer = combineReducers({
+  flightSettings,
+  flightOptions,
   routing: routerReducer
 });
 
