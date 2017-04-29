@@ -7,6 +7,8 @@ import Welcome from './components/Welcome';
 import ComponentShowcase from './components/ComponentShowcase';
 import AirportFieldDemo from './components/AirportField.demo';
 import FlightOptionsMenuDemo from './components/FlightOptionsMenu.demo';
+import TripMenuDemo from './components/TripMenu.demo';
+import DateFlightPickerDemo from './components/DateFlightPicker.demo';
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);
@@ -19,6 +21,8 @@ const makeRouter = store => {
           <IndexRedirect to="/components/airport-field"/>
           <Route path="/components/airport-field" component={AirportFieldDemo}/>
           <Route path="/components/flight-options" component={FlightOptionsMenuDemo}/>
+          <Route path="/components/trip-menu" component={TripMenuDemo}/>
+          <Route path="/components/date-flight-picker" component={DateFlightPickerDemo}/>
         </Route>
       </Route>
     </Router>
