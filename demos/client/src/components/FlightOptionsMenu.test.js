@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import {Map} from 'immutable';
-import FlightOptions, {settingsString} from './FlightOptionsMenu';
+import {Map, List} from 'immutable';
+import FlightOptions, {settingsString, ageRangeString} from './FlightOptionsMenu';
 import flightOptions from '../data/flightOptions';
 
 const settings1 = Map({
@@ -79,6 +79,17 @@ it('unparses settings to strings correctly', () => {
 
   expect(settingsString(settings5, flightOptions))
     .toEqual('3 travelers, Economy');
+});
+
+it('unparses age ranges to strings correctly', () => {
+  expect(ageRangeString(List([0, 10])))
+    .toEqual('under 10');
+  expect(ageRangeString(List([0, 33])))
+    .toEqual('under 33');
+  expect(ageRangeString(List([5, 10])))
+    .toEqual('5 - 10');
+  expect(ageRangeString(List([9, Infinity])))
+    .toEqual('9 -');
 });
 
 // Shallow smoke rendering test
