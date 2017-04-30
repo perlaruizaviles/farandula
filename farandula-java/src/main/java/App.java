@@ -1,14 +1,12 @@
-import com.nearsoft.farandula.Auth.Creds;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.Luisa;
-import com.nearsoft.farandula.FlightManagers.SabreFlightManager;
+import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.Passenger;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Properties;
 
 import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
 import static com.nearsoft.farandula.models.CriteriaType.PRICE;

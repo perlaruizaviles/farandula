@@ -1,4 +1,4 @@
-package com.nearsoft.farandula.FlightManagers;
+package com.nearsoft.farandula.flightmanagers;
 
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.Flight;

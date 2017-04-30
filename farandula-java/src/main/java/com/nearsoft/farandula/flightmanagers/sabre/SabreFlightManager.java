@@ -1,14 +1,15 @@
-package com.nearsoft.farandula.FlightManagers;
+package com.nearsoft.farandula.flightmanagers.sabre;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
-import com.nearsoft.farandula.Auth.AccessManager;
-import com.nearsoft.farandula.Auth.AuthInterceptor;
-import com.nearsoft.farandula.Auth.Creds;
+import com.nearsoft.farandula.auth.AccessManager;
+import com.nearsoft.farandula.auth.AuthInterceptor;
+import com.nearsoft.farandula.auth.Creds;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
+import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.Airleg;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.SearchCommand;
@@ -16,7 +17,7 @@ import com.nearsoft.farandula.models.Segment;
 import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
-import com.nearsoft.farandula.requests.json.sabre.SabreJSONRequest;
+import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
 
 import java.io.*;
 import java.time.*;

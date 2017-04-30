@@ -1,4 +1,4 @@
-package com.nearsoft.farandula.requests.json.sabre;
+package com.nearsoft.farandula.flightmanagers.sabre.request.json;
 
 import com.nearsoft.farandula.models.SearchCommand;
 import org.apache.commons.lang3.text.StrSubstitutor;

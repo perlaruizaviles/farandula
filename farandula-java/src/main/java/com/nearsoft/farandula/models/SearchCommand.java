@@ -1,7 +1,7 @@
 package com.nearsoft.farandula.models;
 
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.FlightManagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightManager;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

@@ -1,9 +1,10 @@
-package com.nearsoft.farandula.FlightManagers;
+package com.nearsoft.farandula.flightmanagers.amadeus;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
+import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.Airleg;
 import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.SearchCommand;

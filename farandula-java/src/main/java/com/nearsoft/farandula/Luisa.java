@@ -1,7 +1,7 @@
 package com.nearsoft.farandula;
 
-import com.nearsoft.farandula.FlightManagers.FlightManager;
-import com.nearsoft.farandula.FlightManagers.SabreFlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
 import com.nearsoft.farandula.models.SearchCommand;
 
 import java.util.function.Supplier;
