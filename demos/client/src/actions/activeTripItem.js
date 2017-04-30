@@ -1,8 +1,8 @@
-import {SET_TRIP} from './types';
+import {SET_TRIP_TYPE} from './types';
 
-export const setTrip = trip => {
+export const setTrip = tripType => {
   return {
-    type: SET_TRIP,
-    trip
+    type: SET_TRIP_TYPE,
+    tripType
   }
 };
