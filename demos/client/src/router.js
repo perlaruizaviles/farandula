@@ -7,7 +7,7 @@ import Welcome from './components/Welcome';
 import ComponentShowcase from './components/ComponentShowcase';
 import AirportFieldDemo from './components/AirportField.demo';
 import FlightOptionsMenuDemo from './containers/FlightOptionsMenu';
-import TripMenuDemo from './components/TripMenu.demo';
+import TripMenuDemo from './containers/TripMenu';
 import DateFlightPickerDemo from './components/DateFlightPicker.demo';
 
 const makeRouter = store => {

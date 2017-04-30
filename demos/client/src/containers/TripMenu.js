@@ -1,17 +1,16 @@
 import {connect} from 'react-redux';
-import {setCabin, addPassenger, removePassenger} from '../actions/flightSettings';
-import FlightOptionsMenu from '../components/FlightOptionsMenu';
+import {setTrip} from '../actions/activeTripItem';
+import TripMenu from '../components/TripMenu';
 
 export default connect(
     state => {
         return {
-            activeItem: state.activeTripItem,
+            activeItem: state.activeTripItem
         }
     },
     dispatch => {
         return {
-            handleItemClick: (id) => {dispatch(setCabin(id))}
-            //(e, { name }) => this.setState({ activeItem: name })
+            handleItemClick: (trip) => {dispatch(setTrip(trip))}
         }
     }
-)(FlightOptionsMenu);
+)(TripMenu);
