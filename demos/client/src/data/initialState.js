@@ -7,9 +7,9 @@ const initialState = {
   flightOptions: flightOptions,
   activeTripItem: 'roundTrip',
   startDate: moment(),
-  endDate: moment().add(1,"day"),
+  endDate: moment().add(1, "day"),
   minDate: moment(),
-  maxDate: moment().add(1,"year")
+  maxDate: moment().add(1, "year")
 };
 
 export default initialState;

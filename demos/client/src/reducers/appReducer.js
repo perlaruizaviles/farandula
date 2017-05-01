@@ -3,7 +3,7 @@ import {routerReducer} from 'react-router-redux';
 import flightSettings from './flightSettings';
 import flightOptions from './flightOptions';
 import activeTripItem from './activeTripItem';
-import {startDate,endDate,minDate,maxDate} from './dateFlights'
+import {startDate, endDate, minDate, maxDate} from './dateFlights'
 
 const reducer = combineReducers({
   flightSettings,

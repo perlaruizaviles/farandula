@@ -1,12 +1,12 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
-import { Input } from 'semantic-ui-react'
+import {Input} from 'semantic-ui-react'
 import 'react-datepicker/dist/react-datepicker.css';
 
 const DateFlightPicker = ({startDate, endDate, handleChangeStart, handleChangeEnd, minDate, maxDate}) => {
   return (
     <div>
-    <DatePicker
+      <DatePicker
       customInput={<Input icon="calendar outline" style={{color: '#216ba5'}}/>}
       minDate={minDate}
       maxDate={maxDate}
@@ -16,11 +16,12 @@ const DateFlightPicker = ({startDate, endDate, handleChangeStart, handleChangeEn
       endDate={endDate}
       onChange={date => {
         handleChangeStart(date);
-        if (date > endDate)
-          handleChangeEnd(date)
+        if (date > endDate) {
+          handleChangeEnd(date);
+        }
       }}
-    />
-    <DatePicker
+      />
+      <DatePicker
       customInput={<Input icon="calendar outline" style={{color: '#216ba5'}}/>}
       minDate={startDate}
       maxDate={maxDate}
@@ -29,7 +30,7 @@ const DateFlightPicker = ({startDate, endDate, handleChangeStart, handleChangeEn
       startDate={startDate}
       endDate={endDate}
       onChange={handleChangeEnd}
-    />
+      />
     </div>
   )
 };
