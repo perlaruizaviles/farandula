@@ -6,6 +6,8 @@ import Main from './components/Main';
 import Welcome from './components/Welcome';
 import ComponentShowcase from './components/ComponentShowcase';
 import AirportFieldDemo from './components/AirportField.demo';
+import Results from './components/ResultsPage';
+
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);
@@ -18,6 +20,8 @@ const makeRouter = store => {
           <IndexRedirect to="/components/airport-field"/>
           <Route path="/components/airport-field" component={AirportFieldDemo}/>
         </Route>
+        <IndexRedirect to="/results"/>
+        <Route path="/results" component={Results}/>
       </Route>
     </Router>
   )
