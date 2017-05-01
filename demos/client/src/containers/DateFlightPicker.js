@@ -14,8 +14,8 @@ export default connect(
     },
     dispatch => {
       return {
-        handleChangeStart: (date) => {dispatch(setDate(date))},
-        handleChangeEnd: (date) => {dispatch(setDate(date))}
+        handleChangeStart: (date) => {dispatch(setDateFirstFlight(date))},
+        handleChangeEnd: (date) => {dispatch(setDateSecondFlight(date))}
       }
     }
   }

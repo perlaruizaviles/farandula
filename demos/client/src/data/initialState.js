@@ -6,10 +6,10 @@ const initialState = {
   flightSettings: defaultFlightSettings,
   flightOptions: flightOptions,
   activeTripItem: 'roundTrip',
-  startDate: moment();
-  endDate: moment().add(1,"day");
-  minDate: moment();
-  maxDate: moment().add(1,"year");
+  startDate: moment(),
+  endDate: moment().add(1,"day"),
+  minDate: moment(),
+  maxDate: moment().add(1,"year")
 };
 
 export default initialState;
