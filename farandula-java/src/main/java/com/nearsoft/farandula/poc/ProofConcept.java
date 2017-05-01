@@ -164,7 +164,7 @@ public class ProofConcept {
         Base64.Encoder base64 = Base64.getEncoder();
         // Convert the encoded concatenated string to a single base64 encoded string, as per Sabre's docs
         String authTokenParam =  base64.encodeToString(("Universal API/" + key + ":" + pass).getBytes());// --------- credentials
-        // --------- credentials
+        // --------- credentials OK
 
         InputStream soapInputStream = this.getClass().getResourceAsStream("/travelport/XML.request/AirAvailability_Rq.xml");
 
