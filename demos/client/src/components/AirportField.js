@@ -1,51 +1,82 @@
 import _ from 'lodash'
-import faker from 'faker'
 import React, { Component } from 'react'
 import { Search } from 'semantic-ui-react'
+import data from '../data/airports.json'
+import{Grid, Header, Icon} from 'semantic-ui-react'
 
-const source = _.times(5, () => ({
-  title: faker.address.city(),
-  description: faker.address.country()
-}));
+const source =  data.airports.map(e => { return {title:e.city + ' - ' + e.iata , description:e.name}});
 
 export default class AirportField extends Component {
   componentWillMount() {
     this.resetComponent()
   }
 
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
+  resetComponent = () => this.setState({ isLoading: false, results: [], travelFrom: '', travelTo:'' });
 
-  handleResultSelect = (e, result) => this.setState({ value: result.title });
+  handleResultSelectFrom = (e, result) => this.setState({ travelFrom: result.title, results:[] });
 
-  handleSearchChange = (e, value) => {
-    this.setState({ isLoading: true, value });
+  handleSearchChangeFrom = (e, travelFrom) => {
+    this.setState({ isLoading: true, travelFrom });
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent();
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      const isMatch = (result) => re.test(result.title);
-
+      const re = new RegExp(_.escapeRegExp(this.state.travelFrom), 'i');
+      const isMatch = (result) => re.test(result.title) && !result.title.includes(this.state.travelTo);
       this.setState({
         isLoading: false,
-        results: _.filter(source, isMatch),
+        results: _.filter(source, isMatch).slice(0,5)
       })
     }, 500)
   };
 
+  handleResultSelectTo = (e, result) => this.setState({ travelTo: result.title, results:[] });
+
+  handleSearchChangeTo = (e, travelTo) => {
+    this.setState({ isLoading: true, travelTo });
+
+    setTimeout(() => {
+      const re = new RegExp(_.escapeRegExp(this.state.travelTo), 'i');
+      const isMatch = (result) => re.test(result.title) && !result.title.includes(this.state.travelFrom);
+     this.setState({
+        isLoading: false,
+        results: _.filter(source, isMatch).slice(0,5)
+      })
+    }, 500)
+  };
+
+
   render() {
-    const { isLoading, value, results } = this.state;
+    const { isLoading, travelFrom, travelTo, results } = this.state;
 
     return (
+      <Grid>
+        <Grid.Column width={4}>
+          <Header>Flying from </Header>
           <Search
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={this.handleSearchChange}
-            results={results}
-            value={value}
-            icon="plane"
-            {...this.props}
-          />
+                loading={isLoading}
+                onResultSelect={this.handleResultSelectFrom}
+                onSearchChange={this.handleSearchChangeFrom}
+                results={results}
+                value={travelFrom}
+                icon="plane"
+                {...this.props}
+              />
+        </Grid.Column>
+        <Grid.Column width={1}>
+          <Icon name='exchange' size='big'/>
+        </Grid.Column>
+        <Grid.Column width={4}>
+          <Header>Flying to </Header>
+          <Search
+                loading={isLoading}
+                onResultSelect={this.handleResultSelectTo}
+                onSearchChange={this.handleSearchChangeTo}
+                results={results}
+                value={travelTo}
+                icon="plane"
+                {...this.props}
+              />
+        </Grid.Column>
+      </Grid>
     )
   }
 }
