@@ -23,13 +23,18 @@ const DateFlightPicker = ({startDate, endDate, handleChangeStart, handleChangeEn
       />
       <DatePicker
       customInput={<Input icon="calendar outline" style={{color: '#216ba5'}}/>}
-      minDate={startDate}
+      minDate={minDate}
       maxDate={maxDate}
       selected={endDate}
       selectsStart
       startDate={startDate}
       endDate={endDate}
-      onChange={handleChangeEnd}
+      onChange={date =>{
+        handleChangeEnd(date);
+        if (date < startDate){
+          handleChangeStart(date);
+        }
+      }}
       />
     </div>
   )
