@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Search } from 'semantic-ui-react'
 import data from '../data/airports.json'
-import{Grid, Header, Icon} from 'semantic-ui-react'
+import{Grid,Header,Icon,Button} from 'semantic-ui-react'
 
 const source =  data.airports.map(e => { return {title:e.city + ' - ' + e.iata , description:e.name}});
 
@@ -55,6 +55,8 @@ export default class AirportField extends Component {
     }, 500)
   };
 
+  handleExchange = () => this.setState({travelFrom: this.state.travelTo, travelTo: this.state.travelFrom});
+
 
   render() {
     const { isLoading, travelFrom, travelTo, results } = this.state;
@@ -74,7 +76,9 @@ export default class AirportField extends Component {
               />
         </Grid.Column>
         <Grid.Column width={1}>
-          <Icon name='exchange' size='big'/>
+            <Button icon onClick={this.handleExchange}>
+              <Icon name='exchange' />
+            </Button>
         </Grid.Column>
         <Grid.Column width={4}>
           <Header>Flying to </Header>
