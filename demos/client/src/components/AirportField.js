@@ -25,7 +25,11 @@ export default class AirportField extends Component {
 
     setTimeout(() => {
       const re = new RegExp(_.escapeRegExp(this.state.travelFrom), 'i');
-      const isMatch = (result) => re.test(result.title);
+      const isMatch = (result) => {
+        if(this.state.travelTo !== ""){ return re.test(result.title) && !result.title.includes(this.state.travelTo);}
+        return re.test(result.title);
+      };
+      
       this.setState({
         isLoading: false,
         results: _.filter(source, isMatch).slice(0,5)
@@ -40,7 +44,10 @@ export default class AirportField extends Component {
 
     setTimeout(() => {
       const re = new RegExp(_.escapeRegExp(this.state.travelTo), 'i');
-      const isMatch = (result) => re.test(result.title);
+      const isMatch = (result) => {
+        if(this.state.travelFrom !== ""){ return re.test(result.title) && !result.title.includes(this.state.travelFrom);}
+        return re.test(result.title);
+      };
      this.setState({
         isLoading: false,
         results: _.filter(source, isMatch).slice(0,5)
