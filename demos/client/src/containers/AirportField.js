@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import AirportField from '../components/AirportField';
-// Action creators for AirportField
+import {setTravelFrom, setTravelTo, setLoading, setResults} from '../actions/airportField';
 
 export default connect(
   state => {
@@ -29,6 +29,5 @@ export default connect(
         dispatch(setLoading(isLoading));
         dispatch(setTravelTo(title));
       },
-    }
-  }
-)(AirportField)
+    };
+  })(AirportField);

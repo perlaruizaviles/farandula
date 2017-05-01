@@ -12,20 +12,20 @@ const setTravelFrom = travelFrom => {
     type: SET_TRAVEL_FROM,
     travelFrom
   }
-}
+};
 
 const setTravelTo = travelTo => {
   return {
     type: SET_TRAVEL_TO,
     travelTo
   }
-}
+};
 
 const setResults = results => {
   return {
     type: SET_RESULTS,
     results
   }
-}
+};
 
-export default {setLoading, setTravelFrom, setTravelTo, setResults};
+export {setLoading, setTravelFrom, setTravelTo, setResults};
