@@ -9,7 +9,11 @@ const initialState = {
   startDate: moment(),
   endDate: moment().add(1, "day"),
   minDate: moment(),
-  maxDate: moment().add(1, "year")
+  maxDate: moment().add(1, "year"),
+  isLoading: false,
+  travelFrom: "",
+  travelTo: "",
+  results: []
 };
 
 export default initialState;
