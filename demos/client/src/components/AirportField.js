@@ -4,8 +4,44 @@ import { Search } from 'semantic-ui-react'
 import data from '../data/airports.json'
 import{Grid,Header,Icon,Button} from 'semantic-ui-react'
 
-const source =  data.airports.map(e => { return {title:e.city + ' - ' + e.iata , description:e.name}});
+//const source =  data.airports.map(e => { return {title:e.city + ' - ' + e.iata , description:e.name}});
 
+export const AirportField = ({isLoading, travelFrom, travelTo, results,
+                               handleResultSelectFrom, handleSearchChangeFrom,
+                               handleResultSelectTo, handleSearchChangeTo,
+                               handleExchange}) => (
+  <Grid>
+    <Grid.Column width={4}>
+      <Header>Flying from </Header>
+      <Search
+        loading={isLoading}
+        onResultSelect={handleResultSelectFrom}
+        onSearchChange={handleSearchChangeFrom}
+        results={results}
+        value={travelFrom}
+        icon="plane"
+      />
+    </Grid.Column>
+    <Grid.Column width={1}>
+      <Button icon onClick={handleExchange}>
+        <Icon name='exchange' />
+      </Button>
+    </Grid.Column>
+    <Grid.Column width={4}>
+      <Header>Flying to </Header>
+      <Search
+        loading={isLoading}
+        onResultSelect={handleResultSelectTo}
+        onSearchChange={handleSearchChangeTo}
+        results={results}
+        value={travelTo}
+        icon="plane"
+      />
+    </Grid.Column>
+  </Grid>
+);
+
+/*
 export default class AirportField extends Component {
 
   constructor(props){
@@ -94,3 +130,4 @@ export default class AirportField extends Component {
     )
   }
 }
+  */
