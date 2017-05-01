@@ -11,7 +11,7 @@ export const startDate = (state = moment(), action) => {
     default:
       return state;
   }
-}
+};
 
 export const endDate = (state = moment().add(1,"day"), action) => {
   switch(action.type){
@@ -20,4 +20,4 @@ export const endDate = (state = moment().add(1,"day"), action) => {
     default:
     return state;
   }
-}
+};

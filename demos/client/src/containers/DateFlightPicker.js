@@ -3,20 +3,18 @@ import {setDateFirstFlight, setDateSecondFlight} from '../actions/dateFlightPick
 import DateFlightPicker from '../components/DateFlightPicker';
 
 export default connect(
-  return {
-    state => {
-      return {
-        startDate: state.flightStartDate,
-        endDate: state.flightEndDate,
-        minDate: state.flightMinDate,
-        maxDate: state.flightMaxDate
-      }
-    },
-    dispatch => {
-      return {
-        handleChangeStart: (date) => {dispatch(setDateFirstFlight(date))},
-        handleChangeEnd: (date) => {dispatch(setDateSecondFlight(date))}
-      }
+  state => {
+    return {
+      startDate: state.startDate,
+      endDate: state.endDate,
+      minDate: state.minDate,
+      maxDate: state.maxDate
+    }
+  },
+  dispatch => {
+    return {
+      handleChangeStart: (date) => {dispatch(setDateFirstFlight(date))},
+      handleChangeEnd: (date) => {dispatch(setDateSecondFlight(date))}
     }
   }
 )(DateFlightPicker);

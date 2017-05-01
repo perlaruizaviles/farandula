@@ -8,7 +8,7 @@ import ComponentShowcase from './components/ComponentShowcase';
 import AirportFieldDemo from './components/AirportField.demo';
 import FlightOptionsMenuDemo from './containers/FlightOptionsMenu';
 import TripMenuDemo from './containers/TripMenu';
-import DateFlightPickerDemo from './components/DateFlightPicker.demo';
+import DateFlightPickerDemo from './containers/DateFlightPicker';
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);

@@ -2,7 +2,6 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import { Input } from 'semantic-ui-react'
 import 'react-datepicker/dist/react-datepicker.css';
-import moment from 'moment';
 
 /*status:     startDate
 *             endDate
@@ -13,33 +12,35 @@ import moment from 'moment';
 */
 
 const DateFlightPicker = ({startDate, endDate, handleChangeStart, handleChangeEnd, minDate, maxDate}) => {
-  console.log(moment());
-  console.log(startDate,endDate,minDate,maxDate);
   return (
     <div>
     <DatePicker
-    customInput={<Input icon="calendar outline" style={{color: '#216ba5'}}/>}
-    minDate={minDate}
-    maxDate={maxDate}
-    selected={startDate}
-    selectsStart
-    startDate={startDate}
-    endDate={endDate}
-    onChange={handleChangeStart}
+      customInput={<Input icon="calendar outline" style={{color: '#216ba5'}}/>}
+      minDate={minDate}
+      maxDate={maxDate}
+      selected={startDate}
+      selectsStart
+      startDate={startDate}
+      endDate={endDate}
+      onChange={date => {
+        handleChangeStart(date);
+        if (date > endDate)
+          handleChangeEnd(date)
+      }}
     />
     <DatePicker
-    customInput={<Input icon="calendar outline" style={{color: '#216ba5'}}/>}
-    minDate={startDate}
-    maxDate={maxDate}
-    selected={endDate}
-    selectsStart
-    startDate={startDate}
-    endDate={endDate}
-    onChange={handleChangeEnd}
+      customInput={<Input icon="calendar outline" style={{color: '#216ba5'}}/>}
+      minDate={startDate}
+      maxDate={maxDate}
+      selected={endDate}
+      selectsStart
+      startDate={startDate}
+      endDate={endDate}
+      onChange={handleChangeEnd}
     />
     </div>
   )
-}
+};
 
 // class DateFlightPicker extends Component {
 //   constructor(){
