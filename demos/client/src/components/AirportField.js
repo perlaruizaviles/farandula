@@ -7,11 +7,16 @@ import{Grid, Header, Icon} from 'semantic-ui-react'
 const source =  data.airports.map(e => { return {title:e.city + ' - ' + e.iata , description:e.name}});
 
 export default class AirportField extends Component {
-  componentWillMount() {
-    this.resetComponent()
+
+  constructor(props){
+    super(props);
+    this.state = {
+      isLoading: false, 
+      results: [], 
+      travelFrom: '', 
+      travelTo:''}
   }
 
-  resetComponent = () => this.setState({ isLoading: false, results: [], travelFrom: '', travelTo:'' });
 
   handleResultSelectFrom = (e, result) => this.setState({ travelFrom: result.title, results:[] });
 
@@ -20,7 +25,7 @@ export default class AirportField extends Component {
 
     setTimeout(() => {
       const re = new RegExp(_.escapeRegExp(this.state.travelFrom), 'i');
-      const isMatch = (result) => re.test(result.title) && !result.title.includes(this.state.travelTo);
+      const isMatch = (result) => re.test(result.title);
       this.setState({
         isLoading: false,
         results: _.filter(source, isMatch).slice(0,5)
@@ -35,7 +40,7 @@ export default class AirportField extends Component {
 
     setTimeout(() => {
       const re = new RegExp(_.escapeRegExp(this.state.travelTo), 'i');
-      const isMatch = (result) => re.test(result.title) && !result.title.includes(this.state.travelFrom);
+      const isMatch = (result) => re.test(result.title);
      this.setState({
         isLoading: false,
         results: _.filter(source, isMatch).slice(0,5)
