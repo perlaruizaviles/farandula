@@ -10,7 +10,7 @@ export default connect(
     },
     dispatch => {
         return {
-            handleItemClick: (trip) => {dispatch(setTrip(trip))}
+            handleItemClick: (tripType) => {dispatch(setTrip(tripType))}
         }
     }
 )(TripMenu);
