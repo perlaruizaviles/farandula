@@ -72,7 +72,6 @@ export default class AirportField extends Component {
                 results={results}
                 value={travelFrom}
                 icon="plane"
-                {...this.props}
               />
         </Grid.Column>
         <Grid.Column width={1}>
@@ -89,7 +88,6 @@ export default class AirportField extends Component {
                 results={results}
                 value={travelTo}
                 icon="plane"
-                {...this.props}
               />
         </Grid.Column>
       </Grid>
