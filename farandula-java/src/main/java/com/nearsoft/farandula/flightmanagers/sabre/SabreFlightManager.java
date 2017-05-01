@@ -36,10 +36,6 @@ public class SabreFlightManager implements FlightManager {
     private final AccessManager _accessManager;
     private static Map<String, String> codeToClassMap = new HashMap<>();
 
-
-
-
-
     public SabreFlightManager() {
         //TODO consider later to add aconstructor with arguments clientId & clientSecret
         Creds creds = new Creds(clientId, clientSecret);
@@ -119,7 +115,7 @@ public class SabreFlightManager implements FlightManager {
         return builder.build();
     }
 
-    InputStream sendRequest(Request request) throws IOException, FarandulaException {
+    public InputStream sendRequest(Request request) throws IOException, FarandulaException {
         final Response response = createHttpClient().newCall(request).execute();
         return response.body().byteStream();
     }

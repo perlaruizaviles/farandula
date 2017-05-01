@@ -11,6 +11,7 @@ import com.nearsoft.farandula.models.Flight;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
 import okhttp3.Request;
+import okhttp3.Response;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
@@ -134,10 +135,12 @@ public class SabreFlightManagerTest {
     private SabreFlightManager createSabreStub() throws IOException {
 
         SabreFlightManager supplierStub = new SabreFlightManager() {
+
             @Override
-            InputStream sendRequest(Request request) throws IOException, FarandulaException {
+            public InputStream sendRequest(Request request) throws IOException, FarandulaException {
                 return this.getClass().getResourceAsStream("/sabreAvailResponse.json");
             }
+
         };
         return supplierStub;
 

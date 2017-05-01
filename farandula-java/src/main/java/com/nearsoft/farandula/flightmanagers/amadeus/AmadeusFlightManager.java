@@ -74,7 +74,7 @@ public class AmadeusFlightManager implements FlightManager {
 
     public static void fillLocationsMap() throws IOException {
         Properties properties = new Properties();
-        properties.load(AmadeusFlightManager.class.getResourceAsStream("/Amadeus/locations.properties"));
+        properties.load(AmadeusFlightManager.class.getResourceAsStream("/amadeus/locations.properties"));
         for (String key : properties.stringPropertyNames()) {
             String value = properties.getProperty(key);
             locationsMap.put(key, value);
@@ -271,7 +271,7 @@ public class AmadeusFlightManager implements FlightManager {
         return api;
     }
 
-    InputStream sendRequest(Request request) throws IOException, FarandulaException {
+    public InputStream sendRequest(Request request) throws IOException, FarandulaException {
         final Response response = buildHttpClient().newCall(request).execute();
         return response.body().byteStream();
     }

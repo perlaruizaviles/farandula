@@ -65,7 +65,7 @@ class AmadeusManagerTest {
     private FlightManager createAmadeusStub() throws IOException, FarandulaException {
         AmadeusFlightManager manager = new AmadeusFlightManager() {
             @Override
-            InputStream sendRequest(Request request) throws IOException, FarandulaException {
+            public InputStream sendRequest(Request request) throws IOException, FarandulaException {
                 return this.getClass().getResourceAsStream("/AmadeusAvailResponse.json");
             }
         };
