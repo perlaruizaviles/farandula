@@ -20,6 +20,9 @@ public class AirportController {
     @RequestMapping("/api/airports")
     public Response searchAirport(@Param("pattern") String pattern, @Param("key") String key){
 
-        return new AirportService().getResponseFromSearch( pattern, airportRepository );
+        return new AirportService().getResponseFromSearch(
+                airportRepository.
+                    findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase(pattern, pattern, pattern)
+        );
     }
 }
