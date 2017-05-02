@@ -5,7 +5,7 @@
 **HELP WANTED**
 
 - Documentation
-    - [ ] Describe the structure of the `src` directory
+    - [x] Describe the structure of the `src` directory
     - [ ] Describe general code style conventions
     - [ ] Describe the routing mechanism
     - [ ] Create a `README.md` file describing the purpuse of each directory inside `src`
@@ -30,6 +30,26 @@
     - [ ] Organize the redux store avoiding a flat state
     - [ ] Create reducers that correspond to expected application state changes
     - [ ] Create small and composable components
+
+## The Source Directory Structure
+
+The `src` directory contains the main font-end code base (`public` contains just a simple HTML file used by React
+to inject HTML dynamically).
+
+Here is an overview of the directory tree with a brief description of what each file and folder represents.
+
+- `farandula/demos/client/src/`
+    - `actions/`
+        Contains *action types* and *action creators*
+    - `components/` Contains *presentational components* lacking state
+    - `containers/` Contains *container components* which connect *presentational components* with the *store*
+    - `data/` Contains concrete data like *options*, *initial configs*, common/extrema inputs, etc
+    - `reducers/` Contains *reducers* that map the current *state* and an *action* to a new *state*
+    - `util/` Contains utility functions
+    - `App.js` Sets up the *routes* with the *store* as a react *component*
+    - `index.js` Defines the entry point for react, injecting the `App` component in the page
+    - `router.js` Defines the *routes* to guide the movement between page components
+    - `store.js` Sets up the *store* with the combined reducers and an initial state
     
 ## The Redux Storage
 
