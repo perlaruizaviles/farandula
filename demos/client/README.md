@@ -9,12 +9,12 @@
     - [ ] Describe general code style conventions
     - [ ] Describe the routing mechanism
     - [ ] Create a `README.md` file describing the purpuse of each directory inside `src`
-        - [ ] Actions
-        - [ ] Components
-        - [ ] Containers
-        - [ ] Data
-        - [ ] Reducers
-        - [ ] Util
+        - [x] Actions
+        - [x] Components
+        - [x] Containers
+        - [x] Data
+        - [x] Reducers
+        - [x] Util
     - [x] Describe the structure of the redux store
     - [ ] Describe how the redux store interacts with components
     - [ ] Describe how to test functions using jest
