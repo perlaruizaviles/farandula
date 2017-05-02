@@ -2,11 +2,11 @@
  * Created by antoniohernandez on 5/1/17.
  */
 import React, { Component } from 'react'
-import { Segment,  Grid } from 'semantic-ui-react'
+import { Segment,  Grid, Button } from 'semantic-ui-react'
 import PriceSection from './PriceSection'
 import FlightInfo from './FlightSection'
 
-const Cell = () => {
+const Cell = ({price}) => {
     return(
 
 
@@ -19,8 +19,8 @@ const Cell = () => {
                         <Grid.Column>
                             <FlightInfo/>
                         </Grid.Column>
-                        <Grid.Column>
-                            <PriceSection/>
+                        <Grid.Column style={{textAlign: 'center'}}>
+                            <Button basic color='violet' >Mostrar Detalles</Button>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

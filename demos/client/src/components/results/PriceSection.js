@@ -7,7 +7,7 @@ import { Button, Grid } from 'semantic-ui-react'
 const PriceSection = () => {
     return(
 
-        <Grid >
+        <Grid style={{textAlign: 'center'}}>
 
             <Grid.Row columns={1}>
                 <Grid.Column>
