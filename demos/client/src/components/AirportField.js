@@ -10,7 +10,6 @@ const AirportField = ({isLoading, travelFrom, travelTo, results,
                                handleResultSelectFrom, handleSearchChangeFrom,
                                handleResultSelectTo, handleSearchChangeTo,
                                handleExchange}) => {
-                                 console.log(travelFrom);
   return (
     <Grid>
       <Grid.Column width={4}>
@@ -36,7 +35,7 @@ const AirportField = ({isLoading, travelFrom, travelTo, results,
         />
       </Grid.Column>
       <Grid.Column width={1}>
-        <Button icon onClick={handleExchange}>
+        <Button icon onClick={() => handleExchange(travelFrom, travelTo)}>
           <Icon name='exchange'/>
         </Button>
       </Grid.Column>

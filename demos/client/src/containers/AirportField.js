@@ -29,5 +29,9 @@ export default connect(
         dispatch(setLoading(isLoading));
         dispatch(setTravelTo(title));
       },
+      handleExchange: (from, to) => {
+        dispatch(setTravelFrom(to))
+        dispatch(setTravelTo(from))
+      }
     };
   })(AirportField);
