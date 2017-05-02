@@ -3,13 +3,13 @@
  */
 
 import React from 'react'
-import { Segment, Button, Divider } from 'semantic-ui-react'
+import { Label, Button, Divider } from 'semantic-ui-react'
 
 const FlightInfo = () => (
     <div>
-        <Button primary fluid>Login</Button>
+        <Label pointing='right'>7:46 CUU to MTY 9:55</Label>
         <Divider horizontal>Return</Divider>
-        <Button secondary fluid>Sign Up Now</Button>
+        <Label pointing='right'>7:46 MTY to CUU 9:55</Label>
     </div>
 )
 
