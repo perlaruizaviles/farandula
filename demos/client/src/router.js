@@ -5,7 +5,7 @@ import {Router, Route, browserHistory, IndexRedirect} from 'react-router';
 import Main from './components/Main';
 import Welcome from './components/Welcome';
 import ComponentShowcase from './components/ComponentShowcase';
-import AirportFieldDemo from './components/AirportField.demo';
+import AirportFieldDemo from './containers/AirportField';
 import FlightOptionsMenuDemo from './containers/FlightOptionsMenu';
 import TripMenuDemo from './containers/TripMenu';
 import DateFlightPickerDemo from './containers/DateFlightPicker';

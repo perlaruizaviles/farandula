@@ -4,6 +4,7 @@ import flightSettings from './flightSettings';
 import flightOptions from './flightOptions';
 import activeTripItem from './activeTripItem';
 import {startDate, endDate, minDate, maxDate} from './dateFlights'
+import {isLoading, travelFrom, travelTo, results} from './airportField'
 
 const reducer = combineReducers({
   flightSettings,
@@ -13,6 +14,10 @@ const reducer = combineReducers({
   endDate,
   minDate,
   maxDate,
+  isLoading,
+  travelFrom,
+  travelTo,
+  results,
   routing: routerReducer
 });
 
