@@ -21,7 +21,7 @@
     - [ ] Describe how to test components using jest with enzyme
     - [ ] Describe usual test cases for react components
     - [ ] Provide components demonstrations with suffix `.demo.js`
-    - [ ] Write a component glossary
+    - [ ] Write component specifications
 - Testing
     - [ ] Ensure each component has an associated test suite
     - [ ] Collect common testing computations as utility functions in `util`
@@ -61,7 +61,7 @@ which refers to the range of valid values a particular configuration might hold.
 Future additions to the storage will be `flightConfig` which holds the selected values related
 to a specific flight plan (like the airline, stops, departure/arrival schedules, waiting hours, etc).
 
-```javascript
+```javascript                                                                           
 storage = {
   travelConfig: {
     type: 'round-trip',
@@ -144,9 +144,52 @@ travelOptions = {
   dates: {
     'round-trip': ['depart', 'return'],
     'one-way': ['depart'],
-    'multi-city': ['depart-n']
+    'multi-city': ['depart-n'],
   }
 }
 ```
 
-##
+## Component Specifications
+
+### `travelTypeMenu`
+
+Shows the available trip types specified in `travelOptions.type`.
+
+Must receive `travelConfig.type` to highlight the current selection, and a function to
+indicate that the user has selected an item.
+
+### `dateSelection`
+
+Shows a calendar with the ability to select a particular date.
+
+Must receive a date with the same type as `travelConfig.dates.depart` and minimum/maximum
+values for the valid dates.
+
+### `cabinMenu`
+
+Shows the available cabin categories specified in `travelOptions.cabin`.
+
+Must receive `travelConfig.cabin` to show the current selection, and a function to indicate that
+the user has selected an item.
+
+### `numberInput`
+
+Shows a number and two buttons for increasing/decreasing the amount.
+
+Must receive the current value, and two functions to indicate that the user has increased or decreased
+the number.
+
+### `travelersMenu`
+
+Shows the traveler categories associated with a `numberInput` and a description of it's age range.
+
+Must receive `travelConfig.travelers` and a function to indicate that the user has increased or decreased
+a particular traveler category amount.
+
+### `airportSelection`
+
+Shows an input field with airport auto-completion, providing the information of `travelOptions.locations.fields`.
+
+Must receive the selected airport (from something like `travelConfig.locations.from`), a list of partial matches,
+and two functions to indicate that the user has updated the search query and that the user has selected a particular
+airport.
