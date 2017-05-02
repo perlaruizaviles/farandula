@@ -10,13 +10,14 @@ const AirportField = ({isLoading, travelFrom, travelTo, results,
                                handleResultSelectFrom, handleSearchChangeFrom,
                                handleResultSelectTo, handleSearchChangeTo,
                                handleExchange}) => {
+                                 console.log(travelFrom);
   return (
     <Grid>
       <Grid.Column width={4}>
         <Header>Flying from </Header>
         <Search
           loading={isLoading}
-          onResultSelect={handleResultSelectFrom}
+          onResultSelect={(e, result) => handleResultSelectFrom(result.title, [])}
           onSearchChange={(e, travelFrom) => {
             handleSearchChangeFrom(true, travelFrom);
             setTimeout(() => {
@@ -43,8 +44,19 @@ const AirportField = ({isLoading, travelFrom, travelTo, results,
         <Header>Flying to </Header>
         <Search
           loading={isLoading}
-          onResultSelect={handleResultSelectTo}
-          onSearchChange={handleSearchChangeTo}
+          onResultSelect={(e, result) => handleResultSelectTo(result.title, [])}
+          onSearchChange={(e, travelTo) => {
+            handleSearchChangeTo(true, travelTo);
+            setTimeout(() => {
+              const re = new RegExp(_.escapeRegExp(travelTo), 'i');
+              const isMatch = (result) => {
+                if(travelFrom !== ""){ return re.test(result.title) && !result.title.includes(travelFrom);}
+                return re.test(result.title);
+              };
+              handleSearchChangeTo(false, travelTo);
+              handleResultSelectTo(travelTo, _.filter(source, isMatch).slice(0, 5));
+            }, 500)
+          }}
           results={results}
           value={travelTo}
           icon="plane"
@@ -62,9 +74,9 @@ export default class AirportField extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isLoading: false, 
-      results: [], 
-      travelFrom: '', 
+      isLoading: false,
+      results: [],
+      travelFrom: '',
       travelTo:''}
   }
 
@@ -80,7 +92,7 @@ export default class AirportField extends Component {
         if(this.state.travelTo !== ""){ return re.test(result.title) && !result.title.includes(this.state.travelTo);}
         return re.test(result.title);
       };
-      
+
       this.setState({
         isLoading: false,
         results: _.filter(source, isMatch).slice(0,5)
