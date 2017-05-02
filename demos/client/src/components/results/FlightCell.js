@@ -2,14 +2,38 @@
  * Created by antoniohernandez on 5/1/17.
  */
 import React, { Component } from 'react'
-import { Segment, Button } from 'semantic-ui-react'
+import { Segment,  Grid } from 'semantic-ui-react'
+import PriceSection from './PriceSection'
+import FlightInfo from './FlightSection'
 
 const Cell = () => {
     return(
-        <Segment className="raised">
-            <Button basic color='olive'>Ver Vuelo</Button>Flight cell
-        </Segment>
+
+
+            <Segment className="raised">
+                <Grid divided = "horizontally">
+                    <Grid.Row columns={3}>
+                        <Grid.Column>
+                            <PriceSection/>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <FlightInfo/>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <PriceSection/>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+
+            </Segment>
+
+
+
+
     )
 }
 
+
+
 export default Cell;
+
