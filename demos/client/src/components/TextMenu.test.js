@@ -1,11 +1,11 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import TravelTypeMenu from './TravelTypeMenu';
+import TextMenu from './TextMenu';
 
 it('renders without crashing (shallow)', () => {
-  shallow(<TravelTypeMenu/>);
+  shallow(<TextMenu/>);
 });
 
 it('renders without crashing (full)', () => {
-  mount(<TravelTypeMenu/>);
+  mount(<TextMenu/>);
 });

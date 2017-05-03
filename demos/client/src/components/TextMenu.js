@@ -1,7 +1,7 @@
 import React from 'react';
 import {Menu} from 'semantic-ui-react';
 
-const TravelTypeMenu = ({options, selected, selectType}) => (
+const TextMenu = ({options, selected, selectType}) => (
   <Menu text>
     {
       options.map(type => (
@@ -11,4 +11,4 @@ const TravelTypeMenu = ({options, selected, selectType}) => (
   </Menu>
 );
 
-export default TravelTypeMenu;
+export default TextMenu;

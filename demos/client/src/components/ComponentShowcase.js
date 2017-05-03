@@ -1,12 +1,10 @@
 import React from 'react';
 import {Menu, Segment} from 'semantic-ui-react';
-import Component from './TravelTypeMenu.demo';
+import Component from '../containers/TravelSearch';
 
 const ComponentShowcase = ({router: {push}, location: {pathname},
                              ...props}) => (
   <div>
-    <Menu>
-    </Menu>
     <Segment>
       <Component />
       {props.children}
