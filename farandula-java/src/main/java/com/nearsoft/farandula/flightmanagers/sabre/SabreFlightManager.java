@@ -54,7 +54,6 @@ public class SabreFlightManager implements FlightManager {
             clientId = props.getProperty("sabre.client_id");
             clientSecret = props.getProperty("sabre.client_secret");
 
-
             fillCodeToClassMap();
 
         } catch (IOException e) {
@@ -139,7 +138,7 @@ public class SabreFlightManager implements FlightManager {
                     int cabinIndex = 0;
                     for (Airleg leg : legs) {
                         for (Segment segment : leg.getSegments()) {
-                            segment.setTravelClass( ConvertCodeToClass( cabinsBySegment.get(0).get( cabinIndex ) ) );
+                            segment.setTravelClass( convertCodeToTravelClass( cabinsBySegment.get(0).get( cabinIndex ) ) );
                             cabinIndex++;
                         }
                     }
@@ -156,7 +155,7 @@ public class SabreFlightManager implements FlightManager {
 
     }
 
-    private String ConvertCodeToClass(String s) {
+    private String convertCodeToTravelClass(String s) {
 
         if ( codeToClassMap.containsKey( s ) ){
             return codeToClassMap.get( s );
@@ -238,6 +237,7 @@ public class SabreFlightManager implements FlightManager {
     }
 
     private Segment buildSegment( Map<String, Object> g) {
+
         Map<String, Object > segmentMap = g;
         //Todo change segment id and PATH
         //airline
@@ -258,7 +258,7 @@ public class SabreFlightManager implements FlightManager {
         seg.setAirlineIconPath("");
         seg.setOperatingAirline( (String) getValueOf(operativeAirlineData, "Code"));
         seg.setMarketingAirline( (String) getValueOf(marketingAirlineData, "Code"));
-        seg.setFlightNumber( (String) getValueOf(segmentMap, "FlightNumber"));
+        seg.setMarketingFlightNumber( (String) getValueOf(segmentMap, "FlightNumber"));
         seg.setAirplaneData( (String) getValueOf(equipmentData, "AirEquipType"));
         //TODO travel class for SABRE
         seg.setTravelClass("");

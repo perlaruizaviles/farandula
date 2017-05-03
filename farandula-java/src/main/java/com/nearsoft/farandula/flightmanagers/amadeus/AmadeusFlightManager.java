@@ -180,7 +180,7 @@ public class AmadeusFlightManager implements FlightManager {
         seg.setAirlineIconPath("");
         seg.setOperatingAirline((String) segmentMap.get("operative_airline"));
         seg.setMarketingAirline((String) segmentMap.get("marketing_airline"));
-        seg.setFlightNumber((String) segmentMap.get("flight_number"));
+        seg.setMarketingFlightNumber((String) segmentMap.get("flight_number"));
         seg.setAirplaneData((String) segmentMap.get("aircraft"));
         seg.setTravelClass((String) bookingInfoData.get("travel_class"));
 

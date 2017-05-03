@@ -10,7 +10,7 @@ public class Segment {
     String airlineIconPath;
     String operatingAirline;
     String marketingAirline;
-    String flightNumber;
+    String marketingFlightNumber;
     String departureAirportCode;
     String departureTerminal;
     LocalDateTime departingDate;
@@ -20,6 +20,7 @@ public class Segment {
     String airplaneData;
     long duration;
     String travelClass;
+    String operatingFlightNumber;
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -45,12 +46,12 @@ public class Segment {
         this.marketingAirline = marketingAirline;
     }
 
-    public String getFlightNumber() {
-        return flightNumber;
+    public String getMarketingFlightNumber() {
+        return marketingFlightNumber;
     }
 
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
+    public void setMarketingFlightNumber(String marketingFlightNumber) {
+        this.marketingFlightNumber = marketingFlightNumber;
     }
 
     public String getTravelClass() {
@@ -123,5 +124,12 @@ public class Segment {
 
     public void setDuration(long duration) {
         this.duration = duration;
+    }
+
+    public void setOperatingFlightNumber(String operatingFlightNumber) {
+        this.operatingFlightNumber = operatingFlightNumber;
+    }
+    public String getOperatingFlightNumber() {
+        return operatingFlightNumber;
     }
 }

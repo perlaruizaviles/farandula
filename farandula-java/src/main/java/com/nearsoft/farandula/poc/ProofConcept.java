@@ -1,13 +1,18 @@
 package com.nearsoft.farandula.poc;
 
+import org.apache.commons.lang3.text.StrSubstitutor;
+
 import javax.xml.soap.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -159,12 +164,21 @@ public class ProofConcept {
     private String getDataFromTravelPort() throws IOException, SOAPException {
 
         // --------- credentials
-        String key = "uAPI6030405136-ec11970c";
+        String key = "Universal API/uAPI6030405136-ec11970c";
         String pass = "eNAfp97R9Jrw4nj77ZHEJ3zyc";
         Base64.Encoder base64 = Base64.getEncoder();
         // Convert the encoded concatenated string to a single base64 encoded string, as per Sabre's docs
-        String authTokenParam =  base64.encodeToString(("Universal API/" + key + ":" + pass).getBytes());// --------- credentials
+        String authTokenParam =  base64.encodeToString(( key + ":" + pass).getBytes());// --------- credentials
         // --------- credentials OK
+
+
+        Map valuesMap = new HashMap();
+        valuesMap.put("departureAirport",  "DFW"  );
+        valuesMap.put("arrivalAirport",  "CDG" );
+        valuesMap.put("departureDate", "2017-07-07" );
+        valuesMap.put("returningDate", "2017-07-08");
+        valuesMap.put("targetBranch", "P7015254");
+        StrSubstitutor sub = new StrSubstitutor(valuesMap);
 
         InputStream soapInputStream = this.getClass().getResourceAsStream("/travelport/XML.request/AirAvailability_Rq.xml");
 
@@ -172,7 +186,10 @@ public class ProofConcept {
                 .lines()
                 .collect(Collectors.joining("\n") );
 
-        SOAPMessage message = getSoapMessageFromString( soapEnvelope );
+        soapEnvelope = sub.replace(soapEnvelope);
+
+        MessageFactory factory = MessageFactory.newInstance();
+        SOAPMessage message = factory.createMessage(new MimeHeaders(), new ByteArrayInputStream(soapEnvelope.getBytes(Charset.forName("UTF-8"))));
         MimeHeaders headers = message.getMimeHeaders();
         headers.addHeader("Content-Type", "text/xml" );
         headers.addHeader( "Authorization", "Basic " + authTokenParam );
@@ -196,10 +213,5 @@ public class ProofConcept {
 
     }
 
-    private SOAPMessage getSoapMessageFromString(String xml) throws SOAPException, IOException {
-        MessageFactory factory = MessageFactory.newInstance();
-        SOAPMessage message = factory.createMessage(new MimeHeaders(), new ByteArrayInputStream(xml.getBytes(Charset.forName("UTF-8"))));
-        return message;
-    }
 
 }
