@@ -151,42 +151,42 @@ travelOptions = {
 
 ## Component Specifications
 
-### `travelTypeMenu`
+### `TextMenu`
 
 Shows the available trip types specified in `travelOptions.type`.
 
 Must receive `travelConfig.type` to highlight the current selection, and a function to
 indicate that the user has selected an item.
 
-### `dateSelection`
+### `DateSelection`
 
 Shows a calendar with the ability to select a particular date.
 
 Must receive a date with the same type as `travelConfig.dates.depart` and minimum/maximum
 values for the valid dates.
 
-### `cabinMenu`
+### `DropListMenu`
 
 Shows the available cabin categories specified in `travelOptions.cabin`.
 
 Must receive `travelConfig.cabin` to show the current selection, and a function to indicate that
 the user has selected an item.
 
-### `numberInput`
+### `NumberInput`
 
 Shows a number and two buttons for increasing/decreasing the amount.
 
 Must receive the current value, and two functions to indicate that the user has increased or decreased
 the number.
 
-### `travelersMenu`
+### `TravelersMenu`
 
 Shows the traveler categories associated with a `numberInput` and a description of it's age range.
 
 Must receive `travelConfig.travelers` and a function to indicate that the user has increased or decreased
 a particular traveler category amount.
 
-### `airportSelection`
+### `AirportSelection`
 
 Shows an input field with airport auto-completion, providing the information of `travelOptions.locations.fields`.
 
