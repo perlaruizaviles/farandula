@@ -182,7 +182,6 @@ public class TravelportFlightManager implements FlightManager {
 
             //case when the last segment arrival is the search arrival airport OR
             //case for the returning airleg, i.e case when the arrival segment is the departure airport in search
-            System.out.println("i:" + 1 + " "+ seg);
             if ( seg.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() )  ||
                     seg.getArrivalAirportCode().equals( searchCommand.getDepartureAirport() )
                     ){
