@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
  */
 public class Segment {
 
+
     String airlineIconPath;
     String operatingAirline;
     String marketingAirline;
@@ -59,6 +60,7 @@ public class Segment {
         return travelClass;
     }
 
+    //TODO the travel class should be a collection of cabins of a given enum type
     public void setTravelClass(String travelClass) {
         this.travelClass = travelClass;
     }
@@ -137,5 +139,13 @@ public class Segment {
     //TODO we should have a reference airline code/name map
     public void setOperatingAirlineName(String operatingAirlineName) {
         this.operatingAirlineName = operatingAirlineName;
+    }
+
+    @Override
+    public String toString() {
+        return "Segment{" +
+                "departureAirportCode='" + departureAirportCode + '\'' +
+                ", arrivalAirportCode='" + arrivalAirportCode + '\'' +
+                '}';
     }
 }
