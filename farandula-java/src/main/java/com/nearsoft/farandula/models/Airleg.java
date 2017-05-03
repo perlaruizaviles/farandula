@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by pruiz on 4/12/17.
  */
-public class Airleg {
+public class AirLeg {
 
     String id;
     String departureAirportCode;

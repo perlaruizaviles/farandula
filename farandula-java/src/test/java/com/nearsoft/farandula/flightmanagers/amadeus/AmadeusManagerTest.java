@@ -3,8 +3,7 @@ package com.nearsoft.farandula.flightmanagers.amadeus;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
-import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
-import com.nearsoft.farandula.models.Flight;
+import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
 import okhttp3.Request;
@@ -25,6 +24,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class AmadeusManagerTest {
 
     //TODO #10 we need to make sure that that we execute at least a round trip search
+
+    //TODO verify why tis test is slow
     @Test
     public void fakeAvail() throws Exception {
 
@@ -44,7 +45,7 @@ class AmadeusManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
         int limit = 2;
-        List<Flight> flights=  Luisa.findMeFlights()
+        List<AirLeg> flights=  Luisa.findMeFlights()
                 .departingAt ( departingDate)
                 .returningAt( returningDate)
                 .limitTo(limit)
@@ -52,13 +53,11 @@ class AmadeusManagerTest {
 
         assertTrue( flights.size() > 0);
 
-        Flight bestFlight = flights.get(0);
 
-        assertNotNull( bestFlight );
-
-        assertAll("First should be the best Flight", () -> {
-            assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
-            assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0);
+            assertEquals("DFW",   airLeg.getDepartureAirportCode());
+            assertEquals("CDG",   airLeg.getArrivalAirportCode() );
         });
 
     }
@@ -89,7 +88,7 @@ class AmadeusManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
         int limit = 2;
-        List<Flight> flights=  Luisa.findMeFlights()
+        List<AirLeg> flights=  Luisa.findMeFlights()
                 .from("DFW")
                 .to("CDG")
                 .departingAt ( departingDate)
@@ -102,15 +101,12 @@ class AmadeusManagerTest {
 
         assertTrue( flights.size() > 0);
 
-        Flight bestFlight = flights.get(0);
 
-        assertNotNull( bestFlight );
-
-        assertAll("First should be the best Flight", () -> {
-            assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
-            assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0);
+            assertEquals("DFW",   airLeg.getDepartureAirportCode());
+            assertEquals("CDG",   airLeg.getArrivalAirportCode() );
         });
-
     }
 
     @Test

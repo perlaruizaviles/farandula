@@ -21,6 +21,7 @@ public class Segment {
     long duration;
     String travelClass;
     String operatingFlightNumber;
+    private String operatingAirlineName;
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -131,5 +132,10 @@ public class Segment {
     }
     public String getOperatingFlightNumber() {
         return operatingFlightNumber;
+    }
+
+    //TODO we should have a reference airline code/name map
+    public void setOperatingAirlineName(String operatingAirlineName) {
+        this.operatingAirlineName = operatingAirlineName;
     }
 }

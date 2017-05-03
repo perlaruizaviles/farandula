@@ -52,7 +52,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAWasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKAZasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="2717" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T13:15:00.000-05:00" ArrivalTime="2017-07-07T16:32:00.000-04:00" FlightTime="137" TravelTime="695" ETicketability="Yes" Equipment="717" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKAZasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="2717" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T13:15:00.000-05:00" ArrivalTime="2017-07-07T16:32:00.000-04:00" FlightTime="137" TravelTime="695" ETicketability="Yes" Equipment="717" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:CodeshareInfo OperatingCarrier="DL" OperatingFlightNumber="2505">DELTA AIR LINES</air:CodeshareInfo>
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="First" BookingCounts="PR|FR"/>
@@ -62,7 +62,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAYasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKAbasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="681" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="695" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKAbasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="681" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="695" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
                         <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="WR|SR|AR"/>
@@ -79,7 +79,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAcasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKAfasaAAAAAA==" Group="0" Carrier="DL" FlightNumber="8517" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="695" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKAfasaAAAAAA==" Group="0" Carrier="DL" FlightNumber="8517" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="695" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:CodeshareInfo OperatingCarrier="AF" OperatingFlightNumber="681">AIR FRANCE</air:CodeshareInfo>
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
@@ -89,7 +89,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAeasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKAhasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="2493" Origin="DFW" Destination="MSP" DepartureTime="2017-07-07T16:30:00.000-05:00" ArrivalTime="2017-07-07T19:05:00.000-05:00" FlightTime="155" TravelTime="705" ETicketability="Yes" Equipment="319" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKAhasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="2493" Origin="DFW" Destination="MSP" DepartureTime="2017-07-07T16:30:00.000-05:00" ArrivalTime="2017-07-07T19:05:00.000-05:00" FlightTime="155" TravelTime="705" ETicketability="Yes" Equipment="319" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:CodeshareInfo OperatingCarrier="DL" OperatingFlightNumber="2868">DELTA AIR LINES</air:CodeshareInfo>
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="First" BookingCounts="PR|FR"/>
@@ -115,7 +115,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAkasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKAnasaAAAAAA==" Group="0" Carrier="DL" FlightNumber="8500" Origin="MSP" Destination="CDG" DepartureTime="2017-07-07T19:50:00.000-05:00" ArrivalTime="2017-07-08T11:15:00.000+02:00" FlightTime="505" TravelTime="705" ETicketability="Yes" Equipment="343" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKAnasaAAAAAA==" Group="0" Carrier="DL" FlightNumber="8500" Origin="MSP" Destination="CDG" DepartureTime="2017-07-07T19:50:00.000-05:00" ArrivalTime="2017-07-08T11:15:00.000+02:00" FlightTime="505" TravelTime="705" ETicketability="Yes" Equipment="343" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:CodeshareInfo OperatingCarrier="AF" OperatingFlightNumber="673">AIR FRANCE</air:CodeshareInfo>
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
@@ -125,7 +125,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAmasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKApasaAAAAAA==" Group="0" Carrier="AA" FlightNumber="1676" Origin="DFW" Destination="PIT" DepartureTime="2017-07-07T14:35:00.000-05:00" ArrivalTime="2017-07-07T18:14:00.000-04:00" FlightTime="159" TravelTime="710" ETicketability="Yes" Equipment="319" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKApasaAAAAAA==" Group="0" Carrier="AA" FlightNumber="1676" Origin="DFW" Destination="PIT" DepartureTime="2017-07-07T14:35:00.000-05:00" ArrivalTime="2017-07-07T18:14:00.000-04:00" FlightTime="159" TravelTime="710" ETicketability="Yes" Equipment="319" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="RR|JR|DR|IR|CR|UR"/>
                         <air:BookingCodeInfo CabinClass="Economy" BookingCounts="SR|YR|BR|HR|MR|NR|KR|LR|QR|VR|GR|OR|ER|TR"/>
@@ -134,7 +134,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAoasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKArasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="8617" Origin="PIT" Destination="CDG" DepartureTime="2017-07-07T19:34:00.000-04:00" ArrivalTime="2017-07-08T09:25:00.000+02:00" FlightTime="471" TravelTime="710" ETicketability="Yes" Equipment="75W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKArasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="8617" Origin="PIT" Destination="CDG" DepartureTime="2017-07-07T19:34:00.000-04:00" ArrivalTime="2017-07-08T09:25:00.000+02:00" FlightTime="471" TravelTime="710" ETicketability="Yes" Equipment="75W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:CodeshareInfo OperatingCarrier="DL" OperatingFlightNumber="96">DELTA AIR LINES</air:CodeshareInfo>
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
@@ -144,7 +144,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAqasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKAtasaAAAAAA==" Group="0" Carrier="AA" FlightNumber="1675" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T12:55:00.000-05:00" ArrivalTime="2017-07-07T16:08:00.000-04:00" FlightTime="133" TravelTime="715" ETicketability="Yes" Equipment="320" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKAtasaAAAAAA==" Group="0" Carrier="AA" FlightNumber="1675" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T12:55:00.000-05:00" ArrivalTime="2017-07-07T16:08:00.000-04:00" FlightTime="133" TravelTime="715" ETicketability="Yes" Equipment="320" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="RR|JR|DR|IR|CR|UR"/>
                         <air:BookingCodeInfo CabinClass="Economy" BookingCounts="SR|YR|BR|HR|MR|NR|KR|LR|QR|VR|GR|OR|ER|TR"/>
@@ -153,7 +153,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAsasaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKAvasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="681" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="715" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKAvasaAAAAAA==" Group="0" Carrier="AF" FlightNumber="681" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="715" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
                         <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="WR|SR|AR"/>
@@ -261,7 +261,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAGbsaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKAJbsaAAAAAA==" Group="1" Carrier="AF" FlightNumber="9300" Origin="CDG" Destination="MSP" DepartureTime="2017-07-08T10:30:00.000+02:00" ArrivalTime="2017-07-08T12:25:00.000-05:00" FlightTime="535" TravelTime="761" ETicketability="Yes" Equipment="777" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKAJbsaAAAAAA==" Group="1" Carrier="AF" FlightNumber="9300" Origin="CDG" Destination="MSP" DepartureTime="2017-07-08T10:30:00.000+02:00" ArrivalTime="2017-07-08T12:25:00.000-05:00" FlightTime="535" TravelTime="761" ETicketability="Yes" Equipment="777" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:CodeshareInfo OperatingCarrier="DL" OperatingFlightNumber="141">DELTA AIR LINES</air:CodeshareInfo>
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
@@ -271,7 +271,7 @@
                     </air:AirAvailInfo>
                     <air:FlightDetailsRef Key="W6fPKv3R2BKAIbsaAAAAAA=="/>
                 </air:AirSegment>
-                <air:AirSegment Key="W6fPKv3R2BKALbsaAAAAAA==" Group="1" Carrier="AA" FlightNumber="1210" Origin="MSP" Destination="DFW" DepartureTime="2017-07-08T13:40:00.000-05:00" ArrivalTime="2017-07-08T16:11:00.000-05:00" FlightTime="151" TravelTime="761" ETicketability="Yes" Equipment="M80" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                <air:AirSegment Key="W6fPKv3R2BKALbsaAAAAAA==" Group="1" Carrier="AA" FlightNumber="1210" Origin="MSP" Destination="DFW" DepartureTime="2017-07-08T13:40:00.000-05:00" ArrivalTime="2017-07-08T16:11:00.000-05:00" FlightTime="151" TravelTime="761" ETicketability="Yes" Equipment="M80" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Airleg Canceled">
                     <air:AirAvailInfo ProviderCode="1G">
                         <air:BookingCodeInfo CabinClass="Business" BookingCounts="RR|JR|DR|IR|CR|UR"/>
                         <air:BookingCodeInfo CabinClass="Economy" BookingCounts="SR|YR|BR|HR|MR|NR|KR|LR|QR|VR|GR|OR|ER|TR"/>

@@ -5,8 +5,7 @@ import com.jayway.jsonpath.ReadContext;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
-import com.nearsoft.farandula.models.Airleg;
-import com.nearsoft.farandula.models.Flight;
+import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.SearchCommand;
 import com.nearsoft.farandula.models.Segment;
 import net.minidev.json.JSONArray;
@@ -58,13 +57,12 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Flight> getAvail(SearchCommand search) throws FarandulaException {
+    public List<AirLeg> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
             Request request = buildRequestForAvail(search);
             InputStream responseStream = sendRequest(request);
-            Stream<Flight> flightStream = parseAvailResponse(responseStream);
-            return flightStream.collect(Collectors.toCollection(LinkedList::new));
+            return parseAvailResponse(responseStream);
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
@@ -103,27 +101,22 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
 
-    public Stream<Flight> parseAvailResponse(InputStream response) throws IOException {
+    public List<AirLeg> parseAvailResponse(InputStream response) throws IOException {
 
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..results[*].itineraries[*]");
-        return pricedItineraries
-                .stream()
-                .map(f -> {
-                    Flight currentFly = new Flight();
-                    currentFly.setLegs(buildAirLegs((Map<String, Object>) f));
-                    //TODO change this PNR
-                    currentFly.setPNR("tempPNR");
-                    //TODO how to set the ID for amadeus??
-                    return currentFly;
 
-                });
+        List<AirLeg> legs = new ArrayList<>();
+        for (Object pricedItinerary : pricedItineraries) {
+            legs.addAll(buildAirLegs((Map<String, Object>) pricedItinerary));
+        }
+        return legs;
 
     }
 
-    private List<Airleg> buildAirLegs(Map<String, Object> itinerary) {
+    private List<AirLeg> buildAirLegs(Map<String, Object> itinerary) {
 
-        List<Airleg> results = new LinkedList<>();
+        List<AirLeg> results = new LinkedList<>();
 
         //adds departure leg
         Map<String, Object> outbound = (Map<String, Object>) itinerary.get("outbound");
@@ -139,7 +132,7 @@ public class AmadeusFlightManager implements FlightManager {
 
     }
 
-    private Airleg getAirleg(JSONArray outboundFlights) {
+    private AirLeg getAirleg(JSONArray outboundFlights) {
         LinkedList<Segment> segmentsOtbound = outboundFlights
                 .stream()
                 .map(segment -> {
@@ -154,7 +147,7 @@ public class AmadeusFlightManager implements FlightManager {
                 })
                 .collect(Collectors.toCollection(LinkedList::new));
 
-        Airleg leg = new Airleg();
+        AirLeg leg = new AirLeg();
         leg.setId("tempID");
         leg.setDepartureAirportCode(segmentsOtbound.get(0).getDepartureAirportCode());
         leg.setDepartingDate(segmentsOtbound.get(0).getDepartingDate());
@@ -175,7 +168,7 @@ public class AmadeusFlightManager implements FlightManager {
         //booking_info
         Map<String, Object> bookingInfoData = (Map<String, Object>) segmentMap.get("booking_info");
 
-        //flight information
+        //Airleg information
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
         seg.setOperatingAirline((String) segmentMap.get("operative_airline"));
@@ -200,7 +193,7 @@ public class AmadeusFlightManager implements FlightManager {
 
         //TODO CHECK this block is to improve the performance.
         String departureTimeZone = "";
-        if ( locationsMap.containsKey(seg.getDepartureAirportCode()) ) {
+        if (locationsMap.containsKey(seg.getDepartureAirportCode())) {
             departureTimeZone = locationsMap.get(seg.getDepartureAirportCode());
         } else {
             departureTimeZone = getTimeZone(seg.getDepartureAirportCode());
@@ -208,7 +201,7 @@ public class AmadeusFlightManager implements FlightManager {
         }
 
         String arrivalTimeZone = "";
-        if (locationsMap.containsKey( seg.getArrivalAirportCode()) ) {
+        if (locationsMap.containsKey(seg.getArrivalAirportCode())) {
             arrivalTimeZone = locationsMap.get(seg.getArrivalAirportCode());
         } else {
             arrivalTimeZone = getTimeZone(seg.getArrivalAirportCode());

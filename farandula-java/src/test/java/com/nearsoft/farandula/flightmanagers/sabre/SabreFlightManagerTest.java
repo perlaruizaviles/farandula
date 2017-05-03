@@ -5,13 +5,10 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
-import com.nearsoft.farandula.models.Airleg;
-import com.nearsoft.farandula.models.Flight;
+import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
 import okhttp3.Request;
-import okhttp3.Response;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +38,7 @@ public class SabreFlightManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
         int limit = 2;
-        List<Flight> flights=  Luisa.findMeFlights()
+        List<AirLeg> flights=  Luisa.findMeFlights()
                 .departingAt ( departingDate)
                 .returningAt( returningDate)
                 .limitTo(limit)
@@ -49,15 +46,12 @@ public class SabreFlightManagerTest {
 
         assertTrue( flights.size() > 0);
 
-        Flight bestFlight = flights.get(0);
 
-        assertNotNull( bestFlight );
-
-        assertAll("First should be the best Flight", () -> {
-            Airleg airleg = bestFlight.getLegs().get(0);
-            assertEquals("DFW",   airleg.getDepartureAirportCode());
-            assertEquals("CDG",   airleg.getArrivalAirportCode() );
-            assertEquals( "Economy/Coach", airleg.getSegments().get(0).getTravelClass() );
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0);
+            assertEquals("DFW",   airLeg.getDepartureAirportCode());
+            assertEquals("CDG",   airLeg.getArrivalAirportCode() );
+            assertEquals( "Economy/Coach", airLeg.getSegments().get(0).getTravelClass() );
         });
 
     }
@@ -77,7 +71,7 @@ public class SabreFlightManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
         LocalDateTime returningDate = departingDate.plusDays(1);
         int limit = 2;
-        List<Flight> flights=  Luisa.findMeFlights()
+        List<AirLeg> flights=  Luisa.findMeFlights()
                 .from("DFW")
                 .to("CDG")
                 .departingAt ( departingDate)
@@ -90,15 +84,12 @@ public class SabreFlightManagerTest {
 
         assertTrue( flights.size() > 0);
 
-        Flight bestFlight = flights.get(0);
-
-        assertNotNull( bestFlight );
-
-        assertAll("First should be the best Flight", () -> {
-            Airleg airleg = bestFlight.getLegs().get(0);
-            assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
-            assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
-            assertEquals( "Economy/Coach", bestFlight.getLegs().get(0).getSegments().get(0).getTravelClass() );
+        
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0);
+            assertEquals("DFW",   airLeg.getDepartureAirportCode());
+            assertEquals("CDG",   airLeg.getArrivalAirportCode() );
+            assertEquals( "Economy/Coach", airLeg.getSegments().get(0).getTravelClass() );
         });
 
     }
