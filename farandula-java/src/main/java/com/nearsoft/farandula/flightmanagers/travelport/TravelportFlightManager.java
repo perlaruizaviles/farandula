@@ -51,7 +51,7 @@ public class TravelportFlightManager implements FlightManager {
 
         try {
             SOAPMessage request = buildRequestForAvail(search);
-            List<AirLeg> flightList = parseAvailResponse(request);
+            List<AirLeg> flightList = parseAvailResponse(request, search);
             return flightList;
 
         } catch (Exception e) {
@@ -115,7 +115,7 @@ public class TravelportFlightManager implements FlightManager {
         return soapConnection.call(message, url_api);
     }
 
-    public List<AirLeg> parseAvailResponse(SOAPMessage response) throws IOException, SOAPException, ParseException {
+    public List<AirLeg> parseAvailResponse(SOAPMessage response, SearchCommand searchCommand) throws IOException, SOAPException, ParseException {
 
         List<AirLeg> airLegs = new ArrayList<>();
         SOAPEnvelope env = response.getSOAPPart().getEnvelope();
@@ -142,7 +142,6 @@ public class TravelportFlightManager implements FlightManager {
         //segments
         NodeList list = body.getElementsByTagName("air:AirSegment");
         List<Segment> connectedSegments = new ArrayList<>();
-
         for (int i = 0; i < list.getLength(); i++) {
 
             Node airSegmentNode = list.item(i);
@@ -154,10 +153,6 @@ public class TravelportFlightManager implements FlightManager {
             seg.setAirlineIconPath("");
             seg.setMarketingAirline(nodeAttributes.getNamedItem("Carrier").getNodeValue().toString());
             seg.setMarketingFlightNumber(nodeAttributes.getNamedItem("FlightNumber").getNodeValue().toString());
-
-            NamedNodeMap codeshareInfo = null;
-            NodeList listNodes = airSegmentNode.getChildNodes();
-
 
             parseCodeshareChild(seg, airSegmentNode);
             parseAirAvailInfoChild(seg, airSegmentNode);
@@ -183,16 +178,24 @@ public class TravelportFlightManager implements FlightManager {
 
             seg.setDuration(resultFlightsDetails.get(i).getFlightTime());
 
-            if (connectionList.contains(i)) {
-                connectedSegments.add(seg);
-            } else {
+            connectedSegments.add( seg );
 
-                //todo check with round trip
-                //this case is for of one way trip
+            //case when the last segment arrival is the search arrival airport OR
+            //case for the returning airleg, i.e case when the arrival segment is the departure airport in search
+            System.out.println("i:" + 1 + " "+ seg);
+            if ( seg.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() )  ||
+                    seg.getArrivalAirportCode().equals( searchCommand.getDepartureAirport() )
+                    ){
+
                 AirLeg leg = new AirLeg();
+                leg.setId("tempID");
+                leg.setDepartureAirportCode(connectedSegments.get(0).getDepartureAirportCode());
+                leg.setDepartingDate(connectedSegments.get(0).getDepartingDate());
+                leg.setArrivalAirportCode(connectedSegments.get( connectedSegments.size() - 1).getArrivalAirportCode());
+                leg.setArrivalDate(connectedSegments.get(connectedSegments.size() - 1).getArrivalDate());
                 leg.setSegments(connectedSegments);
                 airLegs.add(leg);
-                connectedSegments.clear();
+                connectedSegments = new ArrayList<>();
             }
 
         }
@@ -204,7 +207,8 @@ public class TravelportFlightManager implements FlightManager {
 
     private void parseAirAvailInfoChild(Segment seg, Node airSegmentNode) {
         //TODO add logging to the project
-        System.out.println("Ig");
+
+        //TODO parse BookingCodeInfo element for cabin classes
     }
 
     private void parseCodeshareChild(Segment seg, Node airSegmentNode) {
