@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -47,10 +48,20 @@ public class JavaFarandulaApplicationTests {
 
 	@Test
 	public void findExactlyTenResults(){
+
+	    List<Airport> airportsList = new ArrayList<>();
+
+	    for(int i = 1; i <= 11; i++)
+	        airportsList.add(new Airport(i+10000, "Name"+i, "City"+i, "Country"+i, "AA"+1));
+
+	    airportRepository.insert( airportsList );
+
 		List<Airport> result = airportRepository.
-				findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase("gen", "gen", "gen");
+				findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase("AA", "AA", "AA");
 
 		Assert.assertEquals(10, result.size());
+
+		airportRepository.delete(airportsList);
 	}
 
 }
