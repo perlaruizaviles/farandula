@@ -1,6 +1,9 @@
 import {connect} from 'react-redux';
 import TravelSearch from '../components/TravelSearch';
-import {changeTravelType, changeTravelDate} from '../actions/travelConfig';
+import {
+  changeTravelType,
+  changeTravelDate,
+  changeDateReturn} from '../actions/travelConfig';
 
 export default connect(
   state => {
@@ -11,7 +14,8 @@ export default connect(
   dispatch => {
     return {
       typeChange: (type) => dispatch(changeTravelType(type)),
-      travelDateChange: (date) => dispatch(changeTravelDate(date))
+      changeDateDepart: (date) => dispatch(changeTravelDate(date)),
+      changeDateReturn: (date) => dispatch(changeDateReturn(date))
     }
   }
 )(TravelSearch);
