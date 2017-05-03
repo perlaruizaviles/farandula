@@ -4,3 +4,10 @@ export const changeTravelType = type => {
     value: type
   };
 };
+
+export const changeTravelDate = date => {
+  return {
+    type: 'CHANGE_TRAVEL_DATE',
+    value: date
+  }
+}
