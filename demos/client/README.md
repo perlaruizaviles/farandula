@@ -8,7 +8,7 @@
     - [x] Describe the structure of the `src` directory
     - [ ] Describe general code style conventions
     - [ ] Describe the routing mechanism
-    - [ ] Create a `README.md` file describing the purpuse of each directory inside `src`
+    - [X] Create a `README.md` file describing the purpuse of each directory inside `src`
         - [x] Actions
         - [x] Components
         - [x] Containers
