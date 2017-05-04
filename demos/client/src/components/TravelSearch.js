@@ -10,14 +10,18 @@ const TravelSearch = ({config, typeChange, dateChange}) => (
               selectType={typeChange} />
 
     <DateSelector minDate={travelOptions.get('minDate')}
+                  selectsStart
                   maxDate={travelOptions.get('maxDate')}
                   startDate={config.getIn(['dates', 'depart'])}
+                  endDate={config.getIn(['dates','return'])}
                   selected={config.getIn(['dates', 'depart'])}
                   changeTravelDate={date => dateChange('depart', date)} />
 
     <DateSelector minDate={travelOptions.get('minDate')}
+                  selectsEnd
                   maxDate={travelOptions.get('maxDate')}
-                  startDate={config.getIn(['dates', 'return'])}
+                  startDate={config.getIn(['dates', 'depart'])}
+                  endDate={config.getIn(['dates', 'return'])}
                   selected={config.getIn(['dates', 'return'])}
                   changeTravelDate={date => dateChange('return', date)} />
   </div>
