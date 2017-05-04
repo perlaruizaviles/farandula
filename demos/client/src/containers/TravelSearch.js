@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import TravelSearch from '../components/TravelSearch';
-import {changeTravelType, changeTravelDate} from '../actions/travelConfig';
+import {changeTravelType, changeTravelDate, changeTravelFrom, changeTravelTo} from '../actions/travelConfig';
 
 export default connect(
   state => {
