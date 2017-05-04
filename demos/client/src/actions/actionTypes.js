@@ -1,0 +1,1 @@
+export const CHANGE_TRAVEL_TYPE = 'CHANGE_TRAVEL_TYPE';
