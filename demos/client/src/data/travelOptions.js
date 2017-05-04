@@ -1,8 +1,11 @@
 import {Map, List} from 'immutable';
+import moment from 'moment';
 
 const travelOptions = Map({
   type: List(['round-trip', 'one-way', 'multi-city']),
   cabin: List(['economy', 'premium-economy', 'business', 'first']),
+  minDate: moment(),
+  maxDate: moment().add(1,"year"),
   travelers: Map({
     'adults': List([18, 64]),
     'seniors': List([65, Infinity]),

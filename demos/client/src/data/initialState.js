@@ -4,14 +4,14 @@ const initialState = {
   travelConfig: Map({
     type: 'round-trip',
     cabin: 'economy',
-    travelers: {
+    travelers: Map({
       'adults': 1,
       'seniors': 0,
       'youth': 0,
       'child': 0,
       'seat-infant': 0,
       'lap-infant': 0
-    },
+    }),
     locations: Map({
       from: Map({
         iata: undefined,
@@ -24,10 +24,10 @@ const initialState = {
         name: undefined
       })
     }),
-    dates: {
+    dates: Map({
       depart: undefined,
       return: undefined
-    }
+    })
   })
 };
 

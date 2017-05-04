@@ -6,3 +6,11 @@ export const changeTravelType = type => {
     value: type
   };
 };
+
+export const changeTravelDate = (dateType, date) => {
+  return {
+    type: types.CHANGE_TRAVEL_DATE,
+    dateType,
+    date
+  };
+};
