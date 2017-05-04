@@ -15,21 +15,40 @@ pipeline {
       }
     }
 
-    stage('Frontend') {
+    stage('Build') {
       steps {
-        dir('demos/client') {
-          sh 'npm prune'
-          sh 'npm install'
-          sh 'npm test'
-        }
+        parallel(
+          "Frontend": {
+            dir('demos/client') {
+              sh 'npm prune'
+              sh 'npm install'
+              sh 'npm test'
+            }
+          },
+          "Java Backend": {
+            dir('demos/java-server') {
+              sh 'mvn clean package'
+            }
+          },
+          "Ruby Backend": {
+            echo 'TODO:Implement Ruby Backend'
+          },
+          "NodeJS Backend": {
+            echo 'TODO:Implement NodeJS Backend'
+          }
+        )
       }
     }
 
-    stage('Java Backend') {
+    stage('Integration') {
       steps {
-        dir('demos/java-server') {
-          sh 'mvn clean package'
-        }
+        echo 'TODO:Implement Integration Tests'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo 'TODO:Implement Deployment'
       }
     }
   }
