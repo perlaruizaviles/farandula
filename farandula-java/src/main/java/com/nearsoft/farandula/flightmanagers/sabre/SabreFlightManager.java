@@ -87,8 +87,6 @@ public class SabreFlightManager implements FlightManager {
             Request request = buildRequestForAvail(search);
             InputStream responseStream = sendRequest(request);
 
-
-
             return parseAvailResponse(responseStream);
 
         } catch (Exception e) {

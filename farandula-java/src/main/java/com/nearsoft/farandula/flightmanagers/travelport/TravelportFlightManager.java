@@ -3,6 +3,7 @@ package com.nearsoft.farandula.flightmanagers.travelport;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
 import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.XmlUtils;
 import net.minidev.json.JSONArray;
@@ -76,23 +77,7 @@ public class TravelportFlightManager implements FlightManager {
 
     public String buildEnvelopeStringFromSearch(SearchCommand search) {
 
-        //TODO  consider type for roundtrip  or with multiple destination
-        Map valuesMap = new HashMap();
-        valuesMap.put("departureAirport", search.getDepartureAirport());
-        valuesMap.put("arrivalAirport", search.getArrivalAirport());
-        valuesMap.put("passengersNumber", search.getPassengers().size());
-        valuesMap.put("departureDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
-        valuesMap.put("returningDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
-        valuesMap.put("targetBranch", targetBranch);
-        StrSubstitutor sub = new StrSubstitutor(valuesMap);
-
-        InputStream soapInputStream = this.getClass().getResourceAsStream("/travelport/XML.request/AirAvailability_Rq.xml");
-
-        String soapEnvelope = new BufferedReader(new InputStreamReader(soapInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
-
-        return sub.replace(soapEnvelope);
+        return TravelportXMLRequest.getRequest( search, targetBranch );
 
     }
 

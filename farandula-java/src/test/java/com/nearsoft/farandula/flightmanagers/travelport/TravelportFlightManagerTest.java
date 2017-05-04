@@ -4,6 +4,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.AirLeg;
+import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Passenger;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -100,7 +101,7 @@ class TravelportFlightManagerTest {
                 .departingAt(departingDate)
                 .returningAt(returningDate)
                 .forPassegers(Passenger.adults(1))
-                .type("roundTrip")
+                .type(FlightType.ROUNDTRIP)
                 .sortBy(PRICE, MINSTOPS)
                 .limitTo(limit)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`

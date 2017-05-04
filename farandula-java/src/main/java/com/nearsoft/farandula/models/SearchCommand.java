@@ -15,7 +15,7 @@ import static com.nearsoft.farandula.models.CriteriaType.PRICE;
  */
 public class SearchCommand {
 
-    private String type = "roundTrip";
+    private FlightType type = FlightType.ONEWAY;
     private String departureAirport;
     private String arrivalAirport;
     private LocalDateTime departingDate;
@@ -23,6 +23,7 @@ public class SearchCommand {
     private List<Passenger> passengers = new ArrayList<>();
     private CriteriaType[] criterias  = new CriteriaType[]{PRICE};
     private int offSet;
+    private CabinClassType CabinClass = CabinClassType.economy ;
 
     private FlightManager flightManager;
 
@@ -65,14 +66,17 @@ public class SearchCommand {
         return this;
     }
 
-    //TODO add an enum for type
-    public SearchCommand type(String roundTrip) {
-        this.type = type;
+    public SearchCommand type(FlightType roundTrip) {
+        this.type = roundTrip;
+        return this;
+    }
+
+    public SearchCommand preferenceClass( CabinClassType preferenceClass ){
+        this.CabinClass = preferenceClass;
         return this;
     }
 
     public List<AirLeg> execute() throws IOException, FarandulaException {
-        //TODO RESEARCH execute the search in multiple suppliers
         //FIXME here there is a code smell , why we are passing `this` to executeAvail.
         return flightManager
                  .getAvail(this);
@@ -114,11 +118,11 @@ public class SearchCommand {
         return passengers;
     }
 
-    public String getType() {
+    public FlightType getType() {
         return type;
     }
 
-    public void setType(String type) { this.type = type; }
+    public void setType(FlightType type) { this.type = type; }
 
     public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
@@ -140,5 +144,11 @@ public class SearchCommand {
         this.offSet = offSet;
     }
 
+    public CabinClassType getCabinClass() {
+        return CabinClass;
+    }
 
+    public void setCabinClass(CabinClassType cabinClass) {
+        this.CabinClass = cabinClass;
+    }
 }

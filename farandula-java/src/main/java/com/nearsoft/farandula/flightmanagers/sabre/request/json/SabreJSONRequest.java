@@ -47,20 +47,20 @@ public class SabreJSONRequest {
 
     public static String getRequest(SearchCommand search) {
 
-        String json = "";
-        switch ( search.getType() ) {
-            case "roundTrip":
-                json = getRoundTrip( search );
+        String xml = "";
+        switch ( search.getType().toString().toLowerCase() ) {
+            case "roundtrip":
+                xml = getRoundTrip( search );
                 break;
-            case "oneWay":
-                json = getOneWay( search );
+            case "oneway":
+                xml = getOneWay( search );
                 break;
-            case "multiCity":
-                json = getMultiCity( search );
+            case "multiple":
+                xml = getMultiCity( search );
                 break;
         }
 
-        return json;
+        return xml;
 
     }
 

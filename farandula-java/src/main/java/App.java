@@ -3,6 +3,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
 
 import com.nearsoft.farandula.models.AirLeg;
+import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Passenger;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class App {
                 .departingAt(departingDate)
                 .returningAt(returningDate)
                 .forPassegers(Passenger.adults(1))
-                .type("roundTrip")
+                .type(FlightType.ROUNDTRIP)
                 .sortBy(PRICE, MINSTOPS)
                 .limitTo(50).execute();
 

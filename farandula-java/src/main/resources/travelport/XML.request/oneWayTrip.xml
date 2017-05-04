@@ -13,9 +13,9 @@
                 <air:SearchDepTime PreferredTime="${departureDate}"/>
             </air:SearchAirLeg>
             <air:AirSearchModifiers>
-                <air:PreferredProviders>
-                    <com:Provider xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="1G"/>
-                </air:PreferredProviders>
+                <air:PreferredCabins>
+                    <com:CabinClass Type="${classTravel}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                </air:PreferredCabins>
             </air:AirSearchModifiers>
         </air:AvailabilitySearchReq>
     </soapenv:Body>

@@ -6,6 +6,7 @@ import com.jayway.jsonpath.JsonPath;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.AirLeg;
+import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
 import okhttp3.Request;
@@ -41,11 +42,11 @@ public class SabreFlightManagerTest {
         List<AirLeg> flights=  Luisa.findMeFlights()
                 .departingAt ( departingDate)
                 .returningAt( returningDate)
+                .type( FlightType.ROUNDTRIP )
                 .limitTo(limit)
                 .execute();
 
         assertTrue( flights.size() > 0);
-
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0);
@@ -77,7 +78,7 @@ public class SabreFlightManagerTest {
                 .departingAt ( departingDate)
                 .returningAt( returningDate)
                 .forPassegers(Passenger.adults(1) )
-                .type( "roundTrip")
+                .type( FlightType.ROUNDTRIP )
                 .sortBy( PRICE,MINSTOPS )
                 .limitTo(limit)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
@@ -108,7 +109,7 @@ public class SabreFlightManagerTest {
                 .departingAt ( departingDate)
                 .returningAt( returningDate)
                 .forPassegers(Passenger.adults(1) )
-                .type( "roundTrip")
+                .type( FlightType.ROUNDTRIP )
                 .sortBy( PRICE,MINSTOPS )
                 .limitTo(2);
 
