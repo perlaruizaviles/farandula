@@ -11,7 +11,9 @@ export default connect(
   dispatch => {
     return {
       typeChange: (type) => dispatch(changeTravelType(type)),
-      dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date))
+      dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date)),
+      fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),
+      toAirportChange: (airport) => dispatch(changeTravelTo(airport))
     }
   }
 )(TravelSearch);

@@ -14,3 +14,17 @@ export const changeTravelDate = (dateType, date) => {
     date
   };
 };
+
+export const changeTravelFrom = (airport) => {
+  return {
+    type: types.CHANGE_TRAVEL_FROM,
+    airport
+  };
+};
+
+export const changeTravelTo = (airport) => {
+  return {
+    type: types.CHANGE_TRAVEL_TO,
+    airport
+  };
+};
