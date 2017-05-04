@@ -11,6 +11,7 @@ const DateSelector = ({minDate, maxDate, startDate, endDate, selected, changeTra
         selected={selected}
         startDate={startDate}
         endDate={endDate}
+        placeholderText="Select date..."
         onChange={(date) => changeTravelDate(date)}/>
 );
 

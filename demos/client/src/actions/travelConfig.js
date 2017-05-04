@@ -9,7 +9,7 @@ export const changeTravelType = type => {
 
 export const changeTravelDate = (dateType, date) => {
   return {
-    type: 'CHANGE_TRAVEL_DATE',
+    type: types.CHANGE_TRAVEL_DATE,
     dateType,
     date
   };
