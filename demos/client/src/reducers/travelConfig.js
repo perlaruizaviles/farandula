@@ -5,7 +5,7 @@ const travelConfig = (state = Map({}), action) => {
   switch (action.type) {
     case types.CHANGE_TRAVEL_TYPE:
       return state.set('type', action.value);
-    case 'CHANGE_TRAVEL_DATE':
+    case types.CHANGE_TRAVEL_DATE:
     if(state.get('type')==='round-trip'){
       if(action.dateType==='depart'){
         if(action.date > state.getIn(['dates','return'])){
