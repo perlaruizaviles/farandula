@@ -1,5 +1,5 @@
 import React from 'react';
-import {Menu, Segment} from 'semantic-ui-react';
+import {Segment} from 'semantic-ui-react';
 import Component from '../containers/TravelSearch';
 
 const ComponentShowcase = ({router: {push}, location: {pathname},
