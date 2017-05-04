@@ -5,9 +5,7 @@ const travelConfig = (state = Map({}), action) => {
     case 'CHANGE_TRAVEL_TYPE':
       return state.set('type', action.value);
     case 'CHANGE_TRAVEL_DATE':
-      return state.setIn(['dates','depart'], action.value);
-    case 'CHANGE_DATE_RETURN':
-      return state.setIn(['dates','return'], action.value);
+      return state.setIn(['dates',action.dateType], action.date);
     default:
       return state;
   }
