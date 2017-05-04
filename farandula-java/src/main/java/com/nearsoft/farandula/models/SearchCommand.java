@@ -1,7 +1,7 @@
 package com.nearsoft.farandula.models;
 
-import com.nearsoft.farandula.FarandulaException;
-import com.nearsoft.farandula.FlightManager;
+import com.nearsoft.farandula.exceptions.FarandulaException;
+import com.nearsoft.farandula.flightmanagers.FlightManager;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -65,12 +65,13 @@ public class SearchCommand {
         return this;
     }
 
+    //TODO add an enum for type
     public SearchCommand type(String roundTrip) {
         this.type = type;
         return this;
     }
 
-    public List<Flight> execute() throws IOException, FarandulaException {
+    public List<AirLeg> execute() throws IOException, FarandulaException {
 
         //FIXME here there is a code smell , why we are passing `this` to executeAvail.
         return flightManager

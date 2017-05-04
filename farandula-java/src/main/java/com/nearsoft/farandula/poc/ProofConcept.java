@@ -1,9 +1,18 @@
 package com.nearsoft.farandula.poc;
 
+import org.apache.commons.lang3.text.StrSubstitutor;
+
+import javax.xml.soap.*;
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -16,7 +25,7 @@ public class ProofConcept {
         String result = "";
 
         try {
-            
+
             String json = "{\n" + "\n" + " \"OTA_AirLowFareSearchRQ\": {\n" + "\n" + "     \"Target\": \"Production\",\n" + "\n" + "       \"POS\": {\n" + "\n" +
                     "            \"Source\": [{\n" + "\n" + "                \"PseudoCityCode\":\"F9CE\",\n" + "\n" + "                \"RequestorID\": {\n" +
                     "\n" + "                    \"Type\": \"1\",\n" + "\n" + "                  \"ID\": \"1\",\n" + "\n" +
@@ -44,7 +53,7 @@ public class ProofConcept {
                     "        \"TPA_Extensions\": {\n" + "\n" + "         \"IntelliSellTransaction\": {\n" + "\n" + "             \"RequestType\": {\n" + "\n" +
                     "                    \"Name\": \"50ITINS\"\n" + "\n" + "             }\n" + "\n" + "         }\n" + "\n" + "     }\n" + "\n" + " }\n" + "\n" +
                     "}";
-            
+
             URL url = new URL("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=50&offset=1\n");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -124,7 +133,7 @@ public class ProofConcept {
         return json;
     }
 
-    public static  void main( String[] args) throws IOException {
+    public static  void main( String[] args) throws IOException, SOAPException {
 
         Date today = new Date();
 
@@ -132,6 +141,8 @@ public class ProofConcept {
                 new FileWriter( new File(  today.toString() + " sabre-file.json")  ) );
 
         ProofConcept poc = new ProofConcept();
+
+        String travelPortResponse = poc.getDataFromTravelPort();
 
         String response =  poc.getDataFromSabre();
 
@@ -144,10 +155,63 @@ public class ProofConcept {
 
         response =  poc.getDataFromAmadeus();
 
-        writer.write( "Response Amadeus:"  + response );
+        writer.write( "Response amadeus:"  + response );
 
         writer.close();
 
     }
+
+    private String getDataFromTravelPort() throws IOException, SOAPException {
+
+        // --------- credentials
+        String key = "Universal API/uAPI6030405136-ec11970c";
+        String pass = "eNAfp97R9Jrw4nj77ZHEJ3zyc";
+        Base64.Encoder base64 = Base64.getEncoder();
+        // Convert the encoded concatenated string to a single base64 encoded string, as per Sabre's docs
+        String authTokenParam =  base64.encodeToString(( key + ":" + pass).getBytes());// --------- credentials
+        // --------- credentials OK
+
+
+        Map valuesMap = new HashMap();
+        valuesMap.put("departureAirport",  "DFW"  );
+        valuesMap.put("arrivalAirport",  "CDG" );
+        valuesMap.put("departureDate", "2017-07-07" );
+        valuesMap.put("returningDate", "2017-07-08");
+        valuesMap.put("targetBranch", "P7015254");
+        StrSubstitutor sub = new StrSubstitutor(valuesMap);
+
+        InputStream soapInputStream = this.getClass().getResourceAsStream("/travelport/XML.request/AirAvailability_Rq.xml");
+
+        String soapEnvelope = new BufferedReader(new InputStreamReader( soapInputStream) )
+                .lines()
+                .collect(Collectors.joining("\n") );
+
+        soapEnvelope = sub.replace(soapEnvelope);
+
+        MessageFactory factory = MessageFactory.newInstance();
+        SOAPMessage message = factory.createMessage(new MimeHeaders(), new ByteArrayInputStream(soapEnvelope.getBytes(Charset.forName("UTF-8"))));
+        MimeHeaders headers = message.getMimeHeaders();
+        headers.addHeader("Content-Type", "text/xml" );
+        headers.addHeader( "Authorization", "Basic " + authTokenParam );
+
+        // Create SOAP Connection
+        SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
+        SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+
+
+        // Send SOAP Message to SOAP Server
+        String url_api = "https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService";
+        SOAPMessage soapResponse = soapConnection.call( message , url_api);
+
+        // print SOAP Response
+        System.out.print("Response SOAP Message:");
+        soapResponse.writeTo(System.out);
+
+        soapConnection.close();
+
+        return "";
+
+    }
+
 
 }
