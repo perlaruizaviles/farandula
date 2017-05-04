@@ -129,7 +129,7 @@ public class SabreFlightManagerTest {
 
             @Override
             public InputStream sendRequest(Request request) throws IOException, FarandulaException {
-                return this.getClass().getResourceAsStream("/sabreAvailResponse.json");
+                return this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json");
             }
 
         };
@@ -142,7 +142,7 @@ public class SabreFlightManagerTest {
 
         SabreFlightManager manager = new SabreFlightManager(  );
 
-        manager.parseAvailResponse( this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  ) );
+        manager.parseAvailResponse( this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json") );
 
     }
 

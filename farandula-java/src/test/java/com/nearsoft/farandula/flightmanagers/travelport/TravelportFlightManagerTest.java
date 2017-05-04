@@ -5,6 +5,7 @@ import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Passenger;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.soap.MessageFactory;
@@ -25,10 +26,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class TravelportFlightManagerTest {
 
     @Test
-
+    @Tag("fake")
     public void fakeAvail() throws Exception {
 
-        //TODO
         Luisa.setSupplier(() -> {
             return createTravelPortStub();
         });
@@ -46,8 +46,6 @@ class TravelportFlightManagerTest {
                 .execute();
 
         assertTrue(flights.size() > 0);
-
-        //TODO need to verify that we read correctly the legs /segments
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0);

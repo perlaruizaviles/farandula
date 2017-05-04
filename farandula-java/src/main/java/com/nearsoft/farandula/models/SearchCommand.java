@@ -72,7 +72,7 @@ public class SearchCommand {
     }
 
     public List<AirLeg> execute() throws IOException, FarandulaException {
-
+        //TODO RESEARCH execute the search in multiple suppliers
         //FIXME here there is a code smell , why we are passing `this` to executeAvail.
         return flightManager
                  .getAvail(this);
