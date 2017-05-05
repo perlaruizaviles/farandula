@@ -3,10 +3,7 @@ package com.nearsoft.farandula.flightmanagers.amadeus;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
-import com.nearsoft.farandula.models.AirLeg;
-import com.nearsoft.farandula.models.FlightType;
-import com.nearsoft.farandula.models.Passenger;
-import com.nearsoft.farandula.models.SearchCommand;
+import com.nearsoft.farandula.models.*;
 import okhttp3.Request;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +48,8 @@ class AmadeusManagerTest {
                 .departingAt( departingDate )
                 .returningAt(departingDate.plusDays(1))
                 .limitTo(2)
+                .type( FlightType.ONEWAY )
+                .preferenceClass( CabinClassType.ECONOMY )
                 .execute();
 
         assertTrue( flights.size() > 0);
@@ -96,6 +95,7 @@ class AmadeusManagerTest {
                 .forPassegers(Passenger.adults(1) )
                 .type( FlightType.ROUNDTRIP )
                 .sortBy( PRICE,MINSTOPS )
+                .preferenceClass( CabinClassType.ECONOMY )
                 .limitTo(2)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
 
@@ -136,7 +136,8 @@ class AmadeusManagerTest {
                 "&departure_date=2017-07-07" +
                 "&return_date=2017-07-08" +
                 "&adults=1" +
-                "&number_of_results=2";
+                "&number_of_results=2" +
+                "&travel_class=ECONOMY";
         assertEquals(expectedURL, searchURL );
 
     }

@@ -5,9 +5,7 @@ import com.jayway.jsonpath.ReadContext;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
-import com.nearsoft.farandula.models.AirLeg;
-import com.nearsoft.farandula.models.SearchCommand;
-import com.nearsoft.farandula.models.Segment;
+import com.nearsoft.farandula.models.*;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -245,15 +243,45 @@ public class AmadeusFlightManager implements FlightManager {
     public String buildTargetURLFromSearch(SearchCommand search) {
         String departureDate = search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
         String arrivalDate = search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
-        String api = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
-        return api +
-                "apikey=" + apiKey
+        String apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
+
+        apiURL +="apikey=" + apiKey
                 + "&origin=" + search.getDepartureAirport()
                 + "&destination=" + search.getArrivalAirport()
-                + "&departure_date=" + departureDate
-                + "&return_date=" + arrivalDate
-                + "&adults=" + search.getPassengers().size()
+                + "&departure_date=" + departureDate;
+
+        if ( search.getType() == FlightType.ROUNDTRIP) {
+            apiURL += "&return_date=" + arrivalDate;
+        }
+
+        apiURL += "&adults=" + search.getPassengers().size()
                 + "&number_of_results=" + search.getOffSet();
+
+
+        //cabins for amadeus.
+        switch ( search.getCabinClass() ){
+
+            case ECONOMY:
+                apiURL+= "&travel_class=ECONOMY";
+                break;
+
+            case PREMIUM_ECONOMY:
+                apiURL+= "&travel_class=PREMIUM_ECONOMY";
+                break;
+
+            case FIRST:
+                apiURL+= "&travel_class=FIRST";
+                break;
+
+            case BUSINESS:
+                apiURL+= "&travel_class=FIRST";
+                break;
+
+            default:
+                apiURL+= "&travel_class=ECONOMY";
+        }
+
+        return apiURL;
     }
 
     String buildLocationURL(String location) {
