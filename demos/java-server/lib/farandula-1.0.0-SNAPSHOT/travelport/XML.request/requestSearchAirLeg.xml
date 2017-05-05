@@ -1,0 +1,14 @@
+<air:SearchAirLeg>
+    <air:SearchOrigin>
+        <com:Airport Code="${departureAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+    </air:SearchOrigin>
+    <air:SearchDestination>
+        <com:Airport Code="${arrivalAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+    </air:SearchDestination>
+    <air:SearchDepTime PreferredTime="${departureDate}"/>
+    <air:AirLegModifiers>
+        <air:PreferredCabins>
+            <com:CabinClass Type="${classTravel}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+        </air:PreferredCabins>
+    </air:AirLegModifiers>
+</air:SearchAirLeg>
