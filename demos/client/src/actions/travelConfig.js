@@ -14,3 +14,19 @@ export const changeTravelDate = (dateType, date) => {
     date
   };
 };
+
+export const decreasePassanger = (typePassanger, count) => {
+  return {
+    type: types.DECREASE_PASSANGER,
+    typePassanger,
+    count
+  };
+};
+
+export const increasePassanger = (typePassanger, count) => {
+  return {
+    type: types.INCREASE_PASSANGER,
+    typePassanger,
+    count
+  };
+};
