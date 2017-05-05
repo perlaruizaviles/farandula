@@ -36,29 +36,9 @@ public class SabreJSONRequest {
 
     }
 
-
-    private static String getMultiCity(SearchCommand search) {
-        return "";
-    }
-
-    private static String getOneWay(SearchCommand search) {
-        return "";
-    }
-
     public static String getRequest(SearchCommand search) {
 
-        String json = "";
-        switch ( search.getType() ) {
-            case "roundTrip":
-                json = getRoundTrip( search );
-                break;
-            case "oneWay":
-                json = getOneWay( search );
-                break;
-            case "multiCity":
-                json = getMultiCity( search );
-                break;
-        }
+        String json = getRoundTrip(search);
 
         return json;
 

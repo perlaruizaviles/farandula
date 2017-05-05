@@ -1,8 +1,11 @@
 package com.nearsoft.farandula.models;
 
+import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 
+import javax.xml.bind.ValidationException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ import static com.nearsoft.farandula.models.CriteriaType.PRICE;
  */
 public class SearchCommand {
 
-    private String type = "roundTrip";
+    private FlightType type = FlightType.ONEWAY;
     private String departureAirport;
     private String arrivalAirport;
     private LocalDateTime departingDate;
@@ -23,6 +26,7 @@ public class SearchCommand {
     private List<Passenger> passengers = new ArrayList<>();
     private CriteriaType[] criterias  = new CriteriaType[]{PRICE};
     private int offSet;
+    private CabinClassType CabinClass = CabinClassType.economy ;
 
     private FlightManager flightManager;
 
@@ -35,17 +39,17 @@ public class SearchCommand {
         return this;
     }
 
-    public SearchCommand to(String airportCode) {
+    public SearchCommand to(String airportCode) throws FarandulaException {
         this.arrivalAirport = airportCode;
         return this;
     }
 
-    public SearchCommand departingAt(LocalDateTime departingDate) {
+    public SearchCommand departingAt(LocalDateTime departingDate) throws FarandulaException  {
         this.departingDate = departingDate;
         return this;
     }
 
-    public SearchCommand returningAt(LocalDateTime returningDate) {
+    public SearchCommand returningAt(LocalDateTime returningDate) throws  FarandulaException {
         this.returningDate = returningDate;
         return this;
     }
@@ -65,14 +69,18 @@ public class SearchCommand {
         return this;
     }
 
-    //TODO add an enum for type
-    public SearchCommand type(String roundTrip) {
-        this.type = type;
+    public SearchCommand type(FlightType roundTrip) throws  FarandulaException {
+
+        this.type = roundTrip;
+        return this;
+    }
+
+    public SearchCommand preferenceClass( CabinClassType preferenceClass ){
+        this.CabinClass = preferenceClass;
         return this;
     }
 
     public List<AirLeg> execute() throws IOException, FarandulaException {
-
         //FIXME here there is a code smell , why we are passing `this` to executeAvail.
         return flightManager
                  .getAvail(this);
@@ -82,7 +90,8 @@ public class SearchCommand {
         return departureAirport;
     }
 
-    public void setDepartureAirport(String departureAirport) {
+    public void setDepartureAirport(String departureAirport)  {
+
         this.departureAirport = departureAirport;
     }
 
@@ -90,7 +99,7 @@ public class SearchCommand {
         return arrivalAirport;
     }
 
-    public void setArrivalAirport(String arrivalAirport) {
+    public void setArrivalAirport(String arrivalAirport) throws FarandulaException {
         this.arrivalAirport = arrivalAirport;
     }
 
@@ -98,7 +107,8 @@ public class SearchCommand {
         return departingDate;
     }
 
-    public void setDepartingDate(LocalDateTime departingDate) {
+    public void setDepartingDate(LocalDateTime departingDate) throws FarandulaException {
+
         this.departingDate = departingDate;
     }
 
@@ -106,7 +116,7 @@ public class SearchCommand {
         return returningDate;
     }
 
-    public void setReturningDate(LocalDateTime returningDate) {
+    public void setReturningDate(LocalDateTime returningDate) throws FarandulaException {
         this.returningDate = returningDate;
     }
 
@@ -114,11 +124,13 @@ public class SearchCommand {
         return passengers;
     }
 
-    public String getType() {
+    public FlightType getType() {
         return type;
     }
 
-    public void setType(String type) { this.type = type; }
+    public void setType(FlightType type) throws FarandulaException {
+        this.type = type;
+    }
 
     public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
@@ -140,5 +152,11 @@ public class SearchCommand {
         this.offSet = offSet;
     }
 
+    public CabinClassType getCabinClass() {
+        return CabinClass;
+    }
 
+    public void setCabinClass(CabinClassType cabinClass) {
+        this.CabinClass = cabinClass;
+    }
 }

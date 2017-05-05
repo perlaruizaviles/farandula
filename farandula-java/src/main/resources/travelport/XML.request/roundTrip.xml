@@ -4,29 +4,29 @@
             <com:BillingPointOfSaleInfo OriginApplication="UAPI" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
             <air:SearchAirLeg>
                 <air:SearchOrigin>
-                    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                    <com:Airport Code="${departureAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                 </air:SearchOrigin>
                 <air:SearchDestination>
-                    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                    <com:Airport Code="${arrivalAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                 </air:SearchDestination>
-                <air:SearchDepTime PreferredTime="2017-07-07"/>
+                <air:SearchDepTime PreferredTime="${departureDate}"/>
                 <air:AirLegModifiers>
                     <air:PreferredCabins>
-                        <com:CabinClass Type="Economy" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                        <com:CabinClass Type="${classTravel}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                     </air:PreferredCabins>
                 </air:AirLegModifiers>
             </air:SearchAirLeg>
             <air:SearchAirLeg>
                 <air:SearchOrigin>
-                    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                    <com:Airport Code="${arrivalAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                 </air:SearchOrigin>
                 <air:SearchDestination>
-                    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                    <com:Airport Code="${departureAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                 </air:SearchDestination>
-                <air:SearchDepTime PreferredTime="2017-07-08"/>
+                <air:SearchDepTime PreferredTime="${returningDate}"/>
                 <air:AirLegModifiers>
                     <air:PreferredCabins>
-                        <com:CabinClass Type="Economy" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                        <com:CabinClass Type="${classTravel}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                     </air:PreferredCabins>
                 </air:AirLegModifiers>
             </air:SearchAirLeg>
