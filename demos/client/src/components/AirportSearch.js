@@ -5,7 +5,7 @@ const AirportSearch = ({changeSelected, searchChange, airports, airport}) => {
     return(
        <Search
         onSearchChange={(e,query) => searchChange(query)}
-        onResultSelect={changeSelected}
+        onResultSelect={(e, value) => changeSelected(value)}
         results={airports}
         value={airport}
        />

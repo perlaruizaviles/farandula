@@ -4,7 +4,7 @@ import DateSelector from './DateSelector';
 import AirportSearch from './AirportSearch';
 import travelOptions from '../data/travelOptions';
 
-const TravelSearch = ({config, typeChange, dateChange, searchAirport}) => (
+const TravelSearch = ({config, typeChange, dateChange, searchAirport, fromAirportChange, toAirportChange}) => (
   <div>
     <TextMenu options={travelOptions.get('type')}
               selected={config.get('type')}
@@ -25,8 +25,15 @@ const TravelSearch = ({config, typeChange, dateChange, searchAirport}) => (
                   endDate={config.getIn(['dates', 'return'])}
                   selected={config.getIn(['dates', 'return'])}
                   changeTravelDate={date => dateChange('return', date)} />
+
     <AirportSearch
         searchChange={query => searchAirport(query)}
+        changeSelected={value => fromAirportChange(value)}
+        airports={config.get('airports')} />
+
+    <AirportSearch
+        searchChange={query => searchAirport(query)}
+        changeSelected={value => toAirportChange(value)}
         airports={config.get('airports')} />
 
   </div>
