@@ -6,6 +6,7 @@ import com.jayway.jsonpath.JsonPath;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.AirLeg;
+import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Passenger;
 import com.nearsoft.farandula.models.SearchCommand;
 import okhttp3.Request;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
@@ -22,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SabreFlightManagerTest {
 
     @Test
-    public void fakeAvail() throws Exception {
+    public void fakeAvail_OneWayTrip() throws Exception {
 
         //TODO
         Luisa.setSupplier(() -> {
@@ -34,18 +36,17 @@ public class SabreFlightManagerTest {
             return null;
         });
 
-        //2017-07-07T11:00:00
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
-        LocalDateTime returningDate = departingDate.plusDays(1);
-        int limit = 2;
-        List<AirLeg> flights=  Luisa.findMeFlights()
-                .departingAt ( departingDate)
-                .returningAt( returningDate)
-                .limitTo(limit)
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<AirLeg> flights = Luisa.findMeFlights()
+                .from( "DFW" )
+                .to( "CDG" )
+                .departingAt( departingDate )
+                .returningAt(departingDate.plusDays(1))
+                .type( FlightType.ROUNDTRIP )
+                .limitTo(2)
                 .execute();
 
         assertTrue( flights.size() > 0);
-
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0);
@@ -57,7 +58,7 @@ public class SabreFlightManagerTest {
     }
 
     @Test
-    public void realAvail() throws Exception {
+    public void realAvail_RoundWayTrip() throws Exception {
 
         Luisa.setSupplier(() -> {
             try {
@@ -68,18 +69,16 @@ public class SabreFlightManagerTest {
             return null;
         });
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
-        LocalDateTime returningDate = departingDate.plusDays(1);
-        int limit = 2;
-        List<AirLeg> flights=  Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt ( departingDate)
-                .returningAt( returningDate)
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<AirLeg> flights = Luisa.findMeFlights()
+                .from( "DFW" )
+                .to( "CDG" )
+                .departingAt( departingDate )
+                .returningAt(departingDate.plusDays(1))
                 .forPassegers(Passenger.adults(1) )
-                .type( "roundTrip")
+                .type( FlightType.ROUNDTRIP )
                 .sortBy( PRICE,MINSTOPS )
-                .limitTo(limit)
+                .limitTo(2)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
 
         assertTrue( flights.size() > 0);
@@ -96,19 +95,18 @@ public class SabreFlightManagerTest {
 
 
     @Test
-    void buildJsonFromSearch() throws IOException, FarandulaException {
+    void buildJsonFromSearch() throws IOException, FarandulaException, Exception {
 
         SabreFlightManager manager = new SabreFlightManager();
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07 , 07, 11, 00, 00);
-        LocalDateTime returningDate = departingDate.plusDays(1);
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         SearchCommand search = new SearchCommand(null);
         search
-                .from("DFW")
-                .to("CDG")
-                .departingAt ( departingDate)
-                .returningAt( returningDate)
+                .from( "DFW" )
+                .to( "CDG" )
+                .departingAt( departingDate )
+                .returningAt(departingDate.plusDays(1))
                 .forPassegers(Passenger.adults(1) )
-                .type( "roundTrip")
+                .type( FlightType.ROUNDTRIP )
                 .sortBy( PRICE,MINSTOPS )
                 .limitTo(2);
 
@@ -129,7 +127,7 @@ public class SabreFlightManagerTest {
 
             @Override
             public InputStream sendRequest(Request request) throws IOException, FarandulaException {
-                return this.getClass().getResourceAsStream("/sabreAvailResponse.json");
+                return this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json");
             }
 
         };
@@ -142,7 +140,7 @@ public class SabreFlightManagerTest {
 
         SabreFlightManager manager = new SabreFlightManager(  );
 
-        manager.parseAvailResponse( this.getClass().getResourceAsStream( "/sabreAvailResponse.json"  ) );
+        manager.parseAvailResponse( this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json") );
 
     }
 
