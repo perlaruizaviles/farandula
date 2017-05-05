@@ -15,4 +15,4 @@ const DateSelector = ({minDate, maxDate, startDate, endDate, selected, changeTra
         onChange={(date) => changeTravelDate(date)}/>
 );
 
-export default DateSelector
+export default DateSelector;

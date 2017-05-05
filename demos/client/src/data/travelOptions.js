@@ -22,7 +22,8 @@ const travelOptions = Map({
     'round-trip': List(['depart', 'return']),
     'one-way': List(['depart']),
     'multi-city': List(['depart-n'])
-  })
+  }),
+  airports: []
 });
 
 export default travelOptions;

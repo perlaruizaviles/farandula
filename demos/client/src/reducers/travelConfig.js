@@ -5,6 +5,7 @@ const travelConfig = (state = Map({}), action) => {
   switch (action.type) {
     case types.CHANGE_TRAVEL_TYPE:
       return state.set('type', action.value);
+
     case types.CHANGE_TRAVEL_DATE:
       if(!state.getIn(['dates', 'depart']) && !state.getIn(['dates', 'return'])) {
         state = state.setIn(['dates', 'depart'], action.date);
@@ -25,6 +26,22 @@ const travelConfig = (state = Map({}), action) => {
         }
       }
       return state;
+
+    case types.CHANGE_TRAVEL_FROM:
+      state = state.setIn(['locations','from'], action.airport);
+      return state.set('airports', []);
+
+    case types.CHANGE_TRAVEL_TO:
+      state = state.setIn(['locations','to'], action.airport);
+      return state.set('airports', []);
+
+    case types.SEARCH_AIRPORT_SUCCESS:
+      return state.set('airports', action.airports);
+
+    case types.EXCHANGE_DESTINATIONS:
+      state = state.setIn(['locations','from'], action.to);
+      return state.setIn(['locations','to'], action.from);
+
     default:
       return state;
   }
