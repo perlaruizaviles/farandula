@@ -24,10 +24,6 @@ public class JavaFarandulaApplicationTests {
 	AirportRepository airportRepository;
 
 	@Test
-	public void contextLoads() {
-	}
-
-	@Test
 	public void insertAndFindAnAirport(){
 		Airport myAirport = new Airport(10000, "NearAirport", "CDMX", "Mexico", "CDM");
 
