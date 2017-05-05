@@ -10,6 +10,6 @@ public class JavaFarandulaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JavaFarandulaApplication.class, args);
-		
+
 	}
 }
