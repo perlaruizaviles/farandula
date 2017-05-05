@@ -36,31 +36,11 @@ public class SabreJSONRequest {
 
     }
 
-
-    private static String getMultiCity(SearchCommand search) {
-        return "";
-    }
-
-    private static String getOneWay(SearchCommand search) {
-        return "";
-    }
-
     public static String getRequest(SearchCommand search) {
 
-        String xml = "";
-        switch ( search.getType().toString().toLowerCase() ) {
-            case "roundtrip":
-                xml = getRoundTrip( search );
-                break;
-            case "oneway":
-                xml = getOneWay( search );
-                break;
-            case "multiple":
-                xml = getMultiCity( search );
-                break;
-        }
+        String json = getRoundTrip(search);
 
-        return xml;
+        return json;
 
     }
 

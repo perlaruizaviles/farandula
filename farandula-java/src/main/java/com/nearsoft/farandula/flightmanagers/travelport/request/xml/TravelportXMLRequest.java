@@ -1,6 +1,7 @@
 package com.nearsoft.farandula.flightmanagers.travelport.request.xml;
 
 import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
+import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.SearchCommand;
 import org.apache.commons.lang3.text.StrSubstitutor;
 
@@ -17,72 +18,64 @@ import java.util.stream.Collectors;
  */
 public class TravelportXMLRequest {
 
-    private static String targetBranch;
-
     private static Map valuesMap = new HashMap();
 
-    private static String getRoundTrip(SearchCommand search ) {
-
-        StrSubstitutor sub = new StrSubstitutor(valuesMap);
-
-        InputStream soapInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/roundTrip.xml");
-
-        String soapEnvelope = new BufferedReader(new InputStreamReader(soapInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
-
-        return sub.replace(soapEnvelope);
-
-    }
-
-
-    private static String getMultiCity(SearchCommand search) {
-        return "";
-    }
-
-    private static String getOneWay(SearchCommand search ) {
-
-        StrSubstitutor sub = new StrSubstitutor(valuesMap);
-
-        InputStream soapInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/oneWayTrip.xml");
-
-        String soapEnvelope = new BufferedReader(new InputStreamReader(soapInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
-
-        return sub.replace(soapEnvelope);
-
-    }
+    private static StrSubstitutor sub;
 
     public static String getRequest(SearchCommand search, String targetBranchValue) {
 
-        targetBranch = targetBranchValue;
-
-        valuesMap.put("departureAirport", search.getDepartureAirport());
-        valuesMap.put("arrivalAirport", search.getArrivalAirport());
         valuesMap.put("passengersNumber", search.getPassengers().size());
-        valuesMap.put("departureDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
-        valuesMap.put("returningDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
         valuesMap.put("classTravel",   search.getCabinClass().equals("") ? "Economy" : search.getCabinClass() );
-        valuesMap.put("targetBranch", targetBranch);
+        valuesMap.put("targetBranch", targetBranchValue);
+        sub = new StrSubstitutor(valuesMap);
 
-        String json = "";
-        switch ( search.getType().toString().toLowerCase() ) {
-            case "roundtrip":
-                json = getRoundTrip( search );
-                break;
-            case "oneway":
-                json = getOneWay( search );
-                break;
-            case "multiple":
-                json = getMultiCity( search );
-                break;
+        InputStream soapInputStream = TravelportXMLRequest.class
+                .getResourceAsStream("/travelport/XML.request/requestHeader.xml");
+        String header = new BufferedReader(new InputStreamReader(soapInputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
+        header = sub.replace( header );
+
+        String xml = getSearchAirLegs( search );
+
+        soapInputStream = TravelportXMLRequest.class
+                .getResourceAsStream("/travelport/XML.request/requestTail.xml");
+        String tail = new BufferedReader(new InputStreamReader(soapInputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
+        return header + xml + tail;
+
+    }
+
+    private static String getSearchAirLegs(SearchCommand search) {
+
+        InputStream airLegInputStream = TravelportXMLRequest.class
+                .getResourceAsStream("/travelport/XML.request/requestSearchAirLeg.xml");
+        String leg = new BufferedReader(new InputStreamReader(airLegInputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
+        String airlegs = "";
+
+        valuesMap.put("departureAirport", search.getDepartureAirport() );
+        valuesMap.put("arrivalAirport", search.getArrivalAirport() );
+        valuesMap.put("departureDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        sub = new StrSubstitutor(valuesMap);
+        airlegs += sub.replace( leg );
+
+        if ( search.getType() == FlightType.ROUNDTRIP ){
+
+            valuesMap.put("departureAirport", search.getArrivalAirport());
+            valuesMap.put("arrivalAirport", search.getDepartureAirport() );
+            valuesMap.put("departureDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+            sub = new StrSubstitutor(valuesMap);
+            airlegs += sub.replace( leg );
+
         }
 
-        return json;
-
+        return airlegs;
     }
 
 }

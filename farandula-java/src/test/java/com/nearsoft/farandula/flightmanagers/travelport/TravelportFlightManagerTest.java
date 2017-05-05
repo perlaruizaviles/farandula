@@ -15,6 +15,7 @@ import javax.xml.soap.SOAPMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
@@ -27,23 +28,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class TravelportFlightManagerTest {
 
     @Test
-    @Tag("fake")
-    public void fakeAvail() throws Exception {
+    public void fakeAvail_OneWayTrip() throws FarandulaException, IOException {
 
         Luisa.setSupplier(() -> {
             return createTravelPortStub();
         });
 
-        //2017-07-07T11:00:00
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
-        LocalDateTime returningDate = departingDate.plusDays(1);
-        int limit = 2;
+
         List<AirLeg> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
+                .from( "\"CDG\" " )
+                .to( "CDG"  )
                 .departingAt(departingDate)
-                .returningAt(returningDate)
-                .limitTo(limit)
+                .returningAt(departingDate.plusDays(1))
+                .limitTo(2)
                 .execute();
 
         assertTrue(flights.size() > 0);
@@ -81,7 +79,7 @@ class TravelportFlightManagerTest {
     }
 
     @Test
-    void getAvail() throws IOException, FarandulaException {
+    void getAvail_roundTrip() throws FarandulaException, IOException{
 
         Luisa.setSupplier(() -> {
             try {
@@ -93,35 +91,31 @@ class TravelportFlightManagerTest {
         });
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
-        LocalDateTime returningDate = departingDate.plusDays(1);
-        int limit = 2;
         List<AirLeg> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
+                .from( "DFW" )
+                .to( "CDG" )
                 .departingAt(departingDate)
-                .returningAt(returningDate)
+                .returningAt(departingDate.plusDays(1))
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .sortBy(PRICE, MINSTOPS)
-                .limitTo(limit)
+                .limitTo(2)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
-
 
         assertNotNull(flights);
 
-       /* assertTrue( flights.size() > 0);
+        assertTrue( flights.size() > 0);
 
-        Airleg bestFlight = flights.get(0);
+        AirLeg bestFlight = flights.get(0);
 
         assertNotNull( bestFlight );
 
         assertAll("First should be the best Airleg", () -> {
-            Airleg airleg = bestFlight.getLegs().get(0);
-            assertEquals("DFW",   bestFlight.getLegs().get(0).getDepartureAirportCode());
-            assertEquals("CDG",   bestFlight.getLegs().get(0).getArrivalAirportCode() );
-            assertEquals( "Economy/Coach", bestFlight.getLegs().get(0).getSegments().get(0).getTravelClass() );
+            assertEquals("DFW",   bestFlight.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("CDG",   bestFlight.getSegments().get(0).getArrivalAirportCode() );
+            //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getTravelClass() );
             assertEquals( 2,2 );
-        });*/
+        });
 
     }
 
