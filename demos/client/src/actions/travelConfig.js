@@ -30,6 +30,13 @@ export const changeTravelTo = (airport) => {
   };
 };
 
+export const exchangeDestinations = (from, to) => {
+  return {
+    type: types.EXCHANGE_DESTINATIONS,
+    from,
+    to
+  };
+};
 
 export const searchAirportSuccess = (airports) => {
   return {

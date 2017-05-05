@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import TravelSearch from '../components/TravelSearch';
-import {changeTravelType, changeTravelDate, changeTravelFrom, changeTravelTo, searchAirport} from '../actions/travelConfig';
+import {changeTravelType, changeTravelDate, changeTravelFrom, changeTravelTo, searchAirport, exchangeDestinations} from '../actions/travelConfig';
 
 export default connect(
   state => {
@@ -14,7 +14,8 @@ export default connect(
       dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date)),
       fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),
       toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
-      searchAirport:(query, quantum) => dispatch(searchAirport(query, quantum))
+      searchAirport:(query, quantum) => dispatch(searchAirport(query, quantum)),
+      exchangeDestinations:(from, to) => dispatch(exchangeDestinations(from, to))
     }
   }
 )(TravelSearch);

@@ -2,9 +2,10 @@ import React from 'react';
 import TextMenu from './TextMenu';
 import DateSelector from './DateSelector';
 import AirportSearch from './AirportSearch';
+import ExchangeButton from './ExchangeButton';
 import travelOptions from '../data/travelOptions';
 
-const TravelSearch = ({config, typeChange, dateChange, searchAirport, fromAirportChange, toAirportChange}) => (
+const TravelSearch = ({config, typeChange, dateChange, searchAirport, fromAirportChange, toAirportChange, exchangeDestinations}) => (
   <div>
     <TextMenu options={travelOptions.get('type')}
               selected={config.get('type')}
@@ -35,6 +36,9 @@ const TravelSearch = ({config, typeChange, dateChange, searchAirport, fromAirpor
         searchChange={(query, quantum = config.getIn(['locations','from'])) => searchAirport(query,quantum)}
         changeSelected={value => toAirportChange(value)}
         airports={config.get('airports')} />
+
+    <ExchangeButton handleExchange={
+      (from = config.getIn(['locations','from']), to = config.getIn(['locations','to'])) => exchangeDestinations(from,to)} />
 
   </div>
 );

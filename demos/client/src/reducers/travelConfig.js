@@ -23,15 +23,19 @@ const travelConfig = (state = Map({}), action) => {
       return state;
 
     case types.CHANGE_TRAVEL_FROM:
-      state.setIn(['locations','from'], action.airport);
+      state = state.setIn(['locations','from'], action.airport);
       return state.set('airports', []);
 
     case types.CHANGE_TRAVEL_TO:
-      state.setIn(['locations','to'], action.airport);
+      state = state.setIn(['locations','to'], action.airport);
       return state.set('airports', []);
 
     case types.SEARCH_AIRPORT_SUCCESS:
       return state.set('airports', action.airports);
+
+    case types.EXCHANGE_DESTINATIONS:
+      state = state.setIn(['locations','from'], action.to);
+      return state.setIn(['locations','to'], action.from);
 
     default:
       return state;
