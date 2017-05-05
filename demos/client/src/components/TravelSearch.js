@@ -27,12 +27,12 @@ const TravelSearch = ({config, typeChange, dateChange, searchAirport, fromAirpor
                   changeTravelDate={date => dateChange('return', date)} />
 
     <AirportSearch
-        searchChange={query => searchAirport(query)}
+        searchChange={(query, quantum = config.getIn(['locations','to'])) => searchAirport(query,quantum)}
         changeSelected={value => fromAirportChange(value)}
         airports={config.get('airports')} />
 
     <AirportSearch
-        searchChange={query => searchAirport(query)}
+        searchChange={(query, quantum = config.getIn(['locations','from'])) => searchAirport(query,quantum)}
         changeSelected={value => toAirportChange(value)}
         airports={config.get('airports')} />
 

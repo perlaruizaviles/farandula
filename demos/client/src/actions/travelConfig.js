@@ -39,10 +39,13 @@ export const searchAirportSuccess = (airports) => {
 };
 
 
-export const searchAirport = (query) => {
+export const searchAirport = (query, quantum) => {
   return (dispatch) => {
     return airportApi.searchAirport(query).then(airports => {
-        dispatch(searchAirportSuccess(airports));
+        const filteredAirports = airports.filter(airport => {
+          return !airport.title.includes(quantum.title);
+        });
+        dispatch(searchAirportSuccess(filteredAirports));
     }).catch(error => {
         throw(error);
     });

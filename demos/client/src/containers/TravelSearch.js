@@ -14,7 +14,7 @@ export default connect(
       dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date)),
       fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),
       toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
-      searchAirport:(query) => dispatch(searchAirport(query))
+      searchAirport:(query, quantum) => dispatch(searchAirport(query, quantum))
     }
   }
 )(TravelSearch);
