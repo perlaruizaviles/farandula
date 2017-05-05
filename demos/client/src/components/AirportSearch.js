@@ -4,7 +4,7 @@ import {Search} from 'semantic-ui-react';
 const AirportSearch = ({changeSelected, searchChange, airports, airport}) => {
     return(
        <Search
-        onSearchChange={searchChange}
+        onSearchChange={(e,query) => searchChange(query)}
         onResultSelect={changeSelected}
         results={airports}
         value={airport}

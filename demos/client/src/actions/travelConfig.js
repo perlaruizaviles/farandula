@@ -30,16 +30,31 @@ export const changeTravelTo = (airport) => {
   };
 };
 
-export function loadAirportsSuccess(airports) {
+export const loadAirportsSuccess = (airports) => {
     return { type: types.LOAD_AIRPORTS_SUCCESS, airports };
-}
+};
 
-export function loadAirports() {
-    return function (dispatch) {
+export const searchAirportSuccess = (airports) => {
+    return { type: types.SEARCH_AIRPORT_SUCCESS, airports }
+};
+
+
+export const searchAirport = (query) => {
+    return (dispatch) => {
+        return airportApi.searchAirport(query).then(airports => {
+            dispatch(searchAirportSuccess(airports));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+};
+
+export const loadAirports = () => {
+    return (dispatch) => {
         return airportApi.getAllAirports().then(airports => {
             dispatch(loadAirportsSuccess(airports));
         }).catch(error => {
             throw(error);
         });
     };
-}
+};
