@@ -46,7 +46,7 @@
     "TravelPreferences": {
       "ValidInterlineTicket": true,
       "CabinPref": [{
-        "Cabin": "Y",
+        "Cabin": "${classTravel}",
         "PreferLevel": "Preferred"
       }],
       "TPA_Extensions": {
@@ -68,7 +68,7 @@
       "AirTravelerAvail": [{
         "PassengerTypeQuantity": [{
           "Code": "ADT",
-          "Quantity": 1
+          "Quantity": ${passengersNumber}
         }]
       }]
     },

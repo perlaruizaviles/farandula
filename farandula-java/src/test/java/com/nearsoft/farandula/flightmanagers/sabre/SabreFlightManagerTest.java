@@ -1,20 +1,16 @@
 package com.nearsoft.farandula.flightmanagers.sabre;
 
-
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.models.AirLeg;
-import com.nearsoft.farandula.models.FlightType;
-import com.nearsoft.farandula.models.Passenger;
-import com.nearsoft.farandula.models.SearchCommand;
+import com.nearsoft.farandula.models.*;
 import okhttp3.Request;
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
@@ -38,21 +34,21 @@ public class SabreFlightManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<AirLeg> flights = Luisa.findMeFlights()
-                .from( "DFW" )
-                .to( "CDG" )
-                .departingAt( departingDate )
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
-                .type( FlightType.ROUNDTRIP )
+                .type(FlightType.ROUNDTRIP)
                 .limitTo(2)
                 .execute();
 
-        assertTrue( flights.size() > 0);
+        assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0);
-            assertEquals("DFW",   airLeg.getDepartureAirportCode());
-            assertEquals("CDG",   airLeg.getArrivalAirportCode() );
-            assertEquals( "Economy/Coach", airLeg.getSegments().get(0).getTravelClass() );
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals("Economy/Coach", airLeg.getSegments().get(0).getTravelClass());
         });
 
     }
@@ -71,24 +67,24 @@ public class SabreFlightManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<AirLeg> flights = Luisa.findMeFlights()
-                .from( "DFW" )
-                .to( "CDG" )
-                .departingAt( departingDate )
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
-                .forPassegers(Passenger.adults(1) )
-                .type( FlightType.ROUNDTRIP )
-                .sortBy( PRICE,MINSTOPS )
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ROUNDTRIP)
+                .sortBy(PRICE, MINSTOPS)
                 .limitTo(2)
+                .preferenceClass(CabinClassType.ECONOMY)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
 
-        assertTrue( flights.size() > 0);
+        assertTrue(flights.size() > 0);
 
-        
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0);
-            assertEquals("DFW",   airLeg.getDepartureAirportCode());
-            assertEquals("CDG",   airLeg.getArrivalAirportCode() );
-            assertEquals( "Economy/Coach", airLeg.getSegments().get(0).getTravelClass() );
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals("Economy/Coach", airLeg.getSegments().get(0).getTravelClass());
         });
 
     }
@@ -101,19 +97,19 @@ public class SabreFlightManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         SearchCommand search = new SearchCommand(null);
         search
-                .from( "DFW" )
-                .to( "CDG" )
-                .departingAt( departingDate )
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
-                .forPassegers(Passenger.adults(1) )
-                .type( FlightType.ROUNDTRIP )
-                .sortBy( PRICE,MINSTOPS )
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ONEWAY)
+                .sortBy(PRICE, MINSTOPS)
                 .limitTo(2);
 
-        String jsonRequestString =  manager.buildJsonFromSearch( search );
+        String jsonRequestString = manager.buildJsonFromSearch(search);
         DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
-        String locationCode = jsonRequest.read( "$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
-        assertEquals( "DFW", locationCode );
+        String locationCode = jsonRequest.read("$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
+        assertEquals("DFW", locationCode);
 
     }
 
@@ -136,11 +132,11 @@ public class SabreFlightManagerTest {
     }
 
     @Test
-    public void  buildAvailResponse() throws IOException {
+    public void buildAvailResponse() throws IOException {
 
-        SabreFlightManager manager = new SabreFlightManager(  );
+        SabreFlightManager manager = new SabreFlightManager();
 
-        manager.parseAvailResponse( this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json") );
+        manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json"));
 
     }
 

@@ -37,8 +37,8 @@ class TravelportFlightManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<AirLeg> flights = Luisa.findMeFlights()
-                .from( "\"CDG\" " )
-                .to( "CDG"  )
+                .from( "DFW" )
+                .to( "CDG" )
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
                 .limitTo(2)
@@ -58,6 +58,7 @@ class TravelportFlightManagerTest {
     }
 
     private FlightManager createTravelPortStub() {
+
         TravelportFlightManager supplierStub = new TravelportFlightManager() {
 
             @Override
@@ -69,7 +70,6 @@ class TravelportFlightManagerTest {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
 
                 return response;
             }

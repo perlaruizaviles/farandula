@@ -1,11 +1,8 @@
 package com.nearsoft.farandula.models;
 
-import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 
-import javax.xml.bind.ValidationException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,9 +21,9 @@ public class SearchCommand {
     private LocalDateTime departingDate;
     private LocalDateTime returningDate;
     private List<Passenger> passengers = new ArrayList<>();
-    private CriteriaType[] criterias  = new CriteriaType[]{PRICE};
+    private CriteriaType[] criterias = new CriteriaType[]{PRICE};
     private int offSet;
-    private CabinClassType CabinClass = CabinClassType.economy ;
+    private CabinClassType CabinClass = CabinClassType.ECONOMY;
 
     private FlightManager flightManager;
 
@@ -44,22 +41,22 @@ public class SearchCommand {
         return this;
     }
 
-    public SearchCommand departingAt(LocalDateTime departingDate) throws FarandulaException  {
+    public SearchCommand departingAt(LocalDateTime departingDate) throws FarandulaException {
         this.departingDate = departingDate;
         return this;
     }
 
-    public SearchCommand returningAt(LocalDateTime returningDate) throws  FarandulaException {
+    public SearchCommand returningAt(LocalDateTime returningDate) throws FarandulaException {
         this.returningDate = returningDate;
         return this;
     }
 
     public SearchCommand forPassegers(List<Passenger> passengerList) {
-        this.passengers.addAll( passengerList );
+        this.passengers.addAll(passengerList);
         return this;
     }
 
-    public SearchCommand sortBy(CriteriaType... criteriaList ) {
+    public SearchCommand sortBy(CriteriaType... criteriaList) {
         this.criterias = criteriaList;
         return this;
     }
@@ -69,13 +66,13 @@ public class SearchCommand {
         return this;
     }
 
-    public SearchCommand type(FlightType roundTrip) throws  FarandulaException {
+    public SearchCommand type(FlightType roundTrip) throws FarandulaException {
 
         this.type = roundTrip;
         return this;
     }
 
-    public SearchCommand preferenceClass( CabinClassType preferenceClass ){
+    public SearchCommand preferenceClass(CabinClassType preferenceClass) {
         this.CabinClass = preferenceClass;
         return this;
     }
@@ -83,14 +80,14 @@ public class SearchCommand {
     public List<AirLeg> execute() throws IOException, FarandulaException {
         //FIXME here there is a code smell , why we are passing `this` to executeAvail.
         return flightManager
-                 .getAvail(this);
+                .getAvail(this);
     }
 
     public String getDepartureAirport() {
         return departureAirport;
     }
 
-    public void setDepartureAirport(String departureAirport)  {
+    public void setDepartureAirport(String departureAirport) {
 
         this.departureAirport = departureAirport;
     }
