@@ -30,15 +30,17 @@ const TravelSearch = ({config, typeChange, dateChange, searchAirport, fromAirpor
     <AirportSearch
         searchChange={(query, quantum = config.getIn(['locations','to'])) => searchAirport(query,quantum)}
         changeSelected={value => fromAirportChange(value)}
-        airports={config.get('airports')} />
+        airports={config.get('airports')}
+        value={config.getIn(['locations','from']).title}/>
+
+    <ExchangeButton handleExchange={
+      (from = config.getIn(['locations','from']), to = config.getIn(['locations','to'])) => exchangeDestinations(from,to)} />
 
     <AirportSearch
         searchChange={(query, quantum = config.getIn(['locations','from'])) => searchAirport(query,quantum)}
         changeSelected={value => toAirportChange(value)}
-        airports={config.get('airports')} />
-
-    <ExchangeButton handleExchange={
-      (from = config.getIn(['locations','from']), to = config.getIn(['locations','to'])) => exchangeDestinations(from,to)} />
+        airports={config.get('airports')}
+        value={config.getIn(['locations','to']).title}/>
 
   </div>
 );
