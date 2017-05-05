@@ -1,9 +1,10 @@
 import React from 'react';
 import TextMenu from './TextMenu';
 import DateSelector from './DateSelector';
+import AirportSearch from './AirportSearch';
 import travelOptions from '../data/travelOptions';
 
-const TravelSearch = ({config, typeChange, dateChange}) => (
+const TravelSearch = ({config, typeChange, dateChange, loadAirports}) => (
   <div>
     <TextMenu options={travelOptions.get('type')}
               selected={config.get('type')}
@@ -24,6 +25,10 @@ const TravelSearch = ({config, typeChange, dateChange}) => (
                   endDate={config.getIn(['dates', 'return'])}
                   selected={config.getIn(['dates', 'return'])}
                   changeTravelDate={date => dateChange('return', date)} />
+    <AirportSearch
+        searchChange={() => loadAirports()}
+        airports={travelOptions.get('airports')} />
+
   </div>
 );
 
