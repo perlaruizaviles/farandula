@@ -206,7 +206,6 @@ public class AmadeusFlightManager implements FlightManager {
             locationsMap.put(seg.getArrivalAirportCode(), arrivalTimeZone);
         }
 
-        getTimeZone(seg.getArrivalAirportCode());
         long diffInMinutes = 0;
         if (departureTimeZone.equals(arrivalTimeZone)) {
             diffInMinutes = Duration.between(departureDateTime, arrivalDateTime).toMinutes();
