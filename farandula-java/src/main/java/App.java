@@ -34,7 +34,7 @@ public class App {
                 .sortBy(PRICE, MINSTOPS)
                 .limitTo(50).execute();
 
-
+        System.out.println(flightList);
 
     }
 }

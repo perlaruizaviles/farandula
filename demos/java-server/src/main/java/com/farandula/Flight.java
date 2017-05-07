@@ -2,6 +2,8 @@ package com.farandula;
 
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by antoniohernandez on 5/5/17.
  */
@@ -11,13 +13,13 @@ public class Flight {
     private String _id;
 
     private int id;
-
     private String departureAirportCode;
-    private String departingDate;
+    private LocalDateTime departingDate;
     private String arrivalAirportCode;
-    private String arrivalDate;
+    private LocalDateTime arrivalDate;
 
-    public Flight(int id, String departureAirportCode, String departingDate, String arrivalAirportCode, String arrivalDate){
+
+    public Flight(int id, String departureAirportCode, LocalDateTime departingDate, String arrivalAirportCode, LocalDateTime arrivalDate){
         this.setId(id);
         this.setDepartureAirportCode(departureAirportCode);
         this.setDepartingDate(departingDate);
@@ -41,11 +43,11 @@ public class Flight {
         this.departureAirportCode = departureAirportCode;
     }
 
-    public String getDepartingDate() {
+    public LocalDateTime getDepartingDate() {
         return departingDate;
     }
 
-    public void setDepartingDate(String departingDate) {
+    public void setDepartingDate(LocalDateTime departingDate) {
         this.departingDate = departingDate;
     }
 
@@ -57,11 +59,11 @@ public class Flight {
         this.arrivalAirportCode = arrivalAirportCode;
     }
 
-    public String getArrivalDate() {
+    public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(String arrivalDate) {
+    public void setArrivalDate(LocalDateTime arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
