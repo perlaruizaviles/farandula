@@ -1,3 +1,5 @@
+import {titleize, singularize} from 'inflection';
+
 const countTravelers = (config) => {
     let count = config
         .get('travelers')
@@ -7,4 +9,21 @@ const countTravelers = (config) => {
     return count;
 }
 
-export {countTravelers};
+const configTravelString = (config, options) => {
+    let count = countTravelers(config);
+    let cabin = config.get('cabin');
+
+    if (count<1) throw new Error('malformed flightSettings: passenger count < 1');
+    if (count === 1) {
+        let travelerType = config.get('travelers')
+            .filter(count => count !== 0)
+            .keySeq().get(0);
+        return count+" "+titleize(singularize(travelerType))+", "+titleize(cabin);
+    }else{
+        return count+" Travelers, "+titleize(cabin);
+    }
+
+}
+
+
+export {countTravelers, configTravelString};
