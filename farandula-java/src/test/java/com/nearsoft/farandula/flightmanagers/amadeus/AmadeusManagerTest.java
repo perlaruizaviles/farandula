@@ -21,13 +21,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class AmadeusManagerTest {
 
-    //TODO #10 we need to make sure that that we execute at least a round trip search
-
-    //TODO verify why tis test is slow
     @Test
     public void fakeAvail_OneWayTrip() throws Exception {
 
-        //TODO
         Luisa.setSupplier(() -> {
             try {
                 return createAmadeusStub();
@@ -96,7 +92,7 @@ class AmadeusManagerTest {
                 .sortBy( PRICE,MINSTOPS )
                 .preferenceClass( CabinClassType.ECONOMY )
                 .limitTo(2)
-                .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
+                .execute();
 
         assertTrue( flights.size() > 0);
 

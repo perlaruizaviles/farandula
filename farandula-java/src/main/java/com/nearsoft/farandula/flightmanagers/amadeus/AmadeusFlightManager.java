@@ -28,21 +28,36 @@ import java.util.stream.Collectors;
 public class AmadeusFlightManager implements FlightManager {
 
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
-
     private static String apiKey;
-
     private static Map<String, String> locationsMap = new HashMap<>();
-
+    private static Map<String,String> airlinesCodeMap = new HashMap<>();
 
     static {
         Properties props = new Properties();
         try {
             props.load(AmadeusFlightManager.class.getResourceAsStream("/config.properties"));
-            fillLocationsMap();
+            fillReferenceMaps();
             apiKey = props.getProperty("amadeus.apikey");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void fillReferenceMaps() throws IOException {
+        Properties properties = new Properties();
+        properties.load(AmadeusFlightManager.class.getResourceAsStream("/amadeus/locations.properties"));
+        for (String key : properties.stringPropertyNames()) {
+            String value = properties.getProperty(key);
+            locationsMap.put(key, value);
+        }
+
+        properties.clear();
+        properties.load( AmadeusFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+        for (String key : properties.stringPropertyNames()) {
+            String value = properties.getProperty(key);
+            airlinesCodeMap.put(key, value);
+        }
+
     }
 
     private OkHttpClient buildHttpClient() {
@@ -65,15 +80,6 @@ public class AmadeusFlightManager implements FlightManager {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
         }
 
-    }
-
-    public static void fillLocationsMap() throws IOException {
-        Properties properties = new Properties();
-        properties.load(AmadeusFlightManager.class.getResourceAsStream("/amadeus/locations.properties"));
-        for (String key : properties.stringPropertyNames()) {
-            String value = properties.getProperty(key);
-            locationsMap.put(key, value);
-        }
     }
 
     public String getTimeZone(String location_code) throws IOException, FarandulaException {
@@ -168,22 +174,27 @@ public class AmadeusFlightManager implements FlightManager {
         //Airleg information
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
-        seg.setOperatingAirlineCode((String) segmentMap.get("operative_airline"));
+        seg.setOperatingAirlineCode((String) segmentMap.get("operating_airline"));
+        seg.setOperatingAirlineName( airlinesCodeMap.get( seg.getOperatingAirlineCode() ) );
+        seg.setOperatingFlightNumber( (String) segmentMap.get("flight_number")  );
+
         seg.setMarketingAirlineCode((String) segmentMap.get("marketing_airline"));
+        seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
         seg.setMarketingFlightNumber((String) segmentMap.get("flight_number"));
+
         seg.setAirplaneData((String) segmentMap.get("aircraft"));
         seg.setTravelClass((String) bookingInfoData.get("travel_class"));
 
         //departure stuff
         seg.setDepartureAirportCode((String) departureAirportData.get("airport"));
-        seg.setDepartureTerminal((String) departureAirportData.get("terminal"));
+        seg.setDepartureTerminal( (String) departureAirportData.get("terminal")) ;
         LocalDateTime departureDateTime = LocalDateTime.parse(
                 (String) segmentMap.get("departs_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         seg.setDepartureDate(departureDateTime);
 
         //arrival stuff
         seg.setArrivalAirportCode((String) arrivalAirportData.get("airport"));
-        seg.setDepartureTerminal((String) arrivalAirportData.get("terminal"));
+        seg.setArrivalTerminal( (String) arrivalAirportData.get("terminal") );
         LocalDateTime arrivalDateTime = LocalDateTime.parse(
                 (String) segmentMap.get("arrives_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         seg.setArrivalDate(arrivalDateTime);
