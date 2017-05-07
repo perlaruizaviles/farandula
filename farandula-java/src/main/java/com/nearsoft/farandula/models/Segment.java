@@ -7,22 +7,25 @@ import java.time.LocalDateTime;
  */
 public class Segment {
 
-
     String airlineIconPath;
-    String operatingAirline;
-    String marketingAirline;
+    String operatingAirlineCode;
+    String operatingAirlineName;
+    String operatingFlightNumber;
+    String marketingAirlineCode;
+    String marketingAirlineName;
     String marketingFlightNumber;
+
     String departureAirportCode;
     String departureTerminal;
-    LocalDateTime departingDate;
+    LocalDateTime departureDate;
+
     String arrivalAirportCode;
     String arrivalTerminal;
     LocalDateTime arrivalDate;
+
     String airplaneData;
     long duration;
     String travelClass;
-    String operatingFlightNumber;
-    private String operatingAirlineName;
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -32,20 +35,28 @@ public class Segment {
         this.airlineIconPath = airlineIconPath;
     }
 
-    public String getOperatingAirline() {
-        return operatingAirline;
+    public String getOperatingAirlineCode() {
+        return operatingAirlineCode;
     }
 
-    public void setOperatingAirline(String operatingAirline) {
-        this.operatingAirline = operatingAirline;
+    public void setOperatingAirlineCode(String operatingAirlineCode) {
+        this.operatingAirlineCode = operatingAirlineCode;
     }
 
-    public String getMarketingAirline() {
-        return marketingAirline;
+    public String getMarketingAirlineCode() {
+        return marketingAirlineCode;
     }
 
-    public void setMarketingAirline(String marketingAirline) {
-        this.marketingAirline = marketingAirline;
+    public void setMarketingAirlineCode(String marketingAirlineCode) {
+        this.marketingAirlineCode = marketingAirlineCode;
+    }
+
+    public String getMarketingAirlineName() {
+        return marketingAirlineName;
+    }
+
+    public void setMarketingAirlineName(String marketingAirlineName) {
+        this.marketingAirlineName = marketingAirlineName;
     }
 
     public String getMarketingFlightNumber() {
@@ -73,12 +84,12 @@ public class Segment {
         this.departureAirportCode = departureAirportCode;
     }
 
-    public LocalDateTime getDepartingDate() {
-        return departingDate;
+    public LocalDateTime getDepartureDate() {
+        return departureDate;
     }
 
-    public void setDepartingDate(LocalDateTime departingDate) {
-        this.departingDate = departingDate;
+    public void setDepartureDate(LocalDateTime departureDate) {
+        this.departureDate = departureDate;
     }
 
     public String getDepartureTerminal() {
@@ -140,6 +151,8 @@ public class Segment {
     public void setOperatingAirlineName(String operatingAirlineName) {
         this.operatingAirlineName = operatingAirlineName;
     }
+
+
 
     @Override
     public String toString() {

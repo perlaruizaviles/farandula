@@ -6,7 +6,6 @@ import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Passenger;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.soap.MessageFactory;
@@ -15,7 +14,6 @@ import javax.xml.soap.SOAPMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
@@ -37,8 +35,8 @@ class TravelportFlightManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<AirLeg> flights = Luisa.findMeFlights()
-                .from( "DFW" )
-                .to( "CDG" )
+                .from("DFW")
+                .to("CDG")
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
                 .limitTo(2)
@@ -79,7 +77,7 @@ class TravelportFlightManagerTest {
     }
 
     @Test
-    void getAvail_roundTrip() throws FarandulaException, IOException{
+    void getAvail_roundTrip() throws FarandulaException, IOException {
 
         Luisa.setSupplier(() -> {
             try {
@@ -92,8 +90,8 @@ class TravelportFlightManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<AirLeg> flights = Luisa.findMeFlights()
-                .from( "DFW" )
-                .to( "CDG" )
+                .from("DFW")
+                .to("CDG")
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
                 .forPassegers(Passenger.adults(1))
@@ -104,17 +102,17 @@ class TravelportFlightManagerTest {
 
         assertNotNull(flights);
 
-        assertTrue( flights.size() > 0);
+        assertTrue(flights.size() > 0);
 
         AirLeg bestFlight = flights.get(0);
 
-        assertNotNull( bestFlight );
+        assertNotNull(bestFlight);
 
         assertAll("First should be the best Airleg", () -> {
-            assertEquals("DFW",   bestFlight.getSegments().get(0).getDepartureAirportCode());
-            assertEquals("CDG",   bestFlight.getSegments().get(0).getArrivalAirportCode() );
+            assertEquals("DFW", bestFlight.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("CDG", bestFlight.getSegments().get(0).getArrivalAirportCode());
             //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getTravelClass() );
-            assertEquals( 2,2 );
+            assertEquals(2, 2);
         });
 
     }

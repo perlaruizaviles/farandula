@@ -24,7 +24,6 @@ public class SearchCommand {
     private CriteriaType[] criterias = new CriteriaType[]{PRICE};
     private int offSet;
     private CabinClassType CabinClass = CabinClassType.ECONOMY;
-
     private FlightManager flightManager;
 
     public SearchCommand(FlightManager flightManager) {

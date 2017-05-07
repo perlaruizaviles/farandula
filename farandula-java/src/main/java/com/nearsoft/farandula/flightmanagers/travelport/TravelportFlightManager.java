@@ -8,7 +8,6 @@ import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.XmlUtils;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
-import org.apache.commons.lang3.text.StrSubstitutor;
 import org.w3c.dom.*;
 import org.w3c.dom.Node;
 
@@ -20,7 +19,6 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by pruiz on 4/20/17.
@@ -35,6 +33,8 @@ public class TravelportFlightManager implements FlightManager {
 
     private static String targetBranch;
 
+    private static Map<String, String> airlinesCodeMap = new HashMap<>();
+
     static {
         Properties props = new Properties();
         try {
@@ -42,8 +42,18 @@ public class TravelportFlightManager implements FlightManager {
             apiKey = props.getProperty("travelport.apiUser");
             apiPassword = props.getProperty("travelport.apiPassword");
             targetBranch = props.getProperty("travelport.targetBranch");
+            fillAirlinesMap();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void fillAirlinesMap() throws IOException {
+        Properties properties = new Properties();
+        properties.load( TravelportFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+        for (String key : properties.stringPropertyNames()) {
+            String value = properties.getProperty(key);
+            airlinesCodeMap.put(key, value);
         }
     }
 
@@ -136,12 +146,12 @@ public class TravelportFlightManager implements FlightManager {
 
             Segment seg = new Segment();
             seg.setAirlineIconPath("");
-            seg.setMarketingAirline(nodeAttributes.getNamedItem("Carrier").getNodeValue().toString());
+            seg.setMarketingAirlineCode(nodeAttributes.getNamedItem("Carrier").getNodeValue().toString());
+            seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
             seg.setMarketingFlightNumber(nodeAttributes.getNamedItem("FlightNumber").getNodeValue().toString());
 
             parseCodeshareChild(seg, airSegmentNode);
             parseAirAvailInfoChild(seg, airSegmentNode);
-
 
             //TODO travel class for travelport
             seg.setTravelClass("");
@@ -174,7 +184,7 @@ public class TravelportFlightManager implements FlightManager {
                 AirLeg leg = new AirLeg();
                 leg.setId("tempID");
                 leg.setDepartureAirportCode(connectedSegments.get(0).getDepartureAirportCode());
-                leg.setDepartingDate(connectedSegments.get(0).getDepartingDate());
+                leg.setDepartingDate(connectedSegments.get(0).getDepartureDate());
                 leg.setArrivalAirportCode(connectedSegments.get( connectedSegments.size() - 1).getArrivalAirportCode());
                 leg.setArrivalDate(connectedSegments.get(connectedSegments.size() - 1).getArrivalDate());
                 leg.setSegments(connectedSegments);
@@ -196,12 +206,13 @@ public class TravelportFlightManager implements FlightManager {
     }
 
     private void parseCodeshareChild(Segment seg, Node airSegmentNode) {
-        Node codeshareInfo = XmlUtils.getNode("CodeshareInfo", airSegmentNode.getChildNodes());
+        Node codeshareInfo = XmlUtils.getNode("air:CodeshareInfo", airSegmentNode.getChildNodes());
         if (codeshareInfo != null) {
             seg.setOperatingAirlineName(XmlUtils.getNodeValue(codeshareInfo));
             if (codeshareInfo.hasAttributes()) {
                 NamedNodeMap attrs = codeshareInfo.getAttributes();
-                seg.setOperatingAirline(XmlUtils.getAttrByName(codeshareInfo, "OperatingCarrier"));
+                seg.setOperatingAirlineCode(XmlUtils.getAttrByName(codeshareInfo, "OperatingCarrier"));
+                seg.setOperatingAirlineName( airlinesCodeMap.get( seg.getOperatingAirlineCode() ) );
                 seg.setOperatingFlightNumber(XmlUtils.getAttrByName(codeshareInfo, "OperatingFlightNumber"));
             }
         }

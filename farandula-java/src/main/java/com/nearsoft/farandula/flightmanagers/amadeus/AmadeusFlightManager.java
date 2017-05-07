@@ -21,7 +21,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by pruiz on 4/20/17.
@@ -148,7 +147,7 @@ public class AmadeusFlightManager implements FlightManager {
         AirLeg leg = new AirLeg();
         leg.setId("tempID");
         leg.setDepartureAirportCode(segmentsOtbound.get(0).getDepartureAirportCode());
-        leg.setDepartingDate(segmentsOtbound.get(0).getDepartingDate());
+        leg.setDepartingDate(segmentsOtbound.get(0).getDepartureDate());
         leg.setArrivalAirportCode(segmentsOtbound.get(segmentsOtbound.size() - 1).getArrivalAirportCode());
         leg.setArrivalDate(segmentsOtbound.get(segmentsOtbound.size() - 1).getArrivalDate());
         leg.setSegments(segmentsOtbound);
@@ -169,8 +168,8 @@ public class AmadeusFlightManager implements FlightManager {
         //Airleg information
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
-        seg.setOperatingAirline((String) segmentMap.get("operative_airline"));
-        seg.setMarketingAirline((String) segmentMap.get("marketing_airline"));
+        seg.setOperatingAirlineCode((String) segmentMap.get("operative_airline"));
+        seg.setMarketingAirlineCode((String) segmentMap.get("marketing_airline"));
         seg.setMarketingFlightNumber((String) segmentMap.get("flight_number"));
         seg.setAirplaneData((String) segmentMap.get("aircraft"));
         seg.setTravelClass((String) bookingInfoData.get("travel_class"));
@@ -180,7 +179,7 @@ public class AmadeusFlightManager implements FlightManager {
         seg.setDepartureTerminal((String) departureAirportData.get("terminal"));
         LocalDateTime departureDateTime = LocalDateTime.parse(
                 (String) segmentMap.get("departs_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        seg.setDepartingDate(departureDateTime);
+        seg.setDepartureDate(departureDateTime);
 
         //arrival stuff
         seg.setArrivalAirportCode((String) arrivalAirportData.get("airport"));

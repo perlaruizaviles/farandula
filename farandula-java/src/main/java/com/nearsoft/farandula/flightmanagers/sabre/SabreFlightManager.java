@@ -24,7 +24,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 //TODO consider create an specific trip manager for each API or create a connector/plugin framework
@@ -217,7 +216,7 @@ public class SabreFlightManager implements FlightManager {
                     AirLeg leg = new AirLeg();
                     leg.setId("tempID");
                     leg.setDepartureAirportCode(segments.get(0).getDepartureAirportCode());
-                    leg.setDepartingDate(segments.get(0).getDepartingDate());
+                    leg.setDepartingDate(segments.get(0).getDepartureDate());
                     leg.setArrivalAirportCode(segments.get(segments.size() - 1).getArrivalAirportCode());
                     leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
                     leg.setSegments(segments);
@@ -248,8 +247,8 @@ public class SabreFlightManager implements FlightManager {
         //Airleg data
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
-        seg.setOperatingAirline((String) getValueOf(operativeAirlineData, "Code"));
-        seg.setMarketingAirline((String) getValueOf(marketingAirlineData, "Code"));
+        seg.setOperatingAirlineCode((String) getValueOf(operativeAirlineData, "Code"));
+        seg.setMarketingAirlineCode((String) getValueOf(marketingAirlineData, "Code"));
         seg.setMarketingFlightNumber((String) getValueOf(segmentMap, "FlightNumber"));
         seg.setAirplaneData((String) getValueOf(equipmentData, "AirEquipType"));
         //TODO travel class for SABRE
@@ -260,7 +259,7 @@ public class SabreFlightManager implements FlightManager {
         seg.setDepartureTerminal((String) getValueOf(departureAirportData, "TerminalID"));
         LocalDateTime departureDateTime = LocalDateTime.parse(
                 (String) getValueOf(segmentMap, "DepartureDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        seg.setDepartingDate(departureDateTime);
+        seg.setDepartureDate(departureDateTime);
 
         //arrival info
         seg.setArrivalAirportCode((String) getValueOf(arrivalAirportData, "LocationCode"));
