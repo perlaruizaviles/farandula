@@ -5,6 +5,7 @@ import com.nearsoft.farandula.models.AirLeg;
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.Null;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class FlightResponse {
     List<AirLeg> returnAirlegs;
 
     private String message;
-    private List< List<AirLeg> > content;
+    private List< List<AirLeg> > content = new ArrayList<>();
 
     public Integer getStatus(){return this.status;}
     public String getMessage(){return this.message;}
