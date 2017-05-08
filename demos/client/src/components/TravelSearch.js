@@ -2,6 +2,7 @@ import React from 'react';
 import TextMenu from './TextMenu';
 import DateSelector from './DateSelector';
 import PriceSection from './PriceSection';
+import DetailSection from './DetailSection';
 import travelOptions from '../data/travelOptions';
 
 const TravelSearch = ({config, typeChange, dateChange}) => (
@@ -27,6 +28,9 @@ const TravelSearch = ({config, typeChange, dateChange}) => (
                   changeTravelDate={date => dateChange('return', date)} />
         
     <PriceSection changePriceSection={travelOptions.get('price').get(1)} />
+
+    <DetailSection />
+
 
   </div>
 );

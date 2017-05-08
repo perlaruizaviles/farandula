@@ -12,7 +12,7 @@ const PriceSection = ({changePriceSection}) => (
       </Grid.Row>
       <Grid.Row columns={1}>
         <Grid.Column>
-          <Button content='Ver Vuelo' />
+          <Button content='View Deal' />
         </Grid.Column>
       </Grid.Row>
     </Grid>
