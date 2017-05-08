@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Created by pruiz on 5/7/17.
  */
-public class MapsNestedHelper {
+public class NestedMapsHelper {
 
     public static Object getValueOf(Object stringObjectMap, String keyName) {
 

@@ -14,7 +14,6 @@ import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.SearchCommand;
 import com.nearsoft.farandula.models.Segment;
 import com.nearsoft.farandula.utilities.GMTFormatter;
-import com.nearsoft.farandula.utilities.MapsNestedHelper;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
 import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
@@ -26,7 +25,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static com.nearsoft.farandula.utilities.MapsNestedHelper.getValueOf;
+import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
 public class SabreFlightManager implements FlightManager {
 
