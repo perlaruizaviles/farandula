@@ -9,7 +9,9 @@ public class CabinClassParser {
 
     public static CabinClassType getCabinClassType(String classCabin) {
 
-        classCabin = classCabin.toLowerCase().trim();
+        classCabin = classCabin.toLowerCase();
+        classCabin = classCabin.replace("class", "");
+        classCabin = classCabin.trim();
         switch ( classCabin ){
             case "economy" :
                 return CabinClassType.ECONOMY;
@@ -19,6 +21,8 @@ public class CabinClassParser {
                 return CabinClassType.PREMIUM_ECONOMY;
             case "first":
                 return CabinClassType.FIRST;
+            case "economy/coach":
+                return CabinClassType.ECONOMYCOACH;
             default:
                 return CabinClassType.OTHER;
         }

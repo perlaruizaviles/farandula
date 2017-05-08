@@ -47,7 +47,7 @@ public class SabreFlightManagerTest {
             AirLeg airLeg = flights.get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
-            assertEquals("Economy/Coach", airLeg.getSegments().get(0).getSeatsAvailable());
+            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
         });
 
     }
@@ -73,7 +73,7 @@ public class SabreFlightManagerTest {
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .sortBy(PRICE, MINSTOPS)
-                .limitTo(2)
+                .limitTo(2) //TODO check limit does not work.
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
 
@@ -83,7 +83,7 @@ public class SabreFlightManagerTest {
             AirLeg airLeg = flights.get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
-            assertEquals("Economy/Coach", airLeg.getSegments().get(0).getSeatsAvailable());
+            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
         });
 
     }

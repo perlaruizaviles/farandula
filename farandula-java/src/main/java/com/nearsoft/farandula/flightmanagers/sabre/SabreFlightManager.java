@@ -10,14 +10,12 @@ import com.nearsoft.farandula.auth.Creds;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
-import com.nearsoft.farandula.models.AirLeg;
-import com.nearsoft.farandula.models.SearchCommand;
-import com.nearsoft.farandula.models.Seat;
-import com.nearsoft.farandula.models.Segment;
+import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
 import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
+import sun.tools.java.ClassType;
 
 import java.io.*;
 import java.time.*;
@@ -137,16 +135,24 @@ public class SabreFlightManager implements FlightManager {
                 throw new RuntimeException("We don't support multiple AirPricingInfo");
             }
 
-            ArrayList<List<String>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
+            ArrayList<List<Map>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
             int cabinIndex = 0;
             for (AirLeg leg : legs) {
                 for (Segment segment : leg.getSegments()) {
 
-                    //TODO check this
+                    Map cabinsBySegmentMap = cabinsBySegment.get(0).get(cabinIndex);
+                    int numberOfSeats = getValueOf( cabinsBySegmentMap, "SeatsRemaining.Number", Integer.class) ;
+                    String cabinValue = getValueOf(cabinsBySegmentMap, "Cabin.Cabin", String.class);;
+                    CabinClassType classType = getCabinClassType(  convertCodeToTravelClass( cabinValue) ) ;
+
                     List<Seat> seatsResult = new ArrayList<>();
-                    Seat seat = new Seat();
-                    seat.setClassCabin( getCabinClassType( convertCodeToTravelClass(cabinsBySegment.get(0).get(cabinIndex)) ) );
-                    seatsResult.add( seat );
+                    for ( int i = 0 ; i < numberOfSeats ; i++ ) {
+                        Seat seat = new Seat();
+                        seat.setClassCabin(classType);
+                        //sabre does not have the seat key
+                        seat.setPlace("");
+                        seatsResult.add(seat);
+                    }
                     segment.setSeatsAvailable( seatsResult );
                     cabinIndex++;
                 }
@@ -169,17 +175,17 @@ public class SabreFlightManager implements FlightManager {
         return "Other";
     }
 
-    private ArrayList<List<String>> extractCabinsInfo(JSONArray airItineraryPricingInfoMap) {
+    private ArrayList<List<Map>> extractCabinsInfo(JSONArray airItineraryPricingInfoMap) {
 
-        ArrayList<List<String>> cabinsBySegment = airItineraryPricingInfoMap
+        ArrayList<List<Map>> cabinsBySegment = airItineraryPricingInfoMap
                 .stream()
                 .map(itineraryPricing -> {
 
                     JSONArray fareInfosArray = getValueOf(itineraryPricing, "FareInfos.FareInfo", JSONArray.class);
-                    List<String> cabins = fareInfosArray
+                    List<Map> cabins = fareInfosArray
                             .stream()
                             .map(fareInfo -> {
-                                return getValueOf(fareInfo, "TPA_Extensions.Cabin.Cabin", String.class);
+                                return getValueOf(fareInfo, "TPA_Extensions", Map.class);
                             })
                             .collect(Collectors.toCollection(ArrayList::new));
 

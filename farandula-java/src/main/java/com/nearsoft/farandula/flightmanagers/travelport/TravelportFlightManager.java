@@ -196,19 +196,22 @@ public class TravelportFlightManager implements FlightManager {
     private void parseAirAvailInfoChild(Segment seg, Node airSegmentNode) {
         //TODO add logging to the project
 
-        //TODO parse BookingCodeInfo element for cabin classes
         Node airAvailInfo = XmlUtils.getNode("air:AirAvailInfo", airSegmentNode.getChildNodes());
         if (airAvailInfo != null) {
             List<Node> bookingCodeInfo = XmlUtils.getNodeList("air:BookingCodeInfo", airAvailInfo.getChildNodes());
             List<Seat> seatsResult = new ArrayList<>();
             for (Node node : bookingCodeInfo ){
-                NamedNodeMap attrs = node.getAttributes();
+
                 String classCabin = XmlUtils.getAttrByName(node, "CabinClass");
                 String bookingCounts = XmlUtils.getAttrByName(node, "BookingCounts");
-                Seat seat =  new Seat();
-                seat.setClassCabin( getCabinClassType( classCabin) );
-                seat.setSeats( bookingCounts.split("\\|") );
-                seatsResult.add( seat );
+
+                for ( String seatKey : bookingCounts.split("\\|")  ){
+                    Seat seat =  new Seat();
+                    seat.setClassCabin( getCabinClassType( classCabin) );
+                    seat.setPlace( seatKey  );
+                    seatsResult.add( seat );
+                }
+
             }
             seg.setSeatsAvailable( seatsResult );
         }
@@ -220,7 +223,6 @@ public class TravelportFlightManager implements FlightManager {
         if (codeshareInfo != null) {
             seg.setOperatingAirlineName(XmlUtils.getNodeValue(codeshareInfo));
             if (codeshareInfo.hasAttributes()) {
-                NamedNodeMap attrs = codeshareInfo.getAttributes();
                 seg.setOperatingAirlineCode(XmlUtils.getAttrByName(codeshareInfo, "OperatingCarrier"));
                 seg.setOperatingAirlineName( airlinesCodeMap.get( seg.getOperatingAirlineCode() ) );
                 seg.setOperatingFlightNumber(XmlUtils.getAttrByName(codeshareInfo, "OperatingFlightNumber"));

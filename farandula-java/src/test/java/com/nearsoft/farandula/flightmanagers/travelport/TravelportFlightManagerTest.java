@@ -94,7 +94,7 @@ class TravelportFlightManagerTest {
                 .to("CDG")
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
-                .forPassegers(Passenger.adults(1))
+                .forPassegers(Passenger.adults(1) )
                 .type(FlightType.ROUNDTRIP)
                 .sortBy(PRICE, MINSTOPS)
                 .limitTo(2)

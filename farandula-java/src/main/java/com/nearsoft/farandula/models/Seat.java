@@ -6,7 +6,7 @@ package com.nearsoft.farandula.models;
 public class Seat {
 
     private CabinClassType classCabin;
-    private String[] seats;
+    private String place;
 
     public void setClassCabin(CabinClassType classCabin) {
         this.classCabin = classCabin;
@@ -16,11 +16,11 @@ public class Seat {
         return classCabin;
     }
 
-    public void setSeats(String[] seats) {
-        this.seats = seats;
+    public String getPlace() {
+        return place;
     }
 
-    public String[] getSeats() {
-        return seats;
+    public void setPlace(String place) {
+        this.place = place;
     }
 }
