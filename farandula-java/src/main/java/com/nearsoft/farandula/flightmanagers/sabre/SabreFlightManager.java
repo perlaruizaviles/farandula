@@ -33,6 +33,7 @@ public class SabreFlightManager implements FlightManager {
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
     private static Map<String, String> codeToClassMap = new HashMap<>();
+    private static Map<String, String> airlinesCodeMap = new HashMap<>();
 
     public SabreFlightManager() {
         //TODO consider later to add aconstructor with arguments clientId & clientSecret
@@ -51,15 +52,13 @@ public class SabreFlightManager implements FlightManager {
             props.load(SabreFlightManager.class.getResourceAsStream("/config.properties"));
             clientId = props.getProperty("sabre.client_id");
             clientSecret = props.getProperty("sabre.client_secret");
-
-            fillCodeToClassMap();
-
+            fillReferenceMaps();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void fillCodeToClassMap() throws IOException {
+    private static void fillReferenceMaps() throws IOException {
 
         Properties properties = new Properties();
         properties.load(SabreFlightManager.class.getResourceAsStream("/Sabre/cabinCodes.properties"));
@@ -67,6 +66,14 @@ public class SabreFlightManager implements FlightManager {
             String value = properties.getProperty(key);
             codeToClassMap.put(key, value);
         }
+
+        properties.clear();
+
+        properties.load( SabreFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+            for (String key : properties.stringPropertyNames()) {
+                String value = properties.getProperty(key);
+                airlinesCodeMap.put(key, value);
+            }
 
     }
 
@@ -248,8 +255,14 @@ public class SabreFlightManager implements FlightManager {
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
         seg.setOperatingAirlineCode((String) getValueOf(operativeAirlineData, "Code"));
+        seg.setOperatingAirlineName( airlinesCodeMap.get( seg.getOperatingAirlineCode() )  );
+        seg.setOperatingFlightNumber( operativeAirlineData.get("FlightNumber").toString() );
+
         seg.setMarketingAirlineCode((String) getValueOf(marketingAirlineData, "Code"));
-        seg.setMarketingFlightNumber((String) getValueOf(segmentMap, "FlightNumber"));
+        seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
+        // marketing flight number does not exist in sabre.
+        seg.setMarketingFlightNumber( "" );
+
         seg.setAirplaneData((String) getValueOf(equipmentData, "AirEquipType"));
         //TODO travel class for SABRE
         seg.setTravelClass("");
