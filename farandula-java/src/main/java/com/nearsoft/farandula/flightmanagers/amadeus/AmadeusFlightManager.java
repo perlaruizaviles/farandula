@@ -199,7 +199,6 @@ public class AmadeusFlightManager implements FlightManager {
                 (String) segmentMap.get("arrives_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         seg.setArrivalDate(arrivalDateTime);
 
-        //TODO CHECK this block is to improve the performance.
         String departureTimeZone = "";
         if (locationsMap.containsKey(seg.getDepartureAirportCode())) {
             departureTimeZone = locationsMap.get(seg.getDepartureAirportCode());

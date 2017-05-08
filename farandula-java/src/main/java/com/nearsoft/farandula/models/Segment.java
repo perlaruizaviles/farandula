@@ -147,12 +147,13 @@ public class Segment {
         return operatingFlightNumber;
     }
 
-    //TODO we should have a reference airline code/name map
     public void setOperatingAirlineName(String operatingAirlineName) {
         this.operatingAirlineName = operatingAirlineName;
     }
 
-
+    public String getOperatingAirlineName() {
+        return operatingAirlineName;
+    }
 
     @Override
     public String toString() {

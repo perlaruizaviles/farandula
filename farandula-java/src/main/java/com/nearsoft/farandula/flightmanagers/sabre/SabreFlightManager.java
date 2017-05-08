@@ -14,6 +14,7 @@ import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.SearchCommand;
 import com.nearsoft.farandula.models.Segment;
 import com.nearsoft.farandula.utilities.GMTFormatter;
+import com.nearsoft.farandula.utilities.MapsNestedHelper;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
 import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
@@ -25,8 +26,8 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import static com.nearsoft.farandula.utilities.MapsNestedHelper.getValueOf;
 
-//TODO consider create an specific trip manager for each API or create a connector/plugin framework
 public class SabreFlightManager implements FlightManager {
 
     //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
@@ -36,7 +37,6 @@ public class SabreFlightManager implements FlightManager {
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
 
     public SabreFlightManager() {
-        //TODO consider later to add aconstructor with arguments clientId & clientSecret
         Creds creds = new Creds(clientId, clientSecret);
         _accessManager = new AccessManager(creds);
     }
@@ -182,28 +182,6 @@ public class SabreFlightManager implements FlightManager {
         return cabinsBySegment;
     }
 
-
-    //TODO extract this methods to a helper class
-    private Object getValueOf(Object stringObjectMap, String keyName) {
-
-        return getValueOf(stringObjectMap, keyName, Object.class);
-    }
-
-    private <T> T getValueOf(Object stringObjectMap, String keyName, Class<T> type) {
-        int indexSeparator = keyName.indexOf(".");
-        if (indexSeparator == -1) {
-            Map<String, Object> theMap = (Map<String, Object>) stringObjectMap;
-
-            return type.cast(theMap.get(keyName));
-        } else {
-            String currentKey = keyName.substring(0, indexSeparator);
-            String newKeyPath = keyName.substring(indexSeparator + 1, keyName.length());
-            Object currentMap = ((Map<String, Object>) stringObjectMap).get(currentKey);
-            return getValueOf(currentMap, newKeyPath, type);
-        }
-
-    }
-
     private List<AirLeg> buildAirLegs(Map<String, Object> pricedItinerary) {
 
         Map<String, Object> airItinerary = (Map<String, Object>) getValueOf(pricedItinerary, "AirItinerary");
@@ -237,7 +215,7 @@ public class SabreFlightManager implements FlightManager {
     private Segment buildSegment(Map<String, Object> g) {
 
         Map<String, Object> segmentMap = g;
-        //Todo change segment id and PATH
+        //Todo change segment id and icon PATH
         //airline
         JSONArray jsonEquipmentArray = (JSONArray) getValueOf(segmentMap, "Equipment");
         Map<String, Object> equipmentData = (Map<String, Object>) jsonEquipmentArray.get(0);

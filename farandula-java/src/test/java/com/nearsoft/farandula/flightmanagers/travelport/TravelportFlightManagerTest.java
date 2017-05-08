@@ -98,7 +98,7 @@ class TravelportFlightManagerTest {
                 .type(FlightType.ROUNDTRIP)
                 .sortBy(PRICE, MINSTOPS)
                 .limitTo(2)
-                .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
+                .execute();
 
         assertNotNull(flights);
 
