@@ -1,6 +1,6 @@
 import React from 'react';
-import TextMenu from './TextMenu';
-import travelOptions from '../data/travelOptions';
+import TextMenu from '../TextMenu';
+import travelOptions from '../../data/travelOptions';
 import {List} from 'immutable';
 
 export default () => (
