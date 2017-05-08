@@ -183,7 +183,8 @@ public class AmadeusFlightManager implements FlightManager {
         seg.setMarketingFlightNumber((String) segmentMap.get("flight_number"));
 
         seg.setAirplaneData((String) segmentMap.get("aircraft"));
-        seg.setTravelClass((String) bookingInfoData.get("travel_class"));
+
+        //seg.setSeatsAvailable((String) bookingInfoData.get("travel_class"));
 
         //departure stuff
         seg.setDepartureAirportCode((String) departureAirportData.get("airport"));

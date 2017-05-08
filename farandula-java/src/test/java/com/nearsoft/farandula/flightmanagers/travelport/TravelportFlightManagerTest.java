@@ -4,6 +4,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.AirLeg;
+import com.nearsoft.farandula.models.CabinClassType;
 import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Passenger;
 import org.junit.jupiter.api.Test;
@@ -48,8 +49,7 @@ class TravelportFlightManagerTest {
             AirLeg airLeg = flights.get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
-
-//            assertEquals("Economy/Coach", airLeg.getSegments().get(0).getTravelClass());
+            assertEquals(CabinClassType.BUSINESS,  airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
             assertEquals(1, 1);
         });
 
@@ -61,7 +61,7 @@ class TravelportFlightManagerTest {
 
             @Override
             public SOAPMessage sendRequest(SOAPMessage message, String url_api) throws SOAPException {
-                InputStream inputStream = this.getClass().getResourceAsStream("/travelport/response/airResponse.xml");
+                InputStream inputStream = this.getClass().getResourceAsStream("/travelport/response/airResponseOneWay.xml");
                 SOAPMessage response = null;
                 try {
                     response = MessageFactory.newInstance().createMessage(null, inputStream);
@@ -111,7 +111,7 @@ class TravelportFlightManagerTest {
         assertAll("First should be the best Airleg", () -> {
             assertEquals("DFW", bestFlight.getSegments().get(0).getDepartureAirportCode());
             assertEquals("CDG", bestFlight.getSegments().get(0).getArrivalAirportCode());
-            //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getTravelClass() );
+            //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getSeatsAvailable() );
             assertEquals(2, 2);
         });
 

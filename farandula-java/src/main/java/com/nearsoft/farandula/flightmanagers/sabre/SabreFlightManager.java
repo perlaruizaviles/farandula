@@ -12,6 +12,7 @@ import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.SearchCommand;
+import com.nearsoft.farandula.models.Seat;
 import com.nearsoft.farandula.models.Segment;
 import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
@@ -25,6 +26,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
 import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
 public class SabreFlightManager implements FlightManager {
@@ -139,7 +141,13 @@ public class SabreFlightManager implements FlightManager {
             int cabinIndex = 0;
             for (AirLeg leg : legs) {
                 for (Segment segment : leg.getSegments()) {
-                    segment.setTravelClass(convertCodeToTravelClass(cabinsBySegment.get(0).get(cabinIndex)));
+
+                    //TODO check this
+                    List<Seat> seatsResult = new ArrayList<>();
+                    Seat seat = new Seat();
+                    seat.setClassCabin( getCabinClassType( convertCodeToTravelClass(cabinsBySegment.get(0).get(cabinIndex)) ) );
+                    seatsResult.add( seat );
+                    segment.setSeatsAvailable( seatsResult );
                     cabinIndex++;
                 }
             }
@@ -241,9 +249,6 @@ public class SabreFlightManager implements FlightManager {
         seg.setMarketingFlightNumber( "" );
 
         seg.setAirplaneData((String) getValueOf(equipmentData, "AirEquipType"));
-        //TODO travel class for SABRE
-        seg.setTravelClass("");
-
         //departure info
         seg.setDepartureAirportCode((String) getValueOf(departureAirportData, "LocationCode"));
         seg.setDepartureTerminal((String) getValueOf(departureAirportData, "TerminalID"));

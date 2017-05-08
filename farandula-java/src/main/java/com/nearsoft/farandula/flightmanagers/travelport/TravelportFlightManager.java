@@ -5,6 +5,7 @@ import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
 import com.nearsoft.farandula.models.*;
+import com.nearsoft.farandula.utilities.CabinClassParser;
 import com.nearsoft.farandula.utilities.XmlUtils;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
@@ -13,12 +14,16 @@ import org.w3c.dom.Node;
 
 
 import javax.xml.soap.*;
+import java.awt.*;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.List;
+
+import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
 
 /**
  * Created by pruiz on 4/20/17.
@@ -116,15 +121,6 @@ public class TravelportFlightManager implements FlightManager {
         SOAPEnvelope env = response.getSOAPPart().getEnvelope();
         SOAPBody body = env.getBody();
 
-        //for connections
-        NodeList listItinerary = body.getElementsByTagName("air:Connection");
-        List<Integer> connectionList = new ArrayList<>();
-        for (int i = 0; i < listItinerary.getLength(); i++) {
-            Node currentNode = listItinerary.item(i);
-            NamedNodeMap nodeAttributes = currentNode.getAttributes();
-            connectionList.add(Integer.valueOf(nodeAttributes.getNamedItem("SegmentIndex").getNodeValue().toString()));
-        }
-
         //flights
         NodeList listFlights = body.getElementsByTagName("air:FlightDetails");
         List<FlightDetailsTravelport> resultFlightsDetails = new LinkedList<>();
@@ -153,8 +149,6 @@ public class TravelportFlightManager implements FlightManager {
             parseCodeshareChild(seg, airSegmentNode);
             parseAirAvailInfoChild(seg, airSegmentNode);
 
-            //TODO travel class for travelport
-            seg.setTravelClass("");
             seg.setAirplaneData(resultFlightsDetails.get(i).getEquipment());
 
             //departure data
@@ -203,6 +197,22 @@ public class TravelportFlightManager implements FlightManager {
         //TODO add logging to the project
 
         //TODO parse BookingCodeInfo element for cabin classes
+        Node airAvailInfo = XmlUtils.getNode("air:AirAvailInfo", airSegmentNode.getChildNodes());
+        if (airAvailInfo != null) {
+            List<Node> bookingCodeInfo = XmlUtils.getNodeList("air:BookingCodeInfo", airAvailInfo.getChildNodes());
+            List<Seat> seatsResult = new ArrayList<>();
+            for (Node node : bookingCodeInfo ){
+                NamedNodeMap attrs = node.getAttributes();
+                String classCabin = XmlUtils.getAttrByName(node, "CabinClass");
+                String bookingCounts = XmlUtils.getAttrByName(node, "BookingCounts");
+                Seat seat =  new Seat();
+                seat.setClassCabin( getCabinClassType( classCabin) );
+                seat.setSeats( bookingCounts.split("\\|") );
+                seatsResult.add( seat );
+            }
+            seg.setSeatsAvailable( seatsResult );
+        }
+
     }
 
     private void parseCodeshareChild(Segment seg, Node airSegmentNode) {

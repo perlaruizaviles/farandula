@@ -1,0 +1,195 @@
+<SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP:Body>
+        <air:AvailabilitySearchRsp TraceId="trace" TransactionId="E8ED58B70A07643B4240FFFD63767479" ResponseTime="1221" DistanceUnits="MI" xmlns:air="http://www.travelport.com/schema/air_v34_0" xmlns:common_v34_0="http://www.travelport.com/schema/common_v34_0">
+            <common_v34_0:ResponseMessage Code="14013" Type="Error" ProviderCode="ACH"> [ACH] Provider error: Flights may not be available for Outbound or Inbound journey-No Matches found for requested departure time range</common_v34_0:ResponseMessage>
+            <common_v34_0:NextResultReference>H4sIAAAAAAAAAJ1Uz08TQRR+bSk/tEoQQwxG0WjEi7ttsZSKF6VAMMuPWKKmpIdhd7oMbneW2WlZjDHRiyfP/kg8GUlM/ANMTLzq0RhvxoPh7B/ACWeGLmUl2mgP250333zvfe99s29/QtJn0L+KGkirc+Jo1xhDGwbxefDwy6nnH9HLBMRmoMMn93DgAUBsvUM+xaFLJq1pdtZfJ9xc0WzL15CFPI6Zr4mdGnW1yYAzZPJFehe7xqNvQ2SnbzMO3UtwGDG2SGpY5uGQWTLEAT2k0gVVjVrY0XdpdIksedgkVWIiTqg7Lhgs7LUYCm0YphwckGUHH2QyJJPPiauWHI4ZshW6g1xbL3FGXFtAkjajdY9D/77NGZdjGzOx21OjDCuNa/AAkgZ0UkZsEq5SHqMNYmE2ISpqxpJ8Dx54ddbsQKSZqv6wkQfrfn3m1ucPT/NP4gBqLCBYCm1Y/tyFr+8rV04+3qqEbHK8o//HBbu/WBxiBvT6GDFzRfmgiDZ8DtrfB1WK4scDBtq/daaVv6MMA8RfYLiKGbYkcI7yadIQXoQjngo34xzORctqViMvhF5EXKkUk075zUxyLafXK6bPxftN4QjBcrG9jxVyXDRZdPhsRFlTkLqEYc6WmM4ypCwRDSWUoZe4DeQQJaBMXVyGo7Ra9TFvQVI8Irp7lVpIUnM4YVBm63KtS0xEJG8SzqFdkck9SwyIQ5o8pEnMXpXvrgbW6tL3bekeBkNR0DLysXZdPEL0zs72j/mK9ioO8RvQRWaJ4xBfXEMyscKoSx1qb3AY/K2+1p7sHcQqg3eeyRYOR5OZCqbNlOZbB86XeH35zae+6lp+YTghDe4fKDKsTcpW+E099uJ+dnBL4dd7oGuSm/r07GIQePL4hbaeVHNujS8h+iqs7RDxrdlnnkOOSByJRI2pgiKlJ1+Oiy9QYqI4Lf5Oj6RH0mPpzNhofiw7WkgXCplsOpfJZXO5fPpyRuCKU7c9L/gF2FXHXd8FAAA=</common_v34_0:NextResultReference>
+            <air:FlightDetailsList>
+                <air:FlightDetails Key="dIN2ov7Q2BKAYCNAAAAAAA==" Origin="DFW" Destination="CDG" DepartureTime="2017-07-07T17:50:00.000-05:00" ArrivalTime="2017-07-08T10:05:00.000+02:00" FlightTime="555" TravelTime="555" Equipment="789" OriginTerminal="D" DestinationTerminal="2A"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAaCNAAAAAAA==" Origin="DFW" Destination="CDG" DepartureTime="2017-07-07T17:50:00.000-05:00" ArrivalTime="2017-07-08T10:05:00.000+02:00" FlightTime="555" TravelTime="555" Equipment="789" OriginTerminal="D" DestinationTerminal="2A"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAcCNAAAAAAA==" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T13:15:00.000-05:00" ArrivalTime="2017-07-07T16:32:00.000-04:00" FlightTime="137" TravelTime="695" Equipment="717" OnTimePerformance="90" OriginTerminal="E" DestinationTerminal="S"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAeCNAAAAAAA==" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="695" Equipment="77W" OriginTerminal="I" DestinationTerminal="2E"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAgCNAAAAAAA==" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T13:15:00.000-05:00" ArrivalTime="2017-07-07T16:32:00.000-04:00" FlightTime="137" TravelTime="695" Equipment="717" OriginTerminal="E" DestinationTerminal="S"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAiCNAAAAAAA==" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="695" Equipment="77W" OriginTerminal="I" DestinationTerminal="2E"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAkCNAAAAAAA==" Origin="DFW" Destination="MSP" DepartureTime="2017-07-07T16:30:00.000-05:00" ArrivalTime="2017-07-07T19:05:00.000-05:00" FlightTime="155" TravelTime="705" Equipment="319" OnTimePerformance="80" OriginTerminal="E" DestinationTerminal="1"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAmCNAAAAAAA==" Origin="MSP" Destination="CDG" DepartureTime="2017-07-07T19:50:00.000-05:00" ArrivalTime="2017-07-08T11:15:00.000+02:00" FlightTime="505" TravelTime="705" Equipment="343" OriginTerminal="1" DestinationTerminal="2E"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAoCNAAAAAAA==" Origin="DFW" Destination="MSP" DepartureTime="2017-07-07T16:30:00.000-05:00" ArrivalTime="2017-07-07T19:05:00.000-05:00" FlightTime="155" TravelTime="705" Equipment="319" OriginTerminal="E" DestinationTerminal="1"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAqCNAAAAAAA==" Origin="MSP" Destination="CDG" DepartureTime="2017-07-07T19:50:00.000-05:00" ArrivalTime="2017-07-08T11:15:00.000+02:00" FlightTime="505" TravelTime="705" Equipment="343" OriginTerminal="1" DestinationTerminal="2E"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAsCNAAAAAAA==" Origin="DFW" Destination="PIT" DepartureTime="2017-07-07T14:35:00.000-05:00" ArrivalTime="2017-07-07T18:14:00.000-04:00" FlightTime="159" TravelTime="710" Equipment="319" OnTimePerformance="90" OriginTerminal="0"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAuCNAAAAAAA==" Origin="PIT" Destination="CDG" DepartureTime="2017-07-07T19:34:00.000-04:00" ArrivalTime="2017-07-08T09:25:00.000+02:00" FlightTime="471" TravelTime="710" Equipment="75W" DestinationTerminal="2E"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAwCNAAAAAAA==" Origin="DFW" Destination="IAD" DepartureTime="2017-07-07T12:00:00.000-05:00" ArrivalTime="2017-07-07T16:01:00.000-04:00" FlightTime="181" TravelTime="715" Equipment="E7W" OriginTerminal="E"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKAyCNAAAAAAA==" Origin="IAD" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T06:55:00.000+02:00" FlightTime="450" TravelTime="715" Equipment="789" DestinationTerminal="1"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKA0CNAAAAAAA==" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T12:55:00.000-05:00" ArrivalTime="2017-07-07T16:08:00.000-04:00" FlightTime="133" TravelTime="715" Equipment="320" OnTimePerformance="90" OriginTerminal="0" DestinationTerminal="N"/>
+                <air:FlightDetails Key="dIN2ov7Q2BKA2CNAAAAAAA==" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="715" Equipment="77W" OriginTerminal="I" DestinationTerminal="2E"/>
+            </air:FlightDetailsList>
+            <air:AirSegmentList>
+                <air:AirSegment Key="dIN2ov7Q2BKAZCNAAAAAAA==" Group="0" Carrier="AA" FlightNumber="48" Origin="DFW" Destination="CDG" DepartureTime="2017-07-07T17:50:00.000-05:00" ArrivalTime="2017-07-08T10:05:00.000+02:00" FlightTime="555" TravelTime="555" ETicketability="Yes" Equipment="789" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General">
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="J7|R7|D7|I4"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="Y7|B0|H7|K7|M7|L7|G7|V7|S7|N7|Q7|O7"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAYCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAbCNAAAAAAA==" Group="0" Carrier="AY" FlightNumber="5778" Origin="DFW" Destination="CDG" DepartureTime="2017-07-07T17:50:00.000-05:00" ArrivalTime="2017-07-08T10:05:00.000+02:00" FlightTime="555" TravelTime="555" ETicketability="Yes" Equipment="789" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General">
+                    <air:CodeshareInfo OperatingCarrier="AA" OperatingFlightNumber="48">AMERICAN AIRLINES</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="J9|C9|D9|I9"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="Y9|B9|H9|K9|M9|L9|V9|S9|NC|QC|OC|G9"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAaCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAdCNAAAAAAA==" Group="0" Carrier="DL" FlightNumber="2505" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T13:15:00.000-05:00" ArrivalTime="2017-07-07T16:32:00.000-04:00" FlightTime="137" TravelTime="695" ETicketability="Yes" Equipment="717" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General">
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="F9|P9|A1|G0"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="W9"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="Y9|B9|M9|H9|Q9|K9|L9|U9|T9|X0|V0|E0"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAcCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAfCNAAAAAAA==" Group="0" Carrier="DL" FlightNumber="8517" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="695" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:CodeshareInfo OperatingCarrier="AF" OperatingFlightNumber="681">AIR FRANCE</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="WR|AR|GR|PR|RR|SR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="YR|BR|MR|HR|QR|KR|LR|UR|TR|VR|XR|ER|NR"/>
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="FR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAeCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAhCNAAAAAAA==" Group="0" Carrier="AF" FlightNumber="2717" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T13:15:00.000-05:00" ArrivalTime="2017-07-07T16:32:00.000-04:00" FlightTime="137" TravelTime="695" ETicketability="Yes" Equipment="717" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:CodeshareInfo OperatingCarrier="DL" OperatingFlightNumber="2505">DELTA AIR LINES</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="PR|FR"/>
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="WR|SR|AR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="YR|BR|MR|UR|KR|HR|LR|QR|TR|NR|RR|VR|ER|GR|XR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAgCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAjCNAAAAAAA==" Group="0" Carrier="AF" FlightNumber="681" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="695" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="WR|SR|AR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="YR|BR|MR|UR|KR|HR|LR|QR|TR|ER|NR|RR|VR|XR|GR"/>
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="FR|PR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAiCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAlCNAAAAAAA==" Group="0" Carrier="DL" FlightNumber="2868" Origin="DFW" Destination="MSP" DepartureTime="2017-07-07T16:30:00.000-05:00" ArrivalTime="2017-07-07T19:05:00.000-05:00" FlightTime="155" TravelTime="705" ETicketability="Yes" Equipment="319" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General">
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="F9|P9|A9|G4"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="W9"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="Y9|B9|M9|H9|Q9|K9|L9|U9|T9|X9|V9|E9"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAkCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAnCNAAAAAAA==" Group="0" Carrier="DL" FlightNumber="8500" Origin="MSP" Destination="CDG" DepartureTime="2017-07-07T19:50:00.000-05:00" ArrivalTime="2017-07-08T11:15:00.000+02:00" FlightTime="505" TravelTime="705" ETicketability="Yes" Equipment="343" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:CodeshareInfo OperatingCarrier="AF" OperatingFlightNumber="673">AIR FRANCE</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="WR|AR|GR|PR|RR|SR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="YR|BR|MR|HR|QR|KR|LR|UR|TR|VR|XR|ER|NR"/>
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="FR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAmCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKApCNAAAAAAA==" Group="0" Carrier="AF" FlightNumber="2493" Origin="DFW" Destination="MSP" DepartureTime="2017-07-07T16:30:00.000-05:00" ArrivalTime="2017-07-07T19:05:00.000-05:00" FlightTime="155" TravelTime="705" ETicketability="Yes" Equipment="319" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:CodeshareInfo OperatingCarrier="DL" OperatingFlightNumber="2868">DELTA AIR LINES</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="PR|FR"/>
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="WR|SR|AR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="YR|BR|MR|UR|KR|HR|LR|QR|TR|NR|RR|VR|ER|GR|XR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAoCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKArCNAAAAAAA==" Group="0" Carrier="AF" FlightNumber="673" Origin="MSP" Destination="CDG" DepartureTime="2017-07-07T19:50:00.000-05:00" ArrivalTime="2017-07-08T11:15:00.000+02:00" FlightTime="505" TravelTime="705" ETicketability="Yes" Equipment="343" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General">
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="J9|C9|D9|I9|Z9"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="W9|S9|A9"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="Y9|B9|M9|U9|K9|H9|L9|Q9|T9|EC|N9|R9|V9|GR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAqCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAtCNAAAAAAA==" Group="0" Carrier="AA" FlightNumber="1676" Origin="DFW" Destination="PIT" DepartureTime="2017-07-07T14:35:00.000-05:00" ArrivalTime="2017-07-07T18:14:00.000-04:00" FlightTime="159" TravelTime="710" ETicketability="Yes" Equipment="319" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="RR|JR|DR|IR|CR|UR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="SR|YR|BR|HR|MR|NR|KR|LR|QR|VR|GR|OR|ER|TR"/>
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="AR|FR|ZR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="PR|WR|XR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAsCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAvCNAAAAAAA==" Group="0" Carrier="AF" FlightNumber="8617" Origin="PIT" Destination="CDG" DepartureTime="2017-07-07T19:34:00.000-04:00" ArrivalTime="2017-07-08T09:25:00.000+02:00" FlightTime="471" TravelTime="710" ETicketability="Yes" Equipment="75W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:CodeshareInfo OperatingCarrier="DL" OperatingFlightNumber="96">DELTA AIR LINES</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="YR|BR|MR|UR|KR|HR|LR|QR|TR|NR|RR|VR|ER|GR|XR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="AR|SR|WR"/>
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="FR|PR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAuCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAxCNAAAAAAA==" Group="0" Carrier="UA" FlightNumber="6263" Origin="DFW" Destination="IAD" DepartureTime="2017-07-07T12:00:00.000-05:00" ArrivalTime="2017-07-07T16:01:00.000-04:00" FlightTime="181" TravelTime="715" ETicketability="Yes" Equipment="E7W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General">
+                    <air:CodeshareInfo>MESA AIRLINES DBA UNITED EXPRESS</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="F6|C5|A4|D4|Z0|P0"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="Y9|B9|M9|E9|U9|H9|Q9|V9|W9|S4|T0|L0|K0|G0|N9|X0"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAwCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKAzCNAAAAAAA==" Group="0" Carrier="LH" FlightNumber="7640" Origin="IAD" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T06:55:00.000+02:00" FlightTime="450" TravelTime="715" ETicketability="Yes" Equipment="789" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General">
+                    <air:CodeshareInfo OperatingCarrier="UA" OperatingFlightNumber="915">UNITED AIRLINES INC</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="J4|C4|D4|Z4|P4"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="G4|E4|N4"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="Y6|B6|M6|U6|H6|Q6|V6|W6|S6|T6|L6|KC"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKAyCNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKA1CNAAAAAAA==" Group="0" Carrier="AA" FlightNumber="1675" Origin="DFW" Destination="ATL" DepartureTime="2017-07-07T12:55:00.000-05:00" ArrivalTime="2017-07-07T16:08:00.000-04:00" FlightTime="133" TravelTime="715" ETicketability="Yes" Equipment="320" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="RR|JR|DR|IR|CR|UR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="SR|YR|BR|HR|MR|NR|KR|LR|QR|VR|GR|OR|ER|TR"/>
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="AR|FR|ZR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="PR|WR|XR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKA0CNAAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="dIN2ov7Q2BKA3CNAAAAAAA==" Group="0" Carrier="AF" FlightNumber="681" Origin="ATL" Destination="CDG" DepartureTime="2017-07-07T17:25:00.000-04:00" ArrivalTime="2017-07-08T07:50:00.000+02:00" FlightTime="505" TravelTime="715" ETicketability="Yes" Equipment="77W" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="General" OperationalStatus="Flight Canceled">
+                    <air:AirAvailInfo ProviderCode="1G">
+                        <air:BookingCodeInfo CabinClass="Business" BookingCounts="JR|CR|DR|IR|ZR|OR"/>
+                        <air:BookingCodeInfo CabinClass="PremiumEconomy" BookingCounts="WR|SR|AR"/>
+                        <air:BookingCodeInfo CabinClass="Economy" BookingCounts="YR|BR|MR|UR|KR|HR|LR|QR|TR|ER|NR|RR|VR|XR|GR"/>
+                        <air:BookingCodeInfo CabinClass="First" BookingCounts="FR|PR"/>
+                    </air:AirAvailInfo>
+                    <air:FlightDetailsRef Key="dIN2ov7Q2BKA2CNAAAAAAA=="/>
+                </air:AirSegment>
+            </air:AirSegmentList>
+            <air:AirItinerarySolution Key="dIN2ov7Q2BKA4CNAAAAAAA==">
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAZCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAbCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAdCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAfCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAhCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAjCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAlCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAnCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKApCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKArCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAtCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAvCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAxCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKAzCNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKA1CNAAAAAAA=="/>
+                <air:AirSegmentRef Key="dIN2ov7Q2BKA3CNAAAAAAA=="/>
+                <air:Connection SegmentIndex="2"/>
+                <air:Connection SegmentIndex="4"/>
+                <air:Connection SegmentIndex="6"/>
+                <air:Connection SegmentIndex="8"/>
+                <air:Connection SegmentIndex="10"/>
+                <air:Connection SegmentIndex="12"/>
+                <air:Connection SegmentIndex="14"/>
+            </air:AirItinerarySolution>
+        </air:AvailabilitySearchRsp>
+    </SOAP:Body>
+</SOAP:Envelope>

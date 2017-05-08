@@ -1,6 +1,7 @@
 package com.nearsoft.farandula.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by pruiz on 4/12/17.
@@ -25,7 +26,7 @@ public class Segment {
 
     String airplaneData;
     long duration;
-    String travelClass;
+    List<Seat> seatsAvailable;
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -67,13 +68,13 @@ public class Segment {
         this.marketingFlightNumber = marketingFlightNumber;
     }
 
-    public String getTravelClass() {
-        return travelClass;
+    public List<Seat> getSeatsAvailable() {
+        return seatsAvailable;
     }
 
     //TODO the travel class should be a collection of cabins of a given enum type
-    public void setTravelClass(String travelClass) {
-        this.travelClass = travelClass;
+    public void setSeatsAvailable(List<Seat> seatsAvailable) {
+        this.seatsAvailable = seatsAvailable;
     }
 
     public String getDepartureAirportCode() {
