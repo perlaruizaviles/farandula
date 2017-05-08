@@ -12,7 +12,7 @@ const PriceSection = ({changePriceSection}) => (
       </Grid.Row>
       <Grid.Row columns={1}>
         <Grid.Column>
-          <Button content='View Deal' />
+          <Button primary content='View Deal'></Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>
@@ -20,5 +20,3 @@ const PriceSection = ({changePriceSection}) => (
 )
 
 export default PriceSection
-
-

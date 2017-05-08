@@ -6,7 +6,7 @@ const DetailSection = () => (
     <Grid style={{textAlign: 'right'}}>
       <Grid.Row columns={1}>
         <Grid.Column>
-          <Button content='Show details' />
+          <Button primary content='Show details'></Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>
