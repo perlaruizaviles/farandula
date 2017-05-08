@@ -2,7 +2,7 @@
  * Created by antoniohernandez on 5/1/17.
  */
 
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, Grid } from 'semantic-ui-react'
 const PriceSection = () => {
     return(
