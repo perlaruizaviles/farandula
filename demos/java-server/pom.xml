@@ -39,6 +39,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.farandula</groupId>
+			<artifactId>javaFarandula</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/farandula-1.0.0-SNAPSHOT.jar</systemPath>
+		</dependency>
+
 	</dependencies>
 
 	<build>

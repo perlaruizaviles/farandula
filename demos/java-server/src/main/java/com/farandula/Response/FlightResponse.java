@@ -4,6 +4,7 @@ import com.farandula.Flight;
 import com.nearsoft.farandula.models.AirLeg;
 import org.springframework.data.annotation.Id;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
 /**
@@ -25,9 +26,14 @@ public class FlightResponse {
 
     public void setStatus(Integer status){this.status = status;}
     public void setMessage(String message){this.message = message;}
+
     public void setContent(List<AirLeg> depart, List<AirLeg> arrival){
+        this.content.add(depart);
+        this.content.add(arrival);
+    }
 
-
+    public void setContent(List<AirLeg> legs){
+        this.content.add(legs);
     }
 
     public void setDepartAirlegs(List<AirLeg> departAirlegs){this.departAirlegs = departAirlegs;}
@@ -36,12 +42,24 @@ public class FlightResponse {
     public List<AirLeg> getDepartAirlegs(){return this.departAirlegs;}
     public List<AirLeg> getReturnAirlegs(){return this.returnAirlegs;}
 
-    public static FlightResponse getResponseInstance(Integer status, String message, List<List<AirLeg>> content){
+    public static FlightResponse getResponseInstance(Integer status, String message, List<AirLeg> departLegs, List<AirLeg> returnLegs){
         FlightResponse res = new FlightResponse();
 
         res.setStatus(status);
         res.setMessage(message);
-        res.setContent(content);
+
+        res.setContent(departLegs, returnLegs);
+
+        return res;
+    }
+
+    public static FlightResponse getResponseInstance(Integer status, String message, List<AirLeg> departLegs){
+        FlightResponse res = new FlightResponse();
+
+        res.setStatus(status);
+        res.setMessage(message);
+
+        res.setContent(departLegs);
 
         return res;
     }

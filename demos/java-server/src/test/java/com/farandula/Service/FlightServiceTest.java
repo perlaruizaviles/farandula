@@ -1,9 +1,12 @@
 package com.farandula.Service;
 
+import com.nearsoft.farandula.models.AirLeg;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -22,6 +25,36 @@ public class FlightServiceTest {
         LocalDateTime expected = LocalDateTime.of(2011, 12, 03, 10, 15, 30);
 
         Assert.assertEquals( expected, result );
+    }
 
+    @Test
+    public void separateDepartAirLegs(){
+
+        List<AirLeg> legs = new ArrayList<>();
+
+        for(int i = 0; i < 10; i++){
+            AirLeg leg = new AirLeg();
+
+            leg.setId( "" + i );
+
+            leg.setDepartureAirportCode("DD" + i);
+            leg.setArrivalAirportCode("AA" + i);
+
+            leg.setDepartingDate(LocalDateTime.now());
+            leg.setArrivalDate(LocalDateTime.now().plusDays(2));
+
+            legs.add( leg );
+        }
+
+        FlightService flightService = new FlightService();
+
+        List<AirLeg> resultDepart = flightService.getDepartAirLegs( legs );
+        List<AirLeg> resultReturn = flightService.getReturnAirLegs( legs );
+
+        Assert.assertEquals( legs.size() / 2, resultDepart.size() );
+        Assert.assertEquals( "0", resultDepart.get(0).getId() );
+
+        Assert.assertEquals( legs.size() / 2, resultReturn.size() );
+        Assert.assertEquals( "1", resultReturn.get(0).getId() );
     }
 }

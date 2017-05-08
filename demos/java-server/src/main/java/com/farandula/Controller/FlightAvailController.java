@@ -21,16 +21,26 @@ public class FlightAvailController {
     @Autowired
     FlightRepository flightRepository;
 
-    @RequestMapping("/api/avails")
-    public void getAvailableFlights(@Param("departureAirportCode") String departureAirportCode,
+    @RequestMapping("/api/availableFlights")
+    public FlightResponse getAvailableFlights(@Param("departureAirportCode") String departureAirportCode,
                                               @Param("departingDate") String departingDate,
                                               @Param("departingTime") String departingTime,
                                               @Param("arrivalAirportCode") String arrivalAirportCode,
                                               @Param("arrivalDate") String arrivalDate,
                                               @Param("arrivalTime") String arrivalTime,
+                                              @Param("type") String type,
                                               @Param("passenger") String passenger){
 
+        FlightService flightService = new FlightService();
 
+        return flightService.getResponseFromSearch( departureAirportCode,
+                                                    departingDate,
+                                                    departingTime,
+                                                    arrivalAirportCode,
+                                                    arrivalDate,
+                                                    arrivalTime,
+                                                    type,
+                                                    passenger);
 
     }
 
