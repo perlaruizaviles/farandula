@@ -22,15 +22,16 @@ public class FlightAvailController {
     FlightRepository flightRepository;
 
     @RequestMapping("/api/avails")
-    public FlightResponse getAvailableFlights(@Param("departureAirportCode") String departureAirportCode,
-                                              @Param("departingDate") LocalDateTime departingDate,
+    public void getAvailableFlights(@Param("departureAirportCode") String departureAirportCode,
+                                              @Param("departingDate") String departingDate,
+                                              @Param("departingTime") String departingTime,
                                               @Param("arrivalAirportCode") String arrivalAirportCode,
-                                              @Param("arrivalDate") LocalDateTime arrivalDate){
+                                              @Param("arrivalDate") String arrivalDate,
+                                              @Param("arrivalTime") String arrivalTime,
+                                              @Param("passenger") String passenger){
 
-        return new FlightService().getResponseFromSearch(
-                flightRepository.findByDepartureAirportCodeLikeIgnoreCaseAndDepartingDateLikeIgnoreCaseAndArrivalAirportCodeLikeIgnoreCaseAndArrivalDateLikeIgnoreCase(
-                        departureAirportCode,departingDate,arrivalAirportCode,arrivalDate)
-        );
+
+
     }
 
 
