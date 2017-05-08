@@ -16,6 +16,20 @@ export const changeTravelDate = (dateType, date) => {
   };
 };
 
+export const travelerTypeCountChange = (typeTraveler, count) => {
+  return {
+    type: types.CHANGE_TRAVELER_TYPE_COUNT,
+    typeTraveler,
+    count
+  };
+};
+
+export const cabinChange = (cabin) => {
+  return {
+    type: types.CHANGE_CABIN,
+    cabin
+  };
+};
 export const changeTravelFrom = (airport) => {
   return {
     type: types.CHANGE_TRAVEL_FROM,
@@ -45,7 +59,6 @@ export const searchAirportSuccess = (airports) => {
   };
 };
 
-
 export const searchAirport = (query, quantum) => {
   return (dispatch) => {
     return airportApi.searchAirport(query).then(airports => {
@@ -58,4 +71,3 @@ export const searchAirport = (query, quantum) => {
     });
   };
 };
-
