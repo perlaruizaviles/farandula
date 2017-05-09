@@ -6,6 +6,7 @@ import com.farandula.Response.FlightResponse;
 import com.farandula.Service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 /**
  * Created by antoniohernandez on 5/4/17.
  */
-
+@CrossOrigin(origins = "*")
 @RestController
 public class FlightAvailController {
 

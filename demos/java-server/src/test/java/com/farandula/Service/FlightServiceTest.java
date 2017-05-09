@@ -16,6 +16,17 @@ import static org.junit.Assert.*;
 
 public class FlightServiceTest {
     @Test
+    public void getPassengersFromString() throws Exception {
+        String passengerString = "children:5,adults:3";
+
+        Integer[] numberOfPassengers = FlightService.getPassengersFromString(passengerString);
+        Assert.assertEquals(3, (int) numberOfPassengers[0]);
+        Assert.assertEquals(5, (int) numberOfPassengers[1]);
+
+
+    }
+
+    @Test
     public void validateDateTime(){
 
         FlightService flightService = new FlightService();

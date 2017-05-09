@@ -11,11 +11,13 @@ import com.nearsoft.farandula.models.Passenger;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -48,6 +50,7 @@ public class FlightService {
             });
 
             try{
+                Integer[] numberOfPassengers = getPassengersFromString(passenger);
 
                 if( type.equals("round") ){
                     List<AirLeg> flights = Luisa.findMeFlights()
@@ -57,7 +60,8 @@ public class FlightService {
                             .returningAt( arrivalDateTime )
                             .type(FlightType.ROUNDTRIP)
                             .limitTo(2)
-                            .forPassegers(Passenger.adults(2))
+                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
+                            .forPassegers(Passenger.children(numberOfPassengers[1]))
                             .execute();
 
                     List<AirLeg> departLegs = this.getDepartAirLegs(flights);
@@ -71,7 +75,8 @@ public class FlightService {
                             .to( arrivalAirportCode )
                             .departingAt( departDateTime )
                             .returningAt( arrivalDateTime )
-                            .forPassegers(Passenger.adults(2))
+                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
+                            .forPassegers(Passenger.children(numberOfPassengers[1]))
                             .limitTo(2)
                             .execute();
 
@@ -98,6 +103,21 @@ public class FlightService {
 
     public static boolean checkIata(String iata) {
         return (iata.length() == 3) || (iata.length() == 2);
+    }
+
+    public static Integer[] getPassengersFromString(String passengerStringList) {
+
+        //TODO: Quitar los comments
+//        final Pattern pattern = Pattern.compile("[a-z]:\\d,[a-z]:\\d");
+//        if (!pattern.matcher(passengerStringList.toLowerCase()).matches()) {
+//            throw new IllegalArgumentException("Invalid String");
+//        }
+
+        String[] passengerType = passengerStringList.split(",");
+        String[] adults = passengerType[1].split(":");
+        String[] children = passengerType[0].split(":");
+        Integer[] numberOfPassengers = {Integer.parseInt(adults[1]),Integer.parseInt(children[1])};
+        return  numberOfPassengers;
     }
 
     public static LocalDateTime parseDateTime(String date, String time) {
