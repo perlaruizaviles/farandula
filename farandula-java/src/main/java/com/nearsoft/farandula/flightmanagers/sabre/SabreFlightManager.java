@@ -15,7 +15,6 @@ import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
 import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
-import sun.tools.java.ClassType;
 
 import java.io.*;
 import java.time.*;
