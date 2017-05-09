@@ -5,11 +5,8 @@ import {Router, Route, browserHistory, IndexRedirect} from 'react-router';
 import Main from './components/Main';
 import Welcome from './components/Welcome';
 import ComponentShowcase from './components/ComponentShowcase';
-import AirportFieldDemo from './components/AirportField.demo';
+
 import Results from './components/ResultsPage';
-import FlightOptionsMenuDemo from './containers/FlightOptionsMenu';
-import TripMenuDemo from './containers/TripMenu';
-import DateFlightPickerDemo from './containers/DateFlightPicker';
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);
@@ -19,11 +16,6 @@ const makeRouter = store => {
         <IndexRedirect to="/home"/>
         <Route path="/home" component={Welcome}/>
         <Route path="/components" component={ComponentShowcase}>
-          <IndexRedirect to="/components/airport-field"/>
-          <Route path="/components/airport-field" component={AirportFieldDemo}/>
-          <Route path="/components/flight-options" component={FlightOptionsMenuDemo}/>
-          <Route path="/components/trip-menu" component={TripMenuDemo}/>
-          <Route path="/components/date-flight-picker" component={DateFlightPickerDemo}/>
         </Route>
         <IndexRedirect to="/results"/>
         <Route path="/results" component={Results}/>

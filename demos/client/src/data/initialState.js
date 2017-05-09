@@ -1,19 +1,34 @@
-import defaultFlightSettings from './defaultFlightSettings';
-import flightOptions from './flightOptions';
-import moment from 'moment';
+import {Map} from 'immutable';
 
 const initialState = {
-  flightSettings: defaultFlightSettings,
-  flightOptions: flightOptions,
-  activeTripItem: 'roundTrip',
-  startDate: moment(),
-  endDate: moment().add(1, "day"),
-  minDate: moment(),
-  maxDate: moment().add(1, "year"),
-  isLoading: false,
-  travelFrom: "",
-  travelTo: "",
-  results: []
+  travelConfig: Map({
+    type: 'round-trip',
+    cabin: 'economy',
+    travelers: Map({
+      'adults': 1,
+      'seniors': 0,
+      'youth': 0,
+      'child': 0,
+      'seat-infant': 0,
+      'lap-infant': 0
+    }),
+    locations: Map({
+      from: Map({
+        iata: undefined,
+        city: undefined,
+        name: undefined
+      }),
+      to: Map({
+        iata: undefined,
+        city: undefined,
+        name: undefined
+      })
+    }),
+    dates: Map({
+      depart: undefined,
+      return: undefined
+    })
+  })
 };
 
 export default initialState;
