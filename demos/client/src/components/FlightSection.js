@@ -1,9 +1,8 @@
 import React from 'react'
-import { Label, Divider, Grid, Icon } from 'semantic-ui-react'
+import { Divider, Grid, Icon } from 'semantic-ui-react'
 
 const FlightSection = ({firstHour, secondHour, firstCity, secondCity}) => (
     <div>
-        <Label pointing='right'>
             <Grid>
                 <Grid.Row columns={5}>
                     <Grid.Column>
@@ -23,10 +22,9 @@ const FlightSection = ({firstHour, secondHour, firstCity, secondCity}) => (
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
-        </Label>
         
         <Divider horizontal>Return</Divider>
-        <Label pointing='right'><Grid>
+        <Grid>
             <Grid.Row columns={5}>
                 <Grid.Column>
                     {secondHour}
@@ -44,7 +42,7 @@ const FlightSection = ({firstHour, secondHour, firstCity, secondCity}) => (
                     {firstCity}
                 </Grid.Column>
             </Grid.Row>
-        </Grid></Label>
+        </Grid>
     </div>
 )
 
