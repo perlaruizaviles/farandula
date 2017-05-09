@@ -5,12 +5,14 @@ import com.farandula.Response.Response;
 import com.farandula.Service.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by enrique on 1/05/17.
  */
+@CrossOrigin(origins = "*")
 @RestController
 public class AirportController {
 
