@@ -1,0 +1,1 @@
+export const AIRPORTS_URL = 'https://farandula-java.herokuapp.com/api/airports';
