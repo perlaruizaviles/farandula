@@ -23,6 +23,8 @@ public class CabinClassParser {
                 return CabinClassType.FIRST;
             case "economy/coach":
                 return CabinClassType.ECONOMYCOACH;
+            case "premium_economy":
+                return CabinClassType.PREMIUM_ECONOMY;
             default:
                 return CabinClassType.OTHER;
         }

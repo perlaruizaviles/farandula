@@ -54,6 +54,7 @@ class AmadeusManagerTest {
             AirLeg airLeg = flights.get(0);
             assertEquals("DFW",   airLeg.getDepartureAirportCode());
             assertEquals("CDG",   airLeg.getArrivalAirportCode() );
+            assertEquals( CabinClassType.ECONOMY , airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
         });
 
     }
@@ -100,6 +101,7 @@ class AmadeusManagerTest {
             AirLeg airLeg = flights.get(0);
             assertEquals("DFW",   airLeg.getDepartureAirportCode());
             assertEquals("CDG",   airLeg.getArrivalAirportCode() );
+            assertEquals( CabinClassType.ECONOMY , airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
         });
     }
 

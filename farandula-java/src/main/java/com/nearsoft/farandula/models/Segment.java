@@ -72,7 +72,6 @@ public class Segment {
         return seatsAvailable;
     }
 
-    //TODO the travel class should be a collection of cabins of a given enum type
     public void setSeatsAvailable(List<Seat> seatsAvailable) {
         this.seatsAvailable = seatsAvailable;
     }

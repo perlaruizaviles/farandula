@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
@@ -19,8 +20,11 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
 
 /**
  * Created by pruiz on 4/20/17.
@@ -184,7 +188,17 @@ public class AmadeusFlightManager implements FlightManager {
 
         seg.setAirplaneData((String) segmentMap.get("aircraft"));
 
-        //seg.setSeatsAvailable((String) bookingInfoData.get("travel_class"));
+        CabinClassType classTravel =  getCabinClassType( (String) bookingInfoData.get("travel_class") );
+        int numberOfSeats = (int) bookingInfoData.get("seats_remaining");
+        List<Seat> seats = new ArrayList<>();
+        for ( int i = 0 ; i < numberOfSeats ; i++ ){
+            Seat seat = new Seat();
+            //amadeus does not indicate the seat place
+            seat.setPlace("");
+            seat.setClassCabin( classTravel );
+            seats.add( seat );
+        }
+        seg.setSeatsAvailable(seats);
 
         //departure stuff
         seg.setDepartureAirportCode((String) departureAirportData.get("airport"));
