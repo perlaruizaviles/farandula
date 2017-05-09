@@ -8,6 +8,7 @@ import com.nearsoft.farandula.flightmanagers.travelport.TravelportFlightManager;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Passenger;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ import java.util.stream.IntStream;
 /**
  * Created by antoniohernandez on 5/5/17.
  */
+@Component
 public class FlightService {
     public FlightResponse getResponseFromSearch(String departureAirportCode,
                                                 String departingDate,

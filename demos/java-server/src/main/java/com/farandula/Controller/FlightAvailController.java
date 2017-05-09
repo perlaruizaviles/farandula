@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class FlightAvailController {
 
     @Autowired
-    FlightRepository flightRepository;
+    FlightService flightService;
 
     @RequestMapping("/api/availableFlights")
     public FlightResponse getAvailableFlights(@Param("departureAirportCode") String departureAirportCode,
@@ -30,8 +30,6 @@ public class FlightAvailController {
                                               @Param("arrivalTime") String arrivalTime,
                                               @Param("type") String type,
                                               @Param("passenger") String passenger){
-
-        FlightService flightService = new FlightService();
 
         return flightService.getResponseFromSearch( departureAirportCode,
                                                     departingDate,
