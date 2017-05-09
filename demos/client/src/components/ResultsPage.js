@@ -1,8 +1,7 @@
 /**
  * Created by antoniohernandez on 4/28/17.
  */
-import React, { Component } from 'react'
-import { Segment } from 'semantic-ui-react'
+import React from 'react'
 import Cell from './results/FlightCell';
 
 export default () => (

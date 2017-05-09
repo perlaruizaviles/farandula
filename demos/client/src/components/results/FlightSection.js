@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import { Label, Button, Divider, Grid, Icon } from 'semantic-ui-react'
+import { Label, Divider, Grid, Icon } from 'semantic-ui-react'
 
 const FlightInfo = () => (
     <div>
