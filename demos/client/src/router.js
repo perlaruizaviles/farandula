@@ -7,6 +7,8 @@ import Welcome from './components/Welcome';
 import ComponentShowcase from './components/ComponentShowcase';
 
 import Results from './components/ResultsPage';
+import FlightResults from './components/FlightResults';
+
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);
@@ -19,6 +21,7 @@ const makeRouter = store => {
         </Route>
         <IndexRedirect to="/results"/>
         <Route path="/results" component={Results}/>
+        <Route path="/flightresults" component={FlightResults}/>
       </Route>
     </Router>
   )
