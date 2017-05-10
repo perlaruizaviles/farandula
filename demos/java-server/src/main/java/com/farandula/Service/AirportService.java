@@ -1,9 +1,7 @@
 package com.farandula.Service;
 
-import com.farandula.Airport;
-import com.farandula.Repositories.AirportRepository;
+import com.farandula.models.Airport;
 import com.farandula.Response.Response;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

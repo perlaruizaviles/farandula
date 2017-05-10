@@ -1,6 +1,6 @@
 package com.farandula.Response;
 
-import com.farandula.Airport;
+import com.farandula.models.Airport;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;

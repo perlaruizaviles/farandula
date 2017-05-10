@@ -1,6 +1,6 @@
 package com.farandula.Repositories;
 
-import com.farandula.Airport;
+import com.farandula.models.Airport;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -23,5 +23,7 @@ public interface AirportRepository extends MongoRepository<Airport, String>{
                 @Param("name") String name,
                 @Param("iata") String iata
             );
+
+    List<Airport> findByIataLikeIgnoreCase(@Param("iata") String iata);
 
 }

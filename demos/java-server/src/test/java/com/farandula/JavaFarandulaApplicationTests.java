@@ -1,7 +1,7 @@
 package com.farandula;
 
 import com.farandula.Repositories.AirportRepository;
-import com.fasterxml.jackson.databind.jsontype.impl.AsExistingPropertyTypeSerializer;
+import com.farandula.models.Airport;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

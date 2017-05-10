@@ -1,7 +1,6 @@
 package com.farandula.Repositories;
 
 
-import com.farandula.Flight;
 import com.nearsoft.farandula.models.AirLeg;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;

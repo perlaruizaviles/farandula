@@ -1,10 +1,9 @@
 package com.farandula.Response;
 
-import com.farandula.Flight;
-import com.nearsoft.farandula.models.AirLeg;
-import org.springframework.data.annotation.Id;
 
-import javax.validation.constraints.Null;
+
+import com.farandula.models.Flight;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,35 +14,30 @@ public class FlightResponse {
 
     private Integer status;
 
-    List<AirLeg> departAirlegs;
-    List<AirLeg> returnAirlegs;
+
 
     private String message;
-    private List< List<AirLeg> > content = new ArrayList<>();
+    private List< List<Flight> > content = new ArrayList<>();
 
     public Integer getStatus(){return this.status;}
     public String getMessage(){return this.message;}
-    public List<List<AirLeg>> getContent(){return this.content;}
+    public List<List<Flight>> getContent(){return this.content;}
 
     public void setStatus(Integer status){this.status = status;}
     public void setMessage(String message){this.message = message;}
 
-    public void setContent(List<AirLeg> depart, List<AirLeg> arrival){
+    public void setContent(List<Flight> depart, List<Flight> arrival){
         this.content.add(depart);
         this.content.add(arrival);
     }
 
-    public void setContent(List<AirLeg> legs){
+    public void setContent(List<Flight> legs){
         this.content.add(legs);
     }
 
-    public void setDepartAirlegs(List<AirLeg> departAirlegs){this.departAirlegs = departAirlegs;}
-    public void setReturnAirlegs(List<AirLeg> returnAirlegs){this.returnAirlegs = returnAirlegs;}
 
-    public List<AirLeg> getDepartAirlegs(){return this.departAirlegs;}
-    public List<AirLeg> getReturnAirlegs(){return this.returnAirlegs;}
 
-    public static FlightResponse getResponseInstance(Integer status, String message, List<AirLeg> departLegs, List<AirLeg> returnLegs){
+    public static FlightResponse getResponseInstance(Integer status, String message, List<Flight> departLegs, List<Flight> returnLegs){
         FlightResponse res = new FlightResponse();
 
         res.setStatus(status);
@@ -54,7 +48,7 @@ public class FlightResponse {
         return res;
     }
 
-    public static FlightResponse getResponseInstance(Integer status, String message, List<AirLeg> departLegs){
+    public static FlightResponse getResponseInstance(Integer status, String message, List<Flight> departLegs){
         FlightResponse res = new FlightResponse();
 
         res.setStatus(status);
