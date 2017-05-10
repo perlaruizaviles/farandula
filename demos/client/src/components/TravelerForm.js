@@ -49,8 +49,9 @@ const genders = [
     {text:'Female', value:'2'}
 ];
 
-const TravelerForm = () => (
+const TravelerForm = ({travelerNum}) => (
     <div>
+         <h4>Traveler {travelerNum}</h4>
         <label>Enter traveler details (must be an adult)</label>
         <Form>
             <Form.Group widths='equal'>
@@ -61,7 +62,7 @@ const TravelerForm = () => (
                 <Form.Input placeholder='Email address*'/>
                 <Form.Select placeholder='lada*' options={ladas}/>
             </Form.Group>
-            <Form.Input placeholder='Phone number*'/>
+            <Form.Input placeholder='Phone number*' width={5}/>
             <Divider />
             <Form.Group widths='equal'>
                 <Form.Select placeholder='Month*' options={months}/>
