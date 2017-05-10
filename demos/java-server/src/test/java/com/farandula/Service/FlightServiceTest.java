@@ -25,6 +25,7 @@ import static org.junit.Assert.*;
 /**
  * Created by enrique on 8/05/17.
  */
+//@ContextConfiguration(classes = JavaFarandulaApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = JavaFarandulaApplication.class)
 public class FlightServiceTest {
