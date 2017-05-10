@@ -23,6 +23,9 @@ const travelOptions = Map({
     'one-way': List(['depart']),
     'multi-city': List(['depart-n'])
   }),
+  price: List(['999.99', '1999.99', '2999.99', '3999.99', '4999.99', '5999.99']),
+  hour: List(['7:46', '9:55']),
+  city: List(['CUU', 'MTY']),
   airports: []
 });
 
