@@ -22,6 +22,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
 
@@ -40,9 +42,12 @@ public class TravelportFlightManager implements FlightManager {
 
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
 
+    private static String url_api= "";
+
     static {
         Properties props = new Properties();
         try {
+            url_api = "https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService";
             props.load(TravelportFlightManager.class.getResourceAsStream("/config.properties"));
             apiKey = props.getProperty("travelport.apiUser");
             apiPassword = props.getProperty("travelport.apiPassword");
@@ -84,10 +89,28 @@ public class TravelportFlightManager implements FlightManager {
         // Send SOAP Message to SOAP Server
         SOAPMessage message = buildSOAPMessage(envelope);
 
-        String url_api = "https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService";
-        SOAPMessage soapResponse = sendRequest(message, url_api);
+        SOAPMessage soapResponse = sendRequest(message);
 
         return soapResponse;
+    }
+
+    public SOAPMessage buildRequestForPricing(Segment seg) throws SOAPException, IOException {
+
+        //create SOAP envelope
+        String envelope = buildEnvelopeStringFromSegment(seg);
+
+        // Send SOAP Message to SOAP Server
+        SOAPMessage message = buildSOAPMessage(envelope);
+
+        SOAPMessage soapResponse = sendRequest(message);
+
+        return soapResponse;
+    }
+
+    private String buildEnvelopeStringFromSegment(Segment seg) {
+
+        return TravelportXMLRequest.getRequest( seg , targetBranch );
+
     }
 
     public String buildEnvelopeStringFromSearch(SearchCommand search) {
@@ -105,14 +128,16 @@ public class TravelportFlightManager implements FlightManager {
 
     }
 
-    public SOAPMessage sendRequest(SOAPMessage message, String url_api) throws SOAPException {
+    public SOAPMessage sendRequest(SOAPMessage message ) throws SOAPException {
 
         MimeHeaders headers = message.getMimeHeaders();
         headers.addHeader("Authorization", "Basic " + getAuthEncoded());
         // Create SOAP Connection
         SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
         SOAPConnection soapConnection = soapConnectionFactory.createConnection();
-        return soapConnection.call(message, url_api);
+        SOAPMessage response = soapConnection.call(message, url_api);
+
+        return response;
     }
 
     public List<AirLeg> parseAvailResponse(SOAPMessage response, SearchCommand searchCommand) throws IOException, SOAPException, ParseException {
@@ -142,6 +167,8 @@ public class TravelportFlightManager implements FlightManager {
 
             Segment seg = new Segment();
             seg.setAirlineIconPath("");
+            seg.setKey( nodeAttributes.getNamedItem("Key").getNodeValue().toString() );
+            seg.setGroup( nodeAttributes.getNamedItem("Group").getNodeValue().toString() );
             seg.setMarketingAirlineCode(nodeAttributes.getNamedItem("Carrier").getNodeValue().toString());
             seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
             seg.setMarketingFlightNumber(nodeAttributes.getNamedItem("FlightNumber").getNodeValue().toString());
@@ -156,7 +183,7 @@ public class TravelportFlightManager implements FlightManager {
             seg.setDepartureTerminal(resultFlightsDetails.get(i).getOriginalTerminal());
             LocalDateTime departingDateTime = LocalDateTime.parse(
                     nodeAttributes.getNamedItem("DepartureTime").getNodeValue().toString(), formatter);
-            seg.setArrivalDate(departingDateTime);
+            seg.setDepartureDate(departingDateTime);
 
             //arrival data
             seg.setArrivalAirportCode(nodeAttributes.getNamedItem("Destination").getNodeValue().toString());
@@ -166,6 +193,10 @@ public class TravelportFlightManager implements FlightManager {
             seg.setArrivalDate(arrivalDateTime);
 
             seg.setDuration(resultFlightsDetails.get(i).getFlightTime());
+
+            SOAPMessage pricingRespose = buildRequestForPricing(seg);
+
+            parsePricingResponse( pricingRespose, seg );
 
             connectedSegments.add( seg );
 
@@ -190,6 +221,25 @@ public class TravelportFlightManager implements FlightManager {
 
         return airLegs;
 
+    }
+
+    private void parsePricingResponse(SOAPMessage response, Segment seg) throws SOAPException {
+
+        SOAPEnvelope env = response.getSOAPPart().getEnvelope();
+        SOAPBody body = env.getBody();
+
+        NodeList pricessList = body.getElementsByTagName("air:AirPricingSolution");
+        Node node =  pricessList.item(0);
+        if ( node !=null ) {
+            String base = XmlUtils.getAttrByName(node, "BasePrice");
+            String taxes = XmlUtils.getAttrByName(node, "Taxes");
+            String totalPrice = XmlUtils.getAttrByName(node, "TotalPrice");
+            seg.setBasePrice(base);
+            seg.setTaxesPrice(taxes);
+            seg.setTotalPrice(totalPrice);
+        }else{
+            Logger.getGlobal().log(Level.WARNING , "The segment: " + seg.toString() + " does not have prices." );
+        }
     }
 
 

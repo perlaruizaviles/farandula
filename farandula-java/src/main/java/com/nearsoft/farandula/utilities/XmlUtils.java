@@ -48,6 +48,7 @@ public class XmlUtils {
     }
 
     public static String getAttrByName(Node node, String attrName) {
+
         if (node.hasAttributes()){
             NamedNodeMap attr = node.getAttributes();
             Node attrNode = attr.getNamedItem(attrName);

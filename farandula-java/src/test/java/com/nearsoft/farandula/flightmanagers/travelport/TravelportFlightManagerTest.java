@@ -60,7 +60,7 @@ class TravelportFlightManagerTest {
         TravelportFlightManager supplierStub = new TravelportFlightManager() {
 
             @Override
-            public SOAPMessage sendRequest(SOAPMessage message, String url_api) throws SOAPException {
+            public SOAPMessage sendRequest(SOAPMessage message) throws SOAPException {
                 InputStream inputStream = this.getClass().getResourceAsStream("/travelport/response/airResponseOneWay.xml");
                 SOAPMessage response = null;
                 try {

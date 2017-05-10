@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Segment {
 
+    private String key;
     String airlineIconPath;
     String operatingAirlineCode;
     String operatingAirlineName;
@@ -27,6 +28,11 @@ public class Segment {
     String airplaneData;
     long duration;
     List<Seat> seatsAvailable;
+    private String basePrice;
+    private String taxesPrice;
+    private String totalPrice;
+    private String group;
+
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -161,5 +167,45 @@ public class Segment {
                 "departureAirportCode='" + departureAirportCode + '\'' +
                 ", arrivalAirportCode='" + arrivalAirportCode + '\'' +
                 '}';
+    }
+
+    public void setBasePrice(String basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public String getBasePrice() {
+        return basePrice;
+    }
+
+    public void setTaxesPrice(String taxesPrice) {
+        this.taxesPrice = taxesPrice;
+    }
+
+    public String getTaxesPrice() {
+        return taxesPrice;
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }
