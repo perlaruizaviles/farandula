@@ -5,7 +5,7 @@ import {Router, Route, browserHistory, IndexRedirect} from 'react-router';
 import Main from './components/Main';
 import Welcome from './components/Welcome';
 import ComponentShowcase from './components/ComponentShowcase';
-
+import Summary from './components/Summary';
 import Results from './components/ResultsPage';
 
 const makeRouter = store => {
@@ -19,6 +19,7 @@ const makeRouter = store => {
         </Route>
         <IndexRedirect to="/results"/>
         <Route path="/results" component={Results}/>
+        <Route path="/summary" component={Summary}/>
       </Route>
     </Router>
   )
