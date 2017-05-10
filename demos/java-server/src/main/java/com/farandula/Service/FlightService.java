@@ -7,6 +7,7 @@ import com.farandula.models.Flight;
 import com.farandula.models.FlightSegment;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
+import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
 import com.nearsoft.farandula.flightmanagers.travelport.TravelportFlightManager;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.FlightType;
@@ -31,7 +32,7 @@ import java.util.stream.IntStream;
 public class FlightService {
 
     @Autowired
-    static AirportRepository airportRepository;
+    AirportRepository airportRepository;
 
     public FlightResponse getResponseFromSearch(String departureAirportCode,
                                                 String departingDate,
@@ -49,7 +50,7 @@ public class FlightService {
 
             Luisa.setSupplier(() -> {
                 try {
-                    return new TravelportFlightManager();
+                    return new AmadeusFlightManager();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -113,7 +114,7 @@ public class FlightService {
         return null;
     }
 
-    public static List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList){
+    public List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList){
         List<Flight> flights = new ArrayList<>();
         for (AirLeg airleg:airLegList) {
             Airport departureAirport = airportRepository.findByIataLikeIgnoreCase(airleg.getDepartureAirportCode()).get(0);
@@ -124,7 +125,7 @@ public class FlightService {
             for (Segment segment:airleg.getSegments()) {
                 Airport departureSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getDepartureAirportCode()).get(0);
                 Airport arrivalSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getArrivalAirportCode()).get(0);
-                LocalDateTime departureSegmentDate = segment.getDepartingDate();
+                LocalDateTime departureSegmentDate = segment.getDepartureDate();
                 LocalDateTime arrivalSegmentDate = segment.getArrivalDate();
                 long duration = segment.getDuration();
                 FlightSegment flightSegment = new FlightSegment(departureSegmentAirport, departureSegmentDate, arrivalSegmentAirport,

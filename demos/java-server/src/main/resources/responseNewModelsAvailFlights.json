@@ -1,0 +1,2578 @@
+{
+  "status": 200,
+  "message": "Response",
+  "content": [
+    [
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 17,
+          "minute": 10,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 9,
+          "minute": 35,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 17,
+              "minute": 10,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 9,
+              "minute": 35,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 565
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 13,
+          "minute": 30,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 7,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 30,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 39,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 129
+          },
+          {
+            "departureAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 17,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 7,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 505
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 16,
+          "minute": 5,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 10,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 5,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 13,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 128
+          },
+          {
+            "departureAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 20,
+              "minute": 20,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 10,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 510
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 16,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 11,
+          "minute": 15,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2792,
+              "name": "Minneapolis-St Paul International/Wold-Chamberlain Airport",
+              "city": "Minneapolis",
+              "country": "United States",
+              "iata": "MSP",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 1,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 156
+          },
+          {
+            "departureAirport": {
+              "id": 2792,
+              "name": "Minneapolis-St Paul International/Wold-Chamberlain Airport",
+              "city": "Minneapolis",
+              "country": "United States",
+              "iata": "MSP",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 11,
+              "minute": 15,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 505
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 12,
+          "minute": 55,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 7,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 12,
+              "minute": 55,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 3,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 128
+          },
+          {
+            "departureAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 17,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 7,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 505
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 11,
+          "minute": 35,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 15,
+          "minute": 5,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 11,
+              "minute": 35,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 15,
+              "minute": 5,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 630
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 10,
+          "minute": 30,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 16,
+          "minute": 20,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 10,
+              "minute": 30,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2792,
+              "name": "Minneapolis-St Paul International/Wold-Chamberlain Airport",
+              "city": "Minneapolis",
+              "country": "United States",
+              "iata": "MSP",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 12,
+              "minute": 31,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 541
+          },
+          {
+            "departureAirport": {
+              "id": 2792,
+              "name": "Minneapolis-St Paul International/Wold-Chamberlain Airport",
+              "city": "Minneapolis",
+              "country": "United States",
+              "iata": "MSP",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 20,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 155
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 7,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 13,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 7,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 400,
+              "name": "London Heathrow Airport",
+              "city": "London",
+              "country": "United Kingdom",
+              "iata": "LHR",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 7,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 80
+          },
+          {
+            "departureAirport": {
+              "id": 400,
+              "name": "London Heathrow Airport",
+              "city": "London",
+              "country": "United Kingdom",
+              "iata": "LHR",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 9,
+              "minute": 15,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 610
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 13,
+          "minute": 10,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 19,
+          "minute": 21,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 10,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2439,
+              "name": "Cincinnati Northern Kentucky International Airport",
+              "city": "Cincinnati",
+              "country": "United States",
+              "iata": "CVG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 17,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 547
+          },
+          {
+            "departureAirport": {
+              "id": 2439,
+              "name": "Cincinnati Northern Kentucky International Airport",
+              "city": "Cincinnati",
+              "country": "United States",
+              "iata": "CVG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 17,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 21,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 156
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 17,
+          "minute": 10,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 9,
+          "minute": 35,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 17,
+              "minute": 10,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 9,
+              "minute": 35,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 565
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 13,
+          "minute": 30,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 7,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 30,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 39,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 129
+          },
+          {
+            "departureAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 17,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 7,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 505
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 16,
+          "minute": 5,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 10,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 5,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 13,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 128
+          },
+          {
+            "departureAirport": {
+              "id": 2623,
+              "name": "Hartsfield Jackson Atlanta International Airport",
+              "city": "Atlanta",
+              "country": "United States",
+              "iata": "ATL",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 20,
+              "minute": 20,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 10,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 510
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 131,
+          "dayOfWeek": "THURSDAY",
+          "month": "MAY",
+          "dayOfMonth": 11,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 16,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 11,
+          "minute": 15,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2792,
+              "name": "Minneapolis-St Paul International/Wold-Chamberlain Airport",
+              "city": "Minneapolis",
+              "country": "United States",
+              "iata": "MSP",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 1,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 156
+          },
+          {
+            "departureAirport": {
+              "id": 2792,
+              "name": "Minneapolis-St Paul International/Wold-Chamberlain Airport",
+              "city": "Minneapolis",
+              "country": "United States",
+              "iata": "MSP",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 11,
+              "minute": 15,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 505
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 11,
+          "minute": 35,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 15,
+          "minute": 5,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 11,
+              "minute": 35,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 15,
+              "minute": 5,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 630
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 10,
+          "minute": 30,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 15,
+          "minute": 45,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 10,
+              "minute": 30,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 400,
+              "name": "London Heathrow Airport",
+              "city": "London",
+              "country": "United Kingdom",
+              "iata": "LHR",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 10,
+              "minute": 55,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 85
+          },
+          {
+            "departureAirport": {
+              "id": 400,
+              "name": "London Heathrow Airport",
+              "city": "London",
+              "country": "United Kingdom",
+              "iata": "LHR",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 11,
+              "minute": 55,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 15,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 590
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 7,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 13,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 7,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 400,
+              "name": "London Heathrow Airport",
+              "city": "London",
+              "country": "United Kingdom",
+              "iata": "LHR",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 7,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 80
+          },
+          {
+            "departureAirport": {
+              "id": 400,
+              "name": "London Heathrow Airport",
+              "city": "London",
+              "country": "United Kingdom",
+              "iata": "LHR",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 9,
+              "minute": 15,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 610
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 13,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 19,
+          "minute": 35,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 400,
+              "name": "London Heathrow Airport",
+              "city": "London",
+              "country": "United Kingdom",
+              "iata": "LHR",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 80
+          },
+          {
+            "departureAirport": {
+              "id": 400,
+              "name": "London Heathrow Airport",
+              "city": "London",
+              "country": "United Kingdom",
+              "iata": "LHR",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 15,
+              "minute": 15,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 35,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 620
+          }
+        ]
+      },
+      {
+        "departureAirport": {
+          "id": 997,
+          "name": "Charles de Gaulle International Airport",
+          "city": "Paris",
+          "country": "France",
+          "iata": "CDG",
+          "type": "airport"
+        },
+        "departingDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 13,
+          "minute": 10,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "arrivalAirport": {
+          "id": 2611,
+          "name": "Dallas Fort Worth International Airport",
+          "city": "Dallas-Fort Worth",
+          "country": "United States",
+          "iata": "DFW",
+          "type": "airport"
+        },
+        "arrivalDate": {
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "hour": 19,
+          "minute": 21,
+          "second": 0,
+          "nano": 0,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "departureAirport": {
+              "id": 997,
+              "name": "Charles de Gaulle International Airport",
+              "city": "Paris",
+              "country": "France",
+              "iata": "CDG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 13,
+              "minute": 10,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2439,
+              "name": "Cincinnati Northern Kentucky International Airport",
+              "city": "Cincinnati",
+              "country": "United States",
+              "iata": "CVG",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 16,
+              "minute": 17,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 547
+          },
+          {
+            "departureAirport": {
+              "id": 2439,
+              "name": "Cincinnati Northern Kentucky International Airport",
+              "city": "Cincinnati",
+              "country": "United States",
+              "iata": "CVG",
+              "type": "airport"
+            },
+            "departureDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 17,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "arrivalAirport": {
+              "id": 2611,
+              "name": "Dallas Fort Worth International Airport",
+              "city": "Dallas-Fort Worth",
+              "country": "United States",
+              "iata": "DFW",
+              "type": "airport"
+            },
+            "arrivalDate": {
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "hour": 19,
+              "minute": 21,
+              "second": 0,
+              "nano": 0,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "duration": 156
+          }
+        ]
+      }
+    ]
+  ]
+}

@@ -16,16 +16,16 @@ public class Flight {
 
 
     private Airport departureAirport;
-    private LocalDateTime departingDate;
+    private LocalDateTime departureDate;
     private Airport arrivalAirport;
     private LocalDateTime arrivalDate;
     private List<FlightSegment> segments;
 
 
-    public Flight( Airport departureAirport, LocalDateTime departingDate, Airport arrivalAirport, LocalDateTime arrivalDate){
+    public Flight( Airport departureAirport, LocalDateTime departureDate, Airport arrivalAirport, LocalDateTime arrivalDate){
 
         this.setDepartureAirport(departureAirport);
-        this.setDepartingDate(departingDate);
+        this.setDepartingDate(departureDate);
         this.setArrivalAirport(arrivalAirport);
         this.setArrivalDate(arrivalDate);
 
@@ -53,11 +53,11 @@ public class Flight {
     }
 
     public LocalDateTime getDepartingDate() {
-        return departingDate;
+        return departureDate;
     }
 
     public void setDepartingDate(LocalDateTime departingDate) {
-        this.departingDate = departingDate;
+        this.departureDate = departingDate;
     }
 
     public Airport getArrivalAirport() {
