@@ -12,9 +12,14 @@ const Main = ({router: {push}, location: {pathname},
                  onClick={() => push('/components')}>
         Components
       </Menu.Item>
+
       <Menu.Item active={pathname==='/flightresults'}
                  onClick={() => push('/flightresults')}>
         Flight Results
+      </Menu.Item>
+      <Menu.Item active={pathname==='/summary'}
+                 onClick={() => push('/summary')}>
+        Summary
       </Menu.Item>
     </Menu>
     <Segment attached>
