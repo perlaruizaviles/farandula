@@ -12,11 +12,13 @@ const SummaryCard = () => (
             </Card.Meta>
         </Card.Content>
         <Card.Content>
-            Depart Wed 5/17:
-            HMO > NRT 5:39p-6:20a
-            Flight 713 > Flight 58
-
-            Return Fri 5/26: NRT > HMO 2:25p – 5:04p Flight 57 > Flight 706
+            Depart Wed 5/17:<br/>
+            HMO > NRT 5:39p-6:20a<br/>
+            Flight 713 > Flight 58<br/>
+            <br/>
+            Return Fri 5/26:<br/>
+            NRT > HMO 2:25p – 5:04p<br/>
+            Flight 57 > Flight 706
         </Card.Content>
         <Card.Content>
             <Card.Header>
