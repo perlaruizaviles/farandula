@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = JavaFarandulaApplication.class)
+@SpringBootTest
 public class JavaFarandulaApplicationTests {
 
 	@Autowired

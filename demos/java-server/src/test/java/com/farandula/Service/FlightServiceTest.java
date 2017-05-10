@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
  */
 //@ContextConfiguration(classes = JavaFarandulaApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = JavaFarandulaApplication.class)
+@SpringBootTest
 public class FlightServiceTest {
 
     @Autowired
