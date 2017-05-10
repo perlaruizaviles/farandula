@@ -49,10 +49,9 @@ const genders = [
     {text:'Female', value:'2'}
 ];
 
-const TravelerForm = ({travelerNum}) => (
+const TravelerForm = () => (
     <div>
-         <h4>Traveler {travelerNum}</h4>
-        <label>Enter traveler details (must be an adult)</label>
+         <strong>Traveler</strong> - Adult
         <Form>
             <Form.Group widths='equal'>
                 <Form.Input placeholder='First Name*'/>
