@@ -55,20 +55,22 @@ const TravelerForm = () => (
         <Form>
             <Form.Group widths='equal'>
                 <Form.Input placeholder='First Name*'/>
-                <Form.Input placeholder='Last Name*'/>
+                <Form.Input placeholder='Middle Name*'/>
             </Form.Group>
+            <Form.Input placeholder='Last Name*' width={8}/>
             <Form.Group widths='equal'>
                 <Form.Input placeholder='Email address*'/>
                 <Form.Select placeholder='lada*' options={ladas}/>
+                <Form.Input placeholder='Phone number*'/>
             </Form.Group>
-            <Form.Input placeholder='Phone number*' width={5}/>
+            
             <Divider />
             <Form.Group widths='equal'>
-                <Form.Select placeholder='Month*' options={months}/>
+                <Form.Select placeholder='Month*' style={{marginRight:20}} options={months}/>
                 <Form.Select placeholder='Day*' options={days}/>
                 <Form.Select placeholder='Year*' options={years}/>
-                <Form.Select placeholder='Gender*' options={genders}/>
             </Form.Group>
+            <Form.Select placeholder='Gender*' options={genders} width={2}/>
         </Form>
     </div>
 )

@@ -1,12 +1,12 @@
 import React from 'react';
-import {Container, Header, Divider} from 'semantic-ui-react';
+import {Container, Header, Divider, Icon} from 'semantic-ui-react';
 
 const SummaryDescription = () => (
     <Container text>
         <Header as='h2'>You are flying Aeromexico</Header>
         <Divider/>
         <p>
-            <strong>Hermosillo, SO, Mexico (HMO) to Tokyo, Japan (NRT)</strong><br/>
+            <strong>Hermosillo, SO, Mexico (HMO) to Tokyo, Japan (NRT)</strong><br/><span style={{float:'right'}}><Icon name='plane' color='orange' size='huge' /></span>
             Aeromexico, round-trip, economy, 2 adults
         </p>
         <br/>
