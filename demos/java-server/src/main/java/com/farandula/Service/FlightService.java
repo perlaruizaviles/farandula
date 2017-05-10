@@ -1,23 +1,27 @@
 package com.farandula.Service;
 
-import com.farandula.Airport;
+import com.farandula.Repositories.AirportRepository;
 import com.farandula.Response.FlightResponse;
+import com.farandula.models.Airport;
+import com.farandula.models.Flight;
+import com.farandula.models.FlightSegment;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
+import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
 import com.nearsoft.farandula.flightmanagers.travelport.TravelportFlightManager;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Passenger;
+import com.nearsoft.farandula.models.Segment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,6 +30,10 @@ import java.util.stream.IntStream;
  */
 @Component
 public class FlightService {
+
+    @Autowired
+    AirportRepository airportRepository;
+
     public FlightResponse getResponseFromSearch(String departureAirportCode,
                                                 String departingDate,
                                                 String departingTime,
@@ -42,7 +50,7 @@ public class FlightService {
 
             Luisa.setSupplier(() -> {
                 try {
-                    return new TravelportFlightManager();
+                    return new AmadeusFlightManager();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -64,7 +72,7 @@ public class FlightService {
                             .limitTo(2)
                             .execute();
 
-                    return FlightResponse.getResponseInstance(200, "Response", flights);
+                    return FlightResponse.getResponseInstance(200, "Response", this.getFlightsFromAirlegList(flights));
 
 
                 } else{
@@ -82,8 +90,9 @@ public class FlightService {
 
                     List<AirLeg> departLegs = this.getDepartAirLegs(flights);
                     List<AirLeg> returnLegs = this.getReturnAirLegs(flights);
-
-                    return FlightResponse.getResponseInstance(200, "Response", departLegs, returnLegs);
+                    List<Flight> departFlights =  this.getFlightsFromAirlegList(departLegs);
+                    List<Flight> returnFlights =  this.getFlightsFromAirlegList(returnLegs);
+                    return FlightResponse.getResponseInstance(200, "Response", departFlights, returnFlights);
 
                 }
 
@@ -104,6 +113,43 @@ public class FlightService {
 
         return null;
     }
+
+    public List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList){
+        List<Flight> flights = new ArrayList<>();
+        for (AirLeg airleg:airLegList) {
+
+            Airport departureAirport = airportRepository.findByIataLikeIgnoreCase(airleg.getDepartureAirportCode()).get(0);
+            Airport arrivalAirport = airportRepository.findByIataLikeIgnoreCase(airleg.getArrivalAirportCode()).get(0);
+
+            LocalDateTime departureDate = airleg.getDepartingDate();
+            LocalDateTime arrivalDate = airleg.getArrivalDate();
+
+            List<FlightSegment> flightSegments =  new ArrayList<>();
+
+            for (Segment segment:airleg.getSegments()) {
+
+                Airport departureSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getDepartureAirportCode()).get(0);
+                Airport arrivalSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getArrivalAirportCode()).get(0);
+
+                LocalDateTime departureSegmentDate = segment.getDepartureDate();
+                LocalDateTime arrivalSegmentDate = segment.getArrivalDate();
+
+                long duration = segment.getDuration();
+
+                FlightSegment flightSegment = new FlightSegment(departureSegmentAirport, departureSegmentDate, arrivalSegmentAirport,
+                        arrivalSegmentDate, duration);
+
+                flightSegments.add(flightSegment);
+
+            }
+
+            Flight flight = new Flight(departureAirport, departureDate, arrivalAirport,
+                    arrivalDate, flightSegments);
+            flights.add(flight);
+        }
+        return  flights;
+    }
+
 
     public static boolean validIataLength(String iata) {
         return (iata.length() == 3) || (iata.length() == 2);

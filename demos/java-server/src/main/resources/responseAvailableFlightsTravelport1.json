@@ -1,0 +1,1436 @@
+{
+  "status": 200,
+  "departAirlegs": null,
+  "returnAirlegs": null,
+  "message": "Response",
+  "content": [
+    [
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 9,
+          "minute": 35,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AA",
+            "marketingFlightNumber": "48",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "D",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2A",
+            "arrivalDate": {
+              "hour": 9,
+              "minute": 35,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "789",
+            "duration": 565,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 7,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "DL",
+            "marketingFlightNumber": "2505",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "E",
+            "departingDate": null,
+            "arrivalAirportCode": "ATL",
+            "arrivalTerminal": "S",
+            "arrivalDate": {
+              "hour": 16,
+              "minute": 39,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "M88",
+            "duration": 129,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "DL",
+            "marketingFlightNumber": "8517",
+            "departureAirportCode": "ATL",
+            "departureTerminal": "I",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2E",
+            "arrivalDate": {
+              "hour": 7,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "77W",
+            "duration": 505,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 10,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "2479",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "E",
+            "departingDate": null,
+            "arrivalAirportCode": "ATL",
+            "arrivalTerminal": "S",
+            "arrivalDate": {
+              "hour": 19,
+              "minute": 13,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "M88",
+            "duration": 128,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "689",
+            "departureAirportCode": "ATL",
+            "departureTerminal": "I",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2E",
+            "arrivalDate": {
+              "hour": 10,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "77W",
+            "duration": 510,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 11,
+          "minute": 15,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "DL",
+            "marketingFlightNumber": "5681",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "E",
+            "departingDate": null,
+            "arrivalAirportCode": "MSP",
+            "arrivalTerminal": "1",
+            "arrivalDate": {
+              "hour": 19,
+              "minute": 1,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "E75",
+            "duration": 156,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "DL",
+            "marketingFlightNumber": "8500",
+            "departureAirportCode": "MSP",
+            "departureTerminal": "1",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2E",
+            "arrivalDate": {
+              "hour": 11,
+              "minute": 15,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "343",
+            "duration": 505,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 7,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AA",
+            "marketingFlightNumber": "1675",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "0",
+            "departingDate": null,
+            "arrivalAirportCode": "ATL",
+            "arrivalTerminal": "N",
+            "arrivalDate": {
+              "hour": 16,
+              "minute": 3,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "320",
+            "duration": 128,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "681",
+            "departureAirportCode": "ATL",
+            "departureTerminal": "I",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2E",
+            "arrivalDate": {
+              "hour": 7,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "77W",
+            "duration": 505,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 15,
+          "minute": 5,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AA",
+            "marketingFlightNumber": "49",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2A",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "D",
+            "arrivalDate": {
+              "hour": 15,
+              "minute": 5,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "789",
+            "duration": 630,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 16,
+          "minute": 20,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "9300",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2E",
+            "departingDate": null,
+            "arrivalAirportCode": "MSP",
+            "arrivalTerminal": "1",
+            "arrivalDate": {
+              "hour": 12,
+              "minute": 31,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "777",
+            "duration": 541,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AA",
+            "marketingFlightNumber": "1210",
+            "departureAirportCode": "MSP",
+            "departureTerminal": "1",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "0",
+            "arrivalDate": {
+              "hour": 16,
+              "minute": 20,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "738",
+            "duration": 155,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 13,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AA",
+            "marketingFlightNumber": "6557",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2A",
+            "departingDate": null,
+            "arrivalAirportCode": "LHR",
+            "arrivalTerminal": "5",
+            "arrivalDate": {
+              "hour": 7,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "319",
+            "duration": 80,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AA",
+            "marketingFlightNumber": "51",
+            "departureAirportCode": "LHR",
+            "departureTerminal": "3",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "D",
+            "arrivalDate": {
+              "hour": 13,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "77W",
+            "duration": 610,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 19,
+          "minute": 21,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "8700",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2E",
+            "departingDate": null,
+            "arrivalAirportCode": "CVG",
+            "arrivalTerminal": "3",
+            "arrivalDate": {
+              "hour": 16,
+              "minute": 17,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "76W",
+            "duration": 547,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "8916",
+            "departureAirportCode": "CVG",
+            "departureTerminal": "3",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "E",
+            "arrivalDate": {
+              "hour": 19,
+              "minute": 21,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "CR7",
+            "duration": 156,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 9,
+          "minute": 35,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "EY",
+            "marketingFlightNumber": "3014",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "D",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2A",
+            "arrivalDate": {
+              "hour": 9,
+              "minute": 35,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "789",
+            "duration": 565,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 7,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "2269",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "E",
+            "departingDate": null,
+            "arrivalAirportCode": "ATL",
+            "arrivalTerminal": "S",
+            "arrivalDate": {
+              "hour": 16,
+              "minute": 39,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "M88",
+            "duration": 129,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "681",
+            "departureAirportCode": "ATL",
+            "departureTerminal": "I",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2E",
+            "arrivalDate": {
+              "hour": 7,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "77W",
+            "duration": 505,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 10,
+          "minute": 50,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "DL",
+            "marketingFlightNumber": "1513",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "E",
+            "departingDate": null,
+            "arrivalAirportCode": "ATL",
+            "arrivalTerminal": "S",
+            "arrivalDate": {
+              "hour": 19,
+              "minute": 13,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "M88",
+            "duration": 128,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "DL",
+            "marketingFlightNumber": "8672",
+            "departureAirportCode": "ATL",
+            "departureTerminal": "I",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2E",
+            "arrivalDate": {
+              "hour": 10,
+              "minute": 50,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "77W",
+            "duration": 510,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "DFW",
+        "departingDate": null,
+        "arrivalAirportCode": "CDG",
+        "arrivalDate": {
+          "hour": 11,
+          "minute": 15,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 132,
+          "dayOfWeek": "FRIDAY",
+          "month": "MAY",
+          "dayOfMonth": 12,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "2655",
+            "departureAirportCode": "DFW",
+            "departureTerminal": "E",
+            "departingDate": null,
+            "arrivalAirportCode": "MSP",
+            "arrivalTerminal": "1",
+            "arrivalDate": {
+              "hour": 19,
+              "minute": 1,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 131,
+              "dayOfWeek": "THURSDAY",
+              "month": "MAY",
+              "dayOfMonth": 11,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "E75",
+            "duration": 156,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "673",
+            "departureAirportCode": "MSP",
+            "departureTerminal": "1",
+            "departingDate": null,
+            "arrivalAirportCode": "CDG",
+            "arrivalTerminal": "2E",
+            "arrivalDate": {
+              "hour": 11,
+              "minute": 15,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 132,
+              "dayOfWeek": "FRIDAY",
+              "month": "MAY",
+              "dayOfMonth": 12,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "343",
+            "duration": 505,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 15,
+          "minute": 5,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "EY",
+            "marketingFlightNumber": "3015",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2A",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "D",
+            "arrivalDate": {
+              "hour": 15,
+              "minute": 5,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "789",
+            "duration": 630,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 15,
+          "minute": 45,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "BA",
+            "marketingFlightNumber": "307",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2A",
+            "departingDate": null,
+            "arrivalAirportCode": "LHR",
+            "arrivalTerminal": "5",
+            "arrivalDate": {
+              "hour": 10,
+              "minute": 55,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "319",
+            "duration": 85,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "BA",
+            "marketingFlightNumber": "193",
+            "departureAirportCode": "LHR",
+            "departureTerminal": "5",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "D",
+            "arrivalDate": {
+              "hour": 15,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "744",
+            "duration": 590,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 13,
+          "minute": 25,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "BA",
+            "marketingFlightNumber": "303",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2A",
+            "departingDate": null,
+            "arrivalAirportCode": "LHR",
+            "arrivalTerminal": "5",
+            "arrivalDate": {
+              "hour": 7,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "319",
+            "duration": 80,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "BA",
+            "marketingFlightNumber": "1504",
+            "departureAirportCode": "LHR",
+            "departureTerminal": "3",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "D",
+            "arrivalDate": {
+              "hour": 13,
+              "minute": 25,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "77W",
+            "duration": 610,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 19,
+          "minute": 35,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AF",
+            "marketingFlightNumber": "1780",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2E",
+            "departingDate": null,
+            "arrivalAirportCode": "LHR",
+            "arrivalTerminal": "4",
+            "arrivalDate": {
+              "hour": 13,
+              "minute": 45,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "320",
+            "duration": 80,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "AA",
+            "marketingFlightNumber": "79",
+            "departureAirportCode": "LHR",
+            "departureTerminal": "3",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "D",
+            "arrivalDate": {
+              "hour": 19,
+              "minute": 35,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "77W",
+            "duration": 620,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      },
+      {
+        "id": "tempID",
+        "departureAirportCode": "CDG",
+        "departingDate": null,
+        "arrivalAirportCode": "DFW",
+        "arrivalDate": {
+          "hour": 19,
+          "minute": 21,
+          "second": 0,
+          "nano": 0,
+          "dayOfYear": 136,
+          "dayOfWeek": "TUESDAY",
+          "month": "MAY",
+          "dayOfMonth": 16,
+          "year": 2017,
+          "monthValue": 5,
+          "chronology": {
+            "calendarType": "iso8601",
+            "id": "ISO"
+          }
+        },
+        "segments": [
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "DL",
+            "marketingFlightNumber": "229",
+            "departureAirportCode": "CDG",
+            "departureTerminal": "2E",
+            "departingDate": null,
+            "arrivalAirportCode": "CVG",
+            "arrivalTerminal": "3",
+            "arrivalDate": {
+              "hour": 16,
+              "minute": 17,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "76W",
+            "duration": 547,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          },
+          {
+            "airlineIconPath": "",
+            "operatingAirline": null,
+            "marketingAirline": "DL",
+            "marketingFlightNumber": "6303",
+            "departureAirportCode": "CVG",
+            "departureTerminal": "3",
+            "departingDate": null,
+            "arrivalAirportCode": "DFW",
+            "arrivalTerminal": "E",
+            "arrivalDate": {
+              "hour": 19,
+              "minute": 21,
+              "second": 0,
+              "nano": 0,
+              "dayOfYear": 136,
+              "dayOfWeek": "TUESDAY",
+              "month": "MAY",
+              "dayOfMonth": 16,
+              "year": 2017,
+              "monthValue": 5,
+              "chronology": {
+                "calendarType": "iso8601",
+                "id": "ISO"
+              }
+            },
+            "airplaneData": "CR7",
+            "duration": 156,
+            "travelClass": "",
+            "operatingFlightNumber": null
+          }
+        ]
+      }
+    ]
+  ]
+}
