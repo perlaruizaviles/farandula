@@ -35,7 +35,7 @@ public class FlightService {
                                                 String type,
                                                 String passenger) {
 
-        if( FlightService.checkIata(departureAirportCode) && FlightService.checkIata(arrivalAirportCode) ){
+        if( FlightService.validIataLength(departureAirportCode) && FlightService.validIataLength(arrivalAirportCode) ){
 
             LocalDateTime departDateTime = FlightService.parseDateTime(departingDate, departingTime);
             LocalDateTime arrivalDateTime = FlightService.parseDateTime(arrivalDate, arrivalTime);
@@ -52,7 +52,23 @@ public class FlightService {
             try{
                 Integer[] numberOfPassengers = getPassengersFromString(passenger);
 
-                if( type.equals("round") ){
+                if( "oneWay".equals(type) ){
+
+                    List<AirLeg> flights = Luisa.findMeFlights()
+                            .from( departureAirportCode )
+                            .to( arrivalAirportCode )
+                            .departingAt( departDateTime )
+                            .returningAt( arrivalDateTime )
+                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
+                            .forPassegers(Passenger.children(numberOfPassengers[1]))
+                            .limitTo(2)
+                            .execute();
+
+                    return FlightResponse.getResponseInstance(200, "Response", flights);
+
+
+                } else{
+
                     List<AirLeg> flights = Luisa.findMeFlights()
                             .from( departureAirportCode )
                             .to( arrivalAirportCode )
@@ -68,19 +84,7 @@ public class FlightService {
                     List<AirLeg> returnLegs = this.getReturnAirLegs(flights);
 
                     return FlightResponse.getResponseInstance(200, "Response", departLegs, returnLegs);
-                }
-                else{
-                    List<AirLeg> flights = Luisa.findMeFlights()
-                            .from( departureAirportCode )
-                            .to( arrivalAirportCode )
-                            .departingAt( departDateTime )
-                            .returningAt( arrivalDateTime )
-                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
-                            .forPassegers(Passenger.children(numberOfPassengers[1]))
-                            .limitTo(2)
-                            .execute();
 
-                    return FlightResponse.getResponseInstance(200, "Response", flights);
                 }
 
                 //TODO Parse response for passengers
@@ -101,7 +105,7 @@ public class FlightService {
         return null;
     }
 
-    public static boolean checkIata(String iata) {
+    public static boolean validIataLength(String iata) {
         return (iata.length() == 3) || (iata.length() == 2);
     }
 

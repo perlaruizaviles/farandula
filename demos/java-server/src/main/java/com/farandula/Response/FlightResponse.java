@@ -12,7 +12,7 @@ import java.util.List;
  * Created by antoniohernandez on 5/6/17.
  */
 public class FlightResponse {
-    @Id
+
     private Integer status;
 
     List<AirLeg> departAirlegs;
