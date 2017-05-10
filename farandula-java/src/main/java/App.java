@@ -29,10 +29,10 @@ public class App {
                 .to( "CDG" )
                 .departingAt( departingDate )
                 .returningAt( departingDate.plusDays(1) )
-                .forPassegers(Passenger.adults(1))
+                .forPassegers(Passenger.adults(2))
                 .type(FlightType.ROUNDTRIP)
                 .sortBy(PRICE, MINSTOPS)
-                .limitTo(50).execute();
+                .limitTo(25).execute();
 
         System.out.println(flightList);
 
