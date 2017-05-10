@@ -2,9 +2,12 @@ import React from 'react';
 import TextMenu from './TextMenu';
 import DateSelector from './DateSelector';
 import FlightCell from './FlightCell';
+import AirportSearch from './AirportSearch';
+import ExchangeButton from './ExchangeButton';
 import travelOptions from '../data/travelOptions';
+import DropTravelMenu from './DropTravelMenu';
 
-const TravelSearch = ({config, typeChange, dateChange}) => (
+const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations}) => (
   <div>
     <TextMenu options={travelOptions.get('type')}
               selected={config.get('type')}
@@ -31,7 +34,26 @@ const TravelSearch = ({config, typeChange, dateChange}) => (
                 secondHour={travelOptions.get('hour').get(1)}  
                 firstCity={travelOptions.get('city').get(0)}    
                 secondCity={travelOptions.get('city').get(1)}/>
+    <DropTravelMenu   
+      config={config} 
+      options={travelOptions} 
+      travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
+      cabinChange={cabinChange} />
 
+    <AirportSearch
+        searchChange={(query, quantum = config.getIn(['locations','to'])) => searchAirport(query,quantum)}
+        changeSelected={value => fromAirportChange(value)}
+        airports={config.get('airports')}
+        value={config.getIn(['locations','from']).title}/>
+
+    <ExchangeButton handleExchange={
+      (from = config.getIn(['locations','from']), to = config.getIn(['locations','to'])) => exchangeDestinations(from,to)} />
+
+    <AirportSearch
+        searchChange={(query, quantum = config.getIn(['locations','from'])) => searchAirport(query,quantum)}
+        changeSelected={value => toAirportChange(value)}
+        airports={config.get('airports')}
+        value={config.getIn(['locations','to']).title}/>
   </div>
 );
 

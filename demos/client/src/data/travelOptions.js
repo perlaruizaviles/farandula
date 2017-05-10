@@ -25,7 +25,8 @@ const travelOptions = Map({
   }),
   price: List(['999.99', '1999.99', '2999.99', '3999.99', '4999.99', '5999.99']),
   hour: List(['7:46', '9:55']),
-  city: List(['CUU', 'MTY'])
+  city: List(['CUU', 'MTY']),
+  airports: []
 });
 
 export default travelOptions;
