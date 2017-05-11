@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Button, Divider, Container} from 'semantic-ui-react';
+import {Grid, Button, Divider} from 'semantic-ui-react';
 
 const FlightDetail = () => (
     <div>
