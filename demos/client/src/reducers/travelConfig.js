@@ -57,7 +57,10 @@ const travelConfig = (state = Map({}), action) => {
     case types.EXCHANGE_DESTINATIONS:
       state = state.setIn(['locations','from'], action.to);
       return state.setIn(['locations','to'], action.from);
-      
+
+    case types.SEARCH_AVAILABLE_FLIGHTS_SUCCESS:
+      return state.set('availableFlights', action.flights);
+
     default:
       return state;
   }

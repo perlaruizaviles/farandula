@@ -7,7 +7,7 @@ import travelOptions from '../data/travelOptions';
 import DropTravelMenu from './DropTravelMenu';
 import {Button, Icon} from 'semantic-ui-react';
 
-const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations}) => (
+const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights}) => (
   <div>
     <TextMenu options={travelOptions.get('type')}
               selected={config.get('type')}
@@ -50,7 +50,7 @@ const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, 
       travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
       cabinChange={cabinChange} />
 
-    <Button animated className='orange'>
+    <Button animated className='orange' onClick={(e) => availableFlights()}>
       <Button.Content visible>Search</Button.Content>
       <Button.Content hidden>
         <Icon name='plane' className='large'/>

@@ -37,7 +37,6 @@ class AvailableFlightsApi {
         responseType:'json'
       }).then((response) => {
         const flights = response.data.content;
-        console.log(flights);
         resolve(Object.assign([], flights));
       })
         .catch(e => {
