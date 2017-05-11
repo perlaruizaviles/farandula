@@ -11,8 +11,8 @@ const PriceSection = ({changePriceSection}) => (
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={1}>
-        <Grid.Column>
-          <Button primary content='View Deal'></Button>
+        <Grid.Column textAlign='center'>
+          <Button className='orange' content='View Deal'></Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>

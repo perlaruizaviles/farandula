@@ -25,8 +25,8 @@ class FlightCell extends React.Component {
                         <Grid.Column style={{textAlign: 'center'}}>
                             <FlightSection firstHour={this.state.firstHour} secondHour={this.state.secondHour} firstCity={this.state.firstCity} secondCity={this.state.secondCity}/>
                         </Grid.Column>
-                        <Grid.Column>
-                            <Button primary onClick={this.open} content='Show details'></Button>
+                        <Grid.Column textAlign='center' verticalAlign='center'>
+                            <Button className='orange' onClick={this.open} content='Show details'></Button>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row >
