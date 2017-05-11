@@ -1,4 +1,4 @@
-package com.farandula;
+package com.farandula.models;
 
 import org.springframework.data.annotation.Id;
 
