@@ -3,8 +3,7 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import {Router, Route, browserHistory, IndexRedirect} from 'react-router';
 
 import Main from './components/Main';
-import Welcome from './components/Welcome';
-import ComponentShowcase from './components/ComponentShowcase';
+import Home from './components/Home';
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);
@@ -12,9 +11,7 @@ const makeRouter = store => {
     <Router history={history}>
       <Route path="/" component={Main}>
         <IndexRedirect to="/home"/>
-        <Route path="/home" component={Welcome}/>
-        <Route path="/components" component={ComponentShowcase}>
-        </Route>
+        <Route path="/home" component={Home}/>
       </Route>
     </Router>
   )
