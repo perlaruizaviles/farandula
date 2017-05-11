@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import airportApi from '../api/airportsApi';
+import availableFlightApi from '../api/availableFlightsApi';
 
 export const changeTravelType = type => {
   return {
@@ -59,6 +60,13 @@ export const searchAirportSuccess = (airports) => {
   };
 };
 
+export const searchAvailableFlightsSuccess = (flights) => {
+  return {
+    type: types.SEARCH_AVAILABLE_FLIGHTS_SUCCESS,
+    flights
+  };
+};
+
 export const searchAirport = (query, quantum) => {
   return (dispatch) => {
     return airportApi.searchAirport(query).then(airports => {
@@ -68,6 +76,16 @@ export const searchAirport = (query, quantum) => {
         dispatch(searchAirportSuccess(filteredAirports));
     }).catch(error => {
         throw(error);
+    });
+  };
+};
+
+export const searchAvailableFlights = () => {
+  return (dispatch) => {
+    return availableFlightApi.getFakeAvailableFlights().then(flights => {
+      dispatch(searchAvailableFlightsSuccess(flights));
+    }).catch(error => {
+      throw(error);
     });
   };
 };
