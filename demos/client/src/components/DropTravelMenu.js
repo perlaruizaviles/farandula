@@ -10,7 +10,8 @@ const DropTravelMenu = ({options, config, travelerTypeCountChange, cabinChange})
         floating
         pointing
         closeOnBlur={false}
-        closeOnChange={false}>
+        closeOnChange={false}
+        style={{width:150}}>
         <Dropdown.Menu onClick={e => e.stopPropagation()}>
             <Dropdown.Header content="Cabin"/>
             <Dropdown.Item>

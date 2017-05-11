@@ -8,11 +8,6 @@ const Main = ({router: {push}, location: {pathname},
       <Menu.Item header onClick={() => push('/')}>
         Quantum Farandula
       </Menu.Item>
-      <Menu.Item active={pathname==='/components'}
-                 onClick={() => push('/components')}>
-        Components
-      </Menu.Item>
-
       <Menu.Item active={pathname==='/flightresults'}
                  onClick={() => push('/flightresults')}>
         Flight Results
@@ -21,6 +16,7 @@ const Main = ({router: {push}, location: {pathname},
                  onClick={() => push('/summary')}>
         Summary
       </Menu.Item>
+
     </Menu>
     <Segment attached>
       {props.children}

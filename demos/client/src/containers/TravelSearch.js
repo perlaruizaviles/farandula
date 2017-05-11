@@ -17,8 +17,8 @@ export default connect(
       cabinChange: (cabin) => dispatch(cabinChange(cabin)),
       fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),
       toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
-      searchAirport:(query, quantum) => dispatch(searchAirport(query, quantum)),
-      exchangeDestinations:(from, to) => dispatch(exchangeDestinations(from, to))
+      searchAirport: (query, quantum) => dispatch(searchAirport(query, quantum)),
+      exchangeDestinations: (from, to) => dispatch(exchangeDestinations(from, to))
     }
   }
 )(TravelSearch);
