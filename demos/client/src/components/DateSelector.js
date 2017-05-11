@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const DateSelector = ({minDate, maxDate, startDate, endDate, selected, changeTravelDate}) => (
     <DatePicker
-        customInput={<Input icon="calendar outline" style={{color: '#216ba5'}}/>}
+        customInput={<Input icon="calendar outline" style={{width:'150px', color: '#216ba5'}}/>}
         minDate={minDate}
         maxDate={maxDate}
         selected={selected}

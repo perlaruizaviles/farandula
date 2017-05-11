@@ -1,15 +1,11 @@
 import React from 'react';
 import FlightCell from './FlightCell';
 import travelOptions from '../data/travelOptions';
-import {Container, Segment} from 'semantic-ui-react';
+import {Container} from 'semantic-ui-react';
 
 export default () => (
     <Container>
         <h2>Flight Results</h2>
-
-        <Segment>
-           <div> "HMO  TYO"</div>
-        </Segment>
 
         <FlightCell changePriceSection={travelOptions.get('price').get(0)}
                     firstHour={travelOptions.get('hour').get(0)}
