@@ -2,7 +2,6 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import PriceSection from '../PriceSection';
 import FlightSection from '../FlightSection';
-import DetailSection from '../DetailSection';
 import FlightCell from '../FlightCell';
 import FlightResults from '../FlightResults';
 
@@ -25,16 +24,6 @@ describe('Flight Results Page', () => {
     // Full smoke rendering test
     it('renders without crashing (full)', () => {
     mount(<FlightSection/>);
-    });
-
-    // Shallow smoke rendering test
-    it('renders without crashing (shallow)', () => {
-    shallow(<DetailSection/>);
-    });
-
-    // Full smoke rendering test
-    it('renders without crashing (full)', () => {
-    mount(<DetailSection/>);
     });
 
     // Shallow smoke rendering test
