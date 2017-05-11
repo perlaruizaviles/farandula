@@ -29,6 +29,22 @@ class AvailableFlightsApi {
         });
     });
   }
+  static getFakeAvailableFlights(){
+    return new Promise((resolve, reject) => {
+      axios({
+        method:'get',
+        url: 'http://iotar.azurewebsites.net/api/farandula',
+        responseType:'json'
+      }).then((response) => {
+        const flights = response.data.content;
+        console.log(flights);
+        resolve(Object.assign([], flights));
+      })
+        .catch(e => {
+          reject(e);
+        });
+    });
+  }
 }
 
 export default AvailableFlightsApi;
