@@ -2,7 +2,6 @@ import React from 'react'
 import { Segment, Grid } from 'semantic-ui-react'
 import PriceSection from './PriceSection'
 import FlightSection from './FlightSection'
-import DetailSection from './DetailSection'
 
 const FlightCell = ({changePriceSection, firstHour, secondHour, firstCity, secondCity}) => {
     return(
@@ -14,9 +13,6 @@ const FlightCell = ({changePriceSection, firstHour, secondHour, firstCity, secon
                         </Grid.Column>
                         <Grid.Column>
                             <FlightSection firstHour={firstHour} secondHour={secondHour} firstCity={firstCity} secondCity={secondCity}/>
-                        </Grid.Column>
-                        <Grid.Column>
-                            <DetailSection/>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

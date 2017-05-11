@@ -16,7 +16,6 @@ describe('Rendering FlightCell', () => {
     const wrapper = setup();
     expect(wrapper.find('PriceSection').length).toBe(1);
     expect(wrapper.find('FlightSection').length).toBe(1);
-    expect(wrapper.find('DetailSection').length).toBe(1);
   });
 
 });
