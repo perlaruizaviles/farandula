@@ -67,6 +67,18 @@ export const searchAvailableFlightsSuccess = (flights) => {
   };
 };
 
+export const cleanTravelFrom = () => {
+  return {
+    type: types.CLEAN_TRAVEL_FROM
+  };
+};
+
+export const cleanTravelTo = () => {
+  return {
+    type: types.CLEAN_TRAVEL_TO
+  };
+};
+
 export const searchAirport = (query, quantum) => {
   return (dispatch) => {
     return airportApi.searchAirport(query).then(airports => {
@@ -81,12 +93,21 @@ export const searchAirport = (query, quantum) => {
 };
 
 export const searchAvailableFlights = (departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger) => {
-  console.log(passenger);
   return (dispatch) => {
     return availableFlightApi.getAvailableFlights(departureAirport,departingDate,departingTime,arrivalAirport,arrivalDate,arrivalTime,type,passenger).then(flights => {
       dispatch(searchAvailableFlightsSuccess(flights));
     }).catch(error => {
       throw(error);
     });
+  };
+};
+
+export const cleanField = (quantum) => {
+  return (dispatch) => {
+    if (quantum === "from"){
+      dispatch(cleanTravelFrom());
+    }else if(quantum === "to"){
+      dispatch(cleanTravelTo());
+    }
   };
 };
