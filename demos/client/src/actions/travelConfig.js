@@ -81,7 +81,7 @@ export const searchAirport = (query, quantum) => {
 };
 
 export const searchAvailableFlights = (departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger) => {
-  console.log(departureAirport,departingDate,departingTime,arrivalAirport,arrivalDate,arrivalTime,type,passenger);
+  console.log(passenger);
   return (dispatch) => {
     return availableFlightApi.getAvailableFlights(departureAirport,departingDate,departingTime,arrivalAirport,arrivalDate,arrivalTime,type,passenger).then(flights => {
       dispatch(searchAvailableFlightsSuccess(flights));

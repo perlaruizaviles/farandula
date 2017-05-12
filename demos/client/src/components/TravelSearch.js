@@ -60,7 +60,7 @@ const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, 
        arrivalDate = config.getIn(['dates', 'return']).format('YYYY-MM-DD'),
        arrivalTime = "00:00:00",
        type = config.get('type'),
-       passenger = "children:2,adults:2"
+       passenger = config.get('travelers')
       ) => availableFlights(departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger)
     }>
       <Button.Content visible>Search</Button.Content>
