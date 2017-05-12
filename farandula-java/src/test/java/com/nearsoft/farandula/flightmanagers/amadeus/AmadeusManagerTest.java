@@ -12,8 +12,6 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
-import static com.nearsoft.farandula.models.CriteriaType.PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -38,23 +36,22 @@ class AmadeusManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from( "DFW" )
-                .to( "CDG" )
-                .departingAt( departingDate )
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
                 .limitTo(2)
-                .type( FlightType.ONEWAY )
-                .preferenceClass( CabinClassType.ECONOMY )
+                .type(FlightType.ONEWAY)
+                .preferenceClass(CabinClassType.ECONOMY)
                 .execute();
 
-        assertTrue( flights.size() > 0);
-
+        assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
-            assertEquals("DFW",   airLeg.getDepartureAirportCode());
-            assertEquals("CDG",   airLeg.getArrivalAirportCode() );
-            assertEquals( CabinClassType.ECONOMY , airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
         });
 
     }
@@ -74,7 +71,7 @@ class AmadeusManagerTest {
 
         Luisa.setSupplier(() -> {
             try {
-                return  new AmadeusFlightManager();
+                return new AmadeusFlightManager();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -84,48 +81,46 @@ class AmadeusManagerTest {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from( "DFW" )
-                .to( "CDG" )
-                .departingAt( departingDate )
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
-                .forPassegers(Passenger.adults(1) )
-                .type( FlightType.ROUNDTRIP )
-                .sortBy( PRICE,MINSTOPS )
-                .preferenceClass( CabinClassType.ECONOMY )
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ROUNDTRIP)
+                .preferenceClass(CabinClassType.ECONOMY)
                 .limitTo(2)
                 .execute();
 
-        assertTrue( flights.size() > 0);
+        assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
-            assertEquals("DFW",   airLeg.getDepartureAirportCode());
-            assertEquals("CDG",   airLeg.getArrivalAirportCode() );
-            assertEquals( CabinClassType.ECONOMY , airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
         });
     }
 
     @Test
     void buildLinkFromSearch() throws IOException, FarandulaException {
 
-        Luisa.setSupplier( ()->
-            new AmadeusFlightManager()
+        Luisa.setSupplier(() ->
+                new AmadeusFlightManager()
         );
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         SearchCommand search = new SearchCommand(null);
         search
-                .from( "DFW" )
-                .to( "CDG" )
-                .departingAt( departingDate )
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
-                .forPassegers(Passenger.adults(1) )
-                .type( FlightType.ROUNDTRIP )
-                .sortBy( PRICE,MINSTOPS )
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ROUNDTRIP)
                 .limitTo(2);
 
-        AmadeusFlightManager manager = new AmadeusFlightManager() ;
-        String searchURL =  manager.buildTargetURLFromSearch( search );
+        AmadeusFlightManager manager = new AmadeusFlightManager();
+        String searchURL = manager.buildTargetURLFromSearch(search);
         String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
                 "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" +
                 "&origin=DFW" +
@@ -135,16 +130,16 @@ class AmadeusManagerTest {
                 "&adults=1" +
                 "&number_of_results=2" +
                 "&travel_class=ECONOMY";
-        assertEquals(expectedURL, searchURL );
+        assertEquals(expectedURL, searchURL);
 
     }
 
     @Test
-    public void  buildAvailResponse() throws IOException {
+    public void buildAvailResponse() throws IOException {
 
-        AmadeusFlightManager manager = new AmadeusFlightManager( );
+        AmadeusFlightManager manager = new AmadeusFlightManager();
 
-        manager.parseAvailResponse( this.getClass().getResourceAsStream("/amadeus/response/AmadeusAvailResponse.json") );
+        manager.parseAvailResponse(this.getClass().getResourceAsStream("/amadeus/response/AmadeusAvailResponse.json"));
 
     }
 

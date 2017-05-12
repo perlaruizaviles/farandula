@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.nearsoft.farandula.models.CriteriaType.PRICE;
-
 /**
  * Created by pruiz on 4/10/17.
  */
@@ -21,7 +19,6 @@ public class SearchCommand {
     private LocalDateTime departingDate;
     private LocalDateTime returningDate;
     private List<Passenger> passengers = new ArrayList<>();
-    private CriteriaType[] criterias = new CriteriaType[]{PRICE};
     private int offSet;
     private CabinClassType CabinClass = CabinClassType.ECONOMY;
     private FlightManager flightManager;
@@ -52,11 +49,6 @@ public class SearchCommand {
 
     public SearchCommand forPassegers(List<Passenger> passengerList) {
         this.passengers.addAll(passengerList);
-        return this;
-    }
-
-    public SearchCommand sortBy(CriteriaType... criteriaList) {
-        this.criterias = criteriaList;
         return this;
     }
 
@@ -130,14 +122,6 @@ public class SearchCommand {
 
     public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
-    }
-
-    public CriteriaType[] getCriterias() {
-        return criterias;
-    }
-
-    public void setCriterias(CriteriaType[] criterias) {
-        this.criterias = criterias;
     }
 
     public int getOffSet() {

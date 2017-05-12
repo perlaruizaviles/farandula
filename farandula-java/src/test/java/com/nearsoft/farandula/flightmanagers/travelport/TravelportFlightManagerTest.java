@@ -15,8 +15,6 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.nearsoft.farandula.models.CriteriaType.MINSTOPS;
-import static com.nearsoft.farandula.models.CriteriaType.PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -47,7 +45,7 @@ class TravelportFlightManagerTest {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
-            assertEquals(CabinClassType.BUSINESS,  airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
+            assertEquals(CabinClassType.BUSINESS, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
             assertEquals(1, 1);
         });
 
@@ -75,7 +73,7 @@ class TravelportFlightManagerTest {
     }
 
     @Ignore
-    //@Test
+        //@Test
     void getAvail_roundTrip() throws FarandulaException, IOException {
 
         Luisa.setSupplier(() -> {
@@ -93,9 +91,8 @@ class TravelportFlightManagerTest {
                 .to("CDG")
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
-                .forPassegers(Passenger.adults(1) )
+                .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
-                .sortBy(PRICE, MINSTOPS)
                 .limitTo(2)
                 .execute();
 
