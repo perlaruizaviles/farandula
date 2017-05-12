@@ -10,8 +10,6 @@ import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
@@ -25,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
+import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
 /**
  * Created by pruiz on 4/20/17.
@@ -73,7 +72,7 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
     @Override
-    public List<AirLeg> getAvail(SearchCommand search) throws FarandulaException {
+    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
             Request request = buildRequestForAvail(search);
@@ -108,27 +107,46 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
 
-    public List<AirLeg> parseAvailResponse(InputStream response) throws IOException {
+    public List<Itinerary> parseAvailResponse(InputStream response) throws IOException {
 
+
+        List<Itinerary> itineraries = new ArrayList<>();
         ReadContext ctx = JsonPath.parse(response);
-        JSONArray pricedItineraries = ctx.read("$..results[*].itineraries[*]");
+        JSONArray results = ctx.read("$..results[*]");
 
-        List<AirLeg> legs = new ArrayList<>();
-        for (Object pricedItinerary : pricedItineraries) {
-            legs.addAll(buildAirLegs((Map<String, Object>) pricedItinerary));
+        for ( Object result : results ){
+
+            Map<String, Object> resultMap = (Map<String, Object>) result;
+
+            JSONArray arrayItineraries = (JSONArray) resultMap.get("itineraries");
+
+            List<AirLeg> legs = new ArrayList<>();
+            for ( Object itinerary : arrayItineraries ){
+                legs.addAll(  buildAirLegs((Map<String, Object>) itinerary) );
+            }
+
+            Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
+            Itinerary itinerary = new Itinerary();
+            itinerary.setAirlegs( legs );
+            itinerary.setPrice( getPrices( fareMap ) );
+
+            itineraries.add( itinerary );
+
         }
-        return legs;
+
+        return itineraries;
 
     }
 
-    private List<AirLeg> buildAirLegs(Map<String, Object> itinerary) {
+    private List<AirLeg> buildAirLegs(Map<String, Object> itinerary ) {
 
         List<AirLeg> results = new LinkedList<>();
 
         //adds departure leg
         Map<String, Object> outbound = (Map<String, Object>) itinerary.get("outbound");
         JSONArray outboundFlights = (JSONArray) outbound.get("flights");
-        results.add(getAirleg(outboundFlights));
+        AirLeg departureLeg = getAirleg(outboundFlights);
+        results.add( departureLeg );
 
         //adds arrival leg
         Map<String, Object> inbound = (Map<String, Object>) itinerary.get("inbound");
@@ -139,8 +157,30 @@ public class AmadeusFlightManager implements FlightManager {
 
     }
 
+    private Price getPrices(Map<String, Object> pricingInfoData) {
+
+        //price
+        Price price =  new Price();
+        price.setTotalPrice( Double.parseDouble( getValueOf( pricingInfoData , "total_price", String.class ) ) );
+        if ( pricingInfoData.get("price_per_adult") != null  ) {
+            price.setPricePerAdult(Double.parseDouble(getValueOf(pricingInfoData, "price_per_adult.total_fare", String.class)));
+            price.setTaxPerAdult(Double.parseDouble(getValueOf(pricingInfoData, "price_per_adult.tax", String.class)));
+        }
+
+        if ( pricingInfoData.get("price_per_child") != null  ) {
+            price.setPricePerChild(Double.parseDouble(getValueOf(pricingInfoData, "price_per_child.total_fare", String.class)));
+            price.setTaxPerChild(Double.parseDouble(getValueOf(pricingInfoData, "price_per_child.tax", String.class)));
+        }
+
+        if ( pricingInfoData.get("price_per_infant") != null  ) {
+            price.setPricePerInfant(Double.parseDouble(getValueOf(pricingInfoData, "price_per_infant.total_fare", String.class)));
+            price.setTaxPerInfant(Double.parseDouble(getValueOf(pricingInfoData, "price_per_infant.tax", String.class)));
+        }
+        return price;
+    }
+
     private AirLeg getAirleg(JSONArray outboundFlights) {
-        LinkedList<Segment> segmentsOtbound = outboundFlights
+        LinkedList<Segment> segmentsOutbound = outboundFlights
                 .stream()
                 .map(segment -> {
                     try {
@@ -156,11 +196,11 @@ public class AmadeusFlightManager implements FlightManager {
 
         AirLeg leg = new AirLeg();
         leg.setId("tempID");
-        leg.setDepartureAirportCode(segmentsOtbound.get(0).getDepartureAirportCode());
-        leg.setDepartingDate(segmentsOtbound.get(0).getDepartureDate());
-        leg.setArrivalAirportCode(segmentsOtbound.get(segmentsOtbound.size() - 1).getArrivalAirportCode());
-        leg.setArrivalDate(segmentsOtbound.get(segmentsOtbound.size() - 1).getArrivalDate());
-        leg.setSegments(segmentsOtbound);
+        leg.setDepartureAirportCode(segmentsOutbound.get(0).getDepartureAirportCode());
+        leg.setDepartingDate(segmentsOutbound.get(0).getDepartureDate());
+        leg.setArrivalAirportCode(segmentsOutbound.get(segmentsOutbound.size() - 1).getArrivalAirportCode());
+        leg.setArrivalDate(segmentsOutbound.get(segmentsOutbound.size() - 1).getArrivalDate());
+        leg.setSegments(segmentsOutbound);
         return leg;
     }
 
@@ -174,6 +214,9 @@ public class AmadeusFlightManager implements FlightManager {
 
         //booking_info
         Map<String, Object> bookingInfoData = (Map<String, Object>) segmentMap.get("booking_info");
+
+        //pricing_info
+        Map<String, Object> pricingInfoData = (Map<String, Object>) segmentMap.get("fare");
 
         //Airleg information
         Segment seg = new Segment();

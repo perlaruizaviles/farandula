@@ -91,14 +91,17 @@ public class TravelportXMLRequest {
 
         valuesMap.clear();
 
+        String carrier = seg.getOperatingAirlineCode() != null ? seg.getOperatingAirlineCode() : seg.getMarketingAirlineCode();;
+        String flightNumber = seg.getOperatingFlightNumber()!= null? seg.getOperatingFlightNumber() : seg.getMarketingFlightNumber();
+
         valuesMap.put("key", seg.getKey() );
         valuesMap.put("group", seg.getGroup() );
-        valuesMap.put("carrier", seg.getOperatingAirlineCode() );
-        valuesMap.put("flightNumber", seg.getOperatingFlightNumber()  );
+        valuesMap.put("carrier", carrier );
+        valuesMap.put("flightNumber", flightNumber  );
         valuesMap.put("origin", seg.getDepartureAirportCode() );
         valuesMap.put("destination", seg.getArrivalAirportCode() );
-        valuesMap.put("departureTime", seg.getDepartureDate().format( DateTimeFormatter.ISO_LOCAL_DATE) );
-        valuesMap.put("arrivalTime", seg.getArrivalDate().format(DateTimeFormatter.ISO_LOCAL_DATE) );
+        valuesMap.put("departureTime", seg.getDepartureDate().format( DateTimeFormatter.ISO_DATE_TIME) );
+        valuesMap.put("arrivalTime", seg.getArrivalDate().format(DateTimeFormatter.ISO_DATE_TIME) );
         valuesMap.put("flightTime", seg.getDuration() );
         valuesMap.put("travelTime", seg.getDuration() );
         valuesMap.put("equipment", seg.getAirplaneData());

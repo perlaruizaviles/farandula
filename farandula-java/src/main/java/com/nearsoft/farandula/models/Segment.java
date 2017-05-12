@@ -28,9 +28,7 @@ public class Segment {
     String airplaneData;
     long duration;
     List<Seat> seatsAvailable;
-    private String basePrice;
-    private String taxesPrice;
-    private String totalPrice;
+    Price price;
     private String group;
 
 
@@ -169,28 +167,12 @@ public class Segment {
                 '}';
     }
 
-    public void setBasePrice(String basePrice) {
-        this.basePrice = basePrice;
+    public Price getPrice() {
+        return price;
     }
 
-    public String getBasePrice() {
-        return basePrice;
-    }
-
-    public void setTaxesPrice(String taxesPrice) {
-        this.taxesPrice = taxesPrice;
-    }
-
-    public String getTaxesPrice() {
-        return taxesPrice;
-    }
-
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public String getTotalPrice() {
-        return totalPrice;
+    public void setPrice(Price price) {
+        this.price = price;
     }
 
     public String getKey() {

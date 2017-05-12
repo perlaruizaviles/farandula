@@ -5,16 +5,13 @@ import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
 import com.nearsoft.farandula.models.*;
-import com.nearsoft.farandula.utilities.CabinClassParser;
 import com.nearsoft.farandula.utilities.XmlUtils;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
 import org.w3c.dom.*;
 import org.w3c.dom.Node;
 
-
 import javax.xml.soap.*;
-import java.awt.*;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.text.ParseException;
@@ -68,12 +65,16 @@ public class TravelportFlightManager implements FlightManager {
     }
 
     @Override
-    public List<AirLeg> getAvail(SearchCommand search) throws FarandulaException {
+    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
             SOAPMessage request = buildRequestForAvail(search);
-            List<AirLeg> flightList = parseAvailResponse(request, search);
-            return flightList;
+            List<AirLeg> airLegs = parseAvailResponse(request, search);
+            Itinerary itinerary = new Itinerary();
+            itinerary.setAirlegs( airLegs );
+            List<Itinerary> itinerariesList = new ArrayList<>();
+            itinerariesList.add( itinerary );
+            return itinerariesList;
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
@@ -173,7 +174,10 @@ public class TravelportFlightManager implements FlightManager {
             seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
             seg.setMarketingFlightNumber(nodeAttributes.getNamedItem("FlightNumber").getNodeValue().toString());
 
+            //operating airline data
             parseCodeshareChild(seg, airSegmentNode);
+
+            //passengers
             parseAirAvailInfoChild(seg, airSegmentNode);
 
             seg.setAirplaneData(resultFlightsDetails.get(i).getEquipment());
@@ -194,9 +198,7 @@ public class TravelportFlightManager implements FlightManager {
 
             seg.setDuration(resultFlightsDetails.get(i).getFlightTime());
 
-            SOAPMessage pricingRespose = buildRequestForPricing(seg);
-
-            parsePricingResponse( pricingRespose, seg );
+            getSegmentPrice( seg );
 
             connectedSegments.add( seg );
 
@@ -223,6 +225,14 @@ public class TravelportFlightManager implements FlightManager {
 
     }
 
+    private void getSegmentPrice(Segment seg) throws IOException, SOAPException {
+
+        SOAPMessage pricingRespose = buildRequestForPricing(seg);
+
+        parsePricingResponse( pricingRespose, seg );
+
+    }
+
     private void parsePricingResponse(SOAPMessage response, Segment seg) throws SOAPException {
 
         SOAPEnvelope env = response.getSOAPPart().getEnvelope();
@@ -234,9 +244,11 @@ public class TravelportFlightManager implements FlightManager {
             String base = XmlUtils.getAttrByName(node, "BasePrice");
             String taxes = XmlUtils.getAttrByName(node, "Taxes");
             String totalPrice = XmlUtils.getAttrByName(node, "TotalPrice");
-            seg.setBasePrice(base);
-            seg.setTaxesPrice(taxes);
-            seg.setTotalPrice(totalPrice);
+            Price price = new Price();
+            price.setBasePrice( Double.parseDouble( base ) );
+            price.setTaxesPrice( Double.parseDouble( taxes ) );
+            price.setTotalPrice( Double.parseDouble( totalPrice ) );
+
         }else{
             Logger.getGlobal().log(Level.WARNING , "The segment: " + seg.toString() + " does not have prices." );
         }

@@ -37,7 +37,7 @@ class AmadeusManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
-        List<AirLeg> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.findMeFlights()
                 .from( "DFW" )
                 .to( "CDG" )
                 .departingAt( departingDate )
@@ -51,7 +51,7 @@ class AmadeusManagerTest {
 
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0);
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW",   airLeg.getDepartureAirportCode());
             assertEquals("CDG",   airLeg.getArrivalAirportCode() );
             assertEquals( CabinClassType.ECONOMY , airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );
@@ -83,7 +83,7 @@ class AmadeusManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
-        List<AirLeg> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.findMeFlights()
                 .from( "DFW" )
                 .to( "CDG" )
                 .departingAt( departingDate )
@@ -98,7 +98,7 @@ class AmadeusManagerTest {
         assertTrue( flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0);
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW",   airLeg.getDepartureAirportCode());
             assertEquals("CDG",   airLeg.getArrivalAirportCode() );
             assertEquals( CabinClassType.ECONOMY , airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin() );

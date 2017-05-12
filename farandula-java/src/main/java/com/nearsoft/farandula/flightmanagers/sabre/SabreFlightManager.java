@@ -85,7 +85,7 @@ public class SabreFlightManager implements FlightManager {
     }
 
     @Override
-    public List<AirLeg> getAvail(SearchCommand search) throws FarandulaException {
+    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
             Request request = buildRequestForAvail(search);
@@ -119,13 +119,12 @@ public class SabreFlightManager implements FlightManager {
         return response.body().byteStream();
     }
 
-    public List<AirLeg> parseAvailResponse(InputStream response) throws IOException {
+    public List<Itinerary> parseAvailResponse(InputStream response) throws IOException {
 
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
 
-
-        List<AirLeg> flightStream = new ArrayList<>();
+        List<Itinerary> itineraries = new ArrayList<>();
         for (Object pricedItinerary : pricedItineraries) {
             List<AirLeg> legs = buildAirLegs((Map<String, Object>) pricedItinerary);
             JSONArray airItineraryPricingInfo = (JSONArray) getValueOf(pricedItinerary, "AirItineraryPricingInfo");
@@ -157,11 +156,12 @@ public class SabreFlightManager implements FlightManager {
                 }
             }
 
-            flightStream.addAll(legs);
+            Itinerary itinerary = new Itinerary();
+            itinerary.setAirlegs( legs );
+            itineraries.add( itinerary );
         }
 
-
-        return flightStream;
+        return itineraries;
 
     }
 

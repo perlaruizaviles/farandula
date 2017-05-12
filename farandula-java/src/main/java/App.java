@@ -4,6 +4,7 @@ import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
 
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.FlightType;
+import com.nearsoft.farandula.models.Itinerary;
 import com.nearsoft.farandula.models.Passenger;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class App {
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
 
-        List<AirLeg> flightList = Luisa.findMeFlights()
+        List<Itinerary> flightList = Luisa.findMeFlights()
                 .from( "DFW" )
                 .to( "CDG" )
                 .departingAt( departingDate )

@@ -76,7 +76,7 @@ public class SearchCommand {
         return this;
     }
 
-    public List<AirLeg> execute() throws IOException, FarandulaException {
+    public List<Itinerary> execute() throws IOException, FarandulaException {
         //FIXME here there is a code smell , why we are passing `this` to executeAvail.
         return flightManager
                 .getAvail(this);
