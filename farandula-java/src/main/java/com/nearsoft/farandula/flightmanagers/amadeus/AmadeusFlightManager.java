@@ -116,21 +116,23 @@ public class AmadeusFlightManager implements FlightManager {
 
         for ( Object result : results ){
 
+            Itinerary itineraryResult = new Itinerary();
+
             Map<String, Object> resultMap = (Map<String, Object>) result;
 
             JSONArray arrayItineraries = (JSONArray) resultMap.get("itineraries");
 
-            List<AirLeg> legs = new ArrayList<>();
             for ( Object itinerary : arrayItineraries ){
-                legs.addAll(  buildAirLegs((Map<String, Object>) itinerary) );
+
+               buildAirLegs((Map<String, Object>) itinerary, itineraryResult );
+
             }
 
+            //pricing
             Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
-            Itinerary itinerary = new Itinerary();
-            itinerary.setAirlegs( legs );
-            itinerary.setPrice( getPrices( fareMap ) );
+            itineraryResult.setPrice( getPrices( fareMap ) );
 
-            itineraries.add( itinerary );
+            itineraries.add( itineraryResult );
 
         }
 
@@ -138,22 +140,19 @@ public class AmadeusFlightManager implements FlightManager {
 
     }
 
-    private List<AirLeg> buildAirLegs(Map<String, Object> itinerary ) {
-
-        List<AirLeg> results = new LinkedList<>();
+    private void buildAirLegs(Map<String, Object> itineraryMap, Itinerary itineraryResult ) {
 
         //adds departure leg
-        Map<String, Object> outbound = (Map<String, Object>) itinerary.get("outbound");
+        Map<String, Object> outbound = (Map<String, Object>) itineraryMap.get("outbound");
         JSONArray outboundFlights = (JSONArray) outbound.get("flights");
         AirLeg departureLeg = getAirleg(outboundFlights);
-        results.add( departureLeg );
+        itineraryResult.getDepartureAirlegs().add( departureLeg );
 
         //adds arrival leg
-        Map<String, Object> inbound = (Map<String, Object>) itinerary.get("inbound");
+        Map<String, Object> inbound = (Map<String, Object>) itineraryMap.get("inbound");
         JSONArray inboundFlights = (JSONArray) inbound.get("flights");
-        results.add(getAirleg(inboundFlights));
-
-        return results;
+        AirLeg returnigLeg= getAirleg(inboundFlights);
+        itineraryResult.getReturningAirlegs().add( returnigLeg );
 
     }
 

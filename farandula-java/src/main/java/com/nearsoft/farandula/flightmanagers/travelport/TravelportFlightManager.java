@@ -71,7 +71,7 @@ public class TravelportFlightManager implements FlightManager {
             SOAPMessage request = buildRequestForAvail(search);
             List<AirLeg> airLegs = parseAvailResponse(request, search);
             Itinerary itinerary = new Itinerary();
-            itinerary.setAirlegs( airLegs );
+            itinerary.setDepartureAirlegs( airLegs );
             List<Itinerary> itinerariesList = new ArrayList<>();
             itinerariesList.add( itinerary );
             return itinerariesList;

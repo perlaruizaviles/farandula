@@ -157,7 +157,7 @@ public class SabreFlightManager implements FlightManager {
             }
 
             Itinerary itinerary = new Itinerary();
-            itinerary.setAirlegs( legs );
+            itinerary.setDepartureAirlegs( legs );
             itineraries.add( itinerary );
         }
 
