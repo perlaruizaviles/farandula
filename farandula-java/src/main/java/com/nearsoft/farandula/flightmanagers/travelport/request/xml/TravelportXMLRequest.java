@@ -1,6 +1,6 @@
 package com.nearsoft.farandula.flightmanagers.travelport.request.xml;
 
-import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
+import com.nearsoft.farandula.models.TravelportFlightDetails;
 import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.SearchCommand;
 import com.nearsoft.farandula.models.Segment;
@@ -81,7 +81,7 @@ public class TravelportXMLRequest {
         return airlegs;
     }
 
-    public static String getRequest(Segment seg, String targetBranchValue) {
+    public static String getRequest(Segment seg, String targetBranchValue, TravelportFlightDetails details) {
 
         InputStream soapInputStream = TravelportXMLRequest.class
                 .getResourceAsStream("/travelport/XML.request/airPricing.xml");
@@ -95,7 +95,7 @@ public class TravelportXMLRequest {
         String flightNumber = seg.getOperatingFlightNumber()!= null? seg.getOperatingFlightNumber() : seg.getMarketingFlightNumber();
 
         valuesMap.put("key", seg.getKey() );
-        valuesMap.put("group", seg.getGroup() );
+        valuesMap.put("group", details.getGroup() );
         valuesMap.put("carrier", carrier );
         valuesMap.put("flightNumber", flightNumber  );
         valuesMap.put("origin", seg.getDepartureAirportCode() );

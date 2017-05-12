@@ -29,8 +29,6 @@ public class Segment {
     long duration;
     List<Seat> seatsAvailable;
     Price price;
-    private String group;
-
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -183,11 +181,4 @@ public class Segment {
         this.key = key;
     }
 
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
 }

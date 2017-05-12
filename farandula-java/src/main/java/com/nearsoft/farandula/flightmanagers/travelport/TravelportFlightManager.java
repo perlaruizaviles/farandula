@@ -95,10 +95,10 @@ public class TravelportFlightManager implements FlightManager {
         return soapResponse;
     }
 
-    public SOAPMessage buildRequestForPricing(Segment seg) throws SOAPException, IOException {
+    public SOAPMessage buildRequestForPricing(Segment seg, TravelportFlightDetails details) throws SOAPException, IOException {
 
         //create SOAP envelope
-        String envelope = buildEnvelopeStringFromSegment(seg);
+        String envelope = buildEnvelopeStringFromSegment(seg, details );
 
         // Send SOAP Message to SOAP Server
         SOAPMessage message = buildSOAPMessage(envelope);
@@ -108,9 +108,9 @@ public class TravelportFlightManager implements FlightManager {
         return soapResponse;
     }
 
-    private String buildEnvelopeStringFromSegment(Segment seg) {
+    private String buildEnvelopeStringFromSegment(Segment seg, TravelportFlightDetails details) {
 
-        return TravelportXMLRequest.getRequest( seg , targetBranch );
+        return TravelportXMLRequest.getRequest( seg , targetBranch, details );
 
     }
 
@@ -149,7 +149,7 @@ public class TravelportFlightManager implements FlightManager {
 
         //flights
         NodeList listFlights = body.getElementsByTagName("air:FlightDetails");
-        List<FlightDetailsTravelport> resultFlightsDetails = new LinkedList<>();
+        List<TravelportFlightDetails> resultFlightsDetails = new LinkedList<>();
         for (int i = 0; i < listFlights.getLength(); i++) {
             Node currentNode = listFlights.item(i);
             NamedNodeMap nodeAttributes = currentNode.getAttributes();
@@ -163,13 +163,13 @@ public class TravelportFlightManager implements FlightManager {
 
             Node airSegmentNode = list.item(i);
             NamedNodeMap nodeAttributes = airSegmentNode.getAttributes();
+            resultFlightsDetails.get(i).setGroup( nodeAttributes.getNamedItem("Group").getNodeValue().toString() );
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
             Segment seg = new Segment();
             seg.setAirlineIconPath("");
             seg.setKey( nodeAttributes.getNamedItem("Key").getNodeValue().toString() );
-            seg.setGroup( nodeAttributes.getNamedItem("Group").getNodeValue().toString() );
             seg.setMarketingAirlineCode(nodeAttributes.getNamedItem("Carrier").getNodeValue().toString());
             seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
             seg.setMarketingFlightNumber(nodeAttributes.getNamedItem("FlightNumber").getNodeValue().toString());
@@ -198,7 +198,7 @@ public class TravelportFlightManager implements FlightManager {
 
             seg.setDuration(resultFlightsDetails.get(i).getFlightTime());
 
-            getSegmentPrice( seg );
+            getSegmentPrice( seg, resultFlightsDetails.get( i ) );
 
             connectedSegments.add( seg );
 
@@ -225,9 +225,9 @@ public class TravelportFlightManager implements FlightManager {
 
     }
 
-    private void getSegmentPrice(Segment seg) throws IOException, SOAPException {
+    private void getSegmentPrice(Segment seg, TravelportFlightDetails details) throws IOException, SOAPException {
 
-        SOAPMessage pricingRespose = buildRequestForPricing(seg);
+        SOAPMessage pricingRespose = buildRequestForPricing(seg, details );
 
         parsePricingResponse( pricingRespose, seg );
 
@@ -293,9 +293,9 @@ public class TravelportFlightManager implements FlightManager {
     }
 
 
-    private FlightDetailsTravelport getFlightDetails(NamedNodeMap nodeAttributes) {
+    private TravelportFlightDetails getFlightDetails(NamedNodeMap nodeAttributes) {
 
-        FlightDetailsTravelport currentFly = new FlightDetailsTravelport();
+        TravelportFlightDetails currentFly = new TravelportFlightDetails();
 
         currentFly.setKey(nodeAttributes.getNamedItem("Key").getNodeValue().toString());
 
