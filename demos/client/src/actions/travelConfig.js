@@ -80,9 +80,10 @@ export const searchAirport = (query, quantum) => {
   };
 };
 
-export const searchAvailableFlights = () => {
+export const searchAvailableFlights = (departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger) => {
+  console.log(departureAirport,departingDate,departingTime,arrivalAirport,arrivalDate,arrivalTime,type,passenger);
   return (dispatch) => {
-    return availableFlightApi.getFakeAvailableFlights().then(flights => {
+    return availableFlightApi.getAvailableFlights(departureAirport,departingDate,departingTime,arrivalAirport,arrivalDate,arrivalTime,type,passenger).then(flights => {
       dispatch(searchAvailableFlightsSuccess(flights));
     }).catch(error => {
       throw(error);

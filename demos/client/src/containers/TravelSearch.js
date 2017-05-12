@@ -19,7 +19,7 @@ export default connect(
       toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
       searchAirport: (query, quantum) => dispatch(searchAirport(query, quantum)),
       exchangeDestinations: (from, to) => dispatch(exchangeDestinations(from, to)),
-      availableFlights: () => dispatch(searchAvailableFlights())
+      availableFlights: (e, departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger) => dispatch(searchAvailableFlights(e,departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger))
     }
   }
 )(TravelSearch);
