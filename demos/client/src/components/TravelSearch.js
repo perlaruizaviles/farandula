@@ -6,6 +6,7 @@ import ExchangeButton from './ExchangeButton';
 import travelOptions from '../data/travelOptions';
 import DropTravelMenu from './DropTravelMenu';
 import {Button, Icon} from 'semantic-ui-react';
+import {getIata} from '../util/matcher';
 
 const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights}) => (
   <div>
@@ -50,7 +51,18 @@ const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, 
       travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
       cabinChange={cabinChange} />
 
-    <Button animated className='orange' onClick={(e) => availableFlights()}>
+    <Button animated className='orange' onClick={
+      (e,b,
+       departureAirport = getIata(config.getIn(['locations','from']).title),
+       departingDate = config.getIn(['dates', 'depart']).format('YYYY-MM-DD'),
+       departingTime = "10:15:30",
+       arrivalAirport = getIata(config.getIn(['locations','to']).title),
+       arrivalDate = config.getIn(['dates', 'return']).format('YYYY-MM-DD'),
+       arrivalTime = "00:00:00",
+       type = config.get('type'),
+       passenger = config.get('travelers')
+      ) => availableFlights(departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger)
+    }>
       <Button.Content visible>Search</Button.Content>
       <Button.Content hidden>
         <Icon name='plane' className='large'/>
