@@ -92,9 +92,6 @@ See `data/sabre-response.json`
 The idea is to be able to specify a travel query a la SQL, a proof of
 concept grammar, lexer and parser are implemented in `farandula/query_*.go`.
 
-There are some naming consistency issues, i.e. traveler vs passenger that must be
-resolved before continuing the development of TQL.
-
 ### Context-Free Grammar
 
 The tokenization and parsing of terminals like Traveler and Cabin types
