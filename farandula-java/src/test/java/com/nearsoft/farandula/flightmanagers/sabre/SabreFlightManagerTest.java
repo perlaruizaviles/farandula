@@ -127,11 +127,23 @@ public class SabreFlightManagerTest {
     }
 
     @Test
-    public void buildAvailResponse() throws IOException {
+    public void buildAvailResponse() throws IOException, FarandulaException {
 
         SabreFlightManager manager = new SabreFlightManager();
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
-        manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json"));
+        SearchCommand search = new SearchCommand(null);
+        search
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
+                .returningAt(departingDate.plusDays(1))
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ONEWAY)
+                .limitTo(2);
+
+
+        manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json"), search);
 
     }
 
