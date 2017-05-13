@@ -1,28 +1,34 @@
 package com.nearsoft.farandula.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by pruiz on 4/12/17.
  */
 public class Segment {
 
-
+    private String key;
     String airlineIconPath;
-    String operatingAirline;
-    String marketingAirline;
+    String operatingAirlineCode;
+    String operatingAirlineName;
+    String operatingFlightNumber;
+    String marketingAirlineCode;
+    String marketingAirlineName;
     String marketingFlightNumber;
+
     String departureAirportCode;
     String departureTerminal;
-    LocalDateTime departingDate;
+    LocalDateTime departureDate;
+
     String arrivalAirportCode;
     String arrivalTerminal;
     LocalDateTime arrivalDate;
+
     String airplaneData;
     long duration;
-    String travelClass;
-    String operatingFlightNumber;
-    private String operatingAirlineName;
+    List<Seat> seatsAvailable;
+    Price price;
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -32,20 +38,28 @@ public class Segment {
         this.airlineIconPath = airlineIconPath;
     }
 
-    public String getOperatingAirline() {
-        return operatingAirline;
+    public String getOperatingAirlineCode() {
+        return operatingAirlineCode;
     }
 
-    public void setOperatingAirline(String operatingAirline) {
-        this.operatingAirline = operatingAirline;
+    public void setOperatingAirlineCode(String operatingAirlineCode) {
+        this.operatingAirlineCode = operatingAirlineCode;
     }
 
-    public String getMarketingAirline() {
-        return marketingAirline;
+    public String getMarketingAirlineCode() {
+        return marketingAirlineCode;
     }
 
-    public void setMarketingAirline(String marketingAirline) {
-        this.marketingAirline = marketingAirline;
+    public void setMarketingAirlineCode(String marketingAirlineCode) {
+        this.marketingAirlineCode = marketingAirlineCode;
+    }
+
+    public String getMarketingAirlineName() {
+        return marketingAirlineName;
+    }
+
+    public void setMarketingAirlineName(String marketingAirlineName) {
+        this.marketingAirlineName = marketingAirlineName;
     }
 
     public String getMarketingFlightNumber() {
@@ -56,13 +70,12 @@ public class Segment {
         this.marketingFlightNumber = marketingFlightNumber;
     }
 
-    public String getTravelClass() {
-        return travelClass;
+    public List<Seat> getSeatsAvailable() {
+        return seatsAvailable;
     }
 
-    //TODO the travel class should be a collection of cabins of a given enum type
-    public void setTravelClass(String travelClass) {
-        this.travelClass = travelClass;
+    public void setSeatsAvailable(List<Seat> seatsAvailable) {
+        this.seatsAvailable = seatsAvailable;
     }
 
     public String getDepartureAirportCode() {
@@ -73,12 +86,12 @@ public class Segment {
         this.departureAirportCode = departureAirportCode;
     }
 
-    public LocalDateTime getDepartingDate() {
-        return departingDate;
+    public LocalDateTime getDepartureDate() {
+        return departureDate;
     }
 
-    public void setDepartingDate(LocalDateTime departingDate) {
-        this.departingDate = departingDate;
+    public void setDepartureDate(LocalDateTime departureDate) {
+        this.departureDate = departureDate;
     }
 
     public String getDepartureTerminal() {
@@ -136,9 +149,12 @@ public class Segment {
         return operatingFlightNumber;
     }
 
-    //TODO we should have a reference airline code/name map
     public void setOperatingAirlineName(String operatingAirlineName) {
         this.operatingAirlineName = operatingAirlineName;
+    }
+
+    public String getOperatingAirlineName() {
+        return operatingAirlineName;
     }
 
     @Override
@@ -148,4 +164,21 @@ public class Segment {
                 ", arrivalAirportCode='" + arrivalAirportCode + '\'' +
                 '}';
     }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
 }

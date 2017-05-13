@@ -1,8 +1,9 @@
 package com.nearsoft.farandula.flightmanagers.travelport.request.xml;
 
-import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
+import com.nearsoft.farandula.models.TravelportFlightDetails;
 import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.SearchCommand;
+import com.nearsoft.farandula.models.Segment;
 import org.apache.commons.lang3.text.StrSubstitutor;
 
 import java.io.BufferedReader;
@@ -21,6 +22,8 @@ public class TravelportXMLRequest {
     private static Map valuesMap = new HashMap();
 
     private static StrSubstitutor sub;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
     public static String getRequest(SearchCommand search, String targetBranchValue) {
 
@@ -76,6 +79,40 @@ public class TravelportXMLRequest {
         }
 
         return airlegs;
+    }
+
+    public static String getRequest(Segment seg, String targetBranchValue, TravelportFlightDetails details) {
+
+        InputStream soapInputStream = TravelportXMLRequest.class
+                .getResourceAsStream("/travelport/XML.request/airPricing.xml");
+        String header = new BufferedReader(new InputStreamReader(soapInputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
+        valuesMap.clear();
+
+        String carrier = seg.getOperatingAirlineCode() != null ? seg.getOperatingAirlineCode() : seg.getMarketingAirlineCode();;
+        String flightNumber = seg.getOperatingFlightNumber()!= null? seg.getOperatingFlightNumber() : seg.getMarketingFlightNumber();
+
+        valuesMap.put("key", seg.getKey() );
+        valuesMap.put("group", details.getGroup() );
+        valuesMap.put("carrier", carrier );
+        valuesMap.put("flightNumber", flightNumber  );
+        valuesMap.put("origin", seg.getDepartureAirportCode() );
+        valuesMap.put("destination", seg.getArrivalAirportCode() );
+        valuesMap.put("departureTime", seg.getDepartureDate().format( DateTimeFormatter.ISO_DATE_TIME) );
+        valuesMap.put("arrivalTime", seg.getArrivalDate().format(DateTimeFormatter.ISO_DATE_TIME) );
+        valuesMap.put("flightTime", seg.getDuration() );
+        valuesMap.put("travelTime", seg.getDuration() );
+        valuesMap.put("equipment", seg.getAirplaneData());
+        valuesMap.put("targetBranch", targetBranchValue);
+
+        sub = new StrSubstitutor(valuesMap);
+
+        header = sub.replace( header );
+
+        return header ;
+
     }
 
 }

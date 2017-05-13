@@ -3,14 +3,14 @@ package com.nearsoft.farandula.models;
 /**
  * Created by pruiz on 5/2/17.
  */
-public class FlightDetailsTravelport {
+public class TravelportFlightDetails {
 
     private String key;
     private String originalTerminal;
     private String destinationTerminal;
     private Long flightTime;
     private String equipment;
-
+    private String group;
 
     public void setKey(String key) {
         this.key = key;
@@ -44,12 +44,19 @@ public class FlightDetailsTravelport {
         return flightTime;
     }
 
-
     public String getKey() {
         return key;
     }
 
     public String getEquipment() {
         return equipment;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

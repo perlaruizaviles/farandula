@@ -10,9 +10,7 @@ import com.nearsoft.farandula.auth.Creds;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
-import com.nearsoft.farandula.models.AirLeg;
-import com.nearsoft.farandula.models.SearchCommand;
-import com.nearsoft.farandula.models.Segment;
+import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
@@ -24,19 +22,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
+import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
-//TODO consider create an specific trip manager for each API or create a connector/plugin framework
 public class SabreFlightManager implements FlightManager {
 
     //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
     private static Map<String, String> codeToClassMap = new HashMap<>();
+    private static Map<String, String> airlinesCodeMap = new HashMap<>();
 
     public SabreFlightManager() {
-        //TODO consider later to add aconstructor with arguments clientId & clientSecret
         Creds creds = new Creds(clientId, clientSecret);
         _accessManager = new AccessManager(creds);
     }
@@ -52,15 +50,13 @@ public class SabreFlightManager implements FlightManager {
             props.load(SabreFlightManager.class.getResourceAsStream("/config.properties"));
             clientId = props.getProperty("sabre.client_id");
             clientSecret = props.getProperty("sabre.client_secret");
-
-            fillCodeToClassMap();
-
+            fillReferenceMaps();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void fillCodeToClassMap() throws IOException {
+    private static void fillReferenceMaps() throws IOException {
 
         Properties properties = new Properties();
         properties.load(SabreFlightManager.class.getResourceAsStream("/Sabre/cabinCodes.properties"));
@@ -68,6 +64,14 @@ public class SabreFlightManager implements FlightManager {
             String value = properties.getProperty(key);
             codeToClassMap.put(key, value);
         }
+
+        properties.clear();
+
+        properties.load( SabreFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+            for (String key : properties.stringPropertyNames()) {
+                String value = properties.getProperty(key);
+                airlinesCodeMap.put(key, value);
+            }
 
     }
 
@@ -81,13 +85,12 @@ public class SabreFlightManager implements FlightManager {
     }
 
     @Override
-    public List<AirLeg> getAvail(SearchCommand search) throws FarandulaException {
+    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
             Request request = buildRequestForAvail(search);
             InputStream responseStream = sendRequest(request);
-
-            return parseAvailResponse(responseStream);
+            return parseAvailResponse(responseStream, search);
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
@@ -116,35 +119,54 @@ public class SabreFlightManager implements FlightManager {
         return response.body().byteStream();
     }
 
-    public List<AirLeg> parseAvailResponse(InputStream response) throws IOException {
+    public List<Itinerary> parseAvailResponse(InputStream response, SearchCommand searchCommand) throws IOException {
 
         ReadContext ctx = JsonPath.parse(response);
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
 
-
-        List<AirLeg> flightStream = new ArrayList<>();
+        List<Itinerary> itineraries = new ArrayList<>();
         for (Object pricedItinerary : pricedItineraries) {
-            List<AirLeg> legs = buildAirLegs((Map<String, Object>) pricedItinerary);
+
+            Itinerary itinerary = buildAirLegs( (Map<String, Object>) pricedItinerary, searchCommand  ) ;
+
             JSONArray airItineraryPricingInfo = (JSONArray) getValueOf(pricedItinerary, "AirItineraryPricingInfo");
             if (airItineraryPricingInfo.size() > 1) {
-
                 throw new RuntimeException("We don't support multiple AirPricingInfo");
             }
 
-            ArrayList<List<String>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
-            int cabinIndex = 0;
-            for (AirLeg leg : legs) {
-                for (Segment segment : leg.getSegments()) {
-                    segment.setTravelClass(convertCodeToTravelClass(cabinsBySegment.get(0).get(cabinIndex)));
-                    cabinIndex++;
-                }
-            }
+            ArrayList<List<Map>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
+            getSeats( itinerary.getDepartureAirlegs(), cabinsBySegment );
+            getSeats( itinerary.getReturningAirlegs(), cabinsBySegment );
 
-            flightStream.addAll(legs);
+            itineraries.add( itinerary );
         }
 
+        return itineraries;
 
-        return flightStream;
+    }
+
+    private void getSeats(List<AirLeg> legs, ArrayList<List<Map>> cabinsBySegment) {
+        int cabinIndex = 0;
+        for ( AirLeg leg : legs ) {
+            for (Segment segment : leg.getSegments()) {
+
+                Map cabinsBySegmentMap = cabinsBySegment.get(0).get(cabinIndex);
+                int numberOfSeats = getValueOf( cabinsBySegmentMap, "SeatsRemaining.Number", Integer.class) ;
+                String cabinValue = getValueOf(cabinsBySegmentMap, "Cabin.Cabin", String.class);;
+                CabinClassType classType = getCabinClassType(  convertCodeToTravelClass( cabinValue) ) ;
+
+                List<Seat> seatsResult = new ArrayList<>();
+                for ( int i = 0 ; i < numberOfSeats ; i++ ) {
+                    Seat seat = new Seat();
+                    seat.setClassCabin(classType);
+                    //sabre does not have the seat key
+                    seat.setPlace("");
+                    seatsResult.add(seat);
+                }
+                segment.setSeatsAvailable( seatsResult );
+                cabinIndex++;
+            }
+        }
 
     }
 
@@ -157,17 +179,17 @@ public class SabreFlightManager implements FlightManager {
         return "Other";
     }
 
-    private ArrayList<List<String>> extractCabinsInfo(JSONArray airItineraryPricingInfoMap) {
+    private ArrayList<List<Map>> extractCabinsInfo(JSONArray airItineraryPricingInfoMap) {
 
-        ArrayList<List<String>> cabinsBySegment = airItineraryPricingInfoMap
+        ArrayList<List<Map>> cabinsBySegment = airItineraryPricingInfoMap
                 .stream()
                 .map(itineraryPricing -> {
 
                     JSONArray fareInfosArray = getValueOf(itineraryPricing, "FareInfos.FareInfo", JSONArray.class);
-                    List<String> cabins = fareInfosArray
+                    List<Map> cabins = fareInfosArray
                             .stream()
                             .map(fareInfo -> {
-                                return getValueOf(fareInfo, "TPA_Extensions.Cabin.Cabin", String.class);
+                                return getValueOf(fareInfo, "TPA_Extensions", Map.class);
                             })
                             .collect(Collectors.toCollection(ArrayList::new));
 
@@ -177,62 +199,78 @@ public class SabreFlightManager implements FlightManager {
         return cabinsBySegment;
     }
 
-
-    //TODO extract this methods to a helper class
-    private Object getValueOf(Object stringObjectMap, String keyName) {
-
-        return getValueOf(stringObjectMap, keyName, Object.class);
-    }
-
-    private <T> T getValueOf(Object stringObjectMap, String keyName, Class<T> type) {
-        int indexSeparator = keyName.indexOf(".");
-        if (indexSeparator == -1) {
-            Map<String, Object> theMap = (Map<String, Object>) stringObjectMap;
-
-            return type.cast(theMap.get(keyName));
-        } else {
-            String currentKey = keyName.substring(0, indexSeparator);
-            String newKeyPath = keyName.substring(indexSeparator + 1, keyName.length());
-            Object currentMap = ((Map<String, Object>) stringObjectMap).get(currentKey);
-            return getValueOf(currentMap, newKeyPath, type);
-        }
-
-    }
-
-    private List<AirLeg> buildAirLegs(Map<String, Object> pricedItinerary) {
+    private Itinerary buildAirLegs(Map<String, Object> pricedItinerary, SearchCommand searchCommand) {
 
         Map<String, Object> airItinerary = (Map<String, Object>) getValueOf(pricedItinerary, "AirItinerary");
         Map<String, Object> originDestinationOptions = (Map<String, Object>) getValueOf(airItinerary, "OriginDestinationOptions");
         JSONArray originDestinationOption = (JSONArray) getValueOf(originDestinationOptions, "OriginDestinationOption");
 
-        return originDestinationOption
-                .stream()
-                .map(option -> {
-                    JSONArray jsonSegmentArray = (JSONArray) getValueOf(option, "FlightSegment");
-                    return jsonSegmentArray.stream()
-                            .map(g -> buildSegment((Map<String, Object>) g))
-                            .collect(Collectors.toCollection(LinkedList::new));
-                })
-                .filter(segments -> !segments.isEmpty())
-                .map(segments -> {
-                    AirLeg leg = new AirLeg();
-                    leg.setId("tempID");
-                    leg.setDepartureAirportCode(segments.get(0).getDepartureAirportCode());
-                    leg.setDepartingDate(segments.get(0).getDepartingDate());
-                    leg.setArrivalAirportCode(segments.get(segments.size() - 1).getArrivalAirportCode());
-                    leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
-                    leg.setSegments(segments);
-                    return leg;
+        Itinerary itinerary = new Itinerary();
 
-                })
-                .collect(Collectors.toCollection(LinkedList::new));
+        for ( int i  = 0 ; i< originDestinationOption.size() ; i ++ ){
+
+            Object option = originDestinationOption.get(i);
+            JSONArray jsonSegmentArray = (JSONArray) getValueOf(option, "FlightSegment");
+
+            List<Segment> segments = new ArrayList<>();
+            for ( int j = 0 ; j < jsonSegmentArray.size() ; j++ ){
+                segments.add( buildSegment((Map<String, Object>) jsonSegmentArray.get(j)) );
+            }
+
+            AirLeg leg = new AirLeg();
+            leg.setId("tempID");
+            leg.setDepartureAirportCode(segments.get(0).getDepartureAirportCode());
+            leg.setDepartingDate(segments.get(0).getDepartureDate());
+            leg.setArrivalAirportCode(segments.get(segments.size() - 1).getArrivalAirportCode());
+            leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
+            leg.setSegments(segments);
+
+            Segment lastSegment = segments.get(segments.size() - 1);
+            if ( lastSegment.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() ) ){
+                itinerary.getDepartureAirlegs().add( leg );
+            }else{
+                itinerary.getReturningAirlegs().add( leg );
+            }
+
+        }
+
+        return itinerary;
+
+
+//        originDestinationOption
+//                .stream()
+//                .map(option -> {
+//                    JSONArray jsonSegmentArray = (JSONArray) getValueOf(option, "FlightSegment");
+//                    return jsonSegmentArray.stream()
+//                            .map(g -> buildSegment((Map<String, Object>) g))
+//                            .collect(Collectors.toCollection(LinkedList::new));
+//                })
+//                .filter(segments -> !segments.isEmpty())
+//                .map(segments -> {
+//                    AirLeg leg = new AirLeg();
+//                    leg.setId("tempID");
+//                    leg.setDepartureAirportCode(segments.get(0).getDepartureAirportCode());
+//                    leg.setDepartingDate(segments.get(0).getDepartureDate());
+//                    leg.setArrivalAirportCode(segments.get(segments.size() - 1).getArrivalAirportCode());
+//                    leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
+//                    leg.setSegments(segments);
+//
+//                    Segment lastSegment = segments.get(segments.size() - 1);
+//
+//                    if ( lastSegment.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() ) ){
+//                        itinerary.getDepartureAirlegs().add( leg );
+//                    }else{
+//                        itinerary.getReturningAirlegs().add( leg );
+//                    }
+//                    //return leg;
+//                });
 
     }
 
     private Segment buildSegment(Map<String, Object> g) {
 
         Map<String, Object> segmentMap = g;
-        //Todo change segment id and PATH
+        //Todo change segment id and icon PATH
         //airline
         JSONArray jsonEquipmentArray = (JSONArray) getValueOf(segmentMap, "Equipment");
         Map<String, Object> equipmentData = (Map<String, Object>) jsonEquipmentArray.get(0);
@@ -249,19 +287,22 @@ public class SabreFlightManager implements FlightManager {
         //Airleg data
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
-        seg.setOperatingAirline((String) getValueOf(operativeAirlineData, "Code"));
-        seg.setMarketingAirline((String) getValueOf(marketingAirlineData, "Code"));
-        seg.setMarketingFlightNumber((String) getValueOf(segmentMap, "FlightNumber"));
-        seg.setAirplaneData((String) getValueOf(equipmentData, "AirEquipType"));
-        //TODO travel class for SABRE
-        seg.setTravelClass("");
+        seg.setOperatingAirlineCode((String) getValueOf(operativeAirlineData, "Code"));
+        seg.setOperatingAirlineName( airlinesCodeMap.get( seg.getOperatingAirlineCode() )  );
+        seg.setOperatingFlightNumber( operativeAirlineData.get("FlightNumber").toString() );
 
+        seg.setMarketingAirlineCode((String) getValueOf(marketingAirlineData, "Code"));
+        seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
+        // marketing flight number does not exist in sabre.
+        seg.setMarketingFlightNumber( "" );
+
+        seg.setAirplaneData((String) getValueOf(equipmentData, "AirEquipType"));
         //departure info
         seg.setDepartureAirportCode((String) getValueOf(departureAirportData, "LocationCode"));
         seg.setDepartureTerminal((String) getValueOf(departureAirportData, "TerminalID"));
         LocalDateTime departureDateTime = LocalDateTime.parse(
                 (String) getValueOf(segmentMap, "DepartureDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        seg.setDepartingDate(departureDateTime);
+        seg.setDepartureDate(departureDateTime);
 
         //arrival info
         seg.setArrivalAirportCode((String) getValueOf(arrivalAirportData, "LocationCode"));
