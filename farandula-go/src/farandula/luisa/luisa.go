@@ -13,7 +13,7 @@ func SetGDS(gds farandula.GDS) {
 func FindMeFlights(q farandula.GDSQuery) (farandula.GDSResult, error) {
 	r, err := currentGDS.GetAvail(q)
 	if err != nil {
-		return nil, err
+		return farandula.GDSResult{}, err
 	}
 	return r, nil
 }

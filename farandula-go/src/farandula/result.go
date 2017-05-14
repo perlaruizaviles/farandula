@@ -1,3 +1,7 @@
 package farandula
 
-type GDSResult struct{}
+import "github.com/tidwall/gjson"
+
+type GDSResult struct {
+	Json gjson.Result
+}

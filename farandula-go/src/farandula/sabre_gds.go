@@ -1,11 +1,14 @@
 package farandula
 
 import (
-	"bytes"
-	"encoding/base64"
-	"encoding/json"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"net/http"
+	"net/url"
+	"text/template"
+
+	"github.com/tidwall/gjson"
 )
 
 const (
@@ -20,6 +23,7 @@ type SabreGDS struct {
 	client      *http.Client
 	token       sabreToken
 	credentials string
+	template    *template.Template
 }
 
 // TODO: Check auth errors to refresh token (ignore `ExpiresIn`)
@@ -37,73 +41,65 @@ func NewSabreGDS() (*SabreGDS, error) {
 	if err != nil {
 		return nil, err
 	}
+	err = sabre.generateSabreRequestTemplate()
+	if err != nil {
+		return nil, err
+	}
 	return sabre, nil
 }
 
-func (sabre *SabreGDS) generateCredentials() {
-	keydata := []byte(sabreClientKey)
-	keystr := base64.StdEncoding.EncodeToString(keydata)
+func (sabre *SabreGDS) request(method, requrl string, body io.Reader) (*http.Response, error) {
+	req, err := http.NewRequest(method, requrl, body)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+sabre.token.AccessToken)
 
-	secretdata := []byte(sabreClientSecret)
-	secretstr := base64.StdEncoding.EncodeToString(secretdata)
+	res, err := sabre.client.Do(req)
 
-	credentialsdata := []byte(keystr + ":" + secretstr)
-	credentials := base64.StdEncoding.EncodeToString(credentialsdata)
-	sabre.credentials = credentials
+	if err != nil {
+		return nil, err
+	}
+	if res.Status != "200 OK" {
+		return nil, fmt.Errorf("Status %v", res.Status)
+	}
+	return res, nil
 }
 
-func (sabre *SabreGDS) generateToken() error {
-	var token sabreToken
-	data := []byte(`grant_type=client_credentials`)
-	req, err := http.NewRequest("POST", sabreTokenUrl, bytes.NewBuffer(data))
-	if err != nil {
-		return err
+func (sabre *SabreGDS) requestWithParams(method, requrl string, params map[string]string, body io.Reader) (*http.Response, error) {
+	q := url.Values{}
+	for k, v := range params {
+		q.Add(k, v)
 	}
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Set("Authorization", "Basic "+sabre.credentials)
-	resp, err := sabre.client.Do(req)
-	if err != nil {
-		return err
-	}
-	if resp.Status != "200 OK" {
-		return fmt.Errorf("generating token: reponse status = %v", resp.Status)
-	}
-	err = json.NewDecoder(resp.Body).Decode(&token)
-	if err != nil {
-		return err
-	}
-	sabre.token = token
-	return nil
+	return sabre.request(method, requrl+"?"+q.Encode(), body)
 }
 
 func (sabre SabreGDS) GetAvail(q GDSQuery) (GDSResult, error) {
-	return GDSResult{}, nil
-}
+	buff, err := sabre.fillSabreRequestTemplate(&q)
+	if err != nil {
+		return GDSResult{}, err
+	}
 
-/*
-// The following is a manual GetAvail where jsonRequestExample
-// corresponds to `farandula-go/data/sabre-request.json`
-func (sabre SabreGDS) GetAvail(limit int, offset int) []byte {
-	q := url.Values{}
-	q.Add("mode", "live")
-	q.Add("limit", fmt.Sprintf("%d", limit))
-	q.Add("offset", fmt.Sprintf("%d", offset))
-	uri := "/v3.1.0/shop/flights" + "?" + q.Encode()
-	data := []byte(jsonRequestExample)
-	req, err := http.NewRequest("POST", sabreBaseUrl+uri, bytes.NewBuffer(data))
+	params := map[string]string{
+		"mode":   "live",
+		"limit":  "50",
+		"offset": "1",
+	}
+
+	res, err := sabre.requestWithParams("POST", sabreBaseUrl+"/v3.1.0/shop/flights", params, buff)
+
 	if err != nil {
-		panic(err)
+		return GDSResult{}, err
 	}
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+sabre.token.accessToken)
-	resp, err := sabre.client.Do(req)
+	bs, err := ioutil.ReadAll(res.Body)
+	defer res.Body.Close()
+
 	if err != nil {
-		panic(err)
+		return GDSResult{}, err
 	}
-	if resp.Status != "200 OK" {
-		panic(resp.Status)
-	}
-	bs, err := ioutil.ReadAll(resp.Body)
-	return bs
+
+	js := gjson.ParseBytes(bs)
+
+	return GDSResult{Json: js}, nil
 }
-*/

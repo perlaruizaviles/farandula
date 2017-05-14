@@ -47,12 +47,12 @@ var parseTests = []parseTest{
 	},
 	{
 		"multi city",
-		`search flights from DFW to CDG departing 2017-07-09 then from CDG to HDR departing 2017-07-11
+		`search flights from DFW to CDG departing 2017-07-09 then from CDG to LHR departing 2017-07-11
 		for 3 Seniors and 1 Child in First Class`,
 		&GDSQuery{
 			Itinerary: []FlightQuery{
 				{From: "DFW", To: "CDG", At: july_9_2017},
-				{From: "CDG", To: "HDR", At: july_11_2017},
+				{From: "CDG", To: "LHR", At: july_11_2017},
 			},
 			Travelers: TravelerQuery{
 				Senior: 3,
@@ -64,12 +64,12 @@ var parseTests = []parseTest{
 	{
 		"round multi city",
 		`search flights for 3 Infants, 2 Seniors and 1 Adult in Economy Coach from DFW to CDG departing 2017-07-09 then
-		from CDG to HDR departing 2017-07-11 then returning 2017-07-15`,
+		from CDG to LHR departing 2017-07-11 then returning 2017-07-15`,
 		&GDSQuery{
 			Itinerary: []FlightQuery{
 				{From: "DFW", To: "CDG", At: july_9_2017},
-				{From: "CDG", To: "HDR", At: july_11_2017},
-				{From: "HDR", To: "DFW", At: july_15_2017},
+				{From: "CDG", To: "LHR", At: july_11_2017},
+				{From: "LHR", To: "DFW", At: july_15_2017},
 			},
 			Travelers: TravelerQuery{
 				Infant: 3,

@@ -17,8 +17,8 @@ the Go programming language.
 
 ## Authentication
 
-Follow [this instructions](https://developer.sabre.com/docs/rest_basics/authentication) and read the `GetToken` method implemented for the `SabreClient` type
-at `gds/sabre.go`
+Follow [this instructions](https://developer.sabre.com/docs/rest_basics/authentication) and read the `generateToken` method implemented for the `SabreGDS` type
+at `farandula/sabre_gds.go`
 
 In `farandula-java` for each API request a new access token is generated,
 Sabre recommends generating only one token and handling it's expiration.
@@ -149,7 +149,7 @@ farandula.Query(`
 
 ```go
 farandula.Query(`
-    search flights from DFW to CDG departing 2017-07-09 then from CDG to HDR departing 2017-07-11
+    search flights from DFW to CDG departing 2017-07-09 then from CDG to LHR departing 2017-07-11
     for 3 Seniors and 1 Child in First Class
 `)
 ```
@@ -157,14 +157,14 @@ farandula.Query(`
 ```go
 farandula.Query(`
     search flights for 3 Infants, 2 Seniors and 1 Adult from DFW to CDG departing 2017-07-09 then
-    from CDG to HDR departing 2017-07-11 then returning 2017-07-15
+    from CDG to LHR departing 2017-07-11 then returning 2017-07-15
 `)
 ```
 
 ```go
 farandula.Queryf(`
     search flights for %d %s, %d %s and 1 Adult from DFW to CDG departing 2017-07-09 then
-    from CDG to HDR departing 2017-07-11 then returning %s
+    from CDG to LHR departing 2017-07-11 then returning %s
 `, 3, "Infants", 2, "Seniors", "2017-07-15")
 ```
 
