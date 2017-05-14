@@ -22,6 +22,8 @@ type SabreGDS struct {
 	credentials string
 }
 
+// TODO: Check auth errors to refresh token (ignore `ExpiresIn`)
+// o bien cambiar `ExpiresIn` por un objeto time.Time
 type sabreToken struct {
 	AccessToken string `json:"access_token"`
 	TokenType   string `json:"token_type"`

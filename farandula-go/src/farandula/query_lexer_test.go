@@ -70,23 +70,27 @@ var lexTests = []lexTest{
 	{"date", "2017/07/09", []token{mToken(tokenDate, "2017/07/09"), tEOF}},
 	{"date", "2017/7/09", []token{mToken(tokenDate, "2017/7/09"), tEOF}},
 	{"date", "2017-12-9", []token{mToken(tokenDate, "2017-12-9"), tEOF}},
-	{"one way", `
-			search flights from DFW to CDG departing 2017-07-09 for 1 Adult in Economy
-		`, []token{
-		tSearch, tFlights, tFrom, mToken(tokenAirportCode, "DFW"), tTo, mToken(tokenAirportCode, "CDG"),
-		tDeparting, mToken(tokenDate, "2017-07-09"), tFor, mToken(tokenNumber, "1"),
-		mToken(tokenTraveler, "Adult"), tIn, mToken(tokenCabin, "Economy"), tEOF,
-	}},
-	{"round trip", `
-		search flights from DFW to CDG departing 2017-07-09 then returning 2017-07-11 for
-    2 Adults and 3 Children in Economy
-    `, []token{
-		tSearch, tFlights, tFrom, mToken(tokenAirportCode, "DFW"), tTo, mToken(tokenAirportCode, "CDG"),
-		tDeparting, mToken(tokenDate, "2017-07-09"), tThen, tReturning, mToken(tokenDate, "2017-07-11"), tFor,
-		mToken(tokenNumber, "2"), mToken(tokenTraveler, "Adults"), tAnd,
-		mToken(tokenNumber, "3"), mToken(tokenTraveler, "Children"), tIn, mToken(tokenCabin, "Economy"),
-		tEOF,
-	}},
+	{
+		"one way",
+		`search flights from DFW to CDG departing 2017-07-09 for 1 Adult in Economy`,
+		[]token{
+			tSearch, tFlights, tFrom, mToken(tokenAirportCode, "DFW"), tTo, mToken(tokenAirportCode, "CDG"),
+			tDeparting, mToken(tokenDate, "2017-07-09"), tFor, mToken(tokenNumber, "1"),
+			mToken(tokenTraveler, "Adult"), tIn, mToken(tokenCabin, "Economy"), tEOF,
+		},
+	},
+	{
+		"round trip",
+		`search flights from DFW to CDG departing 2017-07-09 then returning 2017-07-11 for
+		2 Adults and 3 Children in Economy`,
+		[]token{
+			tSearch, tFlights, tFrom, mToken(tokenAirportCode, "DFW"), tTo, mToken(tokenAirportCode, "CDG"),
+			tDeparting, mToken(tokenDate, "2017-07-09"), tThen, tReturning, mToken(tokenDate, "2017-07-11"), tFor,
+			mToken(tokenNumber, "2"), mToken(tokenTraveler, "Adults"), tAnd,
+			mToken(tokenNumber, "3"), mToken(tokenTraveler, "Children"), tIn, mToken(tokenCabin, "Economy"),
+			tEOF,
+		},
+	},
 }
 
 func collectLexTest(t *lexTest) (tokens []token) {

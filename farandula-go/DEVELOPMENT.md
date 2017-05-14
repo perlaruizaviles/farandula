@@ -98,22 +98,39 @@ The tokenization and parsing of terminals like Traveler and Cabin types
 aren't specified in the current grammar spec.
 
 ```
-               <Search> :: SEARCH <FlightSearch> <EOF>
-         <FlightSearch> :: FLIGHTS <FlightDescription>
-    <FlightDescription> :: <ScheduleDescription> <PassengersDescription>
-                        || <PassengersDescription> <ScheduleDescription>
-<PassengersDescription> :: FOR <PassengersList> IN <Cabin>
-       <PassengersList> :: <PassengerCount>
-                        || <PassengerCount> <PassengersListVarious>
-<PassengersListVarious> :: , <PassengerCount> <PassengersListVarious>
-                        || AND <PassengerCount>
-       <PassengerCount> :: <Number> <Passenger>
-  <ScheduleDescription> :: <ScheduleFlight>
-                        || <ScheduleFlight> <ScheduleListVarious>
-       <ScheduleFlight> :: FROM <AirportCode> TO <AirportCode> DEPARTING <Date>
-  <ScheduleListVarious> :: THEN RETURNING <Date>
-                        || THEN <ScheduleDescription>
+      <SearchTopLevel> :: search <FlightTopLevel>
+     <FlightsTopLevel> :: flights <FlightsDescription>
+  <FlightsDescription> :: from <ScheduleDescription> for <TravelersDescription>
+                       || for <TravelersDescription> from <ScheduleDescription>
+ <ScheduleDescription> :: <FlightDescription> <ScheduleRest>
+   <FlightDescription> :: <AirportCode> to <AirportCode> departing <Date>
+        <ScheduleRest> :: then <ScheduleContinue>
+                       || [epsilon]
+    <ScheduleContinue> :: from <ScheduleDescription>
+                       || returning <Date>
+<TravelersDescription> :: <TravelerDescription> <TravelersRest> in <Cabin>
+ <TravelerDescription> :: <Number> <Traveler>
+       <TravelersRest> :: , <TravelerDescription> <TravelersForceRest>
+                       || and <TravelerDescription>
+                       || [epsilon]
+  <TravelersForceRest> :: , <TravelerDescription> <TravelersForceRest>
+                       || and <TravelerDescription>
 ```
+
+In this grammar `[epsilon]` means that not matching any pattern is a
+success for the non-terminal. For example in `<ScheduleRest>` if no
+`then` token is found, means that `<ScheduleDescription>` (which produces
+the `<ScheduleRest>`) is a success, that is, the partial match of one
+`<FlightDescription>` is enough for making a `<ScheduleDescription>`.
+The idea behind this empty productions is to signal that the production
+is correct even though no more productions could be generated.
+
+The use of empty productions can make recursive descent parsers fail, the
+trick in designing the grammar is to let the parser be sure of what path
+to follow by just looking at the next token. With the use of empty
+productions, if the next token doesn't match what the parser expects, it
+won't get removed from the parser cache and will be able to get consumed
+by another rule. (the parser is LL(1))
 
 ### Examples
 
@@ -157,10 +174,41 @@ The way the parser and lexer are implemented allow introducing
 better error reporting and recovery mechanisms, but these aren't
 implemented in this draft code.
 
-For error reporting we could have a `column` field to complement
-the `line` number projecting the `pos` index to a more readable
+For error reporting we could compute a `column` to complement
+the `line` number by projecting the `pos` index to a more readable
 domain.
 
 For the recovery mechanism, each `err` check has access to the
 entire parsing and lexing state, so instead of propagating the
 error message one could continue the parsing in a smart way.
+
+#### Example of error recovery
+
+Suppose the user writes the following query
+
+`search flights from DFW to CDG departing 2017-01-01 returning 2017 for 1 Adult`
+
+The query doesn't satisfy the grammar, we can infer that the user wants
+a round trip but forgot to write `then` before the `returning` keyword.
+Well in the `par.scheduleRest` method we expect to see `then` as the next
+token, and in the first `if err != nil` block we express that no `then`
+was found but that the schedule description is complete.
+
+Let's change that by checking if the next token is `returning`, in which
+case we proceed with the `scheduleContinue` method:
+
+```go
+if par.storedToken.typ != tokenReturning {
+    return nil // next token isn't `returning` so we do the right thing with the [epsilon]
+}
+err = par.scheduleContinue()
+if err != nil { // if we guessed wrong the user's intentions
+    return err // return an error, the [epsilon] production wasn't intended by the user query
+}
+return nil
+```
+
+If you want to corroborate that this will work, I left the previous
+error recovery in the `src/farandula/query_parser.go` file as a comment.
+Just uncomment the code and run the tests, try to change the test
+suite in `query_test.go` to see that the error get's handled gracefully.

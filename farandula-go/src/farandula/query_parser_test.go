@@ -131,7 +131,7 @@ func TestParse(t *testing.T) {
 	for _, test := range parseTests {
 		query, err := collectParseTest(&test)
 		if err != nil || !compareQueries(query, test.query) {
-			t.Errorf("%s: got\n\t%+v\nexpected\n\t%v", test.name, query, test.query)
+			t.Errorf("%s: `%s` got\n\t%+v\nexpected\n\t%v\n\n%v", test.name, test.input, query, test.query, err)
 		}
 	}
 }

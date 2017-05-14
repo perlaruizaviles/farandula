@@ -57,7 +57,7 @@ func Query(qs string) (*GDSQuery, error) {
 	par := newQueryParser(lex, query)
 	err := par.topLevel()
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("in `%s`:\n%v", lex.input[0:lex.lastPos], err)
 	}
 	return par.query, nil
 }

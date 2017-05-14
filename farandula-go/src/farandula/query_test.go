@@ -120,3 +120,17 @@ func TestQuery(t *testing.T) {
 		}
 	}
 }
+
+/*
+	if you read the DEVELOPMENT document and want to quickly test that the mentioned error recovery works
+	uncomment the correct code from `query_parser.go` and this test.
+
+func TestQuery2(t *testing.T) {
+	query, err := Query(`search flights for 5 Adults, 1 Child and 1 Senior in First Class from HMO to LHR
+	 departing 2017-05-17 returning 2017-07-13`)
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(query)
+}
+*/

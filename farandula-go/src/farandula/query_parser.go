@@ -13,8 +13,8 @@ type queryParser struct {
 	storedFlight      FlightQuery
 	storedDate        time.Time
 	storedCabin       Cabin
-	storedPassenger   Traveler
-	storedCount       int
+	storedTraveler    Traveler
+	storedNumber      int
 	storedToken       token
 }
 
@@ -28,7 +28,6 @@ func newQueryParser(lex *queryLexer, query *GDSQuery) *queryParser {
 }
 
 func (par *queryParser) errorf(format string, args ...interface{}) error {
-	// TODO: show the query character position where the error happened
 	return fmt.Errorf(format, args...)
 }
 
@@ -51,7 +50,7 @@ func (par *queryParser) expectToken(typ tokenType) error {
 		par.nextToken()
 		return nil
 	}
-	return par.errorf("expecting token type %s, got ", typ, it)
+	return par.errorf("expecting `%s`, got `%s`", typ, it.typ)
 }
 
 func (par *queryParser) expectAirportCode() error {
@@ -61,7 +60,7 @@ func (par *queryParser) expectAirportCode() error {
 		par.nextToken()
 		return nil
 	}
-	return par.errorf("expecting airport code, got %s", it)
+	return par.errorf("expecting airport code, got `%s`", it.typ)
 }
 
 func (par *queryParser) expectDate() error {
@@ -80,7 +79,7 @@ func (par *queryParser) expectDate() error {
 		par.nextToken()
 		return nil
 	}
-	return par.errorf("expecting date, got %s", it)
+	return par.errorf("expecting date, got `%s`", it.typ)
 }
 
 func (par *queryParser) expectCabin() error {
@@ -116,10 +115,10 @@ func (par *queryParser) expectCabin() error {
 					par.storedCabin = EconomyCoach
 					return nil
 				default:
-					return par.errorf("malformed cabin 'Economy Coach %s'", it.val)
+					return par.errorf("malformed cabin `Economy Coach %s`", it.val)
 				}
 			default:
-				return par.errorf("malformed cabin 'Economy %s'", it.val)
+				return par.errorf("malformed cabin `Economy %s`", it.val)
 			}
 		case "Premium":
 			par.nextToken()
@@ -145,10 +144,10 @@ func (par *queryParser) expectCabin() error {
 					par.storedCabin = PremiumEconomy
 					return nil
 				default:
-					return par.errorf("malformed cabin 'Premium Economy %s'", it.val)
+					return par.errorf("malformed cabin `Premium Economy %s`", it.val)
 				}
 			default:
-				return par.errorf("malformed cabin 'Premium %s'", it.val)
+				return par.errorf("malformed cabin `Premium %s`", it.val)
 			}
 		case "First":
 			par.nextToken()
@@ -162,7 +161,7 @@ func (par *queryParser) expectCabin() error {
 				par.storedCabin = First
 				return nil
 			default:
-				return par.errorf("malformed cabin 'First %s'", it.val)
+				return par.errorf("malformed cabin `First %s`", it.val)
 			}
 		case "Business":
 			par.nextToken()
@@ -176,7 +175,7 @@ func (par *queryParser) expectCabin() error {
 				par.storedCabin = Business
 				return nil
 			default:
-				return par.errorf("malformed cabin 'Business %s'", it.val)
+				return par.errorf("malformed cabin `Business %s`", it.val)
 			}
 		case "Other":
 			par.nextToken()
@@ -190,93 +189,177 @@ func (par *queryParser) expectCabin() error {
 				par.storedCabin = Other
 				return nil
 			default:
-				return par.errorf("malformed cabin 'Other %s'", it.val)
+				return par.errorf("malformed cabin `Other %s`", it.val)
 			}
 		default:
-			return par.errorf("unknown cabin '%s'", it.val)
+			return par.errorf("unknown cabin `%s`", it.val)
 		}
 	}
-	return par.errorf("expecting cabin, got %s", it)
+	return par.errorf("expecting cabin, got `%s`", it.typ)
 }
 
 func (par *queryParser) expectNumber() error {
 	it := par.peek()
 	if it.typ != tokenNumber {
-		return par.errorf("expecting number, got %s", it)
+		return par.errorf("expecting number, got `%s`", it.typ)
 	}
 	par.nextToken()
 	n, err := strconv.Atoi(it.val)
 	if err != nil {
-		return par.errorf("malformed number: %v", err)
+		return par.errorf("malformed number: `%v`", err)
 	}
-	par.storedCount = n
+	par.storedNumber = n
 	return nil
 }
 
-func (par *queryParser) expectPassenger() error {
+func (par *queryParser) expectTraveler(n int) error {
 	it := par.peek()
 	if it.typ != tokenTraveler {
-		return par.errorf("expecting traveler, got %s", it)
+		return par.errorf("expecting traveler, got `%s`", it.typ)
 	}
 	par.nextToken()
 	switch it.val {
 	case "Adults":
-		par.storedPassenger = Adult
-		return nil
+		switch {
+		case n == 0:
+			return par.errorf("expecting more than one Adults")
+		case n == 1:
+			return par.errorf("did you mean `Adult` instead of `Adults`?")
+		default:
+			par.storedTraveler = Adult
+			return nil
+		}
 	case "Adult":
-		par.storedPassenger = Adult
-		return nil
+		switch {
+		case n == 0:
+			return par.errorf("expecting one Adult")
+		case n > 1:
+			return par.errorf("did you mean `Adults` instead of `Adult`?")
+		default:
+			par.storedTraveler = Adult
+			return nil
+		}
 	case "Children":
-		par.storedPassenger = Child
-		return nil
+		switch {
+		case n == 0:
+			return par.errorf("expecting more than one Children")
+		case n == 1:
+			return par.errorf("did you mean `Child` instead of `Children`")
+		default:
+			par.storedTraveler = Child
+			return nil
+		}
 	case "Child":
-		par.storedPassenger = Child
-		return nil
+		switch {
+		case n == 0:
+			return par.errorf("expecting one Child")
+		case n > 1:
+			return par.errorf("did you mean `Children` instead of `Child`?")
+		default:
+			par.storedTraveler = Child
+			return nil
+		}
 	case "Infants":
-		par.storedPassenger = Infant
-		return nil
+		switch {
+		case n == 0:
+			return par.errorf("expecting more than one Infants")
+		case n == 1:
+			return par.errorf("did you mean `Infant` instead of `Infants`?")
+		default:
+			par.storedTraveler = Infant
+			return nil
+		}
 	case "Infant":
-		par.storedPassenger = Infant
-		return nil
+		switch {
+		case n == 0:
+			return par.errorf("expecting one Infant")
+		case n > 1:
+			return par.errorf("did you mean `Infants` instead of `Infant`?")
+		default:
+			par.storedTraveler = Infant
+			return nil
+		}
 	case "Seniors":
-		par.storedPassenger = Senior
-		return nil
+		switch {
+		case n == 0:
+			return par.errorf("expecting more than one Seniors")
+		case n == 1:
+			return par.errorf("did you mean `Senior` instead of `Seniors`?")
+		default:
+			par.storedTraveler = Senior
+			return nil
+		}
 	case "Senior":
-		par.storedPassenger = Senior
-		return nil
+		switch {
+		case n == 0:
+			return par.errorf("expecting one Senior")
+		case n > 1:
+			return par.errorf("did you mean `Seniors` instead of `Senior`?")
+		default:
+			par.storedTraveler = Senior
+			return nil
+		}
 	default:
-		return par.errorf("malformed traveler '%s'", it.val)
+		return par.errorf("malformed traveler `%s`", it.val)
 	}
 }
 
 func (par *queryParser) topLevel() error {
-	err := par.expectToken(tokenSearch)
-	if err != nil {
-		return err
-	}
-	err = par.flightSearch()
+	err := par.searchTopLevel()
 	if err != nil {
 		return err
 	}
 	err = par.expectToken(tokenEOF)
 	if err != nil {
-		return par.errorf("expecting end of query, got '%s'", par.peek())
+		return par.errorf("too big of a query, %v", err)
 	}
 	return nil
 }
 
-func (par *queryParser) flightSearch() error {
-	err := par.expectToken(tokenFlights)
+func (par *queryParser) searchTopLevel() error {
+	err := par.expectToken(tokenSearch)
+	if err != nil {
+		return par.errorf("not a search query, %v", err)
+	}
+	err = par.flightsTopLevel()
 	if err != nil {
 		return err
 	}
-	return par.flightDescription()
+	return nil
 }
 
-func (par *queryParser) flightDescription() error {
-	err := par.scheduleDescription()
+func (par *queryParser) flightsTopLevel() error {
+	err := par.expectToken(tokenFlights)
 	if err != nil {
+		return par.errorf("not a flight search query, %v", err)
+	}
+	err = par.flightsDescription()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (par *queryParser) flightsDescription() (err error) {
+	if err = par.expectToken(tokenFrom); err == nil {
+		err = par.scheduleDescription()
+		if err != nil {
+			return err
+		}
+		err = par.expectToken(tokenFor)
+		if err != nil {
+			return err
+		}
 		err = par.travelersDescription()
+		if err != nil {
+			return err
+		}
+	} else if err = par.expectToken(tokenFor); err == nil {
+		err = par.travelersDescription()
+		if err != nil {
+			return err
+		}
+		err = par.expectToken(tokenFrom)
 		if err != nil {
 			return err
 		}
@@ -284,36 +367,33 @@ func (par *queryParser) flightDescription() error {
 		if err != nil {
 			return err
 		}
-		return nil
+	} else {
+		return par.errorf("expecting either `from` or `for`, got `%s`", par.storedToken.typ)
 	}
-	err = par.travelersDescription()
+	return nil
+}
+
+func (par *queryParser) scheduleDescription() (err error) {
+	err = par.flightDescription()
+	if err != nil {
+		return err
+	}
+	err = par.scheduleRest()
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (par *queryParser) scheduleDescription() error {
-	err := par.scheduleFlight()
-	if err != nil {
-		return err
-	}
-	par.query.Itinerary = append(par.query.Itinerary, par.storedFlight)
-	par.scheduleListVarious()
-	return nil
-}
+func (par *queryParser) flightDescription() (err error) {
+	flight := FlightQuery{}
 
-func (par *queryParser) scheduleFlight() error {
-	q := FlightQuery{}
-	err := par.expectToken(tokenFrom)
-	if err != nil {
-		return err
-	}
 	err = par.expectAirportCode()
 	if err != nil {
 		return err
 	}
-	q.From = par.storedAirportCode
+	flight.From = par.storedAirportCode
+
 	err = par.expectToken(tokenTo)
 	if err != nil {
 		return err
@@ -322,7 +402,8 @@ func (par *queryParser) scheduleFlight() error {
 	if err != nil {
 		return err
 	}
-	q.To = par.storedAirportCode
+	flight.To = par.storedAirportCode
+
 	err = par.expectToken(tokenDeparting)
 	if err != nil {
 		return err
@@ -331,42 +412,84 @@ func (par *queryParser) scheduleFlight() error {
 	if err != nil {
 		return err
 	}
-	q.At = par.storedDate
-	par.storedFlight = q
+	flight.At = par.storedDate
+
+	par.query.Itinerary = append(par.query.Itinerary, flight)
+
 	return nil
 }
 
-func (par *queryParser) scheduleListVarious() error {
-	err := par.expectToken(tokenThen)
+func (par *queryParser) scheduleRest() (err error) {
+	err = par.expectToken(tokenThen)
+	if err != nil {
+		/*
+			--------------------------------------------------------------------------------------------------------------------
+				# EXAMPLE OF ERROR RECOVERY:
+
+				Suppose the user writes the following query
+
+				`search flights from DFW to CDG departing 2017-01-01 returning 2017 for 1 Adult`
+
+				The query doesn't satisfy the grammar, we can infer that the user wants a round trip but forgot to write `then`
+				before the `returning` keyword. Well in this `scheduleRest` method we expect to see `then` as the next token,
+				and in this precise block we say that no then was found but that the schedule description is complete.
+
+				Let's change that by checking if the next token is `returning`, in which case we proceed with the `scheduleContinue`
+				method:
+		*/
+
+		/*
+			if par.storedToken.typ != tokenReturning {
+				return nil // next token isn't `returning` so we do the right thing with the [epsilon]
+			}
+			err = par.scheduleContinue()
+			if err != nil { // if we guessed wrong the user's intentions
+				return err // return an error, the [epsilon] production wasn't intended by the user query
+			}
+			return nil
+		*/
+		/*
+			--------------------------------------------------------------------------------------------------------------------
+		*/
+
+		return nil // next token isn't `then`, so an empty match is propagated (see [epsilon] in grammar)
+	}
+	err = par.scheduleContinue()
 	if err != nil {
 		return err
 	}
-	err = par.expectToken(tokenReturning)
-	if err != nil {
+	return nil
+}
+
+func (par *queryParser) scheduleContinue() (err error) {
+	if err = par.expectToken(tokenFrom); err == nil {
 		err = par.scheduleDescription()
 		if err != nil {
 			return err
 		}
-		return nil
+	} else if err = par.expectToken(tokenReturning); err == nil {
+		flight := FlightQuery{}
+		err = par.expectDate()
+		if err != nil {
+			return err
+		}
+		flight.At = par.storedDate
+		flight.From = par.query.Itinerary[len(par.query.Itinerary)-1].To
+		flight.To = par.query.Itinerary[0].From
+
+		par.query.Itinerary = append(par.query.Itinerary, flight)
+	} else {
+		return par.errorf("expecting either `from` or `returning`, got `%s`", par.storedToken.typ)
 	}
-	err = par.expectDate()
-	if err != nil {
-		return err
-	}
-	par.query.Itinerary = append(par.query.Itinerary, FlightQuery{
-		From: par.query.Itinerary[len(par.query.Itinerary)-1].To,
-		To:   par.query.Itinerary[0].From,
-		At:   par.storedDate,
-	})
 	return nil
 }
 
-func (par *queryParser) travelersDescription() error {
-	err := par.expectToken(tokenFor)
+func (par *queryParser) travelersDescription() (err error) {
+	err = par.travelerDescription()
 	if err != nil {
-		return nil
+		return err
 	}
-	err = par.travelersList()
+	err = par.travelersRest()
 	if err != nil {
 		return err
 	}
@@ -382,42 +505,58 @@ func (par *queryParser) travelersDescription() error {
 	return nil
 }
 
-func (par *queryParser) travelersList() error {
-	err := par.travelerCount()
+func (par *queryParser) travelerDescription() (err error) {
+	err = par.expectNumber()
 	if err != nil {
 		return err
 	}
-	par.query.Travelers[par.storedPassenger] += par.storedCount
-	par.travelersListVarious()
+	n := par.storedNumber
+	err = par.expectTraveler(n)
+	if err != nil {
+		return err
+	}
+	par.query.Travelers[par.storedTraveler] += n
 	return nil
 }
 
-func (par *queryParser) travelerCount() error {
-	err := par.expectNumber()
-	if err != nil {
-		return err
+func (par *queryParser) travelersRest() (err error) {
+	if err = par.expectToken(tokenComma); err == nil {
+		err = par.travelerDescription()
+		if err != nil {
+			return err
+		}
+		err = par.travelersForceRest()
+		if err != nil {
+			return err
+		}
+	} else if err = par.expectToken(tokenAnd); err == nil {
+		err = par.travelerDescription()
+		if err != nil {
+			return err
+		}
+	} else {
+		return nil // next token isn't `,` or `and`, so an empty match is propagated (see [epsilon] in grammar)
 	}
-	return par.expectPassenger()
+	return nil
 }
 
-func (par *queryParser) travelersListVarious() error {
-	err := par.expectToken(tokenComma)
-	if err != nil {
-		err = par.expectToken(tokenAnd)
+func (par *queryParser) travelersForceRest() (err error) {
+	if err = par.expectToken(tokenComma); err == nil {
+		err = par.travelerDescription()
 		if err != nil {
 			return err
 		}
-		err = par.travelerCount()
+		err = par.travelersForceRest()
 		if err != nil {
 			return err
 		}
-		par.query.Travelers[par.storedPassenger] += par.storedCount
-		return nil
+	} else if err = par.expectToken(tokenAnd); err == nil {
+		err = par.travelerDescription()
+		if err != nil {
+			return err
+		}
+	} else {
+		return par.errorf("expecting either `,` or `and`, got `%s`", par.storedToken.typ)
 	}
-	err = par.travelerCount()
-	if err != nil {
-		return err
-	}
-	par.query.Travelers[par.storedPassenger] += par.storedCount
-	return par.travelersListVarious()
+	return nil
 }

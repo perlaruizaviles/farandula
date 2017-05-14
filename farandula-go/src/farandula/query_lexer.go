@@ -33,18 +33,18 @@ const (
 
 var tokenName = map[tokenType]string{
 	tokenError:       "error",
-	tokenEOF:         "EOF",
-	tokenSearch:      "SEARCH",
-	tokenFlights:     "FLIGHTS",
-	tokenFor:         "FOR",
-	tokenIn:          "IN",
+	tokenEOF:         "eof",
+	tokenSearch:      "search",
+	tokenFlights:     "flights",
+	tokenFor:         "for",
+	tokenIn:          "in",
 	tokenComma:       ",",
-	tokenAnd:         "AND",
-	tokenFrom:        "FROM",
-	tokenTo:          "TO",
-	tokenDeparting:   "DEPARTING",
-	tokenThen:        "THEN",
-	tokenReturning:   "RETURNING",
+	tokenAnd:         "and",
+	tokenFrom:        "from",
+	tokenTo:          "to",
+	tokenDeparting:   "departing",
+	tokenThen:        "then",
+	tokenReturning:   "returning",
 	tokenCabin:       "cabin",
 	tokenNumber:      "number",
 	tokenTraveler:    "passenger",
@@ -70,7 +70,7 @@ type token struct {
 func (i token) String() string {
 	switch {
 	case i.typ == tokenEOF:
-		return "EOF"
+		return "<end of query>"
 	case i.typ == tokenError:
 		return i.val
 	case i.typ > tokenKeyword:
@@ -148,8 +148,7 @@ func (l *queryLexer) nextToken() token {
 }
 
 func (l *queryLexer) run() {
-	for l.state = lexTopLevel; l.state != nil; {
-		l.state = l.state(l)
+	for l.state = lexTopLevel; l.state != nil; l.state = l.state(l) {
 	}
 	close(l.tokens)
 }
