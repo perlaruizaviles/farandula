@@ -1,0 +1,80 @@
+<!-- Version Dated as of 15/Oct/2015 18:54:47 -->
+<SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP:Body>
+        <air:AirPriceRsp xmlns:air="http://www.travelport.com/schema/air_v34_0" xmlns:common_v34_0="http://www.travelport.com/schema/common_v34_0" ResponseTime="7227" TraceId="trace" TransactionId="2685B9430A07761FBEB4470F1E3E5368">
+            <common_v34_0:ResponseMessage Code="4400" Type="Warning">
+                No Merchandising optional service returned for Flight(s) [QF][405].
+            </common_v34_0:ResponseMessage>
+            <air:AirItinerary>
+                <air:AirSegment ArrivalTime="2015-09-24T08:05:00.000+10:00" AvailabilityDisplayType="Fare Specific Fare Quote Unbooked" AvailabilitySource="S" Carrier="QF" ChangeOfPlane="false" ClassOfService="Q" DepartureTime="2015-09-24T06:30:00.000+10:00" Destination="MEL" Distance="456" Equipment="332" FlightNumber="405" FlightTime="95" Group="0" Key="WOMIafkiRkSvAyJ/EI5AUw==" LinkAvailability="true" OptionalServicesIndicator="false" Origin="SYD" ParticipantLevel="Secure Sell" PolledAvailabilityOption="Polled avail used" ProviderCode="1G" TravelTime="95">
+                    <air:FlightDetails ArrivalTime="2015-09-24T08:05:00.000+10:00" DepartureTime="2015-09-24T06:30:00.000+10:00" Destination="MEL" Distance="456" FlightTime="95" Key="5C7ppAaiRkycL7EXBQqAXg==" Origin="SYD" TravelTime="95"/>
+                </air:AirSegment>
+            </air:AirItinerary>
+            <air:AirPriceResult>
+                <air:AirPricingSolution ApproximateBasePrice="USD95.90" ApproximateTotalPrice="USD116.38" BasePrice="AUD131.15" Key="zyyEKk6DQnCiRIrcGb4Igw==" Taxes="AUD28.01" TotalPrice="AUD159.16">
+                    <air:AirSegmentRef Key="WOMIafkiRkSvAyJ/EI5AUw=="/>
+                    <air:AirPricingInfo ApproximateBasePrice="USD95.90" ApproximateTotalPrice="USD116.38" BasePrice="AUD131.15" ETicketability="Yes" IncludesVAT="false" Key="vELJvFMaQhKIq27WqAMeZg==" LatestTicketingTime="2015-08-13T23:59:00.000-07:00" PlatingCarrier="QF" PricingMethod="GuaranteedUsingAirlinePrivateFare" ProviderCode="1G" Taxes="AUD28.01" TotalPrice="AUD159.16">
+                        <air:FareInfo Amount="AUD131.15" DepartureDate="2015-09-24" Destination="MEL" EffectiveDate="2015-08-13T03:05:00.000-07:00" FareBasis="QDEAL" Key="bKZf58eKRSGdhdkYa6P8+g==" NotValidAfter="2015-09-24" NotValidBefore="2015-09-24" Origin="SYD" PassengerTypeCode="ADT" PrivateFare="AirlinePrivateFare" PseudoCityCode="PCC">
+                            <common_v34_0:Endorsement Value="NON-REF/NON-END"/>
+                            <common_v34_0:Endorsement Value="SPECIAL FARE CONDITIONS"/>
+                            <air:FareRuleKey FareInfoRef="bKZf58eKRSGdhdkYa6P8+g==" ProviderCode="1G">
+                                2Bu5hAWKGDdz5/dxhKAqjjRiQQAz451n7rv3p2LEiQGiqVTcvPTJ9Dx5tSjD3oSQYm2FWpBFjO0SLnnHexW8n99aC5/szs5rSvbTqtEX31A6C3wHta0DMY1/EU8XC2oF900p+11Yzf8GfNW9RSMn91kS6YU8Ct8ZtAn8LvfQgEqriOVB7MAQBja7znsf+Pte0FocWuH2KHch8bDjQV0zhzDjYl4p4Sq6+yaOxU9PhJOv9gFsUGZLtcaZTZ1RfvznjXI9aCBdfSusIbNGhAMOIPRFs8k4lQgmZOJp2qZmScAewePL1Li6Y+EHYeTksNfFt9sx5aBBGNOl81BlIaH3TmJXjbIA7SglNAMdCKtcaHr9KbUrUWTreiKkjb2jJgPMIqSNvaMmA8wipI29oyYDzCKkjb2jJgPMIqSNvaMmA8ye7nzj8vIDJLtLLNwFbzB0+RR/YasoL0oShajQeSMg0d/s0I7ZEryCspbvxAGfLlgFbDGc9vX+Rg==
+                            </air:FareRuleKey>
+                        </air:FareInfo>
+                        <air:BookingInfo BookingCode="Q" CabinClass="Economy" FareInfoRef="bKZf58eKRSGdhdkYa6P8+g==" SegmentRef="WOMIafkiRkSvAyJ/EI5AUw=="/>
+                        <air:TaxInfo Amount="AUD8.01" Category="QR" Key="AFYBRvVUQp2JizjYeiVtOA=="/>
+                        <air:TaxInfo Amount="AUD5.53" Category="WG" Key="2hw1IIsERRq8HaxBt0O1OA=="/>
+                        <air:TaxInfo Amount="AUD14.47" Category="UO" Key="J1/1PbhOT0KICaHiDBVHJQ=="/>
+                        <air:FareCalc>SYD QF MEL 131.15QDEAL AUD131.15END</air:FareCalc>
+                        <air:PassengerType Code="ADT"/>
+                        <air:ChangePenalty>
+                            <air:Amount>AUD88.00</air:Amount>
+                        </air:ChangePenalty>
+                        <air:BaggageAllowances>
+                            <air:BaggageAllowanceInfo Carrier="QF" Destination="MEL" Origin="SYD" TravelerType="ADT">
+                                <air:URLInfo>
+                                    <air:URL>MYTRIPANDMORE.COM/BAGGAGEDETAILSQF.BAGG</air:URL>
+                                </air:URLInfo>
+                                <air:TextInfo>
+                                    <air:Text>1P</air:Text>
+                                    <air:Text>
+                                        BAGGAGE DISCOUNTS MAY APPLY BASED ON FREQUENT FLYER STATUS/ ONLINE CHECKIN/FORM OF PAYMENT/MILITARY/ETC.
+                                    </air:Text>
+                                </air:TextInfo>
+                                <air:BagDetails ApplicableBags="1stChecked">
+                                    <air:BaggageRestriction>
+                                        <air:TextInfo>
+                                            <air:Text>BAGGAGE CHARGES DATA NOT AVAILABLE</air:Text>
+                                        </air:TextInfo>
+                                    </air:BaggageRestriction>
+                                </air:BagDetails>
+                                <air:BagDetails ApplicableBags="2ndChecked" ApproximateBasePrice="USD29.25" ApproximateTotalPrice="USD29.25" BasePrice="AUD40.00" TotalPrice="AUD40.00">
+                                    <air:BaggageRestriction>
+                                        <air:TextInfo>
+                                            <air:Text>UPTO50LB/23KG AND UPTO55LI/140LCM</air:Text>
+                                        </air:TextInfo>
+                                    </air:BaggageRestriction>
+                                </air:BagDetails>
+                            </air:BaggageAllowanceInfo>
+                            <air:CarryOnAllowanceInfo Carrier="QF" Destination="MEL" Origin="SYD"/>
+                            <air:EmbargoInfo Carrier="QF" Destination="MEL" Origin="SYD">
+                                <air:URLInfo>
+                                    <air:URL>MYTRIPANDMORE.COM/BAGGAGEDETAILSQF.BAGG</air:URL>
+                                </air:URLInfo>
+                                <air:TextInfo>
+                                    <air:Text>888</air:Text>
+                                </air:TextInfo>
+                            </air:EmbargoInfo>
+                        </air:BaggageAllowances>
+                    </air:AirPricingInfo>
+                    <air:FareNote Key="18B603IBQiaH6hKjlA74Pw==">LAST DATE TO PURCHASE TICKET: 13AUG15</air:FareNote>
+                    <air:FareNote Key="q+XaJSIwTQSd+xjqKUSBAA==">TICKETING AGENCY 5X19</air:FareNote>
+                    <air:FareNote Key="waWS9fwjRbeNDRL5FzK6dA==">DEFAULT PLATING CARRIER QF</air:FareNote>
+                    <air:FareNote Key="K+STie9EQDCgg1UMa1v0Bg==">FARE HAS A PLATING CARRIER RESTRICTION</air:FareNote>
+                    <air:FareNote Key="vvq/KC3fRCe0q2Sl+mDYLg==">E-TKT REQUIRED</air:FareNote>
+                    <air:FareNote Key="gnMsrbeaSoOdpLScGXX3zw==">TICKETING FEES MAY APPLY</air:FareNote>
+                </air:AirPricingSolution>
+            </air:AirPriceResult>
+        </air:AirPriceRsp>
+    </SOAP:Body>
+</SOAP:Envelope>

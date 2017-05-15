@@ -1,10 +1,12 @@
-package com.nearsoft.farandula;
+package com.nearsoft.farandula.auth;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Base64;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
+import com.nearsoft.farandula.exceptions.FarandulaException;
+import com.nearsoft.farandula.exceptions.ErrorType;
 import okhttp3.Credentials;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;

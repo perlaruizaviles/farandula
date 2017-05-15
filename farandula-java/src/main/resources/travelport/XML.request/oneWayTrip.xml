@@ -1,0 +1,22 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <air:AvailabilitySearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" TargetBranch="${targetBranch}" TraceId="trace">
+            <com:BillingPointOfSaleInfo xmlns:com="http://www.travelport.com/schema/common_v34_0" OriginApplication="UAPI"/>
+            <air:SearchAirLeg>
+                <air:SearchOrigin>
+                    <com:Airport xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="${departureAirport}"/>
+                </air:SearchOrigin>
+                <air:SearchDestination>
+                    <com:Airport xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="${arrivalAirport}"/>
+                </air:SearchDestination>
+                <air:SearchDepTime PreferredTime="${departureDate}"/>
+            </air:SearchAirLeg>
+            <air:AirSearchModifiers>
+                <air:PreferredCabins>
+                    <com:CabinClass Type="${classTravel}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                </air:PreferredCabins>
+            </air:AirSearchModifiers>
+        </air:AvailabilitySearchReq>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -1,17 +1,31 @@
-import java.io.IOException;
-import java.util.Properties;
-import com.nearsoft.farandula.Creds;
-import com.nearsoft.farandula.FarandulaException;
-import com.nearsoft.farandula.TripManager;
+import com.nearsoft.farandula.Luisa;
+import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
+import com.nearsoft.farandula.models.FlightType;
+import com.nearsoft.farandula.models.Itinerary;
+import com.nearsoft.farandula.models.Passenger;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class App {
 
-    public static void main(String[] args) throws FarandulaException, IOException {
-        final Properties props = new Properties();
-        props.load(TripManager.class.getResourceAsStream("/config.properties"));
+    public static void main(String[] args) throws Exception {
+        final SabreFlightManager tripManager = new SabreFlightManager();
 
-        final Creds creds = new Creds(props.getProperty("sabre.client_id"), props.getProperty("sabre.client_secret"));
-        final TripManager tripManager = new TripManager(creds);
-        tripManager.getAvail();
+        Luisa.setSupplier(() -> tripManager);
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+
+        List<Itinerary> flightList = Luisa.findMeFlights()
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
+                .returningAt(departingDate.plusDays(1))
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ROUNDTRIP)
+                .limitTo(50).execute();
+
+        System.out.println(flightList);
+
     }
 }
