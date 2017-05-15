@@ -1,4 +1,6 @@
 
 module Farandula
-  class UnauthorizedError < StandardError; end
+  class Error < StandardError; end
+  class UnauthorizedError < Error; end
+  class FlightManagerNotImplementedError < Error; end
 end
