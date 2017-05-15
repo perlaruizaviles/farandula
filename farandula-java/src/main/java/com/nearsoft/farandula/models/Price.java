@@ -8,6 +8,15 @@ public class Price {
     private double amount;
     private String currencyCode;
 
+    public Price(double amount, String currencyCode) {
+        this.amount = amount;
+        this.currencyCode = currencyCode;
+    }
+
+    public Price() {
+
+    }
+
     public Price setAmount(double amount) {
         this.amount = amount;
         return this;

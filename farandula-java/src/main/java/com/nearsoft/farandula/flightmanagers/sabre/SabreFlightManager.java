@@ -10,14 +10,18 @@ import com.nearsoft.farandula.auth.Creds;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
 import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
-import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
 
-import java.io.*;
-import java.time.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -28,19 +32,9 @@ import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
 public class SabreFlightManager implements FlightManager {
 
-    //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
-    private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
-    private final AccessManager _accessManager;
     private static Map<String, String> codeToClassMap = new HashMap<>();
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
-
-    public SabreFlightManager() {
-        Creds creds = new Creds(clientId, clientSecret);
-        _accessManager = new AccessManager(creds);
-    }
-
     private static String clientId;
-
     private static String clientSecret;
 
     static {
@@ -56,6 +50,15 @@ public class SabreFlightManager implements FlightManager {
         }
     }
 
+    //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
+    private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
+    private final AccessManager _accessManager;
+
+    public SabreFlightManager() {
+        Creds creds = new Creds(clientId, clientSecret);
+        _accessManager = new AccessManager(creds);
+    }
+
     private static void fillReferenceMaps() throws IOException {
 
         Properties properties = new Properties();
@@ -67,11 +70,22 @@ public class SabreFlightManager implements FlightManager {
 
         properties.clear();
 
-        properties.load( SabreFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
-            for (String key : properties.stringPropertyNames()) {
-                String value = properties.getProperty(key);
-                airlinesCodeMap.put(key, value);
-            }
+        properties.load(SabreFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+        for (String key : properties.stringPropertyNames()) {
+            String value = properties.getProperty(key);
+            airlinesCodeMap.put(key, value);
+        }
+
+    }
+
+    public static String buildJsonFromSearch(SearchCommand search) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        //SabreJSONRequest.getRequest helps to create the JSON request depending of the search object
+        JsonNode rootNode = mapper.readTree(SabreJSONRequest.getRequest(search));
+
+        return rootNode.toString();
 
     }
 
@@ -97,7 +111,6 @@ public class SabreFlightManager implements FlightManager {
         }
 
     }
-
 
     private Request buildRequestForAvail(SearchCommand search) throws IOException {
         final Request.Builder builder = new Request.Builder();
@@ -127,7 +140,7 @@ public class SabreFlightManager implements FlightManager {
         List<Itinerary> itineraries = new ArrayList<>();
         for (Object pricedItinerary : pricedItineraries) {
 
-            Itinerary itinerary = buildAirLegs( (Map<String, Object>) pricedItinerary, searchCommand  ) ;
+            Itinerary itinerary = buildAirLegs((Map<String, Object>) pricedItinerary, searchCommand);
 
             JSONArray airItineraryPricingInfo = (JSONArray) getValueOf(pricedItinerary, "AirItineraryPricingInfo");
             if (airItineraryPricingInfo.size() > 1) {
@@ -135,35 +148,59 @@ public class SabreFlightManager implements FlightManager {
             }
 
             ArrayList<List<Map>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
-            getSeats( itinerary.getDepartureAirlegs(), cabinsBySegment );
-            getSeats( itinerary.getReturningAirlegs(), cabinsBySegment );
+            getSeats(itinerary.getDepartureAirlegs(), cabinsBySegment);
+            getSeats(itinerary.getReturningAirlegs(), cabinsBySegment);
 
-            itineraries.add( itinerary );
+            //getting prices
+            Fares faresIti =  extractFaresInfo( airItineraryPricingInfo );
+            itinerary.setPrice( faresIti );
+
+            itineraries.add(itinerary);
         }
 
         return itineraries;
 
     }
 
+    private Fares extractFaresInfo(JSONArray airItineraryPricingInfo) {
+
+        Fares faresItinerary = new Fares();
+        Price price = new Price( Double.parseDouble( getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.BaseFare.Amount", String.class)),
+                getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.BaseFare.CurrencyCode", String.class) );
+        faresItinerary.setBasePrice( price );
+
+        JSONArray taxes = (JSONArray) getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.Taxes.Tax");
+        price = new Price( Double.parseDouble( ( (Map<String, Object>) taxes.get(0) ).get("Amount").toString() ) ,
+                            ((Map<String, Object>) taxes.get(0)).get("Amount").toString() ) ;
+        faresItinerary.setTaxesPrice( price );
+        price = new Price( Double.parseDouble( getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.TotalFare.Amount", String.class)) ,
+                getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.TotalFare.CurrencyCode", String.class) );
+        faresItinerary.setTotalPrice( price );
+
+        return faresItinerary;
+
+    }
+
     private void getSeats(List<AirLeg> legs, ArrayList<List<Map>> cabinsBySegment) {
         int cabinIndex = 0;
-        for ( AirLeg leg : legs ) {
+        for (AirLeg leg : legs) {
             for (Segment segment : leg.getSegments()) {
 
                 Map cabinsBySegmentMap = cabinsBySegment.get(0).get(cabinIndex);
-                int numberOfSeats = getValueOf( cabinsBySegmentMap, "SeatsRemaining.Number", Integer.class) ;
-                String cabinValue = getValueOf(cabinsBySegmentMap, "Cabin.Cabin", String.class);;
-                CabinClassType classType = getCabinClassType(  convertCodeToTravelClass( cabinValue) ) ;
+                int numberOfSeats = getValueOf(cabinsBySegmentMap, "SeatsRemaining.Number", Integer.class);
+                String cabinValue = getValueOf(cabinsBySegmentMap, "Cabin.Cabin", String.class);
+                ;
+                CabinClassType classType = getCabinClassType(convertCodeToTravelClass(cabinValue));
 
                 List<Seat> seatsResult = new ArrayList<>();
-                for ( int i = 0 ; i < numberOfSeats ; i++ ) {
+                for (int i = 0; i < numberOfSeats; i++) {
                     Seat seat = new Seat();
                     seat.setClassCabin(classType);
                     //sabre does not have the seat key
                     seat.setPlace("");
                     seatsResult.add(seat);
                 }
-                segment.setSeatsAvailable( seatsResult );
+                segment.setSeatsAvailable(seatsResult);
                 cabinIndex++;
             }
         }
@@ -207,14 +244,14 @@ public class SabreFlightManager implements FlightManager {
 
         Itinerary itinerary = new Itinerary();
 
-        for ( int i  = 0 ; i< originDestinationOption.size() ; i ++ ){
+        for (int i = 0; i < originDestinationOption.size(); i++) {
 
             Object option = originDestinationOption.get(i);
             JSONArray jsonSegmentArray = (JSONArray) getValueOf(option, "FlightSegment");
 
             List<Segment> segments = new ArrayList<>();
-            for ( int j = 0 ; j < jsonSegmentArray.size() ; j++ ){
-                segments.add( buildSegment((Map<String, Object>) jsonSegmentArray.get(j)) );
+            for (int j = 0; j < jsonSegmentArray.size(); j++) {
+                segments.add(buildSegment((Map<String, Object>) jsonSegmentArray.get(j)));
             }
 
             AirLeg leg = new AirLeg();
@@ -226,44 +263,15 @@ public class SabreFlightManager implements FlightManager {
             leg.setSegments(segments);
 
             Segment lastSegment = segments.get(segments.size() - 1);
-            if ( lastSegment.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() ) ){
-                itinerary.getDepartureAirlegs().add( leg );
-            }else{
-                itinerary.getReturningAirlegs().add( leg );
+            if (lastSegment.getArrivalAirportCode().equals(searchCommand.getArrivalAirport())) {
+                itinerary.getDepartureAirlegs().add(leg);
+            } else {
+                itinerary.getReturningAirlegs().add(leg);
             }
 
         }
 
         return itinerary;
-
-
-//        originDestinationOption
-//                .stream()
-//                .map(option -> {
-//                    JSONArray jsonSegmentArray = (JSONArray) getValueOf(option, "FlightSegment");
-//                    return jsonSegmentArray.stream()
-//                            .map(g -> buildSegment((Map<String, Object>) g))
-//                            .collect(Collectors.toCollection(LinkedList::new));
-//                })
-//                .filter(segments -> !segments.isEmpty())
-//                .map(segments -> {
-//                    AirLeg leg = new AirLeg();
-//                    leg.setId("tempID");
-//                    leg.setDepartureAirportCode(segments.get(0).getDepartureAirportCode());
-//                    leg.setDepartingDate(segments.get(0).getDepartureDate());
-//                    leg.setArrivalAirportCode(segments.get(segments.size() - 1).getArrivalAirportCode());
-//                    leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
-//                    leg.setSegments(segments);
-//
-//                    Segment lastSegment = segments.get(segments.size() - 1);
-//
-//                    if ( lastSegment.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() ) ){
-//                        itinerary.getDepartureAirlegs().add( leg );
-//                    }else{
-//                        itinerary.getReturningAirlegs().add( leg );
-//                    }
-//                    //return leg;
-//                });
 
     }
 
@@ -288,13 +296,13 @@ public class SabreFlightManager implements FlightManager {
         Segment seg = new Segment();
         seg.setAirlineIconPath("");
         seg.setOperatingAirlineCode((String) getValueOf(operativeAirlineData, "Code"));
-        seg.setOperatingAirlineName( airlinesCodeMap.get( seg.getOperatingAirlineCode() )  );
-        seg.setOperatingFlightNumber( operativeAirlineData.get("FlightNumber").toString() );
+        seg.setOperatingAirlineName(airlinesCodeMap.get(seg.getOperatingAirlineCode()));
+        seg.setOperatingFlightNumber(operativeAirlineData.get("FlightNumber").toString());
 
         seg.setMarketingAirlineCode((String) getValueOf(marketingAirlineData, "Code"));
-        seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
+        seg.setMarketingAirlineName(airlinesCodeMap.get(seg.getMarketingAirlineCode()));
         // marketing flight number does not exist in sabre.
-        seg.setMarketingFlightNumber( "" );
+        seg.setMarketingFlightNumber("");
 
         seg.setAirplaneData((String) getValueOf(equipmentData, "AirEquipType"));
         //departure info
@@ -328,17 +336,6 @@ public class SabreFlightManager implements FlightManager {
         seg.setDuration(diffInMinutes);
 
         return seg;
-    }
-
-    public static String buildJsonFromSearch(SearchCommand search) throws IOException {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        //SabreJSONRequest.getRequest helps to create the JSON request depending of the search object
-        JsonNode rootNode = mapper.readTree(SabreJSONRequest.getRequest(search));
-
-        return rootNode.toString();
-
     }
 
 }

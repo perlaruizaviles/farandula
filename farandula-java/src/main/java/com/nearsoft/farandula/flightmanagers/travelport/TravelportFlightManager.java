@@ -226,8 +226,6 @@ public class TravelportFlightManager implements FlightManager {
                             itinerary.getReturningAirlegs().add( leg );
                             itinerariesList.add( itinerary );
                         }
-                    }else{
-                        System.out.println("ok");
                     }
 
                 }
