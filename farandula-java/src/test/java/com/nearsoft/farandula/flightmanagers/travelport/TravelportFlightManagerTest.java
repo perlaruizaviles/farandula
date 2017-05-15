@@ -4,7 +4,6 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.soap.MessageFactory;
@@ -72,8 +71,8 @@ class TravelportFlightManagerTest {
         return supplierStub;
     }
 
-    //@Test
-    void getAvail_roundTrip() throws FarandulaException, IOException {
+    @Test
+    public void getAvail_roundTrip() throws FarandulaException, IOException {
 
         Luisa.setSupplier(() -> {
             try {
@@ -99,15 +98,16 @@ class TravelportFlightManagerTest {
 
         assertTrue(flights.size() > 0);
 
-        AirLeg bestFlight = flights.get(0).getDepartureAirlegs().get(0);
+        AirLeg airLeg = flights.get(0).getDepartureAirlegs().get(0);
 
-        assertNotNull(bestFlight);
+        AirLeg returningAirleg = flights.get(0).getReturningAirlegs().get(0);
+
+        assertNotNull(airLeg);
 
         assertAll("First should be the best Airleg", () -> {
-            assertEquals("DFW", bestFlight.getSegments().get(0).getDepartureAirportCode());
-            assertEquals("CDG", bestFlight.getSegments().get(0).getArrivalAirportCode());
+            assertEquals("DFW", airLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("CDG", returningAirleg.getSegments().get(0).getDepartureAirportCode());
             //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getSeatsAvailable() );
-            assertEquals(2, 2);
         });
 
     }

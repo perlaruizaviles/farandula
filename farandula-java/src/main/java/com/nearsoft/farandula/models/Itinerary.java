@@ -9,7 +9,7 @@ import java.util.List;
 public class Itinerary {
     private List<AirLeg> departureAirlegs = new ArrayList<>();
     private List<AirLeg> returningAirlegs = new ArrayList<>();
-    private Price price;
+    private Fares price;
 
     public List<AirLeg> getDepartureAirlegs() {
         return departureAirlegs;
@@ -19,11 +19,11 @@ public class Itinerary {
         this.departureAirlegs = departureAirlegs;
     }
 
-    public Price getPrice() {
+    public Fares getPrice() {
         return price;
     }
 
-    public void setPrice(Price price) {
+    public void setPrice(Fares price) {
         this.price = price;
     }
 

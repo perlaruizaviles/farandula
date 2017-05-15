@@ -5,6 +5,7 @@ import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
 import com.nearsoft.farandula.models.*;
+import com.nearsoft.farandula.utilities.CurrencyIATACodesHelper;
 import com.nearsoft.farandula.utilities.XmlUtils;
 import okhttp3.OkHttpClient;
 import org.w3c.dom.NamedNodeMap;
@@ -256,13 +257,13 @@ public class TravelportFlightManager implements FlightManager {
         NodeList pricessList = body.getElementsByTagName("air:AirPricingSolution");
         Node node = pricessList.item(0);
         if (node != null) {
-            String base = XmlUtils.getAttrByName(node, "BasePrice");
-            String taxes = XmlUtils.getAttrByName(node, "Taxes");
-            String totalPrice = XmlUtils.getAttrByName(node, "TotalPrice");
-            Price price = new Price();
-            price.setBasePrice(Double.parseDouble(base));
-            price.setTaxesPrice(Double.parseDouble(taxes));
-            price.setTotalPrice(Double.parseDouble(totalPrice));
+            Price base = CurrencyIATACodesHelper.buildPrice( XmlUtils.getAttrByName(node, "BasePrice") );
+            Price taxes = CurrencyIATACodesHelper.buildPrice( XmlUtils.getAttrByName(node, "Taxes"));
+            Price totalPrice = CurrencyIATACodesHelper.buildPrice( XmlUtils.getAttrByName(node, "TotalPrice"));
+            Fares fares = new Fares();
+            fares.setBasePrice( base );
+            fares.setTaxesPrice( taxes );
+            fares.setTotalPrice( totalPrice );
 
         } else {
             Logger.getGlobal().log(Level.WARNING, "The segment: " + seg.toString() + " does not have prices.");
