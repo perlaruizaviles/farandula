@@ -20,19 +20,12 @@ function setup(){
         travelerTypeCountChange: () => {},
         cabinChange: () => {}
     }
-    return props;
+    return shallow(<DropTravelMenu {...props} />);
 }
 
-describe('Flight Results Page', () => {
-    // Shallow smoke rendering test
-    it('renders without crashing (shallow)', () => {
-        const props = setup();
-        shallow(<DropTravelMenu {...props}/>)
-    });
-
-    // Full smoke rendering test
-    /*it('renders without crashing (full)', () => {
-        const props = setup();
-        mount(<DropTravelMenu {...props}/>)
-    });*/
+describe('Rendering DropTravelMenu ', () => {
+  it('Renders Dropdown', () => {
+    const wrapper = setup();
+    expect(wrapper.find('Dropdown').length).toBe(1);
+  });
 });

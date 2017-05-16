@@ -10,22 +10,17 @@ function setup() {
     onSearchChange: () => {},
     onResultSelect: () => {}
   };
-
   return shallow(<AirportSearch {...props} />);
 }
 
-
 describe('Rendering AirportSearch', () => {
-
-  it('renders Search', () => {
+  it('Renders Search', () => {
     const wrapper = setup();
     expect(wrapper.find('Search').length).toBe(1);
   });
 
-  it('initial value', () => {
+  it('Initial Value ', () => {
     const wrapper = setup();
     expect(wrapper.find('Search').props().value).toBe('x');
   });
-
 });
-

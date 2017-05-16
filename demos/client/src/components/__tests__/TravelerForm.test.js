@@ -5,23 +5,18 @@ import TravelerForm from '../TravelerForm';
 
 function setup() {
   const props = {};
-
   return shallow(<TravelerForm {...props} />);
 }
 
-
-describe('Rendering TravelerForm', () => {
-
-  it('renders Form', () => {
+describe('Rendering TravelerForm ', () => {
+  it('Renders Form', () => {
     const wrapper = setup();
     expect(wrapper.find('Form').length).toBe(1);
   });
 
-  it('initial inputs', () => {
+  it('Initial Inputs', () => {
     const wrapper = setup();
     expect(wrapper.find('FormInput').length).toBe(5);
     expect(wrapper.find('FormSelect').length).toBe(5);
   });
-
 });
-

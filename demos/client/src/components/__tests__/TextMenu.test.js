@@ -3,15 +3,19 @@ import {shallow, mount} from 'enzyme';
 import TextMenu from '../TextMenu';
 import {List} from 'immutable';
 
-describe('Rendering', () => {
+function setup() {
+  const props = {};
+  return shallow(<TextMenu {...props} />);
+}
 
-  it('renders without crashing (shallow)', () => {
+describe('Rendering TextMenu ', () => {
+
+  it('Renders Without Crashing (Shallow)', () => {
     shallow(<TextMenu options={List(['x'])} selected={'x'} />);
   });
 
-  it('renders without crashing (full)', () => {
+  it('Renders Without Crashing (Full)', () => {
     mount(<TextMenu options={List(['x'])} selected={'x'} />);
   });
-
 });
 
