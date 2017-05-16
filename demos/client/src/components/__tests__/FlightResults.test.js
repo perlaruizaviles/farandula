@@ -1,48 +1,17 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
-import PriceSection from '../PriceSection';
-import FlightSection from '../FlightSection';
+import {shallow} from 'enzyme';
+import expect from 'expect';
 import FlightCell from '../FlightCell';
 import FlightResults from '../FlightResults';
 
-describe('Flight Results Page', () => {
-    // Shallow smoke rendering test
-    it('renders without crashing (shallow)', () => {
-    shallow(<PriceSection/>);
-    });
+function setup() {
+  const props = {};
+  return shallow(<FlightResults {...props} />);
+}
 
-    // Full smoke rendering test
-    it('renders without crashing (full)', () => {
-    mount(<PriceSection/>);
-    });
-
-    // Shallow smoke rendering test
-    it('renders without crashing (shallow)', () => {
-    shallow(<FlightSection/>);
-    });
-
-    // Full smoke rendering test
-    it('renders without crashing (full)', () => {
-    mount(<FlightSection/>);
-    });
-
-    // Shallow smoke rendering test
-    it('renders without crashing (shallow)', () => {
-    shallow(<FlightCell/>);
-    });
-
-    // Full smoke rendering test
-    it('renders without crashing (full)', () => {
-    mount(<FlightCell/>);
-    });
-
-    // Shallow smoke rendering test
-    it('renders without crashing (shallow)', () => {
-    shallow(<FlightResults/>);
-    });
-
-    // Full smoke rendering test
-    it('renders without crashing (full)', () => {
-    mount(<FlightResults/>);
-    });
+describe('Rendering FlightResults ', () => {
+  it('Renders FlightResults', () => {
+    const wrapper = setup();
+    expect(wrapper.find('FlightCell').length).toBe(1);
+  });
 });

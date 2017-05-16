@@ -1,3 +1,4 @@
+
 import React from "react";
 import TextMenu from "./TextMenu";
 import DateSelector from "./DateSelector";
@@ -7,7 +8,6 @@ import travelOptions from "../data/travelOptions";
 import DropTravelMenu from "./DropTravelMenu";
 import {Button, Icon} from "semantic-ui-react";
 import {getIata} from "../util/matcher";
-
 
 class TravelSearch extends React.Component {
 
@@ -35,7 +35,6 @@ class TravelSearch extends React.Component {
         <TextMenu options={properties.typeOptions}
                   selected={properties.selectedType}
                   selectType={typeChange}/>
-
         <AirportSearch
           searchChange={(query, quantum = properties.airportTo) => searchAirport(query, quantum)}
           changeSelected={value => fromAirportChange(value)}
@@ -95,6 +94,7 @@ class TravelSearch extends React.Component {
     );
   }
 }
+
 
 
 export default TravelSearch;
