@@ -5,11 +5,12 @@ import AirportSearch from './AirportSearch';
 import ExchangeButton from './ExchangeButton';
 import travelOptions from '../data/travelOptions';
 import DropTravelMenu from './DropTravelMenu';
-import {Button, Icon} from 'semantic-ui-react';
+import {Button, Icon, Segment} from 'semantic-ui-react';
 import {getIata} from '../util/matcher';
 
 const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights, cleanField}) => (
-  <div>
+  <Segment className='raised' style={{paddingBottom:28}}>
+
     <TextMenu options={travelOptions.get('type')}
               selected={config.get('type')}
               selectType={typeChange} />
@@ -65,12 +66,13 @@ const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, 
        passenger = config.get('travelers')
       ) => availableFlights(departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger)
     }>
-      <Button.Content visible>Search</Button.Content>
-      <Button.Content hidden>
-        <Icon name='plane' className='large'/>
-      </Button.Content>
+
+    <Button.Content visible>Search</Button.Content>
+        <Button.Content hidden>
+          <Icon name='plane' className='large'/>
+        </Button.Content>
     </Button>
-  </div>
+  </Segment>
 );
 
 export default TravelSearch;

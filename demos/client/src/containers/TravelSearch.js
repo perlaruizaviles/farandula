@@ -12,7 +12,6 @@ export default connect(
     return {
       typeChange: (type) => dispatch(changeTravelType(type)),
       dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date)),
-
       travelerTypeCountChange: (TravelerType, count) => dispatch(travelerTypeCountChange(TravelerType, count)),
       cabinChange: (cabin) => dispatch(cabinChange(cabin)),
       fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),

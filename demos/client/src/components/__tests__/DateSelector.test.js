@@ -14,31 +14,27 @@ function setup() {
     placeholderText: "Select date...",
     onChange: () => {}
   };
-
   return shallow(<DateSelector {...props} />);
 }
 
-
-describe('Rendering DateSelector', () => {
-
-  it('renders without crashing (shallow)', () => {
+describe('Rendering DateSelector ', () => {
+  it('Renders Without Crashing (Shallow)', () => {
     shallow(<DateSelector placeholder="Select date..." />);
   });
 
-  it('renders without crashing (full)', () => {
+  it('Renders Without Crashing (Full)', () => {
     mount(<DateSelector placeholder="Select date..." />);
   });
 
-  it('renders DateSelector', () => {
+  it('Renders DateSelector', () => {
     const wrapper = setup();
     expect(wrapper.find('t').length).toBe(1);
   });
 
-  it('initial values of Date', () => {
+  it('Initial Values Of Date', () => {
     const wrapper = setup();
     expect(wrapper.find('t').props().minDate).toBe(now);
     expect(wrapper.find('t').props().maxDate).toBe(oneYearFromNow);
   });
-
 });
 
