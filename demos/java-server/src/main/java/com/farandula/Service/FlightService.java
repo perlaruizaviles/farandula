@@ -9,10 +9,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
 import com.nearsoft.farandula.flightmanagers.travelport.TravelportFlightManager;
-import com.nearsoft.farandula.models.AirLeg;
-import com.nearsoft.farandula.models.FlightType;
-import com.nearsoft.farandula.models.Passenger;
-import com.nearsoft.farandula.models.Segment;
+import com.nearsoft.farandula.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +31,7 @@ public class FlightService {
     @Autowired
     AirportRepository airportRepository;
 
-    public FlightResponse getResponseFromSearch(String departureAirportCode,
+    public List<List<Flight>> getResponseFromSearch(String departureAirportCode,
                                                 String departingDate,
                                                 String departingTime,
                                                 String arrivalAirportCode,
@@ -62,7 +59,7 @@ public class FlightService {
 
                 if( "oneWay".equals(type) ){
 
-                    List<AirLeg> flights = Luisa.findMeFlights()
+                    List<Itinerary> flights = Luisa.findMeFlights()
                             .from( departureAirportCode )
                             .to( arrivalAirportCode )
                             .departingAt( departDateTime )
@@ -72,12 +69,12 @@ public class FlightService {
                             .limitTo(2)
                             .execute();
 
-                    return FlightResponse.getResponseInstance(200, "Response", this.getFlightsFromAirlegList(flights));
+                    return FlightResponse.getResponseInstance(this.getFlightsFromAirlegList(flights));
 
 
                 } else{
 
-                    List<AirLeg> flights = Luisa.findMeFlights()
+                    List<Itinerary> flights = Luisa.findMeFlights()
                             .from( departureAirportCode )
                             .to( arrivalAirportCode )
                             .departingAt( departDateTime )
@@ -92,7 +89,7 @@ public class FlightService {
                     List<AirLeg> returnLegs = this.getReturnAirLegs(flights);
                     List<Flight> departFlights =  this.getFlightsFromAirlegList(departLegs);
                     List<Flight> returnFlights =  this.getFlightsFromAirlegList(returnLegs);
-                    return FlightResponse.getResponseInstance(200, "Response", departFlights, returnFlights);
+                    return FlightResponse.getResponseInstance(departFlights, returnFlights);
 
                 }
 
