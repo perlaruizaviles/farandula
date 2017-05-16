@@ -1,9 +1,6 @@
 package com.nearsoft.farandula.flightmanagers.travelport.request.xml;
 
-import com.nearsoft.farandula.models.TravelportFlightDetails;
-import com.nearsoft.farandula.models.FlightType;
-import com.nearsoft.farandula.models.SearchCommand;
-import com.nearsoft.farandula.models.Segment;
+import com.nearsoft.farandula.models.*;
 import org.apache.commons.lang3.text.StrSubstitutor;
 
 import java.io.BufferedReader;
@@ -11,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -30,6 +28,7 @@ public class TravelportXMLRequest {
         valuesMap.put("passengersNumber", search.getPassengers().size());
         valuesMap.put("classTravel",   search.getCabinClass().equals("") ? "Economy" : search.getCabinClass() );
         valuesMap.put("targetBranch", targetBranchValue);
+
         sub = new StrSubstitutor(valuesMap);
 
         InputStream soapInputStream = TravelportXMLRequest.class

@@ -1,12 +1,16 @@
 package com.nearsoft.farandula.models;
 
+import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 
+import javax.xml.bind.ValidationException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pruiz on 4/10/17.
@@ -18,6 +22,7 @@ public class SearchCommand {
     private String arrivalAirport;
     private LocalDateTime departingDate;
     private LocalDateTime returningDate;
+    private Map<PassengerType, List<Passenger>> passengersMap =  new HashMap<>();
     private List<Passenger> passengers = new ArrayList<>();
     private int offSet;
     private CabinClassType CabinClass = CabinClassType.ECONOMY;
@@ -47,8 +52,24 @@ public class SearchCommand {
         return this;
     }
 
-    public SearchCommand forPassegers(List<Passenger> passengerList) {
+    public SearchCommand forPassegers(List<Passenger> passengerList) throws FarandulaException {
+
+        if ( this.getPassengers().size() + passengerList.size() > 6 ){
+            throw new FarandulaException( ErrorType.ACCESS_ERROR, "Is not possible to search up to 6 passengers.") ;
+        }
+
         this.passengers.addAll(passengerList);
+
+        if ( !passengerList.isEmpty() ){
+
+            if ( !passengersMap.containsKey( passengerList.get(0).getType()  ) ){
+                // to initialize.
+                passengersMap.put( passengerList.get(0).getType() , new ArrayList<>() );
+            }
+
+            passengersMap.get( passengerList.get(0).getType() ).addAll( passengerList );
+        }
+
         return this;
     }
 
@@ -120,8 +141,8 @@ public class SearchCommand {
         this.type = type;
     }
 
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
+    public Map<PassengerType, List<Passenger>> getPassengersMap() {
+        return passengersMap;
     }
 
     public int getOffSet() {

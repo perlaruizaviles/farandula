@@ -132,11 +132,24 @@ public class SabreFlightManager implements FlightManager {
         return response.body().byteStream();
     }
 
-    public List<Itinerary> parseAvailResponse(InputStream response, SearchCommand searchCommand) throws IOException {
+    public List<Itinerary> parseAvailResponse(InputStream response, SearchCommand searchCommand) throws IOException, FarandulaException {
 
         ReadContext ctx = JsonPath.parse(response);
-        JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
+        
+        if ( ctx.read( "$..Errors[*]" )!= null ){
 
+            JSONArray error = ctx.read("$..Errors[*]");
+            for (Object er : error) {
+                Map<String, Object> map = (Map<String, Object>) ((JSONArray) er).get(0);
+                throw new FarandulaException(ErrorType.ACCESS_ERROR, map.get("ShortText").toString());
+
+            }
+
+
+        }
+
+        JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
+        
         List<Itinerary> itineraries = new ArrayList<>();
         for (Object pricedItinerary : pricedItineraries) {
 
@@ -149,7 +162,9 @@ public class SabreFlightManager implements FlightManager {
 
             ArrayList<List<Map>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
             getSeats(itinerary.getDepartureAirleg(), cabinsBySegment);
-            getSeats(itinerary.getReturningAirleg(), cabinsBySegment);
+
+            if ( searchCommand.getType() == FlightType.ROUNDTRIP )
+                getSeats(itinerary.getReturningAirleg(), cabinsBySegment);
 
             //getting prices
             Fares faresIti = extractFaresInfo(airItineraryPricingInfo);

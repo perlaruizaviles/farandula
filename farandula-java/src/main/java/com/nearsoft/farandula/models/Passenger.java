@@ -3,8 +3,7 @@ package com.nearsoft.farandula.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.nearsoft.farandula.models.PassengerType.ADULT;
-import static com.nearsoft.farandula.models.PassengerType.CHILD;
+import static com.nearsoft.farandula.models.PassengerType.*;
 
 /**
  * Created by pruiz on 4/10/17.
@@ -12,18 +11,49 @@ import static com.nearsoft.farandula.models.PassengerType.CHILD;
 public class Passenger {
 
     private PassengerType type;
+    private int age;
 
     public static List<Passenger> adults(int totalAdults) {
         return createPassengerList(totalAdults, ADULT);
     }
 
-    public static List<Passenger> children(int totalChildren) {
-        return createPassengerList(totalChildren, CHILD);
+    public int getAge() {
+        return age;
     }
 
-    private static List<Passenger> createPassengerList(int totalAdults, PassengerType passengerType) {
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public static List<Passenger> children(int[] ages ) {
+
+        return CreatePassengerListWithAGe(ages , PassengerType.CHILD);
+
+    }
+
+    public static List<Passenger> infants(int[] totalInfants) {
+        return CreatePassengerListWithAGe(totalInfants, INFANT);
+    }
+
+
+    public static List<Passenger> infantsOnSeat(int[] totalInfantsOnseat) {
+        return CreatePassengerListWithAGe(totalInfantsOnseat, INFANTONSEAT);
+    }
+
+    private static List<Passenger> CreatePassengerListWithAGe(int[] ages, PassengerType type) {
         List<Passenger> list = new ArrayList<>();
-        for (int j = 0; j < totalAdults; j++) {
+        for (int j = 0; j < ages.length; j++) {
+            Passenger passenger = new Passenger();
+            passenger.setType(type);
+            passenger.setAge( ages[j] );
+            list.add(passenger);
+        }
+        return list;
+    }
+
+    private static List<Passenger> createPassengerList(int totalPassengers, PassengerType passengerType) {
+        List<Passenger> list = new ArrayList<>();
+        for (int j = 0; j < totalPassengers; j++) {
             Passenger passenger = new Passenger();
             passenger.setType(passengerType);
             list.add(passenger);

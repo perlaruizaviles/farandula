@@ -87,6 +87,42 @@ public class SabreFlightManagerTest {
 
 
     @Test
+    public void realAvail_OneWayTripDifferentPassengers() throws Exception {
+
+        Luisa.setSupplier(() -> {
+            try {
+                return createTripManagerSabre();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<Itinerary> flights = Luisa.findMeFlights()
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
+                .returningAt(departingDate.plusDays(1))
+                .forPassegers(Passenger.adults(2))
+                .forPassegers( Passenger.children( new int[]{2,12} ) )
+                .forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
+                .limitTo(2) //TODO check limit does not work.
+                .preferenceClass(CabinClassType.ECONOMY)
+                .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
+
+        assertTrue(flights.size() > 0);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+
+    }
+
+    @Test
     void buildJsonFromSearch() throws IOException, FarandulaException, Exception {
 
         SabreFlightManager manager = new SabreFlightManager();

@@ -22,18 +22,10 @@
 "TravelerInfoSummary": {
 "SeatsRequested": [${passengersNumber}],
 "AirTravelerAvail": [{
-"PassengerTypeQuantity": [{
-"Code": "ADT",
-"Quantity": ${passengersNumber}
+"PassengerTypeQuantity": [
+  ${passengersData}
+]
 }]
-}]
-},
-"TPA_Extensions": {
-"IntelliSellTransaction": {
-"RequestType": {
-"Name": "50ITINS"
-}
-}
 }
 }
 }
