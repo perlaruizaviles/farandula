@@ -28,7 +28,7 @@ public class Segment {
     String airplaneData;
     long duration;
     List<Seat> seatsAvailable;
-    Price price;
+    Fares price;
 
     public String getAirlineIconPath() {
         return airlineIconPath;
@@ -165,11 +165,11 @@ public class Segment {
                 '}';
     }
 
-    public Price getPrice() {
+    public Fares getPrice() {
         return price;
     }
 
-    public void setPrice(Price price) {
+    public void setPrice(Fares price) {
         this.price = price;
     }
 
