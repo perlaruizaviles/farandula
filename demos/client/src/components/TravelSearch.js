@@ -8,7 +8,7 @@ import DropTravelMenu from './DropTravelMenu';
 import {Button, Icon} from 'semantic-ui-react';
 import {getIata} from '../util/matcher';
 
-const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights}) => (
+const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights, cleanField}) => (
   <div>
     <TextMenu options={travelOptions.get('type')}
               selected={config.get('type')}
@@ -18,7 +18,8 @@ const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, 
         searchChange={(query, quantum = config.getIn(['locations','to'])) => searchAirport(query,quantum)}
         changeSelected={value => fromAirportChange(value)}
         airports={config.get('airports')}
-        value={config.getIn(['locations','from']).title}/>
+        value={config.getIn(['locations','from']).title}
+        cleanField={(quantum = 'from') => cleanField(quantum)}/>
 
     <ExchangeButton handleExchange={
       (from = config.getIn(['locations','from']), to = config.getIn(['locations','to'])) => exchangeDestinations(from,to)} />
@@ -27,7 +28,8 @@ const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, 
         searchChange={(query, quantum = config.getIn(['locations','from'])) => searchAirport(query,quantum)}
         changeSelected={value => toAirportChange(value)}
         airports={config.get('airports')}
-        value={config.getIn(['locations','to']).title}/>
+        value={config.getIn(['locations','to']).title}
+        cleanField={(quantum = 'to') => cleanField(quantum)}/>
 
     <DateSelector minDate={travelOptions.get('minDate')}
                   selectsStart
