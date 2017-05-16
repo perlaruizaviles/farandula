@@ -1,5 +1,7 @@
 package com.farandula.models;
 
+import com.farandula.Helpers.DateParser;
+
 import java.time.LocalDateTime;
 
 /**
@@ -8,20 +10,18 @@ import java.time.LocalDateTime;
 public class FlightSegment {
 
     private Airport departureAirport;
-    private LocalDateTime departureDate;
+    private int departureDate;
     private Airport arrivalAirport;
-    private LocalDateTime arrivalDate;
+    private int arrivalDate;
     private long duration;
 
-    public FlightSegment( Airport departureAirport, LocalDateTime departingDate, Airport arrivalAirport, LocalDateTime arrivalDate, long duration){
+    public FlightSegment( Airport departureAirport, LocalDateTime departureDate, Airport arrivalAirport, LocalDateTime arrivalDate, long duration){
 
         this.setDepartureAirport(departureAirport);
-        this.setDepartureDate(departingDate);
         this.setArrivalAirport(arrivalAirport);
-        this.setArrivalDate(arrivalDate);
         this.setDuration(duration);
-
-
+        this.setArrivalDate(DateParser.dateToTimestampSeconds(arrivalDate));
+        this.setDepartureDate(DateParser.dateToTimestampSeconds(departureDate));
     }
 
     public Airport getDepartureAirport() {
@@ -32,11 +32,11 @@ public class FlightSegment {
         this.departureAirport = departureAirport;
     }
 
-    public LocalDateTime getDepartureDate() {
+    public int getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(LocalDateTime departureDate) {
+    public void setDepartureDate(int departureDate) {
         this.departureDate = departureDate;
     }
 
@@ -48,11 +48,11 @@ public class FlightSegment {
         this.arrivalAirport = arrivalAirport;
     }
 
-    public LocalDateTime getArrivalDate() {
+    public int getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(LocalDateTime arrivalDate) {
+    public void setArrivalDate (int arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 

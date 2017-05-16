@@ -1,6 +1,7 @@
 package com.farandula.models;
 
 
+import com.farandula.Helpers.DateParser;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
@@ -16,33 +17,24 @@ public class Flight {
 
 
     private Airport departureAirport;
-    private LocalDateTime departureDate;
+    private int departureDate;
     private Airport arrivalAirport;
-    private LocalDateTime arrivalDate;
+    private int arrivalDate;
     private List<FlightSegment> segments;
 
 
-    public Flight( Airport departureAirport, LocalDateTime departureDate, Airport arrivalAirport, LocalDateTime arrivalDate){
-
-        this.setDepartureAirport(departureAirport);
-        this.setDepartingDate(departureDate);
-        this.setArrivalAirport(arrivalAirport);
-        this.setArrivalDate(arrivalDate);
-
-
+    public Flight( Airport departureAirport, LocalDateTime departureDate, Airport arrivalAirport, LocalDateTime arrivalDate) {
+        this(departureAirport, departureDate, arrivalAirport, arrivalDate, null);
     }
-    public Flight( Airport departureAirport, LocalDateTime departingDate, Airport arrivalAirport,
+    public Flight( Airport departureAirport, LocalDateTime departureDate, Airport arrivalAirport,
                   LocalDateTime arrivalDate, List<FlightSegment> flightSegmentList){
 
         this.setDepartureAirport(departureAirport);
-        this.setDepartingDate(departingDate);
         this.setArrivalAirport(arrivalAirport);
-        this.setArrivalDate(arrivalDate);
         this.setSegments(flightSegmentList);
-
-
+        this.setArrivalDate(DateParser.dateToTimestampSeconds(arrivalDate));
+        this.setDepartureDate(DateParser.dateToTimestampSeconds(departureDate));
     }
-
 
     public Airport getDepartureAirport() {
         return departureAirport;
@@ -52,12 +44,12 @@ public class Flight {
         this.departureAirport = departureAirport;
     }
 
-    public LocalDateTime getDepartingDate() {
+    public int getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartingDate(LocalDateTime departingDate) {
-        this.departureDate = departingDate;
+    public void setDepartureDate(int departureDate) {
+        this.departureDate = departureDate;
     }
 
     public Airport getArrivalAirport() {
@@ -68,14 +60,13 @@ public class Flight {
         this.arrivalAirport = arrivalAirport;
     }
 
-    public LocalDateTime getArrivalDate() {
+    public int getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(LocalDateTime arrivalDate) {
+    public void setArrivalDate(int arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
-
 
     public List<FlightSegment> getSegments() {
         return segments;
