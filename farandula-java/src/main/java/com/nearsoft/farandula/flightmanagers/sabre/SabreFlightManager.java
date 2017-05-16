@@ -148,12 +148,12 @@ public class SabreFlightManager implements FlightManager {
             }
 
             ArrayList<List<Map>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
-            getSeats(itinerary.getDepartureAirlegs(), cabinsBySegment);
-            getSeats(itinerary.getReturningAirlegs(), cabinsBySegment);
+            getSeats(itinerary.getDepartureAirleg(), cabinsBySegment);
+            getSeats(itinerary.getReturningAirleg(), cabinsBySegment);
 
             //getting prices
-            Fares faresIti =  extractFaresInfo( airItineraryPricingInfo );
-            itinerary.setPrice( faresIti );
+            Fares faresIti = extractFaresInfo(airItineraryPricingInfo);
+            itinerary.setPrice(faresIti);
 
             itineraries.add(itinerary);
         }
@@ -165,45 +165,45 @@ public class SabreFlightManager implements FlightManager {
     private Fares extractFaresInfo(JSONArray airItineraryPricingInfo) {
 
         Fares faresItinerary = new Fares();
-        Price price = new Price( Double.parseDouble( getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.BaseFare.Amount", String.class)),
-                getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.BaseFare.CurrencyCode", String.class) );
-        faresItinerary.setBasePrice( price );
+        Price price = new Price(Double.parseDouble(getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.BaseFare.Amount", String.class)),
+                getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.BaseFare.CurrencyCode", String.class));
+        faresItinerary.setBasePrice(price);
 
         JSONArray taxes = (JSONArray) getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.Taxes.Tax");
-        price = new Price( Double.parseDouble( ( (Map<String, Object>) taxes.get(0) ).get("Amount").toString() ) ,
-                            ((Map<String, Object>) taxes.get(0)).get("Amount").toString() ) ;
-        faresItinerary.setTaxesPrice( price );
-        price = new Price( Double.parseDouble( getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.TotalFare.Amount", String.class)) ,
-                getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.TotalFare.CurrencyCode", String.class) );
-        faresItinerary.setTotalPrice( price );
+        price = new Price(Double.parseDouble(((Map<String, Object>) taxes.get(0)).get("Amount").toString()),
+                ((Map<String, Object>) taxes.get(0)).get("Amount").toString());
+        faresItinerary.setTaxesPrice(price);
+        price = new Price(Double.parseDouble(getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.TotalFare.Amount", String.class)),
+                getValueOf(airItineraryPricingInfo.get(0), "ItinTotalFare.TotalFare.CurrencyCode", String.class));
+        faresItinerary.setTotalPrice(price);
 
         return faresItinerary;
 
     }
 
-    private void getSeats(List<AirLeg> legs, ArrayList<List<Map>> cabinsBySegment) {
+    private void getSeats(AirLeg leg, ArrayList<List<Map>> cabinsBySegment) {
+
         int cabinIndex = 0;
-        for (AirLeg leg : legs) {
-            for (Segment segment : leg.getSegments()) {
+        for (Segment segment : leg.getSegments()) {
 
-                Map cabinsBySegmentMap = cabinsBySegment.get(0).get(cabinIndex);
-                int numberOfSeats = getValueOf(cabinsBySegmentMap, "SeatsRemaining.Number", Integer.class);
-                String cabinValue = getValueOf(cabinsBySegmentMap, "Cabin.Cabin", String.class);
-                ;
-                CabinClassType classType = getCabinClassType(convertCodeToTravelClass(cabinValue));
+            Map cabinsBySegmentMap = cabinsBySegment.get(0).get(cabinIndex);
+            int numberOfSeats = getValueOf(cabinsBySegmentMap, "SeatsRemaining.Number", Integer.class);
+            String cabinValue = getValueOf(cabinsBySegmentMap, "Cabin.Cabin", String.class);
+            ;
+            CabinClassType classType = getCabinClassType(convertCodeToTravelClass(cabinValue));
 
-                List<Seat> seatsResult = new ArrayList<>();
-                for (int i = 0; i < numberOfSeats; i++) {
-                    Seat seat = new Seat();
-                    seat.setClassCabin(classType);
-                    //sabre does not have the seat key
-                    seat.setPlace("");
-                    seatsResult.add(seat);
-                }
-                segment.setSeatsAvailable(seatsResult);
-                cabinIndex++;
+            List<Seat> seatsResult = new ArrayList<>();
+            for (int i = 0; i < numberOfSeats; i++) {
+                Seat seat = new Seat();
+                seat.setClassCabin(classType);
+                //sabre does not have the seat key
+                seat.setPlace("");
+                seatsResult.add(seat);
             }
+            segment.setSeatsAvailable(seatsResult);
+            cabinIndex++;
         }
+
 
     }
 
@@ -264,9 +264,9 @@ public class SabreFlightManager implements FlightManager {
 
             Segment lastSegment = segments.get(segments.size() - 1);
             if (lastSegment.getArrivalAirportCode().equals(searchCommand.getArrivalAirport())) {
-                itinerary.getDepartureAirlegs().add(leg);
+                itinerary.setDepartureAirleg( leg );
             } else {
-                itinerary.getReturningAirlegs().add(leg);
+                itinerary.setReturningAirlegs( leg );
             }
 
         }
