@@ -61,6 +61,12 @@ const travelConfig = (state = Map({}), action) => {
     case types.SEARCH_AVAILABLE_FLIGHTS_SUCCESS:
       return state.set('availableFlights', action.flights);
 
+    case types.CLEAN_TRAVEL_FROM:
+      return state.setIn(['locations', 'from'], {});
+
+    case types.CLEAN_TRAVEL_TO:
+      return state.setIn(['locations', 'to'], {});
+
     default:
       return state;
   }
