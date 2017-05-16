@@ -8,7 +8,7 @@ import DropTravelMenu from './DropTravelMenu';
 import {Button, Icon, Segment} from 'semantic-ui-react';
 import {getIata} from '../util/matcher';
 
-const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights}) => (
+const TravelSearch = ({config, typeChange, dateChange, travelerTypeCountChange, cabinChange ,searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights, cleanField}) => (
   <Segment className='raised' style={{paddingBottom:28}}>
 
     <TextMenu options={travelOptions.get('type')}
