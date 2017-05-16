@@ -1,6 +1,7 @@
-import {Map} from 'immutable';
+import {Map} from "immutable";
 
 const initialState = {
+  ajaxCallsInProgress: 0,
   travelConfig: Map({
     type: 'round-trip',
     cabin: 'economy',
