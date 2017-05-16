@@ -14,8 +14,8 @@ public class DateParserTest {
     @Test
     public void dateToTimestampSeconds() throws Exception {
         //uses local time obviously
-        LocalDateTime specificDate = LocalDateTime.of(2017, Month.DECEMBER, 1, 10, 10 , 30);
-        assertEquals(1512148230, DateParser.dateToTimestampSeconds(specificDate) );
+        LocalDateTime specificDate = LocalDateTime.of(2017, Month.DECEMBER, 2, 10, 10 , 30);
+        assertEquals(1512209430, DateParser.dateToTimestampSeconds(specificDate) );
     }
 
 }
