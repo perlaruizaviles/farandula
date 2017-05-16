@@ -1,5 +1,7 @@
-import React from 'react'
-import { Divider, Grid, Icon } from 'semantic-ui-react'
+import React from 'react';
+import { Divider, Grid, Icon } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+
 
 const FlightSection = ({firstHour, secondHour, firstCity, secondCity}) => (
     <div>
@@ -12,7 +14,7 @@ const FlightSection = ({firstHour, secondHour, firstCity, secondCity}) => (
                         {firstCity}
                     </Grid.Column>
                     <Grid.Column>
-                        <Icon name="long arrow right"></Icon>
+                        <Icon name="long arrow right"/>
                     </Grid.Column>
                     <Grid.Column>
                         {secondHour}
@@ -33,7 +35,7 @@ const FlightSection = ({firstHour, secondHour, firstCity, secondCity}) => (
                     {secondCity}
                 </Grid.Column>
                 <Grid.Column>
-                    <Icon name="long arrow right"></Icon>
+                    <Icon name="long arrow right"/>
                 </Grid.Column>
                 <Grid.Column>
                     {firstHour}
@@ -44,6 +46,13 @@ const FlightSection = ({firstHour, secondHour, firstCity, secondCity}) => (
             </Grid.Row>
         </Grid>
     </div>
-)
+);
+
+FlightSection.propTypes = {
+  firstHour: PropTypes.string.isRequired,
+  secondHour: PropTypes.string.isRequired,
+  firstCity: PropTypes.string.isRequired,
+  secondCity: PropTypes.string.isRequired
+};
 
 export default FlightSection
