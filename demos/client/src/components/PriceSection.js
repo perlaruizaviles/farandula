@@ -1,5 +1,6 @@
-import React from 'react'
-import { Button, Grid, Header } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Grid, Header } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 const PriceSection = ({changePriceSection}) => (
   <div>
@@ -12,11 +13,15 @@ const PriceSection = ({changePriceSection}) => (
       </Grid.Row>
       <Grid.Row columns={1}>
         <Grid.Column textAlign='center'>
-          <Button className='orange' content='View Deal'></Button>
+          <Button className='orange' content='View Deal'/>
         </Grid.Column>
       </Grid.Row>
     </Grid>
   </div>
-)
+);
+
+PriceSection.propTypes = {
+  changePriceSection: PropTypes.string.isRequired
+};
 
 export default PriceSection

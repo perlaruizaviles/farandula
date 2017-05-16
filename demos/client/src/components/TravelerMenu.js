@@ -2,6 +2,7 @@ import React from 'react';
 import {Grid} from 'semantic-ui-react';
 import {titleize, pluralize} from 'inflection';
 import CounterButtons from './CounterButtons';
+import PropTypes from 'prop-types';
 
 const TravelerMenu = ({config, options, travelerTypeCountChange}) => (
     <Grid style={{
@@ -37,5 +38,11 @@ const TravelerMenu = ({config, options, travelerTypeCountChange}) => (
             .valueSeq()}
     </Grid>
 );
+
+TravelerMenu.propTypes = {
+  config: PropTypes.object.isRequired,
+  options: PropTypes.object.isRequired,
+  travelerTypeCountChange: PropTypes.func.isRequired
+};
 
 export default TravelerMenu;

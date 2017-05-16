@@ -3,6 +3,8 @@ import {Dropdown, Segment} from 'semantic-ui-react';
 import DropCabinMenu from './DropCabinMenu';
 import TravelerMenu from './TravelerMenu';
 import {configTravelString} from '../util/travelConfig';
+import PropTypes from 'prop-types';
+
 
 const DropTravelMenu = ({options, config, travelerTypeCountChange, cabinChange}) => (
     <Dropdown
@@ -31,5 +33,12 @@ const DropTravelMenu = ({options, config, travelerTypeCountChange, cabinChange})
         </Dropdown.Menu>
     </Dropdown>
 );
+
+DropTravelMenu.propTypes = {
+  options: PropTypes.object.isRequired,
+  config: PropTypes.object.isRequired,
+  travelerTypeCountChange: PropTypes.func.isRequired,
+  cabinChange: PropTypes.func.isRequired
+};
 
 export default DropTravelMenu;
