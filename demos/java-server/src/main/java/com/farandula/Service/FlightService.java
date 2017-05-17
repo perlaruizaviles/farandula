@@ -58,54 +58,54 @@ public class FlightService {
                 return null;
             });
 
-            try{
-                Integer[] numberOfPassengers = getPassengersFromString(passenger);
-
-                if( "oneWay".equals(type) ){
-
-                    List<Itinerary> flights = Luisa.findMeFlights()
-                            .from( departureAirportCode )
-                            .to( arrivalAirportCode )
-                            .departingAt( departDateTime )
-                            .returningAt( arrivalDateTime )
-                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
-                            .forPassegers(Passenger.children(numberOfPassengers[1]))
-                            .limitTo(2)
-                            .execute();
-
-                    return FlightResponse.getResponseInstance(this.getFlightsFromAirlegList(flights));
-
-
-                } else{
-
-                    List<Itinerary> flights = Luisa.findMeFlights()
-                            .from( departureAirportCode )
-                            .to( arrivalAirportCode )
-                            .departingAt( departDateTime )
-                            .returningAt( arrivalDateTime )
-                            .type(FlightType.ROUNDTRIP)
-                            .limitTo(2)
-                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
-                            .forPassegers(Passenger.children(numberOfPassengers[1]))
-                            .execute();
-
-                    List<AirLeg> departLegs = this.getDepartAirLegs(flights);
-                    List<AirLeg> returnLegs = this.getReturnAirLegs(flights);
-                    List<Flight> departFlights =  this.getFlightsFromAirlegList(departLegs);
-                    List<Flight> returnFlights =  this.getFlightsFromAirlegList(returnLegs);
-                    return FlightResponse.getResponseInstance(departFlights, returnFlights);
-
-                }
-
-                //TODO Parse response for passengers
-
-            }
-            catch (FarandulaException e){
-                Logger.getAnonymousLogger().warning(e.toString());
-            }
-            catch (IOException o){
-                Logger.getAnonymousLogger().warning(o.toString());
-            }
+//            try{
+//                Integer[] numberOfPassengers = getPassengersFromString(passenger);
+//
+//                if( "oneWay".equals(type) ){
+//
+//                    List<Itinerary> flights = Luisa.findMeFlights()
+//                            .from( departureAirportCode )
+//                            .to( arrivalAirportCode )
+//                            .departingAt( departDateTime )
+//                            .returningAt( arrivalDateTime )
+//                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
+//                            .forPassegers(Passenger.children(numberOfPassengers[1]))
+//                            .limitTo(2)
+//                            .execute();
+//
+//                    return FlightResponse.getResponseInstance(this.getFlightsFromAirlegList(flights));
+//
+//
+//                } else{
+//
+//                    List<Itinerary> flights = Luisa.findMeFlights()
+//                            .from( departureAirportCode )
+//                            .to( arrivalAirportCode )
+//                            .departingAt( departDateTime )
+//                            .returningAt( arrivalDateTime )
+//                            .type(FlightType.ROUNDTRIP)
+//                            .limitTo(2)
+//                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
+//                            .forPassegers(Passenger.children(numberOfPassengers[1]))
+//                            .execute();
+//
+//                    List<AirLeg> departLegs = this.getDepartAirLegs(flights);
+//                    List<AirLeg> returnLegs = this.getReturnAirLegs(flights);
+//                    List<Flight> departFlights =  this.getFlightsFromAirlegList(departLegs);
+//                    List<Flight> returnFlights =  this.getFlightsFromAirlegList(returnLegs);
+//                    return FlightResponse.getResponseInstance(departFlights, returnFlights);
+//
+//                }
+//
+//                //TODO Parse response for passengers
+//
+//            }
+//            catch (FarandulaException e){
+//                Logger.getAnonymousLogger().warning(e.toString());
+//            }
+//            catch (IOException o){
+//                Logger.getAnonymousLogger().warning(o.toString());
+//            }
 
         }
 
