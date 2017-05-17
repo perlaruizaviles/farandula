@@ -25,7 +25,7 @@ const FlightSection = ({firstHour, secondHour, firstCity, secondCity}) => (
                 </Grid.Row>
             </Grid>
         
-        <Divider horizontal>Return</Divider>
+        <Divider/>
         <Grid>
             <Grid.Row columns={5}>
                 <Grid.Column>
