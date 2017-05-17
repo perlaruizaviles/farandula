@@ -1,5 +1,26 @@
 
 class SearchCommand{
+    getCabinClass() {
+        return this._cabinClass;
+    }
+    getType() {
+        return this._type;
+    }
+    getReturningDate() {
+        return this._returningDate;
+    }
+    getDepartingDate() {
+        return this._departingDate;
+    }
+    getDepartingAt() {
+        return this._departingAt;
+    }
+    getArrivalAirportCode() {
+        return this._arrivalAirportCode;
+    }
+    getDepartureAirportCode() {
+        return this._departureAirportCode;
+    }
    constructor(flightManager){
        this._flightManager = flightManager;
        this._departureAirportCode = null;
@@ -7,6 +28,8 @@ class SearchCommand{
        this._departingAt = null;
        this._departingDate = null;
        this._returningDate = null;
+       this._type = null;
+       this._cabinClass = null;
        this._limitTo = null;
    }
 
