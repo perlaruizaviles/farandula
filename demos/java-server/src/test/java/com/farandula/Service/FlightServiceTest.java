@@ -1,6 +1,8 @@
 package com.farandula.Service;
 
 import com.farandula.Configuration.Application;
+import com.farandula.Helpers.FlightHelper;
+import com.farandula.Helpers.PassengerHelper;
 import com.farandula.JavaFarandulaApplication;
 import com.farandula.models.Flight;
 import com.farandula.models.FlightItinerary;
@@ -34,14 +36,15 @@ public class FlightServiceTest {
 
     @Autowired
     FlightService flightService;
+    @Autowired
+    PassengerHelper passengerHelper;
 
     @Test
     public void getPassengersFromString() throws Exception {
-        String passengerString = "children:5,adults:3";
-
-        Integer[] numberOfPassengers = FlightService.getPassengersFromString(passengerString);
-        Assert.assertEquals(3, (int) numberOfPassengers[0]);
-        Assert.assertEquals(5, (int) numberOfPassengers[1]);
+        String passengerString = "children:7;3;4,infants:1;2,infantsOnSeat:2,adults:2";
+        int[][] numberOfPassengers = passengerHelper.getPassengersFromString(passengerString);
+        Assert.assertEquals(3, numberOfPassengers[0][1]);
+        Assert.assertEquals(2, numberOfPassengers[1][1]);
 
     }
 

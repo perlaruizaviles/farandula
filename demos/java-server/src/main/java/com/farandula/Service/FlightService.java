@@ -1,6 +1,7 @@
 package com.farandula.Service;
 
 import com.farandula.Helpers.FlightHelper;
+import com.farandula.Helpers.PassengerHelper;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.Response.FlightResponse;
 import com.farandula.models.Airport;
@@ -34,8 +35,10 @@ public class FlightService {
     AirportRepository airportRepository;
     @Autowired
     FlightHelper flightHelper;
+    @Autowired
+    PassengerHelper passengerHelper;
 
-    public List<List<Flight>> getResponseFromSearch(String departureAirportCode,
+    public List<FlightItinerary> getResponseFromSearch(String departureAirportCode,
                                                 String departingDate,
                                                 String departingTime,
                                                 String arrivalAirportCode,
@@ -58,54 +61,50 @@ public class FlightService {
                 return null;
             });
 
-//            try{
-//                Integer[] numberOfPassengers = getPassengersFromString(passenger);
-//
-//                if( "oneWay".equals(type) ){
-//
-//                    List<Itinerary> flights = Luisa.findMeFlights()
-//                            .from( departureAirportCode )
-//                            .to( arrivalAirportCode )
-//                            .departingAt( departDateTime )
-//                            .returningAt( arrivalDateTime )
-//                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
-//                            .forPassegers(Passenger.children(numberOfPassengers[1]))
-//                            .limitTo(2)
-//                            .execute();
-//
-//                    return FlightResponse.getResponseInstance(this.getFlightsFromAirlegList(flights));
-//
-//
-//                } else{
-//
-//                    List<Itinerary> flights = Luisa.findMeFlights()
-//                            .from( departureAirportCode )
-//                            .to( arrivalAirportCode )
-//                            .departingAt( departDateTime )
-//                            .returningAt( arrivalDateTime )
-//                            .type(FlightType.ROUNDTRIP)
-//                            .limitTo(2)
-//                            .forPassegers(Passenger.adults(numberOfPassengers[0]))
-//                            .forPassegers(Passenger.children(numberOfPassengers[1]))
-//                            .execute();
-//
-//                    List<AirLeg> departLegs = this.getDepartAirLegs(flights);
-//                    List<AirLeg> returnLegs = this.getReturnAirLegs(flights);
-//                    List<Flight> departFlights =  this.getFlightsFromAirlegList(departLegs);
-//                    List<Flight> returnFlights =  this.getFlightsFromAirlegList(returnLegs);
-//                    return FlightResponse.getResponseInstance(departFlights, returnFlights);
-//
-//                }
-//
-//                //TODO Parse response for passengers
-//
-//            }
-//            catch (FarandulaException e){
-//                Logger.getAnonymousLogger().warning(e.toString());
-//            }
-//            catch (IOException o){
-//                Logger.getAnonymousLogger().warning(o.toString());
-//            }
+            try{
+                int[][] numberOfPassengers = passengerHelper.getPassengersFromString(passenger);
+                List<Itinerary> flights;
+                if( "oneWay".equals(type) ){
+
+                    flights = Luisa.findMeFlights()
+                            .from( departureAirportCode )
+                            .to( arrivalAirportCode )
+                            .departingAt( departDateTime )
+                            .returningAt( arrivalDateTime )
+                            .forPassegers(Passenger.children(numberOfPassengers[0]))
+                            .forPassegers(Passenger.infants(numberOfPassengers[1]))
+                            .forPassegers(Passenger.infantsOnSeat(numberOfPassengers[2]))
+                            .forPassegers(Passenger.adults(numberOfPassengers[3][0]))
+                            .limitTo(2)
+                            .execute();
+                } else{
+
+                    flights = Luisa.findMeFlights()
+                            .from( departureAirportCode )
+                            .to( arrivalAirportCode )
+                            .departingAt( departDateTime )
+                            .returningAt( arrivalDateTime )
+                            .type(FlightType.ROUNDTRIP)
+                            .limitTo(2)
+                            .forPassegers(Passenger.children(numberOfPassengers[0]))
+                            .forPassegers(Passenger.infants(numberOfPassengers[1]))
+                            .forPassegers(Passenger.infantsOnSeat(numberOfPassengers[2]))
+                            .forPassegers(Passenger.adults(numberOfPassengers[3][0]))
+                            .execute();
+
+                }
+                
+                return this.getFlightItineraryFromItinerary(flights);
+
+                //TODO Parse response for passengers
+
+            }
+            catch (FarandulaException e){
+                Logger.getAnonymousLogger().warning(e.toString());
+            }
+            catch (IOException o){
+                Logger.getAnonymousLogger().warning(o.toString());
+            }
 
         }
 
@@ -177,20 +176,7 @@ public class FlightService {
         return (iata.length() == 3) || (iata.length() == 2);
     }
 
-    public static Integer[] getPassengersFromString(String passengerStringList) {
 
-        //TODO: Complementar con tipo de pasajeros y edades
-//        final Pattern pattern = Pattern.compile("[a-z]:\\d,[a-z]:\\d");
-//        if (!pattern.matcher(passengerStringList.toLowerCase()).matches()) {
-//            throw new IllegalArgumentException("Invalid String");
-//        }
-
-        String[] passengerType = passengerStringList.split(",");
-        String[] adults = passengerType[1].split(":");
-        String[] children = passengerType[0].split(":");
-        Integer[] numberOfPassengers = {Integer.parseInt(adults[1]),Integer.parseInt(children[1])};
-        return  numberOfPassengers;
-    }
 
     public static LocalDateTime parseDateTime(String date, String time) {
 
