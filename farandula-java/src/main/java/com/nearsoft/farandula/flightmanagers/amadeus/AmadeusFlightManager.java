@@ -324,9 +324,12 @@ public class AmadeusFlightManager implements FlightManager {
             apiURL += "&return_date=" + arrivalDate;
         }
 
-        apiURL += "&adults=" + search.getPassengers().size()
-                + "&number_of_results=" + search.getOffSet();
 
+        for ( Map.Entry< PassengerType, List<Passenger> > entry : search.getPassengersMap().entrySet()  ){
+            apiURL += "&"+  entry.getKey().toString().toLowerCase() + "=" + search.getPassengers().size();
+        }
+
+        apiURL += "&number_of_results=" + search.getOffSet();
 
         //cabins for amadeus.
         switch ( search.getCabinClass() ){

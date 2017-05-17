@@ -14,7 +14,7 @@ public class Passenger {
     private int age;
 
     public static List<Passenger> adults(int totalAdults) {
-        return createPassengerList(totalAdults, ADULT);
+        return createPassengerList(totalAdults, ADULTS);
     }
 
     public int getAge() {
@@ -27,17 +27,17 @@ public class Passenger {
 
     public static List<Passenger> children(int[] ages ) {
 
-        return CreatePassengerListWithAGe(ages , PassengerType.CHILD);
+        return CreatePassengerListWithAGe(ages , PassengerType.CHILDREN);
 
     }
 
     public static List<Passenger> infants(int[] totalInfants) {
-        return CreatePassengerListWithAGe(totalInfants, INFANT);
+        return CreatePassengerListWithAGe(totalInfants, INFANTS);
     }
 
 
     public static List<Passenger> infantsOnSeat(int[] totalInfantsOnseat) {
-        return CreatePassengerListWithAGe(totalInfantsOnseat, INFANTONSEAT);
+        return CreatePassengerListWithAGe(totalInfantsOnseat, INFANTSONSEAT);
     }
 
     private static List<Passenger> CreatePassengerListWithAGe(int[] ages, PassengerType type) {

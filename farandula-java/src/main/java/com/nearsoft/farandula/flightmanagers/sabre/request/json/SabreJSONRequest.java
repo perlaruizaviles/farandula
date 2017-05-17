@@ -105,7 +105,7 @@ public class SabreJSONRequest {
 
         for (Map.Entry<PassengerType, List<Passenger>> entryType : search.getPassengersMap() .entrySet() ){
 
-            if ( entryType.getKey()!= PassengerType.CHILD ) {
+            if ( entryType.getKey()!= PassengerType.CHILDREN) {
 
                 passengerDetails = getPassengerObject(  passengerDetails, entryType.getValue().get(0), entryType.getValue().size() );
             }else{
@@ -146,16 +146,16 @@ public class SabreJSONRequest {
         PassengerType passengerType = passenger.getType();
         String passengerTypeString = "";
         switch ( passengerType ){
-            case ADULT:
+            case ADULTS:
                 passengerTypeString="ADT";
                 break;
-            case CHILD:
+            case CHILDREN:
                 passengerTypeString = "C" + String.format("%02d",  passenger.getAge() );
                 break;
-            case INFANT:
+            case INFANTS:
                 passengerTypeString = "INF";
                 break;
-            case INFANTONSEAT:
+            case INFANTSONSEAT:
                 passengerTypeString = "INS";
         }
 
