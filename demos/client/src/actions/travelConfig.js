@@ -82,14 +82,12 @@ export const cleanTravelTo = () => {
 
 export const searchAirport = (query, quantum) => {
   return (dispatch) => {
-    dispatch(beginAjaxCall());
     return airportApi.searchAirport(query).then(airports => {
         const filteredAirports = airports.filter(airport => {
           return !airport.title.includes(quantum.title);
         });
         dispatch(searchAirportSuccess(filteredAirports));
     }).catch(error => {
-      dispatch(ajaxCallError(error));
         throw(error);
     });
   };

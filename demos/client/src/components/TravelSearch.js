@@ -12,7 +12,7 @@ class TravelSearch extends React.Component {
 
   render() {
 
-    const {config, typeChange, dateChange, travelerTypeCountChange, cabinChange, searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights, cleanField} = this.props;
+    const {config, loading, typeChange, dateChange, travelerTypeCountChange, cabinChange, searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights, cleanField} = this.props;
 
     const properties = {
       selectedType: config.get('type'),
@@ -26,14 +26,13 @@ class TravelSearch extends React.Component {
       startFormattedDate: config.getIn(['dates', 'depart']),
       endDate: config.getIn(['dates', 'return']),
       endFormattedDate: config.getIn(['dates', 'return']),
-      travelers: config.get('travelers'),
-      isLoading: config.get('ajaxStatusReducer')
+      travelers: config.get('travelers')
     };
 
     return (
       <div>
 
-        <Dimmer active={properties.isLoading}>
+        <Dimmer active={loading}>
           <Loader content='Loading'/>
         </Dimmer>
 
