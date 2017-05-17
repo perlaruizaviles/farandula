@@ -1,5 +1,6 @@
 import * as endpoint from './apiEndpoints';
 import axios from 'axios';
+import {List} from 'immutable';
 
 class AvailableFlightsApi {
 
@@ -20,8 +21,8 @@ class AvailableFlightsApi {
           passenger: passenger
         }
       }).then((response) => {
-        const flights = response.data.content;
-        resolve(Object.assign([], flights));
+        const flights = response.data;
+        resolve(List(flights));
       })
         .catch(e => {
           reject(e);
