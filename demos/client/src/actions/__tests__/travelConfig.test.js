@@ -3,8 +3,8 @@ import * as types from '../actionTypes';
 import moment from 'moment';
 
 describe('actions', () => {
-  it('Should create an action to changeTravelType for round-trip', () => {
-    const value = 'round-trip';
+  it('Should create an action to changeTravelType for roundTrip', () => {
+    const value = 'roundTrip';
     const expectedAction = {
       type: types.CHANGE_TRAVEL_TYPE,
       value
