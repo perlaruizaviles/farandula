@@ -70,7 +70,7 @@ public class SabreFlightManagerTest {
                 .returningAt(departingDate.plusDays(1))
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
-                .limitTo(2) //TODO check limit does not work.
+                .limitTo(10) //TODO check limit does not work.
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
 
@@ -107,7 +107,7 @@ public class SabreFlightManagerTest {
                 .forPassegers(Passenger.adults(2))
                 .forPassegers( Passenger.children( new int[]{2,12,16} ) )
                 .forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
-                .limitTo(2) //TODO check limit does not work.
+                .limitTo(5) //TODO check limit does not work.
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
 
@@ -115,8 +115,8 @@ public class SabreFlightManagerTest {
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getDepartureAirleg();
-            assertEquals("DFW", airLeg.getDepartureAirportCode());
-            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals("MEX", airLeg.getDepartureAirportCode());
+            assertEquals("LAX", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
         });
 
