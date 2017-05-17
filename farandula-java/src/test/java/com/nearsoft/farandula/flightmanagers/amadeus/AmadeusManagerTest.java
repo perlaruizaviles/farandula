@@ -102,6 +102,44 @@ class AmadeusManagerTest {
     }
 
     @Test
+    public void realAvail_OneWayTripUsingDifferentPassengers() throws Exception {
+
+        Luisa.setSupplier(() -> {
+            try {
+                return new AmadeusFlightManager();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+
+        List<Itinerary> flights = Luisa.findMeFlights()
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
+                .returningAt(departingDate.plusDays(1))
+                .forPassegers(Passenger.adults(1))
+                .forPassegers( Passenger.infants( new int[]{1} ) )
+                .forPassegers( Passenger.children( new int[]{10, 8})  )
+                .type(FlightType.ROUNDTRIP)
+                .preferenceClass(CabinClassType.ECONOMY)
+                .limitTo(2)
+                .execute();
+
+        assertTrue(flights.size() > 0);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+    }
+
+
+    @Test
     void buildLinkFromSearch() throws IOException, FarandulaException {
 
         Luisa.setSupplier(() ->

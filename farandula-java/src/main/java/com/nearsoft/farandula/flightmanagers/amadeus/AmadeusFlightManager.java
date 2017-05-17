@@ -326,7 +326,7 @@ public class AmadeusFlightManager implements FlightManager {
 
 
         for ( Map.Entry< PassengerType, List<Passenger> > entry : search.getPassengersMap().entrySet()  ){
-            apiURL += "&"+  entry.getKey().toString().toLowerCase() + "=" + search.getPassengers().size();
+            apiURL += "&"+  entry.getKey().toString().toLowerCase() + "=" + entry.getValue().size();
         }
 
         apiURL += "&number_of_results=" + search.getOffSet();
