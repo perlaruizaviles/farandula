@@ -7,23 +7,18 @@ function setup() {
   const props = {
     handleExchange: () => {}
   };
-
   return shallow(<ExchangeButton {...props} />);
 }
 
-
-describe('Rendering ExchangeButton', () => {
-
-  it('renders Button', () => {
+describe('Rendering ExchangeButton ', () => {
+  it('Renders Button', () => {
     const wrapper = setup();
     expect(wrapper.find('Button').length).toBe(1);
   });
 
-  it('renders correct Icon', () => {
+  it('Renders Correct Icon', () => {
     const wrapper = setup();
     expect(wrapper.find('Icon').length).toBe(1);
     expect(wrapper.find('Icon').props().name).toBe('exchange');
   });
-
 });
-

@@ -5,6 +5,7 @@ import AirportSearch from "./AirportSearch";
 import ExchangeButton from "./ExchangeButton";
 import travelOptions from "../data/travelOptions";
 import DropTravelMenu from "./DropTravelMenu";
+
 import {Button, Dimmer, Icon, Loader} from "semantic-ui-react";
 import {getIata} from "../util/matcher";
 
@@ -12,7 +13,9 @@ class TravelSearch extends React.Component {
 
   render() {
 
+
     const {config, loading, typeChange, dateChange, travelerTypeCountChange, cabinChange, searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights, cleanField} = this.props;
+
 
     const properties = {
       selectedType: config.get('type'),
@@ -43,11 +46,9 @@ class TravelSearch extends React.Component {
 
     return (
       <div>
-
         <Dimmer active={loading}>
           <Loader content='Loading'/>
         </Dimmer>
-
         <TextMenu options={properties.typeOptions}
                   selected={properties.selectedType}
                   selectType={typeChange}/>
@@ -60,6 +61,7 @@ class TravelSearch extends React.Component {
 
         <ExchangeButton handleExchange={
           (from = properties.airportFrom, to = properties.airportTo) => exchangeDestinations(from, to)}/>
+
 
         <AirportSearch
           searchChange={(query, quantum = properties.airportFrom) => searchAirport(query, quantum)}
@@ -110,7 +112,4 @@ class TravelSearch extends React.Component {
     );
   }
 }
-
-
-
 export default TravelSearch;

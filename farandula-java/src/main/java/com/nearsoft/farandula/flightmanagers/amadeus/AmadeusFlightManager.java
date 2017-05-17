@@ -6,6 +6,7 @@ import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
+import com.nearsoft.farandula.utilities.CurrencyIATACodesHelper;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
+import static com.nearsoft.farandula.utilities.CurrencyIATACodesHelper.buildPrice;
 import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
 /**
@@ -146,36 +148,39 @@ public class AmadeusFlightManager implements FlightManager {
         Map<String, Object> outbound = (Map<String, Object>) itineraryMap.get("outbound");
         JSONArray outboundFlights = (JSONArray) outbound.get("flights");
         AirLeg departureLeg = getAirleg(outboundFlights);
-        itineraryResult.getDepartureAirlegs().add( departureLeg );
+        itineraryResult.setDepartureAirleg( departureLeg );
 
-        //adds arrival leg
+        //adds returnings leg
         Map<String, Object> inbound = (Map<String, Object>) itineraryMap.get("inbound");
         JSONArray inboundFlights = (JSONArray) inbound.get("flights");
         AirLeg returnigLeg= getAirleg(inboundFlights);
-        itineraryResult.getReturningAirlegs().add( returnigLeg );
+        itineraryResult.setReturningAirlegs( returnigLeg );
 
     }
 
-    private Price getPrices(Map<String, Object> pricingInfoData) {
+    private Fares getPrices(Map<String, Object> pricingInfoData) {
 
         //price
-        Price price =  new Price();
-        price.setTotalPrice( Double.parseDouble( getValueOf( pricingInfoData , "total_price", String.class ) ) );
+        Fares fares =  new Fares();
+        Price totalPrice = buildPrice( getValueOf( pricingInfoData , "total_price", String.class ) );
+        fares.setTotalPrice( totalPrice );
+
         if ( pricingInfoData.get("price_per_adult") != null  ) {
-            price.setPricePerAdult(Double.parseDouble(getValueOf(pricingInfoData, "price_per_adult.total_fare", String.class)));
-            price.setTaxPerAdult(Double.parseDouble(getValueOf(pricingInfoData, "price_per_adult.tax", String.class)));
+            fares.setPricePerAdult( buildPrice( getValueOf(pricingInfoData, "price_per_adult.total_fare", String.class)));
+            fares.setTaxPerAdult( buildPrice( getValueOf(pricingInfoData, "price_per_adult.tax", String.class) ) );
         }
 
         if ( pricingInfoData.get("price_per_child") != null  ) {
-            price.setPricePerChild(Double.parseDouble(getValueOf(pricingInfoData, "price_per_child.total_fare", String.class)));
-            price.setTaxPerChild(Double.parseDouble(getValueOf(pricingInfoData, "price_per_child.tax", String.class)));
+            fares.setPricePerChild( buildPrice(getValueOf(pricingInfoData, "price_per_child.total_fare", String.class)));
+            fares.setTaxPerChild( buildPrice(getValueOf(pricingInfoData, "price_per_child.tax", String.class)));
         }
 
         if ( pricingInfoData.get("price_per_infant") != null  ) {
-            price.setPricePerInfant(Double.parseDouble(getValueOf(pricingInfoData, "price_per_infant.total_fare", String.class)));
-            price.setTaxPerInfant(Double.parseDouble(getValueOf(pricingInfoData, "price_per_infant.tax", String.class)));
+            fares.setPricePerInfant(buildPrice(getValueOf(pricingInfoData, "price_per_infant.total_fare", String.class)));
+            fares.setTaxPerInfant(buildPrice(getValueOf(pricingInfoData, "price_per_infant.tax", String.class)));
         }
-        return price;
+
+        return fares;
     }
 
     private AirLeg getAirleg(JSONArray outboundFlights) {

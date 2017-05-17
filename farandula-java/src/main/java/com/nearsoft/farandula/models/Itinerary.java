@@ -7,32 +7,32 @@ import java.util.List;
  * Created by pruiz on 5/11/17.
  */
 public class Itinerary {
-    private List<AirLeg> departureAirlegs = new ArrayList<>();
-    private List<AirLeg> returningAirlegs = new ArrayList<>();
-    private Price price;
+    private AirLeg departureAirleg;
+    private AirLeg returningAirleg;
+    private Fares price;
 
-    public List<AirLeg> getDepartureAirlegs() {
-        return departureAirlegs;
+    public AirLeg getDepartureAirleg() {
+        return departureAirleg;
     }
 
-    public void setDepartureAirlegs(List<AirLeg> departureAirlegs) {
-        this.departureAirlegs = departureAirlegs;
+    public void setDepartureAirleg(AirLeg departureAirleg) {
+        this.departureAirleg = departureAirleg;
     }
 
-    public Price getPrice() {
+    public Fares getPrice() {
         return price;
     }
 
-    public void setPrice(Price price) {
+    public void setPrice(Fares price) {
         this.price = price;
     }
 
-    public List<AirLeg> getReturningAirlegs() {
-        return returningAirlegs;
+    public AirLeg getReturningAirleg() {
+        return returningAirleg;
     }
 
-    public void setReturningAirlegs(List<AirLeg> returningAirlegs) {
-        this.returningAirlegs = returningAirlegs;
+    public void setReturningAirlegs(AirLeg returningAirleg) {
+        this.returningAirleg = returningAirleg;
     }
 
 }
