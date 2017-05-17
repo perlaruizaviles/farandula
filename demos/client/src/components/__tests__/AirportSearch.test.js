@@ -6,9 +6,11 @@ import {List} from 'immutable';
 
 function setup() {
   const props = {
-    results: List['x'], value: 'x',
-    onSearchChange: () => {},
-    onResultSelect: () => {}
+    changeSelected: () => {},
+    searchChange: () => {},
+    airports: [{title: 'Mexicali - MXL', description: 'General Rodolfo Se1nchez Taboada International Airport'}],
+    value: "Mexicali - MXL",
+    cleanField: () => {}
   };
   return shallow(<AirportSearch {...props} />);
 }
@@ -21,6 +23,6 @@ describe('Rendering AirportSearch', () => {
 
   it('Initial Value ', () => {
     const wrapper = setup();
-    expect(wrapper.find('Search').props().value).toBe('x');
+    expect(wrapper.find('Search').props().value).toBe('Mexicali - MXL');
   });
 });
