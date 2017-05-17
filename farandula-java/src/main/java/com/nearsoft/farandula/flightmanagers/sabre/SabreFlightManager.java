@@ -116,9 +116,9 @@ public class SabreFlightManager implements FlightManager {
         final Request.Builder builder = new Request.Builder();
 
         if (search.getOffSet() > 0) {
-            builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=" + search.getOffSet() + "&offset=1");
+            builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&enabletagging=true&limit=" + search.getOffSet() + "&offset=1");
         } else {
-            builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=50&offset=1");
+            builder.url("https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&enabletagging=true&limit=50&offset=1");
         }
 
         String jsonRequest = buildJsonFromSearch(search);

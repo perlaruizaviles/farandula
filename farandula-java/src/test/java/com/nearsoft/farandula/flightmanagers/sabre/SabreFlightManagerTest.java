@@ -100,8 +100,8 @@ public class SabreFlightManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
+                .from("MEX")
+                .to("LAX")
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
                 .forPassegers(Passenger.adults(2))

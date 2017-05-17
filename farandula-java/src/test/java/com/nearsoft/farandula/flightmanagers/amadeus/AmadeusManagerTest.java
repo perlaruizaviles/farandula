@@ -40,7 +40,6 @@ class AmadeusManagerTest {
                 .to("CDG")
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
-                .limitTo(2)
                 .type(FlightType.ONEWAY)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute();
@@ -125,7 +124,7 @@ class AmadeusManagerTest {
                 .forPassegers( Passenger.children( new int[]{10, 8})  )
                 .type(FlightType.ROUNDTRIP)
                 .preferenceClass(CabinClassType.ECONOMY)
-                .limitTo(2)
+                .limitTo(3)
                 .execute();
 
         assertTrue(flights.size() > 0);
