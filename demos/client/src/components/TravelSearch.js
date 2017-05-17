@@ -6,6 +6,7 @@ import ExchangeButton from "./ExchangeButton";
 import travelOptions from "../data/travelOptions";
 import DropTravelMenu from "./DropTravelMenu";
 
+
 import {Button, Dimmer, Icon, Loader} from "semantic-ui-react";
 import {getIata} from "../util/matcher";
 
@@ -44,11 +45,13 @@ class TravelSearch extends React.Component {
 
     };
 
+
     return (
       <div>
-        <Dimmer active={loading}>
+        <Dimmer active={loading} inverted>
           <Loader content='Loading'/>
         </Dimmer>
+
         <TextMenu options={properties.typeOptions}
                   selected={properties.selectedType}
                   selectType={typeChange}/>
@@ -93,15 +96,18 @@ class TravelSearch extends React.Component {
           cabinChange={cabinChange}/>
 
         <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
-          (e, b,
-           departureAirport = getIata(properties.airportFrom.title),
-           departingDate = properties.startDate.format('YYYY-MM-DD'),
-           departingTime = "10:15:30",
-           arrivalAirport = getIata(properties.airportTo.title),
-           arrivalDate = properties.endDate.format('YYYY-MM-DD'),
-           arrivalTime = "00:00:00",
-           type = properties.selectedType,
-           passenger = properties.travelers) => availableFlights(departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger)
+          (event, button, search = {
+            departureAirport: getIata(properties.airportFrom.title),
+            departingDate: properties.startDate.format('YYYY-MM-DD'),
+            departingTime: "10:15:30",
+            arrivalAirport: getIata(properties.airportTo.title),
+            arrivalDate: properties.endDate.format('YYYY-MM-DD'),
+            arrivalTime: "00:00:00",
+            type: properties.selectedType,
+            passenger: properties.travelers
+          }) => {
+            availableFlights(search);
+          }
         }>
           <Button.Content visible>Search</Button.Content>
           <Button.Content hidden>
