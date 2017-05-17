@@ -1,9 +1,11 @@
 package com.farandula.Service;
 
+import com.farandula.Helpers.FlightHelper;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.Response.FlightResponse;
 import com.farandula.models.Airport;
 import com.farandula.models.Flight;
+import com.farandula.models.FlightItinerary;
 import com.farandula.models.FlightSegment;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
@@ -30,6 +32,8 @@ public class FlightService {
 
     @Autowired
     AirportRepository airportRepository;
+    @Autowired
+    FlightHelper flightHelper;
 
     public List<List<Flight>> getResponseFromSearch(String departureAirportCode,
                                                 String departingDate,
@@ -104,12 +108,30 @@ public class FlightService {
             }
 
         }
-        else{
-            return null;
-        }
+
 
         return null;
     }
+
+
+    public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList) {
+        //TODO: Build fares object
+        List<FlightItinerary> list = itineraryList.stream()
+                .map(itinerary -> {
+                    Flight departure = flightHelper.parseAirlegToFlight(itinerary.getDepartureAirleg());
+                    if (itinerary.getReturningAirleg() == null){
+                        FlightItinerary flightItinerary = new FlightItinerary(1011, departure, null);
+                        return flightItinerary;
+                    }
+                    Flight arrival = flightHelper.parseAirlegToFlight(itinerary.getReturningAirleg());
+                    FlightItinerary flightItinerary = new FlightItinerary(1011, departure, arrival, null);
+                    return flightItinerary;
+                })
+                .collect(Collectors.toList());
+        return list;
+
+    }
+
 
     public List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList){
         List<Flight> flights = new ArrayList<>();
@@ -147,14 +169,13 @@ public class FlightService {
         return  flights;
     }
 
-
     public static boolean validIataLength(String iata) {
         return (iata.length() == 3) || (iata.length() == 2);
     }
 
     public static Integer[] getPassengersFromString(String passengerStringList) {
 
-        //TODO: Quitar los comments
+        //TODO: Complementar con tipo de pasajeros y edades
 //        final Pattern pattern = Pattern.compile("[a-z]:\\d,[a-z]:\\d");
 //        if (!pattern.matcher(passengerStringList.toLowerCase()).matches()) {
 //            throw new IllegalArgumentException("Invalid String");
@@ -176,21 +197,21 @@ public class FlightService {
 
         return departureDateTime;
     }
-
-    public List<AirLeg> getDepartAirLegs( List<AirLeg>  legs){
-
-        return IntStream.range(0, legs.size())
-                .filter( i -> i%2 == 0 )
-                .mapToObj( i -> legs.get(i) )
-                .collect(Collectors.toList());
-
-    }
-
-    public List<AirLeg> getReturnAirLegs( List<AirLeg>  legs){
-
-        return IntStream.range(0, legs.size())
-                .filter( i -> i%2 == 1 )
-                .mapToObj( i -> legs.get(i) )
-                .collect(Collectors.toList());
-    }
+//
+//    public List<AirLeg> getDepartAirLegs( List<AirLeg>  legs){
+//
+//        return IntStream.range(0, legs.size())
+//                .filter( i -> i%2 == 0 )
+//                .mapToObj( i -> legs.get(i) )
+//                .collect(Collectors.toList());
+//
+//    }
+//
+//    public List<AirLeg> getReturnAirLegs( List<AirLeg>  legs){
+//
+//        return IntStream.range(0, legs.size())
+//                .filter( i -> i%2 == 1 )
+//                .mapToObj( i -> legs.get(i) )
+//                .collect(Collectors.toList());
+//    }
 }
