@@ -26,10 +26,16 @@ public class FlightHelper {
 
         Airport departureAirport = airportRepository.findByIataLikeIgnoreCase(airLeg.getDepartureAirportCode()).get(0);
         Airport arrivalAirport = airportRepository.findByIataLikeIgnoreCase(airLeg.getArrivalAirportCode()).get(0);
+
         LocalDateTime departureDate = airLeg.getDepartingDate();
         LocalDateTime arrivalDate = airLeg.getArrivalDate();
-        List<FlightSegment> flightSegmentList = airLeg.getSegments().stream()
-                .map(this::parseSegmentToFlightSegment).collect(Collectors.toList());
+
+        List<FlightSegment> flightSegmentList = airLeg
+                .getSegments()
+                .stream()
+                .map(this::parseSegmentToFlightSegment)
+                .collect(Collectors.toList());
+
         Flight flight = new Flight(departureAirport, departureDate, arrivalAirport,
                 arrivalDate, flightSegmentList);
         return flight;

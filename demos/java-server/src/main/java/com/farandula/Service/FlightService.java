@@ -116,20 +116,24 @@ public class FlightService {
 
     public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList) {
         //TODO: Build fares object
-        List<FlightItinerary> list = itineraryList.stream()
+        List<FlightItinerary> list = itineraryList
+                .stream()
                 .map(itinerary -> {
                     Flight departure = flightHelper.parseAirlegToFlight(itinerary.getDepartureAirleg());
+
                     if (itinerary.getReturningAirleg() == null){
                         FlightItinerary flightItinerary = new FlightItinerary(1011, departure, null);
                         return flightItinerary;
                     }
+
                     Flight arrival = flightHelper.parseAirlegToFlight(itinerary.getReturningAirleg());
                     FlightItinerary flightItinerary = new FlightItinerary(1011, departure, arrival, null);
+
                     return flightItinerary;
                 })
                 .collect(Collectors.toList());
-        return list;
 
+        return list;
     }
 
 
