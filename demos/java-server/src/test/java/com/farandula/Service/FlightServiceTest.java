@@ -115,4 +115,57 @@ public class FlightServiceTest {
 
 
     }
+    @Test
+    public void parseItineraryIntoFlightItineraryOneWay(){
+
+        List<Itinerary> itineraryList = new ArrayList<>();
+
+        List<Segment> segmentList = new ArrayList<>();
+        for (int k = 0; k < 5; k++) {
+            Itinerary itinerary = new Itinerary();
+
+
+
+                AirLeg leg = new AirLeg();
+
+                LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+
+                leg.setDepartureAirportCode("DFW");
+                leg.setDepartingDate( departingDate );
+                leg.setArrivalAirportCode("CDG");
+                leg.setArrivalDate( departingDate.plusDays(1) );
+
+                for(int j = 0; j < 4; j++){
+                    Segment segment = new Segment();
+
+                    segment.setDepartureAirportCode("DFW");
+                    segment.setDepartureDate( departingDate );
+
+                    segment.setArrivalAirportCode("CDG");
+                    segment.setArrivalDate( departingDate.plusDays(1) );
+
+                    segmentList.add(segment);
+                }
+
+                leg.setSegments(segmentList);
+                itinerary.setDepartureAirleg(leg);
+
+
+
+
+            itineraryList.add(itinerary);
+
+        }
+
+
+
+        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList);
+
+        assertEquals(itineraryList.size(), flightItineraries.size());
+        assertEquals(itineraryList.get(0).getDepartureAirleg().getDepartureAirportCode(),
+                flightItineraries.get(0).getDepartureAirleg().getDepartureAirport().getIata());
+        assertEquals(null, flightItineraries.get(0).getReturningAirleg());
+
+
+    }
 }
