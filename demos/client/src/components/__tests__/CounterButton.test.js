@@ -4,7 +4,11 @@ import expect from 'expect';
 import CounterButtons from '../CounterButtons';
 
 function setup() {
-  const props = {};
+  const props = {
+    count: 1,
+    travelerTypeCountChange: () => {},
+    typeTraveler: 'adults'
+  };
   return shallow(<CounterButtons {...props} />);
 }
 
