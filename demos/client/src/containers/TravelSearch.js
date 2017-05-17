@@ -1,11 +1,23 @@
-import {connect} from 'react-redux';
-import TravelSearch from '../components/TravelSearch';
-import {changeTravelType, changeTravelDate, travelerTypeCountChange, cabinChange, changeTravelFrom, changeTravelTo, searchAirport, exchangeDestinations, searchAvailableFlights, cleanField} from '../actions/travelConfig';
+import {connect} from "react-redux";
+import TravelSearch from "../components/TravelSearch";
+import {
+  cabinChange,
+  changeTravelDate,
+  changeTravelFrom,
+  changeTravelTo,
+  changeTravelType,
+  cleanField,
+  exchangeDestinations,
+  searchAirport,
+  searchAvailableFlights,
+  travelerTypeCountChange
+} from "../actions/travelConfig";
 
 export default connect(
   state => {
     return {
-      config: state.travelConfig
+      config: state.travelConfig,
+      loading: state.ajaxCallsInProgress > 0
     };
   },
   dispatch => {

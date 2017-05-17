@@ -1,6 +1,7 @@
-import * as types from './actionTypes';
-import airportApi from '../api/airportsApi';
-import availableFlightApi from '../api/availableFlightsApi';
+import * as types from "./actionTypes";
+import airportApi from "../api/airportsApi";
+import availableFlightApi from "../api/availableFlightsApi";
+import {ajaxCallError, beginAjaxCall} from "./ajaxStatusActions";
 
 export const changeTravelType = type => {
   return {
@@ -94,9 +95,11 @@ export const searchAirport = (query, quantum) => {
 
 export const searchAvailableFlights = (departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger) => {
   return (dispatch) => {
+    dispatch(beginAjaxCall());
     return availableFlightApi.getAvailableFlights(departureAirport,departingDate,departingTime,arrivalAirport,arrivalDate,arrivalTime,type,passenger).then(flights => {
       dispatch(searchAvailableFlightsSuccess(flights));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
