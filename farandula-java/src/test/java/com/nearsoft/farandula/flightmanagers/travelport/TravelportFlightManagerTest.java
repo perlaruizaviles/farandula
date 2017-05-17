@@ -48,7 +48,54 @@ class TravelportFlightManagerTest {
             assertEquals(1, 1);
         });
 
+
     }
+
+
+
+
+    @Test
+    public void buildEnvelopeStringFromSearch() throws FarandulaException {
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+
+        TravelportFlightManager travelport = new TravelportFlightManager();
+        SearchCommand searchCommand = Luisa.findMeFlights()
+                .from("DFW")
+                .to("CDG")
+                .departingAt(departingDate)
+                .returningAt(departingDate.plusDays(1))
+                .limitTo(2);
+
+        String request = travelport.buildEnvelopeStringFromSearch(searchCommand);
+
+        assertEquals("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                "    <soapenv:Header/>\n" +
+                "    <soapenv:Body>\n" +
+                "        <air:AvailabilitySearchReq xmlns:air=\"http://www.travelport.com/schema/air_v34_0\" AuthorizedBy=\"user\" TargetBranch=\"P105356\" TraceId=\"trace\">\n" +
+                "            <com:BillingPointOfSaleInfo xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" OriginApplication=\"UAPI\"/><air:SearchAirLeg>\n" +
+                "    <air:SearchOrigin>\n" +
+                "        <com:Airport Code=\"DFW\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
+                "    </air:SearchOrigin>\n" +
+                "    <air:SearchDestination>\n" +
+                "        <com:Airport Code=\"CDG\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
+                "    </air:SearchDestination>\n" +
+                "    <air:SearchDepTime PreferredTime=\"2017-07-07\"/>\n" +
+                "    <air:AirLegModifiers>\n" +
+                "        <air:PreferredCabins>\n" +
+                "            <com:CabinClass Type=\"ECONOMY\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
+                "        </air:PreferredCabins>\n" +
+                "    </air:AirLegModifiers>\n" +
+                "</air:SearchAirLeg></air:AvailabilitySearchReq>\n" +
+                "</soapenv:Body>\n" +
+                "</soapenv:Envelope>",request);
+
+
+
+
+
+    }
+
 
     private FlightManager createTravelPortStub() {
 
