@@ -1,8 +1,21 @@
-function findMeFlights(){
-    return {};
-} 
+'use strict';
+
+const SearchCommand = require("./search_command.js");
+
+class Luisa {
+
+    set flightManager(value) {
+        this._flightManager = value;
+    }
+
+    constructor(){
+        this._flightManager = null;
+    }
+    findMeFlights(){
+        return new SearchCommand(this._flightManager);
+    }
+
+}
 
 
-exports.findMeFlights = findMeFlights;
-
-
+module.exports = new Luisa();
