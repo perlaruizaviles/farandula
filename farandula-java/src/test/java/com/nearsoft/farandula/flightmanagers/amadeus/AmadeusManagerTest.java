@@ -47,7 +47,7 @@ class AmadeusManagerTest {
         assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
@@ -93,7 +93,7 @@ class AmadeusManagerTest {
         assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
@@ -130,7 +130,7 @@ class AmadeusManagerTest {
         assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());

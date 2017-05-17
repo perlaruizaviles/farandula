@@ -7,16 +7,16 @@ import java.util.List;
  * Created by pruiz on 5/11/17.
  */
 public class Itinerary {
-    private AirLeg departureAirleg;
-    private AirLeg returningAirleg;
+
+    private List<AirLeg> airlegs = new ArrayList<>();
     private Fares price;
 
-    public AirLeg getDepartureAirleg() {
-        return departureAirleg;
+    public List<AirLeg> getAirlegs() {
+        return airlegs;
     }
 
-    public void setDepartureAirleg(AirLeg departureAirleg) {
-        this.departureAirleg = departureAirleg;
+    public void setAirlegs( List<AirLeg> airleg) {
+        this.airlegs = airlegs;
     }
 
     public Fares getPrice() {
@@ -25,14 +25,6 @@ public class Itinerary {
 
     public void setPrice(Fares price) {
         this.price = price;
-    }
-
-    public AirLeg getReturningAirleg() {
-        return returningAirleg;
-    }
-
-    public void setReturningAirlegs(AirLeg returningAirleg) {
-        this.returningAirleg = returningAirleg;
     }
 
 }

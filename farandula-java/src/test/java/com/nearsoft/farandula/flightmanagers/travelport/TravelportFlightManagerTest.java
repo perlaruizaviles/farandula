@@ -41,7 +41,7 @@ class TravelportFlightManagerTest {
         assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.BUSINESS, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
@@ -141,9 +141,9 @@ class TravelportFlightManagerTest {
 
         assertTrue(flights.size() > 0);
 
-        AirLeg airLeg = flights.get(0).getDepartureAirleg();
+        AirLeg airLeg = flights.get(0).getAirlegs().get(0);
 
-        AirLeg returningAirleg = flights.get(0).getReturningAirleg();
+        AirLeg returningAirleg = flights.get(0).getAirlegs().get(1);
 
         assertNotNull(airLeg);
 

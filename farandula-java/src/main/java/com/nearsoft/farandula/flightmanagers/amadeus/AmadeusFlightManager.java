@@ -148,13 +148,13 @@ public class AmadeusFlightManager implements FlightManager {
         Map<String, Object> outbound = (Map<String, Object>) itineraryMap.get("outbound");
         JSONArray outboundFlights = (JSONArray) outbound.get("flights");
         AirLeg departureLeg = getAirleg(outboundFlights);
-        itineraryResult.setDepartureAirleg( departureLeg );
+        itineraryResult.getAirlegs().add( departureLeg );
 
         //adds returnings leg
         Map<String, Object> inbound = (Map<String, Object>) itineraryMap.get("inbound");
         JSONArray inboundFlights = (JSONArray) inbound.get("flights");
         AirLeg returnigLeg= getAirleg(inboundFlights);
-        itineraryResult.setReturningAirlegs( returnigLeg );
+        itineraryResult.getAirlegs().add(returnigLeg );
 
     }
 

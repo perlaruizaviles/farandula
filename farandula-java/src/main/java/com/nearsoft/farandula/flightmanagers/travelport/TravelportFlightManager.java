@@ -214,7 +214,7 @@ public class TravelportFlightManager implements FlightManager {
 
                 if ( seg.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() ) ){
                     itinerary = new Itinerary();
-                    itinerary.setDepartureAirleg( leg );
+                    itinerary.getAirlegs().add( leg );
                     if ( searchCommand.getType() == FlightType.ONEWAY ){
                         itinerariesList.add( itinerary );
                     }
@@ -222,7 +222,7 @@ public class TravelportFlightManager implements FlightManager {
 
                     if ( seg.getArrivalAirportCode().equals( searchCommand.getDepartureAirport() ) ){
                         //this is round trip case
-                        itinerary.setReturningAirlegs( leg );
+                        itinerary.getAirlegs().add( leg );
                         itinerariesList.add( itinerary );
                     }
 

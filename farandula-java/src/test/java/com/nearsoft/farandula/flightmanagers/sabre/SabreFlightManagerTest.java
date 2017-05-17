@@ -36,13 +36,12 @@ public class SabreFlightManagerTest {
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
                 .type(FlightType.ROUNDTRIP)
-                .limitTo(2)
                 .execute();
 
         assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
@@ -77,7 +76,7 @@ public class SabreFlightManagerTest {
         assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
@@ -114,7 +113,7 @@ public class SabreFlightManagerTest {
         assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("MEX", airLeg.getDepartureAirportCode());
             assertEquals("LAX", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());

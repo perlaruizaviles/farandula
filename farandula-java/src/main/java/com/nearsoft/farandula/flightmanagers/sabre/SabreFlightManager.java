@@ -158,10 +158,10 @@ public class SabreFlightManager implements FlightManager {
             }
 
             ArrayList<List<Map>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
-            getSeats(itinerary.getDepartureAirleg(), cabinsBySegment);
+            getSeats(itinerary.getAirlegs().get(0), cabinsBySegment);
 
             if ( searchCommand.getType() == FlightType.ROUNDTRIP )
-                getSeats(itinerary.getReturningAirleg(), cabinsBySegment);
+                getSeats(itinerary.getAirlegs().get(1), cabinsBySegment);
 
             //getting prices
             Fares faresIti = extractFaresInfo(airItineraryPricingInfo);
@@ -274,12 +274,7 @@ public class SabreFlightManager implements FlightManager {
             leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
             leg.setSegments(segments);
 
-            Segment lastSegment = segments.get(segments.size() - 1);
-            if (lastSegment.getArrivalAirportCode().equals(searchCommand.getArrivalAirport())) {
-                itinerary.setDepartureAirleg( leg );
-            } else {
-                itinerary.setReturningAirlegs( leg );
-            }
+            itinerary.getAirlegs().add( leg );
 
         }
 
