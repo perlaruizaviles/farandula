@@ -23,10 +23,22 @@ class TravelSearch extends React.Component {
       minDate: travelOptions.get('minDate'),
       maxDate: travelOptions.get('maxDate'),
       startDate: config.getIn(['dates', 'depart']),
-      startFormattedDate: config.getIn(['dates', 'depart']),
       endDate: config.getIn(['dates', 'return']),
-      endFormattedDate: config.getIn(['dates', 'return']),
       travelers: config.get('travelers')
+    };
+
+    const isValidForm = (properties) => {
+      if (properties.airportFrom.title === undefined) {
+        return true
+      }
+      if (properties.airportTo.title === undefined) {
+        return true
+      }
+      if (properties.startDate === undefined) {
+        return true
+      }
+      return properties.endDate === undefined;
+
     };
 
     return (
@@ -78,13 +90,13 @@ class TravelSearch extends React.Component {
           travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
           cabinChange={cabinChange}/>
 
-        <Button animated className='orange' onClick={
+        <Button animated disabled={isValidForm(properties)} className='orange' onClick={
           (e, b,
            departureAirport = getIata(properties.airportFrom.title),
-           departingDate = properties.startFormattedDate.format('YYYY-MM-DD'),
+           departingDate = properties.startDate.format('YYYY-MM-DD'),
            departingTime = "10:15:30",
            arrivalAirport = getIata(properties.airportTo.title),
-           arrivalDate = properties.endFormattedDate.format('YYYY-MM-DD'),
+           arrivalDate = properties.endDate.format('YYYY-MM-DD'),
            arrivalTime = "00:00:00",
            type = properties.selectedType,
            passenger = properties.travelers) => availableFlights(departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger)
