@@ -30,7 +30,7 @@ export default connect(
       toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
       searchAirport: (query, quantum) => dispatch(searchAirport(query, quantum)),
       exchangeDestinations: (from, to) => dispatch(exchangeDestinations(from, to)),
-      availableFlights: (e, departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger) => dispatch(searchAvailableFlights(e,departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger)),
+      availableFlights: (search) => dispatch(searchAvailableFlights(search)),
       cleanField:(quantum) => dispatch(cleanField(quantum))
     }
   }
