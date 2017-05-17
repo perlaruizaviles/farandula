@@ -28,6 +28,8 @@ public class Segment {
     String airplaneData;
     long duration;
     List<Seat> seatsAvailable;
+
+    //todo: this only works for travelport :S
     Fares price;
 
     public String getAirlineIconPath() {

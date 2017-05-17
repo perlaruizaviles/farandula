@@ -14,7 +14,6 @@ public class AirLeg {
     String arrivalAirportCode;
     LocalDateTime arrivalDate;
     List<Segment> segments;
-    Fares price;
 
     public String getId() {
         return id;
@@ -31,7 +30,6 @@ public class AirLeg {
     public void setDepartureAirportCode(String departureAirportCode) {
         this.departureAirportCode = departureAirportCode;
     }
-
     public LocalDateTime getDepartingDate() {
         return departingDate;
     }
@@ -64,12 +62,5 @@ public class AirLeg {
         this.segments = segments;
     }
 
-    public Fares getPrice() {
-        return price;
-    }
-
-    public void setPrice(Fares price) {
-        this.price = price;
-    }
 }
 

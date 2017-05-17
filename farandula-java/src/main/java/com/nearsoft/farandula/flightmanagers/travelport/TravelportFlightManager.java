@@ -330,4 +330,7 @@ public class TravelportFlightManager implements FlightManager {
 
     }
 
+    public static String getTargetBranch() {
+        return targetBranch;
+    }
 }

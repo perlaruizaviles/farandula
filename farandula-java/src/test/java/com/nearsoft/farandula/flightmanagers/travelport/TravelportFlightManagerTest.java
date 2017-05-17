@@ -51,15 +51,15 @@ class TravelportFlightManagerTest {
 
     }
 
-
-
-
     @Test
     public void buildEnvelopeStringFromSearch() throws FarandulaException {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         TravelportFlightManager travelport = new TravelportFlightManager();
+
+        String targetBranch = travelport.getTargetBranch();
+
         SearchCommand searchCommand = Luisa.findMeFlights()
                 .from("DFW")
                 .to("CDG")
@@ -72,7 +72,7 @@ class TravelportFlightManagerTest {
         assertEquals("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
                 "    <soapenv:Header/>\n" +
                 "    <soapenv:Body>\n" +
-                "        <air:AvailabilitySearchReq xmlns:air=\"http://www.travelport.com/schema/air_v34_0\" AuthorizedBy=\"user\" TargetBranch=\"P105356\" TraceId=\"trace\">\n" +
+                "        <air:AvailabilitySearchReq xmlns:air=\"http://www.travelport.com/schema/air_v34_0\" AuthorizedBy=\"user\" TargetBranch=\"" + targetBranch +"\" TraceId=\"trace\">\n" +
                 "            <com:BillingPointOfSaleInfo xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" OriginApplication=\"UAPI\"/><air:SearchAirLeg>\n" +
                 "    <air:SearchOrigin>\n" +
                 "        <com:Airport Code=\"DFW\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
@@ -88,11 +88,7 @@ class TravelportFlightManagerTest {
                 "    </air:AirLegModifiers>\n" +
                 "</air:SearchAirLeg></air:AvailabilitySearchReq>\n" +
                 "</soapenv:Body>\n" +
-                "</soapenv:Envelope>",request);
-
-
-
-
+                "</soapenv:Envelope>", request);
 
     }
 
