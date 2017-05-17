@@ -30,7 +30,7 @@ class TravelSearch extends React.Component {
       travelers: config.get('travelers')
     };
 
-    const isValidForm = (properties) => {
+    const isInvalidForm = (properties) => {
       if (properties.airportFrom.title === undefined) {
         return true
       }
@@ -92,7 +92,7 @@ class TravelSearch extends React.Component {
           travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
           cabinChange={cabinChange}/>
 
-        <Button animated disabled={isValidForm(properties)} className='orange' onClick={
+        <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
           (e, b,
            departureAirport = getIata(properties.airportFrom.title),
            departingDate = properties.startDate.format('YYYY-MM-DD'),
