@@ -105,25 +105,14 @@ public class SabreJSONRequest {
 
         for (Map.Entry<PassengerType, List<Passenger>> entryType : search.getPassengersMap() .entrySet() ){
 
-            if ( entryType.getKey()!= PassengerType.CHILDREN) {
-
-                passengerDetails = getPassengerObject(  passengerDetails, entryType.getValue().get(0), entryType.getValue().size() );
-            }else{
-
-                //all these can have different ages
-                for ( Passenger pass : entryType.getValue()  ){
-
-                    passengerDetails = getPassengerObject( passengerDetails, pass, 1 );
-                }
-
-            }
+            passengerDetails = getPassengerObject(  passengerDetails, entryType );
 
         }
 
         return passengerDetails;
     }
 
-    private static String getPassengerObject(String passengerDetails, Passenger pass , int count) {
+    private static String getPassengerObject(String passengerDetails, Map.Entry<PassengerType, List<Passenger>> entry) {
 
         if (passengerDetails.isEmpty()) {
             passengerDetails += "{";
@@ -131,26 +120,25 @@ public class SabreJSONRequest {
             passengerDetails += ",{";
         }
 
-        String seatCode = getPassengerSeatCode( pass ) ;
+        String seatCode = getPassengerSeatCode( entry.getKey() ) ;
 
         passengerDetails +=
                 "\"Code\": \"" + seatCode + "\"," +
-                        "\"Quantity\":" + count;
+                        "\"Quantity\":" + entry.getValue().size();
 
         passengerDetails += "}";
         return passengerDetails;
     }
 
-    private static String getPassengerSeatCode(Passenger passenger) {
+    private static String getPassengerSeatCode(  PassengerType passengerType ) {
 
-        PassengerType passengerType = passenger.getType();
         String passengerTypeString = "";
         switch ( passengerType ){
             case ADULTS:
                 passengerTypeString="ADT";
                 break;
             case CHILDREN:
-                passengerTypeString = "C" + String.format("%02d",  passenger.getAge() );
+                passengerTypeString = "CNN";
                 break;
             case INFANTS:
                 passengerTypeString = "INF";

@@ -105,7 +105,7 @@ public class SabreFlightManagerTest {
                 .departingAt(departingDate)
                 .returningAt(departingDate.plusDays(1))
                 .forPassegers(Passenger.adults(2))
-                .forPassegers( Passenger.children( new int[]{2,12} ) )
+                .forPassegers( Passenger.children( new int[]{2,12,16} ) )
                 .forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
                 .limitTo(2) //TODO check limit does not work.
                 .preferenceClass(CabinClassType.ECONOMY)

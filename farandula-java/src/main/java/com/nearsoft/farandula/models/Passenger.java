@@ -1,5 +1,8 @@
 package com.nearsoft.farandula.models;
 
+import com.nearsoft.farandula.exceptions.ErrorType;
+import com.nearsoft.farandula.exceptions.FarandulaException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,23 +28,29 @@ public class Passenger {
         this.age = age;
     }
 
-    public static List<Passenger> children(int[] ages ) {
+    public static List<Passenger> children(int[] ages ) throws FarandulaException {
 
         return CreatePassengerListWithAGe(ages , PassengerType.CHILDREN);
 
     }
 
-    public static List<Passenger> infants(int[] totalInfants) {
+    public static List<Passenger> infants(int[] totalInfants) throws FarandulaException {
         return CreatePassengerListWithAGe(totalInfants, INFANTS);
     }
 
 
-    public static List<Passenger> infantsOnSeat(int[] totalInfantsOnseat) {
+    public static List<Passenger> infantsOnSeat(int[] totalInfantsOnseat) throws FarandulaException {
         return CreatePassengerListWithAGe(totalInfantsOnseat, INFANTSONSEAT);
     }
 
-    private static List<Passenger> CreatePassengerListWithAGe(int[] ages, PassengerType type) {
+    private static List<Passenger> CreatePassengerListWithAGe(int[] ages, PassengerType type) throws FarandulaException {
+
         List<Passenger> list = new ArrayList<>();
+
+        if ( !validAge( type, ages ) ){
+            throw new FarandulaException( ErrorType.VALIDATION, "Invalid age for " + type.toString() );
+        }
+
         for (int j = 0; j < ages.length; j++) {
             Passenger passenger = new Passenger();
             passenger.setType(type);
@@ -49,6 +58,28 @@ public class Passenger {
             list.add(passenger);
         }
         return list;
+    }
+
+    private static boolean validAge(PassengerType type, int[] ages) {
+
+        // todo i think is better if we have the ages in a config file not hardcoded
+        for ( int age : ages ){
+
+            if ( type == PassengerType.CHILDREN ){
+
+                return age < 18 ? true: false;
+
+            }
+
+            if ( type == PassengerType.INFANTS || type == PassengerType.INFANTSONSEAT ){
+
+                return age < 3 ? true: false;
+
+            }
+
+        }
+
+        return true;
     }
 
     private static List<Passenger> createPassengerList(int totalPassengers, PassengerType passengerType) {

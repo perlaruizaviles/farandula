@@ -136,16 +136,13 @@ public class SabreFlightManager implements FlightManager {
 
         ReadContext ctx = JsonPath.parse(response);
         
-        if ( ctx.read( "$..Errors[*]" )!= null ){
-
+        if ( ctx.read( "$..Errors[*]" ) != null && ((JSONArray)ctx.read("$..Errors[*]")).size()>0 ){
             JSONArray error = ctx.read("$..Errors[*]");
             for (Object er : error) {
                 Map<String, Object> map = (Map<String, Object>) ((JSONArray) er).get(0);
                 throw new FarandulaException(ErrorType.ACCESS_ERROR, map.get("ShortText").toString());
 
             }
-
-
         }
 
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
