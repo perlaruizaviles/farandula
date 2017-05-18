@@ -7,6 +7,7 @@ import com.farandula.JavaFarandulaApplication;
 import com.farandula.models.Flight;
 import com.farandula.models.FlightItinerary;
 import com.nearsoft.farandula.models.AirLeg;
+import com.nearsoft.farandula.models.Fares;
 import com.nearsoft.farandula.models.Itinerary;
 import com.nearsoft.farandula.models.Segment;
 import org.junit.Assert;
@@ -88,8 +89,8 @@ public class FlightServiceTest {
                 itinerary.getAirlegs().add(leg);
 
             }
+            itinerary.setPrice( new Fares() );
             itineraryList.add(itinerary);
-
         }
 
 
@@ -110,8 +111,6 @@ public class FlightServiceTest {
         List<Segment> segmentList = new ArrayList<>();
         for (int k = 0; k < 5; k++) {
             Itinerary itinerary = new Itinerary();
-
-
 
                 AirLeg leg = new AirLeg();
 
@@ -136,12 +135,11 @@ public class FlightServiceTest {
 
                 leg.setSegments(segmentList);
                 itinerary.getAirlegs().add(leg);
+                itinerary.setPrice( new Fares() );
 
             itineraryList.add(itinerary);
 
         }
-
-
 
         List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList,"oneWay");
 

@@ -109,9 +109,7 @@ public class FlightService {
         //TODO: Build fares object
         List<FlightItinerary> list = itineraryList
                 .stream()
-                .map(itinerary -> {
-                    Flight departure = flightHelper.parseAirlegToFlight(itinerary.getAirlegs().get(0));
-
+                .map((Itinerary itinerary) -> {
                     ItineraryFares itineraryFares = flightHelper.parseFaresToItineraryFares( itinerary.getPrice() );
 
                     List<Flight> flightList = itinerary.getAirlegs()
