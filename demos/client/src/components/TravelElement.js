@@ -3,7 +3,6 @@ import {Item, Segment} from 'semantic-ui-react';
 import {Collapse} from 'react-collapse';
 import TravelSummary from './TravelSummary';
 import TravelDetail from './TravelDetail';
-import {List} from 'immutable';
 
 class TravelElement extends React.Component {
     constructor(props){
@@ -18,12 +17,10 @@ class TravelElement extends React.Component {
     
     render(){
         let travel = {
-            price: this.state.data.fares.total.amount,
-            airlegs: List([
-                this.state.data.departureAirleg,
-                this.state.data.returningAirleg
-            ])
+            price: this.state.data.fares.totalPrice.amount,
+            airlegs: this.state.data.airlegs
         };
+
         return(
             <Segment>
                 <Item.Group divided>

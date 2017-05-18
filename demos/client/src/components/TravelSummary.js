@@ -4,7 +4,7 @@ import {Button, Label, Item} from 'semantic-ui-react';
 
 const TravelSummary = ({open, price, airlegs}) => (
     <Item>
-        <Item.Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' />
+        <Item.Image size='tiny' src='https://www.global-benefits-vision.com/wp-content/uploads/2016/02/Plane-Icon.jpg' />
         <Item.Content>
             <Item.Meta>
                 <span className='cinema'>Multiple Airlines</span>
