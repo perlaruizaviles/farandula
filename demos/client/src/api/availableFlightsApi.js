@@ -1,6 +1,6 @@
-import * as endpoint from "./apiEndpoints";
-import axios from "axios";
-import {List} from "immutable";
+import * as endpoint from './apiEndpoints';
+import axios from 'axios';
+import {List} from 'immutable';
 
 class AvailableFlightsApi {
 
