@@ -1,34 +1,7 @@
-import React from 'react';
-import {Form, Divider} from 'semantic-ui-react';
+import React from "react";
+import {Divider, Form} from "semantic-ui-react";
+import tralvelOptions from "../data/travelOptions";
 
-const states = [
-    {text: 'Arizona', value: '1'},
-    {text: 'Arkansas', value: '2'},
-    {text: 'California', value: '3'}
-];
-
-const years = [
-    {text:'1990', value:'1'},
-    {text:'1991', value:'2'},
-    {text:'1992', value:'3'}
-];
-
-const months = [
-    { text: 'January', value: '1'},
-    { text: 'February', value: '2'},
-    { text: 'March', value: '3'},
-    { text: 'April', value: '4'},
-    { text: 'May', value: '5'},
-    { text: 'June', value: '6'},
-    { text: 'July', value: '7'},
-    { text: 'August', value: '8'},
-    { text: 'September', value: '9'},
-    { text: 'October', value: '10'},
-    { text: 'November', value: '11'},
-    { text: 'December', value: '12'},
-];
-
-const countries = [{text:'United States', value: '1'}];
 
 const BillingForm = () => (
     <div>
@@ -43,8 +16,7 @@ const BillingForm = () => (
                 <Form.Input placeholder='City*'/>
             </Form.Group>
             <Form.Group widths='equal'>
-                <Form.Select placeholder='State/Region' options={states} />
-                <Form.Select defaultValue='1' options={countries} />
+                <Form.Select placeholder='State/Region' options={tralvelOptions.get('states')} />
             </Form.Group>
             
             <Divider />
@@ -52,11 +24,11 @@ const BillingForm = () => (
             <h2>Card Details</h2>
             <Form.Group widths='equal'>
                 <Form.Input placeholder='Name On Card*'/>
-                <Form.Input placeholder='Creadit Card Number*'/>
+                <Form.Input placeholder='Credit Card Number*'/>
             </Form.Group>
             <Form.Group widths='equal'>
-                <Form.Select placeholder='Month*' options={months}/>
-                <Form.Select placeholder='Year*' options={years}/>
+                <Form.Select placeholder='Month*' options={tralvelOptions.get('months')}/>
+                <Form.Select placeholder='Year*' options={tralvelOptions.get('years')}/>
                 <Form.Input placeholder='Security Code*'/>
             </Form.Group>
         </Form>
