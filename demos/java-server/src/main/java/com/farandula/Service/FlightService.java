@@ -4,10 +4,7 @@ import com.farandula.Helpers.FlightHelper;
 import com.farandula.Helpers.PassengerHelper;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.Response.FlightResponse;
-import com.farandula.models.Airport;
-import com.farandula.models.Flight;
-import com.farandula.models.FlightItinerary;
-import com.farandula.models.FlightSegment;
+import com.farandula.models.*;
 
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
@@ -108,8 +105,6 @@ public class FlightService {
             }
 
         }
-
-
         return null;
     }
 
@@ -121,13 +116,15 @@ public class FlightService {
                 .map(itinerary -> {
                     Flight departure = flightHelper.parseAirlegToFlight(itinerary.getAirlegs().get(0));
 
+                    ItineraryFares itineraryFares = flightHelper.parseFaresToItineraryFares( itinerary.getPrice() );
+
                     if (itinerary.getAirlegs().size() == 1){
-                        FlightItinerary flightItinerary = new FlightItinerary(1011, departure, null);
+                        FlightItinerary flightItinerary = new FlightItinerary(1011, departure, itineraryFares);
                         return flightItinerary;
                     }
 
                     Flight arrival = flightHelper.parseAirlegToFlight(itinerary.getAirlegs().get(1));
-                    FlightItinerary flightItinerary = new FlightItinerary(1011, departure, arrival, null);
+                    FlightItinerary flightItinerary = new FlightItinerary(1011, departure, arrival, itineraryFares);
 
                     return flightItinerary;
                 })
@@ -135,7 +132,6 @@ public class FlightService {
 
         return list;
     }
-
 
     public List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList){
         List<Flight> flights = new ArrayList<>();

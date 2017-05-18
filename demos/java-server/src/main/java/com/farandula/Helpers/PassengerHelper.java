@@ -12,7 +12,7 @@ public class PassengerHelper {
 
     public int[][] getPassengersFromString(String passengerStringList) {
 
-        //children:7;3;4,infants:1;2,infantsOnSeat:2,adults:2
+        //children:,infants:1;2,infantsOnSeat:,adults:2
 
 
 
@@ -23,14 +23,15 @@ public class PassengerHelper {
 //        }
 
         String[] passengerType = passengerStringList.split(",");
+
         String[] adults = passengerType[3].split(":");
         String[] infantsOnSeat = passengerType[2].split(":");
         String[] infants = passengerType[1].split(":");
         String[] children = passengerType[0].split(":");
 
-        String[] childrenAgesString = children[1].split(";");
-        String[] infantsAgesString = infants[1].split(";");
-        String[] infantsOnSeatAgesString = infantsOnSeat[1].split(";");
+        String[] childrenAgesString = (children.length == 1)?new String[]{}:children[1].split(";");
+        String[] infantsAgesString = (infants.length == 1)?new String[]{}:infants[1].split(";");
+        String[] infantsOnSeatAgesString = (infantsOnSeat.length == 1)?new String[]{}:infantsOnSeat[1].split(";");
 
         int[] childrenAges = Arrays.stream(childrenAgesString)
                 .mapToInt(age -> Integer.parseInt(age))

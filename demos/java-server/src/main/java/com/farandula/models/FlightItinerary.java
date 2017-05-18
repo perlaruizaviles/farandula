@@ -12,14 +12,14 @@ public class FlightItinerary {
     private int key;
     private Flight departureAirleg;
     private Flight returningAirleg;
-    private List<Fares> fares;
+    private ItineraryFares fares;
 
-    public FlightItinerary (int key, Flight  departureAirleg,  List<Fares> fares) {
+    public FlightItinerary (int key, Flight  departureAirleg,  ItineraryFares fares) {
 
         this(key, departureAirleg, null, fares);
 
     }
-    public FlightItinerary (int key, Flight  departureAirleg, Flight returningAirleg, List<Fares> fares) {
+    public FlightItinerary (int key, Flight  departureAirleg, Flight returningAirleg, ItineraryFares fares) {
 
         this.setKey(key);
         this.setDepartureAirleg(departureAirleg);
@@ -52,11 +52,11 @@ public class FlightItinerary {
         this.returningAirleg = returningAirleg;
     }
 
-    public List<Fares> getFares() {
+    public ItineraryFares getFares() {
         return fares;
     }
 
-    public void setFares(List<Fares> fares) {
+    public void setFares(ItineraryFares fares) {
         this.fares = fares;
     }
 }

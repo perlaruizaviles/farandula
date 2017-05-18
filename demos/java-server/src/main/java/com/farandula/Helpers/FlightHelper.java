@@ -4,7 +4,9 @@ import com.farandula.Repositories.AirportRepository;
 import com.farandula.models.Airport;
 import com.farandula.models.Flight;
 import com.farandula.models.FlightSegment;
+import com.farandula.models.ItineraryFares;
 import com.nearsoft.farandula.models.AirLeg;
+import com.nearsoft.farandula.models.Fares;
 import com.nearsoft.farandula.models.Segment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -56,5 +58,15 @@ public class FlightHelper {
                 arrivalSegmentDate, duration);
         return flightSegment;
 
+    }
+
+    public ItineraryFares parseFaresToItineraryFares( Fares fares ) {
+        ItineraryFares itineraryFares = new ItineraryFares();
+
+        itineraryFares.setBasePrice(fares.getBasePrice());
+        itineraryFares.setTaxesPrice(fares.getTaxesPrice());
+        itineraryFares.setTotalPrice(fares.getTotalPrice());
+
+        return itineraryFares;
     }
 }

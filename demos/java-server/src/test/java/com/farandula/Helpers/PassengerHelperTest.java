@@ -28,4 +28,12 @@ public class PassengerHelperTest {
         assertEquals(2, numberOfPassengers[1][1]);
     }
 
+    @Test
+    public void getPassengersFromStringWithNonInfant() throws Exception {
+        String passengerString = "children:7;3;4,infants:,infantsOnSeat:2,adults:2";
+
+        int[][] numberOfPassengers = passengerHelper.getPassengersFromString(passengerString);
+        assertEquals(0, numberOfPassengers[1].length);
+    }
+
 }
