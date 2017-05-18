@@ -193,7 +193,7 @@ public class TravelportFlightManager implements FlightManager {
 
             seg.setDuration(resultFlightsDetails.get(i).getFlightTime());
 
-            getSegmentPrice(seg, resultFlightsDetails.get(i));
+            //getSegmentPrice(seg, resultFlightsDetails.get(i));
 
             connectedSegments.add(seg);
 

@@ -134,9 +134,10 @@ public class SabreFlightManagerTest {
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(2))
-                .forPassegers( Passenger.children( new int[]{2,12,16} ) )
+                .forPassegers( Passenger.children( new int[]{12,16} ) )
                 .forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
-                .limitTo(5) //TODO check limit does not work.
+                .forPassegers( Passenger.infants( new int[1]) )
+                .limitTo(5)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
 
@@ -224,8 +225,6 @@ public class SabreFlightManagerTest {
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
-
-
         manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json"), search);
 
     }
