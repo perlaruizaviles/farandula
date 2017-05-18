@@ -1,6 +1,6 @@
-import * as endpoint from './apiEndpoints';
-import axios from 'axios';
-import {List} from 'immutable';
+import * as endpoint from "./apiEndpoints";
+import axios from "axios";
+import {List} from "immutable";
 
 class AvailableFlightsApi {
 
@@ -8,7 +8,7 @@ class AvailableFlightsApi {
     return new Promise((resolve, reject) => {
       axios({
         method:'get',
-        url: endpoint.FAKE_URL,
+        url: endpoint.TEMP_AVAILABLE_FLIGHTS_URL, //TODO: Change to AVAILABLE_FLIGHTS_URL when backend work well again
         responseType:'json',
         params: {
           departureAirportCode: search.departureAirport,

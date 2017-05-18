@@ -1,5 +1,5 @@
-import * as endpoint from './apiEndpoints';
-import axios from 'axios';
+import * as endpoint from "./apiEndpoints";
+import axios from "axios";
 
 class AirportsApi {
 
@@ -7,7 +7,7 @@ class AirportsApi {
       return new Promise((resolve, reject) => {
         axios({
           method:'get',
-          url: endpoint.AIRPORTS_URL,
+          url: endpoint.TEMP_AIRPORTS_URL, //TODO: Change to AIRPORTS_URL when backend work well again
           responseType:'json',
           params: {
             pattern: query
