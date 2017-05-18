@@ -32,6 +32,10 @@ public class SabreJSONRequest {
 
         for ( int i = 0; i < search.getArrivalAirports().size() ; i++  ){
 
+            if ( i != 0 ){
+                destinationsInfo+= ",";
+            }
+
             valuesMap.put("id", i + 1 );
             valuesMap.put("departureAirport", search.getDepartureAirports().get(i) );
             valuesMap.put("arrivalAirport", search.getArrivalAirports().get(i) );

@@ -9,7 +9,6 @@ import java.util.List;
 public class Segment {
 
     private String key;
-    String airlineIconPath;
     String operatingAirlineCode;
     String operatingAirlineName;
     String operatingFlightNumber;
@@ -31,14 +30,6 @@ public class Segment {
 
     //todo: this only works for travelport :S
     Fares price;
-
-    public String getAirlineIconPath() {
-        return airlineIconPath;
-    }
-
-    public void setAirlineIconPath(String airlineIconPath) {
-        this.airlineIconPath = airlineIconPath;
-    }
 
     public String getOperatingAirlineCode() {
         return operatingAirlineCode;

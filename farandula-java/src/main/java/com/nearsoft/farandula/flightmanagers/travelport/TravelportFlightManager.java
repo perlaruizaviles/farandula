@@ -163,7 +163,6 @@ public class TravelportFlightManager implements FlightManager {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
             Segment seg = new Segment();
-            seg.setAirlineIconPath("");
             seg.setKey(nodeAttributes.getNamedItem("Key").getNodeValue().toString());
             seg.setMarketingAirlineCode(nodeAttributes.getNamedItem("Carrier").getNodeValue().toString());
             seg.setMarketingAirlineName(airlinesCodeMap.get(seg.getMarketingAirlineCode()));

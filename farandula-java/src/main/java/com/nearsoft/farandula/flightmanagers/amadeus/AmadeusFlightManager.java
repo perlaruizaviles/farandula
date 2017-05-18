@@ -223,7 +223,6 @@ public class AmadeusFlightManager implements FlightManager {
 
         //Airleg information
         Segment seg = new Segment();
-        seg.setAirlineIconPath("");
         seg.setOperatingAirlineCode((String) segmentMap.get("operating_airline"));
         seg.setOperatingAirlineName( airlinesCodeMap.get( seg.getOperatingAirlineCode() ) );
         seg.setOperatingFlightNumber( (String) segmentMap.get("flight_number")  );

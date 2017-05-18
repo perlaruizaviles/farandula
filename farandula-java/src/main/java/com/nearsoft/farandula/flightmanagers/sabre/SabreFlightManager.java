@@ -92,8 +92,8 @@ public class SabreFlightManager implements FlightManager {
     private OkHttpClient createHttpClient() throws FarandulaException {
         if (_builder.interceptors().isEmpty()) {
             _builder.addInterceptor(new AuthInterceptor(_accessManager.getAccessToken()));
-            _builder.connectTimeout(1, TimeUnit.MINUTES);
-            _builder.readTimeout(1, TimeUnit.MINUTES);
+            _builder.connectTimeout(2, TimeUnit.MINUTES);
+            _builder.readTimeout(2, TimeUnit.MINUTES);
         }
         return _builder.build();
     }
@@ -135,15 +135,7 @@ public class SabreFlightManager implements FlightManager {
     public List<Itinerary> parseAvailResponse(InputStream response, SearchCommand searchCommand) throws IOException, FarandulaException {
 
         ReadContext ctx = JsonPath.parse(response);
-        
-        if ( ctx.read( "$..Errors[*]" ) != null && ((JSONArray)ctx.read("$..Errors[*]")).size()>0 ){
-            JSONArray error = ctx.read("$..Errors[*]");
-            for (Object er : error) {
-                Map<String, Object> map = (Map<String, Object>) ((JSONArray) er).get(0);
-                throw new FarandulaException(ErrorType.ACCESS_ERROR, map.get("ShortText").toString());
-
-            }
-        }
+        checkForErrors( ctx );
 
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
         
@@ -172,6 +164,22 @@ public class SabreFlightManager implements FlightManager {
 
         return itineraries;
 
+    }
+
+    private void checkForErrors(ReadContext ctx) throws FarandulaException {
+        if ( ctx.read( "$..Errors[*]" ) != null && ((JSONArray)ctx.read("$..Errors[*]")).size()>0 ){
+            JSONArray error = ctx.read("$..Errors[*]");
+            for (Object er : error) {
+                Map<String, Object> map = (Map<String, Object>) ((JSONArray) er).get(0);
+                throw new FarandulaException(ErrorType.ACCESS_ERROR, map.get("ShortText").toString());
+
+            }
+        }
+
+        if ( ctx.read( "$..errorCode") != null && ((JSONArray)ctx.read("$..errorCode")).size()>0  ){
+            JSONArray error = ctx.read("$..errorCode");
+            throw new FarandulaException(ErrorType.ACCESS_ERROR,  error.get(0).toString() );
+        }
     }
 
     private Fares extractFaresInfo(JSONArray airItineraryPricingInfo) {
@@ -285,7 +293,7 @@ public class SabreFlightManager implements FlightManager {
     private Segment buildSegment(Map<String, Object> g) {
 
         Map<String, Object> segmentMap = g;
-        //Todo change segment id and icon PATH
+
         //airline
         JSONArray jsonEquipmentArray = (JSONArray) getValueOf(segmentMap, "Equipment");
         Map<String, Object> equipmentData = (Map<String, Object>) jsonEquipmentArray.get(0);
@@ -301,7 +309,6 @@ public class SabreFlightManager implements FlightManager {
 
         //Airleg data
         Segment seg = new Segment();
-        seg.setAirlineIconPath("");
         seg.setOperatingAirlineCode((String) getValueOf(operativeAirlineData, "Code"));
         seg.setOperatingAirlineName(airlinesCodeMap.get(seg.getOperatingAirlineCode()));
         seg.setOperatingFlightNumber(operativeAirlineData.get("FlightNumber").toString());
