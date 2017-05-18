@@ -14,8 +14,8 @@ const TravelerForm = () => (
             </Form.Group>
             <Form.Input placeholder='Last Name*' width={8}/>
             <Form.Group widths='equal'>
-                <Form.Input placeholder='Email address*'/>
-                <Form.Input placeholder='Phone number*'/>
+                <Form.Input placeholder='Email address*' type='email'/>
+                <Form.Input placeholder='Phone number*' type='tel' />
             </Form.Group>
             
             <Divider />
