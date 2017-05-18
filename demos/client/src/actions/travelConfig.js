@@ -1,6 +1,7 @@
-import * as types from './actionTypes';
-import airportApi from '../api/airportsApi';
-import availableFlightApi from '../api/availableFlightsApi';
+import * as types from "./actionTypes";
+import airportApi from "../api/airportsApi";
+import availableFlightApi from "../api/availableFlightsApi";
+import {ajaxCallError, beginAjaxCall} from "./ajaxStatusActions";
 
 export const changeTravelType = type => {
   return {
@@ -25,20 +26,21 @@ export const travelerTypeCountChange = (typeTraveler, count) => {
   };
 };
 
-export const cabinChange = (cabin) => {
+export const cabinChange = cabin => {
   return {
     type: types.CHANGE_CABIN,
     cabin
   };
 };
-export const changeTravelFrom = (airport) => {
+
+export const changeTravelFrom = airport => {
   return {
     type: types.CHANGE_TRAVEL_FROM,
     airport
   };
 };
 
-export const changeTravelTo = (airport) => {
+export const changeTravelTo = airport => {
   return {
     type: types.CHANGE_TRAVEL_TO,
     airport
@@ -53,14 +55,14 @@ export const exchangeDestinations = (from, to) => {
   };
 };
 
-export const searchAirportSuccess = (airports) => {
+export const searchAirportSuccess = airports => {
   return {
     type: types.SEARCH_AIRPORT_SUCCESS,
     airports
   };
 };
 
-export const searchAvailableFlightsSuccess = (flights) => {
+export const searchAvailableFlightsSuccess = flights => {
   return {
     type: types.SEARCH_AVAILABLE_FLIGHTS_SUCCESS,
     flights
@@ -79,7 +81,7 @@ export const cleanTravelTo = () => {
   };
 };
 
-export const searchAirport = (query, quantum) => {
+export function searchAirport(query, quantum) {
   return (dispatch) => {
     return airportApi.searchAirport(query).then(airports => {
         const filteredAirports = airports.filter(airport => {
@@ -90,19 +92,21 @@ export const searchAirport = (query, quantum) => {
         throw(error);
     });
   };
-};
+}
 
-export const searchAvailableFlights = (departureAirport, departingDate, departingTime, arrivalAirport, arrivalDate, arrivalTime, type, passenger) => {
+export function searchAvailableFlights(search) {
   return (dispatch) => {
-    return availableFlightApi.getAvailableFlights(departureAirport,departingDate,departingTime,arrivalAirport,arrivalDate,arrivalTime,type,passenger).then(flights => {
+    dispatch(beginAjaxCall());
+    return availableFlightApi.getAvailableFlights(search).then(flights => {
       dispatch(searchAvailableFlightsSuccess(flights));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
-};
+}
 
-export const cleanField = (quantum) => {
+export const cleanField = quantum => {
   return (dispatch) => {
     if (quantum === "from"){
       dispatch(cleanTravelFrom());

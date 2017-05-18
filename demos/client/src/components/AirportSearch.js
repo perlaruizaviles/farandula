@@ -1,6 +1,6 @@
-import React from 'react';
-import {Search} from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+import React from "react";
+import {Search} from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 const AirportSearch = ({changeSelected, searchChange, airports, value, cleanField}) => {
     return(
@@ -9,7 +9,6 @@ const AirportSearch = ({changeSelected, searchChange, airports, value, cleanFiel
         onResultSelect={(e, value) => changeSelected(value)}
         results={airports}
         value={value}
-        minCharacters={3}
         onMouseDown={(e) => cleanField()}
        />
     );

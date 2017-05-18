@@ -11,21 +11,15 @@ function setup() {
   const props = {
     minDate: now,
     maxDate: oneYearFromNow,
-    placeholderText: "Select date...",
-    onChange: () => {}
+    startDate: now,
+    endDate: now,
+    selected: now,
+    changeTravelDate: () => {}
   };
   return shallow(<DateSelector {...props} />);
 }
 
 describe('Rendering DateSelector ', () => {
-  it('Renders Without Crashing (Shallow)', () => {
-    shallow(<DateSelector placeholder="Select date..." />);
-  });
-
-  it('Renders Without Crashing (Full)', () => {
-    mount(<DateSelector placeholder="Select date..." />);
-  });
-
   it('Renders DateSelector', () => {
     const wrapper = setup();
     expect(wrapper.find('t').length).toBe(1);
@@ -37,4 +31,3 @@ describe('Rendering DateSelector ', () => {
     expect(wrapper.find('t').props().maxDate).toBe(oneYearFromNow);
   });
 });
-
