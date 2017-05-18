@@ -1,5 +1,6 @@
-import * as endpoint from "./apiEndpoints";
-import axios from "axios";
+import * as endpoint from './apiEndpoints';
+import axios from 'axios';
+import {List} from 'immutable';
 
 class AvailableFlightsApi {
 
@@ -7,7 +8,7 @@ class AvailableFlightsApi {
     return new Promise((resolve, reject) => {
       axios({
         method:'get',
-        url: endpoint.AVAILABLE_FLIGHTS_URL,
+        url: endpoint.FAKE_URL,
         responseType:'json',
         params: {
           departureAirportCode: search.departureAirport,
@@ -20,8 +21,8 @@ class AvailableFlightsApi {
           passenger: search.passenger
         }
       }).then((response) => {
-        const flights = response.data.content;
-        resolve(Object.assign([], flights));
+        const flights = response.data;
+        resolve(List(flights));
       })
         .catch(e => {
           reject(e);

@@ -3,7 +3,7 @@ import {Map} from "immutable";
 const initialState = {
   ajaxCallsInProgress: 0,
   travelConfig: Map({
-    type: 'round-trip',
+    type: 'roundTrip',
     cabin: 'economy',
     travelers: Map({
       'adults': 1,
