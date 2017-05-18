@@ -3,14 +3,10 @@ package com.farandula.Service;
 import com.farandula.Helpers.FlightHelper;
 import com.farandula.Helpers.PassengerHelper;
 import com.farandula.Repositories.AirportRepository;
-import com.farandula.Response.FlightResponse;
 import com.farandula.models.*;
-
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
-import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
-import com.nearsoft.farandula.flightmanagers.travelport.TravelportFlightManager;
 import com.nearsoft.farandula.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Created by antoniohernandez on 5/5/17.

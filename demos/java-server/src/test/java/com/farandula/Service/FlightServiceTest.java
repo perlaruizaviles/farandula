@@ -94,11 +94,11 @@ public class FlightServiceTest {
 
 
 
-        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList);
+        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList, "round");
 
         assertEquals(itineraryList.size(), flightItineraries.size());
         assertEquals(itineraryList.get(0).getAirlegs().get(0).getDepartureAirportCode(),
-                flightItineraries.get(0).getDepartureAirleg().getDepartureAirport().getIata());
+                flightItineraries.get(0).getAirlegs().get(0).getDepartureAirport().getIata());
 
 
     }
@@ -143,12 +143,11 @@ public class FlightServiceTest {
 
 
 
-        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList);
+        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList,"oneWay");
 
         assertEquals(itineraryList.size(), flightItineraries.size());
         assertEquals(itineraryList.get(0).getAirlegs().get(0).getDepartureAirportCode(),
-                flightItineraries.get(0).getDepartureAirleg().getDepartureAirport().getIata());
-        assertEquals(null, flightItineraries.get(0).getReturningAirleg());
+                flightItineraries.get(0).getAirlegs().get(0).getDepartureAirport().getIata());
 
 
     }
