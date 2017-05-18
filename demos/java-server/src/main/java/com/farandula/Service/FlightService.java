@@ -8,6 +8,7 @@ import com.farandula.models.Airport;
 import com.farandula.models.Flight;
 import com.farandula.models.FlightItinerary;
 import com.farandula.models.FlightSegment;
+
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
@@ -118,14 +119,14 @@ public class FlightService {
         List<FlightItinerary> list = itineraryList
                 .stream()
                 .map(itinerary -> {
-                    Flight departure = flightHelper.parseAirlegToFlight(itinerary.getDepartureAirleg());
+                    Flight departure = flightHelper.parseAirlegToFlight(itinerary.getAirlegs().get(0));
 
-                    if (itinerary.getReturningAirleg() == null){
+                    if (itinerary.getAirlegs().size() == 1){
                         FlightItinerary flightItinerary = new FlightItinerary(1011, departure, null);
                         return flightItinerary;
                     }
 
-                    Flight arrival = flightHelper.parseAirlegToFlight(itinerary.getReturningAirleg());
+                    Flight arrival = flightHelper.parseAirlegToFlight(itinerary.getAirlegs().get(1));
                     FlightItinerary flightItinerary = new FlightItinerary(1011, departure, arrival, null);
 
                     return flightItinerary;

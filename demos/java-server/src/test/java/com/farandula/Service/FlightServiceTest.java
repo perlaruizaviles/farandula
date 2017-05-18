@@ -36,17 +36,6 @@ public class FlightServiceTest {
 
     @Autowired
     FlightService flightService;
-    @Autowired
-    PassengerHelper passengerHelper;
-
-    @Test
-    public void getPassengersFromString() throws Exception {
-        String passengerString = "children:7;3;4,infants:1;2,infantsOnSeat:2,adults:2";
-        int[][] numberOfPassengers = passengerHelper.getPassengersFromString(passengerString);
-        Assert.assertEquals(3, numberOfPassengers[0][1]);
-        Assert.assertEquals(2, numberOfPassengers[1][1]);
-
-    }
 
     @Test
     public void validateDateTime(){
@@ -96,12 +85,7 @@ public class FlightServiceTest {
 
                 leg.setSegments(segmentList);
 
-                if (i == 0) {
-                    itinerary.setDepartureAirleg(leg);
-
-                } else {
-                    itinerary.setReturningAirlegs(leg);
-                }
+                itinerary.getAirlegs().add(leg);
 
             }
             itineraryList.add(itinerary);
@@ -113,7 +97,7 @@ public class FlightServiceTest {
         List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList);
 
         assertEquals(itineraryList.size(), flightItineraries.size());
-        assertEquals(itineraryList.get(0).getDepartureAirleg().getDepartureAirportCode(),
+        assertEquals(itineraryList.get(0).getAirlegs().get(0).getDepartureAirportCode(),
                 flightItineraries.get(0).getDepartureAirleg().getDepartureAirport().getIata());
 
 
@@ -151,10 +135,7 @@ public class FlightServiceTest {
                 }
 
                 leg.setSegments(segmentList);
-                itinerary.setDepartureAirleg(leg);
-
-
-
+                itinerary.getAirlegs().add(leg);
 
             itineraryList.add(itinerary);
 
@@ -165,7 +146,7 @@ public class FlightServiceTest {
         List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList);
 
         assertEquals(itineraryList.size(), flightItineraries.size());
-        assertEquals(itineraryList.get(0).getDepartureAirleg().getDepartureAirportCode(),
+        assertEquals(itineraryList.get(0).getAirlegs().get(0).getDepartureAirportCode(),
                 flightItineraries.get(0).getDepartureAirleg().getDepartureAirport().getIata());
         assertEquals(null, flightItineraries.get(0).getReturningAirleg());
 

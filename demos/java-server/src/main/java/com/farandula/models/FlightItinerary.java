@@ -1,8 +1,6 @@
 package com.farandula.models;
 
-import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Fares;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
