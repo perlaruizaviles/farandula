@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,11 +31,21 @@ public class SabreFlightManagerTest {
         });
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .type(FlightType.ROUNDTRIP)
                 .execute();
 
@@ -62,11 +73,21 @@ public class SabreFlightManagerTest {
         });
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(10) //TODO check limit does not work.
@@ -98,11 +119,20 @@ public class SabreFlightManagerTest {
         });
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("MEX");
+        List<String> toList = new ArrayList<>();
+        toList.add("LAX");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("MEX")
-                .to("LAX")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(2))
                 .forPassegers( Passenger.children( new int[]{2,12,16} ) )
                 .forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
@@ -126,12 +156,21 @@ public class SabreFlightManagerTest {
 
         SabreFlightManager manager = new SabreFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         SearchCommand search = new SearchCommand(null);
         search
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
@@ -167,12 +206,21 @@ public class SabreFlightManagerTest {
         SabreFlightManager manager = new SabreFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         SearchCommand search = new SearchCommand(null);
         search
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);

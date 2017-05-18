@@ -7,7 +7,7 @@
                     <com:Airport Code="${departureAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                 </air:SearchOrigin>
                 <air:SearchDestination>
-                    <com:Airport Code="${arrivalAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                    <com:Airport Code="${arrivalAirports}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                 </air:SearchDestination>
                 <air:SearchDepTime PreferredTime="${departureDate}"/>
                 <air:AirLegModifiers>
@@ -18,7 +18,7 @@
             </air:SearchAirLeg>
             <air:SearchAirLeg>
                 <air:SearchOrigin>
-                    <com:Airport Code="${arrivalAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                    <com:Airport Code="${arrivalAirports}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
                 </air:SearchOrigin>
                 <air:SearchDestination>
                     <com:Airport Code="${departureAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>

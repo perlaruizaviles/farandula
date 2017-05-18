@@ -6,7 +6,6 @@ import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
-import com.nearsoft.farandula.utilities.CurrencyIATACodesHelper;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -311,16 +310,26 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
     public String buildTargetURLFromSearch(SearchCommand search) {
-        String departureDate = search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
-        String arrivalDate = search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
+
+        List<String> departureDateList = new ArrayList<>();
+        for(  LocalDateTime departing :  search.getDepartingDates() ){
+            departureDateList.add( departing.format( DateTimeFormatter.ISO_LOCAL_DATE  ) );
+        }
+
+
+
         String apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
 
-        apiURL +="apikey=" + apiKey
-                + "&origin=" + search.getDepartureAirport()
-                + "&destination=" + search.getArrivalAirport()
-                + "&departure_date=" + departureDate;
+        apiURL +="apikey=" + apiKey;
+
+        for ( int i = 0 ; i < search.getArrivalAirports().size() ; i++ ) {
+            apiURL += "&origin=" + search.getDepartureAirports().get( i )
+                    + "&destination=" + search.getArrivalAirports().get( i )
+                    +"&departure_date=" + departureDateList.get(i);
+        }
 
         if ( search.getType() == FlightType.ROUNDTRIP) {
+            String arrivalDate = search.getReturningDates().get(0).format( DateTimeFormatter.ISO_LOCAL_DATE  ) ;
             apiURL += "&return_date=" + arrivalDate;
         }
 

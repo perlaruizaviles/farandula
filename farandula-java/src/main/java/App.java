@@ -5,6 +5,7 @@ import com.nearsoft.farandula.models.Itinerary;
 import com.nearsoft.farandula.models.Passenger;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class App {
@@ -16,11 +17,20 @@ public class App {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flightList = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(50).execute();

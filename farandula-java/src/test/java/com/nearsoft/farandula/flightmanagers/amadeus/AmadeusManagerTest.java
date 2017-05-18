@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,11 +36,20 @@ class AmadeusManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .type(FlightType.ONEWAY)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute();
@@ -79,11 +89,20 @@ class AmadeusManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .preferenceClass(CabinClassType.ECONOMY)
@@ -114,11 +133,20 @@ class AmadeusManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(1))
                 .forPassegers( Passenger.infants( new int[]{1} ) )
                 .forPassegers( Passenger.children( new int[]{10, 8})  )
@@ -146,12 +174,21 @@ class AmadeusManagerTest {
         );
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         SearchCommand search = new SearchCommand(null);
         search
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(2);

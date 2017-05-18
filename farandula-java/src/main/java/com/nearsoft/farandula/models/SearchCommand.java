@@ -4,7 +4,6 @@ import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 
-import javax.xml.bind.ValidationException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,10 +17,10 @@ import java.util.Map;
 public class SearchCommand {
 
     private FlightType type = FlightType.ONEWAY;
-    private String departureAirport;
-    private String arrivalAirport;
-    private LocalDateTime departingDate;
-    private LocalDateTime returningDate;
+    private List<String> departureAirports;
+    private List<String> arrivalAirports;
+    private List<LocalDateTime> departingDates;
+    private List<LocalDateTime> returningDates;
     private Map<PassengerType, List<Passenger>> passengersMap =  new HashMap<>();
     private List<Passenger> passengers = new ArrayList<>();
     private int offSet;
@@ -32,23 +31,23 @@ public class SearchCommand {
         this.flightManager = flightManager;
     }
 
-    public SearchCommand from(String airportCode) {
-        this.departureAirport = airportCode;
+    public SearchCommand from(List<String> airportCode) {
+        this.departureAirports = airportCode;
         return this;
     }
 
-    public SearchCommand to(String airportCode) throws FarandulaException {
-        this.arrivalAirport = airportCode;
+    public SearchCommand to(List<String> airportCode) throws FarandulaException {
+        this.arrivalAirports = airportCode;
         return this;
     }
 
-    public SearchCommand departingAt(LocalDateTime departingDate) throws FarandulaException {
-        this.departingDate = departingDate;
+    public SearchCommand departingAt(List<LocalDateTime> departingDate) throws FarandulaException {
+        this.departingDates = departingDate;
         return this;
     }
 
-    public SearchCommand returningAt(LocalDateTime returningDate) throws FarandulaException {
-        this.returningDate = returningDate;
+    public SearchCommand returningAt(List<LocalDateTime> returningDate) throws FarandulaException {
+        this.returningDates = returningDate;
         return this;
     }
 
@@ -95,38 +94,24 @@ public class SearchCommand {
                 .getAvail(this);
     }
 
-    public String getDepartureAirport() {
-        return departureAirport;
+    public List<String> getDepartureAirports() {
+        return departureAirports;
     }
 
-    public void setDepartureAirport(String departureAirport) {
-
-        this.departureAirport = departureAirport;
+    public List<String> getArrivalAirports() {
+        return arrivalAirports;
     }
 
-    public String getArrivalAirport() {
-        return arrivalAirport;
+    public void setArrivalAirports(List<String> arrivalAirports) throws FarandulaException {
+        this.arrivalAirports = arrivalAirports;
     }
 
-    public void setArrivalAirport(String arrivalAirport) throws FarandulaException {
-        this.arrivalAirport = arrivalAirport;
+    public List<LocalDateTime> getDepartingDates() {
+        return departingDates;
     }
 
-    public LocalDateTime getDepartingDate() {
-        return departingDate;
-    }
-
-    public void setDepartingDate(LocalDateTime departingDate) throws FarandulaException {
-
-        this.departingDate = departingDate;
-    }
-
-    public LocalDateTime getReturningDate() {
-        return returningDate;
-    }
-
-    public void setReturningDate(LocalDateTime returningDate) throws FarandulaException {
-        this.returningDate = returningDate;
+    public List<LocalDateTime> getReturningDates() {
+        return returningDates;
     }
 
     public List<Passenger> getPassengers() {
@@ -149,15 +134,8 @@ public class SearchCommand {
         return offSet;
     }
 
-    public void setOffSet(int offSet) {
-        this.offSet = offSet;
-    }
-
     public CabinClassType getCabinClass() {
         return CabinClass;
     }
 
-    public void setCabinClass(CabinClassType cabinClass) {
-        this.CabinClass = cabinClass;
-    }
 }

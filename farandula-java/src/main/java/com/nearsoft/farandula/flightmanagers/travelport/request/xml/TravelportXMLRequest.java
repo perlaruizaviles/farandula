@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -61,17 +60,17 @@ public class TravelportXMLRequest {
 
         String airlegs = "";
 
-        valuesMap.put("departureAirport", search.getDepartureAirport() );
-        valuesMap.put("arrivalAirport", search.getArrivalAirport() );
-        valuesMap.put("departureDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        valuesMap.put("departureAirport", search.getDepartureAirports().get(0) );
+        valuesMap.put("arrivalAirport", search.getArrivalAirports().get(0) );
+        valuesMap.put("departureDate", search.getDepartingDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE));
         sub = new StrSubstitutor(valuesMap);
         airlegs += sub.replace( leg );
 
         if ( search.getType() == FlightType.ROUNDTRIP ){
 
-            valuesMap.put("departureAirport", search.getArrivalAirport());
-            valuesMap.put("arrivalAirport", search.getDepartureAirport() );
-            valuesMap.put("departureDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+            valuesMap.put("departureAirport", search.getArrivalAirports().get(0));
+            valuesMap.put("arrivalAirport", search.getDepartureAirports().get(0) );
+            valuesMap.put("departureDate", search.getReturningDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE));
             sub = new StrSubstitutor(valuesMap);
             airlegs += sub.replace( leg );
 

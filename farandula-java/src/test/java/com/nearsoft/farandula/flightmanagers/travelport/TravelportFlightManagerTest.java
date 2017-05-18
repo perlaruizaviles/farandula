@@ -12,6 +12,7 @@ import javax.xml.soap.SOAPMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,11 +31,20 @@ class TravelportFlightManagerTest {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .limitTo(2)
                 .execute();
 
@@ -60,11 +70,20 @@ class TravelportFlightManagerTest {
 
         String targetBranch = travelport.getTargetBranch();
 
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         SearchCommand searchCommand = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .limitTo(2);
 
         String request = travelport.buildEnvelopeStringFromSearch(searchCommand);
@@ -127,11 +146,20 @@ class TravelportFlightManagerTest {
         });
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(2)

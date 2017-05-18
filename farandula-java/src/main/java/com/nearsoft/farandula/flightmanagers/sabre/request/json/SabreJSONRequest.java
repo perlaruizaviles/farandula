@@ -30,18 +30,18 @@ public class SabreJSONRequest {
         String destinationsInfo = "";
 
         valuesMap.put("id",1 );
-        valuesMap.put("departureAirport", search.getDepartureAirport() );
-        valuesMap.put("arrivalAirport", search.getArrivalAirport() );
-        valuesMap.put("departureDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        valuesMap.put("departureAirport", search.getDepartureAirports().get(0) );
+        valuesMap.put("arrivalAirport", search.getArrivalAirports().get(0) );
+        valuesMap.put("departureDate", search.getDepartingDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         sub = new StrSubstitutor(valuesMap);
         destinationsInfo += sub.replace( leg ) ;
 
         if ( search.getType() == FlightType.ROUNDTRIP ){
 
             valuesMap.put("id",2 );
-            valuesMap.put("departureAirport", search.getArrivalAirport());
-            valuesMap.put("arrivalAirport", search.getDepartureAirport() );
-            valuesMap.put("departureDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            valuesMap.put("departureAirport", search.getArrivalAirports().get(0));
+            valuesMap.put("arrivalAirport", search.getDepartureAirports().get(0) );
+            valuesMap.put("departureDate", search.getReturningDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             sub = new StrSubstitutor(valuesMap);
             destinationsInfo += "," + sub.replace( leg );
 
@@ -54,11 +54,11 @@ public class SabreJSONRequest {
 
         //TODO in future we can check this using 'handlebars' or another lib, research is required.
 
-        valuesMap.put("departureAirport", search.getDepartureAirport());
-        valuesMap.put("arrivalAirport", search.getArrivalAirport());
+        valuesMap.put("departureAirport", search.getDepartureAirports().get(0) );
+        valuesMap.put("arrivalAirport", search.getArrivalAirports().get(0) );
         valuesMap.put("passengersNumber", search.getPassengers().size());
-        valuesMap.put("departingDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        valuesMap.put("returningDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        valuesMap.put("departingDate", search.getDepartingDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        valuesMap.put("returningDate", search.getReturningDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 
         //passengers information
         String passengersData = getPassengerDetails( search );

@@ -199,8 +199,8 @@ public class TravelportFlightManager implements FlightManager {
 
             //case when the last segment arrival is the search arrival airport OR
             //case for the returning airleg, i.e case when the arrival segment is the departure airport in search
-            if (seg.getArrivalAirportCode().equals(searchCommand.getArrivalAirport()) ||
-                    seg.getArrivalAirportCode().equals(searchCommand.getDepartureAirport())
+            if (seg.getArrivalAirportCode().equals(searchCommand.getArrivalAirports().get(0)) ||
+                    seg.getArrivalAirportCode().equals(searchCommand.getDepartureAirports().get(0))
                     ) {
 
                 AirLeg leg = new AirLeg();
@@ -212,7 +212,7 @@ public class TravelportFlightManager implements FlightManager {
                 leg.setSegments(connectedSegments);
 
 
-                if ( seg.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() ) ){
+                if ( seg.getArrivalAirportCode().equals( searchCommand.getArrivalAirports().get(0) ) ){
                     itinerary = new Itinerary();
                     itinerary.getAirlegs().add( leg );
                     if ( searchCommand.getType() == FlightType.ONEWAY ){
@@ -220,7 +220,7 @@ public class TravelportFlightManager implements FlightManager {
                     }
                 }else{
 
-                    if ( seg.getArrivalAirportCode().equals( searchCommand.getDepartureAirport() ) ){
+                    if ( seg.getArrivalAirportCode().equals( searchCommand.getDepartureAirports().get(0) ) ){
                         //this is round trip case
                         itinerary.getAirlegs().add( leg );
                         itinerariesList.add( itinerary );
