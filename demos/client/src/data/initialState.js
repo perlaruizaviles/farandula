@@ -2,7 +2,7 @@ import {Map} from 'immutable';
 
 const initialState = {
   travelConfig: Map({
-    type: 'round-trip',
+    type: 'roundTrip',
     cabin: 'economy',
     travelers: Map({
       'adults': 1,

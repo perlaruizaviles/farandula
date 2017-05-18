@@ -5,7 +5,7 @@ import {Router, Route, browserHistory, IndexRedirect} from 'react-router';
 import Main from './components/Main';
 import Home from './components/Home';
 import Summary from './components/Summary';
-import FlightResults from './components/FlightResults';
+import TravelResults from './components/TravelResults';
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);
@@ -14,7 +14,7 @@ const makeRouter = store => {
       <Route path="/" component={Main}>
         <IndexRedirect to="/home"/>
         <Route path="/home" component={Home}/>
-        <Route path="/flightresults" component={FlightResults}/>
+        <Route path="/travelResults" component={TravelResults}/>
         <Route path="/summary" component={Summary}/>
       </Route>
     </Router>

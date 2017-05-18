@@ -1,4 +1,4 @@
-const BASE_URL = 'https://farandula-java.herokuapp.com/api/';
+const BASE_URL = 'https://temporal-farandula.herokuapp.com/api/';
 
 export const FAKE_URL = 'http://iotar.azurewebsites.net/api/farandula';
 export const AIRPORTS_URL = BASE_URL + 'airports';

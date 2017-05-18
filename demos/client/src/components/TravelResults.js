@@ -1,15 +1,13 @@
 import React from 'react';
+import TravelList from './TravelList';
 import TravelSearch from '../containers/TravelSearch';
-import FlightList from '../containers/FlightList';
 import {Container} from 'semantic-ui-react';
 
-export default () => (
+const TravelResults = () => (
     <Container>
-        <h2>Flight Results</h2>
-        
         <TravelSearch/>
-        
-        <FlightList/>
-        
+        <TravelList/>
     </Container>
 )
+
+export default TravelResults;
