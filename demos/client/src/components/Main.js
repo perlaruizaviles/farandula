@@ -8,10 +8,6 @@ const Main = ({router: {push}, location: {pathname},
       <Menu.Item header onClick={() => push('/')}>
         Quantum Farandula
       </Menu.Item>
-      <Menu.Item active={pathname==='/travelResults'}
-                 onClick={() => push('/travelResults')}>
-        Flight Results
-      </Menu.Item>
       <Menu.Item active={pathname==='/summary'}
                  onClick={() => push('/summary')}>
         Summary

@@ -12,7 +12,7 @@ const makeRouter = store => {
   return (
     <Router history={history}>
       <Route path="/" component={Main}>
-        <IndexRedirect to="/home"/>
+        <IndexRedirect to="/travelResults"/>
         <Route path="/home" component={Home}/>
         <Route path="/travelResults" component={TravelResults}/>
         <Route path="/summary" component={Summary}/>
