@@ -10,22 +10,15 @@ import java.util.List;
 public class FlightItinerary {
 
     private int key;
-    private Flight departureAirleg;
-    private Flight returningAirleg;
+    private String type;
+    private List<Flight> airlegs;
     private ItineraryFares fares;
 
-    public FlightItinerary (int key, Flight  departureAirleg,  ItineraryFares fares) {
-
-        this(key, departureAirleg, null, fares);
-
-    }
-    public FlightItinerary (int key, Flight  departureAirleg, Flight returningAirleg, ItineraryFares fares) {
-
+    public FlightItinerary (int key, String type, List<Flight> flights, ItineraryFares fares) {
         this.setKey(key);
-        this.setDepartureAirleg(departureAirleg);
-        this.setReturningAirleg(returningAirleg);
+        this.setType(type);
+        this.setAirlegs(flights);
         this.setFares(fares);
-
     }
 
     public int getKey() {
@@ -36,27 +29,27 @@ public class FlightItinerary {
         this.key = key;
     }
 
-    public Flight getDepartureAirleg() {
-        return departureAirleg;
-    }
-
-    public void setDepartureAirleg(Flight departureAirleg) {
-        this.departureAirleg = departureAirleg;
-    }
-
-    public Flight getReturningAirleg() {
-        return returningAirleg;
-    }
-
-    public void setReturningAirleg(Flight returningAirleg) {
-        this.returningAirleg = returningAirleg;
-    }
-
     public ItineraryFares getFares() {
         return fares;
     }
 
     public void setFares(ItineraryFares fares) {
         this.fares = fares;
+    }
+
+    public List<Flight> getAirlegs() {
+        return airlegs;
+    }
+
+    public void setAirlegs(List<Flight> airlegs) {
+        this.airlegs = airlegs;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

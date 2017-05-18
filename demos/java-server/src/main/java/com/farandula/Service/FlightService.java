@@ -9,6 +9,7 @@ import com.farandula.models.*;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
+import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
 import com.nearsoft.farandula.flightmanagers.travelport.TravelportFlightManager;
 import com.nearsoft.farandula.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +93,7 @@ public class FlightService {
 
                 }
                 
-                return this.getFlightItineraryFromItinerary(flights);
+                return this.getFlightItineraryFromItinerary(flights, type);
 
                 //TODO Parse response for passengers
 
@@ -109,7 +110,7 @@ public class FlightService {
     }
 
 
-    public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList) {
+    public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {
         //TODO: Build fares object
         List<FlightItinerary> list = itineraryList
                 .stream()
@@ -118,13 +119,12 @@ public class FlightService {
 
                     ItineraryFares itineraryFares = flightHelper.parseFaresToItineraryFares( itinerary.getPrice() );
 
-                    if (itinerary.getAirlegs().size() == 1){
-                        FlightItinerary flightItinerary = new FlightItinerary(1011, departure, itineraryFares);
-                        return flightItinerary;
-                    }
+                    List<Flight> flightList = itinerary.getAirlegs()
+                            .stream()
+                            .map(airLeg -> flightHelper.parseAirlegToFlight(airLeg))
+                            .collect(Collectors.toList());
 
-                    Flight arrival = flightHelper.parseAirlegToFlight(itinerary.getAirlegs().get(1));
-                    FlightItinerary flightItinerary = new FlightItinerary(1011, departure, arrival, itineraryFares);
+                    FlightItinerary flightItinerary = new FlightItinerary(12345, type, flightList, itineraryFares);
 
                     return flightItinerary;
                 })
