@@ -3,6 +3,7 @@ import {Item, Segment} from 'semantic-ui-react';
 import {Collapse} from 'react-collapse';
 import TravelSummary from './TravelSummary';
 import TravelDetail from './TravelDetail';
+import {List} from 'immutable';
 
 class TravelElement extends React.Component {
     constructor(props){
@@ -16,10 +17,17 @@ class TravelElement extends React.Component {
     }
     
     render(){
+        let travel = {
+            price: this.state.data.fares.total.amount,
+            airlegs: List([
+                this.state.data.departureAirleg,
+                this.state.data.returningAirleg
+            ])
+        };
         return(
             <Segment>
                 <Item.Group divided>
-                    <TravelSummary open={this.open}/>
+                    <TravelSummary open={this.open} airlegs={travel.airlegs} price={travel.price}/>
                     <Collapse isOpened={this.state.isOpened==='true'}>
                         <TravelDetail/>
                     </Collapse>

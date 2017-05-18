@@ -1,13 +1,13 @@
 import {connect} from 'react-redux';
-import FlightList from '../components/FlightList';
+import TravelResults from '../components/TravelResults';
 
 export default connect(
     state => {
         return {
-            availableFlights: state.travelConfig.get('availableFlights')
+            travels: state.travelConfig.get('availableFlights')
         };
     },
     dispatch => {
         return {}
     }
-)(FlightList);
+)(TravelResults);

@@ -28,8 +28,7 @@ const initialState = {
     dates: Map({
       depart: undefined,
       return: undefined
-    }),
-    price: '999.99'
+    })
   })
 };
 
