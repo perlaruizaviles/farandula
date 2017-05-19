@@ -112,19 +112,9 @@ class AmadeusManagerTest {
         });
     }
 
-    private void initAmadeusSupplierForLuisa() {
-        Luisa.setSupplier(() -> {
-            try {
-                return new AmadeusFlightManager();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
-    }
 
     @Test
-    public void realAvail_OneWayTripUsingDifferentPassengers() throws Exception {
+    public void realAvail_OpenJawTrip() throws Exception {
 
         initAmadeusSupplierForLuisa();
 
@@ -144,10 +134,68 @@ class AmadeusManagerTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ROUNDTRIP)
+                .preferenceClass(CabinClassType.ECONOMY)
+                .limitTo(2)
+                .execute();
+
+        assertTrue(flights.size() > 0);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+    }
+
+    private void initAmadeusSupplierForLuisa() {
+        Luisa.setSupplier(() -> {
+            try {
+                return new AmadeusFlightManager();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+    }
+
+    @Test
+    public void realAvail_OneWayTripUsingDifferentPassengers() throws Exception {
+
+        initAmadeusSupplierForLuisa();
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        fromList.add("MEX");
+        fromList.add("BOS");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        toList.add("LAX");
+        toList.add("LHR");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add( departingDate.plusDays(7) );
+        departingDateList.add( departingDate.plusDays(15) );
+
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+        returningDateList.add(  departingDate.plusDays(8) );
+        returningDateList.add(  departingDate.plusDays(16) );
+
+        List<Itinerary> flights = Luisa.findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
                 .forPassegers( Passenger.adults(1) )
                 .forPassegers( Passenger.infants( new int[]{1} ) )
                 .forPassegers( Passenger.children( new int[]{10, 8})  )
-                .type(FlightType.ROUNDTRIP)
+                .type(FlightType.OPENJAW)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .limitTo(3)
                 .execute();
@@ -194,13 +242,13 @@ class AmadeusManagerTest {
         String searchURL = manager.buildTargetURLFromSearch(search).get(0);
         String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
                 "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" +
+                "&travel_class=ECONOMY" +
                 "&origin=DFW" +
                 "&destination=CDG" +
                 "&departure_date=2017-07-07" +
                 "&return_date=2017-07-08" +
                 "&adults=1" +
-                "&number_of_results=2" +
-                "&travel_class=ECONOMY";
+                "&number_of_results=2";
         assertEquals(expectedURL, searchURL);
 
     }

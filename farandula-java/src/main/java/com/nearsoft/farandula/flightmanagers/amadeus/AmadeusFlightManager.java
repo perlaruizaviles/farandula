@@ -6,6 +6,7 @@ import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
+import com.sun.org.apache.regexp.internal.REUtil;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -80,13 +81,45 @@ public class AmadeusFlightManager implements FlightManager {
     public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
 
         try {
-            Request request = buildRequestForAvail(search);
-            InputStream responseStream = sendRequest(request);
-            return parseAvailResponse(responseStream);
+
+            List<Itinerary> result = new ArrayList<>();
+            List<String> urlList = buildTargetURLFromSearch(search);
+            for ( String url_api : urlList ) {
+                Request request = buildRequest(url_api);
+                InputStream responseStream = sendRequest(request);
+                if ( result.isEmpty() ){
+                    result = parseAvailResponse(responseStream);
+                }else{
+                    List<Itinerary> openJawResults = parseAvailResponse(responseStream);
+                    for ( int i = 0 ; i <  openJawResults.size() ; i ++ ){
+                        result.get( i ).getAirlegs().addAll( openJawResults.get( i ).getAirlegs() );
+                        Fares pricesSum = sumPrices( result.get(i).getPrice(), openJawResults.get(i).getPrice() );
+                        result.get( i ).setPrice( pricesSum );
+                    }
+                }
+
+            }
+
+            return result ;
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
         }
+
+    }
+
+    private Fares sumPrices(Fares price1, Fares price2) {
+
+        Fares sum = new Fares();
+
+        if ( price1.getTotalPrice().getCurrencyCode().equals( price2.getTotalPrice().getCurrencyCode() ) ) {
+            sum.setTotalPrice((new Price())
+                    .setAmount(price1.getTotalPrice().getAmount() + price2.getTotalPrice().getAmount())
+                    .setCurrencyCode(price1.getTotalPrice().getCurrencyCode())
+            );
+        }
+
+        return sum;
 
     }
 
@@ -155,10 +188,11 @@ public class AmadeusFlightManager implements FlightManager {
 
         //adds returnings leg
         Map<String, Object> inbound = (Map<String, Object>) itineraryMap.get("inbound");
-        JSONArray inboundFlights = (JSONArray) inbound.get("flights");
-        AirLeg returnigLeg= getAirleg(inboundFlights);
-        itineraryResult.getAirlegs().add(returnigLeg );
-
+        if ( inbound != null) {
+            JSONArray inboundFlights = (JSONArray) inbound.get("flights");
+            AirLeg returnigLeg = getAirleg(inboundFlights);
+            itineraryResult.getAirlegs().add(returnigLeg);
+        }
     }
 
     private Fares getPrices(Map<String, Object> pricingInfoData) {
@@ -299,12 +333,6 @@ public class AmadeusFlightManager implements FlightManager {
         return seg;
     }
 
-    public Request buildRequestForAvail(SearchCommand search) {
-
-        String url_api = buildTargetURLFromSearch(search).get(0);
-        return buildRequest(url_api);
-    }
-
     public Request buildRequest(String url_api) {
         final Request.Builder builder = new Request.Builder();
         builder.url(url_api);
@@ -320,7 +348,6 @@ public class AmadeusFlightManager implements FlightManager {
         for(  LocalDateTime departing :  search.getDepartingDates() ){
             departureDateList.add( departing.format( DateTimeFormatter.ISO_LOCAL_DATE  ) );
         }
-
 
         //--->this block is the same for n request on open jaws
         String apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?"
