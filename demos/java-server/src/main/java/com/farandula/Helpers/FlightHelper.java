@@ -1,5 +1,6 @@
 package com.farandula.Helpers;
 
+import com.farandula.Exceptions.AirportException;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.models.Airport;
 import com.farandula.models.Flight;
@@ -7,12 +8,15 @@ import com.farandula.models.FlightSegment;
 import com.farandula.models.ItineraryFares;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Fares;
+import com.nearsoft.farandula.models.Itinerary;
 import com.nearsoft.farandula.models.Segment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -26,8 +30,15 @@ public class FlightHelper {
 
     public Flight parseAirlegToFlight(AirLeg airLeg) {
 
-        Airport departureAirport = airportRepository.findByIataLikeIgnoreCase(airLeg.getDepartureAirportCode()).get(0);
-        Airport arrivalAirport = airportRepository.findByIataLikeIgnoreCase(airLeg.getArrivalAirportCode()).get(0);
+        Airport departureAirport = airportRepository.findByIataLikeIgnoreCase(airLeg.getDepartureAirportCode())
+                .stream()
+                .findFirst()
+                .orElse(null);
+
+        Airport arrivalAirport = airportRepository.findByIataLikeIgnoreCase(airLeg.getArrivalAirportCode())
+                .stream()
+                .findFirst()
+                .orElse(null);
 
         LocalDateTime departureDate = airLeg.getDepartingDate();
         LocalDateTime arrivalDate = airLeg.getArrivalDate();
@@ -44,23 +55,52 @@ public class FlightHelper {
 
     }
 
+
     public FlightSegment parseSegmentToFlightSegment(Segment segment) {
 
-        Airport departureSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getDepartureAirportCode()).get(0);
-        Airport arrivalSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getArrivalAirportCode()).get(0);
+        Airport departureSegmentAirport;
+        Airport arrivalSegmentAirport;
 
-        LocalDateTime departureSegmentDate = segment.getDepartureDate();
-        LocalDateTime arrivalSegmentDate = segment.getArrivalDate();
+        Optional<Airport> optionalAirportDeparture = airportRepository.findByIataLikeIgnoreCase(segment.getDepartureAirportCode())
+                .stream()
+                .findFirst();
 
-        long duration = segment.getDuration();
+        try {
 
-        FlightSegment flightSegment = new FlightSegment(departureSegmentAirport, departureSegmentDate, arrivalSegmentAirport,
-                arrivalSegmentDate, duration);
-        return flightSegment;
+            if (optionalAirportDeparture.isPresent()) {
+                departureSegmentAirport = optionalAirportDeparture.get();
+            } else {
+                throw new AirportException(AirportException.AirportErrorType.AIRPORT_NOT_FOUND, "Departure Airpot Not Found");
+            }
+
+            Optional<Airport> optionalAirportArrival = airportRepository.findByIataLikeIgnoreCase(segment.getArrivalAirportCode())
+                    .stream()
+                    .findFirst();
+
+            if (optionalAirportArrival.isPresent()) {
+                arrivalSegmentAirport = optionalAirportArrival.get();
+            } else {
+                throw new AirportException(AirportException.AirportErrorType.AIRPORT_NOT_FOUND, "Arrival Airpot Not Found");
+            }
+
+            LocalDateTime departureSegmentDate = segment.getDepartureDate();
+            LocalDateTime arrivalSegmentDate = segment.getArrivalDate();
+
+            long duration = segment.getDuration();
+
+            FlightSegment flightSegment = new FlightSegment(departureSegmentAirport, departureSegmentDate, arrivalSegmentAirport,
+                    arrivalSegmentDate, duration);
+            return flightSegment;
+
+        } catch (AirportException e) {
+            Logger.getAnonymousLogger().warning(e.toString());
+            return null;
+        }
 
     }
 
-    public ItineraryFares parseFaresToItineraryFares( Fares fares ) {
+
+    public ItineraryFares parseFaresToItineraryFares(Fares fares) {
         ItineraryFares itineraryFares = new ItineraryFares();
 
         itineraryFares.setBasePrice(fares.getBasePrice());
@@ -68,5 +108,12 @@ public class FlightHelper {
         itineraryFares.setTotalPrice(fares.getTotalPrice());
 
         return itineraryFares;
+    }
+
+    public List<Flight> getFlightsFromItinerary(Itinerary itinerary) {
+        return itinerary.getAirlegs()
+                .stream()
+                .map(airLeg -> this.parseAirlegToFlight(airLeg))
+                .collect(Collectors.toList());
     }
 }

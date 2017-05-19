@@ -39,7 +39,7 @@ public class FlightServiceTest {
     FlightService flightService;
 
     @Test
-    public void validateDateTime(){
+    public void validateDateTime() {
 
         FlightService flightService = new FlightService();
 
@@ -47,13 +47,12 @@ public class FlightServiceTest {
 
         LocalDateTime expected = LocalDateTime.of(2011, 12, 03, 10, 15, 30);
 
-        Assert.assertEquals( expected, result );
+        Assert.assertEquals(expected, result);
     }
 
 
-
     @Test
-    public void parseItineraryIntoFlightItinerary(){
+    public void parseItineraryIntoFlightItinerary() {
 
         List<Itinerary> itineraryList = new ArrayList<>();
 
@@ -61,25 +60,25 @@ public class FlightServiceTest {
         for (int k = 0; k < 5; k++) {
             Itinerary itinerary = new Itinerary();
 
-            for(int i = 0; i < 2; i++) {
+            for (int i = 0; i < 2; i++) {
 
                 AirLeg leg = new AirLeg();
 
                 LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
                 leg.setDepartureAirportCode("DFW");
-                leg.setDepartingDate( departingDate );
+                leg.setDepartingDate(departingDate);
                 leg.setArrivalAirportCode("CDG");
-                leg.setArrivalDate( departingDate.plusDays(1) );
+                leg.setArrivalDate(departingDate.plusDays(1));
 
-                for(int j = 0; j < 4; j++){
+                for (int j = 0; j < 4; j++) {
                     Segment segment = new Segment();
 
                     segment.setDepartureAirportCode("DFW");
-                    segment.setDepartureDate( departingDate );
+                    segment.setDepartureDate(departingDate);
 
                     segment.setArrivalAirportCode("CDG");
-                    segment.setArrivalDate( departingDate.plusDays(1) );
+                    segment.setArrivalDate(departingDate.plusDays(1));
 
                     segmentList.add(segment);
                 }
@@ -89,10 +88,9 @@ public class FlightServiceTest {
                 itinerary.getAirlegs().add(leg);
 
             }
-            itinerary.setPrice( new Fares() );
+            itinerary.setPrice(new Fares());
             itineraryList.add(itinerary);
         }
-
 
 
         List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList, "round");
@@ -103,8 +101,9 @@ public class FlightServiceTest {
 
 
     }
+
     @Test
-    public void parseItineraryIntoFlightItineraryOneWay(){
+    public void parseItineraryIntoFlightItineraryOneWay() {
 
         List<Itinerary> itineraryList = new ArrayList<>();
 
@@ -112,36 +111,36 @@ public class FlightServiceTest {
         for (int k = 0; k < 5; k++) {
             Itinerary itinerary = new Itinerary();
 
-                AirLeg leg = new AirLeg();
+            AirLeg leg = new AirLeg();
 
-                LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+            LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
-                leg.setDepartureAirportCode("DFW");
-                leg.setDepartingDate( departingDate );
-                leg.setArrivalAirportCode("CDG");
-                leg.setArrivalDate( departingDate.plusDays(1) );
+            leg.setDepartureAirportCode("DFW");
+            leg.setDepartingDate(departingDate);
+            leg.setArrivalAirportCode("CDG");
+            leg.setArrivalDate(departingDate.plusDays(1));
 
-                for(int j = 0; j < 4; j++){
-                    Segment segment = new Segment();
+            for (int j = 0; j < 4; j++) {
+                Segment segment = new Segment();
 
-                    segment.setDepartureAirportCode("DFW");
-                    segment.setDepartureDate( departingDate );
+                segment.setDepartureAirportCode("DFW");
+                segment.setDepartureDate(departingDate);
 
-                    segment.setArrivalAirportCode("CDG");
-                    segment.setArrivalDate( departingDate.plusDays(1) );
+                segment.setArrivalAirportCode("CDG");
+                segment.setArrivalDate(departingDate.plusDays(1));
 
-                    segmentList.add(segment);
-                }
+                segmentList.add(segment);
+            }
 
-                leg.setSegments(segmentList);
-                itinerary.getAirlegs().add(leg);
-                itinerary.setPrice( new Fares() );
+            leg.setSegments(segmentList);
+            itinerary.getAirlegs().add(leg);
+            itinerary.setPrice(new Fares());
 
             itineraryList.add(itinerary);
 
         }
 
-        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList,"oneWay");
+        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList, "oneWay");
 
         assertEquals(itineraryList.size(), flightItineraries.size());
         assertEquals(itineraryList.get(0).getAirlegs().get(0).getDepartureAirportCode(),

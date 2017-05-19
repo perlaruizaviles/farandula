@@ -15,7 +15,6 @@ public class PassengerHelper {
         //children:,infants:1;2,infantsOnSeat:,adults:2
 
 
-
         //TODO: Complementar con tipo de pasajeros y edades
 //        final Pattern pattern = Pattern.compile("[a-z]:\\d,[a-z]:\\d");
 //        if (!pattern.matcher(passengerStringList.toLowerCase()).matches()) {
@@ -25,28 +24,34 @@ public class PassengerHelper {
         String[] passengerType = passengerStringList.split(",");
 
         String[] adults = passengerType[3].split(":");
-        String[] infantsOnSeat = passengerType[2].split(":");
-        String[] infants = passengerType[1].split(":");
-        String[] children = passengerType[0].split(":");
-
-        String[] childrenAgesString = (children.length == 1)?new String[]{}:children[1].split(";");
-        String[] infantsAgesString = (infants.length == 1)?new String[]{}:infants[1].split(";");
-        String[] infantsOnSeatAgesString = (infantsOnSeat.length == 1)?new String[]{}:infantsOnSeat[1].split(";");
-
-        int[] childrenAges = Arrays.stream(childrenAgesString)
-                .mapToInt(age -> Integer.parseInt(age))
-                .toArray();
-        int[] infantsAges = Arrays.stream(infantsAgesString)
-                .mapToInt(age -> Integer.parseInt(age))
-                .toArray();
-        int[] infantsOnSeatAges = Arrays.stream(infantsOnSeatAgesString)
-                .mapToInt(age -> Integer.parseInt(age))
-                .toArray();
-
         int[] adultsAges = {Integer.parseInt(adults[1])};
 
-        int[][] numberOfPassengers = {childrenAges,infantsAges,infantsOnSeatAges,adultsAges};
+        String[] infantsOnSeat = passengerType[2].split(":");
+        String[] infantsOnSeatAgesString = (infantsOnSeat.length == 1)
+                ? new String[]{}
+                : infantsOnSeat[1].split(";");
+        int[] infantsOnSeatAges = Arrays.stream(infantsOnSeatAgesString)
+                .mapToInt(Integer::parseInt)
+                .toArray();
 
-        return  numberOfPassengers;
+        String[] children = passengerType[0].split(":");
+        String[] childrenAgesString = (children.length == 1)
+                ? new String[]{}
+                : children[1].split(";");
+        int[] childrenAges = Arrays.stream(childrenAgesString)
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        String[] infants = passengerType[1].split(":");
+        String[] infantsAgesString = (infants.length == 1)
+                ? new String[]{}
+                : infants[1].split(";");
+        int[] infantsAges = Arrays.stream(infantsAgesString)
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int[][] numberOfPassengers = {childrenAges, infantsAges, infantsOnSeatAges, adultsAges};
+
+        return numberOfPassengers;
     }
 }

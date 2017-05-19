@@ -3,6 +3,7 @@ package com.farandula.Response;
 
 
 import com.farandula.models.Flight;
+import org.assertj.core.util.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +32,7 @@ public class FlightResponse {
 
 
     public static List<List<Flight>> getResponseInstance(List<Flight> departLegs, List<Flight> returnLegs){
-        List<List<Flight>> response  = new ArrayList<>();
-        response.add(departLegs);
-        response.add(returnLegs);
-        return response;
+        return Lists.newArrayList(departLegs, returnLegs);
     }
 
     public static List<List<Flight>> getResponseInstance( List<Flight> departLegs){

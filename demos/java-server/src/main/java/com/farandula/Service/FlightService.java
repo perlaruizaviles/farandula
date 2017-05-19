@@ -33,15 +33,15 @@ public class FlightService {
     PassengerHelper passengerHelper;
 
     public List<FlightItinerary> getResponseFromSearch(String departureAirportCode,
-                                                String departingDate,
-                                                String departingTime,
-                                                String arrivalAirportCode,
-                                                String arrivalDate,
-                                                String arrivalTime,
-                                                String type,
-                                                String passenger) {
+                                                       String departingDate,
+                                                       String departingTime,
+                                                       String arrivalAirportCode,
+                                                       String arrivalDate,
+                                                       String arrivalTime,
+                                                       String type,
+                                                       String passenger) {
 
-        if( FlightService.validIataLength(departureAirportCode) && FlightService.validIataLength(arrivalAirportCode) ){
+        if (FlightService.validIataLength(departureAirportCode) && FlightService.validIataLength(arrivalAirportCode)) {
 
             LocalDateTime departDateTime = FlightService.parseDateTime(departingDate, departingTime);
             LocalDateTime arrivalDateTime = FlightService.parseDateTime(arrivalDate, arrivalTime);
@@ -55,29 +55,29 @@ public class FlightService {
                 return null;
             });
 
-            try{
+            try {
                 int[][] numberOfPassengers = passengerHelper.getPassengersFromString(passenger);
                 List<Itinerary> flights;
-                if( "oneWay".equals(type) ){
+                if ("oneWay".equals(type)) {
 
                     flights = Luisa.findMeFlights()
-                            .from( departureAirportCode )
-                            .to( arrivalAirportCode )
-                            .departingAt( departDateTime )
-                            .returningAt( arrivalDateTime )
+                            .from(departureAirportCode)
+                            .to(arrivalAirportCode)
+                            .departingAt(departDateTime)
+                            .returningAt(arrivalDateTime)
                             .forPassegers(Passenger.children(numberOfPassengers[0]))
                             .forPassegers(Passenger.infants(numberOfPassengers[1]))
                             .forPassegers(Passenger.infantsOnSeat(numberOfPassengers[2]))
                             .forPassegers(Passenger.adults(numberOfPassengers[3][0]))
                             .limitTo(2)
                             .execute();
-                } else{
+                } else {
 
                     flights = Luisa.findMeFlights()
-                            .from( departureAirportCode )
-                            .to( arrivalAirportCode )
-                            .departingAt( departDateTime )
-                            .returningAt( arrivalDateTime )
+                            .from(departureAirportCode)
+                            .to(arrivalAirportCode)
+                            .departingAt(departDateTime)
+                            .returningAt(arrivalDateTime)
                             .type(FlightType.ROUNDTRIP)
                             .limitTo(2)
                             .forPassegers(Passenger.children(numberOfPassengers[0]))
@@ -87,16 +87,14 @@ public class FlightService {
                             .execute();
 
                 }
-                
+
                 return this.getFlightItineraryFromItinerary(flights, type);
 
                 //TODO Parse response for passengers
 
-            }
-            catch (FarandulaException e){
+            } catch (FarandulaException e) {
                 Logger.getAnonymousLogger().warning(e.toString());
-            }
-            catch (IOException o){
+            } catch (IOException o) {
                 Logger.getAnonymousLogger().warning(o.toString());
             }
 
@@ -107,28 +105,25 @@ public class FlightService {
 
     public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {
         //TODO: Build fares object
-        List<FlightItinerary> list = itineraryList
+
+        return itineraryList
                 .stream()
                 .map((Itinerary itinerary) -> {
-                    ItineraryFares itineraryFares = flightHelper.parseFaresToItineraryFares( itinerary.getPrice() );
+                    ItineraryFares itineraryFares = flightHelper.parseFaresToItineraryFares(itinerary.getPrice());
 
-                    List<Flight> flightList = itinerary.getAirlegs()
-                            .stream()
-                            .map(airLeg -> flightHelper.parseAirlegToFlight(airLeg))
-                            .collect(Collectors.toList());
+                    List<Flight> flightList = flightHelper.getFlightsFromItinerary(itinerary);
 
                     FlightItinerary flightItinerary = new FlightItinerary(12345, type, flightList, itineraryFares);
 
                     return flightItinerary;
                 })
                 .collect(Collectors.toList());
-
-        return list;
     }
 
-    public List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList){
+
+    public List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList) {
         List<Flight> flights = new ArrayList<>();
-        for (AirLeg airleg:airLegList) {
+        for (AirLeg airleg : airLegList) {
 
             Airport departureAirport = airportRepository.findByIataLikeIgnoreCase(airleg.getDepartureAirportCode()).get(0);
             Airport arrivalAirport = airportRepository.findByIataLikeIgnoreCase(airleg.getArrivalAirportCode()).get(0);
@@ -136,9 +131,9 @@ public class FlightService {
             LocalDateTime departureDate = airleg.getDepartingDate();
             LocalDateTime arrivalDate = airleg.getArrivalDate();
 
-            List<FlightSegment> flightSegments =  new ArrayList<>();
+            List<FlightSegment> flightSegments = new ArrayList<>();
 
-            for (Segment segment:airleg.getSegments()) {
+            for (Segment segment : airleg.getSegments()) {
 
                 Airport departureSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getDepartureAirportCode()).get(0);
                 Airport arrivalSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getArrivalAirportCode()).get(0);
@@ -159,13 +154,12 @@ public class FlightService {
                     arrivalDate, flightSegments);
             flights.add(flight);
         }
-        return  flights;
+        return flights;
     }
 
     public static boolean validIataLength(String iata) {
         return (iata.length() == 3) || (iata.length() == 2);
     }
-
 
 
     public static LocalDateTime parseDateTime(String date, String time) {

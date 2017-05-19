@@ -15,10 +15,10 @@ public class FlightItinerary {
     private ItineraryFares fares;
 
     public FlightItinerary (int key, String type, List<Flight> flights, ItineraryFares fares) {
-        this.setKey(key);
-        this.setType(type);
-        this.setAirlegs(flights);
-        this.setFares(fares);
+        this.key = key;
+        this.type = type;
+        this.airlegs = flights;
+        this.fares = fares;
     }
 
     public int getKey() {
