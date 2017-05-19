@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Container, Divider, Grid} from "semantic-ui-react";
+import {Container, Divider, Grid} from "semantic-ui-react";
 import SummaryCard from "./SummaryCard";
 import SummaryDescription from "./SummaryDescription";
 import ContactForm from "./SummaryForm";
@@ -24,9 +24,6 @@ class Summary extends React.Component {
               <Divider />
               <Grid.Row>
                 <ContactForm onSubmit={this.submit}/>
-              </Grid.Row>
-              <Grid.Row>
-                <Button color='orange'>Book for USD 1847.98</Button>
               </Grid.Row>
             </Container>
 
