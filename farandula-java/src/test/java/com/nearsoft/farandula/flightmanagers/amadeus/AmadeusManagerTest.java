@@ -191,7 +191,7 @@ class AmadeusManagerTest {
                 .limitTo(2);
 
         AmadeusFlightManager manager = new AmadeusFlightManager();
-        String searchURL = manager.buildTargetURLFromSearch(search);
+        String searchURL = manager.buildTargetURLFromSearch(search).get(0);
         String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
                 "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" +
                 "&origin=DFW" +

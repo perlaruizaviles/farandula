@@ -27,25 +27,25 @@ class SearchCommandTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
+        returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand( new SabreFlightManager() )
-                .from( fromList )
-                .to( toList )
-                .departingAt( departingDateList )
-                .returningAt( returningDateList )
-                .type( FlightType.ONEWAY )
-                .limitTo( 2 )
-                .preferenceClass( CabinClassType.ECONOMY );
+        SearchCommand search = new SearchCommand(new SabreFlightManager())
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
+                .type(FlightType.ONEWAY)
+                .limitTo(2)
+                .preferenceClass(CabinClassType.ECONOMY);
 
-        search.execute() ;
+        search.execute();
 
-        assertAll( "Check the default number of passengers : ", () -> {
+        assertAll("Check the default number of passengers : ", () -> {
 
-            assertNotNull(  search.getPassengersMap().get(PassengerType.ADULTS) );
-            assertEquals( 1, search.getPassengersMap().get(PassengerType.ADULTS).size() );
+            assertNotNull(search.getPassengersMap().get(PassengerType.ADULTS));
+            assertEquals(1, search.getPassengersMap().get(PassengerType.ADULTS).size());
 
-        } );
+        });
     }
 
 
@@ -60,23 +60,23 @@ class SearchCommandTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
+        returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand( new SabreFlightManager() )
-                .from( fromList )
-                .to( toList )
-                .departingAt( departingDateList )
-                .returningAt( returningDateList )
-                .type( FlightType.ONEWAY )
-                .limitTo( 2 )
-                .preferenceClass( CabinClassType.ECONOMY )
-                .forPassegers( Passenger.adults(2) )
-                .forPassegers( Passenger.infants( new int[]{1,2,1} ) );
+        SearchCommand search = new SearchCommand(new SabreFlightManager())
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
+                .type(FlightType.ONEWAY)
+                .limitTo(2)
+                .preferenceClass(CabinClassType.ECONOMY)
+                .forPassegers(Passenger.adults(2))
+                .forPassegers(Passenger.infants(new int[]{1, 2, 1}));
 
         // more infants than adults, this should throws
-        assertThrows(  FarandulaException.class, () ->{
+        assertThrows(FarandulaException.class, () -> {
             search.execute();
-        } );
+        });
 
     }
 
@@ -85,28 +85,28 @@ class SearchCommandTest {
 
         LocalDateTime departingDate = LocalDateTime.now();
         List<LocalDateTime> departingDateList = new ArrayList<>();
-        departingDateList.add(departingDate.minusDays(2) );
+        departingDateList.add(departingDate.minusDays(2));
 
         // this is an invalid old date
-        assertThrows(  FarandulaException.class, () ->{
-            SearchCommand search = new SearchCommand( new SabreFlightManager() )
-                    .departingAt( departingDateList );
-        } );
+        assertThrows(FarandulaException.class, () -> {
+            SearchCommand search = new SearchCommand(new SabreFlightManager())
+                    .departingAt(departingDateList);
+        });
 
     }
 
     @Test
-    public void checkInvalidFareAwayDates(){
+    public void checkInvalidFareAwayDates() {
 
         LocalDateTime departingDate = LocalDateTime.now();
         List<LocalDateTime> departingDateList = new ArrayList<>();
-        departingDateList.add(departingDate.plusDays( 332 ) );
+        departingDateList.add(departingDate.plusDays(332));
 
         // this is an invalid date
-        assertThrows(  FarandulaException.class, () ->{
-            SearchCommand search = new SearchCommand( new SabreFlightManager() )
-                    .departingAt( departingDateList );
-        } );
+        assertThrows(FarandulaException.class, () -> {
+            SearchCommand search = new SearchCommand(new SabreFlightManager())
+                    .departingAt(departingDateList);
+        });
     }
 
     @Test
@@ -114,23 +114,22 @@ class SearchCommandTest {
 
         LocalDateTime departingDate = LocalDateTime.now().plusDays(5);
         List<LocalDateTime> departingDateList = new ArrayList<>();
-        departingDateList.add( departingDate );
+        departingDateList.add(departingDate);
 
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add( LocalDateTime.now().plusDays(2) );
+        returningDateList.add(LocalDateTime.now().plusDays(2));
 
-        SearchCommand search = new SearchCommand( new SabreFlightManager() )
-                .departingAt( departingDateList )
-                .returningAt( returningDateList )
-                .type( FlightType.ROUNDTRIP );
+        SearchCommand search = new SearchCommand(new SabreFlightManager())
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
+                .type(FlightType.ROUNDTRIP);
 
 
         // this is an invalid date
-        assertThrows(  FarandulaException.class, () ->{
+        assertThrows(FarandulaException.class, () -> {
             search.execute();
-        } );
+        });
     }
-
 
 
 }

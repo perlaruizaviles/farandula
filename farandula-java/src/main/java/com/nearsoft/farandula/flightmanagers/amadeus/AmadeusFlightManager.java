@@ -297,7 +297,7 @@ public class AmadeusFlightManager implements FlightManager {
 
     public Request buildRequestForAvail(SearchCommand search) {
 
-        String url_api = buildTargetURLFromSearch(search);
+        String url_api = buildTargetURLFromSearch(search).get(0);
         return buildRequest(url_api);
     }
 
@@ -308,8 +308,9 @@ public class AmadeusFlightManager implements FlightManager {
         return builder.build();
     }
 
-    public String buildTargetURLFromSearch(SearchCommand search) {
+    public List<String> buildTargetURLFromSearch(SearchCommand search) {
 
+        List<String> apiResultsList = new ArrayList<>();
         List<String> departureDateList = new ArrayList<>();
         for(  LocalDateTime departing :  search.getDepartingDates() ){
             departureDateList.add( departing.format( DateTimeFormatter.ISO_LOCAL_DATE  ) );
@@ -360,7 +361,11 @@ public class AmadeusFlightManager implements FlightManager {
                 apiURL+= "&travel_class=ECONOMY";
         }
 
-        return apiURL;
+        apiResultsList.add( apiURL );
+
+        return apiResultsList;
+
+
     }
 
     String buildLocationURL(String location) {
