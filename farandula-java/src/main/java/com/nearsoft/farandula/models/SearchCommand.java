@@ -16,16 +16,18 @@ import java.util.Map;
  */
 public class SearchCommand {
 
-    private FlightType type = FlightType.ONEWAY;
     private List<String> departureAirports;
     private List<String> arrivalAirports;
     private List<LocalDateTime> departingDates;
     private List<LocalDateTime> returningDates;
     private Map<PassengerType, List<Passenger>> passengersMap =  new HashMap<>();
     private List<Passenger> passengers = new ArrayList<>();
-    private int offSet;
-    private CabinClassType CabinClass = CabinClassType.ECONOMY;
     private FlightManager flightManager;
+
+    //with default values
+    private int offSet = 50;
+    private CabinClassType CabinClass = CabinClassType.ECONOMY;
+    private FlightType type = FlightType.ONEWAY;
 
     public SearchCommand(FlightManager flightManager) {
         this.flightManager = flightManager;
@@ -42,11 +44,13 @@ public class SearchCommand {
     }
 
     public SearchCommand departingAt(List<LocalDateTime> departingDate) throws FarandulaException {
+        validDates( departingDate );
         this.departingDates = departingDate;
         return this;
     }
 
     public SearchCommand returningAt(List<LocalDateTime> returningDate) throws FarandulaException {
+        validDates( returningDate );
         this.returningDates = returningDate;
         return this;
     }
@@ -89,9 +93,11 @@ public class SearchCommand {
     }
 
     public List<Itinerary> execute() throws IOException, FarandulaException {
-        //FIXME here there is a code smell , why we are passing `this` to executeAvail.
-        return flightManager
-                .getAvail(this);
+
+        //todo improve the name of the method
+        checkValidSearchCommand();
+
+        return flightManager.getAvail(this);
     }
 
     public List<String> getDepartureAirports() {
@@ -136,6 +142,70 @@ public class SearchCommand {
 
     public CabinClassType getCabinClass() {
         return CabinClass;
+    }
+
+    private void checkValidSearchCommand() throws FarandulaException {
+
+        if ( this.getPassengers().size() == 0 ){
+            //case when user does not set any passenger.
+            this.forPassegers(  Passenger.adults(1) );
+        }
+
+        // case when there is more infants than adults
+        if ( this.getPassengersMap().containsKey( PassengerType.INFANTS ) ){
+
+            if ( this.getPassengersMap().get( PassengerType.INFANTS ).size() >
+                    this.getPassengersMap().get( PassengerType.ADULTS).size() ){
+
+                throw new FarandulaException( ErrorType.VALIDATION,
+                        "Search parameters are not valid, HINT: each infant has to be assigned to an adult." );
+            }
+
+        }
+
+
+        if ( this.getDepartingDates().size() == 0 ){
+            throw new FarandulaException( ErrorType.VALIDATION,
+                    "Search parameters are not valid, HINT: the departing date is mandatory." );
+        }
+
+        // case when the returning is before the departing
+        if ( this.getType() == FlightType.ROUNDTRIP ){
+
+            if ( this.getReturningDates().size() == 0 ){
+                throw new FarandulaException( ErrorType.VALIDATION,
+                        "Search parameters are not valid, HINT: in round trips the returning date is mandatory." );
+            }
+
+            if ( this.getDepartingDates().get( 0 ).isAfter( this.getReturningDates().get( 0) ) ){
+                throw new FarandulaException( ErrorType.VALIDATION,
+                        "Search parameters are not valid, HINT: the returning date has to be after the departing date." );
+            }
+
+        }
+    }
+
+    private void validDates(List<LocalDateTime> datesList) throws FarandulaException {
+
+        for ( LocalDateTime date : datesList ){
+
+            if ( date.isBefore( LocalDateTime.now() ) ){
+
+                throw new FarandulaException(ErrorType.VALIDATION , "Is impossible to search in past dates.");
+
+            }else{
+
+                //todo check this value
+                if ( date.isAfter( LocalDateTime.now().plusDays( 331) ) ){
+
+                    throw new FarandulaException(ErrorType.VALIDATION , "Is impossible to search for flights after 331 days.");
+
+                }
+
+            }
+
+        }
+
     }
 
 }

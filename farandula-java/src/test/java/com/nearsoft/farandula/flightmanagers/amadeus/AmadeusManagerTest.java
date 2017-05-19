@@ -78,14 +78,7 @@ class AmadeusManagerTest {
     @Test
     public void realAvail_RoundWayTrip() throws Exception {
 
-        Luisa.setSupplier(() -> {
-            try {
-                return new AmadeusFlightManager();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        initAmadeusSupplierForLuisa();
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
@@ -119,9 +112,7 @@ class AmadeusManagerTest {
         });
     }
 
-    @Test
-    public void realAvail_OneWayTripUsingDifferentPassengers() throws Exception {
-
+    private void initAmadeusSupplierForLuisa() {
         Luisa.setSupplier(() -> {
             try {
                 return new AmadeusFlightManager();
@@ -130,6 +121,12 @@ class AmadeusManagerTest {
             }
             return null;
         });
+    }
+
+    @Test
+    public void realAvail_OneWayTripUsingDifferentPassengers() throws Exception {
+
+        initAmadeusSupplierForLuisa();
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
@@ -147,7 +144,7 @@ class AmadeusManagerTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
+                .forPassegers( Passenger.adults(1) )
                 .forPassegers( Passenger.infants( new int[]{1} ) )
                 .forPassegers( Passenger.children( new int[]{10, 8})  )
                 .type(FlightType.ROUNDTRIP)

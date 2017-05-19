@@ -116,7 +116,7 @@ public class SabreFlightManagerTest {
     @Test
     public void realAvail_RoundWayTrip() throws Exception {
 
-        initSabreLuisa();
+        initSabreSupplierForLuisa();
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
@@ -154,7 +154,7 @@ public class SabreFlightManagerTest {
     @Test
     public void realAvail_OneWayTripDifferentPassengers() throws Exception {
 
-        initSabreLuisa();
+        initSabreSupplierForLuisa();
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
@@ -194,7 +194,7 @@ public class SabreFlightManagerTest {
     @Test
     public void realAvail_MultiCityTripDifferentPassengers() throws Exception {
 
-        initSabreLuisa();
+        initSabreSupplierForLuisa();
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
@@ -241,7 +241,7 @@ public class SabreFlightManagerTest {
 
     }
 
-    private void initSabreLuisa() {
+    private void initSabreSupplierForLuisa() {
         Luisa.setSupplier(() -> {
             try {
                 return createTripManagerSabre();

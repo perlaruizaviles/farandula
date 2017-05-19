@@ -315,8 +315,6 @@ public class AmadeusFlightManager implements FlightManager {
             departureDateList.add( departing.format( DateTimeFormatter.ISO_LOCAL_DATE  ) );
         }
 
-
-
         String apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
 
         apiURL +="apikey=" + apiKey;
