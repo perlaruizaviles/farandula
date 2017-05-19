@@ -2,7 +2,7 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 
 const validate = values => {
-  const errors = {}
+  const errors = {};
   if (!values.username) {
     errors.username = 'Required'
   } else if (values.username.length > 15) {
@@ -44,7 +44,7 @@ const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
 );
 
 const ContactForm = props => {
-  const {handleSubmit, pristine, reset, submitting} = props
+  const {handleSubmit, pristine, reset, submitting} = props;
   return (
     <form onSubmit={handleSubmit}>
       <Field

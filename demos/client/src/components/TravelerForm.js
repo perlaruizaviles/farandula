@@ -1,7 +1,6 @@
 import React from "react";
 import {Divider, Form} from "semantic-ui-react";
 import tralvelOptions from "../data/travelOptions";
-import DateSelector from "./DateSelector";
 
 
 const TravelerForm = () => (
@@ -20,7 +19,6 @@ const TravelerForm = () => (
             
             <Divider />
             <Form.Group widths='equal'>
-              <DateSelector/>
               <Form.Select placeholder='Gender*' options={tralvelOptions.get('genders')} width={2}/>
             </Form.Group>
         </Form>
