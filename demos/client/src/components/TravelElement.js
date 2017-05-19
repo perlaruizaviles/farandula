@@ -26,7 +26,7 @@ class TravelElement extends React.Component {
                 <Item.Group divided>
                     <TravelSummary open={this.open} airlegs={travel.airlegs} price={travel.price}/>
                     <Collapse isOpened={this.state.isOpened==='true'}>
-                        <TravelDetail/>
+                        <TravelDetail airlegs={travel.airlegs}/>
                     </Collapse>
                 </Item.Group>
             </Segment>
