@@ -1,9 +1,10 @@
-import React from 'react';
-import TravelerForm from './TravelerForm';
-import BillingForm from './BillingForm';
-import {Grid, Divider, Button, Container} from 'semantic-ui-react'; 
-import SummaryCard from './SummaryCard';
-import SummaryDescription from './SummaryDescription';
+import React from "react";
+import TravelerForm from "./TravelerForm";
+import BillingForm from "./BillingForm";
+import {Button, Container, Divider, Grid} from "semantic-ui-react";
+import SummaryCard from "./SummaryCard";
+import SummaryDescription from "./SummaryDescription";
+import UserForm from "./UserForm";
 
 export default () => (
     <Grid>
@@ -22,7 +23,8 @@ export default () => (
                     </Grid.Row>
                     <Divider />
                     <Grid.Row>
-                        <BillingForm />    
+                        <BillingForm />
+                        <UserForm/>
                     </Grid.Row> 
                     <Grid.Row>
                         <Button color='orange'>Book for USD 1847.98</Button>
