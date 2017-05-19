@@ -1,5 +1,5 @@
-import React from 'react';
-import {Menu, Segment} from 'semantic-ui-react';
+import React from "react";
+import {Menu, Segment} from "semantic-ui-react";
 
 const Main = ({router: {push}, location: {pathname},
                 ...props}) => (
@@ -11,6 +11,10 @@ const Main = ({router: {push}, location: {pathname},
       <Menu.Item active={pathname==='/summary'}
                  onClick={() => push('/summary')}>
         Summary
+      </Menu.Item>
+      <Menu.Item active={pathname==='/contact'}
+                 onClick={() => push('/contact')}>
+        Contact
       </Menu.Item>
 
     </Menu>
