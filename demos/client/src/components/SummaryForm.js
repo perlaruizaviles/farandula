@@ -3,10 +3,10 @@ import {Field, reduxForm} from "redux-form";
 
 const validate = values => {
   const errors = {};
-  if (!values.username) {
-    errors.username = 'Required'
-  } else if (values.username.length > 15) {
-    errors.username = 'Must be 15 characters or less'
+  if (!values.name) {
+    errors.name = 'Required'
+  } else if (values.name.length > 15) {
+    errors.name = 'Must be 15 characters or less'
   }
   if (!values.email) {
     errors.email = 'Required'
@@ -23,26 +23,64 @@ const validate = values => {
   return errors
 };
 
-const warn = values => {
-  const warnings = {};
-  if (values.age < 19) {
-    warnings.age = 'Hmm, you seem a bit young...'
-  }
-  return warnings
-};
 
-const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
-  <div>
+
+const renderFieldWithoutError = (input, label, type) => (
+  <div className="field">
     <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched &&
-      ((error && <span>{error}</span>) ||
-      (warning && <span>{warning}</span>))}
+    <div className="ui input">
+        <input {...input} placeholder={label} type={type} />
     </div>
   </div>
 );
 
+const renderFieldWithError = (input, label, type, touched, error) => (
+  <div className="error field">
+    <label>{label} - <i aria-hidden="true" className="red warning sign icon"/>{error}</label>
+    <div className="ui input">
+      <input {...input} placeholder={label} type={type} />
+    </div>
+  </div>
+);
+
+
+const renderField = ({input, label, type, meta: {touched, error}}) => {
+  if (touched && (error)){
+    return renderFieldWithError(input, label, type, touched, error);
+  }
+  return renderFieldWithoutError(input, label, type)
+};
+
+
+const SummaryForm = props =>{
+  const {handleSubmit, pristine, reset, submitting} = props;
+
+  return(
+    <form onSubmit={handleSubmit} className="ui error form">
+      <div className="equal width fields">
+        <Field
+          name="name"
+          type="text"
+          component={renderField}
+          label="Name"
+        />
+        <Field
+          name="lastname"
+          type="text"
+          component={renderField}
+          label="Lastname"
+        />
+      </div>
+    </form>
+  );
+};
+
+export default reduxForm({
+  form: 'SummaryForm', // a unique identifier for this form
+  validate, // <--- validation function given to redux-form
+})(SummaryForm)
+
+/*
 const ContactForm = props => {
   const {handleSubmit, pristine, reset, submitting} = props;
   return (
@@ -70,3 +108,5 @@ export default reduxForm({
   validate, // <--- validation function given to redux-form
   warn // <--- warning function given to redux-form
 })(ContactForm)
+
+ */

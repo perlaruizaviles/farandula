@@ -2,7 +2,7 @@ import React from "react";
 import {Button, Container, Divider, Grid} from "semantic-ui-react";
 import SummaryCard from "./SummaryCard";
 import SummaryDescription from "./SummaryDescription";
-import ContactForm from "./ContactForm";
+import ContactForm from "./SummaryForm";
 
 
 class Summary extends React.Component {
