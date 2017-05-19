@@ -98,7 +98,7 @@ public class SabreFlightManagerTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .type(FlightType.MULTIPLE)
+                .type(FlightType.OPENJAW)
                 .limitTo(2)
                 .execute();
 
@@ -316,7 +316,7 @@ public class SabreFlightManagerTest {
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
                 .forPassegers(Passenger.adults(1))
-                .type(FlightType.MULTIPLE)
+                .type(FlightType.OPENJAW)
                 .limitTo(10);
 
         String jsonRequestString = manager.buildJsonFromSearch(search);

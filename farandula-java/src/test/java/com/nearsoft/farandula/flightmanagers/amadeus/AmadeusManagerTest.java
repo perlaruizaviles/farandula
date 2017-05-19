@@ -206,6 +206,62 @@ class AmadeusManagerTest {
     }
 
     @Test
+    void buildLinkFromMultiCitySearch() throws IOException, FarandulaException {
+
+        Luisa.setSupplier(() ->
+                new AmadeusFlightManager()
+        );
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        fromList.add("MEX");
+        fromList.add("BOS");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        toList.add("LAX");
+        toList.add("LHR");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add( departingDate.plusDays(7) );
+        departingDateList.add( departingDate.plusDays(15) );
+
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+        returningDateList.add(  departingDate.plusDays(8) );
+        returningDateList.add(  departingDate.plusDays(16) );
+
+        SearchCommand search = new SearchCommand(null);
+        search
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.OPENJAW)
+                .limitTo(2);
+
+        AmadeusFlightManager manager = new AmadeusFlightManager();
+        List<String> searchURLList = manager.buildTargetURLFromSearch(search);
+
+        String apiKey = manager.getApiKey();
+
+        String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
+                "apikey=" + apiKey +
+                "&travel_class=ECONOMY&origin=DFW" +
+                "&destination=CDG" +
+                "&departure_date=2017-07-07" +
+                "&adults=1" +
+                "&number_of_results=2";
+
+        assertEquals( 3, searchURLList.size() );
+        assertEquals(expectedURL, searchURLList.get(0));
+
+    }
+
+    @Test
     public void buildAvailResponse() throws IOException {
 
         AmadeusFlightManager manager = new AmadeusFlightManager();

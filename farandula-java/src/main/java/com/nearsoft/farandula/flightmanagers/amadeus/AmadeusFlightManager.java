@@ -64,6 +64,10 @@ public class AmadeusFlightManager implements FlightManager {
 
     }
 
+    public String getApiKey() {
+        return apiKey;
+    }
+
     private OkHttpClient buildHttpClient() {
         if (_builder.interceptors().isEmpty()) {
             _builder.connectTimeout(1, TimeUnit.MINUTES);
@@ -311,33 +315,23 @@ public class AmadeusFlightManager implements FlightManager {
     public List<String> buildTargetURLFromSearch(SearchCommand search) {
 
         List<String> apiResultsList = new ArrayList<>();
+
         List<String> departureDateList = new ArrayList<>();
         for(  LocalDateTime departing :  search.getDepartingDates() ){
             departureDateList.add( departing.format( DateTimeFormatter.ISO_LOCAL_DATE  ) );
         }
 
-        String apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
 
-        apiURL +="apikey=" + apiKey;
+        //--->this block is the same for n request on open jaws
+        String apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?"
+                + "apikey=" + apiKey;
 
-        for ( int i = 0 ; i < search.getArrivalAirports().size() ; i++ ) {
-            apiURL += "&origin=" + search.getDepartureAirports().get( i )
-                    + "&destination=" + search.getArrivalAirports().get( i )
-                    +"&departure_date=" + departureDateList.get(i);
-        }
-
-        if ( search.getType() == FlightType.ROUNDTRIP) {
-            String arrivalDate = search.getReturningDates().get(0).format( DateTimeFormatter.ISO_LOCAL_DATE  ) ;
-            apiURL += "&return_date=" + arrivalDate;
-        }
-
-
+        String passengersData="";
         for ( Map.Entry< PassengerType, List<Passenger> > entry : search.getPassengersMap().entrySet()  ){
-            apiURL += "&"+  entry.getKey().toString().toLowerCase() + "=" + entry.getValue().size();
+            passengersData = "&" + entry.getKey().toString().toLowerCase() + "=" + entry.getValue().size();
         }
 
-        apiURL += "&number_of_results=" + search.getOffSet();
-
+        String numberOfResults = "&number_of_results=" + search.getOffSet();
         //cabins for amadeus.
         switch ( search.getCabinClass() ){
 
@@ -360,11 +354,29 @@ public class AmadeusFlightManager implements FlightManager {
             default:
                 apiURL+= "&travel_class=ECONOMY";
         }
+        // --> end of block
 
-        apiResultsList.add( apiURL );
+
+        for ( int i = 0 ; i < search.getArrivalAirports().size() ; i++ ) {
+            String urlResult =
+                    apiURL
+                    + "&origin=" + search.getDepartureAirports().get(i)
+                    + "&destination=" + search.getArrivalAirports().get(i)
+                    + "&departure_date=" + departureDateList.get(i);
+
+            if ( search.getType() == FlightType.ROUNDTRIP) {
+                String arrivalDate = search.getReturningDates().get(0).format( DateTimeFormatter.ISO_LOCAL_DATE  ) ;
+                urlResult += "&return_date=" + arrivalDate;
+            }
+
+            urlResult += passengersData;
+            urlResult += numberOfResults;
+
+            apiResultsList.add( urlResult );
+
+        }
 
         return apiResultsList;
-
 
     }
 
