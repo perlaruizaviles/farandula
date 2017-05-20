@@ -11,7 +11,7 @@ const TravelSummary = ({open, price, airlegs}) => (
             </Item.Meta>
             <Item.Description>
 
-                {airlegs.map((airleg)=> <AirlegSummary key={Math.random()} airleg={airleg}/>)}
+                {airlegs.map((airleg)=> <AirlegSummary key={Math.random()} {...airleg}/>)}
 
             </Item.Description>
             <Item.Extra><Label color='blue' href="#" onClick={open}>View details</Label></Item.Extra>

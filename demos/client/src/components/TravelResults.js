@@ -1,14 +1,21 @@
 import React from 'react';
 import TravelList from './TravelList';
+import OptionsTravel from './OptionsTravel';
 import TravelSearch from '../containers/TravelSearch';
-import {Container} from 'semantic-ui-react';
+import {Container, Message} from 'semantic-ui-react';
 
 const TravelResults = ({travels}) => {
-    let content = (travels)? <TravelList travels={travels}/>:undefined;
     return (
         <Container>
+            <OptionsTravel/>
             <TravelSearch/>
-            {content}
+            {
+                (travels)? 
+                <TravelList travels={travels}/>:
+                <Message warning 
+                header='You must search flight first to see the list!'
+                content=':P'/>
+            }
         </Container>
     )
 }

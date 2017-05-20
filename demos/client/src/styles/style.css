@@ -1,5 +1,7 @@
-.raised{
+span.gray {
+    color:gray;
 }
+
 #results{
     position: absolute;
     top:100%;

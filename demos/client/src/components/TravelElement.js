@@ -11,8 +11,8 @@ class TravelElement extends React.Component {
     }
 
     open = () => {
-        if(this.state.isOpened==='true') this.setState({isOpened:'false'});
-        if(this.state.isOpened==='false') this.setState({isOpened:'true'});
+        if(this.state.isOpened === 'true') this.setState({isOpened:'false'});
+        if(this.state.isOpened === 'false') this.setState({isOpened:'true'});
     }
     
     render(){
