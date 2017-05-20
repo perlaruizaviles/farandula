@@ -3,6 +3,7 @@ package com.nearsoft.farandula.models;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
+import org.omg.CORBA.INTERNAL;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -163,6 +164,7 @@ public class SearchCommand {
 
         }
 
+        Map<Integer, Integer> map  = new HashMap<>();
 
         if (this.getDepartingDates().size() == 0) {
             throw new FarandulaException(ErrorType.VALIDATION,
@@ -172,9 +174,14 @@ public class SearchCommand {
         // case when the returning is before the departing
         if (this.getType() == FlightType.ROUNDTRIP) {
 
-            if (this.getReturningDates().size() == 0) {
+            if ( this.getReturningDates() ==  null || this.getReturningDates().size() == 0) {
                 throw new FarandulaException(ErrorType.VALIDATION,
-                        "Search parameters are not valid, HINT: in round trips the returning date is mandatory.");
+                        "Search parameters are not valid, HINT: in round trips the departing and returning date are mandatory.");
+            }
+
+            if( this.getReturningDates().size() > 1 && this.getDepartingDates().size() > 1 ){
+                throw new FarandulaException(ErrorType.VALIDATION,
+                        "Search parameters are not valid, HINT: round trips only contains one departing date and one returning date.");
             }
 
             if (this.getDepartingDates().get(0).isAfter(this.getReturningDates().get(0))) {
@@ -182,14 +189,25 @@ public class SearchCommand {
                         "Search parameters are not valid, HINT: the returning date has to be after the departing date.");
             }
 
+        }else{
+
+            if ( this.getType() == FlightType.ONEWAY ){
+
+                if( this.getDepartingDates().size() > 1 || this.getReturningDates().size() > 0 ){
+                    throw new FarandulaException(ErrorType.VALIDATION,
+                            "Search parameters are not valid, HINT: in one way trips only departing date is mandatory.");
+                }
+            }
+
         }
+
     }
 
     private void validDates(List<LocalDateTime> datesList) throws FarandulaException {
 
         for (LocalDateTime date : datesList) {
 
-            if (date.isBefore(LocalDateTime.now())) {
+            if ( date.isBefore( LocalDateTime.now().minusDays(1) ) ) {
 
                 throw new FarandulaException(ErrorType.VALIDATION, "Is impossible to search in past dates.");
 

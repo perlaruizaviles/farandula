@@ -34,7 +34,7 @@ class SearchCommandTest {
                 .to(toList)
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
-                .type(FlightType.ONEWAY)
+                .type(FlightType.ROUNDTRIP)
                 .limitTo(2)
                 .preferenceClass(CabinClassType.ECONOMY);
 
@@ -124,6 +124,67 @@ class SearchCommandTest {
                 .returningAt(returningDateList)
                 .type(FlightType.ROUNDTRIP);
 
+        // this is an invalid date
+        assertThrows(FarandulaException.class, () -> {
+            search.execute();
+        });
+    }
+
+    @Test
+    public void checkFlightOneWayType() throws FarandulaException {
+
+        LocalDateTime departingDate = LocalDateTime.now();
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add( departingDate.plusDays(5) );
+
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(LocalDateTime.now().plusDays(2));
+
+        SearchCommand search = new SearchCommand(new SabreFlightManager())
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
+                .type(FlightType.ONEWAY);
+
+        // this is an invalid date
+        assertThrows(FarandulaException.class, () -> {
+            search.execute();
+        });
+    }
+
+    @Test
+    public void checkFlightRoundWayType() throws FarandulaException {
+
+        LocalDateTime departingDate = LocalDateTime.now();
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        SearchCommand search = new SearchCommand(new SabreFlightManager())
+                .departingAt(departingDateList)
+                .type(FlightType.ROUNDTRIP);
+
+        // this is an invalid date
+        assertThrows(FarandulaException.class, () -> {
+            search.execute();
+        });
+    }
+
+
+    @Test
+    public void checkFlightRoundWayTypeVersion2() throws FarandulaException {
+
+        LocalDateTime departingDate = LocalDateTime.now();
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add( departingDate.plusDays(5) );
+
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(LocalDateTime.now().plusDays(2));
+
+        SearchCommand search = new SearchCommand(new SabreFlightManager())
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
+                .type(FlightType.ROUNDTRIP);
 
         // this is an invalid date
         assertThrows(FarandulaException.class, () -> {
