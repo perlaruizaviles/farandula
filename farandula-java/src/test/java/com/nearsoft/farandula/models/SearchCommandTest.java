@@ -136,7 +136,7 @@ class SearchCommandTest {
         LocalDateTime departingDate = LocalDateTime.now();
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
-        departingDateList.add( departingDate.plusDays(5) );
+        departingDateList.add(departingDate.plusDays(5));
 
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(LocalDateTime.now().plusDays(2));
@@ -176,14 +176,14 @@ class SearchCommandTest {
         LocalDateTime departingDate = LocalDateTime.now();
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
-        departingDateList.add( departingDate.plusDays(5) );
+        departingDateList.add(departingDate.plusDays(5));
 
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(LocalDateTime.now().plusDays(2));
 
         SearchCommand search = new SearchCommand(new SabreFlightManager())
                 .departingAt(departingDateList)
-                .returningAt( returningDateList )
+                .returningAt(returningDateList)
                 .type(FlightType.ROUNDTRIP);
 
         // this is an invalid date
