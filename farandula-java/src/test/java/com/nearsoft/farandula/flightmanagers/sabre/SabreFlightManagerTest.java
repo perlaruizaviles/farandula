@@ -157,20 +157,19 @@ public class SabreFlightManagerTest {
         initSabreSupplierForLuisa();
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+
         List<String> fromList = new ArrayList<>();
         fromList.add("MEX");
         List<String> toList = new ArrayList<>();
         toList.add("LAX");
+
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
-        List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
 
         List<Itinerary> flights = Luisa.findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
-                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(2))
                 .forPassegers( Passenger.children( new int[]{12,16} ) )
                 .forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
@@ -212,21 +211,16 @@ public class SabreFlightManagerTest {
         departingDateList.add( departingDate.plusDays(7) );
         departingDateList.add( departingDate.plusDays(15) );
 
-        List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
-        returningDateList.add(  departingDate.plusDays(8) );
-        returningDateList.add(  departingDate.plusDays(16) );
-
         List<Itinerary> flights = Luisa.findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
-                .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(2))
                 .forPassegers( Passenger.children( new int[]{12,16} ) )
                 //.forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
                 .forPassegers( Passenger.infants( new int[1]) )
                 .limitTo(5)
+                .type( FlightType.OPENJAW )
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute();
 

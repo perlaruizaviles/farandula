@@ -35,22 +35,19 @@ class AmadeusManagerTest {
         });
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<LocalDateTime> listDepartingAt = new ArrayList<>();
+        listDepartingAt.add(departingDate);
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
+
         List<String> toList = new ArrayList<>();
         toList.add("CDG");
-        List<LocalDateTime> departingDateList = new ArrayList<>();
-        departingDateList.add(departingDate);
-        List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
 
         List<Itinerary> flights = Luisa.findMeFlights()
                 .from( fromList )
                 .to( toList )
-                .departingAt(departingDateList)
-                .returningAt( returningDateList )
-                .type(FlightType.ONEWAY)
+                .departingAt( listDepartingAt )
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute();
 

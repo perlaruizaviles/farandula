@@ -17,10 +17,10 @@ import java.util.Map;
  */
 public class SearchCommand {
 
-    private List<String> departureAirports;
-    private List<String> arrivalAirports;
-    private List<LocalDateTime> departingDates;
-    private List<LocalDateTime> returningDates;
+    private List<String> departureAirports = new ArrayList<>();
+    private List<String> arrivalAirports = new ArrayList<>();
+    private List<LocalDateTime> departingDates = new ArrayList<>();
+    private List<LocalDateTime> returningDates = new ArrayList<>();
     private Map<PassengerType, List<Passenger>> passengersMap = new HashMap<>();
     private List<Passenger> passengers = new ArrayList<>();
     private FlightManager flightManager;

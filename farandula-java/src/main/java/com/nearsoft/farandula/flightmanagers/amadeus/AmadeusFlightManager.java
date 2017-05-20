@@ -384,7 +384,7 @@ public class AmadeusFlightManager implements FlightManager {
         // --> end of block
 
 
-        for ( int i = 0 ; i < search.getArrivalAirports().size() ; i++ ) {
+        for ( int i = 0 ; i < search.getDepartureAirports().size() ; i++ ) {
             String urlResult =
                     apiURL
                     + "&origin=" + search.getDepartureAirports().get(i)
