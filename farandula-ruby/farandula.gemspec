@@ -18,10 +18,12 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency 'minitest'
+  s.add_development_dependency 'minitest-reporters'
 
   # Runtime libs 
   
   s.add_runtime_dependency 'rest-client', '~> 2.0.1'
   s.add_runtime_dependency 'hashie', '~> 3.5.5'
+  s.add_runtime_dependency 'jbuilder', '~> 2.4', '>= 2.4.1'
   
 end

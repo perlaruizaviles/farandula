@@ -1,8 +1,8 @@
-require_relative './flight_managers/sabre_flight_manager.rb'
+require_relative './flight_managers/sabre/sabre_flight_manager.rb'
 
 module Farandula
   module Factory
-    include FlightManagers
+    include FlightManagers::Sabre
 
     def self.build_flight_manager(service, credentials) 
       case service
