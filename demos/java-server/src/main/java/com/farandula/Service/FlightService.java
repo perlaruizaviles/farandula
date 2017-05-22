@@ -136,8 +136,13 @@ public class FlightService {
 
             }
 
-            Flight flight = new Flight(departureAirport, departureDate, arrivalAirport,
-                    arrivalDate, flightSegments);
+            Flight flight = new Flight()
+                    .setDepartureAirport(departureAirport)
+                    .setDepartureDate(departureDate)
+                    .setArrivalAirport(arrivalAirport)
+                    .setArrivalDate(arrivalDate)
+                    .setSegments(flightSegments);
+        //Flight(departureAirport, departureDate, arrivalAirport, arrivalDate, flightSegments);
             flights.add(flight);
         }
         return flights;

@@ -22,57 +22,61 @@ public class Flight {
     private int arrivalDate;
     private List<FlightSegment> segments;
 
-
-    public Flight( Airport departureAirport, LocalDateTime departureDate, Airport arrivalAirport, LocalDateTime arrivalDate) {
-        this(departureAirport, departureDate, arrivalAirport, arrivalDate, null);
-    }
-    public Flight( Airport departureAirport, LocalDateTime departureDate, Airport arrivalAirport,
-                  LocalDateTime arrivalDate, List<FlightSegment> flightSegmentList){
-
-        this.setDepartureAirport(departureAirport);
-        this.setArrivalAirport(arrivalAirport);
-        this.setSegments(flightSegmentList);
-        this.setArrivalDate(DateParser.dateToTimestampSeconds(arrivalDate));
-        this.setDepartureDate(DateParser.dateToTimestampSeconds(departureDate));
-    }
-
     public Airport getDepartureAirport() {
         return departureAirport;
     }
 
-    public void setDepartureAirport(Airport departureAirport) {
+    public Flight setDepartureAirport(Airport departureAirport) {
         this.departureAirport = departureAirport;
+        return this;
     }
 
     public int getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(int departureDate) {
+    public Flight setDepartureDate(int departureDate) {
         this.departureDate = departureDate;
+        return this;
+    }
+
+    public Flight setDepartureDate(LocalDateTime date){
+        int timeStamp = DateParser.dateToTimestampSeconds(date);
+        this.departureDate = timeStamp;
+        return this;
     }
 
     public Airport getArrivalAirport() {
         return arrivalAirport;
     }
 
-    public void setArrivalAirport(Airport arrivalAirport) {
+    public Flight setArrivalAirport(Airport arrivalAirport) {
         this.arrivalAirport = arrivalAirport;
+        return this;
     }
 
     public int getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(int arrivalDate) {
+    public Flight setArrivalDate(int arrivalDate) {
         this.arrivalDate = arrivalDate;
+        return this;
+    }
+
+    public Flight setArrivalDate(LocalDateTime date){
+        int timeStamp = DateParser.dateToTimestampSeconds(date);
+        this.arrivalDate = timeStamp;
+        return this;
     }
 
     public List<FlightSegment> getSegments() {
         return segments;
     }
 
-    public void setSegments(List<FlightSegment> segments) {
+    public Flight setSegments(List<FlightSegment> segments) {
         this.segments = segments;
+        return this;
     }
+
 }

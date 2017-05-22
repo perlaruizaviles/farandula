@@ -96,9 +96,10 @@ public class FlightServiceTest {
         List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryList, "round");
 
         assertEquals(itineraryList.size(), flightItineraries.size());
-        assertEquals(itineraryList.get(0).getAirlegs().get(0).getDepartureAirportCode(),
-                flightItineraries.get(0).getAirlegs().get(0).getDepartureAirport().getIata());
-
+        for( int i = 0; i < flightItineraries.size(); i++ ) {
+            assertEquals(itineraryList.get(i).getAirlegs().get(0).getDepartureAirportCode(),
+                    flightItineraries.get(i).getAirlegs().get(0).getDepartureAirport().getIata());
+        }
 
     }
 

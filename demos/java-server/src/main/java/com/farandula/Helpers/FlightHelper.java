@@ -49,8 +49,13 @@ public class FlightHelper {
                 .map(this::parseSegmentToFlightSegment)
                 .collect(Collectors.toList());
 
-        Flight flight = new Flight(departureAirport, departureDate, arrivalAirport,
-                arrivalDate, flightSegmentList);
+        Flight flight = new Flight()
+                .setDepartureAirport(departureAirport)
+                .setDepartureDate(departureDate)
+                .setArrivalAirport(arrivalAirport)
+                .setArrivalDate(arrivalDate)
+                .setSegments(flightSegmentList);
+
         return flight;
 
     }
