@@ -2,6 +2,7 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {validate} from "../util/valitations";
 
+
 const renderFieldWithoutError = (input, label, type) => (
   <div className="field">
     <label>{label}</label>
@@ -35,12 +36,23 @@ const SummaryForm = props =>{
   return(
     <form onSubmit={handleSubmit} className="ui error form">
       <div className="equal width fields">
-        <Field name="name" type="text" component={renderField} label="Name"/>
-        <Field name="lastname" type="text" component={renderField} label="Lastname"/>
+        <Field name="name" type="text" component={renderField} label="Name*"/>
+        <Field name="lastname" type="text" component={renderField} label="Lastname*"/>
       </div>
       <div className="equal width fields">
         <Field name="middlename" type="text" component={renderField} label="Middle Name"/>
-        <Field name="email" type="email" component={renderField} label="Email"/>
+        <Field name="email" type="email" component={renderField} label="Email*"/>
+      </div>
+      <div className="equal width fields">
+        <div className="field">
+          <label>Gender</label>
+          <Field name="gender" component="select">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </Field>
+        </div>
+        <Field name="phone" type="tel" component={renderField} label="Phone #*"/>
+        <Field name="age" type="number" component={renderField} label="Age*"/>
       </div>
       <div className="ui section divider">
       </div>
