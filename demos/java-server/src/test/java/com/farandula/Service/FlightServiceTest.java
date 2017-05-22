@@ -60,11 +60,11 @@ public class FlightServiceTest {
 
 
         List<Segment> segmentList = new ArrayList<>();
-        for(int nDeNoe = 0; nDeNoe < 2; nDeNoe++) {
-            for (int k = 0; k < 5; k++) {
+        for(int i = 0; i < 2; i++) {
+            for (int j = 0; j < 5; j++) {
                 Itinerary itinerary = new Itinerary();
 
-                for (int i = 0; i < (nDeNoe == 1 ? 2 : 1) ; i++) {
+                for (int k = 0; k < (i == 1 ? 2 : 1) ; k++) {
 
                     AirLeg leg = new AirLeg();
 
@@ -75,7 +75,7 @@ public class FlightServiceTest {
                     leg.setArrivalAirportCode("CDG");
                     leg.setArrivalDate(departingDate.plusDays(1));
 
-                    for (int j = 0; j < 4; j++) {
+                    for (int l = 0; l < 4; l++) {
                         Segment segment = new Segment();
 
                         segment.setDepartureAirportCode("DFW");
@@ -93,7 +93,7 @@ public class FlightServiceTest {
 
                 }
                 itinerary.setPrice(new Fares());
-                if (nDeNoe == 0) {
+                if (i == 0) {
                     itineraryListOneWay.add(itinerary);
                 }
                 else {
@@ -103,10 +103,8 @@ public class FlightServiceTest {
         }
     }
 
-    @Test
-    public void returnInt(){
 
-    }
+
 
     @Test
     public void parseItineraryIntoFlightItinerary() {
