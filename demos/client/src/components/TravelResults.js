@@ -4,10 +4,10 @@ import OptionsTravel from './OptionsTravel';
 import TravelSearch from '../containers/TravelSearch';
 import {Container, Message} from 'semantic-ui-react';
 
-const TravelResults = ({travels}) => {
+const TravelResults = ({travels, order}) => {
     return (
         <Container>
-            <OptionsTravel/>
+            <OptionsTravel config={order}/>
             <TravelSearch/>
             {
                 (travels)? 

@@ -28,7 +28,8 @@ const initialState = {
     dates: Map({
       depart: undefined,
       return: undefined
-    })
+    }),
+    order:'price-low-first'
   })
 };
 

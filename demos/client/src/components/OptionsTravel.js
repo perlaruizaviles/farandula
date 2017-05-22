@@ -1,14 +1,20 @@
 import React from 'react';
-import {Card} from 'semantic-ui-react';
+import {Card, Dropdown} from 'semantic-ui-react';
 
-const OptionsTravel = () => (
-    <Card className='orange'>
+const OptionsTravel = ({options, config}) => {
+    return(
+    <Card className='orange'  style={{display:'none'}}>
         <Card.Content>
             <Card.Header>
                 Options
             </Card.Header>
         </Card.Content>
+        <Card.Content>
+            <Dropdown>
+                <Dropdown text={config}/>
+            </Dropdown>
+        </Card.Content>
     </Card>
-);
+)};
 
 export default OptionsTravel;
