@@ -4,6 +4,6 @@ export const AIRPORTS_URL = BASE_URL + 'airports';
 export const AVAILABLE_FLIGHTS_URL = BASE_URL + 'availableFlights';
 
 //TODO: Remove this when backend work well again
-const TEMP_URL = 'https://temporal-farandula.herokuapp.com/api/';
+const TEMP_URL = 'https://fix-fix-farandula.herokuapp.com/api/';
 export const TEMP_AIRPORTS_URL = TEMP_URL + 'airports';
 export const TEMP_AVAILABLE_FLIGHTS_URL = 'http://iotar.azurewebsites.net/api/farandula';

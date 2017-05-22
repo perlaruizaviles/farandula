@@ -13,7 +13,7 @@ class AirportsApi {
             pattern: query
           }
         }).then((response) => {
-            const airports = response.data.content.map(e => { return {title:e.city + ' - ' + e.iata , description:e.name}}).slice(0, 5);
+            const airports = response.data.map(e => { return {title:e.city + ' - ' + e.iata , description:e.name}}).slice(0, 5);
             resolve(Object.assign([], airports));
           })
           .catch(e => {
