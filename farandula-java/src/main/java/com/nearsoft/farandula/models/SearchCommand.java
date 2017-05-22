@@ -194,6 +194,17 @@ public class SearchCommand {
                     throw new FarandulaException(ErrorType.VALIDATION,
                             "Search parameters are not valid, HINT: in one way trips only departing date is mandatory.");
                 }
+            }else{
+
+                //open jaw
+                if ( (this.getDepartureAirports().size() != this.getArrivalAirports().size()) ||
+                        (  this.getArrivalAirports().size()!= this.getDepartingDates().size() )
+                   ){
+                    throw new FarandulaException(ErrorType.VALIDATION,
+                            "Search parameters are not valid, HINT: in open jaw trips is mandatory to have te same number of arrival and destination values.");
+                }
+
+
             }
 
         }

@@ -39,13 +39,13 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
+        returningDateList.add(departingDate.plusDays(1));
 
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from( fromList )
-                .to( toList )
+                .from(fromList)
+                .to(toList)
                 .departingAt(departingDateList)
-                .returningAt( returningDateList )
+                .returningAt(returningDateList)
                 .type(FlightType.ROUNDTRIP)
                 .execute();
 
@@ -85,19 +85,19 @@ public class SabreFlightManagerTest {
 
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
-        departingDateList.add( departingDate.plusDays(7) );
-        departingDateList.add( departingDate.plusDays(15) );
+        departingDateList.add(departingDate.plusDays(7));
+        departingDateList.add(departingDate.plusDays(15));
 
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
-        returningDateList.add(  departingDate.plusDays(8) );
-        returningDateList.add(  departingDate.plusDays(16) );
+        returningDateList.add(departingDate.plusDays(1));
+        returningDateList.add(departingDate.plusDays(8));
+        returningDateList.add(departingDate.plusDays(16));
 
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from( fromList )
-                .to( toList )
+                .from(fromList)
+                .to(toList)
                 .departingAt(departingDateList)
-                .returningAt( returningDateList )
+                .returningAt(returningDateList)
                 .type(FlightType.OPENJAW)
                 .limitTo(2)
                 .execute();
@@ -127,13 +127,13 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
+        returningDateList.add(departingDate.plusDays(1));
 
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from( fromList )
-                .to( toList )
+                .from(fromList)
+                .to(toList)
                 .departingAt(departingDateList)
-                .returningAt( returningDateList )
+                .returningAt(returningDateList)
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(10)
@@ -167,13 +167,13 @@ public class SabreFlightManagerTest {
         departingDateList.add(departingDate);
 
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from( fromList )
-                .to( toList )
+                .from(fromList)
+                .to(toList)
                 .departingAt(departingDateList)
                 .forPassegers(Passenger.adults(2))
-                .forPassegers( Passenger.children( new int[]{12,16} ) )
-                .forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
-                .forPassegers( Passenger.infants( new int[1]) )
+                .forPassegers(Passenger.children(new int[]{12, 16}))
+                .forPassegers(Passenger.infantsOnSeat(new int[]{1}))
+                .forPassegers(Passenger.infants(new int[1]))
                 .limitTo(5)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute();
@@ -208,19 +208,19 @@ public class SabreFlightManagerTest {
 
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
-        departingDateList.add( departingDate.plusDays(7) );
-        departingDateList.add( departingDate.plusDays(15) );
+        departingDateList.add(departingDate.plusDays(7));
+        departingDateList.add(departingDate.plusDays(15));
 
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from( fromList )
-                .to( toList )
+                .from(fromList)
+                .to(toList)
                 .departingAt(departingDateList)
                 .forPassegers(Passenger.adults(2))
-                .forPassegers( Passenger.children( new int[]{12,16} ) )
+                .forPassegers(Passenger.children(new int[]{12, 16}))
                 //.forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
-                .forPassegers( Passenger.infants( new int[1]) )
+                .forPassegers(Passenger.infants(new int[1]))
                 .limitTo(5)
-                .type( FlightType.OPENJAW )
+                .type(FlightType.OPENJAW)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute();
 
@@ -250,7 +250,6 @@ public class SabreFlightManagerTest {
     @Test
     void buildJsonRequestFromSearch() throws Exception {
 
-        SabreFlightManager manager = new SabreFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -259,9 +258,9 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
+        returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand(null);
+        SearchCommand search = new SearchCommand(new SabreFlightManager());
         search
                 .from(fromList)
                 .to(toList)
@@ -281,7 +280,6 @@ public class SabreFlightManagerTest {
     @Test
     void buildJsonRequestFromMultiCitySearch() throws Exception {
 
-        SabreFlightManager manager = new SabreFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -295,15 +293,15 @@ public class SabreFlightManagerTest {
 
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
-        departingDateList.add( departingDate.plusDays(7) );
-        departingDateList.add( departingDate.plusDays(15) );
+        departingDateList.add(departingDate.plusDays(7));
+        departingDateList.add(departingDate.plusDays(15));
 
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
-        returningDateList.add(  departingDate.plusDays(8) );
-        returningDateList.add(  departingDate.plusDays(16) );
+        returningDateList.add(departingDate.plusDays(1));
+        returningDateList.add(departingDate.plusDays(8));
+        returningDateList.add(departingDate.plusDays(16));
 
-        SearchCommand search = new SearchCommand(null);
+        SearchCommand search = new SearchCommand(new SabreFlightManager());
         search
                 .from(fromList)
                 .to(toList)
@@ -356,7 +354,7 @@ public class SabreFlightManagerTest {
     @Test
     public void buildAvailResponse() throws IOException, FarandulaException {
 
-        SabreFlightManager manager = new SabreFlightManager();
+
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<String> fromList = new ArrayList<>();
@@ -366,9 +364,10 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
+        returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand(null);
+        SabreFlightManager manager = new SabreFlightManager();
+        SearchCommand search = new SearchCommand(manager);
         search
                 .from(fromList)
                 .to(toList)

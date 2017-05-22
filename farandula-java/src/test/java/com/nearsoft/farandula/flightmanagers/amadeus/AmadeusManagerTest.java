@@ -4,6 +4,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
+import com.sun.media.sound.AbstractMidiDeviceProvider;
 import okhttp3.Request;
 import org.junit.jupiter.api.Test;
 
@@ -225,7 +226,7 @@ class AmadeusManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
 
-        SearchCommand search = new SearchCommand(null);
+        SearchCommand search = new SearchCommand( Luisa.getInstance() );
         search
                 .from( fromList )
                 .to( toList )
@@ -235,8 +236,7 @@ class AmadeusManagerTest {
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(2);
 
-        AmadeusFlightManager manager = new AmadeusFlightManager();
-        String searchURL = manager.buildTargetURLFromSearch(search).get(0);
+        String searchURL = ((AmadeusFlightManager)Luisa.getInstance()).buildTargetURLFromSearch(search).get(0);
         String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
                 "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" +
                 "&travel_class=ECONOMY" +
@@ -278,7 +278,7 @@ class AmadeusManagerTest {
         returningDateList.add(  departingDate.plusDays(8) );
         returningDateList.add(  departingDate.plusDays(16) );
 
-        SearchCommand search = new SearchCommand(null);
+        SearchCommand search = new SearchCommand(Luisa.getInstance());
         search
                 .from( fromList )
                 .to( toList )
@@ -288,10 +288,9 @@ class AmadeusManagerTest {
                 .type(FlightType.OPENJAW)
                 .limitTo(2);
 
-        AmadeusFlightManager manager = new AmadeusFlightManager();
-        List<String> searchURLList = manager.buildTargetURLFromSearch(search);
+        List<String> searchURLList = ( (AmadeusFlightManager)(Luisa.getInstance()) ).buildTargetURLFromSearch(search);
 
-        String apiKey = manager.getApiKey();
+        String apiKey = ( (AmadeusFlightManager)(Luisa.getInstance()) ).getApiKey();
 
         String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
                 "apikey=" + apiKey +
