@@ -110,7 +110,7 @@ class SearchCommandTest {
     }
 
     @Test
-    public void checkInvalidReturninDates() throws FarandulaException {
+    public void checkInvalidReturningDates() throws FarandulaException {
 
         LocalDateTime departingDate = LocalDateTime.now().plusDays(5);
         List<LocalDateTime> departingDateList = new ArrayList<>();
