@@ -160,7 +160,7 @@ class AmadeusManagerTest {
     }
 
     @Test
-    public void realAvail_OneWayTripUsingDifferentPassengers() throws Exception {
+    public void realAvail_OpenJawTripUsingDifferentPassengers() throws Exception {
 
         initAmadeusSupplierForLuisa();
 
@@ -181,9 +181,6 @@ class AmadeusManagerTest {
         departingDateList.add( departingDate.plusDays(15) );
 
         List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  departingDate.plusDays(1) );
-        returningDateList.add(  departingDate.plusDays(8) );
-        returningDateList.add(  departingDate.plusDays(16) );
 
         List<Itinerary> flights = Luisa.findMeFlights()
                 .from( fromList )

@@ -192,5 +192,26 @@ class SearchCommandTest {
         });
     }
 
+    @Test
+    public void checkFlightOpenJaw() throws FarandulaException {
+
+        LocalDateTime departingDate = LocalDateTime.now();
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add(departingDate.plusDays(5));
+
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(LocalDateTime.now().plusDays(2));
+
+        SearchCommand search = new SearchCommand(new SabreFlightManager())
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
+                .type(FlightType.OPENJAW);
+
+        // is invalid to send returnig dates in openjaws
+        assertThrows(FarandulaException.class, () -> {
+            search.execute();
+        });
+    }
 
 }

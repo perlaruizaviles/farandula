@@ -197,6 +197,11 @@ public class SearchCommand {
             }else{
 
                 //open jaw
+                if ( this.getReturningDates().size() > 0 ){
+                    throw new FarandulaException(ErrorType.VALIDATION,
+                            "Search parameters are not valid, HINT: in open jaw trips does not have returning dates.");
+                }
+
                 if ( (this.getDepartureAirports().size() != this.getArrivalAirports().size()) ||
                         (  this.getArrivalAirports().size()!= this.getDepartingDates().size() )
                    ){

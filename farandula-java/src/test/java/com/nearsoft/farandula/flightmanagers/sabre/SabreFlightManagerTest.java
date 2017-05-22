@@ -88,16 +88,10 @@ public class SabreFlightManagerTest {
         departingDateList.add(departingDate.plusDays(7));
         departingDateList.add(departingDate.plusDays(15));
 
-        List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(departingDate.plusDays(1));
-        returningDateList.add(departingDate.plusDays(8));
-        returningDateList.add(departingDate.plusDays(16));
-
         List<Itinerary> flights = Luisa.findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
-                .returningAt(returningDateList)
                 .type(FlightType.OPENJAW)
                 .limitTo(2)
                 .execute();
