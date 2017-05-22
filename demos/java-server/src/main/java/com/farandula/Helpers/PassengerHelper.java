@@ -10,11 +10,11 @@ import java.util.Arrays;
 @Component
 public class PassengerHelper {
 
-    public int[][] getPassengersFromString(String passengerStringList) {
+    public AgeManager getPassengersFromString(String passengerStringList) {
 
         //children:,infants:1;2,infantsOnSeat:,adults:2
 
-
+        AgeManager ageManager =  new AgeManager();
         //TODO: Complementar con tipo de pasajeros y edades
 //        final Pattern pattern = Pattern.compile("[a-z]:\\d,[a-z]:\\d");
 //        if (!pattern.matcher(passengerStringList.toLowerCase()).matches()) {
@@ -24,7 +24,8 @@ public class PassengerHelper {
         String[] passengerType = passengerStringList.split(",");
 
         String[] adults = passengerType[3].split(":");
-        int[] adultsAges = {Integer.parseInt(adults[1])};
+        int numberOfAdults = Integer.parseInt(adults[1]);
+
 
         String[] infantsOnSeat = passengerType[2].split(":");
         String[] infantsOnSeatAgesString = (infantsOnSeat.length == 1)
@@ -50,8 +51,12 @@ public class PassengerHelper {
                 .mapToInt(Integer::parseInt)
                 .toArray();
 
-        int[][] numberOfPassengers = {childrenAges, infantsAges, infantsOnSeatAges, adultsAges};
 
-        return numberOfPassengers;
+        ageManager.setChildAges(childrenAges);
+        ageManager.setInfantAges(infantsAges);
+        ageManager.setInfantOnSeatAges(infantsOnSeatAges);
+        ageManager.setNumberAdults(numberOfAdults);
+
+        return ageManager;
     }
 }

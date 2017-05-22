@@ -1,5 +1,6 @@
 package com.farandula.Service;
 
+import com.farandula.Helpers.AgeManager;
 import com.farandula.Helpers.FlightHelper;
 import com.farandula.Helpers.PassengerHelper;
 import com.farandula.Repositories.AirportRepository;
@@ -56,38 +57,23 @@ public class FlightService {
             });
 
             try {
-                int[][] numberOfPassengers = passengerHelper.getPassengersFromString(passenger);
+                AgeManager ageManager = passengerHelper.getPassengersFromString(passenger);
                 List<Itinerary> flights;
-                if ("oneWay".equals(type)) {
+                SearchCommand command = Luisa.findMeFlights()
+                        .from(departureAirportCode)
+                        .to(arrivalAirportCode)
+                        .departingAt(departDateTime)
+                        .returningAt(arrivalDateTime)
+                        .forPassegers(Passenger.children(ageManager.getChildAges()))
+                        .forPassegers(Passenger.infants(ageManager.getInfantAges()))
+                        .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
+                        .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
+                        .limitTo(2);
+                command = ("oneWay".equals(type))
+                        ? command.type(FlightType.ONEWAY)
+                        : command.type(FlightType.ROUNDTRIP);
 
-                    flights = Luisa.findMeFlights()
-                            .from(departureAirportCode)
-                            .to(arrivalAirportCode)
-                            .departingAt(departDateTime)
-                            .returningAt(arrivalDateTime)
-                            .forPassegers(Passenger.children(numberOfPassengers[0]))
-                            .forPassegers(Passenger.infants(numberOfPassengers[1]))
-                            .forPassegers(Passenger.infantsOnSeat(numberOfPassengers[2]))
-                            .forPassegers(Passenger.adults(numberOfPassengers[3][0]))
-                            .limitTo(2)
-                            .execute();
-                } else {
-
-                    flights = Luisa.findMeFlights()
-                            .from(departureAirportCode)
-                            .to(arrivalAirportCode)
-                            .departingAt(departDateTime)
-                            .returningAt(arrivalDateTime)
-                            .type(FlightType.ROUNDTRIP)
-                            .limitTo(2)
-                            .forPassegers(Passenger.children(numberOfPassengers[0]))
-                            .forPassegers(Passenger.infants(numberOfPassengers[1]))
-                            .forPassegers(Passenger.infantsOnSeat(numberOfPassengers[2]))
-                            .forPassegers(Passenger.adults(numberOfPassengers[3][0]))
-                            .execute();
-
-                }
-
+                flights = command.execute();
                 return this.getFlightItineraryFromItinerary(flights, type);
 
                 //TODO Parse response for passengers

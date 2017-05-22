@@ -3,7 +3,9 @@ package com.farandula.Helpers;
 /**
  * Created by emote on 22/05/17.
  */
+
 public class AgeManager {
+
     private int numberAdults;
     private int [] childAges;
     private int [] infantAges;

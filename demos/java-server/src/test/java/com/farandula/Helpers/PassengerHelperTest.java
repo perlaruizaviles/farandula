@@ -23,17 +23,16 @@ public class PassengerHelperTest {
     public void getPassengersFromString() throws Exception {
         String passengerString = "children:7;3;4,infants:1;2,infantsOnSeat:2,adults:2";
 
-        int[][] numberOfPassengers = passengerHelper.getPassengersFromString(passengerString);
-        assertEquals(3, numberOfPassengers[0][1]);
-        assertEquals(2, numberOfPassengers[1][1]);
+        AgeManager ageManager = passengerHelper.getPassengersFromString(passengerString);
+        assertEquals(3, ageManager.getChildAges()[1]);
+        assertEquals(2, ageManager.getInfantAges()[1]);
     }
 
     @Test
     public void getPassengersFromStringWithNonInfant() throws Exception {
         String passengerString = "children:7;3;4,infants:,infantsOnSeat:2,adults:2";
 
-        int[][] numberOfPassengers = passengerHelper.getPassengersFromString(passengerString);
-        assertEquals(0, numberOfPassengers[1].length);
+        AgeManager ageManager = passengerHelper.getPassengersFromString(passengerString);
+        assertEquals(0, ageManager.getInfantAges().length);
     }
-
 }
