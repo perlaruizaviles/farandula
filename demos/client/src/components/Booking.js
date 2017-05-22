@@ -4,7 +4,7 @@ import PassengerForm from "./PassengerForm";
 import BillingForm from "./BillingForm";
 
 
-const SummaryForm = props =>{
+const Booking = props =>{
   const {handleSubmit, pristine, reset, submitting} = props;
 
   return(
@@ -27,5 +27,5 @@ const SummaryForm = props =>{
 };
 
 export default reduxForm({
-  form: 'SummaryForm', // a unique identifier for this form
-})(SummaryForm)
+  form: 'Booking', // a unique identifier for this form
+})(Booking)
