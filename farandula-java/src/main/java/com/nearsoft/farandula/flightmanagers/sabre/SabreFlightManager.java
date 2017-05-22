@@ -50,7 +50,6 @@ public class SabreFlightManager implements FlightManager {
         }
     }
 
-    //TODO should we use an HTTP client lib or its better to do it bare bones  (ProofOfConcept) pros and cons?
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
 
@@ -108,6 +107,23 @@ public class SabreFlightManager implements FlightManager {
 
         } catch (Exception e) {
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
+        }
+
+    }
+
+    @Override
+    public void validateDate(LocalDateTime date) throws FarandulaException {
+
+        //https://www.sabretravelnetwork.com/home/solutions/products/sabre_traveler_security
+       /*
+       Up to 331 days pre-trip and three years of post-trip data on air, car, hotel, cruise and rail bookings
+       is stored and available to you, including both ticketed and un-ticketed reservations.
+        */
+
+        if (date.isAfter(LocalDateTime.now().plusDays(331))) {
+
+            throw new FarandulaException(ErrorType.VALIDATION, "Is impossible to search for flights after 331 days.");
+
         }
 
     }
@@ -209,7 +225,6 @@ public class SabreFlightManager implements FlightManager {
             Map cabinsBySegmentMap = cabinsBySegment.get(0).get(cabinIndex);
             int numberOfSeats = getValueOf(cabinsBySegmentMap, "SeatsRemaining.Number", Integer.class);
             String cabinValue = getValueOf(cabinsBySegmentMap, "Cabin.Cabin", String.class);
-            ;
             CabinClassType classType = getCabinClassType(convertCodeToTravelClass(cabinValue));
 
             List<Seat> seatsResult = new ArrayList<>();

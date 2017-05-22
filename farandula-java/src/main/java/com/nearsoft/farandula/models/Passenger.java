@@ -62,18 +62,17 @@ public class Passenger {
 
     private static boolean validAge(PassengerType type, int[] ages) {
 
-        // todo i think is better if we have the ages in a config file not hardcoded
         for ( int age : ages ){
 
             if ( type == PassengerType.CHILDREN ){
 
-                return age < 18 ? true: false;
+                return age < 18;
 
             }
 
             if ( type == PassengerType.INFANTS || type == PassengerType.INFANTSONSEAT ){
 
-                return age < 3 ? true: false;
+                return age < 3;
 
             }
 

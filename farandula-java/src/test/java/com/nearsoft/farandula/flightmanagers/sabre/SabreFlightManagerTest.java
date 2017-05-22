@@ -138,7 +138,7 @@ public class SabreFlightManagerTest {
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(10)
                 .preferenceClass(CabinClassType.ECONOMY)
-                .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
+                .execute();
 
         assertTrue(flights.size() > 0);
 
@@ -248,7 +248,7 @@ public class SabreFlightManagerTest {
 
 
     @Test
-    void buildJsonRequestFromSearch() throws IOException, FarandulaException, Exception {
+    void buildJsonRequestFromSearch() throws Exception {
 
         SabreFlightManager manager = new SabreFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
@@ -271,7 +271,7 @@ public class SabreFlightManagerTest {
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
 
-        String jsonRequestString = manager.buildJsonFromSearch(search);
+        String jsonRequestString = SabreFlightManager.buildJsonFromSearch(search);
         DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
         String locationCode = jsonRequest.read("$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
         assertEquals("DFW", locationCode);
@@ -279,7 +279,7 @@ public class SabreFlightManagerTest {
     }
 
     @Test
-    void buildJsonRequestFromMultiCitySearch() throws IOException, FarandulaException, Exception {
+    void buildJsonRequestFromMultiCitySearch() throws Exception {
 
         SabreFlightManager manager = new SabreFlightManager();
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
@@ -313,7 +313,7 @@ public class SabreFlightManagerTest {
                 .type(FlightType.OPENJAW)
                 .limitTo(10);
 
-        String jsonRequestString = manager.buildJsonFromSearch(search);
+        String jsonRequestString = SabreFlightManager.buildJsonFromSearch(search);
         DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
         String locationCode = jsonRequest.read("$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
         assertEquals(fromList.get(0), locationCode);

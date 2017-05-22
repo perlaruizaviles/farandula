@@ -6,7 +6,6 @@ import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
-import com.sun.org.apache.regexp.internal.REUtil;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -19,7 +18,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -318,8 +316,7 @@ public class AmadeusFlightManager implements FlightManager {
             diffInMinutes = Duration.between(departureDateTime, arrivalDateTime).toMinutes();
         } else {
             if (departureTimeZone.isEmpty() || arrivalTimeZone.isEmpty()) {
-                //todo check this case, what should we do when is impossible to get the zone,
-                // example when location is 'xyz'
+                // example when location is 'xyz'  we fallback to use UTC +0
                 diffInMinutes = 0;
             } else {
                 ZonedDateTime departureWithZone = departureDateTime.atZone(ZoneId.of(departureTimeZone));

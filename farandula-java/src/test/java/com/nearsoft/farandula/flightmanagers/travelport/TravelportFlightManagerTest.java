@@ -66,7 +66,7 @@ class TravelportFlightManagerTest {
 
         TravelportFlightManager travelport = new TravelportFlightManager();
 
-        String targetBranch = travelport.getTargetBranch();
+        String targetBranch = TravelportFlightManager.getTargetBranch();
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");

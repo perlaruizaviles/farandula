@@ -3,7 +3,6 @@ package com.nearsoft.farandula.models;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
-import org.omg.CORBA.INTERNAL;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -94,8 +93,6 @@ public class SearchCommand {
     }
 
     public List<Itinerary> execute() throws IOException, FarandulaException {
-
-        //todo improve the name of the method
         checkValidSearchCommand();
 
         return flightManager.getAvail(this);
@@ -212,14 +209,7 @@ public class SearchCommand {
                 throw new FarandulaException(ErrorType.VALIDATION, "Is impossible to search in past dates.");
 
             } else {
-
-                //todo check this value
-                if (date.isAfter(LocalDateTime.now().plusDays(331))) {
-
-                    throw new FarandulaException(ErrorType.VALIDATION, "Is impossible to search for flights after 331 days.");
-
-                }
-
+                flightManager.validateDate(date);
             }
 
         }

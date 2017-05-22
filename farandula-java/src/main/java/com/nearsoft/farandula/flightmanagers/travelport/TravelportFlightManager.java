@@ -20,7 +20,6 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -267,8 +266,6 @@ public class TravelportFlightManager implements FlightManager {
 
 
     private void parseAirAvailInfoChild(Segment seg, Node airSegmentNode) {
-        //TODO add logging to the project
-
         Node airAvailInfo = XmlUtils.getNode("air:AirAvailInfo", airSegmentNode.getChildNodes());
         if (airAvailInfo != null) {
             List<Node> bookingCodeInfo = XmlUtils.getNodeList("air:BookingCodeInfo", airAvailInfo.getChildNodes());

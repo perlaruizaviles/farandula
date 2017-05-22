@@ -89,7 +89,7 @@ public class TravelportXMLRequest {
 
         valuesMap.clear();
 
-        String carrier = seg.getOperatingAirlineCode() != null ? seg.getOperatingAirlineCode() : seg.getMarketingAirlineCode();;
+        String carrier = seg.getOperatingAirlineCode() != null ? seg.getOperatingAirlineCode() : seg.getMarketingAirlineCode();
         String flightNumber = seg.getOperatingFlightNumber()!= null? seg.getOperatingFlightNumber() : seg.getMarketingFlightNumber();
 
         valuesMap.put("key", seg.getKey() );
