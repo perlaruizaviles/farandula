@@ -10,25 +10,18 @@ import java.util.List;
  */
 public class Response {
 
-    @Id
-    private Integer status;
 
-    private String message;
     private List<Airport> content;
 
-    public Integer getStatus(){return this.status;}
-    public String getMessage(){return this.message;}
+
     public List<Airport> getContent(){return this.content;}
 
-    public void setStatus(Integer status){this.status = status;}
-    public void setMessage(String message){this.message = message;}
+
     public void setContent(List<Airport> content){this.content = content;}
 
-    public static Response getResponseInstance(Integer status, String message, List<Airport> content){
-        Response res = new Response();
+    public static Response getResponseInstance(List<Airport> content){
 
-        res.setStatus(status);
-        res.setMessage(message);
+        Response res = new Response();
         res.setContent(content);
 
         return res;

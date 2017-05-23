@@ -1,11 +1,15 @@
 package com.farandula.Service;
 
 import com.farandula.Configuration.Application;
+import com.farandula.Helpers.FlightHelper;
+import com.farandula.Helpers.PassengerHelper;
 import com.farandula.JavaFarandulaApplication;
 import com.farandula.models.Flight;
-import com.nearsoft.farandula.models.AirLeg;
-import com.nearsoft.farandula.models.Segment;
+import com.farandula.models.FlightItinerary;
+import com.nearsoft.farandula.models.*;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,18 +37,11 @@ public class FlightServiceTest {
     @Autowired
     FlightService flightService;
 
-    @Test
-    public void getPassengersFromString() throws Exception {
-        String passengerString = "children:5,adults:3";
-
-        Integer[] numberOfPassengers = FlightService.getPassengersFromString(passengerString);
-        Assert.assertEquals(3, (int) numberOfPassengers[0]);
-        Assert.assertEquals(5, (int) numberOfPassengers[1]);
-
-    }
+    static List<Itinerary> itineraryListRoundTrip = new ArrayList<>();
+    static List<Itinerary> itineraryListOneWay= new ArrayList<>();
 
     @Test
-    public void validateDateTime(){
+    public void validateDateTime() {
 
         FlightService flightService = new FlightService();
 
@@ -52,83 +49,85 @@ public class FlightServiceTest {
 
         LocalDateTime expected = LocalDateTime.of(2011, 12, 03, 10, 15, 30);
 
-        Assert.assertEquals( expected, result );
+        Assert.assertEquals(expected, result);
     }
 
-    @Test
-    public void separateDepartAirLegs(){
-
-        List<AirLeg> legs = new ArrayList<>();
-
-        for(int i = 0; i < 10; i++){
-            AirLeg leg = new AirLeg();
-
-            leg.setId( "" + i );
-
-            leg.setDepartureAirportCode("DD" + i);
-            leg.setArrivalAirportCode("AA" + i);
-
-            leg.setDepartingDate(LocalDateTime.now());
-            leg.setArrivalDate(LocalDateTime.now().plusDays(2));
-
-            legs.add( leg );
-        }
-
-        FlightService flightService = new FlightService();
-
-        List<AirLeg> resultDepart = flightService.getDepartAirLegs( legs );
-        List<AirLeg> resultReturn = flightService.getReturnAirLegs( legs );
-
-        Assert.assertEquals( legs.size() / 2, resultDepart.size() );
-        Assert.assertEquals( "0", resultDepart.get(0).getId() );
-
-        Assert.assertEquals( legs.size() / 2, resultReturn.size() );
-        Assert.assertEquals( "1", resultReturn.get(0).getId() );
-    }
-
-    @Test
-    public void parseAirlegsIntoFlights(){
-
-        List<AirLeg> airLegList = new ArrayList<>();
+    @BeforeClass public static void prepareFlightItineraryLists() {
 
         List<Segment> segmentList = new ArrayList<>();
+        for(int i = 1; i < 3; i++) {
+            for (int j = 0; j < 5; j++) {
+                Itinerary itinerary = new Itinerary();
 
-        for(int i = 0; i < 10; i++){
+                for (int k = 0; k < i ; k++) {
 
-            AirLeg leg = new AirLeg();
+                    AirLeg leg = new AirLeg();
 
-            LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+                    LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
-            leg.setDepartureAirportCode("DFW");
-            leg.setDepartingDate( departingDate );
-            leg.setArrivalAirportCode("CDG");
-            leg.setArrivalDate( departingDate.plusDays(1) );
+                    leg.setDepartureAirportCode("DFW");
+                    leg.setDepartingDate(departingDate);
+                    leg.setArrivalAirportCode("CDG");
+                    leg.setArrivalDate(departingDate.plusDays(1));
 
-            for(int j = 0; j < 4; j++){
-                Segment segment = new Segment();
+                    for (int l = 0; l < 4; l++) {
+                        Segment segment = new Segment();
 
-                segment.setDepartureAirportCode("DFW");
-                segment.setDepartureDate( departingDate );
+                        segment.setDepartureAirportCode("DFW");
+                        segment.setDepartureDate(departingDate);
 
-                segment.setArrivalAirportCode("CDG");
-                segment.setArrivalDate( departingDate.plusDays(1) );
+                        segment.setArrivalAirportCode("CDG");
+                        segment.setArrivalDate(departingDate.plusDays(1));
 
-                segmentList.add(segment);
+                        segment.setSeatsAvailable(new ArrayList<>());
+
+                        segmentList.add(segment);
+                    }
+
+                    leg.setSegments(segmentList);
+
+                    itinerary.getAirlegs().add(leg);
+
+                }
+                itinerary.setPrice(new Fares());
+                if (i == 1) {
+                    itineraryListOneWay.add(itinerary);
+                }
+                else {
+                    itineraryListRoundTrip.add(itinerary);
+                }
             }
+        }
+    }
 
-            leg.setSegments(segmentList);
+    @AfterClass public static void cleanItineraryLists() {
+        itineraryListOneWay = null;
+        itineraryListRoundTrip = null;
+    }
 
-            airLegList.add(leg);
+    @Test
+    public void parseItineraryIntoFlightItinerary() {
+
+        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryListRoundTrip, "round");
+
+        assertEquals(itineraryListRoundTrip.size(), flightItineraries.size());
+        for( int i = 0; i < flightItineraries.size(); i++ ) {
+            assertEquals(itineraryListRoundTrip.get(i).getAirlegs().get(0).getDepartureAirportCode(),
+                    flightItineraries.get(i).getAirlegs().get(0).getDepartureAirport().getIata());
         }
 
-        List<Flight> flightList = flightService.getFlightsFromAirlegList(airLegList);
+    }
 
-        Assert.assertEquals( airLegList.size(), flightList.size() );
+    @Test
+    public void parseItineraryIntoFlightItineraryOneWay() {
 
-        Assert.assertEquals( airLegList.get(0).getDepartureAirportCode(),
-                flightList.get(0).getDepartureAirport().getIata() );
+        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryListOneWay, "oneWay");
 
-        Assert.assertEquals( airLegList.get(0).getSegments().get(0).getDepartureAirportCode(),
-                flightList.get(0).getSegments().get(0).getDepartureAirport().getIata());
+        assertEquals(itineraryListOneWay.size(), flightItineraries.size());
+
+        for (int i = 0; i < flightItineraries.size(); i++){
+            assertEquals(itineraryListOneWay.get(i).getAirlegs().get(0).getDepartureAirportCode(),
+                    flightItineraries.get(i).getAirlegs().get(0).getDepartureAirport().getIata());
+        }
     }
 }

@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class AirportService {
 
-    public Response getResponseFromSearch(List<Airport> airports){
-        return Response.getResponseInstance( 200, "Results", airports );
+    public List<Airport> getResponseFromSearch(List<Airport> airports){
+        return airports ;
     }
 
 }
