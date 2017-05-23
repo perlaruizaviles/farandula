@@ -29,7 +29,7 @@ const initialState = {
       depart: undefined,
       return: undefined
     }),
-    price: '999.99'
+    order:'price-low-first'
   })
 };
 

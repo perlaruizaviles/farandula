@@ -3,10 +3,9 @@ import {syncHistoryWithStore} from "react-router-redux";
 import {browserHistory, IndexRedirect, Route, Router} from "react-router";
 import * as routes from "./routes";
 
-
 import Main from "./components/Main";
 import Summary from "./components/Summary";
-import TravelResults from "./components/TravelResults";
+import TravelResults from "./containers/TravelResults";
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);
