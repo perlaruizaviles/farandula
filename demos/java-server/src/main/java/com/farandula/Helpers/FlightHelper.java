@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -47,7 +48,7 @@ public class FlightHelper {
                 .getSegments()
                 .stream()
                 .map(this::parseSegmentToFlightSegment)
-                .filter( segment -> segment != null )
+                .filter(segment -> segment != null)
                 .collect(Collectors.toList());
 
         Flight flight = new Flight()
@@ -97,16 +98,18 @@ public class FlightHelper {
             String airlineMarketing = segment.getMarketingAirlineName();
             String airlineOperating = segment.getOperatingAirlineCode();
             String airplane = segment.getAirplaneData();
+            List<String> cabinTypes = this.getCabinInformationFromSegment(segment);
 
             FlightSegment flightSegment = new FlightSegment()
-                    .setDepartureAirport( departureSegmentAirport )
+                    .setDepartureAirport(departureSegmentAirport)
                     .setDepartureDate(departureSegmentDate)
                     .setArrivalAirport(arrivalSegmentAirport)
                     .setArrivalDate(arrivalSegmentDate)
                     .setDuration(duration)
                     .setAirLineMarketingName(airlineMarketing)
                     .setAirLineOperationName(airlineOperating)
-                    .setAirplaneData(airplane);
+                    .setAirplaneData(airplane)
+                    .setCabinTypes(cabinTypes);
 
             return flightSegment;
 
@@ -131,6 +134,16 @@ public class FlightHelper {
         return itinerary.getAirlegs()
                 .stream()
                 .map(airLeg -> this.parseAirlegToFlight(airLeg))
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getCabinInformationFromSegment(Segment segment) {
+
+        return segment.
+                getSeatsAvailable()
+                .stream()
+                .map(seat -> seat.getClassCabin().toString())
+                .distinct()
                 .collect(Collectors.toList());
     }
 }

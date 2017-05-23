@@ -4,6 +4,7 @@ import com.farandula.Helpers.DateParser;
 import com.nearsoft.farandula.models.AirLeg;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by antoniohernandez on 5/10/17.
@@ -19,6 +20,8 @@ public class FlightSegment {
     private String airLineMarketingName;
     private String airLineOperationName;
     private String airplaneData;
+
+    private List<String> cabinTypes;
 
     public Airport getDepartureAirport() {
         return departureAirport;
@@ -77,7 +80,7 @@ public class FlightSegment {
         return this;
     }
 
-    public String getAirLineName() {
+    public String getAirLineMarketingName() {
         return airLineMarketingName;
     }
 
@@ -101,6 +104,15 @@ public class FlightSegment {
 
     public FlightSegment setAirLineOperationName(String airLineOperationName) {
         this.airLineOperationName = airLineOperationName;
+        return this;
+    }
+
+    public List<String> getCabinTypes() {
+        return cabinTypes;
+    }
+
+    public FlightSegment setCabinTypes(List<String> cabinTypes) {
+        this.cabinTypes = cabinTypes;
         return this;
     }
 }
