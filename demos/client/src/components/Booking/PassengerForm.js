@@ -1,8 +1,8 @@
 import React from "react";
 import {Field, FormSection} from "redux-form";
-import {renderField} from "../util/formFields";
-import * as validate from "../util/valitations";
-import travelOptions from "../data/travelOptions";
+import {renderField} from "../../util/formFields";
+import * as validate from "../../util/valitations";
+import travelOptions from "../../data/travelOptions";
 
 class PassengerForm extends React.Component {
    render() {

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import ItineraryList from '../components/ItineraryList';
+import ItineraryList from '../components/Avail/ItineraryList';
 
 export default connect(
     state => {

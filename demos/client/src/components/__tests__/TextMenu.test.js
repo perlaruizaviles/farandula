@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import TextMenu from '../TextMenu';
+import TextMenu from '../Common/TextMenu';
 import {List} from 'immutable';
 
 function setup(){

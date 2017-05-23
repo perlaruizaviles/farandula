@@ -1,14 +1,14 @@
 import React from "react";
-import TextMenu from "./TextMenu";
-import DateSelector from "./DateSelector";
+import TextMenu from "../Common/TextMenu";
+import DateSelector from "../Common/DateSelector";
 import AirportSearch from "./AirportSearch";
-import ExchangeButton from "./ExchangeButton";
-import travelOptions from "../data/travelOptions";
-import DropTravelMenu from "./DropTravelMenu";
+import ExchangeButton from "../Common/ExchangeButton";
+import travelOptions from "../../data/travelOptions";
+import DropTravelMenu from "../Common/DropTravelMenu";
 
 
 import {Button, Dimmer, Icon, Loader} from "semantic-ui-react";
-import {getIata} from "../util/matcher";
+import {getIata} from "../../util/matcher";
 
 class TravelSearch extends React.Component {
 

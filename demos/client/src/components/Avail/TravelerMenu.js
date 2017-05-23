@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid} from 'semantic-ui-react';
 import {titleize, pluralize} from 'inflection';
-import CounterButtons from './CounterButtons';
+import CounterButtons from '../Common/CounterButtons';
 import PropTypes from 'prop-types';
 
 const TravelerMenu = ({config, options, travelerTypeCountChange}) => (

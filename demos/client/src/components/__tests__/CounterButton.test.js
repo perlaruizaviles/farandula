@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import expect from 'expect';
-import CounterButtons from '../CounterButtons';
+import CounterButtons from '../Common/CounterButtons';
 
 function setup() {
   const props = {

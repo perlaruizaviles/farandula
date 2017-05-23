@@ -1,5 +1,5 @@
 import React from 'react';
-import AirportSearch from '../AirportSearch';
+import AirportSearch from '../Avail/AirportSearch';
 
 export default () => (
   <div>

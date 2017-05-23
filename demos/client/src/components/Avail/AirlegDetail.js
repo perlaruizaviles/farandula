@@ -1,6 +1,6 @@
 import React from 'react';
 import AirlegSegment from './AirlegSegment';
-import {diffFormatted} from '../util/dates';
+import {diffFormatted} from '../../util/dates';
 import moment from 'moment';
 
 const AirlegDetail = ({departureDate, arrivalDate, departureAirport, arrivalAirport, segments}) => {

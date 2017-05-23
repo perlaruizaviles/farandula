@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import expect from 'expect';
-import AirportSearch from '../AirportSearch';
+import AirportSearch from '../Avail/AirportSearch';
 import {List} from 'immutable';
 
 function setup() {

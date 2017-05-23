@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import expect from 'expect';
-import DateSelector from '../DateSelector';
+import DateSelector from '../Common/DateSelector';
 import moment from 'moment';
 
 const now = moment();

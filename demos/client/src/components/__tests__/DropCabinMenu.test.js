@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import DropCabinMenu from '../DropCabinMenu';
+import DropCabinMenu from '../Common/DropCabinMenu';
 import {Map, List} from 'immutable';
 
 function setup(){
