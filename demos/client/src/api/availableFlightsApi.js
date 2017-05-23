@@ -1,15 +1,15 @@
-import * as endpoint from './apiEndpoints';
-import axios from 'axios';
-import {List} from 'immutable';
+import * as endpoint from "./apiEndpoints";
+import axios from "axios";
+import {List} from "immutable";
 
 class AvailableFlightsApi {
 
   static getAvailableFlights(search) {
     return new Promise((resolve, reject) => {
       axios({
-        method:'get',
+        method: 'get',
         url: endpoint.TEMP_AVAILABLE_FLIGHTS_URL, //TODO: Change to AVAILABLE_FLIGHTS_URL when backend work well again
-        responseType:'json',
+        responseType: 'json',
         params: {
           departureAirportCode: search.departureAirport,
           departingDate: search.departingDate,

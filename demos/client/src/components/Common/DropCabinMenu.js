@@ -1,17 +1,17 @@
-import React from 'react';
-import {Dropdown} from 'semantic-ui-react';
-import {titleize} from 'inflection';
-import PropTypes from 'prop-types';
+import React from "react";
+import {Dropdown} from "semantic-ui-react";
+import {titleize} from "inflection";
+import PropTypes from "prop-types";
 
 
 const DropCabinMenu = ({options, config, cabinChange}) => (
-    <Dropdown text={titleize(config.get('cabin'))} fluid>
-        <Dropdown.Menu>
-            {options
-                .get('cabin')
-                .map(cabin => <Dropdown.Item key={cabin} onClick={() => cabinChange(cabin)}>{titleize(cabin)}</Dropdown.Item>)}
-        </Dropdown.Menu>
-    </Dropdown>
+  <Dropdown text={titleize(config.get('cabin'))} fluid>
+    <Dropdown.Menu>
+      {options
+        .get('cabin')
+        .map(cabin => <Dropdown.Item key={cabin} onClick={() => cabinChange(cabin)}>{titleize(cabin)}</Dropdown.Item>)}
+    </Dropdown.Menu>
+  </Dropdown>
 );
 
 DropCabinMenu.propTypes = {

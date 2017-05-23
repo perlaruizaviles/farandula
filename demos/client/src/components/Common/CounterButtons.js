@@ -1,14 +1,14 @@
-import React from 'react';
-import { Button } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+import React from "react";
+import {Button} from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 
 const CounterButtons = ({count, travelerTypeCountChange, typeTraveler}) => (
-    <Button.Group>
-        <Button onClick={() => travelerTypeCountChange(typeTraveler, count-1)}> - </Button>
-        <Button.Or text={count}/>
-        <Button onClick={() => travelerTypeCountChange(typeTraveler, count+1)}> + </Button>
-    </Button.Group>
+  <Button.Group>
+    <Button onClick={() => travelerTypeCountChange(typeTraveler, count - 1)}> - </Button>
+    <Button.Or text={count}/>
+    <Button onClick={() => travelerTypeCountChange(typeTraveler, count + 1)}> + </Button>
+  </Button.Group>
 );
 
 CounterButtons.propTypes = {

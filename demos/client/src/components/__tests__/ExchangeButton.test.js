@@ -1,11 +1,12 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import expect from 'expect';
-import ExchangeButton from '../Common/ExchangeButton';
+import React from "react";
+import {shallow} from "enzyme";
+import expect from "expect";
+import ExchangeButton from "../Common/ExchangeButton";
 
 function setup() {
   const props = {
-    handleExchange: () => {}
+    handleExchange: () => {
+    }
   };
   return shallow(<ExchangeButton {...props} />);
 }

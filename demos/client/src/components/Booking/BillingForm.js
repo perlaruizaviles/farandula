@@ -8,12 +8,15 @@ class BillingForm extends React.Component {
   render() {
     return <FormSection name="billing">
       <div className="equal width fields">
-        <Field name="street1" type="text" component={renderField} label="Street 1*" validate={[validate.required, validate.minLength5]}/>
+        <Field name="street1" type="text" component={renderField} label="Street 1*"
+               validate={[validate.required, validate.minLength5]}/>
         <Field name="street2" type="text" component={renderField} label="Street 2"/>
       </div>
       <div className="equal width fields">
-        <Field name="zip" type="number" component={renderField} label="Postal/Zip code*" validate={[validate.required, validate.zip]}/>
-        <Field name="city" type="text" component={renderField} label="City*" validate={[validate.required,validate.alphaNum, validate.minLength2]}/>
+        <Field name="zip" type="number" component={renderField} label="Postal/Zip code*"
+               validate={[validate.required, validate.zip]}/>
+        <Field name="city" type="text" component={renderField} label="City*"
+               validate={[validate.required, validate.alphaNum, validate.minLength2]}/>
       </div>
       <div className="equal width fields">
         <div className="field">
@@ -31,11 +34,13 @@ class BillingForm extends React.Component {
 
       <h3>Card Details</h3>
       <div className="equal width fields">
-      <Field name="nameOnCard" type="text" component={renderField} label="Name on card*" validate={[validate.required, validate.alphaNum, validate.minLength5]}/>
-        <Field name="cardNumber" type="number" component={renderField} label="Credit card #*" validate={[validate.required, validate.creditCard]}/>
+        <Field name="nameOnCard" type="text" component={renderField} label="Name on card*"
+               validate={[validate.required, validate.alphaNum, validate.minLength5]}/>
+        <Field name="cardNumber" type="number" component={renderField} label="Credit card #*"
+               validate={[validate.required, validate.creditCard]}/>
       </div>
       <div className="equal width fields">
-      <div className="field">
+        <div className="field">
           <label>Month</label>
           <Field name="month" component="select" validate={validate.required}>
             <option />
@@ -53,7 +58,8 @@ class BillingForm extends React.Component {
             )}
           </Field>
         </div>
-      <Field name="securityCode" type="number" component={renderField} label="Security code*" validate={[validate.required, validate.securityCode]}/>
+        <Field name="securityCode" type="number" component={renderField} label="Security code*"
+               validate={[validate.required, validate.securityCode]}/>
       </div>
 
     </FormSection>
