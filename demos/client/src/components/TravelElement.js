@@ -11,17 +11,22 @@ class TravelElement extends React.Component {
     }
 
     open = () => {
-        if(this.state.isOpened==='true') this.setState({isOpened:'false'});
-        if(this.state.isOpened==='false') this.setState({isOpened:'true'});
+        if(this.state.isOpened === 'true') this.setState({isOpened:'false'});
+        if(this.state.isOpened === 'false') this.setState({isOpened:'true'});
     }
     
     render(){
+        let travel = {
+            price: this.state.data.fares.totalPrice.amount,
+            airlegs: this.state.data.airlegs
+        };
+
         return(
             <Segment>
                 <Item.Group divided>
-                    <TravelSummary open={this.open}/>
+                    <TravelSummary open={this.open} airlegs={travel.airlegs} price={travel.price}/>
                     <Collapse isOpened={this.state.isOpened==='true'}>
-                        <TravelDetail/>
+                        <TravelDetail airlegs={travel.airlegs}/>
                     </Collapse>
                 </Item.Group>
             </Segment>

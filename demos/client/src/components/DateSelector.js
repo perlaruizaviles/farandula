@@ -4,7 +4,6 @@ import {Input} from 'semantic-ui-react';
 import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
 
-
 const DateSelector = ({minDate, maxDate, startDate, endDate, selected, changeTravelDate}) => (
     <DatePicker
         customInput={<Input icon="calendar outline" style={{width:'150px', color: '#216ba5'}}/>}

@@ -1,9 +1,9 @@
 import React from 'react';
 import FlightDetail from './FlightDetail';
 
-const TravelDetail = () => (
+const TravelDetail = ({airlegs}) => (
     <div>
-        <FlightDetail/>
+        {airlegs.map((airleg) => <FlightDetail key={Math.random()} segments={airleg.segments}/>)}
     </div>
 )
 export default TravelDetail;
