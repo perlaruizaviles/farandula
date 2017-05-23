@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import TravelResults from '../components/TravelResults';
+import ItineraryList from '../components/ItineraryList';
 
 export default connect(
     state => {
@@ -11,4 +11,4 @@ export default connect(
     dispatch => {
         return {}
     }
-)(TravelResults);
+)(ItineraryList);

@@ -2,7 +2,7 @@ import React from 'react';
 import {Icon} from 'semantic-ui-react';
 import {diffFormatted, formatTime} from '../util/dates';
 
-const AirlegSummary = ({departureDate, arrivalDate, departureAirport, arrivalAirport, segments}) => {
+const Airleg = ({departureDate, arrivalDate, departureAirport, arrivalAirport, segments}) => {
     let departureTime = formatTime(departureDate);
     let arrivalTime = formatTime(arrivalDate);
     let totalTime = diffFormatted(departureDate, arrivalDate);
@@ -24,4 +24,4 @@ function getStopsIata(segments){
     return iatas;
 }
 
-export default AirlegSummary;
+export default Airleg;
