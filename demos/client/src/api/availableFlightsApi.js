@@ -8,7 +8,7 @@ class AvailableFlightsApi {
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
-        url: endpoint.TEMP_AVAILABLE_FLIGHTS_URL, //TODO: Change to AVAILABLE_FLIGHTS_URL when backend work well again
+        url: endpoint.AVAILABLE_FLIGHTS_URL,
         responseType: 'json',
         params: {
           departureAirportCode: search.departureAirport,
