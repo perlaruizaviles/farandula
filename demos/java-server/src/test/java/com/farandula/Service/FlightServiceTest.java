@@ -10,6 +10,7 @@ import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Fares;
 import com.nearsoft.farandula.models.Itinerary;
 import com.nearsoft.farandula.models.Segment;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -54,17 +55,14 @@ public class FlightServiceTest {
         Assert.assertEquals(expected, result);
     }
 
-
     @BeforeClass public static void prepareFlightItineraryLists() {
 
-
-
         List<Segment> segmentList = new ArrayList<>();
-        for(int i = 0; i < 2; i++) {
+        for(int i = 1; i < 3; i++) {
             for (int j = 0; j < 5; j++) {
                 Itinerary itinerary = new Itinerary();
 
-                for (int k = 0; k < (i == 1 ? 2 : 1) ; k++) {
+                for (int k = 0; k < i ; k++) {
 
                     AirLeg leg = new AirLeg();
 
@@ -93,7 +91,7 @@ public class FlightServiceTest {
 
                 }
                 itinerary.setPrice(new Fares());
-                if (i == 0) {
+                if (i == 1) {
                     itineraryListOneWay.add(itinerary);
                 }
                 else {
@@ -103,12 +101,13 @@ public class FlightServiceTest {
         }
     }
 
-
-
+    @AfterClass public void cleanItineraryLists() {
+        itineraryListOneWay = null;
+        itineraryListRoundTrip = null;
+    }
 
     @Test
     public void parseItineraryIntoFlightItinerary() {
-
 
         List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryListRoundTrip, "round");
 

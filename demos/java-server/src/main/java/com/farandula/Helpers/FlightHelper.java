@@ -47,6 +47,7 @@ public class FlightHelper {
                 .getSegments()
                 .stream()
                 .map(this::parseSegmentToFlightSegment)
+                .filter( segment -> segment != null )
                 .collect(Collectors.toList());
 
         Flight flight = new Flight()

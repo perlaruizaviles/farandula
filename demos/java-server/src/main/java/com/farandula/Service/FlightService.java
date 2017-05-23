@@ -33,6 +33,20 @@ public class FlightService {
     @Autowired
     PassengerHelper passengerHelper;
 
+    public static boolean validIataLength(String iata) {
+        return (iata.length() == 3) || (iata.length() == 2);
+    }
+
+    public static LocalDateTime parseDateTime(String date, String time) {
+
+        String dateTime = date + "T" + time;
+
+        LocalDateTime departureDateTime = LocalDateTime.parse(
+                dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        return departureDateTime;
+    }
+
     public List<FlightItinerary> getResponseFromSearch(String departureAirportCode,
                                                        String departingDate,
                                                        String departingTime,
@@ -88,7 +102,6 @@ public class FlightService {
         return null;
     }
 
-
     public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {
         //TODO: Build fares object
 
@@ -105,7 +118,6 @@ public class FlightService {
                 })
                 .collect(Collectors.toList());
     }
-
 
     public List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList) {
         List<Flight> flights = new ArrayList<>();
@@ -142,41 +154,9 @@ public class FlightService {
                     .setArrivalAirport(arrivalAirport)
                     .setArrivalDate(arrivalDate)
                     .setSegments(flightSegments);
-        //Flight(departureAirport, departureDate, arrivalAirport, arrivalDate, flightSegments);
+
             flights.add(flight);
         }
         return flights;
     }
-
-    public static boolean validIataLength(String iata) {
-        return (iata.length() == 3) || (iata.length() == 2);
-    }
-
-
-    public static LocalDateTime parseDateTime(String date, String time) {
-
-        String dateTime = date + "T" + time;
-
-        LocalDateTime departureDateTime = LocalDateTime.parse(
-                dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-
-        return departureDateTime;
-    }
-//
-//    public List<AirLeg> getDepartAirLegs( List<AirLeg>  legs){
-//
-//        return IntStream.range(0, legs.size())
-//                .filter( i -> i%2 == 0 )
-//                .mapToObj( i -> legs.get(i) )
-//                .collect(Collectors.toList());
-//
-//    }
-//
-//    public List<AirLeg> getReturnAirLegs( List<AirLeg>  legs){
-//
-//        return IntStream.range(0, legs.size())
-//                .filter( i -> i%2 == 1 )
-//                .mapToObj( i -> legs.get(i) )
-//                .collect(Collectors.toList());
-//    }
 }

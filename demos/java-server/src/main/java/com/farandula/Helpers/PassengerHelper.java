@@ -14,12 +14,8 @@ public class PassengerHelper {
 
         //children:,infants:1;2,infantsOnSeat:,adults:2
 
-        AgeManager ageManager =  new AgeManager();
+        AgeManager ageManager = new AgeManager();
         //TODO: Complementar con tipo de pasajeros y edades
-//        final Pattern pattern = Pattern.compile("[a-z]:\\d,[a-z]:\\d");
-//        if (!pattern.matcher(passengerStringList.toLowerCase()).matches()) {
-//            throw new IllegalArgumentException("Invalid String");
-//        }
 
         String[] passengerType = passengerStringList.split(",");
 
@@ -50,7 +46,6 @@ public class PassengerHelper {
         int[] infantsAges = Arrays.stream(infantsAgesString)
                 .mapToInt(Integer::parseInt)
                 .toArray();
-
 
         ageManager.setChildAges(childrenAges);
         ageManager.setInfantAges(infantsAges);
