@@ -3,6 +3,7 @@ package com.nearsoft.farandula.models;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -15,6 +16,9 @@ import java.util.Map;
  * Created by pruiz on 4/10/17.
  */
 public class SearchCommand {
+
+    //LOGGER
+    static org.slf4j.Logger LOGGER = LoggerFactory.getLogger( SearchCommand.class );
 
     private List<String> departureAirports = new ArrayList<>();
     private List<String> arrivalAirports = new ArrayList<>();
@@ -93,6 +97,8 @@ public class SearchCommand {
     }
 
     public List<Itinerary> execute() throws IOException, FarandulaException {
+
+        LOGGER.info("Search Command info: " + this.toString() );
         checkValidSearchCommand();
 
         return flightManager.getAvail(this);
@@ -104,10 +110,6 @@ public class SearchCommand {
 
     public List<String> getArrivalAirports() {
         return arrivalAirports;
-    }
-
-    public void setArrivalAirports(List<String> arrivalAirports) throws FarandulaException {
-        this.arrivalAirports = arrivalAirports;
     }
 
     public List<LocalDateTime> getDepartingDates() {
@@ -232,4 +234,19 @@ public class SearchCommand {
 
     }
 
+    @Override
+    public String toString() {
+        return "SearchCommand{" +
+                "departureAirports=" + departureAirports +
+                ", arrivalAirports=" + arrivalAirports +
+                ", departingDates=" + departingDates +
+                ", returningDates=" + returningDates +
+                ", passengersMap=" + passengersMap +
+                ", passengers=" + passengers +
+                ", flightManager=" + flightManager +
+                ", offSet=" + offSet +
+                ", CabinClass=" + CabinClass +
+                ", type=" + type +
+                '}';
+    }
 }

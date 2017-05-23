@@ -15,6 +15,8 @@ import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +34,8 @@ import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
 public class SabreFlightManager implements FlightManager {
 
+    //Log
+    private static Logger LOGGER = LoggerFactory.getLogger(SabreFlightManager.class);
     private static Map<String, String> codeToClassMap = new HashMap<>();
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
     private static String clientId;
@@ -82,8 +86,9 @@ public class SabreFlightManager implements FlightManager {
         ObjectMapper mapper = new ObjectMapper();
 
         //SabreJSONRequest.getRequest helps to create the JSON request depending of the search object
-        JsonNode rootNode = mapper.readTree(SabreJSONRequest.getRequest(search));
-
+        String request = SabreJSONRequest.getRequest(search);
+        LOGGER.info("Sabre Request:" + request);
+        JsonNode rootNode = mapper.readTree(request);
         return rootNode.toString();
 
     }
@@ -103,9 +108,13 @@ public class SabreFlightManager implements FlightManager {
         try {
             Request request = buildRequestForAvail(search);
             InputStream responseStream = sendRequest(request);
-            return parseAvailResponse(responseStream, search);
+            List<Itinerary> result = parseAvailResponse(responseStream, search);
 
+            LOGGER.info( "Sabre results: " + result.toString() );
+
+            return  result;
         } catch (Exception e) {
+            LOGGER.error( "error retrieving availability"  );
             throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
         }
 
@@ -121,7 +130,7 @@ public class SabreFlightManager implements FlightManager {
         */
 
         if (date.isAfter(LocalDateTime.now().plusDays(331))) {
-
+            LOGGER.error( "Is impossible to search for flights after 331 days." );
             throw new FarandulaException(ErrorType.VALIDATION, "Is impossible to search for flights after 331 days.");
 
         }
@@ -151,10 +160,13 @@ public class SabreFlightManager implements FlightManager {
     public List<Itinerary> parseAvailResponse(InputStream response, SearchCommand searchCommand) throws IOException, FarandulaException {
 
         ReadContext ctx = JsonPath.parse(response);
-        checkForErrors( ctx );
+
+        LOGGER.info("Sabre response: " + ctx.jsonString());
+
+        checkForErrors(ctx);
 
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
-        
+
         List<Itinerary> itineraries = new ArrayList<>();
         for (Object pricedItinerary : pricedItineraries) {
 
@@ -168,7 +180,7 @@ public class SabreFlightManager implements FlightManager {
             ArrayList<List<Map>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
             getSeats(itinerary.getAirlegs().get(0), cabinsBySegment);
 
-            if ( searchCommand.getType() == FlightType.ROUNDTRIP )
+            if (searchCommand.getType() == FlightType.ROUNDTRIP)
                 getSeats(itinerary.getAirlegs().get(1), cabinsBySegment);
 
             //getting prices
@@ -183,18 +195,20 @@ public class SabreFlightManager implements FlightManager {
     }
 
     private void checkForErrors(ReadContext ctx) throws FarandulaException {
-        if ( ctx.read( "$..Errors[*]" ) != null && ((JSONArray)ctx.read("$..Errors[*]")).size()>0 ){
+        if (ctx.read("$..Errors[*]") != null && ((JSONArray) ctx.read("$..Errors[*]")).size() > 0) {
             JSONArray error = ctx.read("$..Errors[*]");
             for (Object er : error) {
                 Map<String, Object> map = (Map<String, Object>) ((JSONArray) er).get(0);
+                LOGGER.error(  map.get("ShortText").toString() );
                 throw new FarandulaException(ErrorType.ACCESS_ERROR, map.get("ShortText").toString());
 
             }
         }
 
-        if ( ctx.read( "$..errorCode") != null && ((JSONArray)ctx.read("$..errorCode")).size()>0  ){
+        if (ctx.read("$..errorCode") != null && ((JSONArray) ctx.read("$..errorCode")).size() > 0) {
             JSONArray error = ctx.read("$..errorCode");
-            throw new FarandulaException(ErrorType.ACCESS_ERROR,  error.get(0).toString() );
+            LOGGER.error( error.get(0).toString() );
+            throw new FarandulaException(ErrorType.ACCESS_ERROR, error.get(0).toString());
         }
     }
 
@@ -297,7 +311,7 @@ public class SabreFlightManager implements FlightManager {
             leg.setArrivalDate(segments.get(segments.size() - 1).getArrivalDate());
             leg.setSegments(segments);
 
-            itinerary.getAirlegs().add( leg );
+            itinerary.getAirlegs().add(leg);
 
         }
 

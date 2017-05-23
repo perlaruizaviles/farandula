@@ -4,7 +4,6 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
-import com.sun.media.sound.AbstractMidiDeviceProvider;
 import okhttp3.Request;
 import org.junit.jupiter.api.Test;
 

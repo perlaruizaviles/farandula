@@ -62,5 +62,17 @@ public class AirLeg {
         this.segments = segments;
     }
 
+
+    @Override
+    public String toString() {
+        return "AirLeg{" +
+                "id='" + id + '\'' +
+                ", departureAirportCode='" + departureAirportCode + '\'' +
+                ", departingDate=" + departingDate +
+                ", arrivalAirportCode='" + arrivalAirportCode + '\'' +
+                ", arrivalDate=" + arrivalDate +
+                ", segments=" + segments +
+                '}';
+    }
 }
 

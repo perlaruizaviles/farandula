@@ -27,4 +27,11 @@ public class Itinerary {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Itinerary{" +
+                "airlegs=" + airlegs +
+                ", price=" + price +
+                '}';
+    }
 }

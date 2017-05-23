@@ -8,6 +8,8 @@ import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.CurrencyIATACodesHelper;
 import com.nearsoft.farandula.utilities.XmlUtils;
 import okhttp3.OkHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -20,8 +22,6 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
 
@@ -30,6 +30,8 @@ import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassTyp
  */
 public class TravelportFlightManager implements FlightManager {
 
+    //Logger
+    private Logger LOGGER = LoggerFactory.getLogger( TravelportFlightManager.class );
     private static String apiKey;
     private static String apiPassword;
     private static String targetBranch;
@@ -260,7 +262,7 @@ public class TravelportFlightManager implements FlightManager {
             fares.setTotalPrice( totalPrice );
 
         } else {
-            Logger.getGlobal().log(Level.WARNING, "The segment: " + seg.toString() + " does not have prices.");
+            LOGGER.warn("The segment: " + seg.toString() + " does not have prices.");
         }
     }
 
