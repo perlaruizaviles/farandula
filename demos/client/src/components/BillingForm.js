@@ -1,66 +1,63 @@
-import React from 'react';
-import {Form, Divider} from 'semantic-ui-react';
+import React from "react";
+import {Field, FormSection} from "redux-form";
+import {renderField} from "../util/formFields";
+import * as validate from "../util/valitations";
+import travelOptions from "../data/travelOptions";
 
-const states = [
-    {text: 'Arizona', value: '1'},
-    {text: 'Arkansas', value: '2'},
-    {text: 'California', value: '3'}
-];
+class BillingForm extends React.Component {
+  render() {
+    return <FormSection name="billing">
+      <div className="equal width fields">
+        <Field name="street1" type="text" component={renderField} label="Street 1*" validate={[validate.required, validate.minLength5]}/>
+        <Field name="street2" type="text" component={renderField} label="Street 2"/>
+      </div>
+      <div className="equal width fields">
+        <Field name="zip" type="number" component={renderField} label="Postal/Zip code*" validate={[validate.required, validate.zip]}/>
+        <Field name="city" type="text" component={renderField} label="City*" validate={[validate.required,validate.alphaNum, validate.minLength2]}/>
+      </div>
+      <div className="equal width fields">
+        <div className="field">
+          <label>State/Region</label>
+          <Field name="state" component="select" validate={validate.required}>
+            <option />
+            {travelOptions.get('states').map((state) =>
+              <option key={state.value} value={state.value}>{state.text}</option>
+            )}
+          </Field>
+        </div>
+      </div>
+      <div className="ui section divider">
+      </div>
 
-const years = [
-    {text:'1990', value:'1'},
-    {text:'1991', value:'2'},
-    {text:'1992', value:'3'}
-];
+      <h3>Card Details</h3>
+      <div className="equal width fields">
+      <Field name="nameOnCard" type="text" component={renderField} label="Name on card*" validate={[validate.required, validate.alphaNum, validate.minLength5]}/>
+        <Field name="cardNumber" type="number" component={renderField} label="Credit card #*" validate={[validate.required, validate.creditCard]}/>
+      </div>
+      <div className="equal width fields">
+      <div className="field">
+          <label>Month</label>
+          <Field name="month" component="select" validate={validate.required}>
+            <option />
+            {travelOptions.get('months').map((month) =>
+              <option key={month.value} value={month.value}>{month.text}</option>
+            )}
+          </Field>
+        </div>
+        <div className="field">
+          <label>Year</label>
+          <Field name="year" component="select" validate={validate.required}>
+            <option />
+            {travelOptions.get('years').map((year) =>
+              <option key={year.value} value={year.value}>{year.text}</option>
+            )}
+          </Field>
+        </div>
+      <Field name="securityCode" type="number" component={renderField} label="Security code*" validate={[validate.required, validate.securityCode]}/>
+      </div>
 
-const months = [
-    { text: 'January', value: '1'},
-    { text: 'February', value: '2'},
-    { text: 'March', value: '3'},
-    { text: 'April', value: '4'},
-    { text: 'May', value: '5'},
-    { text: 'June', value: '6'},
-    { text: 'July', value: '7'},
-    { text: 'August', value: '8'},
-    { text: 'September', value: '9'},
-    { text: 'October', value: '10'},
-    { text: 'November', value: '11'},
-    { text: 'December', value: '12'},
-];
-
-const countries = [{text:'United States', value: '1'}];
-
-const BillingForm = () => (
-    <div>
-        <h2>Billing Information</h2>
-        <Form>
-            <Form.Group widths='equal'>
-                <Form.Input placeholder='Street (line 1)*'/>
-                <Form.Input placeholder='Street (line 2)'/>
-            </Form.Group>
-            <Form.Group widths='equal'>
-                <Form.Input placeholder='Postal Code*'/>
-                <Form.Input placeholder='City*'/>
-            </Form.Group>
-            <Form.Group widths='equal'>
-                <Form.Select placeholder='State/Region' options={states} />
-                <Form.Select defaultValue='1' options={countries} />
-            </Form.Group>
-            
-            <Divider />
-
-            <h2>Card Details</h2>
-            <Form.Group widths='equal'>
-                <Form.Input placeholder='Name On Card*'/>
-                <Form.Input placeholder='Creadit Card Number*'/>
-            </Form.Group>
-            <Form.Group widths='equal'>
-                <Form.Select placeholder='Month*' options={months}/>
-                <Form.Select placeholder='Year*' options={years}/>
-                <Form.Input placeholder='Security Code*'/>
-            </Form.Group>
-        </Form>
-    </div>
-);
+    </FormSection>
+  }
+}
 
 export default BillingForm;

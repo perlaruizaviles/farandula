@@ -1,8 +1,9 @@
-import {Map} from 'immutable';
+import {Map} from "immutable";
 
 const initialState = {
+  ajaxCallsInProgress: 0,
   travelConfig: Map({
-    type: 'round-trip',
+    type: 'roundTrip',
     cabin: 'economy',
     travelers: Map({
       'adults': 1,
@@ -28,7 +29,7 @@ const initialState = {
       depart: undefined,
       return: undefined
     }),
-    price: '999.99'
+    order:'price-low-first'
   })
 };
 
