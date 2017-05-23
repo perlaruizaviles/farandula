@@ -8,7 +8,6 @@ const travelConfig = (state = Map({}), action) => {
       return state.set('type', action.value);
 
     case types.CHANGE_TRAVEL_DATE:
-    debugger
       if(!state.getIn(['dates', 'depart']) && !state.getIn(['dates', 'return'])) {
         state = state.setIn(['dates', 'depart'], action.date);
         state = state.setIn(['dates', 'return'], action.date);
