@@ -1,8 +1,8 @@
-import React from 'react';
-import {Provider} from 'react-redux';
+import React from "react";
+import {Provider} from "react-redux";
 
-import store from './store';
-import makeRouter from './router';
+import store from "./store";
+import makeRouter from "./router";
 
 const router = makeRouter(store);
 

@@ -1,16 +1,18 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import expect from 'expect';
-import AirportSearch from '../Avail/AirportSearch';
-import {List} from 'immutable';
+import React from "react";
+import {shallow} from "enzyme";
+import expect from "expect";
+import AirportSearch from "../Avail/AirportSearch";
 
 function setup() {
   const props = {
-    changeSelected: () => {},
-    searchChange: () => {},
+    changeSelected: () => {
+    },
+    searchChange: () => {
+    },
     airports: [{title: 'Mexicali - MXL', description: 'General Rodolfo Se1nchez Taboada International Airport'}],
     value: "Mexicali - MXL",
-    cleanField: () => {}
+    cleanField: () => {
+    }
   };
   return shallow(<AirportSearch {...props} />);
 }

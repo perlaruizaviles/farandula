@@ -84,12 +84,12 @@ export const cleanTravelTo = () => {
 export function searchAirport(query, quantum) {
   return (dispatch) => {
     return airportApi.searchAirport(query).then(airports => {
-        const filteredAirports = airports.filter(airport => {
-          return !airport.title.includes(quantum.title);
-        });
-        dispatch(searchAirportSuccess(filteredAirports));
+      const filteredAirports = airports.filter(airport => {
+        return !airport.title.includes(quantum.title);
+      });
+      dispatch(searchAirportSuccess(filteredAirports));
     }).catch(error => {
-        throw(error);
+      throw(error);
     });
   };
 }
@@ -108,9 +108,9 @@ export function searchAvailableFlights(search) {
 
 export const cleanField = quantum => {
   return (dispatch) => {
-    if (quantum === "from"){
+    if (quantum === "from") {
       dispatch(cleanTravelFrom());
-    }else if(quantum === "to"){
+    } else if (quantum === "to") {
       dispatch(cleanTravelTo());
     }
   };

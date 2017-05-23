@@ -1,10 +1,10 @@
 span.gray {
-    color:gray;
+    color: gray;
 }
 
-#results{
+#results {
     position: absolute;
-    top:100%;
+    top: 100%;
     left: 20%;
-    right:20%;
+    right: 20%;
 }

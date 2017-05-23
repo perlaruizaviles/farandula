@@ -2,8 +2,10 @@ import React from "react";
 import {Menu, Segment} from "semantic-ui-react";
 import * as routes from "../routes";
 
-const Main = ({router: {push}, location: {pathname},
-                ...props}) => (
+const Main = ({
+                router: {push}, location: {pathname},
+                ...props
+              }) => (
   <div>
     <Menu attached="top" size="large" inverted>
       <Menu.Item header onClick={() => push(routes.HOME)}>

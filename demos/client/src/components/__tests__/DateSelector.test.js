@@ -1,11 +1,11 @@
-import React from 'react';
-import {shallow, mount} from 'enzyme';
-import expect from 'expect';
-import DateSelector from '../Common/DateSelector';
-import moment from 'moment';
+import React from "react";
+import {shallow} from "enzyme";
+import expect from "expect";
+import DateSelector from "../Common/DateSelector";
+import moment from "moment";
 
 const now = moment();
-const oneYearFromNow = moment().add(1,"year");
+const oneYearFromNow = moment().add(1, "year");
 
 function setup() {
   const props = {
@@ -14,7 +14,8 @@ function setup() {
     startDate: now,
     endDate: now,
     selected: now,
-    changeTravelDate: () => {}
+    changeTravelDate: () => {
+    }
   };
   return shallow(<DateSelector {...props} />);
 }

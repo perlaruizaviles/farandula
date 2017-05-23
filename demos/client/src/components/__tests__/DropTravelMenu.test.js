@@ -1,26 +1,28 @@
-import React from 'react';
-import {shallow, mount} from 'enzyme';
-import DropTravelMenu from '../Common/DropTravelMenu';
-import {Map, List} from 'immutable';
+import React from "react";
+import {shallow} from "enzyme";
+import DropTravelMenu from "../Common/DropTravelMenu";
+import {List, Map} from "immutable";
 
-function setup(){
-    const props = {
-        config: Map({
-            cabin: 'economy',
-            travelers:Map({
-                'adults': 1,
-                'seniors': 0,
-                'youth': 0,
-                'child': 0,
-                'seat-infant': 0,
-                'lap-infant': 0
-            })
-        }),
-        options: Map({cabin: List(['economy', 'premium-economy', 'business', 'first'])}),
-        travelerTypeCountChange: () => {},
-        cabinChange: () => {}
+function setup() {
+  const props = {
+    config: Map({
+      cabin: 'economy',
+      travelers: Map({
+        'adults': 1,
+        'seniors': 0,
+        'youth': 0,
+        'child': 0,
+        'seat-infant': 0,
+        'lap-infant': 0
+      })
+    }),
+    options: Map({cabin: List(['economy', 'premium-economy', 'business', 'first'])}),
+    travelerTypeCountChange: () => {
+    },
+    cabinChange: () => {
     }
-    return shallow(<DropTravelMenu {...props} />);
+  };
+  return shallow(<DropTravelMenu {...props} />);
 }
 
 describe('Rendering DropTravelMenu ', () => {

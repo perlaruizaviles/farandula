@@ -3,15 +3,15 @@ import {Search} from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 const AirportSearch = ({changeSelected, searchChange, airports, value, cleanField}) => {
-    return(
-       <Search style={{display:'inline'}}
-        onSearchChange={(e, query) => searchChange(query)}
-        onResultSelect={(e, value) => changeSelected(value)}
-        results={airports}
-        value={value}
-        onMouseDown={(e) => cleanField()}
-       />
-    );
+  return (
+    <Search style={{display: 'inline'}}
+            onSearchChange={(e, query) => searchChange(query)}
+            onResultSelect={(e, value) => changeSelected(value)}
+            results={airports}
+            value={value}
+            onMouseDown={(e) => cleanField()}
+    />
+  );
 };
 
 AirportSearch.propTypes = {

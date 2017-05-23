@@ -31,7 +31,7 @@ export default connect(
       searchAirport: (query, quantum) => dispatch(searchAirport(query, quantum)),
       exchangeDestinations: (from, to) => dispatch(exchangeDestinations(from, to)),
       availableFlights: (search) => dispatch(searchAvailableFlights(search)),
-      cleanField:(quantum) => dispatch(cleanField(quantum))
+      cleanField: (quantum) => dispatch(cleanField(quantum))
     }
   }
 )(TravelSearch);

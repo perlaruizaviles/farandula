@@ -7,7 +7,6 @@ const REGEX_SECURITY_CODE = /^[0-9]{3,4}$/i;
 const REGEX_ALPHA_NUM = /[^a-zA-Z0-9 ]/i;
 
 
-
 export const required = value => (value ? undefined : 'Required');
 
 export const maxLength = max => value =>

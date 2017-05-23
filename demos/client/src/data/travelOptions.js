@@ -7,7 +7,7 @@ const travelOptions = Map({
   type: List(['roundTrip', 'oneWay']),
   cabin: List(['economy', 'premium-economy', 'business', 'first']),
   minDate: moment(),
-  maxDate: moment().add(1,"year"),
+  maxDate: moment().add(1, "year"),
   travelers: Map({
     'adults': List([18, 64]),
     'seniors': List([65, Infinity]),
@@ -26,24 +26,24 @@ const travelOptions = Map({
     'multi-city': List(['depart-n'])
   }),
   months: [
-    { text: 'January', value: '01'},
-    { text: 'February', value: '02'},
-    { text: 'March', value: '03'},
-    { text: 'April', value: '04'},
-    { text: 'May', value: '05'},
-    { text: 'June', value: '06'},
-    { text: 'July', value: '07'},
-    { text: 'August', value: '08'},
-    { text: 'September', value: '09'},
-    { text: 'October', value: '10'},
-    { text: 'November', value: '11'},
-    { text: 'December', value: '12'},
+    {text: 'January', value: '01'},
+    {text: 'February', value: '02'},
+    {text: 'March', value: '03'},
+    {text: 'April', value: '04'},
+    {text: 'May', value: '05'},
+    {text: 'June', value: '06'},
+    {text: 'July', value: '07'},
+    {text: 'August', value: '08'},
+    {text: 'September', value: '09'},
+    {text: 'October', value: '10'},
+    {text: 'November', value: '11'},
+    {text: 'December', value: '12'},
   ],
   years: nYearsFromNow(10),
-  states:states,
+  states: states,
   genders: [
-    {text:'Male', value:'1'},
-    {text:'Female', value:'2'}
+    {text: 'Male', value: '1'},
+    {text: 'Female', value: '2'}
   ]
 });
 

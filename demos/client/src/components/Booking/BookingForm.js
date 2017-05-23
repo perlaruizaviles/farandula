@@ -4,14 +4,14 @@ import PassengerForm from "./PassengerForm";
 import BillingForm from "./BillingForm";
 
 
-const Booking = props =>{
+const Booking = props => {
   const {handleSubmit, pristine, reset, submitting} = props;
 
-  return(
+  return (
     <form onSubmit={handleSubmit} className="ui error form">
       <h3>Passenger(s)</h3>
-      <PassengerForm name="passenger1" />
-      <PassengerForm name="passenger2" />
+      <PassengerForm name="passenger1"/>
+      <PassengerForm name="passenger2"/>
 
       <h3>Billing Information</h3>
       <BillingForm/>
