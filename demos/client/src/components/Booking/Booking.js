@@ -2,7 +2,7 @@ import React from "react";
 import {Container, Divider, Grid} from "semantic-ui-react";
 import SummaryCard from "./SummaryCard";
 import SummaryDescription from "./SummaryDescription";
-import Booking from "./Booking";
+import BookingForm from "./BookingForm";
 
 
 class Summary extends React.Component {
@@ -23,7 +23,7 @@ class Summary extends React.Component {
               </Grid.Row>
               <Divider />
               <Grid.Row>
-                <Booking onSubmit={this.submit}/>
+                <BookingForm onSubmit={this.submit}/>
               </Grid.Row>
             </Container>
 

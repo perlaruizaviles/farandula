@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import TravelSearch from "../components/TravelSearch";
+import TravelSearch from "../components/Avail/TravelSearch";
 import {
   cabinChange,
   changeTravelDate,

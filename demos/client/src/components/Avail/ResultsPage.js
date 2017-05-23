@@ -1,6 +1,6 @@
 import React from 'react';
-import ItineraryList from '../containers/ItineraryList';
-import TravelSearch from '../containers/TravelSearch';
+import ItineraryList from '../../containers/ItineraryList';
+import TravelSearch from '../../containers/TravelSearch';
 import {Container} from 'semantic-ui-react';
 
 const TravelResults = () => {

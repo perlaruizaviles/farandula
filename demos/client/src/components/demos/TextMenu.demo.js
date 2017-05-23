@@ -1,5 +1,5 @@
 import React from 'react';
-import TextMenu from '../TextMenu';
+import TextMenu from '../Common/TextMenu';
 import travelOptions from '../../data/travelOptions';
 import {List} from 'immutable';
 

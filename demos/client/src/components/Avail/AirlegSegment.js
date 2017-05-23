@@ -1,6 +1,6 @@
 import React from 'react';
 import {Divider} from 'semantic-ui-react';
-import {formatTime, diffFormatted} from '../util/dates';
+import {formatTime, diffFormatted} from '../../util/dates';
 
 const AirlegSegment = ({departureAirport, departureDate, arrivalAirport, arrivalDate, duration}) => {
     let departureTime = formatTime(departureDate);

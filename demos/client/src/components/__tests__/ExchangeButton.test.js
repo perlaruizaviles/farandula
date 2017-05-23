@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import expect from 'expect';
-import ExchangeButton from '../ExchangeButton';
+import ExchangeButton from '../Common/ExchangeButton';
 
 function setup() {
   const props = {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Dropdown, Segment} from 'semantic-ui-react';
 import DropCabinMenu from './DropCabinMenu';
-import TravelerMenu from './TravelerMenu';
-import {configTravelString} from '../util/travelConfig';
+import TravelerMenu from '../Avail/TravelerMenu';
+import {configTravelString} from '../../util/travelConfig';
 import PropTypes from 'prop-types';
 
 

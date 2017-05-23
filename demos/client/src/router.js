@@ -4,8 +4,8 @@ import {browserHistory, IndexRedirect, Route, Router} from "react-router";
 import * as routes from "./routes";
 
 import Main from './components/Main';
-import Summary from './components/Summary';
-import ResultsPage from './components/ResultsPage';
+import Summary from './components/Booking/Booking';
+import ResultsPage from './components/Avail/ResultsPage';
 
 const makeRouter = store => {
   let history = syncHistoryWithStore(browserHistory, store);
