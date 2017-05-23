@@ -118,45 +118,4 @@ public class FlightService {
                 })
                 .collect(Collectors.toList());
     }
-
-    public List<Flight> getFlightsFromAirlegList(List<AirLeg> airLegList) {
-        List<Flight> flights = new ArrayList<>();
-        for (AirLeg airleg : airLegList) {
-
-            Airport departureAirport = airportRepository.findByIataLikeIgnoreCase(airleg.getDepartureAirportCode()).get(0);
-            Airport arrivalAirport = airportRepository.findByIataLikeIgnoreCase(airleg.getArrivalAirportCode()).get(0);
-
-            LocalDateTime departureDate = airleg.getDepartingDate();
-            LocalDateTime arrivalDate = airleg.getArrivalDate();
-
-            List<FlightSegment> flightSegments = new ArrayList<>();
-
-            for (Segment segment : airleg.getSegments()) {
-
-                Airport departureSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getDepartureAirportCode()).get(0);
-                Airport arrivalSegmentAirport = airportRepository.findByIataLikeIgnoreCase(segment.getArrivalAirportCode()).get(0);
-
-                LocalDateTime departureSegmentDate = segment.getDepartureDate();
-                LocalDateTime arrivalSegmentDate = segment.getArrivalDate();
-
-                long duration = segment.getDuration();
-
-                FlightSegment flightSegment = new FlightSegment(departureSegmentAirport, departureSegmentDate, arrivalSegmentAirport,
-                        arrivalSegmentDate, duration);
-
-                flightSegments.add(flightSegment);
-
-            }
-
-            Flight flight = new Flight()
-                    .setDepartureAirport(departureAirport)
-                    .setDepartureDate(departureDate)
-                    .setArrivalAirport(arrivalAirport)
-                    .setArrivalDate(arrivalDate)
-                    .setSegments(flightSegments);
-
-            flights.add(flight);
-        }
-        return flights;
-    }
 }

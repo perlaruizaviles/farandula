@@ -101,7 +101,7 @@ public class FlightServiceTest {
         }
     }
 
-    @AfterClass public void cleanItineraryLists() {
+    @AfterClass public static void cleanItineraryLists() {
         itineraryListOneWay = null;
         itineraryListRoundTrip = null;
     }

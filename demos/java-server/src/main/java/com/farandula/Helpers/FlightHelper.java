@@ -94,8 +94,20 @@ public class FlightHelper {
 
             long duration = segment.getDuration();
 
-            FlightSegment flightSegment = new FlightSegment(departureSegmentAirport, departureSegmentDate, arrivalSegmentAirport,
-                    arrivalSegmentDate, duration);
+            String airlineMarketing = segment.getMarketingAirlineName();
+            String airlineOperating = segment.getOperatingAirlineCode();
+            String airplane = segment.getAirplaneData();
+
+            FlightSegment flightSegment = new FlightSegment()
+                    .setDepartureAirport( departureSegmentAirport )
+                    .setDepartureDate(departureSegmentDate)
+                    .setArrivalAirport(arrivalSegmentAirport)
+                    .setArrivalDate(arrivalSegmentDate)
+                    .setDuration(duration)
+                    .setAirLineMarketingName(airlineMarketing)
+                    .setAirLineOperationName(airlineOperating)
+                    .setAirplaneData(airplane);
+
             return flightSegment;
 
         } catch (AirportException e) {
@@ -104,7 +116,6 @@ public class FlightHelper {
         }
 
     }
-
 
     public ItineraryFares parseFaresToItineraryFares(Fares fares) {
         ItineraryFares itineraryFares = new ItineraryFares();
