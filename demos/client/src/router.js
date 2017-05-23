@@ -13,11 +13,9 @@ const makeRouter = store => {
     <Router history={history}>
       <Route path="/" component={Main}>
         <IndexRedirect to={routes.HOME}/>
-        <Route path={routes.HOME} component={TravelResults}/>
+        <Route path={routes.HOME} component={ResultsPage}/>
         <Route path={routes.SUMMARY} component={Summary}/>
-        <IndexRedirect to="/resultsPage"/>
-        <Route path="/resultsPage" component={ResultsPage}/>
-        <Route path="/summary" component={Summary}/>
+        <Route path={routes.RESULTS} component={ResultsPage}/>
       </Route>
     </Router>
   )
