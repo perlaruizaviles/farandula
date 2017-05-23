@@ -11,10 +11,6 @@ module Farandula
         raise NotImplementedError
       end
     end  
-
-    def self.perro 
-      puts 'perro'
-    end
      
   end 
 end
