@@ -6,10 +6,7 @@ import com.farandula.Helpers.PassengerHelper;
 import com.farandula.JavaFarandulaApplication;
 import com.farandula.models.Flight;
 import com.farandula.models.FlightItinerary;
-import com.nearsoft.farandula.models.AirLeg;
-import com.nearsoft.farandula.models.Fares;
-import com.nearsoft.farandula.models.Itinerary;
-import com.nearsoft.farandula.models.Segment;
+import com.nearsoft.farandula.models.*;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -82,6 +79,8 @@ public class FlightServiceTest {
                         segment.setArrivalAirportCode("CDG");
                         segment.setArrivalDate(departingDate.plusDays(1));
 
+                        segment.setSeatsAvailable(new ArrayList<>());
+
                         segmentList.add(segment);
                     }
 
@@ -121,7 +120,6 @@ public class FlightServiceTest {
 
     @Test
     public void parseItineraryIntoFlightItineraryOneWay() {
-
 
         List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryListOneWay, "oneWay");
 
