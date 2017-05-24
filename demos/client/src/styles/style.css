@@ -24,3 +24,7 @@ span.gray {
 .ui.segment.travelSearchSegment {
     padding-top: 0;
 }
+
+.hidden {
+    display: none !important;
+}

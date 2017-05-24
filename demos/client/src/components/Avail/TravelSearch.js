@@ -34,15 +34,12 @@ class TravelSearch extends React.Component {
 
     const isInvalidForm = (properties) => {
       if (properties.airportFrom.title === undefined) {
-        return true
+        return true;
       }
       if (properties.airportTo.title === undefined) {
-        return true
+        return true;
       }
-      if (properties.startDate === undefined) {
-        return true
-      }
-      return properties.endDate === undefined;
+      return properties.startDate === undefined;
 
     };
 
@@ -87,7 +84,8 @@ class TravelSearch extends React.Component {
                               selected={properties.startDate}
                               changeTravelDate={date => dateChange('depart', date)}/>
 
-                <DateSelector minDate={properties.minDate}
+                <DateSelector styles={(properties.selectedType === 'oneWay')? "hidden":""}
+                              minDate={properties.minDate}
                               selectsEnd
                               maxDate={properties.maxDate}
                               startDate={properties.startDate}
