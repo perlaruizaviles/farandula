@@ -25,6 +25,6 @@ span.gray {
     padding-top: 0;
 }
 
-.hidden {
+.hiddenComponent {
     display: none !important;
 }

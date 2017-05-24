@@ -84,7 +84,7 @@ class TravelSearch extends React.Component {
                               selected={properties.startDate}
                               changeTravelDate={date => dateChange('depart', date)}/>
 
-                <DateSelector styles={(properties.selectedType === 'oneWay')? "hidden":""}
+                <DateSelector styles={(properties.selectedType === 'oneWay')? "hiddenComponent":""}
                               minDate={properties.minDate}
                               selectsEnd
                               maxDate={properties.maxDate}
