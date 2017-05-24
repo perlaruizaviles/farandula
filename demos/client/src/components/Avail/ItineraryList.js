@@ -3,7 +3,7 @@ import ItineraryElement from "./ItineraryElement";
 import ItineraryListOptions from "./ItineraryListOptions";
 import {Item, Message, Segment} from "semantic-ui-react";
 
-const ItineraryList = ({travels, order, changeOrder}) => (
+const ItineraryList = ({travels, order, changeOrderPrice}) => (
   <Segment raised color="orange">
     <Item.Group divided>
       <Item>
