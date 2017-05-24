@@ -18,7 +18,8 @@ class AvailableFlightsApi {
           arrivalDate: search.arrivalDate,
           arrivalTime: search.arrivalTime,
           type: search.type,
-          passenger: search.passenger
+          passenger: search.passenger,
+          cabin: search.cabin
         }
       }).then((response) => {
         const flights = response.data;

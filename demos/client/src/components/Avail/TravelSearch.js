@@ -28,7 +28,8 @@ class TravelSearch extends React.Component {
       maxDate: travelOptions.get('maxDate'),
       startDate: config.getIn(['dates', 'depart']),
       endDate: config.getIn(['dates', 'return']),
-      travelers: config.get('travelers')
+      travelers: config.get('travelers'),
+      cabin: config.get('cabin')
     };
 
     const isInvalidForm = (properties) => {
@@ -110,7 +111,8 @@ class TravelSearch extends React.Component {
                     arrivalDate: properties.endDate.format('YYYY-MM-DD'),
                     arrivalTime: "00:00:00",
                     type: properties.selectedType,
-                    passenger: properties.travelers
+                    passenger: properties.travelers,
+                    cabin: properties.cabin
                   }) => {
                     availableFlights(search);
                   }
