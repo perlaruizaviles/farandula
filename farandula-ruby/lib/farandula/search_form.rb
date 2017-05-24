@@ -7,7 +7,7 @@ module Farandula
     attr_accessor :arrival_airport
     attr_accessor :departing_date 
     attr_accessor :returning_date 
-    attr_accessor :pasengers
+    attr_accessor :passengers
     attr_accessor :cabin_class
     # attr_accessor :offset
 
@@ -16,7 +16,7 @@ module Farandula
       arrival_airport   = nil, 
       departing_date    = nil, 
       returning_date    = nil, 
-      pasengers         = [], 
+      passengers        = [], 
       type              = :oneway, 
       cabin_class       = :economy)
       # offset            = nil, 
@@ -26,7 +26,7 @@ module Farandula
       @arrival_airport    = arrival_airport
       @departing_date     = departing_date 
       @returning_date     = returning_date 
-      @pasengers          = pasengers
+      @passengers         = passengers
       @cabin_class        = cabin_class
       # @offset             = offset
     end 
@@ -68,10 +68,10 @@ module Farandula
       end 
 
       #  TODO handle passenger buidling 
-      # def for_passengers(passengers) 
-      #   @search_form.passengers << passengers
-      #   self
-      # end
+      def with_passenger(passenger) 
+        @search_form.passengers << passenger
+        self
+      end
 
       # def limited_results_to(max_results) 
       #   @search_form.offset = max_results
@@ -83,7 +83,7 @@ module Farandula
         self
       end
 
-      def build
+      def build!
         @search_form
       end 
 

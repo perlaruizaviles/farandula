@@ -1,7 +1,9 @@
-"TPA_Extensions": {
-  "IntelliSellTransaction": {
-    "RequestType": {
-      "Name": "50ITINS"
+{
+  "TPA_Extensions": {
+    "IntelliSellTransaction": {
+      "RequestType": {
+        "Name": "50ITINS"
+      }
     }
   }
 }

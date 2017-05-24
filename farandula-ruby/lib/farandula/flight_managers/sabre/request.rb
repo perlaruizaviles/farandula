@@ -5,11 +5,18 @@ module Farandula
     module Sabre
       class Request
         
+        def format_date(date)
+          date.strftime('%FT%T')
+        end 
+
         def build_request_for!(search_form)
           @json = Jbuilder.new   
           @json.OTA_AirLowFareSearchRQ do
             build_header(@json)
             build_destination_information(@json, search_form)
+            build_travel_preferences(@json, search_form.cabin_class)
+            build_travel_info_summary(@json, search_form.passengers.size)
+            build_tpa_extensions(@json)
           end
 
           @json.target!
@@ -61,23 +68,23 @@ module Farandula
           end 
           # TODO: handle :multiple
 
-            json.OriginDestinationInformation do 
-              json.array! elements do |e|
-                build_flight_info(
-                  json, 
-                  1, 
-                  search_form.departure_airport, 
-                  search_form.departing_date, 
-                  search_form.arrival_airport
-                )
-              end 
+          json.OriginDestinationInformation do 
+            json.array! elements.each_with_index.to_a do |(element, idx)|
+              build_flight_info(
+                json, 
+                (idx + 1).to_s, 
+                element[:origin], 
+                element[:date], 
+                element[:destination]
+              )
             end 
+          end 
         end 
         
 
         def build_flight_info(json, id, departing_airport, departing_date, destination_airport) 
           json.RPH id.to_s
-          json.DepartureDateTime departing_date
+          json.DepartureDateTime format_date(departing_date)
           json.OriginLocation do 
             json.LocationCode departing_airport
           end 
@@ -146,99 +153,3 @@ module Farandula
     end # Sabre ends
   end # FlightManagers ends
 end # Farandula ends
-
-# arr = ['a', 'b', 'c']
-# j.PseudoCityCode "F9CE",
-#         j.RequestorID  {
-#           j.Type  "1",
-#           j.ID  "1",
-#           j.CompanyName  {
-
-#           }
-#         }
-
-
-
-# {
-#   "OTA_AirLowFareSearchRQ": {
-#     "Target": "Production",
-#     "POS": {
-#       "Source": [{
-#         "PseudoCityCode":"F9CE",
-#         "RequestorID": {
-#           "Type": "1",
-#           "ID": "1",
-#           "CompanyName": {
-
-#           }
-#         }
-#       }]
-#     },
-#     "OriginDestinationInformation": [{
-#       "RPH": "1",
-#       "DepartureDateTime": "${departingDate}",
-#       "OriginLocation": {
-#         "LocationCode": "${departureAirport}"
-#       },
-#       "DestinationLocation": {
-#         "LocationCode": "${arrivalAirport}"
-#       },
-#       "TPA_Extensions": {
-#         "SegmentType": {
-#           "Code": "O"
-#         }
-#       }
-#     },
-#       {
-#         "RPH": "2",
-#         "DepartureDateTime": "${returningDate}",
-#         "OriginLocation": {
-#           "LocationCode": "${arrivalAirport}"
-#         },
-#         "DestinationLocation": {
-#           "LocationCode": "${departureAirport}"
-#         },
-#         "TPA_Extensions": {
-#           "SegmentType": {
-#             "Code": "O"
-#           }
-#         }
-#       }],
-#     "TravelPreferences": {
-#       "ValidInterlineTicket": true,
-#       "CabinPref": [{
-#         "Cabin": "${classTravel}",
-#         "PreferLevel": "Preferred"
-#       }],
-#       "TPA_Extensions": {
-#         "TripType": {
-#           "Value": "Return"
-#         },
-#         "LongConnectTime": {
-#           "Min": 780,
-#           "Max": 1200,
-#           "Enable": true
-#         },
-#         "ExcludeCallDirectCarriers": {
-#           "Enabled": true
-#         }
-#       }
-#     },
-#     "TravelerInfoSummary": {
-#       "SeatsRequested": [${passengersNumber}],
-#       "AirTravelerAvail": [{
-#         "PassengerTypeQuantity": [{
-#           "Code": "ADT",
-#           "Quantity": ${passengersNumber}
-#         }]
-#       }]
-#     },
-#     "TPA_Extensions": {
-#       "IntelliSellTransaction": {
-#         "RequestType": {
-#           "Name": "50ITINS"
-#         }
-#       }
-#     }
-#   }
-# }
