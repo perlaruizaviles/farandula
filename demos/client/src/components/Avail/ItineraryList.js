@@ -7,7 +7,7 @@ const ItineraryList = ({travels, order, changeOrderPrice}) => (
   <Segment raised color="orange">
     <Item.Group divided>
       <Item>
-        <ItineraryListOptions order={order} changeOrder={changeOrder}/>
+        <ItineraryListOptions order={order} changeOrder={changeOrderPrice}/>
       </Item>
       {
         (travels)
