@@ -1,9 +1,10 @@
 import React from "react";
 import ItineraryElement from "./ItineraryElement";
-import {Message, Segment} from "semantic-ui-react";
+import {Message, Segment, Item} from "semantic-ui-react";
 
 const ItineraryList = ({travels}) => (
   <Segment raised>
+    <Item.Group divided>
     {
       (travels)
         ? travels.map((travel) => <ItineraryElement key={Math.random()} itinerary={travel}/>)
@@ -11,6 +12,7 @@ const ItineraryList = ({travels}) => (
                    header='You must search flight first to see the list!'
                    content=':P'/>
     }
+    </Item.Group>
   </Segment>
 );
 

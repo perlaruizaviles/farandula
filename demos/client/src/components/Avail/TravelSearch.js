@@ -7,7 +7,7 @@ import travelOptions from "../../data/travelOptions";
 import DropTravelMenu from "../Common/DropTravelMenu";
 
 
-import {Button, Dimmer, Icon, Loader} from "semantic-ui-react";
+import {Button, Dimmer, Icon, Loader, Segment} from "semantic-ui-react";
 import {getIata} from "../../util/matcher";
 
 class TravelSearch extends React.Component {
@@ -47,7 +47,7 @@ class TravelSearch extends React.Component {
 
 
     return (
-      <div>
+      <Segment raised className='travelSearhSegment'>
         <Dimmer active={loading} inverted>
           <Loader content='Loading'/>
         </Dimmer>
@@ -114,7 +114,7 @@ class TravelSearch extends React.Component {
             <Icon name='plane' className='large'/>
           </Button.Content>
         </Button>
-      </div>
+      </Segment>
     );
   }
 }

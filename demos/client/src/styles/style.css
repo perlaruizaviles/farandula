@@ -8,3 +8,11 @@ span.gray {
     left: 20%;
     right: 20%;
 }
+
+.ui.attached:not(.message)+.ui.attached.segment:not(.top) {
+    background-color: #f3f3f3;
+}
+
+.ui.segment.travelSearhSegment {
+    padding-top: 0;
+}

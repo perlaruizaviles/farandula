@@ -1,18 +1,16 @@
 import React from "react";
-import {Card, Dropdown} from "semantic-ui-react";
+import {Card} from "semantic-ui-react";
 
 const OptionsTravel = ({options, config}) => {
   return (
-    <Card className='orange' style={{display: 'none'}}>
+    <Card className='orange'>
       <Card.Content>
         <Card.Header>
-          Options
+          Filters
         </Card.Header>
       </Card.Content>
       <Card.Content>
-        <Dropdown>
-          <Dropdown text={config}/>
-        </Dropdown>
+        Aqui iran los filtros
       </Card.Content>
     </Card>
   )

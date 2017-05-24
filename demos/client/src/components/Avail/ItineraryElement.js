@@ -23,32 +23,29 @@ class ItineraryElement extends React.Component {
 
     return (
       <Segment>
-        <Item.Group divided>
+        <Item>
+          <Item.Image size='tiny'
+                      src='https://www.global-benefits-vision.com/wp-content/uploads/2016/02/Plane-Icon.jpg'/>
+          <Item.Content>
+            <Item.Meta>
+              <span className='cinema' style={{background: 'lightgray'}}>Multiple Airlines</span>
+            </Item.Meta>
+            <Item.Description>
 
-          <Item>
-            <Item.Image size='tiny'
-                        src='https://www.global-benefits-vision.com/wp-content/uploads/2016/02/Plane-Icon.jpg'/>
-            <Item.Content>
-              <Item.Meta>
-                <span className='cinema' style={{background: 'lightgray'}}>Multiple Airlines</span>
-              </Item.Meta>
-              <Item.Description>
+              {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg}/>)}
 
-                {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg}/>)}
+            </Item.Description>
+            <Item.Extra><Label color='blue' onClick={this.open}>View details</Label></Item.Extra>
+          </Item.Content>
+          <Item.Extra style={{width: '15%'}}>
+            <h2>${travel.price}</h2>
+            <Button className='orange' content='Book'/>
+          </Item.Extra>
+        </Item>
 
-              </Item.Description>
-              <Item.Extra><Label color='blue' onClick={this.open}>View details</Label></Item.Extra>
-            </Item.Content>
-            <Item.Extra style={{width: '15%'}}>
-              <h2>${travel.price}</h2>
-              <Button className='orange' content='Book'/>
-            </Item.Extra>
-          </Item>
-
-          <Collapse isOpened={this.state.isOpened === 'true'}>
-            {travel.airlegs.map((airleg) => <AirlegDetail key={Math.random()} {...airleg}/>)}
-          </Collapse>
-        </Item.Group>
+        <Collapse isOpened={this.state.isOpened === 'true'}>
+          {travel.airlegs.map((airleg) => <AirlegDetail key={Math.random()} {...airleg}/>)}
+        </Collapse>
       </Segment>
     )
   }
