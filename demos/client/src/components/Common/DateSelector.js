@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 const DateSelector = ({minDate, maxDate, startDate, endDate, selected, changeTravelDate}) => (
   <DatePicker
-    customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
+    customInput={<Input icon="calendar outline" style={{width: '150px', color: '#f26202'}}/>}
     minDate={minDate}
     maxDate={maxDate}
     selected={selected}
