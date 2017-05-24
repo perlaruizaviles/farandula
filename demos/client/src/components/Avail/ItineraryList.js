@@ -6,7 +6,7 @@ const ItineraryList = ({travels}) => (
   <Segment raised>
     {
       (travels)
-        ? travels.map((travel) => <ItineraryElement key={travel.key} itinerary={travel}/>)
+        ? travels.map((travel) => <ItineraryElement key={Math.random()} itinerary={travel}/>)
         : <Message warning
                    header='You must search flight first to see the list!'
                    content=':P'/>
