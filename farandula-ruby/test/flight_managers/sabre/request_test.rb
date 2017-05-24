@@ -20,7 +20,7 @@ class Farandula::RequestTest < Minitest::Test
     assert_equal(
       StringHelper.no_space(expected),
       StringHelper.no_space(@json.target!)
-      )
+    )
   end
 
   def test_that_build_header_builds_a_valid_json    

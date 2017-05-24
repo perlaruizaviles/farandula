@@ -86,7 +86,7 @@ module Farandula
           json.RPH id.to_s
           json.DepartureDateTime format_date(departing_date)
           json.OriginLocation do 
-            json.LocationCode departing_airport
+            json.LocationCode departing_airport 
           end 
 
           json.DestinationLocation do 
