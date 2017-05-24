@@ -20,8 +20,7 @@ class BillingForm extends React.Component {
       </div>
       <div className="equal width fields">
         <div className="field">
-          <label>State/Region</label>
-          <Field name="state" component="select" validate={validate.required}>
+          <Field name="state" component={renderField} type="select" label="State/Region*" validate={validate.required}>
             <option />
             {travelOptions.get('states').map((state) =>
               <option key={state.value} value={state.value}>{state.text}</option>
@@ -41,8 +40,7 @@ class BillingForm extends React.Component {
       </div>
       <div className="equal width fields">
         <div className="field">
-          <label>Month</label>
-          <Field name="month" component="select" validate={validate.required}>
+          <Field name="month" component={renderField} type="select" label="Month*" validate={validate.required}>
             <option />
             {travelOptions.get('months').map((month) =>
               <option key={month.value} value={month.value}>{month.text}</option>
@@ -50,8 +48,7 @@ class BillingForm extends React.Component {
           </Field>
         </div>
         <div className="field">
-          <label>Year</label>
-          <Field name="year" component="select" validate={validate.required}>
+          <Field name="year" component={renderField} type="select" label="Year*" validate={validate.required}>
             <option />
             {travelOptions.get('years').map((year) =>
               <option key={year.value} value={year.value}>{year.text}</option>

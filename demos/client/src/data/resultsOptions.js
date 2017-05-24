@@ -1,10 +1,7 @@
-import {Map} from "immutable";
+import {Map, List} from "immutable";
 
-const resultsOptions = Map({
-  order: Map(
-    {id: 'price-low-first', description: 'Price: Low to High'},
-    {id: 'price-high-first', description: 'Price: High to Low'}
-  )
+const resultOptions = Map({
+  order: List(['price-low-to-high','price-high-to-low'])
 });
 
-export default resultsOptions;
+export default resultOptions;

@@ -4,8 +4,8 @@ import {nYearsFromNow} from "../util/nYearsFromNow";
 import states from "../util/states.json";
 
 const travelOptions = Map({
-  type: List(['roundTrip', 'oneWay']),
-  cabin: List(['economy', 'premium-economy', 'business', 'first']),
+  type: List(['round', 'oneWay']),
+  cabin: List(['economy', 'premiumEconomy', 'business', 'first']),
   minDate: moment(),
   maxDate: moment().add(1, "year"),
   travelers: Map({
@@ -21,7 +21,7 @@ const travelOptions = Map({
     fields: List(['iata', 'city', 'name'])
   }),
   dates: Map({
-    'round-trip': List(['depart', 'return']),
+    'round': List(['depart', 'return']),
     'one-way': List(['depart']),
     'multi-city': List(['depart-n'])
   }),

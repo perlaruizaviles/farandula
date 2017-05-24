@@ -1,3 +1,7 @@
+body {
+    background-color: #f3f3f3;
+}
+
 span.gray {
     color: gray;
 }
@@ -7,4 +11,20 @@ span.gray {
     top: 100%;
     left: 20%;
     right: 20%;
+}
+
+.search-field {
+    margin: 0 0.5em;
+}
+
+.ui.attached:not(.message) + .ui.attached.segment:not(.top) {
+    background-color: #f3f3f3;
+}
+
+.ui.segment.travelSearchSegment {
+    padding-top: 0;
+}
+
+.hiddenComponent {
+    display: none !important;
 }

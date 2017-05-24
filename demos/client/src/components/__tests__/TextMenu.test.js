@@ -4,11 +4,11 @@ import TextMenu from '../Common/TextMenu';
 import {List} from 'immutable';
 
 describe('Rendering TextMenu ', () => {
-
   const props = {
-    options: List(['roundTrip', 'oneWay']),
-    selected: 'round-trip',        
-    selectType: () => {}
+    options: List(['round', 'oneWay']),
+    selected: 'round',
+    selectType: () => {
+    }
   };
 
   const tree = render(<TextMenu {...props} />);

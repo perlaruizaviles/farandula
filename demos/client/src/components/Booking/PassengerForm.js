@@ -21,8 +21,7 @@ class PassengerForm extends React.Component {
       </div>
       <div className="equal width fields">
         <div className="field">
-          <label>Gender</label>
-          <Field name="gender" component="select" validate={validate.required}>
+          <Field name="gender" component={renderField} type="select" label="Gender*" validate={validate.required}>
             <option />
             {travelOptions.get('genders').map((gender) =>
               <option key={gender.value} value={gender.value}>{gender.text}</option>
