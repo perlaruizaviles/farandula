@@ -89,4 +89,11 @@ public class Fares {
     public void setTaxPerInfant(Price taxPerInfant) {
         this.taxPerInfant = taxPerInfant;
     }
+
+    @Override
+    public String toString() {
+        return "Fares{" +
+                "basePrice=" + basePrice +
+                '}';
+    }
 }

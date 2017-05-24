@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
+import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyJson;
 import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
 public class SabreFlightManager implements FlightManager {
@@ -87,7 +88,7 @@ public class SabreFlightManager implements FlightManager {
 
         //SabreJSONRequest.getRequest helps to create the JSON request depending of the search object
         String request = SabreJSONRequest.getRequest(search);
-        LOGGER.info("Sabre Request:" + request);
+        LOGGER.info("Sabre Request: JSON-BEGIN\n{}\nJSON-END", getPrettyJson(request));
         JsonNode rootNode = mapper.readTree(request);
         return rootNode.toString();
 
@@ -103,21 +104,14 @@ public class SabreFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
+    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException, IOException {
 
-        try {
-            Request request = buildRequestForAvail(search);
-            InputStream responseStream = sendRequest(request);
-            List<Itinerary> result = parseAvailResponse(responseStream, search);
+        Request request = buildRequestForAvail(search);
+        InputStream responseStream = sendRequest(request);
+        List<Itinerary> result = parseAvailResponse(responseStream, search);
 
-            LOGGER.info( "Sabre results: " + result.toString() );
-
-            return  result;
-        } catch (Exception e) {
-            LOGGER.error( "error retrieving availability"  );
-            throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
-        }
-
+        LOGGER.info("Sabre results: {}", result);
+        return result;
     }
 
     @Override
@@ -130,12 +124,12 @@ public class SabreFlightManager implements FlightManager {
         */
 
         if (date.isAfter(LocalDateTime.now().plusDays(331))) {
-            LOGGER.error( "Is impossible to search for flights after 331 days." );
-            throw new FarandulaException(ErrorType.VALIDATION, "Is impossible to search for flights after 331 days.");
-
+            throwAndLogFactoryExceptions("Is impossible to search for flights after 331 days.",
+                    ErrorType.VALIDATION);
         }
 
     }
+
 
     private Request buildRequestForAvail(SearchCommand search) throws IOException {
         final Request.Builder builder = new Request.Builder();
@@ -161,7 +155,7 @@ public class SabreFlightManager implements FlightManager {
 
         ReadContext ctx = JsonPath.parse(response);
 
-        LOGGER.info("Sabre response: " + ctx.jsonString());
+        LOGGER.info("Sabre response:JSON-BEGIN\n{}\nJSON-END", getPrettyJson(ctx.jsonString()));
 
         checkForErrors(ctx);
 
@@ -199,16 +193,16 @@ public class SabreFlightManager implements FlightManager {
             JSONArray error = ctx.read("$..Errors[*]");
             for (Object er : error) {
                 Map<String, Object> map = (Map<String, Object>) ((JSONArray) er).get(0);
-                LOGGER.error(  map.get("ShortText").toString() );
-                throw new FarandulaException(ErrorType.ACCESS_ERROR, map.get("ShortText").toString());
-
+                throwAndLogFactoryExceptions( map.get("ShortText").toString(),
+                        ErrorType.ACCESS_ERROR );
             }
         }
 
         if (ctx.read("$..errorCode") != null && ((JSONArray) ctx.read("$..errorCode")).size() > 0) {
             JSONArray error = ctx.read("$..errorCode");
-            LOGGER.error( error.get(0).toString() );
-            throw new FarandulaException(ErrorType.ACCESS_ERROR, error.get(0).toString());
+
+            throwAndLogFactoryExceptions( error.get(0).toString(), ErrorType.ACCESS_ERROR );
+
         }
     }
 
@@ -381,4 +375,9 @@ public class SabreFlightManager implements FlightManager {
         return seg;
     }
 
+
+    private void throwAndLogFactoryExceptions(String message, ErrorType type) throws FarandulaException {
+        LOGGER.error(message, FarandulaException.class);
+        throw new FarandulaException( type , message);
+    }
 }

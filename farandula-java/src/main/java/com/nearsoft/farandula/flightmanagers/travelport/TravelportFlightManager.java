@@ -16,6 +16,7 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.soap.*;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.ParseException;
@@ -24,6 +25,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
+import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
 
 /**
  * Created by pruiz on 4/20/17.
@@ -64,23 +66,40 @@ public class TravelportFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
+    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException, IOException {
 
+
+        SOAPMessage response = null;
+        List<Itinerary> itineraries = new ArrayList<>();
         try {
-            SOAPMessage request = buildRequestForAvail(search);
-            List<Itinerary> itineraries = parseAvailResponse(request, search);
-            return itineraries;
+            response = buildRequestForAvail(search);
 
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            response.writeTo(out);
+            String strResponse = new String(out.toByteArray());
+            LOGGER.info( "Travelport response: XML-BEGIN\n{}\nXML-END", getPrettyXML( strResponse ) );
+
+            itineraries = parseAvailResponse(response, search);
+
+            LOGGER.info( "Travelport results:", itineraries );
+
+            return itineraries;
         } catch (Exception e) {
-            throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
+
+            throwAndLogFactoryExceptions( e.getMessage(), ErrorType.AVAILABILITY_ERROR );
+
         }
 
+        return itineraries;
     }
 
-    public SOAPMessage buildRequestForAvail(SearchCommand search) throws SOAPException, IOException {
+
+    public SOAPMessage buildRequestForAvail(SearchCommand search) throws IOException, SOAPException {
 
         //create SOAP envelope
         String envelope = buildEnvelopeStringFromSearch(search);
+
+        LOGGER.info( "Travelport request: XML-BEGIN\n{}\nXML-END", getPrettyXML( envelope ) );
 
         // Send SOAP Message to SOAP Server
         SOAPMessage message = buildSOAPMessage(envelope);
@@ -330,5 +349,11 @@ public class TravelportFlightManager implements FlightManager {
 
     public static String getTargetBranch() {
         return targetBranch;
+    }
+
+
+    private void throwAndLogFactoryExceptions(String message, ErrorType type) throws FarandulaException {
+        LOGGER.error(message, FarandulaException.class);
+        throw new FarandulaException( type , message);
     }
 }

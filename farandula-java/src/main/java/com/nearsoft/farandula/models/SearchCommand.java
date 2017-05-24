@@ -3,8 +3,10 @@ package com.nearsoft.farandula.models;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.soap.SOAPException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.Map;
 public class SearchCommand {
 
     //LOGGER
-    static org.slf4j.Logger LOGGER = LoggerFactory.getLogger( SearchCommand.class );
+    public static Logger LOGGER = LoggerFactory.getLogger( SearchCommand.class );
 
     private List<String> departureAirports = new ArrayList<>();
     private List<String> arrivalAirports = new ArrayList<>();
@@ -173,6 +175,11 @@ public class SearchCommand {
         // case when the returning is before the departing
         if (this.getType() == FlightType.ROUNDTRIP) {
 
+            if ( this.getDepartureAirports().size()!= 1 || this.getArrivalAirports().size()!=1  ){
+                throw new FarandulaException(ErrorType.VALIDATION,
+                        "Search parameters are not valid, HINT: in round trips the origin and arrival airport are mandatory.");
+            }
+
             if ( this.getReturningDates() ==  null || this.getReturningDates().size() == 0) {
                 throw new FarandulaException(ErrorType.VALIDATION,
                         "Search parameters are not valid, HINT: in round trips the departing and returning date are mandatory.");
@@ -250,3 +257,9 @@ public class SearchCommand {
                 '}';
     }
 }
+
+
+
+
+
+

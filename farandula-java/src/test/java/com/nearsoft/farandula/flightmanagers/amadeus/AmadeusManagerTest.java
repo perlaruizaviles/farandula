@@ -73,6 +73,41 @@ class AmadeusManagerTest {
     }
 
     @Test
+    public void realAvail_OneWayTrip() throws Exception {
+
+        initAmadeusSupplierForLuisa();
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<Itinerary> flights = Luisa.findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(2))
+                .forPassegers( Passenger.children( new int [] {5,7}) )
+                .preferenceClass(CabinClassType.ECONOMY)
+                .limitTo(2)
+                .execute();
+
+        assertTrue(flights.size() > 0);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+    }
+
+
+    @Test
     public void realAvail_RoundWayTrip() throws Exception {
 
         initAmadeusSupplierForLuisa();
@@ -243,6 +278,40 @@ class AmadeusManagerTest {
                 "&adults=1" +
                 "&number_of_results=2";
         assertEquals(expectedURL, searchURL);
+
+    }
+
+    //@Test
+    void buildLinkFromSearchBUGAIRLINESCODES() throws IOException, FarandulaException {
+
+        Luisa.setSupplier(() ->
+                new AmadeusFlightManager()
+        );
+
+        LocalDateTime departingDate = LocalDateTime.of(2017, 05, 24, 10, 15, 30);
+        LocalDateTime returningDate = LocalDateTime.of(2017, 06, 06, 00, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("MEX");
+        List<String> toList = new ArrayList<>();
+        toList.add("GDL");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  returningDate );
+
+        List<Itinerary> result = Luisa.findMeFlights()
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
+                .forPassegers(Passenger.adults(2))
+                .forPassegers(Passenger.children(new int[]{7, 5}))
+                .type(FlightType.ROUNDTRIP)
+                .limitTo(2)
+                .execute();
+
+        assertNotNull( result );
 
     }
 
