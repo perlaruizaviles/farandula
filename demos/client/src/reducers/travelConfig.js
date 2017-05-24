@@ -66,7 +66,14 @@ const travelConfig = (state = Map({}), action) => {
 
     case types.CLEAN_TRAVEL_TO:
       return state.setIn(['locations', 'to'], {});
-
+    case types.CHANGE_ORDER:
+    state = state.get('availableFlights').sort((a,b) => {
+      console.log(a)
+      if(a.fares.totalPrice.amount < b.fares.totalPrice.amount) {return -1}
+      if(a.fares.totalPrice.amount > b.fares.totalPrice.amount) {return 1}
+      if(a.fares.totalPrice.amount === b.fares.totalPrice.amount) {return 0}
+    })
+      return state;
     default:
       return state;
   }
