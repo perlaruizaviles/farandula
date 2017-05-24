@@ -1,0 +1,186 @@
+exports[`Rendering AirportSearch  Should create an snapshot for AirportSearch 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <Search
+    icon="search"
+    input="text"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onMouseDown={[Function]}
+    onResultSelect={[Function]}
+    onSearchChange={[Function]}
+    results={
+        Array [
+            Object {
+              "description": "General Rodolfo Se1nchez Taboada International Airport",
+              "title": "Mexicali - MXL",
+            },
+          ]
+    }
+    showNoResults={true}
+    style={
+        Object {
+            "display": "inline",
+          }
+    }
+    value="Mexicali - MXL" />,
+  "nodes": Array [
+    <Search
+      icon="search"
+      input="text"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onMouseDown={[Function]}
+      onResultSelect={[Function]}
+      onSearchChange={[Function]}
+      results={
+            Array [
+                  Object {
+                    "description": "General Rodolfo Se1nchez Taboada International Airport",
+                    "title": "Mexicali - MXL",
+                  },
+                ]
+      }
+      showNoResults={true}
+      style={
+            Object {
+                  "display": "inline",
+                }
+      }
+      value="Mexicali - MXL" />,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <AirportSearch
+        airports={
+                Array [
+                        Object {
+                          "description": "General Rodolfo Se1nchez Taboada International Airport",
+                          "title": "Mexicali - MXL",
+                        },
+                      ]
+        }
+        changeSelected={[Function]}
+        cleanField={[Function]}
+        searchChange={[Function]}
+        value="Mexicali - MXL" />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "airports": Array [
+            Object {
+              "description": "General Rodolfo Se1nchez Taboada International Airport",
+              "title": "Mexicali - MXL",
+            },
+          ],
+          "changeSelected": [Function],
+          "cleanField": [Function],
+          "searchChange": [Function],
+          "value": "Mexicali - MXL",
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <Search
+          icon="search"
+          input="text"
+          minCharacters={1}
+          noResultsMessage="No results found."
+          onMouseDown={[Function]}
+          onResultSelect={[Function]}
+          onSearchChange={[Function]}
+          results={
+                    Array [
+                              Object {
+                                "description": "General Rodolfo Se1nchez Taboada International Airport",
+                                "title": "Mexicali - MXL",
+                              },
+                            ]
+          }
+          showNoResults={true}
+          style={
+                    Object {
+                              "display": "inline",
+                            }
+          }
+          value="Mexicali - MXL" />,
+        "_debugID": 2,
+        "_renderedOutput": <Search
+          icon="search"
+          input="text"
+          minCharacters={1}
+          noResultsMessage="No results found."
+          onMouseDown={[Function]}
+          onResultSelect={[Function]}
+          onSearchChange={[Function]}
+          results={
+                    Array [
+                              Object {
+                                "description": "General Rodolfo Se1nchez Taboada International Airport",
+                                "title": "Mexicali - MXL",
+                              },
+                            ]
+          }
+          showNoResults={true}
+          style={
+                    Object {
+                              "display": "inline",
+                            }
+          }
+          value="Mexicali - MXL" />,
+      },
+      "_renderedNodeType": 1,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <AirportSearch
+    airports={
+        Array [
+            Object {
+              "description": "General Rodolfo Se1nchez Taboada International Airport",
+              "title": "Mexicali - MXL",
+            },
+          ]
+    }
+    changeSelected={[Function]}
+    cleanField={[Function]}
+    searchChange={[Function]}
+    value="Mexicali - MXL" />,
+}
+`;

@@ -1,21 +1,19 @@
-import React from "react";
-import {shallow} from "enzyme";
-import TextMenu from "../Common/TextMenu";
-import {List} from "immutable";
+import React from 'react';
+import {render} from 'enzyme';
+import TextMenu from '../Common/TextMenu';
+import {List} from 'immutable';
 
-function setup() {
+describe('Rendering TextMenu ', () => {
   const props = {
     options: List(['round', 'oneWay']),
     selected: 'round',
     selectType: () => {
     }
   };
-  return shallow(<TextMenu {...props} />);
-}
 
-describe('Rendering TextMenu ', () => {
-  it('Renders TextMenu', () => {
-    const wrapper = setup();
-    expect(wrapper.find('Menu').length).toBe(1);
+  const tree = render(<TextMenu {...props} />);
+
+  it('Should create an snapshot for TextMenu', () => {
+    expect(tree).toMatchSnapshot();
   });
 });

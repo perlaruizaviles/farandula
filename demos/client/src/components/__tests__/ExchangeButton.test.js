@@ -1,25 +1,28 @@
-import React from "react";
-import {shallow} from "enzyme";
-import expect from "expect";
-import ExchangeButton from "../Common/ExchangeButton";
-
-function setup() {
-  const props = {
-    handleExchange: () => {
-    }
-  };
-  return shallow(<ExchangeButton {...props} />);
-}
+import React from 'react';
+import {shallow} from 'enzyme';
+import ExchangeButton from '../Common/ExchangeButton';
 
 describe('Rendering ExchangeButton ', () => {
+
+  const props = {
+    handleExchange: () => {}
+  };
+
+  const tree = shallow(<ExchangeButton {...props} />);
+
+  it('Should create an snapshot for ExchangeButton', () => {
+    expect(tree).toMatchSnapshot();
+  });
+
   it('Renders Button', () => {
-    const wrapper = setup();
-    expect(wrapper.find('Button').length).toBe(1);
+    expect(tree.find('Button').length).toBe(1);
   });
 
   it('Renders Correct Icon', () => {
-    const wrapper = setup();
-    expect(wrapper.find('Icon').length).toBe(1);
-    expect(wrapper.find('Icon').props().name).toBe('exchange');
+    expect(tree.find('Icon').length).toBe(1);
+  });
+
+  it('Renders Correct exchange Icon', () => {
+    expect(tree.find('Icon').props().name).toBe('exchange');
   });
 });

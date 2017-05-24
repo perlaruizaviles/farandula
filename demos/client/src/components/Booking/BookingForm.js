@@ -3,7 +3,6 @@ import {reduxForm} from "redux-form";
 import PassengerForm from "./PassengerForm";
 import BillingForm from "./BillingForm";
 
-
 const Booking = props => {
   const {handleSubmit, pristine, reset, submitting} = props;
 

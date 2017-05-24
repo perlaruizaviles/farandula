@@ -1,0 +1,148 @@
+exports[`Rendering Summary  Should create an snapshot for Summary 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <Grid>
+    <GridRow>
+        <GridColumn
+            width={11}>
+            <Container
+                text={true}>
+                <GridRow>
+                    <SummaryDescription />
+                </GridRow>
+                <Divider />
+                <GridRow>
+                    <ReduxForm
+                        onSubmit={[Function]} />
+                </GridRow>
+            </Container>
+        </GridColumn>
+        <GridColumn
+            width={5}>
+            <SummaryCard />
+        </GridColumn>
+    </GridRow>
+</Grid>,
+  "nodes": Array [
+    <Grid>
+      <GridRow>
+            <GridColumn
+                  width={11}>
+                  <Container
+                        text={true}>
+                        <GridRow>
+                              <SummaryDescription />
+                        </GridRow>
+                        <Divider />
+                        <GridRow>
+                              <ReduxForm
+                                    onSubmit={[Function]} />
+                        </GridRow>
+                  </Container>
+            </GridColumn>
+            <GridColumn
+                  width={5}>
+                  <SummaryCard />
+            </GridColumn>
+      </GridRow>
+</Grid>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <Summary />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": Summary {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "state": null,
+        "submit": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <Grid>
+          <GridRow>
+                    <GridColumn
+                              width={11}>
+                              <Container
+                                        text={true}>
+                                        <GridRow>
+                                                  <SummaryDescription />
+                                        </GridRow>
+                                        <Divider />
+                                        <GridRow>
+                                                  <ReduxForm
+                                                            onSubmit={[Function]} />
+                                        </GridRow>
+                              </Container>
+                    </GridColumn>
+                    <GridColumn
+                              width={5}>
+                              <SummaryCard />
+                    </GridColumn>
+          </GridRow>
+</Grid>,
+        "_debugID": 2,
+        "_renderedOutput": <Grid>
+          <GridRow>
+                    <GridColumn
+                              width={11}>
+                              <Container
+                                        text={true}>
+                                        <GridRow>
+                                                  <SummaryDescription />
+                                        </GridRow>
+                                        <Divider />
+                                        <GridRow>
+                                                  <ReduxForm
+                                                            onSubmit={[Function]} />
+                                        </GridRow>
+                              </Container>
+                    </GridColumn>
+                    <GridColumn
+                              width={5}>
+                              <SummaryCard />
+                    </GridColumn>
+          </GridRow>
+</Grid>,
+      },
+      "_renderedNodeType": 1,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Summary />,
+}
+`;
