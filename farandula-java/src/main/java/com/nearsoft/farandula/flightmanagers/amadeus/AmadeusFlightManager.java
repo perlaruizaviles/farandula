@@ -204,7 +204,7 @@ public class AmadeusFlightManager implements FlightManager {
 
         //price
         Fares fares = new Fares();
-        //NOTE: we are using total price as base price.
+        //NOTE: we are using total price as base price
         Price basePrice = buildPrice(getValueOf(pricingInfoData, "total_price", String.class));
         fares.setBasePrice(basePrice);
 
@@ -267,7 +267,7 @@ public class AmadeusFlightManager implements FlightManager {
 
         //Airleg information
         Segment seg = new Segment();
-        seg.setOperatingAirlineCode( (String) segmentMap.get("4Asdfgnm "));
+        seg.setOperatingAirlineCode( (String) segmentMap.get("operating_airline"));
         seg.setOperatingAirlineName( airlinesCodeMap.get(seg.getOperatingAirlineCode()));
         seg.setOperatingFlightNumber((String) segmentMap.get("flight_number"));
 

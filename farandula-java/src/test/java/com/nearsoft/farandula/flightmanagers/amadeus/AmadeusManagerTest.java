@@ -281,7 +281,7 @@ class AmadeusManagerTest {
 
     }
 
-    //@Test
+    @Test
     void buildLinkFromSearchBUGAIRLINESCODES() throws IOException, FarandulaException {
 
         Luisa.setSupplier(() ->
