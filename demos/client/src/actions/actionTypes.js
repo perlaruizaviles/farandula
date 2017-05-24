@@ -13,3 +13,5 @@ export const CLEAN_TRAVEL_TO = 'CLEAN_TRAVEL_TO';
 export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
 export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
 
+export const CHANGE_ORDER = 'CHANGE_ORDER';
+

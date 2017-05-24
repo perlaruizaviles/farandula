@@ -29,7 +29,7 @@ const initialState = {
       depart: undefined,
       return: undefined
     }),
-    order: 'price-low-first'
+    order: 'price-low-to-high'
   })
 };
 
