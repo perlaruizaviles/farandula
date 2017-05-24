@@ -1,3 +1,7 @@
+body {
+    background-color: #f3f3f3;
+}
+
 span.gray {
     color: gray;
 }
@@ -9,10 +13,14 @@ span.gray {
     right: 20%;
 }
 
-.ui.attached:not(.message)+.ui.attached.segment:not(.top) {
+.search-field {
+    margin: 0 0.5em;
+}
+
+.ui.attached:not(.message) + .ui.attached.segment:not(.top) {
     background-color: #f3f3f3;
 }
 
-.ui.segment.travelSearhSegment {
+.ui.segment.travelSearchSegment {
     padding-top: 0;
 }

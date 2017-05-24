@@ -7,7 +7,7 @@ import travelOptions from "../../data/travelOptions";
 import DropTravelMenu from "../Common/DropTravelMenu";
 
 
-import {Button, Dimmer, Icon, Loader, Segment} from "semantic-ui-react";
+import {Button, Dimmer, Grid, Icon, Loader, Segment} from "semantic-ui-react";
 import {getIata} from "../../util/matcher";
 
 class TravelSearch extends React.Component {
@@ -47,73 +47,82 @@ class TravelSearch extends React.Component {
 
 
     return (
-      <Segment raised className='travelSearhSegment'>
+      <Segment raised className='travelSearchSegment'>
         <Dimmer active={loading} inverted>
           <Loader content='Loading'/>
         </Dimmer>
 
-        <TextMenu options={properties.typeOptions}
-                  selected={properties.selectedType}
-                  selectType={typeChange}/>
-        <AirportSearch
-          searchChange={(query, quantum = properties.airportTo) => searchAirport(query, quantum)}
-          changeSelected={value => fromAirportChange(value)}
-          airports={properties.airports}
-          value={properties.airportFrom.title}
-          cleanField={(quantum = 'from') => cleanField(quantum)}/>
+        <Grid columns={1} centered>
+          <Grid.Row>
+            <TextMenu options={properties.typeOptions}
+                      selected={properties.selectedType}
+                      selectType={typeChange}/>
+          </Grid.Row>
+          <Grid.Row stretched verticalAlign="middle">
+              <div className="search-field">
+                <AirportSearch
+                  searchChange={(query, quantum = properties.airportTo) => searchAirport(query, quantum)}
+                  changeSelected={value => fromAirportChange(value)}
+                  airports={properties.airports}
+                  value={properties.airportFrom.title}
+                  cleanField={(quantum = 'from') => cleanField(quantum)}/>
 
-        <ExchangeButton handleExchange={
-          (from = properties.airportFrom, to = properties.airportTo) => exchangeDestinations(from, to)}/>
+                <ExchangeButton handleExchange={
+                  (from = properties.airportFrom, to = properties.airportTo) => exchangeDestinations(from, to)}/>
 
+                <AirportSearch
+                  searchChange={(query, quantum = properties.airportFrom) => searchAirport(query, quantum)}
+                  changeSelected={value => toAirportChange(value)}
+                  airports={properties.airports}
+                  value={properties.airportTo.title}
+                  cleanField={(quantum = 'to') => cleanField(quantum)}/>
+              </div>
+              <div className="search-field">
+                <DateSelector minDate={properties.minDate}
+                              selectsStart
+                              maxDate={properties.maxDate}
+                              startDate={properties.startDate}
+                              endDate={properties.endDate}
+                              selected={properties.startDate}
+                              changeTravelDate={date => dateChange('depart', date)}/>
 
-        <AirportSearch
-          searchChange={(query, quantum = properties.airportFrom) => searchAirport(query, quantum)}
-          changeSelected={value => toAirportChange(value)}
-          airports={properties.airports}
-          value={properties.airportTo.title}
-          cleanField={(quantum = 'to') => cleanField(quantum)}/>
+                <DateSelector minDate={properties.minDate}
+                              selectsEnd
+                              maxDate={properties.maxDate}
+                              startDate={properties.startDate}
+                              endDate={properties.endDate}
+                              selected={properties.endDate}
+                              changeTravelDate={date => dateChange('return', date)}/>
+              </div>
+              <div className="search-field">
+                <DropTravelMenu
+                  config={config}
+                  options={travelOptions}
+                  travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
+                  cabinChange={cabinChange}/>
 
-        <DateSelector minDate={properties.minDate}
-                      selectsStart
-                      maxDate={properties.maxDate}
-                      startDate={properties.startDate}
-                      endDate={properties.endDate}
-                      selected={properties.startDate}
-                      changeTravelDate={date => dateChange('depart', date)}/>
-
-        <DateSelector minDate={properties.minDate}
-                      selectsEnd
-                      maxDate={properties.maxDate}
-                      startDate={properties.startDate}
-                      endDate={properties.endDate}
-                      selected={properties.endDate}
-                      changeTravelDate={date => dateChange('return', date)}/>
-
-        <DropTravelMenu
-          config={config}
-          options={travelOptions}
-          travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
-          cabinChange={cabinChange}/>
-
-        <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
-          (event, button, search = {
-            departureAirport: getIata(properties.airportFrom.title),
-            departingDate: properties.startDate.format('YYYY-MM-DD'),
-            departingTime: "10:15:30",
-            arrivalAirport: getIata(properties.airportTo.title),
-            arrivalDate: properties.endDate.format('YYYY-MM-DD'),
-            arrivalTime: "00:00:00",
-            type: properties.selectedType,
-            passenger: properties.travelers
-          }) => {
-            availableFlights(search);
-          }
-        }>
-          <Button.Content visible>Search</Button.Content>
-          <Button.Content hidden>
-            <Icon name='plane' className='large'/>
-          </Button.Content>
-        </Button>
+                <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
+                  (event, button, search = {
+                    departureAirport: getIata(properties.airportFrom.title),
+                    departingDate: properties.startDate.format('YYYY-MM-DD'),
+                    departingTime: "10:15:30",
+                    arrivalAirport: getIata(properties.airportTo.title),
+                    arrivalDate: properties.endDate.format('YYYY-MM-DD'),
+                    arrivalTime: "00:00:00",
+                    type: properties.selectedType,
+                    passenger: properties.travelers
+                  }) => {
+                    availableFlights(search);
+                  }
+                }>
+                  <Button.Content visible>Search</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name='plane' className='large'/>
+                  </Button.Content>
+                </Button>
+              </div>
+          </Grid.Row>
+        </Grid>
       </Segment>
     );
   }
