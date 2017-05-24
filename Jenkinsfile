@@ -22,7 +22,7 @@ pipeline {
             dir('demos/client') {
               sh 'npm prune'
               sh 'npm install'
-              sh 'npm test'
+              sh 'npm test -- -u'
             }
           },
           "Java Backend": {
