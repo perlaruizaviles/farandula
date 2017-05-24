@@ -1,34 +1,38 @@
-import React from "react";
-import {shallow} from "enzyme";
-import expect from "expect";
-import DateSelector from "../Common/DateSelector";
-import moment from "moment";
+import React from 'react';
+import {shallow} from 'enzyme';
+import DateSelector from '../Common/DateSelector';
+import moment from 'moment';
 
-const now = moment();
-const oneYearFromNow = moment().add(1, "year");
+describe('Rendering DateSelector', () => {
 
-function setup() {
+  const now = moment("2017-05-22T13:48:18.677");
+  
+  const oneYearFromNow = moment("2018-05-22T13:48:18.677");
+
   const props = {
     minDate: now,
     maxDate: oneYearFromNow,
     startDate: now,
     endDate: now,
     selected: now,
-    changeTravelDate: () => {
-    }
+    changeTravelDate: () => {}
   };
-  return shallow(<DateSelector {...props} />);
-}
 
-describe('Rendering DateSelector ', () => {
-  it('Renders DateSelector', () => {
-    const wrapper = setup();
-    expect(wrapper.find('t').length).toBe(1);
+  const tree = shallow(<DateSelector {...props} />);
+
+  it('Should create an snapshot for DateSelector', () => {
+    expect(tree).toMatchSnapshot();
   });
 
-  it('Initial Values Of Date', () => {
-    const wrapper = setup();
-    expect(wrapper.find('t').props().minDate).toBe(now);
-    expect(wrapper.find('t').props().maxDate).toBe(oneYearFromNow);
+  it('Renders DateSelector', () => {
+    expect(tree.find('t').length).toBe(1);
+  });
+
+  it('Min date', () => {
+    expect(tree.find('t').props().minDate).toBe(now);
+  });
+
+  it('Max date', () => {
+    expect(tree.find('t').props().maxDate).toBe(oneYearFromNow);
   });
 });
