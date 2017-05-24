@@ -1,0 +1,1903 @@
+exports[`Rendering BillingForm  Should create an snapshot for BillingForm 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <FormSection
+    component="div"
+    name="billing">
+    <div
+        className="equal width fields">
+        <Field
+            component={[Function]}
+            label="Street 1*"
+            name="street1"
+            type="text"
+            validate={
+                Array [
+                    [Function],
+                    [Function],
+                  ]
+            } />
+        <Field
+            component={[Function]}
+            label="Street 2"
+            name="street2"
+            type="text" />
+    </div>
+    <div
+        className="equal width fields">
+        <Field
+            component={[Function]}
+            label="Postal/Zip code*"
+            name="zip"
+            type="number"
+            validate={
+                Array [
+                    [Function],
+                    [Function],
+                  ]
+            } />
+        <Field
+            component={[Function]}
+            label="City*"
+            name="city"
+            type="text"
+            validate={
+                Array [
+                    [Function],
+                    [Function],
+                    [Function],
+                  ]
+            } />
+    </div>
+    <div
+        className="equal width fields">
+        <div
+            className="field">
+            <label>
+                State/Region
+            </label>
+            <Field
+                component="select"
+                name="state"
+                validate={[Function]}>
+                <option />
+                <option
+                    value="AL">
+                    Alabama
+                </option>
+                <option
+                    value="AK">
+                    Alaska
+                </option>
+                <option
+                    value="AS">
+                    American Samoa
+                </option>
+                <option
+                    value="AZ">
+                    Arizona
+                </option>
+                <option
+                    value="AR">
+                    Arkansas
+                </option>
+                <option
+                    value="CA">
+                    California
+                </option>
+                <option
+                    value="CO">
+                    Colorado
+                </option>
+                <option
+                    value="CT">
+                    Connecticut
+                </option>
+                <option
+                    value="DE">
+                    Delaware
+                </option>
+                <option
+                    value="DC">
+                    District Of Columbia
+                </option>
+                <option
+                    value="FM">
+                    Federated States Of Micronesia
+                </option>
+                <option
+                    value="FL">
+                    Florida
+                </option>
+                <option
+                    value="GA">
+                    Georgia
+                </option>
+                <option
+                    value="GU">
+                    Guam
+                </option>
+                <option
+                    value="HI">
+                    Hawaii
+                </option>
+                <option
+                    value="ID">
+                    Idaho
+                </option>
+                <option
+                    value="IL">
+                    Illinois
+                </option>
+                <option
+                    value="IN">
+                    Indiana
+                </option>
+                <option
+                    value="IA">
+                    Iowa
+                </option>
+                <option
+                    value="KS">
+                    Kansas
+                </option>
+                <option
+                    value="KY">
+                    Kentucky
+                </option>
+                <option
+                    value="LA">
+                    Louisiana
+                </option>
+                <option
+                    value="ME">
+                    Maine
+                </option>
+                <option
+                    value="MH">
+                    Marshall Islands
+                </option>
+                <option
+                    value="MD">
+                    Maryland
+                </option>
+                <option
+                    value="MA">
+                    Massachusetts
+                </option>
+                <option
+                    value="MI">
+                    Michigan
+                </option>
+                <option
+                    value="MN">
+                    Minnesota
+                </option>
+                <option
+                    value="MS">
+                    Mississippi
+                </option>
+                <option
+                    value="MO">
+                    Missouri
+                </option>
+                <option
+                    value="MT">
+                    Montana
+                </option>
+                <option
+                    value="NE">
+                    Nebraska
+                </option>
+                <option
+                    value="NV">
+                    Nevada
+                </option>
+                <option
+                    value="NH">
+                    New Hampshire
+                </option>
+                <option
+                    value="NJ">
+                    New Jersey
+                </option>
+                <option
+                    value="NM">
+                    New Mexico
+                </option>
+                <option
+                    value="NY">
+                    New York
+                </option>
+                <option
+                    value="NC">
+                    North Carolina
+                </option>
+                <option
+                    value="ND">
+                    North Dakota
+                </option>
+                <option
+                    value="MP">
+                    Northern Mariana Islands
+                </option>
+                <option
+                    value="OH">
+                    Ohio
+                </option>
+                <option
+                    value="OK">
+                    Oklahoma
+                </option>
+                <option
+                    value="OR">
+                    Oregon
+                </option>
+                <option
+                    value="PW">
+                    Palau
+                </option>
+                <option
+                    value="PA">
+                    Pennsylvania
+                </option>
+                <option
+                    value="PR">
+                    Puerto Rico
+                </option>
+                <option
+                    value="RI">
+                    Rhode Island
+                </option>
+                <option
+                    value="SC">
+                    South Carolina
+                </option>
+                <option
+                    value="SD">
+                    South Dakota
+                </option>
+                <option
+                    value="TN">
+                    Tennessee
+                </option>
+                <option
+                    value="TX">
+                    Texas
+                </option>
+                <option
+                    value="UT">
+                    Utah
+                </option>
+                <option
+                    value="VT">
+                    Vermont
+                </option>
+                <option
+                    value="VI">
+                    Virgin Islands
+                </option>
+                <option
+                    value="VA">
+                    Virginia
+                </option>
+                <option
+                    value="WA">
+                    Washington
+                </option>
+                <option
+                    value="WV">
+                    West Virginia
+                </option>
+                <option
+                    value="WI">
+                    Wisconsin
+                </option>
+                <option
+                    value="WY">
+                    Wyoming
+                </option>
+            </Field>
+        </div>
+    </div>
+    <div
+        className="ui section divider" />
+    <h3>
+        Card Details
+    </h3>
+    <div
+        className="equal width fields">
+        <Field
+            component={[Function]}
+            label="Name on card*"
+            name="nameOnCard"
+            type="text"
+            validate={
+                Array [
+                    [Function],
+                    [Function],
+                    [Function],
+                  ]
+            } />
+        <Field
+            component={[Function]}
+            label="Credit card #*"
+            name="cardNumber"
+            type="number"
+            validate={
+                Array [
+                    [Function],
+                    [Function],
+                  ]
+            } />
+    </div>
+    <div
+        className="equal width fields">
+        <div
+            className="field">
+            <label>
+                Month
+            </label>
+            <Field
+                component="select"
+                name="month"
+                validate={[Function]}>
+                <option />
+                <option
+                    value="01">
+                    January
+                </option>
+                <option
+                    value="02">
+                    February
+                </option>
+                <option
+                    value="03">
+                    March
+                </option>
+                <option
+                    value="04">
+                    April
+                </option>
+                <option
+                    value="05">
+                    May
+                </option>
+                <option
+                    value="06">
+                    June
+                </option>
+                <option
+                    value="07">
+                    July
+                </option>
+                <option
+                    value="08">
+                    August
+                </option>
+                <option
+                    value="09">
+                    September
+                </option>
+                <option
+                    value="10">
+                    October
+                </option>
+                <option
+                    value="11">
+                    November
+                </option>
+                <option
+                    value="12">
+                    December
+                </option>
+            </Field>
+        </div>
+        <div
+            className="field">
+            <label>
+                Year
+            </label>
+            <Field
+                component="select"
+                name="year"
+                validate={[Function]}>
+                <option />
+                <option
+                    value="2017">
+                    2017
+                </option>
+                <option
+                    value="2018">
+                    2018
+                </option>
+                <option
+                    value="2019">
+                    2019
+                </option>
+                <option
+                    value="2020">
+                    2020
+                </option>
+                <option
+                    value="2021">
+                    2021
+                </option>
+                <option
+                    value="2022">
+                    2022
+                </option>
+                <option
+                    value="2023">
+                    2023
+                </option>
+                <option
+                    value="2024">
+                    2024
+                </option>
+                <option
+                    value="2025">
+                    2025
+                </option>
+                <option
+                    value="2026">
+                    2026
+                </option>
+                <option
+                    value="2027">
+                    2027
+                </option>
+            </Field>
+        </div>
+        <Field
+            component={[Function]}
+            label="Security code*"
+            name="securityCode"
+            type="number"
+            validate={
+                Array [
+                    [Function],
+                    [Function],
+                  ]
+            } />
+    </div>
+</FormSection>,
+  "nodes": Array [
+    <FormSection
+      component="div"
+      name="billing">
+      <div
+            className="equal width fields">
+            <Field
+                  component={[Function]}
+                  label="Street 1*"
+                  name="street1"
+                  type="text"
+                  validate={
+                        Array [
+                              [Function],
+                              [Function],
+                            ]
+                  } />
+            <Field
+                  component={[Function]}
+                  label="Street 2"
+                  name="street2"
+                  type="text" />
+      </div>
+      <div
+            className="equal width fields">
+            <Field
+                  component={[Function]}
+                  label="Postal/Zip code*"
+                  name="zip"
+                  type="number"
+                  validate={
+                        Array [
+                              [Function],
+                              [Function],
+                            ]
+                  } />
+            <Field
+                  component={[Function]}
+                  label="City*"
+                  name="city"
+                  type="text"
+                  validate={
+                        Array [
+                              [Function],
+                              [Function],
+                              [Function],
+                            ]
+                  } />
+      </div>
+      <div
+            className="equal width fields">
+            <div
+                  className="field">
+                  <label>
+                        State/Region
+                  </label>
+                  <Field
+                        component="select"
+                        name="state"
+                        validate={[Function]}>
+                        <option />
+                        <option
+                              value="AL">
+                              Alabama
+                        </option>
+                        <option
+                              value="AK">
+                              Alaska
+                        </option>
+                        <option
+                              value="AS">
+                              American Samoa
+                        </option>
+                        <option
+                              value="AZ">
+                              Arizona
+                        </option>
+                        <option
+                              value="AR">
+                              Arkansas
+                        </option>
+                        <option
+                              value="CA">
+                              California
+                        </option>
+                        <option
+                              value="CO">
+                              Colorado
+                        </option>
+                        <option
+                              value="CT">
+                              Connecticut
+                        </option>
+                        <option
+                              value="DE">
+                              Delaware
+                        </option>
+                        <option
+                              value="DC">
+                              District Of Columbia
+                        </option>
+                        <option
+                              value="FM">
+                              Federated States Of Micronesia
+                        </option>
+                        <option
+                              value="FL">
+                              Florida
+                        </option>
+                        <option
+                              value="GA">
+                              Georgia
+                        </option>
+                        <option
+                              value="GU">
+                              Guam
+                        </option>
+                        <option
+                              value="HI">
+                              Hawaii
+                        </option>
+                        <option
+                              value="ID">
+                              Idaho
+                        </option>
+                        <option
+                              value="IL">
+                              Illinois
+                        </option>
+                        <option
+                              value="IN">
+                              Indiana
+                        </option>
+                        <option
+                              value="IA">
+                              Iowa
+                        </option>
+                        <option
+                              value="KS">
+                              Kansas
+                        </option>
+                        <option
+                              value="KY">
+                              Kentucky
+                        </option>
+                        <option
+                              value="LA">
+                              Louisiana
+                        </option>
+                        <option
+                              value="ME">
+                              Maine
+                        </option>
+                        <option
+                              value="MH">
+                              Marshall Islands
+                        </option>
+                        <option
+                              value="MD">
+                              Maryland
+                        </option>
+                        <option
+                              value="MA">
+                              Massachusetts
+                        </option>
+                        <option
+                              value="MI">
+                              Michigan
+                        </option>
+                        <option
+                              value="MN">
+                              Minnesota
+                        </option>
+                        <option
+                              value="MS">
+                              Mississippi
+                        </option>
+                        <option
+                              value="MO">
+                              Missouri
+                        </option>
+                        <option
+                              value="MT">
+                              Montana
+                        </option>
+                        <option
+                              value="NE">
+                              Nebraska
+                        </option>
+                        <option
+                              value="NV">
+                              Nevada
+                        </option>
+                        <option
+                              value="NH">
+                              New Hampshire
+                        </option>
+                        <option
+                              value="NJ">
+                              New Jersey
+                        </option>
+                        <option
+                              value="NM">
+                              New Mexico
+                        </option>
+                        <option
+                              value="NY">
+                              New York
+                        </option>
+                        <option
+                              value="NC">
+                              North Carolina
+                        </option>
+                        <option
+                              value="ND">
+                              North Dakota
+                        </option>
+                        <option
+                              value="MP">
+                              Northern Mariana Islands
+                        </option>
+                        <option
+                              value="OH">
+                              Ohio
+                        </option>
+                        <option
+                              value="OK">
+                              Oklahoma
+                        </option>
+                        <option
+                              value="OR">
+                              Oregon
+                        </option>
+                        <option
+                              value="PW">
+                              Palau
+                        </option>
+                        <option
+                              value="PA">
+                              Pennsylvania
+                        </option>
+                        <option
+                              value="PR">
+                              Puerto Rico
+                        </option>
+                        <option
+                              value="RI">
+                              Rhode Island
+                        </option>
+                        <option
+                              value="SC">
+                              South Carolina
+                        </option>
+                        <option
+                              value="SD">
+                              South Dakota
+                        </option>
+                        <option
+                              value="TN">
+                              Tennessee
+                        </option>
+                        <option
+                              value="TX">
+                              Texas
+                        </option>
+                        <option
+                              value="UT">
+                              Utah
+                        </option>
+                        <option
+                              value="VT">
+                              Vermont
+                        </option>
+                        <option
+                              value="VI">
+                              Virgin Islands
+                        </option>
+                        <option
+                              value="VA">
+                              Virginia
+                        </option>
+                        <option
+                              value="WA">
+                              Washington
+                        </option>
+                        <option
+                              value="WV">
+                              West Virginia
+                        </option>
+                        <option
+                              value="WI">
+                              Wisconsin
+                        </option>
+                        <option
+                              value="WY">
+                              Wyoming
+                        </option>
+                  </Field>
+            </div>
+      </div>
+      <div
+            className="ui section divider" />
+      <h3>
+            Card Details
+      </h3>
+      <div
+            className="equal width fields">
+            <Field
+                  component={[Function]}
+                  label="Name on card*"
+                  name="nameOnCard"
+                  type="text"
+                  validate={
+                        Array [
+                              [Function],
+                              [Function],
+                              [Function],
+                            ]
+                  } />
+            <Field
+                  component={[Function]}
+                  label="Credit card #*"
+                  name="cardNumber"
+                  type="number"
+                  validate={
+                        Array [
+                              [Function],
+                              [Function],
+                            ]
+                  } />
+      </div>
+      <div
+            className="equal width fields">
+            <div
+                  className="field">
+                  <label>
+                        Month
+                  </label>
+                  <Field
+                        component="select"
+                        name="month"
+                        validate={[Function]}>
+                        <option />
+                        <option
+                              value="01">
+                              January
+                        </option>
+                        <option
+                              value="02">
+                              February
+                        </option>
+                        <option
+                              value="03">
+                              March
+                        </option>
+                        <option
+                              value="04">
+                              April
+                        </option>
+                        <option
+                              value="05">
+                              May
+                        </option>
+                        <option
+                              value="06">
+                              June
+                        </option>
+                        <option
+                              value="07">
+                              July
+                        </option>
+                        <option
+                              value="08">
+                              August
+                        </option>
+                        <option
+                              value="09">
+                              September
+                        </option>
+                        <option
+                              value="10">
+                              October
+                        </option>
+                        <option
+                              value="11">
+                              November
+                        </option>
+                        <option
+                              value="12">
+                              December
+                        </option>
+                  </Field>
+            </div>
+            <div
+                  className="field">
+                  <label>
+                        Year
+                  </label>
+                  <Field
+                        component="select"
+                        name="year"
+                        validate={[Function]}>
+                        <option />
+                        <option
+                              value="2017">
+                              2017
+                        </option>
+                        <option
+                              value="2018">
+                              2018
+                        </option>
+                        <option
+                              value="2019">
+                              2019
+                        </option>
+                        <option
+                              value="2020">
+                              2020
+                        </option>
+                        <option
+                              value="2021">
+                              2021
+                        </option>
+                        <option
+                              value="2022">
+                              2022
+                        </option>
+                        <option
+                              value="2023">
+                              2023
+                        </option>
+                        <option
+                              value="2024">
+                              2024
+                        </option>
+                        <option
+                              value="2025">
+                              2025
+                        </option>
+                        <option
+                              value="2026">
+                              2026
+                        </option>
+                        <option
+                              value="2027">
+                              2027
+                        </option>
+                  </Field>
+            </div>
+            <Field
+                  component={[Function]}
+                  label="Security code*"
+                  name="securityCode"
+                  type="number"
+                  validate={
+                        Array [
+                              [Function],
+                              [Function],
+                            ]
+                  } />
+      </div>
+</FormSection>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <BillingForm />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": BillingForm {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <FormSection
+          component="div"
+          name="billing">
+          <div
+                    className="equal width fields">
+                    <Field
+                              component={[Function]}
+                              label="Street 1*"
+                              name="street1"
+                              type="text"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+                    <Field
+                              component={[Function]}
+                              label="Street 2"
+                              name="street2"
+                              type="text" />
+          </div>
+          <div
+                    className="equal width fields">
+                    <Field
+                              component={[Function]}
+                              label="Postal/Zip code*"
+                              name="zip"
+                              type="number"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+                    <Field
+                              component={[Function]}
+                              label="City*"
+                              name="city"
+                              type="text"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+          </div>
+          <div
+                    className="equal width fields">
+                    <div
+                              className="field">
+                              <label>
+                                        State/Region
+                              </label>
+                              <Field
+                                        component="select"
+                                        name="state"
+                                        validate={[Function]}>
+                                        <option />
+                                        <option
+                                                  value="AL">
+                                                  Alabama
+                                        </option>
+                                        <option
+                                                  value="AK">
+                                                  Alaska
+                                        </option>
+                                        <option
+                                                  value="AS">
+                                                  American Samoa
+                                        </option>
+                                        <option
+                                                  value="AZ">
+                                                  Arizona
+                                        </option>
+                                        <option
+                                                  value="AR">
+                                                  Arkansas
+                                        </option>
+                                        <option
+                                                  value="CA">
+                                                  California
+                                        </option>
+                                        <option
+                                                  value="CO">
+                                                  Colorado
+                                        </option>
+                                        <option
+                                                  value="CT">
+                                                  Connecticut
+                                        </option>
+                                        <option
+                                                  value="DE">
+                                                  Delaware
+                                        </option>
+                                        <option
+                                                  value="DC">
+                                                  District Of Columbia
+                                        </option>
+                                        <option
+                                                  value="FM">
+                                                  Federated States Of Micronesia
+                                        </option>
+                                        <option
+                                                  value="FL">
+                                                  Florida
+                                        </option>
+                                        <option
+                                                  value="GA">
+                                                  Georgia
+                                        </option>
+                                        <option
+                                                  value="GU">
+                                                  Guam
+                                        </option>
+                                        <option
+                                                  value="HI">
+                                                  Hawaii
+                                        </option>
+                                        <option
+                                                  value="ID">
+                                                  Idaho
+                                        </option>
+                                        <option
+                                                  value="IL">
+                                                  Illinois
+                                        </option>
+                                        <option
+                                                  value="IN">
+                                                  Indiana
+                                        </option>
+                                        <option
+                                                  value="IA">
+                                                  Iowa
+                                        </option>
+                                        <option
+                                                  value="KS">
+                                                  Kansas
+                                        </option>
+                                        <option
+                                                  value="KY">
+                                                  Kentucky
+                                        </option>
+                                        <option
+                                                  value="LA">
+                                                  Louisiana
+                                        </option>
+                                        <option
+                                                  value="ME">
+                                                  Maine
+                                        </option>
+                                        <option
+                                                  value="MH">
+                                                  Marshall Islands
+                                        </option>
+                                        <option
+                                                  value="MD">
+                                                  Maryland
+                                        </option>
+                                        <option
+                                                  value="MA">
+                                                  Massachusetts
+                                        </option>
+                                        <option
+                                                  value="MI">
+                                                  Michigan
+                                        </option>
+                                        <option
+                                                  value="MN">
+                                                  Minnesota
+                                        </option>
+                                        <option
+                                                  value="MS">
+                                                  Mississippi
+                                        </option>
+                                        <option
+                                                  value="MO">
+                                                  Missouri
+                                        </option>
+                                        <option
+                                                  value="MT">
+                                                  Montana
+                                        </option>
+                                        <option
+                                                  value="NE">
+                                                  Nebraska
+                                        </option>
+                                        <option
+                                                  value="NV">
+                                                  Nevada
+                                        </option>
+                                        <option
+                                                  value="NH">
+                                                  New Hampshire
+                                        </option>
+                                        <option
+                                                  value="NJ">
+                                                  New Jersey
+                                        </option>
+                                        <option
+                                                  value="NM">
+                                                  New Mexico
+                                        </option>
+                                        <option
+                                                  value="NY">
+                                                  New York
+                                        </option>
+                                        <option
+                                                  value="NC">
+                                                  North Carolina
+                                        </option>
+                                        <option
+                                                  value="ND">
+                                                  North Dakota
+                                        </option>
+                                        <option
+                                                  value="MP">
+                                                  Northern Mariana Islands
+                                        </option>
+                                        <option
+                                                  value="OH">
+                                                  Ohio
+                                        </option>
+                                        <option
+                                                  value="OK">
+                                                  Oklahoma
+                                        </option>
+                                        <option
+                                                  value="OR">
+                                                  Oregon
+                                        </option>
+                                        <option
+                                                  value="PW">
+                                                  Palau
+                                        </option>
+                                        <option
+                                                  value="PA">
+                                                  Pennsylvania
+                                        </option>
+                                        <option
+                                                  value="PR">
+                                                  Puerto Rico
+                                        </option>
+                                        <option
+                                                  value="RI">
+                                                  Rhode Island
+                                        </option>
+                                        <option
+                                                  value="SC">
+                                                  South Carolina
+                                        </option>
+                                        <option
+                                                  value="SD">
+                                                  South Dakota
+                                        </option>
+                                        <option
+                                                  value="TN">
+                                                  Tennessee
+                                        </option>
+                                        <option
+                                                  value="TX">
+                                                  Texas
+                                        </option>
+                                        <option
+                                                  value="UT">
+                                                  Utah
+                                        </option>
+                                        <option
+                                                  value="VT">
+                                                  Vermont
+                                        </option>
+                                        <option
+                                                  value="VI">
+                                                  Virgin Islands
+                                        </option>
+                                        <option
+                                                  value="VA">
+                                                  Virginia
+                                        </option>
+                                        <option
+                                                  value="WA">
+                                                  Washington
+                                        </option>
+                                        <option
+                                                  value="WV">
+                                                  West Virginia
+                                        </option>
+                                        <option
+                                                  value="WI">
+                                                  Wisconsin
+                                        </option>
+                                        <option
+                                                  value="WY">
+                                                  Wyoming
+                                        </option>
+                              </Field>
+                    </div>
+          </div>
+          <div
+                    className="ui section divider" />
+          <h3>
+                    Card Details
+          </h3>
+          <div
+                    className="equal width fields">
+                    <Field
+                              component={[Function]}
+                              label="Name on card*"
+                              name="nameOnCard"
+                              type="text"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+                    <Field
+                              component={[Function]}
+                              label="Credit card #*"
+                              name="cardNumber"
+                              type="number"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+          </div>
+          <div
+                    className="equal width fields">
+                    <div
+                              className="field">
+                              <label>
+                                        Month
+                              </label>
+                              <Field
+                                        component="select"
+                                        name="month"
+                                        validate={[Function]}>
+                                        <option />
+                                        <option
+                                                  value="01">
+                                                  January
+                                        </option>
+                                        <option
+                                                  value="02">
+                                                  February
+                                        </option>
+                                        <option
+                                                  value="03">
+                                                  March
+                                        </option>
+                                        <option
+                                                  value="04">
+                                                  April
+                                        </option>
+                                        <option
+                                                  value="05">
+                                                  May
+                                        </option>
+                                        <option
+                                                  value="06">
+                                                  June
+                                        </option>
+                                        <option
+                                                  value="07">
+                                                  July
+                                        </option>
+                                        <option
+                                                  value="08">
+                                                  August
+                                        </option>
+                                        <option
+                                                  value="09">
+                                                  September
+                                        </option>
+                                        <option
+                                                  value="10">
+                                                  October
+                                        </option>
+                                        <option
+                                                  value="11">
+                                                  November
+                                        </option>
+                                        <option
+                                                  value="12">
+                                                  December
+                                        </option>
+                              </Field>
+                    </div>
+                    <div
+                              className="field">
+                              <label>
+                                        Year
+                              </label>
+                              <Field
+                                        component="select"
+                                        name="year"
+                                        validate={[Function]}>
+                                        <option />
+                                        <option
+                                                  value="2017">
+                                                  2017
+                                        </option>
+                                        <option
+                                                  value="2018">
+                                                  2018
+                                        </option>
+                                        <option
+                                                  value="2019">
+                                                  2019
+                                        </option>
+                                        <option
+                                                  value="2020">
+                                                  2020
+                                        </option>
+                                        <option
+                                                  value="2021">
+                                                  2021
+                                        </option>
+                                        <option
+                                                  value="2022">
+                                                  2022
+                                        </option>
+                                        <option
+                                                  value="2023">
+                                                  2023
+                                        </option>
+                                        <option
+                                                  value="2024">
+                                                  2024
+                                        </option>
+                                        <option
+                                                  value="2025">
+                                                  2025
+                                        </option>
+                                        <option
+                                                  value="2026">
+                                                  2026
+                                        </option>
+                                        <option
+                                                  value="2027">
+                                                  2027
+                                        </option>
+                              </Field>
+                    </div>
+                    <Field
+                              component={[Function]}
+                              label="Security code*"
+                              name="securityCode"
+                              type="number"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+          </div>
+</FormSection>,
+        "_debugID": 2,
+        "_renderedOutput": <FormSection
+          component="div"
+          name="billing">
+          <div
+                    className="equal width fields">
+                    <Field
+                              component={[Function]}
+                              label="Street 1*"
+                              name="street1"
+                              type="text"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+                    <Field
+                              component={[Function]}
+                              label="Street 2"
+                              name="street2"
+                              type="text" />
+          </div>
+          <div
+                    className="equal width fields">
+                    <Field
+                              component={[Function]}
+                              label="Postal/Zip code*"
+                              name="zip"
+                              type="number"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+                    <Field
+                              component={[Function]}
+                              label="City*"
+                              name="city"
+                              type="text"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+          </div>
+          <div
+                    className="equal width fields">
+                    <div
+                              className="field">
+                              <label>
+                                        State/Region
+                              </label>
+                              <Field
+                                        component="select"
+                                        name="state"
+                                        validate={[Function]}>
+                                        <option />
+                                        <option
+                                                  value="AL">
+                                                  Alabama
+                                        </option>
+                                        <option
+                                                  value="AK">
+                                                  Alaska
+                                        </option>
+                                        <option
+                                                  value="AS">
+                                                  American Samoa
+                                        </option>
+                                        <option
+                                                  value="AZ">
+                                                  Arizona
+                                        </option>
+                                        <option
+                                                  value="AR">
+                                                  Arkansas
+                                        </option>
+                                        <option
+                                                  value="CA">
+                                                  California
+                                        </option>
+                                        <option
+                                                  value="CO">
+                                                  Colorado
+                                        </option>
+                                        <option
+                                                  value="CT">
+                                                  Connecticut
+                                        </option>
+                                        <option
+                                                  value="DE">
+                                                  Delaware
+                                        </option>
+                                        <option
+                                                  value="DC">
+                                                  District Of Columbia
+                                        </option>
+                                        <option
+                                                  value="FM">
+                                                  Federated States Of Micronesia
+                                        </option>
+                                        <option
+                                                  value="FL">
+                                                  Florida
+                                        </option>
+                                        <option
+                                                  value="GA">
+                                                  Georgia
+                                        </option>
+                                        <option
+                                                  value="GU">
+                                                  Guam
+                                        </option>
+                                        <option
+                                                  value="HI">
+                                                  Hawaii
+                                        </option>
+                                        <option
+                                                  value="ID">
+                                                  Idaho
+                                        </option>
+                                        <option
+                                                  value="IL">
+                                                  Illinois
+                                        </option>
+                                        <option
+                                                  value="IN">
+                                                  Indiana
+                                        </option>
+                                        <option
+                                                  value="IA">
+                                                  Iowa
+                                        </option>
+                                        <option
+                                                  value="KS">
+                                                  Kansas
+                                        </option>
+                                        <option
+                                                  value="KY">
+                                                  Kentucky
+                                        </option>
+                                        <option
+                                                  value="LA">
+                                                  Louisiana
+                                        </option>
+                                        <option
+                                                  value="ME">
+                                                  Maine
+                                        </option>
+                                        <option
+                                                  value="MH">
+                                                  Marshall Islands
+                                        </option>
+                                        <option
+                                                  value="MD">
+                                                  Maryland
+                                        </option>
+                                        <option
+                                                  value="MA">
+                                                  Massachusetts
+                                        </option>
+                                        <option
+                                                  value="MI">
+                                                  Michigan
+                                        </option>
+                                        <option
+                                                  value="MN">
+                                                  Minnesota
+                                        </option>
+                                        <option
+                                                  value="MS">
+                                                  Mississippi
+                                        </option>
+                                        <option
+                                                  value="MO">
+                                                  Missouri
+                                        </option>
+                                        <option
+                                                  value="MT">
+                                                  Montana
+                                        </option>
+                                        <option
+                                                  value="NE">
+                                                  Nebraska
+                                        </option>
+                                        <option
+                                                  value="NV">
+                                                  Nevada
+                                        </option>
+                                        <option
+                                                  value="NH">
+                                                  New Hampshire
+                                        </option>
+                                        <option
+                                                  value="NJ">
+                                                  New Jersey
+                                        </option>
+                                        <option
+                                                  value="NM">
+                                                  New Mexico
+                                        </option>
+                                        <option
+                                                  value="NY">
+                                                  New York
+                                        </option>
+                                        <option
+                                                  value="NC">
+                                                  North Carolina
+                                        </option>
+                                        <option
+                                                  value="ND">
+                                                  North Dakota
+                                        </option>
+                                        <option
+                                                  value="MP">
+                                                  Northern Mariana Islands
+                                        </option>
+                                        <option
+                                                  value="OH">
+                                                  Ohio
+                                        </option>
+                                        <option
+                                                  value="OK">
+                                                  Oklahoma
+                                        </option>
+                                        <option
+                                                  value="OR">
+                                                  Oregon
+                                        </option>
+                                        <option
+                                                  value="PW">
+                                                  Palau
+                                        </option>
+                                        <option
+                                                  value="PA">
+                                                  Pennsylvania
+                                        </option>
+                                        <option
+                                                  value="PR">
+                                                  Puerto Rico
+                                        </option>
+                                        <option
+                                                  value="RI">
+                                                  Rhode Island
+                                        </option>
+                                        <option
+                                                  value="SC">
+                                                  South Carolina
+                                        </option>
+                                        <option
+                                                  value="SD">
+                                                  South Dakota
+                                        </option>
+                                        <option
+                                                  value="TN">
+                                                  Tennessee
+                                        </option>
+                                        <option
+                                                  value="TX">
+                                                  Texas
+                                        </option>
+                                        <option
+                                                  value="UT">
+                                                  Utah
+                                        </option>
+                                        <option
+                                                  value="VT">
+                                                  Vermont
+                                        </option>
+                                        <option
+                                                  value="VI">
+                                                  Virgin Islands
+                                        </option>
+                                        <option
+                                                  value="VA">
+                                                  Virginia
+                                        </option>
+                                        <option
+                                                  value="WA">
+                                                  Washington
+                                        </option>
+                                        <option
+                                                  value="WV">
+                                                  West Virginia
+                                        </option>
+                                        <option
+                                                  value="WI">
+                                                  Wisconsin
+                                        </option>
+                                        <option
+                                                  value="WY">
+                                                  Wyoming
+                                        </option>
+                              </Field>
+                    </div>
+          </div>
+          <div
+                    className="ui section divider" />
+          <h3>
+                    Card Details
+          </h3>
+          <div
+                    className="equal width fields">
+                    <Field
+                              component={[Function]}
+                              label="Name on card*"
+                              name="nameOnCard"
+                              type="text"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+                    <Field
+                              component={[Function]}
+                              label="Credit card #*"
+                              name="cardNumber"
+                              type="number"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+          </div>
+          <div
+                    className="equal width fields">
+                    <div
+                              className="field">
+                              <label>
+                                        Month
+                              </label>
+                              <Field
+                                        component="select"
+                                        name="month"
+                                        validate={[Function]}>
+                                        <option />
+                                        <option
+                                                  value="01">
+                                                  January
+                                        </option>
+                                        <option
+                                                  value="02">
+                                                  February
+                                        </option>
+                                        <option
+                                                  value="03">
+                                                  March
+                                        </option>
+                                        <option
+                                                  value="04">
+                                                  April
+                                        </option>
+                                        <option
+                                                  value="05">
+                                                  May
+                                        </option>
+                                        <option
+                                                  value="06">
+                                                  June
+                                        </option>
+                                        <option
+                                                  value="07">
+                                                  July
+                                        </option>
+                                        <option
+                                                  value="08">
+                                                  August
+                                        </option>
+                                        <option
+                                                  value="09">
+                                                  September
+                                        </option>
+                                        <option
+                                                  value="10">
+                                                  October
+                                        </option>
+                                        <option
+                                                  value="11">
+                                                  November
+                                        </option>
+                                        <option
+                                                  value="12">
+                                                  December
+                                        </option>
+                              </Field>
+                    </div>
+                    <div
+                              className="field">
+                              <label>
+                                        Year
+                              </label>
+                              <Field
+                                        component="select"
+                                        name="year"
+                                        validate={[Function]}>
+                                        <option />
+                                        <option
+                                                  value="2017">
+                                                  2017
+                                        </option>
+                                        <option
+                                                  value="2018">
+                                                  2018
+                                        </option>
+                                        <option
+                                                  value="2019">
+                                                  2019
+                                        </option>
+                                        <option
+                                                  value="2020">
+                                                  2020
+                                        </option>
+                                        <option
+                                                  value="2021">
+                                                  2021
+                                        </option>
+                                        <option
+                                                  value="2022">
+                                                  2022
+                                        </option>
+                                        <option
+                                                  value="2023">
+                                                  2023
+                                        </option>
+                                        <option
+                                                  value="2024">
+                                                  2024
+                                        </option>
+                                        <option
+                                                  value="2025">
+                                                  2025
+                                        </option>
+                                        <option
+                                                  value="2026">
+                                                  2026
+                                        </option>
+                                        <option
+                                                  value="2027">
+                                                  2027
+                                        </option>
+                              </Field>
+                    </div>
+                    <Field
+                              component={[Function]}
+                              label="Security code*"
+                              name="securityCode"
+                              type="number"
+                              validate={
+                                        Array [
+                                                  [Function],
+                                                  [Function],
+                                                ]
+                              } />
+          </div>
+</FormSection>,
+      },
+      "_renderedNodeType": 1,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <BillingForm />,
+}
+`;
