@@ -13,7 +13,7 @@ const travelConfig = (state = Map({}), action) => {
         state = state.setIn(['dates', 'return'], action.date);
         return state;
       }
-      if (state.get('type') === 'roundTrip') {
+      if (state.get('type') === 'round') {
         if (action.dateType === 'depart') {
           if (action.date > state.getIn(['dates', 'return'])) {
             state = state.setIn(['dates', 'return'], action.date);

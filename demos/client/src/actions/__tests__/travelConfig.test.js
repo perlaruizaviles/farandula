@@ -1,10 +1,10 @@
-import * as actions from '../travelConfig';
-import * as types from '../actionTypes';
-import moment from 'moment';
+import * as actions from "../travelConfig";
+import * as types from "../actionTypes";
+import moment from "moment";
 
 describe('actions', () => {
   it('Should create an action to changeTravelType for roundTrip', () => {
-    const value = 'roundTrip';
+    const value = 'round';
     const expectedAction = {
       type: types.CHANGE_TRAVEL_TYPE,
       value
