@@ -15,17 +15,61 @@ module Farandula
           @json.target!
         end   
 
+        def build_travel_preferences(json, cabin)
+          json.TravelPreferences do 
+            json.ValidInterlineTicket true
+            json.CabinPref do 
+              json.array! [ 1 ] do |_|
+                json.Cabin cabin
+                json.PreferLevel 'Preferred'
+              end 
+            end 
+
+            json.TPA_Extensions do 
+              json.TripType do 
+                json.Value 'Return'
+              end 
+
+              json.LongConnectTime do 
+                json.Min 780
+                json.Max 1200
+                json.Enable true
+              end 
+
+              json.ExcludeCallDirectCarriers do 
+                json.Enabled true
+              end
+              
+            end
+          end 
+        end 
+
         def build_destination_information(json, search_form) 
-          elements = [{origin: search_form.departure_airport, destination: search_form.arrival_airport, date: search_form.departing_date}]
+          elements = [{
+            origin: search_form.departure_airport, 
+            destination: search_form.arrival_airport, 
+            date: search_form.departing_date
+            }
+          ]
           
           if search_form.roundtrip?
-            elements << {origin: search_form.arrival_airport, destination: search_form.departure_airport, date: search_form.returning_date}
+            elements << {
+              origin: search_form.arrival_airport, 
+              destination: search_form.departure_airport, 
+              date: search_form.returning_date
+            }
           end 
           # TODO: handle :multiple
 
             json.OriginDestinationInformation do 
               json.array! elements do |e|
-                build_flight_info(json, 1, search_form.departure_airport, search_form.departing_date, search_form.arrival_airport)
+                build_flight_info(
+                  json, 
+                  1, 
+                  search_form.departure_airport, 
+                  search_form.departing_date, 
+                  search_form.arrival_airport
+                )
               end 
             end 
         end 
@@ -48,6 +92,35 @@ module Farandula
             end 
           end
 
+        end 
+
+        def build_travel_info_summary(json, numberOfPassengers)
+          json.TravelerInfoSummary do 
+            json.SeatsRequested do 
+              json.array! [ numberOfPassengers ]
+            end 
+
+            json.AirTravelerAvail do 
+              json.array! [ 1 ] do |_|
+                json.PassengerTypeQuantity do 
+                  json.array! [ 1 ] do |_|
+                    json.Code 'ADT'
+                    json.Quantity numberOfPassengers
+                  end 
+                end 
+              end 
+            end 
+          end
+        end 
+
+        def build_tpa_extensions(json)
+          json.TPA_Extensions do 
+            json.IntelliSellTransaction do 
+              json.RequestType do 
+                json.Name '50ITINS'
+              end 
+            end
+          end 
         end 
 
         def build_header(json)

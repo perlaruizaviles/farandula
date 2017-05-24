@@ -1,8 +1,6 @@
 
 require 'rest-client'
-
 require_relative '../flight_manager.rb'
-
 require_relative './access_manager.rb'
 
 
