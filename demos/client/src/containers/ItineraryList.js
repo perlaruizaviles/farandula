@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import ItineraryList from "../components/Avail/ItineraryList";
-import { changeOrder } from "../actions/itineraryList";
+import { changeOrderPrice } from "../actions/itineraryList";
 
 export default connect(
   state => {
@@ -11,7 +11,7 @@ export default connect(
   },
   dispatch => {
     return {
-      changeOrder: (order) => dispatch(changeOrder(order))
-    }
+      changeOrderPrice: (order) => dispatch(changeOrderPrice(order))
+    };
   }
 )(ItineraryList);

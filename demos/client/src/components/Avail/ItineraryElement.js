@@ -39,8 +39,8 @@ class ItineraryElement extends React.Component {
               <Item.Extra><Label color='blue' onClick={this.open}>View details</Label></Item.Extra>
             </Item.Content>
             <Item.Extra style={{width: '15%'}}>
-              <h2>${travel.price}</h2>
-              <Button className='orange' content='Book'/>
+              <h3>USD ${travel.price}</h3>
+              <center><Button className='orange' content='Book'/></center>
             </Item.Extra>
           </Item>
 

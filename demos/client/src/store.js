@@ -9,5 +9,6 @@ const store = createStore(
   reducer,
   initialState,
   composeEnhancers(applyMiddleware(thunk)));
+  console.log(store.getState())
 
 export default store;
