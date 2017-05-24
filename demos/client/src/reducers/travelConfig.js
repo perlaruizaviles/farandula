@@ -13,7 +13,7 @@ const travelConfig = (state = Map({}), action) => {
         state = state.setIn(['dates', 'return'], action.date);
         return state;
       }
-      if (state.get('type') === 'roundTrip') {
+      if (state.get('type') === 'round') {
         if (action.dateType === 'depart') {
           if (action.date > state.getIn(['dates', 'return'])) {
             state = state.setIn(['dates', 'return'], action.date);
@@ -66,6 +66,21 @@ const travelConfig = (state = Map({}), action) => {
 
     case types.CLEAN_TRAVEL_TO:
       return state.setIn(['locations', 'to'], {});
+
+    case types.ORDER_PRICE_ASC:
+      return state.set('availableFlights',state.get('availableFlights').sort((item => item.fares.totalPrice.amount)));
+
+    case types.ORDER_PRICE_DESC:
+      return state.set('availableFlights',state.get('availableFlights').sortBy((item => -item.fares.totalPrice.amount)));
+
+    case types.CHANGE_PRICE_ORDER:
+    state = state.set('order', action.order);
+      if (action.order==='price-high-to-low'){
+        state = state.set('availableFlights',state.get('availableFlights').sortBy((item => -item.fares.totalPrice.amount)));
+      } else {
+        state = state.set('availableFlights',state.get('availableFlights').sortBy((item => item.fares.totalPrice.amount)));
+      }
+      return state
 
     default:
       return state;

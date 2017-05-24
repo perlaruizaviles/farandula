@@ -4,7 +4,7 @@ import {diffFormatted} from "../../util/dates";
 import moment from "moment";
 
 const AirlegDetail = ({departureDate, arrivalDate, departureAirport, arrivalAirport, segments}) => {
-  let dateStart = moment(segments[0].departureDate).format("dddd, MMMM Do");
+  let dateStart = moment.unix(segments[0].departureDate).format("dddd, MMMM Do");
   let totalTime = diffFormatted(departureDate, arrivalDate);
   return (
     <div>

@@ -5,8 +5,8 @@ import {List} from "immutable";
 
 function setup() {
   const props = {
-    options: List(['roundTrip', 'oneWay']),
-    selected: 'round-trip',
+    options: List(['round', 'oneWay']),
+    selected: 'round',
     selectType: () => {
     }
   };
