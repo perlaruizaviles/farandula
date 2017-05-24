@@ -98,4 +98,12 @@ public class Passenger {
     public PassengerType getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "type=" + type +
+                ", age=" + age +
+                '}';
+    }
 }
