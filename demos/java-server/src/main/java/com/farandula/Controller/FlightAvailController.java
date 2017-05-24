@@ -26,21 +26,21 @@ public class FlightAvailController {
     FlightService flightService;
 
     @RequestMapping("/api/flights")
-    public List<FlightItinerary> getAvailableFlights(@Param("departureAirportCode") String departureAirportCode,
-                                                     @Param("departingDate") String departingDate,
-                                                     @Param("departingTime") String departingTime,
-                                                     @Param("arrivalAirportCode") String arrivalAirportCode,
-                                                     @Param("arrivalDate") String arrivalDate,
-                                                     @Param("arrivalTime") String arrivalTime,
+    public List<FlightItinerary> getAvailableFlights(@Param("departingAirportCodes") String departingAirportCodes,
+                                                     @Param("departingDates") String departingDates,
+                                                     @Param("departingTimes") String departingTimes,
+                                                     @Param("returnAirportCodes") String returnAirportCodes,
+                                                     @Param("returnDates") String returnDates,
+                                                     @Param("returnTimes") String returnTimes,
                                                      @Param("type") String type,
                                                      @Param("passenger") String passenger){
 
-        return flightService.getResponseFromSearch( departureAirportCode,
-                                                    departingDate,
-                                                    departingTime,
-                                                    arrivalAirportCode,
-                                                    arrivalDate,
-                                                    arrivalTime,
+        return flightService.getResponseFromSearch( departingAirportCodes,
+                                                    departingDates,
+                                                    departingTimes,
+                                                    returnAirportCodes,
+                                                    returnDates,
+                                                    returnTimes,
                                                     type,
                                                     passenger);
 

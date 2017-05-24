@@ -1,6 +1,8 @@
 package com.farandula.Service;
 
+import com.farandula.Exceptions.ParameterException;
 import com.farandula.Helpers.AgeManager;
+import com.farandula.Helpers.DateParser;
 import com.farandula.Helpers.FlightHelper;
 import com.farandula.Helpers.PassengerHelper;
 import com.farandula.Repositories.AirportRepository;
@@ -9,6 +11,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
 import com.nearsoft.farandula.models.*;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +19,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -32,34 +36,30 @@ public class FlightService {
     FlightHelper flightHelper;
     @Autowired
     PassengerHelper passengerHelper;
+    @Autowired
+    DateParser dateParser;
 
     public static boolean validIataLength(String iata) {
         return (iata.length() == 3) || (iata.length() == 2);
     }
 
-    public static LocalDateTime parseDateTime(String date, String time) {
-
-        String dateTime = date + "T" + time;
-
-        LocalDateTime departureDateTime = LocalDateTime.parse(
-                dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-
-        return departureDateTime;
-    }
-
     public List<FlightItinerary> getResponseFromSearch(String departureAirportCode,
                                                        String departingDate,
                                                        String departingTime,
-                                                       String arrivalAirportCode,
-                                                       String arrivalDate,
-                                                       String arrivalTime,
+                                                       String returningAirportCode,
+                                                       String returnDate,
+                                                       String returnTime,
                                                        String type,
                                                        String passenger) {
 
-        if (FlightService.validIataLength(departureAirportCode) && FlightService.validIataLength(arrivalAirportCode)) {
+        if (this.validIataLength(departureAirportCode) && this.validIataLength(returningAirportCode)) {
 
-            LocalDateTime departDateTime = FlightService.parseDateTime(departingDate, departingTime);
-            LocalDateTime arrivalDateTime = FlightService.parseDateTime(arrivalDate, arrivalTime);
+            String [] departingDates = departingDate.split(",");
+            String [] departingTimes = departingTime.split(",");
+            String [] deparingAirportCodeArray = departureAirportCode.split(",");
+
+            List<LocalDateTime> localDepartureDates;
+            List<String> departingAirportCodes = Arrays.asList(deparingAirportCodeArray);
 
             Luisa.setSupplier(() -> {
                 try {
@@ -70,36 +70,65 @@ public class FlightService {
                 return null;
             });
 
+            List<Itinerary> flights;
+
             try {
                 AgeManager ageManager = passengerHelper.getPassengersFromString(passenger);
-                List<Itinerary> flights;
-                SearchCommand command = Luisa.findMeFlights()
-                        .from(departureAirportCode)
-                        .to(arrivalAirportCode)
-                        .departingAt(departDateTime)
-                        .returningAt(arrivalDateTime)
+
+                SearchCommand command = Luisa.findMeFlights();
+
+                //Declaring departure dates
+                localDepartureDates = dateParser.parseStringDatesTimes( departingDates, departingTimes );
+
+                command
+                        .from(departingAirportCodes)
+                        .departingAt(localDepartureDates);
+
+                switch (type){
+                    case "oneWay" :
+                        command.type(FlightType.ONEWAY);
+                        break;
+
+                    case "roundTrip" :
+
+                        String [] airportCodesArray = returningAirportCode.split(",");
+                        List<String> returnAirportCodes = Arrays.asList(airportCodesArray);
+
+                        String [] returnDatesArray = returnDate.split(",");
+                        String [] returnTimesArray = returnTime.split(",");
+
+                        List<LocalDateTime> returnDateTimes = dateParser.parseStringDatesTimes(returnDatesArray, returnTimesArray);
+
+                        command
+                                .to(returnAirportCodes)
+                                .returningAt(returnDateTimes)
+                                .type(FlightType.ROUNDTRIP);
+
+                        break;
+
+                    case "multiCity" :
+                        command.type(FlightType.OPENJAW);
+                        break;
+
+                    default:
+                        break;
+                }
+
+                command
                         .forPassegers(Passenger.children(ageManager.getChildAges()))
                         .forPassegers(Passenger.infants(ageManager.getInfantAges()))
                         .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
                         .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
-                        .limitTo(2);
-                command = ("oneWay".equals(type))
-                        ? command.type(FlightType.ONEWAY)
-                        : command.type(FlightType.ROUNDTRIP);
+                        .limitTo(50);
 
                 flights = command.execute();
                 return this.getFlightItineraryFromItinerary(flights, type);
 
-                //TODO Parse response for passengers
-
-            } catch (FarandulaException e) {
+            } catch (Exception e) {
                 Logger.getAnonymousLogger().warning(e.toString());
-            } catch (IOException o) {
-                Logger.getAnonymousLogger().warning(o.toString());
             }
-
         }
-        return null;
+        return new ArrayList<>();
     }
 
     public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {

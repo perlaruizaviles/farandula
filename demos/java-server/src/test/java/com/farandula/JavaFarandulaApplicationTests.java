@@ -3,6 +3,7 @@ package com.farandula;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.Service.FlightService;
 import com.farandula.models.Airport;
+import com.farandula.models.FlightItinerary;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
 
@@ -25,6 +27,8 @@ public class JavaFarandulaApplicationTests {
 
 	@Autowired
 	AirportRepository airportRepository;
+	@Autowired
+	FlightService flightService;
 
 	@Test
 	public void insertAndFindAnAirport() {
@@ -63,4 +67,24 @@ public class JavaFarandulaApplicationTests {
 		airportRepository.delete(airportsList);
 	}
 
+	@Test
+	public void oneWayTest(){
+
+		String departingDate = "2017-05-25";
+		String departingTime = "00:00:00";
+		String dapartingAirportCodes = "CDMX,GDL";
+
+		String returnDate = "";
+		String returnTime = "";
+		String returnAirportCodes = "";
+
+		String type = "oneWay";
+		String passenger = "children:,infants:1;2,infantsOnSeat:,adults:2";
+
+		List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(dapartingAirportCodes,
+				departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger);
+
+		assertNotEquals(0, flightItineraries);
+
+	}
 }
