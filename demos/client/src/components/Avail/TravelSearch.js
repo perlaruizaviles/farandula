@@ -1,11 +1,12 @@
 import React from "react";
 import TextMenu from "../Common/TextMenu";
-import DateSelector from "../Common/DateSelector";
 import travelOptions from "../../data/travelOptions";
 import DropTravelMenu from "../Common/DropTravelMenu";
 
+import {Button, Dimmer, Grid, Icon, Input, Loader, Search, Segment} from "semantic-ui-react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-import {Button, Dimmer, Grid, Icon, Loader, Search, Segment} from "semantic-ui-react";
 import {getIata} from "../../util/matcher";
 
 class TravelSearch extends React.Component {
@@ -78,22 +79,27 @@ class TravelSearch extends React.Component {
                 />
               </div>
               <div className="search-field">
-                <DateSelector minDate={properties.minDate}
-                              selectsStart
-                              maxDate={properties.maxDate}
-                              startDate={properties.startDate}
-                              endDate={properties.endDate}
-                              selected={properties.startDate}
-                              changeTravelDate={date => actions.dateChange('depart', date)}/>
 
-                <DateSelector styles={(properties.selectedType === 'oneWay')? "hiddenComponent":""}
-                              minDate={properties.minDate}
-                              selectsEnd
-                              maxDate={properties.maxDate}
-                              startDate={properties.startDate}
-                              endDate={properties.endDate}
-                              selected={properties.endDate}
-                              changeTravelDate={date => actions.dateChange('return', date)}/>
+                <DatePicker customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
+                            selectsStart
+                            minDate={properties.minDate}
+                            maxDate={properties.maxDate}
+                            selected={properties.startDate}
+                            startDate={properties.startDate}
+                            endDate={properties.endDate}
+                            placeholderText="Select date..."
+                            onChange={date => actions.dateChange('depart', date)}/>
+
+                <DatePicker styles={(properties.selectedType === 'oneWay')? "hiddenComponent":""}
+                            customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
+                            selectsEnd
+                            minDate={properties.minDate}
+                            maxDate={properties.maxDate}
+                            selected={properties.endDate}
+                            startDate={properties.startDate}
+                            endDate={properties.endDate}
+                            placeholderText="Select date..."
+                            onChange={date => actions.dateChange('return', date)}/>
               </div>
               <div className="search-field">
                 <DropTravelMenu
