@@ -1,13 +1,11 @@
 import React from "react";
 import TextMenu from "../Common/TextMenu";
 import DateSelector from "../Common/DateSelector";
-import AirportSearch from "./AirportSearch";
-import ExchangeButton from "../Common/ExchangeButton";
 import travelOptions from "../../data/travelOptions";
 import DropTravelMenu from "../Common/DropTravelMenu";
 
 
-import {Button, Dimmer, Grid, Icon, Loader, Segment} from "semantic-ui-react";
+import {Button, Dimmer, Grid, Icon, Loader, Search, Segment} from "semantic-ui-react";
 import {getIata} from "../../util/matcher";
 
 class TravelSearch extends React.Component {
@@ -15,7 +13,7 @@ class TravelSearch extends React.Component {
   render() {
 
 
-    const {config, loading, typeChange, dateChange, travelerTypeCountChange, cabinChange, searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights, cleanField} = this.props;
+    const {config, loading, actions} = this.props;
 
 
     const properties = {
@@ -54,26 +52,30 @@ class TravelSearch extends React.Component {
           <Grid.Row>
             <TextMenu options={properties.typeOptions}
                       selected={properties.selectedType}
-                      selectType={typeChange}/>
+                      selectType={actions.typeChange}/>
           </Grid.Row>
           <Grid.Row stretched verticalAlign="middle">
               <div className="search-field">
-                <AirportSearch
-                  searchChange={(query, quantum = properties.airportTo) => searchAirport(query, quantum)}
-                  changeSelected={value => fromAirportChange(value)}
-                  airports={properties.airports}
-                  value={properties.airportFrom.title}
-                  cleanField={(quantum = 'from') => cleanField(quantum)}/>
 
-                <ExchangeButton handleExchange={
-                  (from = properties.airportFrom, to = properties.airportTo) => exchangeDestinations(from, to)}/>
+                <Search style={{display: 'inline'}}
+                        onSearchChange={(e,query, quantum = properties.airportTo) => actions.searchAirport(query, quantum)}
+                        onResultSelect={(e,value) => actions.fromAirportChange(value)}
+                        results={properties.airports}
+                        value={properties.airportFrom.title}
+                        onMouseDown={(e,quantum = 'from') => actions.cleanField(quantum)}
+                />
 
-                <AirportSearch
-                  searchChange={(query, quantum = properties.airportFrom) => searchAirport(query, quantum)}
-                  changeSelected={value => toAirportChange(value)}
-                  airports={properties.airports}
-                  value={properties.airportTo.title}
-                  cleanField={(quantum = 'to') => cleanField(quantum)}/>
+                <Button icon onClick={(event, data, from = properties.airportFrom, to = properties.airportTo) => actions.exchangeDestinations(from, to)}>
+                  <Icon name='exchange'/>
+                </Button>
+
+                <Search style={{display: 'inline'}}
+                        onSearchChange={(e,query, quantum = properties.airportFrom) => actions.searchAirport(query, quantum)}
+                        onResultSelect={(e,value) => actions.toAirportChange(value)}
+                        results={properties.airports}
+                        value={properties.airportTo.title}
+                        onMouseDown={(e,quantum = 'to') => actions.cleanField(quantum)}
+                />
               </div>
               <div className="search-field">
                 <DateSelector minDate={properties.minDate}
@@ -82,7 +84,7 @@ class TravelSearch extends React.Component {
                               startDate={properties.startDate}
                               endDate={properties.endDate}
                               selected={properties.startDate}
-                              changeTravelDate={date => dateChange('depart', date)}/>
+                              changeTravelDate={date => actions.dateChange('depart', date)}/>
 
                 <DateSelector styles={(properties.selectedType === 'oneWay')? "hiddenComponent":""}
                               minDate={properties.minDate}
@@ -91,14 +93,14 @@ class TravelSearch extends React.Component {
                               startDate={properties.startDate}
                               endDate={properties.endDate}
                               selected={properties.endDate}
-                              changeTravelDate={date => dateChange('return', date)}/>
+                              changeTravelDate={date => actions.dateChange('return', date)}/>
               </div>
               <div className="search-field">
                 <DropTravelMenu
                   config={config}
                   options={travelOptions}
-                  travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
-                  cabinChange={cabinChange}/>
+                  travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}
+                  cabinChange={actions.cabinChange}/>
 
                 <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
                   (event, button, search = {
@@ -112,7 +114,7 @@ class TravelSearch extends React.Component {
                     passenger: properties.travelers,
                     cabin: properties.cabin
                   }) => {
-                    availableFlights(search);
+                    actions.availableFlights(search);
                   }
                 }>
                   <Button.Content visible>Search</Button.Content>

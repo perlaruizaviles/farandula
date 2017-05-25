@@ -22,16 +22,18 @@ export default connect(
   },
   dispatch => {
     return {
-      typeChange: (type) => dispatch(changeTravelType(type)),
-      dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date)),
-      travelerTypeCountChange: (TravelerType, count) => dispatch(travelerTypeCountChange(TravelerType, count)),
-      cabinChange: (cabin) => dispatch(cabinChange(cabin)),
-      fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),
-      toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
-      searchAirport: (query, quantum) => dispatch(searchAirport(query, quantum)),
-      exchangeDestinations: (from, to) => dispatch(exchangeDestinations(from, to)),
-      availableFlights: (search) => dispatch(searchAvailableFlights(search)),
-      cleanField: (quantum) => dispatch(cleanField(quantum))
+      actions:{
+        typeChange: (type) => dispatch(changeTravelType(type)),
+        dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date)),
+        travelerTypeCountChange: (TravelerType, count) => dispatch(travelerTypeCountChange(TravelerType, count)),
+        cabinChange: (cabin) => dispatch(cabinChange(cabin)),
+        fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),
+        toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
+        searchAirport: (query, quantum) => dispatch(searchAirport(query, quantum)),
+        exchangeDestinations: (from, to) => dispatch(exchangeDestinations(from, to)),
+        availableFlights: (search) => dispatch(searchAvailableFlights(search)),
+        cleanField: (quantum) => dispatch(cleanField(quantum))
+      }
     };
   }
 )(TravelSearch);
