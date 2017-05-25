@@ -281,15 +281,14 @@ class AmadeusManagerTest {
 
     }
 
-    @Test
+    //@Test
     void buildLinkFromSearchBUGAIRLINESCODES() throws IOException, FarandulaException {
 
         Luisa.setSupplier(() ->
                 new AmadeusFlightManager()
         );
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 05, 24, 10, 15, 30);
-        LocalDateTime returningDate = LocalDateTime.of(2017, 06, 06, 00, 00, 00);
+        LocalDateTime departingDate = LocalDateTime.of(2017, 05, 25, 00, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("MEX");
         List<String> toList = new ArrayList<>();
@@ -297,18 +296,14 @@ class AmadeusManagerTest {
 
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
-        List<LocalDateTime> returningDateList = new ArrayList<>();
-        returningDateList.add(  returningDate );
 
         List<Itinerary> result = Luisa.findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
-                .returningAt(returningDateList)
                 .forPassegers(Passenger.adults(2))
-                .forPassegers(Passenger.children(new int[]{7, 5}))
-                .type(FlightType.ROUNDTRIP)
-                .limitTo(2)
+                .forPassegers(Passenger.infants(new int[]{1, 2}))
+                .limitTo(50)
                 .execute();
 
         assertNotNull( result );

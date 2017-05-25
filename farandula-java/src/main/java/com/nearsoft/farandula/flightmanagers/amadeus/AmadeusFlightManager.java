@@ -360,7 +360,7 @@ public class AmadeusFlightManager implements FlightManager {
 
         String passengersData = "";
         for (Map.Entry<PassengerType, List<Passenger>> entry : search.getPassengersMap().entrySet()) {
-            passengersData = "&" + entry.getKey().toString().toLowerCase() + "=" + entry.getValue().size();
+            passengersData += "&" + entry.getKey().toString().toLowerCase() + "=" + entry.getValue().size();
         }
 
         String numberOfResults = "&number_of_results=" + search.getOffSet();
