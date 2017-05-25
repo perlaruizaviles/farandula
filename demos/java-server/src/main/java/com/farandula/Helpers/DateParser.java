@@ -30,19 +30,27 @@ public class DateParser {
         return departureDateTime;
     }
 
-    public List<LocalDateTime> parseStringDatesTimes(String [] dates, String [] times) throws ParameterException {
-        if( dates.length != times.length){
+    public List<LocalDateTime> parseStringDatesTimes(String[] dates, String[] times) throws ParameterException {
+        if (dates.length != times.length) {
             throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_DATES, "Dates and times don't match");
-        }
-        else
-        {
+        } else {
             List<LocalDateTime> localDateTimes = new ArrayList<>();
-            for( int i = 0; i < dates.length; i++){
+            for (int i = 0; i < dates.length; i++) {
                 LocalDateTime dateTime = this.parseDateTime(dates[i], times[i]);
                 localDateTimes.add(dateTime);
             }
 
             return localDateTimes;
         }
+    }
+
+    public List<LocalDateTime> parseStringDatesTimes(String date, String time) throws ParameterException {
+
+        List<LocalDateTime> localDateTimes = new ArrayList<>();
+        LocalDateTime dateTime = this.parseDateTime(date, time);
+
+        localDateTimes.add(dateTime);
+
+        return localDateTimes;
     }
 }

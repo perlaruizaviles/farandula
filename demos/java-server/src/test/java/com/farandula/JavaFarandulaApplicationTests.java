@@ -25,66 +25,103 @@ import java.util.List;
 @SpringBootTest
 public class JavaFarandulaApplicationTests {
 
-	@Autowired
-	AirportRepository airportRepository;
-	@Autowired
-	FlightService flightService;
+    @Autowired
+    AirportRepository airportRepository;
+    @Autowired
+    FlightService flightService;
 
-	@Test
-	public void insertAndFindAnAirport() {
-		Airport myAirport = new Airport(10000, "NearAirport", "CDMX", "Mexico", "CDM");
+    @Test
+    public void insertAndFindAnAirport() {
+        Airport myAirport = new Airport(10000, "NearAirport", "CDMX", "Mexico", "CDM");
 
-		airportRepository.insert(myAirport);
+        airportRepository.insert(myAirport);
 
-		List<Airport> result = airportRepository.findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase("CDMX", "CDMX", "CDMX");
+        List<Airport> result = airportRepository.findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase("CDMX", "CDMX", "CDMX");
 
-		Assert.assertEquals(1, result.size());
+        Assert.assertEquals(1, result.size());
 
-		Assert.assertEquals(10000, result.get(0).getId());
-		Assert.assertEquals("NearAirport", result.get(0).getName());
-		Assert.assertEquals("CDMX", result.get(0).getCity());
-		Assert.assertEquals("Mexico", result.get(0).getCountry());
-		Assert.assertEquals("CDM", result.get(0).getIata());
+        Assert.assertEquals(10000, result.get(0).getId());
+        Assert.assertEquals("NearAirport", result.get(0).getName());
+        Assert.assertEquals("CDMX", result.get(0).getCity());
+        Assert.assertEquals("Mexico", result.get(0).getCountry());
+        Assert.assertEquals("CDM", result.get(0).getIata());
 
-		airportRepository.delete(myAirport);
-	}
+        airportRepository.delete(myAirport);
+    }
 
-	@Test
-	public void findExactlyTenResults(){
+    @Test
+    public void findExactlyTenResults() {
 
-	    List<Airport> airportsList = new ArrayList<>();
+        List<Airport> airportsList = new ArrayList<>();
 
-	    for(int i = 1; i <= 11; i++)
-	        airportsList.add(new Airport(i+10000, "Name"+i, "City"+i, "Country"+i, "AA"+1));
+        for (int i = 1; i <= 11; i++)
+            airportsList.add(new Airport(i + 10000, "Name" + i, "City" + i, "Country" + i, "AA" + 1));
 
-	    airportRepository.insert( airportsList );
+        airportRepository.insert(airportsList);
 
-		List<Airport> result = airportRepository.
-				findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase("AA", "AA", "AA");
+        List<Airport> result = airportRepository.
+                findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase("AA", "AA", "AA");
 
-		Assert.assertEquals(10, result.size());
+        Assert.assertEquals(10, result.size());
 
-		airportRepository.delete(airportsList);
-	}
+        airportRepository.delete(airportsList);
+    }
 
-	@Test
-	public void oneWayTest(){
+    @Test
+    public void oneWayTest() {
 
-		String departingDate = "2017-05-25";
-		String departingTime = "00:00:00";
-		String dapartingAirportCodes = "CDMX,GDL";
+        String departingDate = "2017-06-07";
+        String departingTime = "00:00:00";
+        String dapartingAirportCodes = "MEX";
 
-		String returnDate = "";
-		String returnTime = "";
-		String returnAirportCodes = "";
+        String returnDate = "";
+        String returnTime = "";
+        String returnAirportCodes = "GDL";
 
-		String type = "oneWay";
-		String passenger = "children:,infants:1;2,infantsOnSeat:,adults:2";
+        String type = "oneWay";
+        String passenger = "children:,infants:1;2,infantsOnSeat:,adults:2";
 
-		List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(dapartingAirportCodes,
-				departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger);
+        List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(dapartingAirportCodes,
+                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger);
 
-		assertNotEquals(0, flightItineraries);
+        assertNotEquals(0, flightItineraries.size());
+    }
 
-	}
+    @Test
+    public void roundTripTest() {
+        String departingDate = "2017-06-07";
+        String departingTime = "00:00:00";
+        String dapartingAirportCodes = "MEX";
+
+        String returnDate = "2017-07-07";
+        String returnTime = "00:00:00";
+        String returnAirportCodes = "GDL";
+
+        String type = "roundTrip";
+        String passenger = "children:,infants:1;2,infantsOnSeat:,adults:2";
+
+        List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(dapartingAirportCodes,
+                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger);
+
+        assertNotEquals(0, flightItineraries.size());
+    }
+
+    @Test
+    public void multiCityTest() {
+        String departingDate = "2017-06-07,2017-07-07,2017-08-07";
+        String departingTime = "00:00:00,00:00:00,00:00:00";
+        String dapartingAirportCodes = "MEX,CUU,LHR";
+
+        String returnDate = "";
+        String returnTime = "";
+        String returnAirportCodes = "GDL,MEX,DFW";
+
+        String type = "multiCity";
+        String passenger = "children:,infants:1;2,infantsOnSeat:,adults:2";
+
+        List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(dapartingAirportCodes,
+                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger);
+
+        assertNotEquals(0, flightItineraries.size());
+    }
 }

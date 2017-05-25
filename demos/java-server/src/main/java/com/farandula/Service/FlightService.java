@@ -46,88 +46,106 @@ public class FlightService {
     public List<FlightItinerary> getResponseFromSearch(String departureAirportCode,
                                                        String departingDate,
                                                        String departingTime,
-                                                       String returningAirportCode,
+                                                       String arrivalAirportCode,
                                                        String returnDate,
                                                        String returnTime,
                                                        String type,
                                                        String passenger) {
 
-        if (this.validIataLength(departureAirportCode) && this.validIataLength(returningAirportCode)) {
+        //Declaring for departing parameters
+        String[] departingDates = departingDate.split(",");
+        String[] departingTimes = departingTime.split(",");
+        String[] departingAirportCodeArray = departureAirportCode.split(",");
 
-            String [] departingDates = departingDate.split(",");
-            String [] departingTimes = departingTime.split(",");
-            String [] deparingAirportCodeArray = departureAirportCode.split(",");
-
-            List<LocalDateTime> localDepartureDates;
-            List<String> departingAirportCodes = Arrays.asList(deparingAirportCodeArray);
-
-            Luisa.setSupplier(() -> {
-                try {
-                    return new AmadeusFlightManager();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
-
-            List<Itinerary> flights;
-
-            try {
-                AgeManager ageManager = passengerHelper.getPassengersFromString(passenger);
-
-                SearchCommand command = Luisa.findMeFlights();
-
-                //Declaring departure dates
-                localDepartureDates = dateParser.parseStringDatesTimes( departingDates, departingTimes );
-
-                command
-                        .from(departingAirportCodes)
-                        .departingAt(localDepartureDates);
-
-                switch (type){
-                    case "oneWay" :
-                        command.type(FlightType.ONEWAY);
-                        break;
-
-                    case "roundTrip" :
-
-                        String [] airportCodesArray = returningAirportCode.split(",");
-                        List<String> returnAirportCodes = Arrays.asList(airportCodesArray);
-
-                        String [] returnDatesArray = returnDate.split(",");
-                        String [] returnTimesArray = returnTime.split(",");
-
-                        List<LocalDateTime> returnDateTimes = dateParser.parseStringDatesTimes(returnDatesArray, returnTimesArray);
-
-                        command
-                                .to(returnAirportCodes)
-                                .returningAt(returnDateTimes)
-                                .type(FlightType.ROUNDTRIP);
-
-                        break;
-
-                    case "multiCity" :
-                        command.type(FlightType.OPENJAW);
-                        break;
-
-                    default:
-                        break;
-                }
-
-                command
-                        .forPassegers(Passenger.children(ageManager.getChildAges()))
-                        .forPassegers(Passenger.infants(ageManager.getInfantAges()))
-                        .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
-                        .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
-                        .limitTo(50);
-
-                flights = command.execute();
-                return this.getFlightItineraryFromItinerary(flights, type);
-
-            } catch (Exception e) {
-                Logger.getAnonymousLogger().warning(e.toString());
-            }
+        for(String airportCode : departingAirportCodeArray){
+            if( !validIataLength(airportCode) )
+                return new ArrayList<>();
         }
+
+        List<String> departingAirportCodes = Arrays.asList(departingAirportCodeArray);
+
+        //Declaring for returning parameters (Airport code only)
+        String[] arrivalAirportCodesArray = arrivalAirportCode.split(",");;
+        List<String> arrivalAirportCodes = Arrays.asList(arrivalAirportCodesArray);;
+
+        for(String airportCode : arrivalAirportCodes){
+            if( !validIataLength(airportCode) )
+                return new ArrayList<>();
+        }
+
+        Luisa.setSupplier(() -> {
+            try {
+                return new AmadeusFlightManager();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+
+        List<Itinerary> flights;
+
+        try {
+            AgeManager ageManager = passengerHelper.getPassengersFromString(passenger);
+
+            SearchCommand command = Luisa.findMeFlights();
+
+            //Prepare departure dates
+            List<LocalDateTime> localDepartureDates = dateParser.parseStringDatesTimes(departingDates, departingTimes);
+
+            //Fill the command with common information
+            command.from(departingAirportCodes)
+                    .to(arrivalAirportCodes)
+                    .departingAt(localDepartureDates)
+                    .forPassegers(Passenger.children(ageManager.getChildAges()))
+                    .forPassegers(Passenger.infants(ageManager.getInfantAges()))
+                    .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
+                    .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
+                    .limitTo(50);
+
+            switch (type) {
+                case "oneWay":
+                    if( command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() ==1 )
+                        command.type(FlightType.ONEWAY);
+                    else
+                        throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for one way trip");
+                    break;
+
+                case "roundTrip":
+
+                    if( returnDate.isEmpty() || returnTime.isEmpty() )
+                        throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_DATES, "Empty returning dates");
+
+                    if( command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1 )
+                        command.type(FlightType.ONEWAY);
+                    else
+                        throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for round trip");
+
+                    //Prepare departure dates
+                    List<LocalDateTime> localReturnDates = dateParser.parseStringDatesTimes(returnDate, returnTime);
+
+                    command
+                            .returningAt(localReturnDates)
+                            .type(FlightType.ROUNDTRIP);
+                    break;
+
+                case "multiCity":
+                    if( command.getDepartureAirports().size() == command.getArrivalAirports().size() )
+                        command.type(FlightType.OPENJAW);
+                    else
+                        throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for muli city trip");
+                    break;
+
+                default:
+                    break;
+            }
+
+            flights = command.execute();
+            return this.getFlightItineraryFromItinerary(flights, type);
+
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().warning(e.toString());
+        }
+
         return new ArrayList<>();
     }
 
