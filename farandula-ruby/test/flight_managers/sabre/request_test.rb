@@ -10,7 +10,7 @@ class Farandula::RequestTest < Minitest::Test
   
 
   def setup
-    @request = Sabre::Request.new
+    @request = Sabre::SabreRequest.new
     @json    = Jbuilder.new 
   end
 

@@ -3,7 +3,7 @@ require 'jbuilder'
 module Farandula
   module FlightsManagers
     module Sabre
-      class Request
+      class SabreRequest
         
         def format_date(date)
           date.strftime('%FT%T')
