@@ -1,7 +1,7 @@
 import * as types from "../actions/actionTypes";
 import {Map} from "immutable";
 import {countTravelers} from "../util/travelConfig";
-import {changeDate} from "../actions/travelConfig";
+import {changeTravelDates} from "../util/dates";
 
 const travelConfig = (state = Map({}), action) => {
   switch (action.type) {
@@ -9,15 +9,8 @@ const travelConfig = (state = Map({}), action) => {
       return state.set('type', action.value);
 
     case types.CHANGE_TRAVEL_DATE:
-      let dates;
-      if(action.dateType==='depart'){
-        dates = changeDate(action.date, state.getIn(['dates','return']))
-      }else{
-        dates = changeDate(state.getIn(['dates','depart']), action.date, false)
-      }
-      state = state.setIn(['dates','depart'], dates[0]);
-      state = state.setIn(['dates', 'return'], dates[1]);
-      return state ;
+      let dates = changeTravelDates(state.get('dates'), action.date, action.dateType);
+      return state.set('dates', dates);
 
     case types.CHANGE_TRAVELER_TYPE_COUNT:
       let count = countTravelers(state);
