@@ -11,6 +11,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
 import com.nearsoft.farandula.models.*;
+import com.nearsoft.farandula.utilities.CabinClassParser;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -50,7 +51,8 @@ public class FlightService {
                                                        String returnDate,
                                                        String returnTime,
                                                        String type,
-                                                       String passenger) {
+                                                       String passenger,
+                                                       String cabin) {
 
         //Declaring for departing parameters
         String[] departingDates = departingDate.split(",");
@@ -100,7 +102,8 @@ public class FlightService {
                     .forPassegers(Passenger.infants(ageManager.getInfantAges()))
                     .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
                     .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
-                    .limitTo(50);
+                    .limitTo(50)
+                    .preferenceClass(CabinClassParser.getCabinClassType(cabin));
 
             switch (type) {
                 case "oneWay":
