@@ -85,7 +85,7 @@ public class AmadeusFlightManager implements FlightManager {
 
         List<Itinerary> results = new ArrayList<>();
         List<String> urlList = buildTargetURLFromSearch(search);
-        //this var is only used in openjaws
+        //this var is only used in openjaw
         int maxSize=0;
 
         for (String url_api : urlList) {
@@ -99,9 +99,9 @@ public class AmadeusFlightManager implements FlightManager {
                 maxSize = results.size();
             } else {
                 List<Itinerary> openJawResults = parseAvailResponse(responseStream);
-                if ( openJawResults.size() < maxSize  )
+                if ( openJawResults.size() < maxSize  ) {
                     maxSize = openJawResults.size();
-
+                }
                 for (int i = 0; i < maxSize; i++) {
                     results.get(i).getAirlegs().addAll(openJawResults.get(i).getAirlegs());
                     Fares pricesSum = sumPrices(results.get(i).getPrice(), openJawResults.get(i).getPrice());
