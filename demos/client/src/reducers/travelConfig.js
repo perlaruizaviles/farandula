@@ -80,7 +80,7 @@ const travelConfig = (state = Map({}), action) => {
       } else {
         state = state.set('availableFlights',state.get('availableFlights').sortBy((item => item.fares.totalPrice.amount)));
       }
-      return state
+      return state;
 
     default:
       return state;
