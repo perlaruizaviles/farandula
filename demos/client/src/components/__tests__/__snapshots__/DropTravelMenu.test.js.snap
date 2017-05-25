@@ -20,7 +20,7 @@ ShallowWrapper {
     selectOnBlur={true}
     style={
         Object {
-            "width": 150,
+            "width": 200,
           }
     }
     text="1 Adult, Economy">
@@ -103,7 +103,7 @@ ShallowWrapper {
       selectOnBlur={true}
       style={
             Object {
-                  "width": 150,
+                  "width": 200,
                 }
       }
       text="1 Adult, Economy">
@@ -267,7 +267,7 @@ ShallowWrapper {
           selectOnBlur={true}
           style={
                     Object {
-                              "width": 150,
+                              "width": 200,
                             }
           }
           text="1 Adult, Economy">
@@ -350,7 +350,7 @@ ShallowWrapper {
           selectOnBlur={true}
           style={
                     Object {
-                              "width": 150,
+                              "width": 200,
                             }
           }
           text="1 Adult, Economy">

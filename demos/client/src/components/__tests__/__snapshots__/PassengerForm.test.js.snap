@@ -69,12 +69,11 @@ ShallowWrapper {
         className="equal width fields">
         <div
             className="field">
-            <label>
-                Gender
-            </label>
             <Field
-                component="select"
+                component={[Function]}
+                label="Gender*"
                 name="gender"
+                type="select"
                 validate={[Function]}>
                 <option />
                 <option
@@ -179,12 +178,11 @@ ShallowWrapper {
             className="equal width fields">
             <div
                   className="field">
-                  <label>
-                        Gender
-                  </label>
                   <Field
-                        component="select"
+                        component={[Function]}
+                        label="Gender*"
                         name="gender"
+                        type="select"
                         validate={[Function]}>
                         <option />
                         <option
@@ -326,12 +324,11 @@ ShallowWrapper {
                     className="equal width fields">
                     <div
                               className="field">
-                              <label>
-                                        Gender
-                              </label>
                               <Field
-                                        component="select"
+                                        component={[Function]}
+                                        label="Gender*"
                                         name="gender"
+                                        type="select"
                                         validate={[Function]}>
                                         <option />
                                         <option
@@ -436,12 +433,11 @@ ShallowWrapper {
                     className="equal width fields">
                     <div
                               className="field">
-                              <label>
-                                        Gender
-                              </label>
                               <Field
-                                        component="select"
+                                        component={[Function]}
+                                        label="Gender*"
                                         name="gender"
+                                        type="select"
                                         validate={[Function]}>
                                         <option />
                                         <option

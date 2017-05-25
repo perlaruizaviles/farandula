@@ -56,79 +56,80 @@ class TravelSearch extends React.Component {
                       selectType={actions.typeChange}/>
           </Grid.Row>
           <Grid.Row stretched verticalAlign="middle">
-              <div className="search-field">
+            <div className="search-field">
 
-                <Search style={{display: 'inline'}}
-                        onSearchChange={(e,query, quantum = properties.airportTo) => actions.searchAirport(query, quantum)}
-                        onResultSelect={(e,value) => actions.fromAirportChange(value)}
-                        results={properties.airports}
-                        value={properties.airportFrom.title}
-                        onMouseDown={(e,quantum = 'from') => actions.cleanField(quantum)}
-                />
+              <Search style={{display: 'inline'}}
+                      onSearchChange={(e, query, quantum = properties.airportTo) => actions.searchAirport(query, quantum)}
+                      onResultSelect={(e, value) => actions.fromAirportChange(value)}
+                      results={properties.airports}
+                      value={properties.airportFrom.title}
+                      onMouseDown={(e, quantum = 'from') => actions.cleanField(quantum)}
+              />
 
-                <Button icon onClick={(event, data, from = properties.airportFrom, to = properties.airportTo) => actions.exchangeDestinations(from, to)}>
-                  <Icon name='exchange'/>
-                </Button>
+              <Button icon
+                      onClick={(event, data, from = properties.airportFrom, to = properties.airportTo) => actions.exchangeDestinations(from, to)}>
+                <Icon name='exchange'/>
+              </Button>
 
-                <Search style={{display: 'inline'}}
-                        onSearchChange={(e,query, quantum = properties.airportFrom) => actions.searchAirport(query, quantum)}
-                        onResultSelect={(e,value) => actions.toAirportChange(value)}
-                        results={properties.airports}
-                        value={properties.airportTo.title}
-                        onMouseDown={(e,quantum = 'to') => actions.cleanField(quantum)}
-                />
-              </div>
-              <div className="search-field">
+              <Search style={{display: 'inline'}}
+                      onSearchChange={(e, query, quantum = properties.airportFrom) => actions.searchAirport(query, quantum)}
+                      onResultSelect={(e, value) => actions.toAirportChange(value)}
+                      results={properties.airports}
+                      value={properties.airportTo.title}
+                      onMouseDown={(e, quantum = 'to') => actions.cleanField(quantum)}
+              />
+            </div>
+            <div className="search-field">
 
-                <DatePicker customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
-                            selectsStart
-                            minDate={properties.minDate}
-                            maxDate={properties.maxDate}
-                            selected={properties.startDate}
-                            startDate={properties.startDate}
-                            endDate={properties.endDate}
-                            placeholderText="Select date..."
-                            onChange={date => actions.dateChange('depart', date)}/>
+              <DatePicker customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
+                          selectsStart
+                          minDate={properties.minDate}
+                          maxDate={properties.maxDate}
+                          selected={properties.startDate}
+                          startDate={properties.startDate}
+                          endDate={properties.endDate}
+                          placeholderText="Select date..."
+                          onChange={date => actions.dateChange('depart', date)}/>
 
-                <DatePicker styles={(properties.selectedType === 'oneWay')? "hiddenComponent":""}
-                            customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
-                            selectsEnd
-                            minDate={properties.minDate}
-                            maxDate={properties.maxDate}
-                            selected={properties.endDate}
-                            startDate={properties.startDate}
-                            endDate={properties.endDate}
-                            placeholderText="Select date..."
-                            onChange={date => actions.dateChange('return', date)}/>
-              </div>
-              <div className="search-field">
-                <DropTravelMenu
-                  config={config}
-                  options={travelOptions}
-                  travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}
-                  cabinChange={actions.cabinChange}/>
+              <DatePicker className={(properties.selectedType === 'oneWay') ? "hiddenComponent" : ""}
+                          customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
+                          selectsEnd
+                          minDate={properties.minDate}
+                          maxDate={properties.maxDate}
+                          selected={properties.endDate}
+                          startDate={properties.startDate}
+                          endDate={properties.endDate}
+                          placeholderText="Select date..."
+                          onChange={date => actions.dateChange('return', date)}/>
+            </div>
+            <div className="search-field">
+              <DropTravelMenu
+                config={config}
+                options={travelOptions}
+                travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}
+                cabinChange={actions.cabinChange}/>
 
-                <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
-                  (event, button, search = {
-                    departureAirport: getIata(properties.airportFrom.title),
-                    departingDate: properties.startDate.format('YYYY-MM-DD'),
-                    departingTime: "10:15:30",
-                    arrivalAirport: getIata(properties.airportTo.title),
-                    arrivalDate: properties.endDate.format('YYYY-MM-DD'),
-                    arrivalTime: "00:00:00",
-                    type: properties.selectedType,
-                    passenger: properties.travelers,
-                    cabin: properties.cabin
-                  }) => {
-                    actions.availableFlights(search);
-                  }
-                }>
-                  <Button.Content visible>Search</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name='plane' className='large'/>
-                  </Button.Content>
-                </Button>
-              </div>
+              <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
+                (event, button, search = {
+                  departureAirport: getIata(properties.airportFrom.title),
+                  departingDate: properties.startDate.format('YYYY-MM-DD'),
+                  departingTime: "10:15:30",
+                  arrivalAirport: getIata(properties.airportTo.title),
+                  arrivalDate: properties.endDate.format('YYYY-MM-DD'),
+                  arrivalTime: "00:00:00",
+                  type: properties.selectedType,
+                  passenger: properties.travelers,
+                  cabin: properties.cabin
+                }) => {
+                  actions.availableFlights(search);
+                }
+              }>
+                <Button.Content visible>Search</Button.Content>
+                <Button.Content hidden>
+                  <Icon name='plane' className='large'/>
+                </Button.Content>
+              </Button>
+            </div>
           </Grid.Row>
         </Grid>
       </Segment>
