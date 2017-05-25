@@ -5,13 +5,16 @@ import {List} from "immutable";
 class AvailableFlightsApi {
 
   static getAvailableFlights(search) {
+
+    const passenger = `children:${search.passenger.get('child')},infants:${search.passenger.get('lap-infant')},infantsOnSeat:${search.passenger.get('seat-infant')},adults:${search.passenger.get('adults')}`;
+
     let params = {
       departureAirportCode: search.departureAirport,
       departingDate: search.departingDate,
       departingTime: search.departingTime,
       arrivalAirportCode: search.arrivalAirport,
       type: search.type,
-      passenger: search.passenger,
+      passenger: passenger,
       cabin: search.cabin
     };
 

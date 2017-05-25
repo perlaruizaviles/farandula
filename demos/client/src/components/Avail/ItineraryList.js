@@ -1,7 +1,8 @@
 import React from "react";
+import logo from "../../styles/logo.svg";
 import ItineraryElement from "./ItineraryElement";
 import ItineraryListOptions from "./ItineraryListOptions";
-import {Item, Message, Segment} from "semantic-ui-react";
+import {Grid, Item, Segment} from "semantic-ui-react";
 
 const ItineraryList = ({travels, order, changeOrderPrice}) => (
   <Segment raised color="orange">
@@ -12,10 +13,11 @@ const ItineraryList = ({travels, order, changeOrderPrice}) => (
       {
         (travels)
           ? travels.map((travel) => <ItineraryElement key={Math.random()} itinerary={travel}/>)
-          : <Message info
-                     icon="info"
-                     header='You must search flight first to see the list!'
-                     content=':P'/>
+          : <Grid centered textAlign='center'>
+              <Grid.Row>
+                <img src={logo} className="App-logo" alt="logo"/>
+              </Grid.Row>
+            </Grid>
       }
     </Item.Group>
   </Segment>

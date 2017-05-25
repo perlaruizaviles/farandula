@@ -9,9 +9,7 @@ const travelOptions = Map({
   minDate: moment(),
   maxDate: moment().add(1, "year"),
   travelers: Map({
-    'adults': List([18, 64]),
-    'seniors': List([65, Infinity]),
-    'youth': List([12, 17]),
+    'adults': List([18, Infinity]),
     'child': List([2, 11]),
     'seat-infant': List([0, 2]),
     'lap-infant': List([0, 2])
