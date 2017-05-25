@@ -4,6 +4,8 @@ import com.farandula.Repositories.AirportRepository;
 import com.farandula.Service.FlightService;
 import com.farandula.models.Airport;
 import com.farandula.models.FlightItinerary;
+import com.farandula.models.ItineraryFares;
+import com.nearsoft.farandula.models.Fares;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -124,4 +126,53 @@ public class JavaFarandulaApplicationTests {
 
         assertNotEquals(0, flightItineraries.size());
     }
+
+
+    @Test
+    public void checkPriceChangeTest() {
+
+        int minSize;
+
+        String departingDate = "2017-06-07";
+        String departingTime = "00:00:00";
+        String departingAirportCodes = "MEX";
+
+        String returnDate = "";
+        String returnTime = "";
+        String arrivalAirportCodes = "GDL";
+
+
+        String type = "oneWay";
+        String passengerTestOne = "children:,infants:,infantsOnSeat:0;1;2,adults:2";
+
+        List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(departingAirportCodes,
+                departingDate, departingTime, arrivalAirportCodes, returnDate, returnTime, type, passengerTestOne);
+
+        List<ItineraryFares> price = new ArrayList<>();
+
+        for ( int i = 0; i < flightItineraries.size(); i++){
+            price.add(flightItineraries.get(i).getFares());
+        }
+
+        String passengerTestTwo = "children:,infants:,infantsOnSeat:,adults:2";
+
+        List<FlightItinerary> flightItinerariesTwo = flightService.getResponseFromSearch(departingAirportCodes,
+                departingDate, departingTime, arrivalAirportCodes, returnDate, returnTime, type, passengerTestTwo);
+
+        List<ItineraryFares> priceTwo = new ArrayList<>();
+
+        for ( int i = 0; i < flightItinerariesTwo.size(); i++){
+            priceTwo.add(flightItinerariesTwo.get(i).getFares());
+        }
+
+        minSize = (flightItineraries.size() > flightItinerariesTwo.size())
+                ? flightItinerariesTwo.size()
+                : flightItineraries.size();
+
+        for ( int i = 0; i < minSize; i++){
+            assertNotEquals(price.get(i).getBasePrice().getAmount(), priceTwo.get(i).getBasePrice().getAmount());
+        }
+
+    }
+
 }
