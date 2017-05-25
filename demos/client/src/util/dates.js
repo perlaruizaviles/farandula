@@ -13,7 +13,7 @@ export const formatTime = (Time) => {
   return timeFormatted.format('h:mmp');
 };
 
-export const changeRangeDate = (dateOne, dateTwo, shouldDateOneBeFirst = true) => {
+const changeRangeDate = (dateOne, dateTwo, shouldDateOneBeFirst = true) => {
   if (dateOne.diff(dateTwo) > 0){
     return (shouldDateOneBeFirst)? 
       Map({'depart':dateOne, 'return':dateOne}) : 
