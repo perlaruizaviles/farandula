@@ -2,8 +2,9 @@ import React from "react";
 import TextMenu from "../Common/TextMenu";
 import travelOptions from "../../data/travelOptions";
 import DropTravelMenu from "../Common/DropTravelMenu";
+import SearchSection from "./SearchSection";
 
-import {Button, Dimmer, Grid, Icon, Input, Loader, Search, Segment} from "semantic-ui-react";
+import {Button, Dimmer, Grid, Icon, Input, Loader, Segment} from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -57,41 +58,25 @@ class TravelSearch extends React.Component {
           </Grid.Row>
           <Grid.Row stretched verticalAlign="middle">
             <div className="search-field">
-
-              <Search style={{display: 'inline'}}
-                      onSearchChange={(e, query, quantum = properties.airportTo) => actions.searchAirport(query, quantum)}
-                      onResultSelect={(e, value) => actions.fromAirportChange(value)}
-                      results={properties.airports}
-                      value={properties.airportFrom.title}
-                      onMouseDown={(e, quantum = 'from') => actions.cleanField(quantum)}
-              />
-
-              <Button icon
-                      onClick={(event, data, from = properties.airportFrom, to = properties.airportTo) => actions.exchangeDestinations(from, to)}>
-                <Icon name='exchange'/>
-              </Button>
-
-              <Search style={{display: 'inline'}}
-                      onSearchChange={(e, query, quantum = properties.airportFrom) => actions.searchAirport(query, quantum)}
-                      onResultSelect={(e, value) => actions.toAirportChange(value)}
-                      results={properties.airports}
-                      value={properties.airportTo.title}
-                      onMouseDown={(e, quantum = 'to') => actions.cleanField(quantum)}
-              />
+              <SearchSection properties={properties} actions={actions} />
             </div>
             <div className="search-field">
+              <SearchSection properties={properties} actions={actions} />
+            </div>
+            <div className="search-field">
+              <SearchSection properties={properties} actions={actions} />
+            </div>
+            <div className="search-field">
+              <SearchSection properties={properties} actions={actions} />
+            </div>
+            <div className="search-field">
+              <SearchSection properties={properties} actions={actions} />
+            </div>
+            <div className="search-field">
+              <SearchSection properties={properties} actions={actions} />
+            </div>
 
-              <DatePicker customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
-                          selectsStart
-                          minDate={properties.minDate}
-                          maxDate={properties.maxDate}
-                          selected={properties.startDate}
-                          startDate={properties.startDate}
-                          endDate={properties.endDate}
-                          placeholderText="Select date..."
-                          onChange={date => actions.dateChange('depart', date)}/>
-
-              <DatePicker className={(properties.selectedType === 'oneWay') ? "hiddenComponent" : ""}
+            <DatePicker className={(properties.selectedType === 'oneWay') ? "hiddenComponent" : ""}
                           customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
                           selectsEnd
                           minDate={properties.minDate}
@@ -101,7 +86,7 @@ class TravelSearch extends React.Component {
                           endDate={properties.endDate}
                           placeholderText="Select date..."
                           onChange={date => actions.dateChange('return', date)}/>
-            </div>
+
             <div className="search-field">
               <DropTravelMenu
                 config={config}
