@@ -115,3 +115,36 @@ export const cleanField = quantum => {
     }
   };
 };
+
+export const changeDepartDate = (dateA, dateB, shouldAbeBigger) => {
+  if (dateA.diff(dateB) > 0){
+    return [dateA, dateA]
+  } else {
+    return [dateA, dateB];
+  }
+}
+
+export const changeReturnDate = (dateA, dateB) => {
+  if (dateA.diff(dateB) > 0){
+    return [dateB, dateB]
+  } else {
+    return [dateA, dateB];
+  }
+}
+
+export const changeDate = (targetDate, otherDate, shouldTargetBeFirst = true) => {
+  if (targetDate.diff(otherDate) > 0){
+    return (shouldTargetBeFirst)? [targetDate, targetDate] : [otherDate, otherDate]
+  } else {
+    return [targetDate, otherDate];
+  }
+}
+
+export const changeDates = (dates, newDate, dateType) => {
+  if(dateType==='depart'){
+    dates = changeDate(dates.get('depart'), newDate);
+  } else if (dateType==='return'){
+    changeDate(newDate, dates.get('return'));
+  }
+  return dates;
+}
