@@ -3,14 +3,13 @@ require 'file_helper'
 require 'string_helper'
 require 'minitest/autorun'
 
-class Farandula::RequestTest < Minitest::Test
+class Farandula::SabreRequestTest < Minitest::Test
 
   include Farandula
-  include Farandula::FlightsManagers
+  include Farandula::FlightManagers
   
-
   def setup
-    @request = Sabre::SabreRequest.new
+    @request = Sabre::Request.new
     @json    = Jbuilder.new 
   end
 

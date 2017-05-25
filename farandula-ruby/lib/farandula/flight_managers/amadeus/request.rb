@@ -1,6 +1,7 @@
 module Farandula
-  module FlightsManagers
+  module FlightManagers
     module Amadeus
+      
       class Request
         
         def format_date(date)
