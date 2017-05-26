@@ -27,7 +27,10 @@ const initialState = {
       depart: undefined,
       return: undefined
     }),
-    order: 'price-low-to-high'
+    order: 'price-low-to-high',
+    filters: Map({
+      limit: '50'
+    })
   })
 };
 
