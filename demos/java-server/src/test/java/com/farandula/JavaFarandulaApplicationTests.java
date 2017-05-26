@@ -153,7 +153,7 @@ public class JavaFarandulaApplicationTests {
 
 
         String type = "oneWay";
-        String passengerTestOne = "children:,infants:,infantsOnSeat:1;2,adults:2";
+        String passengerTestOne = "children:4,5,infants:,infantsOnSeat:,adults:2";
 
         String classType = "economy";
 

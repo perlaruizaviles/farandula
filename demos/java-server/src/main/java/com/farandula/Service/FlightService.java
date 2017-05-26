@@ -52,6 +52,8 @@ public class FlightService {
                                                        String passenger,
                                                        String cabin) {
 
+        Logger.getAnonymousLogger().warning( "Departing Date: " + departingDate );
+
         //Declaring for departing parameters
         String[] departingDates = departingDate.split(",");
         String[] departingTimes = departingTime.split(",");
@@ -75,7 +77,7 @@ public class FlightService {
 
         Luisa.setSupplier(() -> {
             try {
-                return new AmadeusFlightManager();
+                return new SabreFlightManager();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -144,7 +146,13 @@ public class FlightService {
             return this.getFlightItineraryFromItinerary(flights, type);
 
         } catch (Exception e) {
-            Logger.getAnonymousLogger().warning(e.toString());
+
+            List<String> stackTrace = Arrays.stream(e.getStackTrace())
+                    .map(stackTraceElement -> stackTraceElement.toString() + "\n")
+                    .collect(Collectors.toList());
+
+            Logger.getLogger("Flight Service").warning(stackTrace.toString());
+            Logger.getLogger("Flight Service").warning(e.toString());
         }
 
         return new ArrayList<>();
