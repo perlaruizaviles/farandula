@@ -7,8 +7,6 @@ const initialState = {
     cabin: 'economy',
     travelers: Map({
       'adults': 1,
-      'seniors': 0,
-      'youth': 0,
       'child': 0,
       'seat-infant': 0,
       'lap-infant': 0
