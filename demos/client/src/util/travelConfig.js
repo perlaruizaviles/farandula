@@ -1,6 +1,6 @@
 import {singularize, titleize} from "inflection";
 
-const countTravelers = (config) => {
+export const countTravelers = (config) => {
   let count = config
     .get('travelers')
     .reduce((r, k) => r + k);
@@ -9,7 +9,7 @@ const countTravelers = (config) => {
   return count;
 };
 
-const configTravelString = (config) => {
+export const configTravelString = (config) => {
   let count = countTravelers(config);
   let cabin = config.get('cabin');
 
@@ -23,6 +23,3 @@ const configTravelString = (config) => {
     return count + " Travelers, " + titleize(cabin);
   }
 };
-
-
-export {countTravelers, configTravelString};
