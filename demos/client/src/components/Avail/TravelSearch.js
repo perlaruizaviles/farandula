@@ -1,16 +1,24 @@
 import React from "react";
 import TextMenu from "../Common/TextMenu";
 import travelOptions from "../../data/travelOptions";
-import DropTravelMenu from "../Common/DropTravelMenu";
+import TravelerMenu from "../Avail/TravelerMenu";
+import DropCabinMenu from "../Common/DropCabinMenu";
 import SearchSection from "./SearchSection";
+import SearchForm from "./SearchForm";
 
-import {Button, Dimmer, Grid, Icon, Input, Loader, Segment} from "semantic-ui-react";
+import {Button, Dimmer, Dropdown, Grid, Icon, Input, Loader, Segment} from "semantic-ui-react";
 import DatePicker from "react-datepicker";
+import {configTravelString} from "../../util/travelConfig";
 import "react-datepicker/dist/react-datepicker.css";
 
 import {getIata} from "../../util/matcher";
 
 class TravelSearch extends React.Component {
+
+  submit = (values) => {
+    // Do something with the form values
+    console.log(values);
+  };
 
   render() {
 
@@ -46,6 +54,9 @@ class TravelSearch extends React.Component {
 
     return (
       <Segment raised className='travelSearchSegment'>
+
+        <SearchForm onSubmit={this.submit}/>
+
         <Dimmer active={loading} inverted>
           <Loader content='Loading'/>
         </Dimmer>
@@ -60,23 +71,8 @@ class TravelSearch extends React.Component {
             <div className="search-field">
               <SearchSection properties={properties} actions={actions} />
             </div>
-            <div className="search-field">
-              <SearchSection properties={properties} actions={actions} />
-            </div>
-            <div className="search-field">
-              <SearchSection properties={properties} actions={actions} />
-            </div>
-            <div className="search-field">
-              <SearchSection properties={properties} actions={actions} />
-            </div>
-            <div className="search-field">
-              <SearchSection properties={properties} actions={actions} />
-            </div>
-            <div className="search-field">
-              <SearchSection properties={properties} actions={actions} />
-            </div>
 
-            <DatePicker className={(properties.selectedType === 'oneWay') ? "hiddenComponent" : ""}
+            <DatePicker className={(properties.selectedType !== 'round') ? "hiddenComponent" : ""}
                           customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
                           selectsEnd
                           minDate={properties.minDate}
@@ -88,11 +84,31 @@ class TravelSearch extends React.Component {
                           onChange={date => actions.dateChange('return', date)}/>
 
             <div className="search-field">
-              <DropTravelMenu
-                config={config}
-                options={travelOptions}
-                travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}
-                cabinChange={actions.cabinChange}/>
+              <Dropdown
+                text={configTravelString(config, travelOptions)}
+                floating
+                pointing
+                closeOnBlur={false}
+                closeOnChange={false}
+                style={{width: 200}}>
+                <Dropdown.Menu onClick={e => e.stopPropagation()}>
+                  <Dropdown.Header content="Cabin"/>
+                  <Dropdown.Item>
+                    <DropCabinMenu
+                      config={config}
+                      options={travelOptions}
+                      cabinChange={(cabin) => actions.cabinChange(cabin)}/>
+                  </Dropdown.Item>
+                  <Dropdown.Divider/>
+                  <Dropdown.Header content="Passengers"/>
+                  <Segment basic>
+                    <TravelerMenu
+                      config={config}
+                      options={travelOptions}
+                      travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}/>
+                  </Segment>
+                </Dropdown.Menu>
+              </Dropdown>
 
               <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
                 (event, button, search = {
