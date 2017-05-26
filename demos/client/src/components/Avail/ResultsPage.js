@@ -8,7 +8,7 @@ const TravelResults = ({filters}) => {
   return (
     <Container>
       <Grid>
-        <Grid.Column width={15} floated='right'>
+        <Grid.Column width={13} floated='right'>
           <Grid.Row>
             <TravelSearch/>
           </Grid.Row>
@@ -16,7 +16,7 @@ const TravelResults = ({filters}) => {
             <ItineraryList />
           </Grid.Row>
         </Grid.Column>
-        <Grid.Column width={1} floated='left'>
+        <Grid.Column width={3} floated='left'>
           <FiltersCard/>
         </Grid.Column>
       </Grid>
