@@ -31,7 +31,7 @@ const initialState = {
     }),
     order: 'price-low-to-high',
     filters: Map({
-      limits: '50'
+      limit: '50'
     })
   })
 };

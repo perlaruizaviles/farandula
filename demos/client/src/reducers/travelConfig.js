@@ -80,10 +80,10 @@ const travelConfig = (state = Map({}), action) => {
       } else {
         state = state.set('availableFlights',state.get('availableFlights').sortBy((item => item.fares.totalPrice.amount)));
       }
-      return state
+      return state;
     
     case types.CHANGE_FILTER_LIMIT:
-    return state.setIn(['filters', 'limits'], action.value);
+    return state.setIn(['filters', 'limit'], action.value);
 
     default:
       return state;

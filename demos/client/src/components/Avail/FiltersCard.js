@@ -10,26 +10,26 @@ const FiltersCard = ({changeFilterLimit, selectedLimit}) => {
 					Filters
 				</Card.Header>
 			</Card.Content>
-				<Card.Content>
-					<Card.Meta>
-						Max itineraries:
-					</Card.Meta>
-					<Card.Description>
+			<Card.Content>
+				<Card.Meta>
+					Max itineraries:
+				</Card.Meta>
+				<Card.Description>
 					{ItineraryOptions.get('filters').get('limits').map((limit) => {
-					return(
-						<div key={limit}>
-							<Radio
-								label={limit}
-								name='limitRadioGroup'
-								value={limit}
-								checked={selectedLimit===limit}
-								onChange={() => changeFilterLimit(limit)}
-							/>
-						</div>
-					)})
-				}
+						return(
+							<div key={limit}>
+								<Radio
+									label={limit}
+									name='limitRadioGroup'
+									value={limit}
+									checked={selectedLimit===limit}
+									onChange={() => changeFilterLimit(limit)}
+								/>
+							</div>
+						)}
+					)}
 				</Card.Description>
-				</Card.Content>
+			</Card.Content>
 		</Card>
 	)
 }
