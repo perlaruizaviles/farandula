@@ -9,10 +9,10 @@ class AvailableFlightsApi {
     const passenger = `children:${search.passenger.get('child')},infants:${search.passenger.get('lap-infant')},infantsOnSeat:${search.passenger.get('seat-infant')},adults:${search.passenger.get('adults')}`;
 
     let params = {
-      departureAirportCode: search.departureAirport,
-      departingDate: search.departingDate,
-      departingTime: search.departingTime,
-      arrivalAirportCode: search.arrivalAirport,
+      departingAirportCodes: search.departureAirport,
+      departingDates: search.departingDate,
+      departingTimes: search.departingTime,
+      arrivalAirportCodes: search.arrivalAirport,
       type: search.type,
       passenger: passenger,
       cabin: search.cabin
@@ -26,7 +26,7 @@ class AvailableFlightsApi {
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
-        url: endpoint.AVAILABLE_FLIGHTS_URL,
+        url: endpoint.TEMP_AVAILABLE_FLIGHTS_URL,
         responseType: 'json',
         params: params,
       }).then((response) => {

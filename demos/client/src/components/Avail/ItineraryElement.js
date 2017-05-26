@@ -17,7 +17,7 @@ class ItineraryElement extends React.Component {
 
   render() {
     let travel = {
-      price: this.state.itinerary.fares.totalPrice.amount,
+      price: this.state.itinerary.fares.basePrice.amount,
       airlegs: this.state.itinerary.airlegs
     };
 

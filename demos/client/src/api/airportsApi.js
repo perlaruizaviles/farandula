@@ -7,7 +7,7 @@ class AirportsApi {
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
-        url: endpoint.AIRPORTS_URL,
+        url: endpoint.TEMP_AIRPORTS_URL,
         responseType: 'json',
         params: {
           pattern: query

@@ -52,17 +52,17 @@ const travelConfig = (state = Map({}), action) => {
       return state.setIn(['locations', 'to'], {});
 
     case types.ORDER_PRICE_ASC:
-      return state.set('availableFlights',state.get('availableFlights').sort((item => item.fares.totalPrice.amount)));
+      return state.set('availableFlights',state.get('availableFlights').sort((item => item.fares.basePrice.amount)));
 
     case types.ORDER_PRICE_DESC:
-      return state.set('availableFlights',state.get('availableFlights').sortBy((item => -item.fares.totalPrice.amount)));
+      return state.set('availableFlights',state.get('availableFlights').sortBy((item => -item.fares.basePrice.amount)));
 
     case types.CHANGE_PRICE_ORDER:
     state = state.set('order', action.order);
       if (action.order==='price-high-to-low'){
-        state = state.set('availableFlights',state.get('availableFlights').sortBy((item => -item.fares.totalPrice.amount)));
+        state = state.set('availableFlights',state.get('availableFlights').sortBy((item => -item.fares.basePrice.amount)));
       } else {
-        state = state.set('availableFlights',state.get('availableFlights').sortBy((item => item.fares.totalPrice.amount)));
+        state = state.set('availableFlights',state.get('availableFlights').sortBy((item => item.fares.basePrice.amount)));
       }
       return state;
 
