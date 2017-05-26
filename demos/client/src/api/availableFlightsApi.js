@@ -23,6 +23,13 @@ class AvailableFlightsApi {
       params.arrivalTime = search.arrivalTime;
     }
 
+    if (params.type === "multiCity"){
+      console.log(search);
+      params.departingAirportCodes = search.departingAirports[0];
+      params.arrivalAirportsCodes = search.arrivalAirports[0];
+      params.departingDates = search.departingDates[0];
+    }
+
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',

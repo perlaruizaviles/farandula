@@ -12,13 +12,9 @@ import {configTravelString} from "../../util/travelConfig";
 import "react-datepicker/dist/react-datepicker.css";
 
 import {getIata} from "../../util/matcher";
+import {handleRequestData} from "../../util/handleRequestData";
 
 class TravelSearch extends React.Component {
-
-  submit = (values) => {
-    // Do something with the form values
-    console.log(values);
-  };
 
   render() {
 
@@ -40,6 +36,15 @@ class TravelSearch extends React.Component {
       cabin: config.get('cabin')
     };
 
+
+    const submit = (values) => {
+
+      const search = handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin);
+
+      actions.availableFlights(search)
+
+    };
+
     const isInvalidForm = (properties) => {
       if (properties.airportFrom.title === undefined) {
         return true;
@@ -55,7 +60,6 @@ class TravelSearch extends React.Component {
     return (
       <Segment raised className='travelSearchSegment'>
 
-        <SearchForm onSubmit={this.submit}/>
 
         <Dimmer active={loading} inverted>
           <Loader content='Loading'/>
@@ -66,24 +70,8 @@ class TravelSearch extends React.Component {
             <TextMenu options={properties.typeOptions}
                       selected={properties.selectedType}
                       selectType={actions.typeChange}/>
-          </Grid.Row>
-          <Grid.Row stretched verticalAlign="middle">
-            <div className="search-field">
-              <SearchSection properties={properties} actions={actions} />
-            </div>
 
-            <DatePicker className={(properties.selectedType !== 'round') ? "hiddenComponent" : ""}
-                          customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
-                          selectsEnd
-                          minDate={properties.minDate}
-                          maxDate={properties.maxDate}
-                          selected={properties.endDate}
-                          startDate={properties.startDate}
-                          endDate={properties.endDate}
-                          placeholderText="Select date..."
-                          onChange={date => actions.dateChange('return', date)}/>
-
-            <div className="search-field">
+            <Grid.Row>
               <Dropdown
                 text={configTravelString(config, travelOptions)}
                 floating
@@ -109,7 +97,26 @@ class TravelSearch extends React.Component {
                   </Segment>
                 </Dropdown.Menu>
               </Dropdown>
+            </Grid.Row>
+          </Grid.Row>
+          <Grid.Row stretched verticalAlign="middle"
+                    className={(properties.selectedType === 'multiCity') ? "hiddenComponent" : ""}>
+            <div className="search-field">
+              <SearchSection properties={properties} actions={actions}/>
+            </div>
 
+            <DatePicker className={(properties.selectedType !== 'round') ? "hiddenComponent" : ""}
+                        customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
+                        selectsEnd
+                        minDate={properties.minDate}
+                        maxDate={properties.maxDate}
+                        selected={properties.endDate}
+                        startDate={properties.startDate}
+                        endDate={properties.endDate}
+                        placeholderText="Select date..."
+                        onChange={date => actions.dateChange('return', date)}/>
+
+            <div className="search-field">
               <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
                 (event, button, search = {
                   departureAirport: getIata(properties.airportFrom.title),
@@ -131,6 +138,13 @@ class TravelSearch extends React.Component {
                 </Button.Content>
               </Button>
             </div>
+          </Grid.Row>
+
+          <Grid.Row className={(properties.selectedType === 'multiCity') ? "" : "hiddenComponent"}>
+            <SearchForm
+              onSubmit={submit}
+              properties={properties}
+              actions={actions}/>
           </Grid.Row>
         </Grid>
       </Segment>
