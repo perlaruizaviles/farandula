@@ -28,3 +28,7 @@ span.gray {
 .hiddenComponent {
     display: none !important;
 }
+
+.card.fixed {
+    position: fixed;
+}
