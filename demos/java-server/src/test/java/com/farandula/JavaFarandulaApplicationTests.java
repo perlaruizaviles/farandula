@@ -81,7 +81,7 @@ public class JavaFarandulaApplicationTests {
         String returnAirportCodes = "GDL";
 
         String type = "oneWay";
-        String passenger = "children:,infants:,infantsOnSeat:,adults:6";
+        String passenger = "children:,infants:,infantsOnSeat:1;2,adults:2";
 
         String classType = "economy";
 
@@ -89,20 +89,24 @@ public class JavaFarandulaApplicationTests {
                 departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger, classType);
 
         assertNotEquals(0, flightItineraries.size());
+
+        for( FlightItinerary flightItinerary : flightItineraries ){
+            assertEquals(1, flightItinerary.getAirlegs().size());
+        }
     }
 
     @Test
     public void roundTripTest() {
         String departingDate = "2017-06-07";
         String departingTime = "00:00:00";
-        String dapartingAirportCodes = "MEX";
+        String dapartingAirportCodes = "DFW";
 
         String returnDate = "2017-07-07";
         String returnTime = "00:00:00";
-        String returnAirportCodes = "GDL";
+        String returnAirportCodes = "CDG";
 
         String type = "roundTrip";
-        String passenger = "children:,infants:1;2,infantsOnSeat:,adults:2";
+        String passenger = "children:,infants:,infantsOnSeat:,adults:2";
 
         String classType = "economy";
 
