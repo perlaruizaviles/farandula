@@ -139,6 +139,12 @@ public class FlightHelper {
 
     public List<String> getCabinInformationFromSegment(Segment segment) {
 
+        if( segment.getSeatsAvailable() == null ){
+            List<String> emptySeat = new ArrayList<>();
+            emptySeat.add("NON_AVAILABLE");
+            return emptySeat;
+        }
+
         return segment.
                 getSeatsAvailable()
                 .stream()

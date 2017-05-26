@@ -8,17 +8,15 @@ import com.farandula.Helpers.PassengerHelper;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.models.*;
 import com.nearsoft.farandula.Luisa;
-import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
+import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
+import com.nearsoft.farandula.flightmanagers.travelport.TravelportFlightManager;
 import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.CabinClassParser;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,19 +57,19 @@ public class FlightService {
         String[] departingTimes = departingTime.split(",");
         String[] departingAirportCodeArray = departureAirportCode.split(",");
 
-        for(String airportCode : departingAirportCodeArray){
-            if( !validIataLength(airportCode) )
+        for (String airportCode : departingAirportCodeArray) {
+            if (!validIataLength(airportCode))
                 return new ArrayList<>();
         }
 
         List<String> departingAirportCodes = Arrays.asList(departingAirportCodeArray);
 
         //Declaring for returning parameters (Airport code only)
-        String[] arrivalAirportCodesArray = arrivalAirportCode.split(",");;
-        List<String> arrivalAirportCodes = Arrays.asList(arrivalAirportCodesArray);;
+        String[] arrivalAirportCodesArray = arrivalAirportCode.split(",");
+        List<String> arrivalAirportCodes = Arrays.asList(arrivalAirportCodesArray);
 
-        for(String airportCode : arrivalAirportCodes){
-            if( !validIataLength(airportCode) )
+        for (String airportCode : arrivalAirportCodes) {
+            if (!validIataLength(airportCode))
                 return new ArrayList<>();
         }
 
@@ -107,7 +105,7 @@ public class FlightService {
 
             switch (type) {
                 case "oneWay":
-                    if( command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() ==1 )
+                    if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
                         command.type(FlightType.ONEWAY);
                     else
                         throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for one way trip");
@@ -115,10 +113,10 @@ public class FlightService {
 
                 case "roundTrip":
 
-                    if( returnDate.isEmpty() || returnTime.isEmpty() )
+                    if (returnDate.isEmpty() || returnTime.isEmpty())
                         throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_DATES, "Empty returning dates");
 
-                    if( command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1 )
+                    if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
                         command.type(FlightType.ONEWAY);
                     else
                         throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for round trip");
@@ -132,7 +130,7 @@ public class FlightService {
                     break;
 
                 case "multiCity":
-                    if( command.getDepartureAirports().size() == command.getArrivalAirports().size() )
+                    if (command.getDepartureAirports().size() == command.getArrivalAirports().size())
                         command.type(FlightType.OPENJAW);
                     else
                         throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for muli city trip");
@@ -155,10 +153,15 @@ public class FlightService {
     public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {
         //TODO: Build fares object
 
-        return itineraryList
+        List<FlightItinerary> flightItineraries = itineraryList
                 .stream()
                 .map((Itinerary itinerary) -> {
-                    ItineraryFares itineraryFares = flightHelper.parseFaresToItineraryFares(itinerary.getPrice());
+
+                    Fares fareFromItinerary = itinerary.getPrice();
+                    //TODO Implement sum of all segment's price in case of null on fareFromItinerary
+                    ItineraryFares itineraryFares = ( fareFromItinerary == null )
+                            ? new ItineraryFares()
+                            : flightHelper.parseFaresToItineraryFares(fareFromItinerary);
 
                     List<Flight> flightList = flightHelper.getFlightsFromItinerary(itinerary);
 
@@ -167,5 +170,7 @@ public class FlightService {
                     return flightItinerary;
                 })
                 .collect(Collectors.toList());
+
+        return flightItineraries;
     }
 }
