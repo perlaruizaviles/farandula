@@ -1,9 +1,10 @@
 import React from "react";
 import ItineraryList from "../../containers/ItineraryList";
 import TravelSearch from "../../containers/TravelSearch";
-import {Container, Grid, Card} from "semantic-ui-react";
+import FiltersCard from "../../containers/FiltersCard";
+import {Container, Grid} from "semantic-ui-react";
 
-const TravelResults = () => {
+const TravelResults = ({filters}) => {
   return (
     <Container>
       <Grid>
@@ -16,16 +17,7 @@ const TravelResults = () => {
           </Grid.Row>
         </Grid.Column>
         <Grid.Column width={1} floated='left'>
-          <Card className='orange fixed'>
-            <Card.Content>
-              <Card.Header>
-                Filters
-              </Card.Header>
-            </Card.Content>
-            <Card.Content>
-              Aqui iran los filtros
-            </Card.Content>
-          </Card>
+          <FiltersCard/>
         </Grid.Column>
       </Grid>
     </Container>

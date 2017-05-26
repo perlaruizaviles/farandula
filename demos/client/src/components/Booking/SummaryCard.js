@@ -2,7 +2,7 @@ import React from "react";
 import {Card} from "semantic-ui-react";
 
 const SummaryCard = () => (
-  <Card className='orange' className='fixed'>
+  <Card className='orange fixed'>
     <Card.Content>
       <Card.Header>
         Summary
