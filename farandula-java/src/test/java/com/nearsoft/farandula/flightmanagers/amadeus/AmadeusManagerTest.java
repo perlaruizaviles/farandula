@@ -288,7 +288,7 @@ class AmadeusManagerTest {
                 new AmadeusFlightManager()
         );
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 05, 25, 00, 00, 00);
+        LocalDateTime departingDate = LocalDateTime.of(2017, 06, 07, 00, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("MEX");
         List<String> toList = new ArrayList<>();

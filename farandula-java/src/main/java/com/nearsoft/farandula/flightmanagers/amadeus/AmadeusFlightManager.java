@@ -175,14 +175,13 @@ public class AmadeusFlightManager implements FlightManager {
             for (Object itinerary : arrayItineraries) {
 
                 buildAirLegs((Map<String, Object>) itinerary, itineraryResult);
+                //pricing
+                Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
+                itineraryResult.setPrice(getPrices(fareMap));
 
+                //adding each air leg (inbound / outbound) separately, even when they have the same price
+                itineraries.add(itineraryResult);
             }
-
-            //pricing
-            Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
-            itineraryResult.setPrice(getPrices(fareMap));
-
-            itineraries.add(itineraryResult);
 
         }
 
