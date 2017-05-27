@@ -17,6 +17,9 @@ const itineraries = (state = Map({}), action) => {
         'filters', 'limit'
       ], action.value);
 
+    case types.CHANGE_AIRLINES_FILTER:
+      return state.setIn(['filters', 'airlines'])
+
     default:
       return state;
   }
