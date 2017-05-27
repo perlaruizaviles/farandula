@@ -1,7 +1,14 @@
-import {Map} from "immutable";
+import {Map, List} from "immutable";
 
 const initialState = {
   ajaxCallsInProgress: 0,
+  itineraries: Map({
+    order: 'price-low-to-high',
+    filters: Map({
+      limit: '50'
+    }),
+    itinerariesList: List([])
+  }),
   travelConfig: Map({
     type: 'round',
     cabin: 'economy',
@@ -26,10 +33,6 @@ const initialState = {
     dates: Map({
       depart: undefined,
       return: undefined
-    }),
-    order: 'price-low-to-high',
-    filters: Map({
-      limit: '50'
     })
   })
 };

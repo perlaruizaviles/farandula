@@ -42,32 +42,11 @@ const travelConfig = (state = Map({}), action) => {
       state = state.setIn(['locations', 'from'], action.to);
       return state.setIn(['locations', 'to'], action.from);
 
-    case types.SEARCH_AVAILABLE_FLIGHTS_SUCCESS:
-      return state.set('availableFlights', action.flights);
-
     case types.CLEAN_TRAVEL_FROM:
       return state.setIn(['locations', 'from'], {});
 
     case types.CLEAN_TRAVEL_TO:
       return state.setIn(['locations', 'to'], {});
-
-    case types.ORDER_PRICE_ASC:
-      return state.set('availableFlights',state.get('availableFlights').sort((item => item.fares.basePrice.amount)));
-
-    case types.ORDER_PRICE_DESC:
-      return state.set('availableFlights',state.get('availableFlights').sortBy((item => -item.fares.basePrice.amount)));
-
-    case types.CHANGE_PRICE_ORDER:
-      state = state.set('order', action.order);
-      if (action.order==='price-high-to-low'){
-        state = state.set('availableFlights',state.get('availableFlights').sortBy((item => -item.fares.basePrice.amount)));
-      } else {
-        state = state.set('availableFlights',state.get('availableFlights').sortBy((item => item.fares.basePrice.amount)));
-      }
-      return state;
-    
-    case types.CHANGE_FILTER_LIMIT:
-      return state.setIn(['filters', 'limit'], action.value);
 
     default:
       return state;

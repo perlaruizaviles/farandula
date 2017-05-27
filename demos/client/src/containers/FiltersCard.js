@@ -5,7 +5,7 @@ import { changeFilterLimit } from "../actions/ItineraryOptions";
 export default connect(
 	state => {
 		return {
-			selectedLimit: state.travelConfig.get('filters').get('limit')
+			selectedLimit: state.itineraries.get('filters').get('limit')
 		};
 	},
 	dispatch => {

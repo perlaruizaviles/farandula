@@ -5,8 +5,8 @@ import { changeOrderPrice } from "../actions/itineraryList";
 export default connect(
   state => {
     return {
-      travels: state.travelConfig.get('availableFlights'),
-      order: state.travelConfig.get('order')
+      travels: state.itineraries.get('itinerariesList'),
+      order: state.itineraries.get('order')
     };
   },
   dispatch => {
