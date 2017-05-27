@@ -34,8 +34,8 @@ export const renderField = ({input, label, type, meta: {touched, error}, childre
   return renderFieldWithError(input, label, type, touched, error);
 };
 
-export const renderSearch = ({input: {value, onChange}, results, onSearchChange}) => (
-  <div>
+export const renderSearch = ({input: {value, onChange}, meta: {error}, results, onSearchChange}) => (
+  <div className={(error) ? "error field" : "field"}>
       <div className="ui input">
         <Search value={value.title}
                 results={results}

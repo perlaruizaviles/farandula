@@ -1,6 +1,7 @@
 import React from "react";
 import {reduxForm} from "redux-form";
 import DestinyFormSection from "./DestinyFormSection";
+import {multiCityValidation} from "../../util/valitations";
 
 const SearchForm = props => {
   const {handleSubmit, submitting, properties, actions} = props;
@@ -22,4 +23,5 @@ const SearchForm = props => {
 
 export default reduxForm({
   form: 'SearchForm', // a unique identifier for this form
+  validate: multiCityValidation,
 })(SearchForm)

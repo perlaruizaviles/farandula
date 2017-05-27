@@ -67,6 +67,21 @@ export const alphaNum = value =>
     : undefined;
 
 
+export const multiCityValidation = values => {
+  const errors = {};
+  for (let destiny in values) {
+    if (values.hasOwnProperty(destiny)) {
+      if (JSON.stringify(values[destiny].departingAirport) === JSON.stringify(values[destiny].arrivalAirport)) {
+        errors[destiny] = {};
+        errors[destiny].departingAirport = "Son iguales";
+      }
+    }
+  }
+  console.log("errors", errors);
+  return errors
+};
+
+
 // Valid Credit cards
 // MasterCard: 5212345678901234
 // Visa 1: 4123456789012
