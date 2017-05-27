@@ -46,8 +46,8 @@ export const renderSearch = ({input: {value, onChange}, meta: {error}, results, 
   </div>
 );
 
-export const renderDatePicker = ({input: {value, onChange}, results, minDate, maxDate}) => (
-  <div>
+export const renderDatePicker = ({input: {value, onChange}, meta: {error}, minDate, maxDate}) => (
+  <div className={(error) ? "error field" : "field"}>
       <DatePicker
         customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
         selected={value}
