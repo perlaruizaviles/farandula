@@ -5,7 +5,12 @@ const initialState = {
   itineraries: Map({
     order: 'price-low-to-high',
     filters: Map({
-      limit: '50'
+      limit: '50',
+      airlines: Map({
+        'aeromexico': false,
+        'volaris': false,
+        'interjet': false
+      })
     }),
     itinerariesList: List([])
   }),

@@ -1,15 +1,13 @@
 import React from 'react';
 import {Card, Radio, Checkbox} from 'semantic-ui-react';
 import ItineraryOptions from '../../data/ItineraryOptions';
+import {titleize} from "inflection";
 
-const FiltersCard = ({changeFilterLimit, selectedLimit, changeAirlinesFilter}) => {
+const FiltersCard = ({changeFilterLimit, selectedLimit, airlines, changeAirlinesFilter}) => {
 
 		let limits = ItineraryOptions
 				.get('filters')
 				.get('limits');
-		let airlines = ItineraryOptions
-				.get('filters')
-				.get('airlines');
 
 		return (
 				<Card className='orange fixed'>
@@ -43,10 +41,9 @@ const FiltersCard = ({changeFilterLimit, selectedLimit, changeAirlinesFilter}) =
 								</Card.Meta>
 								<Card.Description>
 										{airlines.map((airline) => {
-											let airlineName = airline.get('name');
 												return (
-														<div key={airlineName}>
-																<Checkbox label={airlineName} onChange={() => changeAirlinesFilter(airlineName)}/>
+														<div key={airline}>
+																<Checkbox label={titleize(airline)} onChange={(x, y) => changeAirlinesFilter(airline, y.checked)}/>
 														</div>
 												)
 										})}
