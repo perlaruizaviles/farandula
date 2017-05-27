@@ -6,29 +6,7 @@ class AvailableFlightsApi {
 
   static getAvailableFlights(search) {
 
-    const passenger = `children:${search.passenger.get('child')},infants:${search.passenger.get('lap-infant')},infantsOnSeat:${search.passenger.get('seat-infant')},adults:${search.passenger.get('adults')}`;
-
-    let params = {
-      departureAirportCode: search.departureAirport,
-      departingDate: search.departingDate,
-      departingTime: search.departingTime,
-      arrivalAirportCode: search.arrivalAirport,
-      type: search.type,
-      passenger: passenger,
-      cabin: search.cabin
-    };
-
-    if (params.type === "round"){
-      params.arrivalDate = search.arrivalDate;
-      params.arrivalTime = search.arrivalTime;
-    }
-
-    if (params.type === "multiCity"){
-      console.log(search);
-      params.departingAirportCodes = search.departingAirports[0];
-      params.arrivalAirportsCodes = search.arrivalAirports[0];
-      params.departingDates = search.departingDates[0];
-    }
+    let params = this.handleTravelType(search);
 
     return new Promise((resolve, reject) => {
       axios({
@@ -39,11 +17,42 @@ class AvailableFlightsApi {
       }).then((response) => {
         const flights = response.data;
         resolve(List(flights));
-      })
-        .catch(e => {
+      }).catch(e => {
           reject(e);
         });
     });
+  }
+
+  static handleTravelType(search) {
+
+    const passenger = this.passengerAdapter(search.passenger);
+
+    let params = {
+      departingAirportCodes: search.departureAirport,
+      departingDates: search.departingDate,
+      departingTimes: search.departingTime,
+      arrivalAirportCodes: search.arrivalAirport,
+      type: search.type,
+      passenger: passenger,
+      cabin: search.cabin
+    };
+
+    if (params.type === "round") {
+      params.arrivalDate = search.arrivalDate;
+      params.arrivalTime = search.arrivalTime;
+      return params;
+    }
+
+    if (params.type === "multiCity") {
+      params.departingAirportCodes = search.departingAirports;
+      params.arrivalAirportCodes = search.arrivalAirports;
+      params.departingDates = search.departingDates;
+      return params;
+    }
+  }
+
+  static passengerAdapter(passenger) {
+    return `children:${passenger.get('child')},infants:${passenger.get('lap-infant')},infantsOnSeat:${passenger.get('seat-infant')},adults:${passenger.get('adults')}`;
   }
 }
 

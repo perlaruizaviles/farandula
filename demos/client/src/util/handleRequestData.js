@@ -8,7 +8,6 @@ export function handleRequestData(values, type, passenger, cabin) {
     cabin: cabin
   };
 
-
   search.departingAirports = departingAirports(values);
   search.arrivalAirports = arrivalAirports(values);
   search.departingDates = departureDates(values);
@@ -18,31 +17,31 @@ export function handleRequestData(values, type, passenger, cabin) {
 
 
 function departingAirports(values) {
-  let iatas = [];
+  let iatas = "";
   for (let destiny in values) {
     if (values.hasOwnProperty(destiny)) {
-      iatas.push(getIata(values[destiny].departingAirport.title));
+      iatas += "," + getIata(values[destiny].departingAirport.title);
     }
   }
-  return iatas;
+  return iatas.slice(1,iatas.length);
 }
 
 function arrivalAirports(values) {
-  let iatas = [];
+  let iatas = "";
   for (let destiny in values) {
     if (values.hasOwnProperty(destiny)) {
-      iatas.push(getIata(values[destiny].arrivalAirport.title));
+      iatas += "," + getIata(values[destiny].arrivalAirport.title);
     }
   }
-  return iatas;
+  return iatas.slice(1,iatas.length);
 }
 
 function departureDates(values) {
-  let dates = [];
+  let dates = "";
   for (let destiny in values) {
     if (values.hasOwnProperty(destiny)) {
-      dates.push(values[destiny].departingDate.format("YYYY-MM-DD"));
+      dates += "," + values[destiny].departingDate.format("YYYY-MM-DD");
     }
   }
-  return dates;
+  return dates.slice(1,dates.length);
 }
