@@ -10,7 +10,8 @@ export default connect(
 	},
 	dispatch => {
 		return {
-			changeFilterLimit: (limit) => dispatch(changeFilterLimit(limit))
+			changeFilterLimit: (limit) => dispatch(changeFilterLimit(limit)),
+			changeAirlinesFilter: (airline) => dispatch(changeAirlinesFilter(airline))
 		};
 	}
 )(FiltersCard);

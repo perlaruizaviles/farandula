@@ -42,5 +42,6 @@ span.gray {
 }
 
 .card.fixed {
-    position: fixed;
+    position: sticky;
+    top: 10px;
 }
