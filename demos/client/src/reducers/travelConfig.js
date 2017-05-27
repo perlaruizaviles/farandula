@@ -6,7 +6,7 @@ import {changeTravelDates} from "../util/dates";
 const travelConfig = (state = Map({}), action) => {
   switch (action.type) {
     case types.CHANGE_TRAVEL_TYPE:
-      return state.set('type', action.value);
+      return state.set('type', action.travelType);
 
     case types.CHANGE_TRAVEL_DATE:
       let dates = changeTravelDates(state.get('dates'), action.date, action.dateType);
