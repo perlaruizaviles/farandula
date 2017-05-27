@@ -9,8 +9,8 @@ export const changeFilterLimit = limit => {
 
 export const changeAirlinesFilter = (airline, selected) => {
 		return {
-			type: CHANGE_AIRLINES_FILTER,
-			airline: airline, 
+			type: CHANGE_AIRLINES_FILTER, 
+			airline: airline,
 			selected: selected
 		}
 }
