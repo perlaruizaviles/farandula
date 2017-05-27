@@ -47,6 +47,7 @@ class AvailableFlightsApi {
       params.departingAirportCodes = search.departingAirports;
       params.arrivalAirportCodes = search.arrivalAirports;
       params.departingDates = search.departingDates;
+      params.departingTimes = search.departingTimes;
       return params;
     }
   }

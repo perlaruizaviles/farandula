@@ -40,7 +40,7 @@ class ItineraryElement extends React.Component {
             </Item.Content>
             <Item.Extra style={{width: '15%'}}>
               <h3>USD ${travel.price}</h3>
-              <center><Button className='orange' content='Book'/></center>
+              <center><Button disabled={true} className='orange' content='Book'/></center>
             </Item.Extra>
           </Item>
 
