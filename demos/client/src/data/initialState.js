@@ -1,4 +1,4 @@
-import {Map} from "immutable";
+import {List, Map} from "immutable";
 
 const initialState = {
   ajaxCallsInProgress: 0,
@@ -27,7 +27,8 @@ const initialState = {
       depart: undefined,
       return: undefined
     }),
-    order: 'price-low-to-high'
+    order: 'price-low-to-high',
+    destinies: List([0, 1, 2])
   })
 };
 

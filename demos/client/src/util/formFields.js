@@ -36,26 +36,24 @@ export const renderField = ({input, label, type, meta: {touched, error}, childre
 
 export const renderSearch = ({input: {value, onChange}, results, onSearchChange}) => (
   <div>
-    <div>
       <div className="ui input">
         <Search value={value.title}
                 results={results}
                 onResultSelect={(e, value) => onChange(value)}
                 onMouseDown={(e) => onChange("")}
                 onSearchChange={onSearchChange}/>
-      </div>
     </div>
   </div>
 );
 
-export const renderDatePicker = ({input: {value, onChange}, results}) => (
+export const renderDatePicker = ({input: {value, onChange}, results, minDate, maxDate}) => (
   <div>
-    <div>
       <DatePicker
         customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
         selected={value}
+        minDate={minDate}
+        maxDate={maxDate}
         placeholderText="Select date..."
         onChange={date => onChange(date)}/>
-    </div>
   </div>
 );

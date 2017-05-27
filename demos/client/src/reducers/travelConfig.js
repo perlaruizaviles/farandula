@@ -3,6 +3,7 @@ import {Map} from "immutable";
 import {countTravelers} from "../util/travelConfig";
 import {changeTravelDates} from "../util/dates";
 
+
 const travelConfig = (state = Map({}), action) => {
   switch (action.type) {
     case types.CHANGE_TRAVEL_TYPE:
@@ -65,6 +66,18 @@ const travelConfig = (state = Map({}), action) => {
         state = state.set('availableFlights',state.get('availableFlights').sortBy((item => item.fares.totalPrice.amount)));
       }
       return state;
+
+    case types.ADD_DESTINY:
+      if (state.get('destinies').size === 6) {
+        return state;
+      }
+      return state.set('destinies', state.get('destinies').push(Math.floor(Math.random() * 10000)));
+
+    case types.REMOVE_DESTINY:
+      if (state.get('destinies').size === 2) {
+        return state;
+      }
+      return state.set('destinies', state.get('destinies').pop());
 
     default:
       return state;

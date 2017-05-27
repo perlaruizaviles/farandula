@@ -3,7 +3,7 @@ import {Field, FormSection} from "redux-form";
 import {renderDatePicker, renderSearch} from "../../util/formFields";
 import {required} from "../../util/valitations";
 
-const DestinyFormSection = ({name,properties, actions}) => {
+const DestinyFormSection = ({name, properties, actions}) => {
     return(
       <FormSection name={name}>
         <div className="equal width fields">
@@ -19,7 +19,11 @@ const DestinyFormSection = ({name,properties, actions}) => {
                  validate={required}
                  onSearchChange={(e, query, quantum = properties.airportFrom) => actions.searchAirport(query, quantum)}/>
 
-          <Field name="departingDate" component={renderDatePicker} validate={required}/>
+          <Field name="departingDate"
+                 component={renderDatePicker}
+                 minDate={properties.minDate}
+                 maxDate={properties.maxDate}
+                 validate={required}/>
 
         </div>
       </FormSection>

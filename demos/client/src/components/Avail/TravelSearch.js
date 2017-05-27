@@ -33,7 +33,8 @@ class TravelSearch extends React.Component {
       startDate: config.getIn(['dates', 'depart']),
       endDate: config.getIn(['dates', 'return']),
       travelers: config.get('travelers'),
-      cabin: config.get('cabin')
+      cabin: config.get('cabin'),
+      destinies: config.get('destinies')
     };
 
 
@@ -55,7 +56,6 @@ class TravelSearch extends React.Component {
       return properties.startDate === undefined;
 
     };
-
 
     return (
       <Segment raised className='travelSearchSegment'>
@@ -141,10 +141,21 @@ class TravelSearch extends React.Component {
           </Grid.Row>
 
           <Grid.Row className={(properties.selectedType === 'multiCity') ? "" : "hiddenComponent"}>
-            <SearchForm
-              onSubmit={submit}
-              properties={properties}
-              actions={actions}/>
+            <Grid.Row>
+              <Button.Group>
+                <Button onClick={(e, data) => actions.removeDestiny()}> - </Button>
+                <Button.Or text={properties.destinies.size}/>
+                <Button onClick={(e, data) => actions.addDestiny()}> + </Button>
+              </Button.Group>
+            </Grid.Row>
+
+            <Grid.Row>
+              <SearchForm
+                onSubmit={submit}
+                properties={properties}
+                actions={actions}
+                destinies={properties.destinies}/>
+            </Grid.Row>
           </Grid.Row>
         </Grid>
       </Segment>

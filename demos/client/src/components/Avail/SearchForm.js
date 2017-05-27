@@ -2,18 +2,20 @@ import React from "react";
 import {reduxForm} from "redux-form";
 import DestinyFormSection from "./DestinyFormSection";
 
-
 const SearchForm = props => {
-  const {handleSubmit, submitting, properties, actions} = props;
+  const {handleSubmit, submitting, properties, actions, destinies} = props;
   return (
-    <form onSubmit={handleSubmit} className="ui error form">
-
-      <DestinyFormSection name="1" properties={properties} actions={actions}/>
-
-      <div>
-        <button className="ui orange button" type="submit" disabled={submitting}>Search</button>
-      </div>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit} className="ui error form">
+        {
+          destinies.map(destiny => <DestinyFormSection key={destiny} name={"destiny-" + destiny} properties={properties}
+                                                       actions={actions}/>)
+        }
+        <div>
+          <button className="ui orange button" type="submit" disabled={submitting}>Search</button>
+        </div>
+      </form>
+    </div>
   );
 };
 

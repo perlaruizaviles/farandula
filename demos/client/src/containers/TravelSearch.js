@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import TravelSearch from "../components/Avail/TravelSearch";
 import {
+  addDestiny,
   cabinChange,
   changeTravelDate,
   changeTravelFrom,
@@ -8,6 +9,7 @@ import {
   changeTravelType,
   cleanField,
   exchangeDestinations,
+  removeDestiny,
   searchAirport,
   searchAvailableFlights,
   travelerTypeCountChange
@@ -32,7 +34,9 @@ export default connect(
         searchAirport: (query, quantum) => dispatch(searchAirport(query, quantum)),
         exchangeDestinations: (from, to) => dispatch(exchangeDestinations(from, to)),
         availableFlights: (search) => dispatch(searchAvailableFlights(search)),
-        cleanField: (quantum) => dispatch(cleanField(quantum))
+        cleanField: (quantum) => dispatch(cleanField(quantum)),
+        addDestiny: () => dispatch(addDestiny()),
+        removeDestiny: () => dispatch(removeDestiny())
       }
     };
   }

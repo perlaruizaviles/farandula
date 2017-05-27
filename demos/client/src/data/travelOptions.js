@@ -42,7 +42,8 @@ const travelOptions = Map({
   genders: [
     {text: 'Male', value: '1'},
     {text: 'Female', value: '2'}
-  ]
+  ],
+  destinies: List([0, 1, 2])
 });
 
 export default travelOptions;
