@@ -13,8 +13,11 @@ export const orderPriceDesc = () => {
 };
 
 export const changeOrderPrice = order => {
-  return {
-    type: types.CHANGE_PRICE_ORDER,
-    order: order
+  return(dispatch) => {
+    if (order === 'price-high-to-low') {
+      dispatch(orderPriceDesc());
+    } else if (order === 'price-low-to-high') {
+      dispatch(orderPriceAsc());
+    }
   }
 };
