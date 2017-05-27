@@ -3,13 +3,14 @@ import {reduxForm} from "redux-form";
 import DestinyFormSection from "./DestinyFormSection";
 
 const SearchForm = props => {
-  const {handleSubmit, submitting, properties, actions, destinies} = props;
+  const {handleSubmit, submitting, properties, actions} = props;
   return (
     <div>
       <form onSubmit={handleSubmit} className="ui error form">
         {
-          destinies.map(destiny => <DestinyFormSection key={destiny} name={"destiny-" + destiny} properties={properties}
-                                                       actions={actions}/>)
+          properties.destinies.map(destiny => <DestinyFormSection key={destiny} name={"destiny-" + destiny}
+                                                                  properties={properties}
+                                                                  actions={actions}/>)
         }
         <div>
           <button className="ui orange button" type="submit" disabled={submitting}>Search</button>

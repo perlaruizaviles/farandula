@@ -39,11 +39,7 @@ class TravelSearch extends React.Component {
 
 
     const submit = (values) => {
-
-      const search = handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin);
-
-      actions.availableFlights(search)
-
+      actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin));
     };
 
     const isInvalidForm = (properties) => {
@@ -54,8 +50,17 @@ class TravelSearch extends React.Component {
         return true;
       }
       return properties.startDate === undefined;
-
     };
+
+
+    function hideOn(types) {
+      for (let i = 0; i < types.length; i++) {
+        if (properties.selectedType === types[i]) {
+          return "hiddenComponent"
+        }
+      }
+      return "";
+    }
 
     return (
       <Segment raised className='travelSearchSegment'>
@@ -65,47 +70,55 @@ class TravelSearch extends React.Component {
           <Loader content='Loading'/>
         </Dimmer>
 
-        <Grid columns={1} centered>
-          <Grid.Row>
+        <Grid columns={3} centered verticalAlign="middle">
+          <Grid.Column textAlign="center">
+            <Button.Group className={hideOn(['round', 'oneWay'])}>
+              <Button onClick={(e, data) => actions.removeDestiny()}> - </Button>
+              <Button.Or text={properties.destinies.size}/>
+              <Button onClick={(e, data) => actions.addDestiny()}> + </Button>
+            </Button.Group>
+          </Grid.Column>
+
+          <Grid.Column textAlign="center" style={{display: "flex", alignItems: "center"}}>
             <TextMenu options={properties.typeOptions}
                       selected={properties.selectedType}
                       selectType={actions.typeChange}/>
+          </Grid.Column>
 
-            <Grid.Row>
-              <Dropdown
-                text={configTravelString(config, travelOptions)}
-                floating
-                pointing
-                closeOnBlur={false}
-                closeOnChange={false}
-                style={{width: 200}}>
-                <Dropdown.Menu onClick={e => e.stopPropagation()}>
-                  <Dropdown.Header content="Cabin"/>
-                  <Dropdown.Item>
-                    <DropCabinMenu
-                      config={config}
-                      options={travelOptions}
-                      cabinChange={(cabin) => actions.cabinChange(cabin)}/>
-                  </Dropdown.Item>
-                  <Dropdown.Divider/>
-                  <Dropdown.Header content="Passengers"/>
-                  <Segment basic>
-                    <TravelerMenu
-                      config={config}
-                      options={travelOptions}
-                      travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}/>
-                  </Segment>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Grid.Row>
-          </Grid.Row>
+          <Grid.Column textAlign="center">
+            <Dropdown
+              text={configTravelString(config, travelOptions)}
+              floating
+              pointing
+              closeOnBlur={false}
+              closeOnChange={false}>
+              <Dropdown.Menu onClick={e => e.stopPropagation()}>
+                <Dropdown.Header content="Cabin"/>
+                <Dropdown.Item>
+                  <DropCabinMenu
+                    config={config}
+                    options={travelOptions}
+                    cabinChange={(cabin) => actions.cabinChange(cabin)}/>
+                </Dropdown.Item>
+                <Dropdown.Divider/>
+                <Dropdown.Header content="Passengers"/>
+                <Segment basic>
+                  <TravelerMenu
+                    config={config}
+                    options={travelOptions}
+                    travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}/>
+                </Segment>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Grid.Column>
+
           <Grid.Row stretched verticalAlign="middle"
-                    className={(properties.selectedType === 'multiCity') ? "hiddenComponent" : ""}>
+                    className={hideOn(['multiCity'])}>
             <div className="search-field">
               <SearchSection properties={properties} actions={actions}/>
             </div>
 
-            <DatePicker className={(properties.selectedType !== 'round') ? "hiddenComponent" : ""}
+            <DatePicker className={hideOn(['oneWay'])}
                         customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
                         selectsEnd
                         minDate={properties.minDate}
@@ -140,21 +153,12 @@ class TravelSearch extends React.Component {
             </div>
           </Grid.Row>
 
-          <Grid.Row className={(properties.selectedType === 'multiCity') ? "" : "hiddenComponent"}>
-            <Grid.Row>
-              <Button.Group>
-                <Button onClick={(e, data) => actions.removeDestiny()}> - </Button>
-                <Button.Or text={properties.destinies.size}/>
-                <Button onClick={(e, data) => actions.addDestiny()}> + </Button>
-              </Button.Group>
-            </Grid.Row>
-
+          <Grid.Row className={hideOn(['round', 'oneWay'])}>
             <Grid.Row>
               <SearchForm
                 onSubmit={submit}
                 properties={properties}
-                actions={actions}
-                destinies={properties.destinies}/>
+                actions={actions}/>
             </Grid.Row>
           </Grid.Row>
         </Grid>
