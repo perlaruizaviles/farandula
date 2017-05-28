@@ -2,6 +2,7 @@ import * as types from "./actionTypes";
 import airportApi from "../api/airportsApi";
 import availableFlightApi from "../api/availableFlightsApi";
 import {ajaxCallError, beginAjaxCall} from "./ajaxStatusActions";
+import {countTravelers} from "../util/travelConfig";
 
 export const changeTravelType = type => {
   return {
@@ -18,13 +19,23 @@ export const changeTravelDate = (dateType, date) => {
   };
 };
 
-export const travelerTypeCountChange = (typeTraveler, count) => {
+const travelerTypeCountChange = (typeTraveler, count) => {
   return {
     type: types.CHANGE_TRAVELER_TYPE_COUNT,
     typeTraveler,
     count
   };
 };
+
+export const changeTravelerCount = (travelerType, value, travelers) => {
+	//console.log(travelerType, value, travelers)
+	let totalTravelers = countTravelers(travelers);
+	let newTotalTravelers = totalTravelers + value;
+	console.log('Actualmente hay un total de '+totalTravelers+' travelers')
+	return(dispatch) => {
+		if (newTotalTravelers >= 1 && newTotalTravelers <= 6) dispatch(travelerTypeCountChange(travelerType, )) 
+	}
+}
 
 export const cabinChange = cabin => {
   return {

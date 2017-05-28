@@ -3,11 +3,11 @@ import {Button} from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 
-const CounterButtons = ({count, travelerTypeCountChange, typeTraveler}) => (
+const CounterButtons = ({count, travelerTypeCountChange}) => (
   <Button.Group>
-    <Button onClick={() => travelerTypeCountChange(typeTraveler, count - 1)}> - </Button>
+    <Button onClick={() => travelerTypeCountChange(-1)}> - </Button>
     <Button.Or text={count}/>
-    <Button onClick={() => travelerTypeCountChange(typeTraveler, count + 1)}> + </Button>
+    <Button onClick={() => travelerTypeCountChange(1)}> + </Button>
   </Button.Group>
 );
 

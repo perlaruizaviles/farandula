@@ -6,7 +6,6 @@ import ExchangeButton from "../Common/ExchangeButton";
 import travelOptions from "../../data/travelOptions";
 import DropTravelMenu from "../Common/DropTravelMenu";
 
-
 import {Button, Dimmer, Grid, Icon, Loader, Segment} from "semantic-ui-react";
 import {getIata} from "../../util/matcher";
 
@@ -97,7 +96,7 @@ class TravelSearch extends React.Component {
                 <DropTravelMenu
                   config={config}
                   options={travelOptions}
-                  travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
+                  travelerTypeCountChange={(travelerType, value) => travelerTypeCountChange(travelerType, value, properties.travelers)}
                   cabinChange={cabinChange}/>
 
                 <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={

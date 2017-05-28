@@ -28,7 +28,7 @@ const DropTravelMenu = ({options, config, travelerTypeCountChange, cabinChange})
         <TravelerMenu
           config={config}
           options={options}
-          travelerTypeCountChange={travelerTypeCountChange}/>
+          travelerTypeCountChange={(travelerType, value) => travelerTypeCountChange(travelerType, value)}/>
       </Segment>
     </Dropdown.Menu>
   </Dropdown>
