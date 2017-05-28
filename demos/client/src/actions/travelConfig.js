@@ -19,7 +19,7 @@ export const changeTravelDate = (dateType, date) => {
   };
 };
 
-const travelerTypeCountChange = (typeTraveler, count) => {
+const changeTravelerState = (typeTraveler, count) => {
   return {
     type: types.CHANGE_TRAVELER_TYPE_COUNT,
     typeTraveler,
@@ -28,12 +28,22 @@ const travelerTypeCountChange = (typeTraveler, count) => {
 };
 
 export const changeTravelerCount = (travelerType, value, travelers) => {
-	//console.log(travelerType, value, travelers)
-	let totalTravelers = countTravelers(travelers);
-	let newTotalTravelers = totalTravelers + value;
-	console.log('Actualmente hay un total de '+totalTravelers+' travelers')
+	travelers = travelers.set(travelerType, travelers.get(travelerType) + value);
+	let newTotalTravelers = countTravelers(travelers);
+	let newTravelerCount = travelers.get(travelerType);
+	let attentionTypes = ['lap-infant', 'adults'];
+
 	return(dispatch) => {
-		if (newTotalTravelers >= 1 && newTotalTravelers <= 6) dispatch(travelerTypeCountChange(travelerType, )) 
+		if (newTravelerCount >= 0 && newTravelerCount <=6 && newTotalTravelers >= 1 && newTotalTravelers <= 6) {
+			if (attentionTypes.includes(travelerType)){
+				let adultsCount = travelers.get('adults');
+				let lapInfantCount = travelers.get('lap-infant');
+
+				if(lapInfantCount <= adultsCount) dispatch(changeTravelerState(travelerType, newTravelerCount));
+			} else {
+				dispatch(changeTravelerState(travelerType, newTravelerCount));
+			}
+		} 
 	}
 }
 
