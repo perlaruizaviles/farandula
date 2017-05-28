@@ -8,16 +8,16 @@ const TravelResults = ({filters}) => {
   return (
     <Container>
       <Grid>
+        <Grid.Column width={3} floated='left'>
+          <FiltersCard/>
+        </Grid.Column>
         <Grid.Column width={13} floated='right'>
           <Grid.Row>
             <TravelSearch/>
           </Grid.Row>
           <Grid.Row>
-            <ItineraryList />
+            <ItineraryList/>
           </Grid.Row>
-        </Grid.Column>
-        <Grid.Column width={3} floated='left'>
-          <FiltersCard/>
         </Grid.Column>
       </Grid>
     </Container>

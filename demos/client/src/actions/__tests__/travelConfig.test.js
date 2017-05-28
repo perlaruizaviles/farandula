@@ -4,21 +4,21 @@ import moment from "moment";
 
 describe('actions', () => {
   it('Should create an action to changeTravelType for roundTrip', () => {
-    const value = 'round';
+    const travelType = 'round';
     const expectedAction = {
       type: types.CHANGE_TRAVEL_TYPE,
-      value
+      travelType
     };
-    expect(actions.changeTravelType(value)).toEqual(expectedAction);
+    expect(actions.changeTravelType(travelType)).toEqual(expectedAction);
   });
 
   it('Should create an action to changeTravelType for oneWay', () => {
-    const value = 'oneWay';
+    const travelType = 'oneWay';
     const expectedAction = {
       type: types.CHANGE_TRAVEL_TYPE,
-      value
+      travelType
     };
-    expect(actions.changeTravelType(value)).toEqual(expectedAction);
+    expect(actions.changeTravelType(travelType)).toEqual(expectedAction);
   });
 
   it('Should create an action to changeTravelDate for depart', () => {
