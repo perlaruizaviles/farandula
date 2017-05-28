@@ -47,6 +47,18 @@ export const changeTravelTo = airport => {
   };
 };
 
+export const addDestiny = () => {
+  return {
+    type: types.ADD_DESTINY
+  };
+};
+
+export const removeDestiny = () => {
+  return {
+    type: types.REMOVE_DESTINY
+  };
+};
+
 export const exchangeDestinations = (from, to) => {
   return {
     type: types.EXCHANGE_DESTINATIONS,

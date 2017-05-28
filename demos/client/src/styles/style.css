@@ -6,16 +6,18 @@ span.gray {
     color: gray;
 }
 
-
 .App-logo {
     animation: App-logo-spin infinite 20s linear;
     height: 124px;
 }
 
-
 @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 #results {
@@ -39,6 +41,10 @@ span.gray {
 
 .hiddenComponent {
     display: none !important;
+}
+
+.searchSection {
+    margin-bottom: 1em;
 }
 
 .card.fixed {
