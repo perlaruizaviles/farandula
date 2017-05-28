@@ -73,11 +73,30 @@ export const multiCityValidation = values => {
     if (values.hasOwnProperty(destiny)) {
       if (JSON.stringify(values[destiny].departingAirport) === JSON.stringify(values[destiny].arrivalAirport)) {
         errors[destiny] = {};
-        errors[destiny].departingAirport = "Son iguales";
+        errors[destiny].departingAirport = "Date error";
+        errors[destiny].arrivalAirport = "Date error";
       }
     }
   }
-  console.log("errors", errors);
+
+  let dates = [];
+  let dateNames = [];
+  for (let destiny in values) {
+    if (values.hasOwnProperty(destiny) && values[destiny].departingDate !== undefined) {
+      dates.push(values[destiny].departingDate);
+      dateNames.push(destiny)
+    }
+  }
+
+  if (dates.length > 1) {
+    for (let i = 1; i < dates.length; i++) {
+      if (dates[i].diff(dates[i - 1]) <= 0) {
+        errors[dateNames[i]] = {};
+        errors[dateNames[i]].departingDate = "Date error"; //TODO: Compare with all dates
+      }
+    }
+  }
+
   return errors
 };
 
