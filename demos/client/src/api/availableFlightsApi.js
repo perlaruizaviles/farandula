@@ -5,15 +5,12 @@ import {List} from "immutable";
 class AvailableFlightsApi {
 
   static getAvailableFlights(search) {
-
-    let params = this.handleTravelType(search);
-
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
         url: endpoint.AVAILABLE_FLIGHTS_URL,
         responseType: 'json',
-        params: params,
+        params: this.handleTravelType(search),
       }).then((response) => {
         const flights = response.data;
         resolve(List(flights));
@@ -50,6 +47,8 @@ class AvailableFlightsApi {
       params.departingTimes = search.departingTimes;
       return params;
     }
+
+    return params;
   }
 
   static passengerAdapter(passenger) {
