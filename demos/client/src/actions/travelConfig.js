@@ -6,7 +6,7 @@ import {ajaxCallError, beginAjaxCall} from "./ajaxStatusActions";
 export const changeTravelType = type => {
   return {
     type: types.CHANGE_TRAVEL_TYPE,
-    value: type
+    travelType: type
   };
 };
 

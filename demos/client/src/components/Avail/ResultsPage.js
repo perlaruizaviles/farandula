@@ -1,22 +1,24 @@
 import React from "react";
 import ItineraryList from "../../containers/ItineraryList";
 import TravelSearch from "../../containers/TravelSearch";
-import ItineraryFilterCard from "./ItineraryFilterCard";
+import FiltersCard from "../../containers/FiltersCard";
 import {Container, Grid} from "semantic-ui-react";
 
-const TravelResults = () => {
+const TravelResults = ({filters}) => {
   return (
     <Container>
-      <TravelSearch/>
       <Grid>
-        <Grid.Row>
-          <Grid.Column width={3}>
-            <ItineraryFilterCard/>
-          </Grid.Column>
-          <Grid.Column width={13}>
-            <ItineraryList />
-          </Grid.Column>
-        </Grid.Row>
+        <Grid.Column width={3} floated='left'>
+          <FiltersCard/>
+        </Grid.Column>
+        <Grid.Column width={13} floated='right'>
+          <Grid.Row>
+            <TravelSearch/>
+          </Grid.Row>
+          <Grid.Row>
+            <ItineraryList/>
+          </Grid.Row>
+        </Grid.Column>
       </Grid>
     </Container>
   )

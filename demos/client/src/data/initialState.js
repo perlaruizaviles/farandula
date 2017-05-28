@@ -2,6 +2,18 @@ import {List, Map} from "immutable";
 
 const initialState = {
   ajaxCallsInProgress: 0,
+  itineraries: Map({
+    order: 'price-low-to-high',
+    filters: Map({
+      limit: '50',
+      airlines: Map({
+        'aeromexico': false,
+        'volaris': false,
+        'interjet': false
+      })
+    }),
+    itinerariesList: List([])
+  }),
   travelConfig: Map({
     type: 'multiCity',
     cabin: 'economy',

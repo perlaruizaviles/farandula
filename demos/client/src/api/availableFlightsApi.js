@@ -53,6 +53,7 @@ class AvailableFlightsApi {
 
   static passengerAdapter(passenger) {
     return `children:${passenger.get('child')},infants:${passenger.get('lap-infant')},infantsOnSeat:${passenger.get('seat-infant')},adults:${passenger.get('adults')}`;
+
   }
 }
 

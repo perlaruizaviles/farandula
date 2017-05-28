@@ -7,7 +7,7 @@ import {changeTravelDates} from "../util/dates";
 const travelConfig = (state = Map({}), action) => {
   switch (action.type) {
     case types.CHANGE_TRAVEL_TYPE:
-      return state.set('type', action.value);
+      return state.set('type', action.travelType);
 
     case types.CHANGE_TRAVEL_DATE:
       let dates = changeTravelDates(state.get('dates'), action.date, action.dateType);
@@ -43,9 +43,6 @@ const travelConfig = (state = Map({}), action) => {
       state = state.setIn(['locations', 'from'], action.to);
       return state.setIn(['locations', 'to'], action.from);
 
-    case types.SEARCH_AVAILABLE_FLIGHTS_SUCCESS:
-      return state.set('availableFlights', action.flights);
-
     case types.CLEAN_TRAVEL_FROM:
       return state.setIn(['locations', 'from'], {});
 
@@ -78,7 +75,7 @@ const travelConfig = (state = Map({}), action) => {
         return state;
       }
       return state.set('destinies', state.get('destinies').pop());
-
+      
     default:
       return state;
   }
