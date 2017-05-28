@@ -15,7 +15,7 @@ const initialState = {
     itinerariesList: List([])
   }),
   travelConfig: Map({
-    type: 'multiCity',
+    type: 'round',
     cabin: 'economy',
     travelers: Map({
       'adults': 1,
