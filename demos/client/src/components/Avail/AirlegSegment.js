@@ -12,12 +12,17 @@ const AirlegSegment = ({departureAirport, departureDate, arrivalAirport, arrival
     <div>
       <Divider/>
       <p>
-        <strong>{departureTime} &mdash; {arrivalTime}</strong><br/><span style={{float: 'right'}}>{cabinTypes.map((cabin) => titleize(cabin))} {totalTime}</span>
-        {departureAirport.city} ({departureAirport.iata})
-        &mdash;
-        {arrivalAirport.city } ({arrivalAirport.iata})<br/>
+        <strong>
+					{departureTime} &mdash; {arrivalTime}
+				</strong><br/>
+				<span style={{float: 'right'}}>
+					{ cabinTypes.map((cabin) => titleize(cabin)) } {totalTime}
+				</span>
+        {departureAirport.city} ({departureAirport.iata}) &mdash; {arrivalAirport.city } ({arrivalAirport.iata})<br/>
         {airLineMarketingName} - {airplaneData}<br/>
-        <span className='gray'>Operated by {airLineOperationName}</span>
+        <span className='gray'>
+					Operated by {airLineOperationName}
+				</span>
       </p>
       <Divider/>
     </div>
