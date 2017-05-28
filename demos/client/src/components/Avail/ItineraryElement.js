@@ -32,9 +32,7 @@ class ItineraryElement extends React.Component {
                 <span className='cinema' style={{background: 'lightgray'}}>Multiple Airlines</span>
               </Item.Meta>
               <Item.Description>
-
-                {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg}/>)}
-
+                {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg} />)}
               </Item.Description>
               <Item.Extra><Label color='blue' onClick={this.open}>View details</Label></Item.Extra>
             </Item.Content>
@@ -45,9 +43,9 @@ class ItineraryElement extends React.Component {
           </Item>
 
           <Collapse isOpened={this.state.isOpened === 'true'}>
-            {travel.airlegs.map((airleg) => <AirlegDetail key={Math.random()} {...airleg}/>)}
+            {travel.airlegs.map((airleg, index) => <AirlegDetail index={index} key={Math.random()} {...airleg}/>)}
           </Collapse>
-          </Item.Group>
+        </Item.Group>
       </Segment>
     )
   }
