@@ -65,7 +65,7 @@ const travelConfig = (state = Map({}), action) => {
       return state;
 
     case types.ADD_DESTINY:
-      if (state.get('destinies').size === 6) {
+      if (state.get('destinies').size === 5) {
         return state;
       }
       return state.set('destinies', state.get('destinies').push(Math.floor(Math.random() * 10000)));
