@@ -84,9 +84,10 @@ public class JavaFarandulaApplicationTests {
         String passenger = "children:,infants:,infantsOnSeat:1;2,adults:2";
 
         String classType = "economy";
+        String limit = "50";
 
         List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(dapartingAirportCodes,
-                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger, classType);
+                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger, classType, limit);
 
         assertNotEquals(0, flightItineraries.size());
 
@@ -109,9 +110,10 @@ public class JavaFarandulaApplicationTests {
         String passenger = "children:,infants:,infantsOnSeat:,adults:2";
 
         String classType = "economy";
+        String limit = "50";
 
         List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(dapartingAirportCodes,
-                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger, classType);
+                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger, classType, limit);
 
         assertNotEquals(0, flightItineraries.size());
     }
@@ -130,9 +132,10 @@ public class JavaFarandulaApplicationTests {
         String passenger = "children:,infants:1;2,infantsOnSeat:,adults:2";
 
         String classType = "economy";
+        String limit = "50";
 
         List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(dapartingAirportCodes,
-                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger, classType);
+                departingDate, departingTime, returnAirportCodes, returnDate, returnTime, type, passenger, classType, limit);
 
         assertNotEquals(0, flightItineraries.size());
     }
@@ -156,9 +159,10 @@ public class JavaFarandulaApplicationTests {
         String passengerTestOne = "children:4,5,infants:,infantsOnSeat:,adults:2";
 
         String classType = "economy";
+        String limit = "50";
 
         List<FlightItinerary> flightItineraries = flightService.getResponseFromSearch(departingAirportCodes,
-                departingDate, departingTime, arrivalAirportCodes, returnDate, returnTime, type, passengerTestOne, classType);
+                departingDate, departingTime, arrivalAirportCodes, returnDate, returnTime, type, passengerTestOne, classType, limit);
 
         List<ItineraryFares> price = new ArrayList<>();
 
@@ -169,7 +173,7 @@ public class JavaFarandulaApplicationTests {
         String passengerTestTwo = "children:,infants:,infantsOnSeat:,adults:2";
 
         List<FlightItinerary> flightItinerariesTwo = flightService.getResponseFromSearch(departingAirportCodes,
-                departingDate, departingTime, arrivalAirportCodes, returnDate, returnTime, type, passengerTestTwo, classType);
+                departingDate, departingTime, arrivalAirportCodes, returnDate, returnTime, type, passengerTestTwo, classType, limit);
 
         List<ItineraryFares> priceTwo = new ArrayList<>();
 
