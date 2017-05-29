@@ -5,11 +5,12 @@ const ARRIVAL_AIRPORTS = "arrivalAirports";
 const DEPARTING_DATES = "departingDates";
 const DEPARTING_TIMES = "departingTimes";
 
-export function handleRequestData(values, type, passenger, cabin) {
+export function handleRequestData(values, type, passenger, cabin, limit) {
   const search = {
     type: type,
     passenger: passenger,
-    cabin: cabin
+    cabin: cabin,
+    limit: limit
   };
 
   search.departingAirports = dataAdapter(DEPARTING_AIRPORTS, values);

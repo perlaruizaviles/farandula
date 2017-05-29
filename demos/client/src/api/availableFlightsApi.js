@@ -31,7 +31,8 @@ class AvailableFlightsApi {
       arrivalAirportCodes: search.arrivalAirport,
       type: search.type,
       passenger: passenger,
-      cabin: search.cabin
+      cabin: search.cabin,
+      limit: search.limit
     };
 
     if (params.type === "round") {

@@ -19,7 +19,7 @@ class TravelSearch extends React.Component {
   render() {
 
 
-    const {config, loading, actions} = this.props;
+    const {config, filters,loading, actions} = this.props;
 
 
     const properties = {
@@ -34,12 +34,13 @@ class TravelSearch extends React.Component {
       endDate: config.getIn(['dates', 'return']),
       travelers: config.get('travelers'),
       cabin: config.get('cabin'),
-      destinies: config.get('destinies')
+      destinies: config.get('destinies'),
+      limit: filters.getIn(['filters','limit'])
     };
 
 
     const submit = (values) => {
-      actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin));
+      actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin, properties.limit));
     };
 
     const isInvalidForm = (properties) => {
@@ -140,7 +141,8 @@ class TravelSearch extends React.Component {
                   arrivalTime: "00:00:00",
                   type: properties.selectedType,
                   passenger: properties.travelers,
-                  cabin: properties.cabin
+                  cabin: properties.cabin,
+                  limit: properties.limit
                 }) => {
                   actions.availableFlights(search);
                 }
