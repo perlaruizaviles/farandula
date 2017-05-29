@@ -19,6 +19,7 @@ export default connect(
   state => {
     return {
       config: state.travelConfig,
+      filters: state.itineraries,
       loading: state.ajaxCallsInProgress > 0
     };
   },
