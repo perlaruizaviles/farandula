@@ -8,7 +8,7 @@ class AvailableFlightsApi {
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
-        url: endpoint.AVAILABLE_FLIGHTS_URL,
+        url: endpoint.TEMP_AVAILABLE_FLIGHTS_URL,
         responseType: 'json',
         params: this.handleTravelType(search),
       }).then((response) => {
