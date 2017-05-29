@@ -85,7 +85,7 @@ public class SabreJSONRequest {
         valuesMap.put("classTravel", classTravel);
         //request creation.
         String header  = new BufferedReader(new InputStreamReader(
-                SabreJSONRequest.class.getClass().getResourceAsStream("/Sabre/JSON/request/requestHeader.json") ))
+                SabreJSONRequest.class.getResourceAsStream("/Sabre/JSON/request/requestHeader.json") ))
                 .lines()
                 .collect(Collectors.joining("\n") );
 
@@ -97,7 +97,7 @@ public class SabreJSONRequest {
 
         result += sub.replace(
                 new BufferedReader(new InputStreamReader(
-                SabreJSONRequest.class.getClass().getResourceAsStream("/Sabre/JSON/request/requestTail.json") ))
+                SabreJSONRequest.class.getResourceAsStream("/Sabre/JSON/request/requestTail.json") ))
                 .lines()
                 .collect(Collectors.joining("\n") )
         );
