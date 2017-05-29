@@ -1,21 +1,16 @@
-import React from "react";
-import {shallow} from "enzyme";
-import expect from "expect";
-import BillingForm from "../Booking/BillingForm";
+import React from 'react';
+import {shallow} from 'enzyme';
+import BillingForm from '../Booking/BillingForm';
 
-function setup() {
-  const props = {};
-  return shallow(<BillingForm {...props} />);
-}
+describe('Rendering BillingForm ', () => {
 
-describe('Rendering BillingForm', () => {
-  it('Renders Form', () => {
-    const wrapper = setup();
-    expect(wrapper.find('FormSection').length).toBe(1);
+  const tree = shallow(<BillingForm />);
+  
+  it('Should create an snapshot for BillingForm', () => {
+    expect(tree).toMatchSnapshot();
   });
 
-  it('Initial Inputs ', () => {
-    const wrapper = setup();
-    expect(wrapper.find('Field').length).toBe(10);
+  it('Renders Correct BillingForm', () => {
+    expect(tree.find('FormSection').length).toBe(1);
   });
 });

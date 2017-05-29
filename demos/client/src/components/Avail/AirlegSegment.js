@@ -1,8 +1,9 @@
 import React from "react";
 import {Divider} from "semantic-ui-react";
 import {diffFormatted, formatTime} from "../../util/dates";
+import {titleize} from "inflection";
 
-const AirlegSegment = ({departureAirport, departureDate, arrivalAirport, arrivalDate, duration}) => {
+const AirlegSegment = ({departureAirport, departureDate, arrivalAirport, arrivalDate, duration, airplaneData, airLineOperationName, airLineMarketingName, cabinTypes}) => {
   let departureTime = formatTime(departureDate);
   let arrivalTime = formatTime(arrivalDate);
   let totalTime = diffFormatted(departureDate, arrivalDate);
@@ -11,12 +12,17 @@ const AirlegSegment = ({departureAirport, departureDate, arrivalAirport, arrival
     <div>
       <Divider/>
       <p>
-        <strong>{departureTime} &mdash; {arrivalTime}</strong><br/><span style={{float: 'right'}}><span
-        style={{background: 'lightgray'}}>Economy</span> {totalTime}</span>
-        {departureAirport.city} ({departureAirport.iata})
-        &mdash;
-        {arrivalAirport.city } ({arrivalAirport.iata})<br/>
-        <span style={{background: 'lightgray'}}>Aeromexico 2817 - Narrow-body jet</span><br/>
+        <strong>
+					{departureTime} &mdash; {arrivalTime}
+				</strong><br/>
+				<span style={{float: 'right'}}>
+					{ cabinTypes.map((cabin) => titleize(cabin)) } {totalTime}
+				</span>
+        {departureAirport.city} ({departureAirport.iata}) &mdash; {arrivalAirport.city } ({arrivalAirport.iata})<br/>
+        {airLineMarketingName} - {airplaneData}<br/>
+        <span className='gray'>
+					Operated by {airLineOperationName}
+				</span>
       </p>
       <Divider/>
     </div>

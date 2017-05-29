@@ -9,8 +9,5 @@ export default () => (
     <TextMenu options={travelOptions.get('type')}
               selected="round-trip"
               selectType={(type) => console.log(`Selected ${type} type`)}/>
-    <TextMenu options={List(['Alan', 'Eduardo', 'Luque'])}
-              selected="Alan"
-              selectType={type => console.log(`Hay flow con el ${type}`)}/>
   </div>
 );

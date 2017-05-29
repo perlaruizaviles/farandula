@@ -1,0 +1,119 @@
+exports[`Rendering TravelResults  Should create an snapshot for TravelResults 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <Container>
+    <Connect(TravelSearch) />
+    <Grid>
+        <GridRow>
+            <GridColumn
+                width={3}>
+                <OptionsTravel />
+            </GridColumn>
+            <GridColumn
+                width={13}>
+                <Connect(ItineraryList) />
+            </GridColumn>
+        </GridRow>
+    </Grid>
+</Container>,
+  "nodes": Array [
+    <Container>
+      <Connect(TravelSearch) />
+      <Grid>
+            <GridRow>
+                  <GridColumn
+                        width={3}>
+                        <OptionsTravel />
+                  </GridColumn>
+                  <GridColumn
+                        width={13}>
+                        <Connect(ItineraryList) />
+                  </GridColumn>
+            </GridRow>
+      </Grid>
+</Container>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <TravelResults />,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <Container>
+          <Connect(TravelSearch) />
+          <Grid>
+                    <GridRow>
+                              <GridColumn
+                                        width={3}>
+                                        <OptionsTravel />
+                              </GridColumn>
+                              <GridColumn
+                                        width={13}>
+                                        <Connect(ItineraryList) />
+                              </GridColumn>
+                    </GridRow>
+          </Grid>
+</Container>,
+        "_debugID": 2,
+        "_renderedOutput": <Container>
+          <Connect(TravelSearch) />
+          <Grid>
+                    <GridRow>
+                              <GridColumn
+                                        width={3}>
+                                        <OptionsTravel />
+                              </GridColumn>
+                              <GridColumn
+                                        width={13}>
+                                        <Connect(ItineraryList) />
+                              </GridColumn>
+                    </GridRow>
+          </Grid>
+</Container>,
+      },
+      "_renderedNodeType": 1,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <TravelResults />,
+}
+`;

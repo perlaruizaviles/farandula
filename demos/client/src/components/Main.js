@@ -1,5 +1,5 @@
 import React from "react";
-import {Menu, Segment} from "semantic-ui-react";
+import {Menu} from "semantic-ui-react";
 import * as routes from "../routes";
 
 const Main = ({
@@ -16,9 +16,9 @@ const Main = ({
         Summary
       </Menu.Item>
     </Menu>
-    <Segment attached>
+    <div>
       {props.children}
-    </Segment>
+    </div>
   </div>
 );
 

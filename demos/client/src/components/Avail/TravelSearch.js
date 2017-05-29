@@ -1,21 +1,25 @@
 import React from "react";
 import TextMenu from "../Common/TextMenu";
-import DateSelector from "../Common/DateSelector";
-import AirportSearch from "./AirportSearch";
-import ExchangeButton from "../Common/ExchangeButton";
 import travelOptions from "../../data/travelOptions";
-import DropTravelMenu from "../Common/DropTravelMenu";
+import TravelerMenu from "../Avail/TravelerMenu";
+import DropCabinMenu from "../Common/DropCabinMenu";
+import SearchSection from "./SearchSection";
+import SearchForm from "./SearchForm";
 
+import {Button, Dimmer, Dropdown, Grid, Icon, Input, Loader, Segment} from "semantic-ui-react";
+import DatePicker from "react-datepicker";
+import {configTravelString} from "../../util/travelConfig";
+import "react-datepicker/dist/react-datepicker.css";
 
-import {Button, Dimmer, Icon, Loader} from "semantic-ui-react";
 import {getIata} from "../../util/matcher";
+import {handleRequestData} from "../../util/handleRequestData";
 
 class TravelSearch extends React.Component {
 
   render() {
 
 
-    const {config, loading, typeChange, dateChange, travelerTypeCountChange, cabinChange, searchAirport, fromAirportChange, toAirportChange, exchangeDestinations, availableFlights, cleanField} = this.props;
+    const {config, loading, actions} = this.props;
 
 
     const properties = {
@@ -28,93 +32,137 @@ class TravelSearch extends React.Component {
       maxDate: travelOptions.get('maxDate'),
       startDate: config.getIn(['dates', 'depart']),
       endDate: config.getIn(['dates', 'return']),
-      travelers: config.get('travelers')
+      travelers: config.get('travelers'),
+      cabin: config.get('cabin'),
+      destinies: config.get('destinies')
+    };
+
+
+    const submit = (values) => {
+      actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin));
     };
 
     const isInvalidForm = (properties) => {
       if (properties.airportFrom.title === undefined) {
-        return true
+        return true;
       }
       if (properties.airportTo.title === undefined) {
-        return true
+        return true;
       }
-      if (properties.startDate === undefined) {
-        return true
-      }
-      return properties.endDate === undefined;
-
+      return properties.startDate === undefined;
     };
 
 
+    function hideOn(types) {
+      for (let i = 0; i < types.length; i++) {
+        if (properties.selectedType === types[i]) {
+          return "hiddenComponent"
+        }
+      }
+      return "";
+    }
+
     return (
-      <div>
+      <Segment raised className='travelSearchSegment'>
+
+
         <Dimmer active={loading} inverted>
           <Loader content='Loading'/>
         </Dimmer>
 
-        <TextMenu options={properties.typeOptions}
-                  selected={properties.selectedType}
-                  selectType={typeChange}/>
-        <AirportSearch
-          searchChange={(query, quantum = properties.airportTo) => searchAirport(query, quantum)}
-          changeSelected={value => fromAirportChange(value)}
-          airports={properties.airports}
-          value={properties.airportFrom.title}
-          cleanField={(quantum = 'from') => cleanField(quantum)}/>
+        <Grid columns={3} centered verticalAlign="middle">
+          <Grid.Column textAlign="center">
+            <Button.Group className={hideOn(['round', 'oneWay'])}>
+              <Button onClick={(e, data) => actions.removeDestiny()}> - </Button>
+              <Button.Or text={properties.destinies.size}/>
+              <Button onClick={(e, data) => actions.addDestiny()}> + </Button>
+            </Button.Group>
+          </Grid.Column>
 
-        <ExchangeButton handleExchange={
-          (from = properties.airportFrom, to = properties.airportTo) => exchangeDestinations(from, to)}/>
+          <Grid.Column textAlign="center" style={{display: "flex", alignItems: "center"}}>
+            <TextMenu options={properties.typeOptions}
+                      selected={properties.selectedType}
+                      selectType={actions.typeChange}/>
+          </Grid.Column>
 
+          <Grid.Column textAlign="center">
+            <Dropdown
+              text={configTravelString(config, travelOptions)}
+              floating
+              pointing
+              closeOnBlur={false}
+              closeOnChange={false}>
+              <Dropdown.Menu onClick={e => e.stopPropagation()}>
+                <Dropdown.Header content="Cabin"/>
+                <Dropdown.Item>
+                  <DropCabinMenu
+                    config={config}
+                    options={travelOptions}
+                    cabinChange={(cabin) => actions.cabinChange(cabin)}/>
+                </Dropdown.Item>
+                <Dropdown.Divider/>
+                <Dropdown.Header content="Passengers"/>
+                <Segment basic>
+                  <TravelerMenu
+                    config={config}
+                    options={travelOptions}
+                    travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}/>
+                </Segment>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Grid.Column>
 
-        <AirportSearch
-          searchChange={(query, quantum = properties.airportFrom) => searchAirport(query, quantum)}
-          changeSelected={value => toAirportChange(value)}
-          airports={properties.airports}
-          value={properties.airportTo.title}
-          cleanField={(quantum = 'to') => cleanField(quantum)}/>
+          <Grid.Row stretched verticalAlign="middle"
+                    className={hideOn(['multiCity'])}>
+            <div className="search-field">
+              <SearchSection properties={properties} actions={actions}/>
+            </div>
 
-        <DateSelector minDate={properties.minDate}
-                      selectsStart
-                      maxDate={properties.maxDate}
-                      startDate={properties.startDate}
-                      endDate={properties.endDate}
-                      selected={properties.startDate}
-                      changeTravelDate={date => dateChange('depart', date)}/>
+            <DatePicker className={hideOn(['oneWay'])}
+                        customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
+                        selectsEnd
+                        minDate={properties.minDate}
+                        maxDate={properties.maxDate}
+                        selected={properties.endDate}
+                        startDate={properties.startDate}
+                        endDate={properties.endDate}
+                        placeholderText="Select date..."
+                        onChange={date => actions.dateChange('return', date)}/>
 
-        <DateSelector minDate={properties.minDate}
-                      selectsEnd
-                      maxDate={properties.maxDate}
-                      startDate={properties.startDate}
-                      endDate={properties.endDate}
-                      selected={properties.endDate}
-                      changeTravelDate={date => dateChange('return', date)}/>
+            <div className="search-field">
+              <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
+                (event, button, search = {
+                  departureAirport: getIata(properties.airportFrom.title),
+                  departingDate: properties.startDate.format('YYYY-MM-DD'),
+                  departingTime: "10:15:30",
+                  arrivalAirport: getIata(properties.airportTo.title),
+                  arrivalDate: properties.endDate.format('YYYY-MM-DD'),
+                  arrivalTime: "00:00:00",
+                  type: properties.selectedType,
+                  passenger: properties.travelers,
+                  cabin: properties.cabin
+                }) => {
+                  actions.availableFlights(search);
+                }
+              }>
+                <Button.Content visible>Search</Button.Content>
+                <Button.Content hidden>
+                  <Icon name='plane' className='large'/>
+                </Button.Content>
+              </Button>
+            </div>
+          </Grid.Row>
 
-        <DropTravelMenu
-          config={config}
-          options={travelOptions}
-          travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}
-          cabinChange={cabinChange}/>
-
-        <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
-          (event, button, search = {
-            departureAirport: getIata(properties.airportFrom.title),
-            departingDate: properties.startDate.format('YYYY-MM-DD'),
-            departingTime: "10:15:30",
-            arrivalAirport: getIata(properties.airportTo.title),
-            arrivalDate: properties.endDate.format('YYYY-MM-DD'),
-            arrivalTime: "00:00:00",
-            type: properties.selectedType,
-            passenger: properties.travelers
-          }) => {
-            availableFlights(search);
-          }
-        }>
-          <Button.Content visible>Search</Button.Content>
-          <Button.Content hidden>
-            <Icon name='plane' className='large'/>
-          </Button.Content>
-        </Button>
-      </div>
+          <Grid.Row className={hideOn(['round', 'oneWay'])}>
+            <Grid.Row>
+              <SearchForm
+                onSubmit={submit}
+                properties={properties}
+                actions={actions}/>
+            </Grid.Row>
+          </Grid.Row>
+        </Grid>
+      </Segment>
     );
   }
 }

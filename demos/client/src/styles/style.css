@@ -1,5 +1,23 @@
+body {
+    background-color: #f3f3f3;
+}
+
 span.gray {
     color: gray;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 124px;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 #results {
@@ -7,4 +25,36 @@ span.gray {
     top: 100%;
     left: 20%;
     right: 20%;
+}
+
+.search-field {
+    margin: 0 0.5em;
+}
+
+.ui.attached:not(.message) + .ui.attached.segment:not(.top) {
+    background-color: #f3f3f3;
+}
+
+.ui.segment.travelSearchSegment {
+    padding-top: 0;
+}
+
+.hiddenComponent {
+    display: none !important;
+}
+
+.searchSection {
+    margin-bottom: 1em;
+}
+
+.card.fixed {
+    position: sticky;
+    top: 10px;
+}
+
+span.travelTitle {
+	color: #f7941d;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 16px;
 }

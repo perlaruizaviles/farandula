@@ -17,14 +17,13 @@ class ItineraryElement extends React.Component {
 
   render() {
     let travel = {
-      price: this.state.itinerary.fares.totalPrice.amount,
+      price: this.state.itinerary.fares.basePrice.amount,
       airlegs: this.state.itinerary.airlegs
     };
 
     return (
       <Segment>
-        <Item.Group divided>
-
+        <Item.Group>
           <Item>
             <Item.Image size='tiny'
                         src='https://www.global-benefits-vision.com/wp-content/uploads/2016/02/Plane-Icon.jpg'/>
@@ -33,20 +32,18 @@ class ItineraryElement extends React.Component {
                 <span className='cinema' style={{background: 'lightgray'}}>Multiple Airlines</span>
               </Item.Meta>
               <Item.Description>
-
-                {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg}/>)}
-
+                {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg} />)}
               </Item.Description>
               <Item.Extra><Label color='blue' onClick={this.open}>View details</Label></Item.Extra>
             </Item.Content>
             <Item.Extra style={{width: '15%'}}>
-              <h2>${travel.price}</h2>
-              <Button className='orange' content='Book'/>
+              <h3>USD ${travel.price}</h3>
+              <center><Button disabled={true} className='orange' content='Book'/></center>
             </Item.Extra>
           </Item>
 
           <Collapse isOpened={this.state.isOpened === 'true'}>
-            {travel.airlegs.map((airleg) => <AirlegDetail key={Math.random()} {...airleg}/>)}
+            {travel.airlegs.map((airleg, index) => <AirlegDetail index={index} key={Math.random()} {...airleg}/>)}
           </Collapse>
         </Item.Group>
       </Segment>

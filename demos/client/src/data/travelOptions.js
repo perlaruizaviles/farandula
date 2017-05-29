@@ -4,14 +4,12 @@ import {nYearsFromNow} from "../util/nYearsFromNow";
 import states from "../util/states.json";
 
 const travelOptions = Map({
-  type: List(['roundTrip', 'oneWay']),
-  cabin: List(['economy', 'premium-economy', 'business', 'first']),
+  type: List(['round', 'oneWay', 'multiCity']),
+  cabin: List(['economy', 'premiumEconomy', 'business', 'first']),
   minDate: moment(),
   maxDate: moment().add(1, "year"),
   travelers: Map({
-    'adults': List([18, 64]),
-    'seniors': List([65, Infinity]),
-    'youth': List([12, 17]),
+    'adults': List([18, Infinity]),
     'child': List([2, 11]),
     'seat-infant': List([0, 2]),
     'lap-infant': List([0, 2])
@@ -21,7 +19,7 @@ const travelOptions = Map({
     fields: List(['iata', 'city', 'name'])
   }),
   dates: Map({
-    'round-trip': List(['depart', 'return']),
+    'round': List(['depart', 'return']),
     'one-way': List(['depart']),
     'multi-city': List(['depart-n'])
   }),
@@ -44,7 +42,8 @@ const travelOptions = Map({
   genders: [
     {text: 'Male', value: '1'},
     {text: 'Female', value: '2'}
-  ]
+  ],
+  destinies: List([0, 1, 2])
 });
 
 export default travelOptions;

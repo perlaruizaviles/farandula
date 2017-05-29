@@ -6,7 +6,7 @@ import {ajaxCallError, beginAjaxCall} from "./ajaxStatusActions";
 export const changeTravelType = type => {
   return {
     type: types.CHANGE_TRAVEL_TYPE,
-    value: type
+    travelType: type
   };
 };
 
@@ -44,6 +44,18 @@ export const changeTravelTo = airport => {
   return {
     type: types.CHANGE_TRAVEL_TO,
     airport
+  };
+};
+
+export const addDestiny = () => {
+  return {
+    type: types.ADD_DESTINY
+  };
+};
+
+export const removeDestiny = () => {
+  return {
+    type: types.REMOVE_DESTINY
   };
 };
 

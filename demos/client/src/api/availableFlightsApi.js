@@ -8,26 +8,52 @@ class AvailableFlightsApi {
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
-        url: endpoint.TEMP_AVAILABLE_FLIGHTS_URL, //TODO: Change to AVAILABLE_FLIGHTS_URL when backend work well again
+        url: endpoint.AVAILABLE_FLIGHTS_URL,
         responseType: 'json',
-        params: {
-          departureAirportCode: search.departureAirport,
-          departingDate: search.departingDate,
-          departingTime: search.departingTime,
-          arrivalAirportCode: search.arrivalAirport,
-          arrivalDate: search.arrivalDate,
-          arrivalTime: search.arrivalTime,
-          type: search.type,
-          passenger: search.passenger
-        }
+        params: this.handleTravelType(search),
       }).then((response) => {
         const flights = response.data;
         resolve(List(flights));
-      })
-        .catch(e => {
+      }).catch(e => {
           reject(e);
         });
     });
+  }
+
+  static handleTravelType(search) {
+
+    const passenger = this.passengerAdapter(search.passenger);
+
+    let params = {
+      departingAirportCodes: search.departureAirport,
+      departingDates: search.departingDate,
+      departingTimes: search.departingTime,
+      arrivalAirportCodes: search.arrivalAirport,
+      type: search.type,
+      passenger: passenger,
+      cabin: search.cabin
+    };
+
+    if (params.type === "round") {
+      params.arrivalDate = search.arrivalDate;
+      params.arrivalTime = search.arrivalTime;
+      return params;
+    }
+
+    if (params.type === "multiCity") {
+      params.departingAirportCodes = search.departingAirports;
+      params.arrivalAirportCodes = search.arrivalAirports;
+      params.departingDates = search.departingDates;
+      params.departingTimes = search.departingTimes;
+      return params;
+    }
+
+    return params;
+  }
+
+  static passengerAdapter(passenger) {
+    return `children:${passenger.get('child')},infants:${passenger.get('lap-infant')},infantsOnSeat:${passenger.get('seat-infant')},adults:${passenger.get('adults')}`;
+
   }
 }
 
