@@ -3,14 +3,15 @@
   <groupId>com.example</groupId>
   <artifactId>farandula-example</artifactId>
   <versioning>
-    <release>1.3.2</release>
+    <release>1.3.2.3</release>
     <versions>
       <version>1.0</version>
       <version>1.2</version>
       <version>1.3</version>
       <version>1.3.1</version>
       <version>1.3.2</version>
+      <version>1.3.2.3</version>
     </versions>
-    <lastUpdated>20170525171956</lastUpdated>
+    <lastUpdated>20170529184257</lastUpdated>
   </versioning>
 </metadata>
