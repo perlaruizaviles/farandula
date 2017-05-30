@@ -2,6 +2,7 @@ import * as types from "./actionTypes";
 import airportApi from "../api/airportsApi";
 import availableFlightApi from "../api/availableFlightsApi";
 import {ajaxCallError, beginAjaxCall} from "./ajaxStatusActions";
+import {countTravelers} from "../util/travelConfig";
 
 export const changeTravelType = type => {
   return {
@@ -18,12 +19,32 @@ export const changeTravelDate = (dateType, date) => {
   };
 };
 
-export const travelerTypeCountChange = (typeTraveler, count) => {
+const changeTravelerState = (typeTraveler, count) => {
   return {
     type: types.CHANGE_TRAVELER_TYPE_COUNT,
     typeTraveler,
     count
   };
+};
+
+export const changeTravelerCount = (travelerType, value, travelers) => {
+	travelers = travelers.set(travelerType, travelers.get(travelerType) + value);
+	let newTotalTravelers = countTravelers(travelers);
+	let newTravelerCount = travelers.get(travelerType);
+	let attentionTypes = ['lap-infant', 'adults'];
+
+	return(dispatch) => {
+		if (newTravelerCount >= 0 && newTravelerCount <=6 && newTotalTravelers >= 1 && newTotalTravelers <= 6) {
+			if (attentionTypes.includes(travelerType)){
+				let adultsCount = travelers.get('adults');
+				let lapInfantCount = travelers.get('lap-infant');
+
+				if(lapInfantCount <= adultsCount) dispatch(changeTravelerState(travelerType, newTravelerCount));
+			} else {
+				dispatch(changeTravelerState(travelerType, newTravelerCount));
+			}
+		} 
+	}
 };
 
 export const cabinChange = cabin => {

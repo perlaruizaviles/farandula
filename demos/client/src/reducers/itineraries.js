@@ -7,10 +7,12 @@ const itineraries = (state = Map({}), action) => {
       return state.set('itinerariesList', action.flights);
 
     case types.ORDER_PRICE_ASC:
-      return state.set('itinerariesList', state.get('itinerariesList').sort((itinerary => itinerary.fares.basePrice.amount)));
+      state = state.set('itinerariesList', state.get('itinerariesList').sortBy((itinerary => itinerary.fares.basePrice.amount)));
+      return state.set('order', 'price-low-to-high');
 
     case types.ORDER_PRICE_DESC:
-      return state.set('itinerariesList', state.get('itinerariesList').sortBy((itinerary => -itinerary.fares.basePrice.amount)));
+      state = state.set('itinerariesList', state.get('itinerariesList').sortBy((itinerary => -itinerary.fares.basePrice.amount)));
+      return state.set('order', 'price-high-to-low');
 
     case types.CHANGE_FILTER_LIMIT:
       return state.setIn([
