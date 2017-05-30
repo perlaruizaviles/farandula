@@ -8,22 +8,36 @@ class Farandula::AmadeusRequestTest < Minitest::Test
 
   include Farandula
   include Farandula::FlightManagers
-  
+
   def setup
     @request = Amadeus::Request.new
-  end 
-
-
-  def test_perro
-    a = "tomas"
-    @request.hellou( a )
-
-    assert_equal(
-        a,
-        a
-    )
-
   end
 
+  def test_that_build_request_for_builds_valid_url
+
+    builder     = SearchForm::Builder.new
+    search_form = builder
+                      .from('CUU')
+                      .to('SFO')
+                      .departing_at(DateTime.new(2017,12,24))
+                      .returning_at(DateTime.new(2017,12,30))
+                      .type(:roundtrip)
+                      .with_cabin_class( :economy)
+                      .with_passenger({name: 'Daniel'})
+                      .build!
+
+    expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" \
+        "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" \
+        "&travel_class=ECONOMY&origin=CUU" \
+        "&destination=SFO" \
+        "&departure_date=2017-24-12" \
+        "&adults=1" \
+        "&number_of_results=2"
+
+    result = @request.build_url_request_for!( search_form, "R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" )
+
+    assert_equal( expectedURL.downcase , result.downcase )
+
+  end
 
 end
