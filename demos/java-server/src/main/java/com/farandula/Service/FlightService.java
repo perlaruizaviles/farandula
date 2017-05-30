@@ -40,23 +40,14 @@ public class FlightService {
         return (iata.length() == 3) || (iata.length() == 2);
     }
 
-    public List<FlightItinerary> getResponseFromSearch(String departureAirportCode,
-                                                       String departingDate,
-                                                       String departingTime,
-                                                       String arrivalAirportCode,
-                                                       String returnDate,
-                                                       String returnTime,
-                                                       String type,
-                                                       String passenger,
-                                                       String cabin,
-                                                       String limit ) {
+    public List<FlightItinerary> getResponseFromSearch( SearchRequest request ) {
 
-        Logger.getAnonymousLogger().warning( "Departing Date: " + departingDate );
+        Logger.getAnonymousLogger().warning( "Departing Date: " + request.getDepartingAirportCodes() );
 
         //Declaring for departing parameters
-        String[] departingDates = departingDate.split(",");
-        String[] departingTimes = departingTime.split(",");
-        String[] departingAirportCodeArray = departureAirportCode.split(",");
+        String[] departingDates = request.getDepartingDates().split(",");
+        String[] departingTimes = request.getDepartingTimes().split(",");
+        String[] departingAirportCodeArray = request.getDepartingAirportCodes().split(",");
 
         for (String airportCode : departingAirportCodeArray) {
             if (!validIataLength(airportCode))
@@ -66,7 +57,7 @@ public class FlightService {
         List<String> departingAirportCodes = Arrays.asList(departingAirportCodeArray);
 
         //Declaring for returning parameters (Airport code only)
-        String[] arrivalAirportCodesArray = arrivalAirportCode.split(",");
+        String[] arrivalAirportCodesArray = request.getArrivalAirportCodes().split(",");
         List<String> arrivalAirportCodes = Arrays.asList(arrivalAirportCodesArray);
 
         for (String airportCode : arrivalAirportCodes) {
@@ -86,7 +77,7 @@ public class FlightService {
         List<Itinerary> flights;
 
         try {
-            AgeManager ageManager = passengerHelper.getPassengersFromString(passenger);
+            AgeManager ageManager = passengerHelper.getPassengersFromString(request.getPassenger());
 
             SearchCommand command = Luisa.findMeFlights();
 
@@ -101,10 +92,10 @@ public class FlightService {
                     .forPassegers(Passenger.infants(ageManager.getInfantAges()))
                     .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
                     .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
-                    .limitTo(flightHelper.getLimitOfFlightsFromString(limit))
-                    .preferenceClass(CabinClassParser.getCabinClassType(cabin));
+                    .limitTo(flightHelper.getLimitOfFlightsFromString( request.getLimit() ))
+                    .preferenceClass(CabinClassParser.getCabinClassType( request.getCabin() ));
 
-            switch (type) {
+            switch ( request.getType() ) {
                 case "oneWay":
                     if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
                         command.type(FlightType.ONEWAY);
@@ -114,7 +105,7 @@ public class FlightService {
 
                 case "roundTrip":
 
-                    if (returnDate.isEmpty() || returnTime.isEmpty())
+                    if (request.getReturnDates().isEmpty() || request.getReturnTimes().isEmpty())
                         throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_DATES, "Empty returning dates");
 
                     if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
@@ -123,7 +114,7 @@ public class FlightService {
                         throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for round trip");
 
                     //Prepare departure dates
-                    List<LocalDateTime> localReturnDates = dateParser.parseStringDatesTimes(returnDate, returnTime);
+                    List<LocalDateTime> localReturnDates = dateParser.parseStringDatesTimes(request.getReturnDates(), request.getReturnTimes());
 
                     command
                             .returningAt(localReturnDates)
@@ -142,7 +133,7 @@ public class FlightService {
             }
 
             flights = command.execute();
-            return this.getFlightItineraryFromItinerary(flights, type);
+            return this.getFlightItineraryFromItinerary(flights, request.getType());
 
         } catch (Exception e) {
 
