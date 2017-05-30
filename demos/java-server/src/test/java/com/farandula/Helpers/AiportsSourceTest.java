@@ -1,6 +1,7 @@
 package com.farandula.Helpers;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 /**
@@ -10,6 +11,18 @@ public class AiportsSourceTest {
 
     @Test
     public void containsParsedAirports() {
-        assertEquals(AiportsSource.getAirportsCount() >= 5654, true);
+        assertTrue(AirportsSource.getAirportsCount() >= 5654);
+    }
+
+    @Test
+    public void containsParticularAirport(){
+        assertEquals("Chihuahua", AirportsSource.getAirport("CUU").getCity());
+    }
+
+    @Test
+    public void isSecureGetAirport(){
+        AirportsSource.getAirport("CUU").setCity("Delicias");
+
+        assertEquals("Chihuahua", AirportsSource.getAirport("CUU").getCity());
     }
 }
