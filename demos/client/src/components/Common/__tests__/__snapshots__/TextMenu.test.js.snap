@@ -14,7 +14,7 @@ initialize {
             },
             "children": Array [
               Object {
-                "data": "Round Trip",
+                "data": "Round",
                 "next": null,
                 "parent": [Circular],
                 "prev": null,
@@ -67,7 +67,7 @@ initialize {
               },
               "children": Array [
                 Object {
-                  "data": "Round Trip",
+                  "data": "Round",
                   "next": null,
                   "parent": [Circular],
                   "prev": null,
