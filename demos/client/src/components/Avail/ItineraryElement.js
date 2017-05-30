@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Item, Label, Segment} from "semantic-ui-react";
+import {Button, Item, Segment} from "semantic-ui-react";
 import {Collapse} from "react-collapse";
 import Airleg from "./Airleg";
 import AirlegDetail from "./AirlegDetail";
@@ -34,7 +34,8 @@ class ItineraryElement extends React.Component {
               <Item.Description>
                 {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg} />)}
               </Item.Description>
-              <Item.Extra><Label color='blue' onClick={this.open}>View details</Label></Item.Extra>
+              <Item.Extra><Button size='tiny' compact
+               color='blue' onClick={this.open}>View details</Button></Item.Extra>
             </Item.Content>
             <Item.Extra style={{width: '15%'}}>
               <h3>USD ${travel.price}</h3>
