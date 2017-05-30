@@ -4,7 +4,7 @@ import {browserHistory, IndexRedirect, Redirect, Route, Router} from "react-rout
 import * as routes from "./routes";
 
 import Main from "./components/Main";
-import Summary from "./components/Booking/Booking";
+import Book from "./components/Booking/Booking";
 import ResultsPage from "./components/Avail/ResultsPage";
 
 const makeRouter = store => {
@@ -14,7 +14,7 @@ const makeRouter = store => {
       <Route path="/" component={Main}>
         <IndexRedirect to={routes.HOME}/>
         <Route path={routes.HOME} component={ResultsPage}/>
-        <Route path={routes.SUMMARY} component={Summary}/>
+        <Route path={routes.BOOK} component={Book}/>
       </Route>
       <Redirect from='*' to={routes.HOME}/>
     </Router>
