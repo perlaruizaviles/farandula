@@ -1,0 +1,31 @@
+],
+"TravelPreferences": {
+"ValidInterlineTicket": true,
+"CabinPref": [{
+"Cabin": "${classTravel}",
+"PreferLevel": "Preferred"
+}],
+"TPA_Extensions": {
+"TripType": {
+"Value": "Return"
+},
+"LongConnectTime": {
+"Min": 780,
+"Max": 1200,
+"Enable": true
+},
+"ExcludeCallDirectCarriers": {
+"Enabled": true
+}
+}
+},
+"TravelerInfoSummary": {
+"SeatsRequested": [${passengersNumber}],
+"AirTravelerAvail": [{
+"PassengerTypeQuantity": [
+  ${passengersData}
+]
+}]
+}
+}
+}

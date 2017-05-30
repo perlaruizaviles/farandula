@@ -156,6 +156,7 @@ class TravelSearch extends React.Component {
             </div>
           </Grid.Row>
 
+
           <Grid.Row className={hideOn(['roundTrip', 'oneWay'])}>
             <Grid.Row>
               <SearchForm

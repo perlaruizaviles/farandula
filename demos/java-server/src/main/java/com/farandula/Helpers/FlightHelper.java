@@ -139,11 +139,29 @@ public class FlightHelper {
 
     public List<String> getCabinInformationFromSegment(Segment segment) {
 
+        if( segment.getSeatsAvailable() == null ){
+            List<String> emptySeat = new ArrayList<>();
+            emptySeat.add("NON_AVAILABLE");
+            return emptySeat;
+        }
+
         return segment.
                 getSeatsAvailable()
                 .stream()
                 .map(seat -> seat.getClassCabin().toString())
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    public int getLimitOfFlightsFromString(String limitString) {
+
+        try {
+            if (limitString == null)
+                throw new NumberFormatException();
+            return Integer.parseInt(limitString);
+
+        } catch (NumberFormatException e) {
+             return 50;
+        }
     }
 }

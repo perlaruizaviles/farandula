@@ -1,5 +1,6 @@
 package com.farandula.Helpers;
 
+import com.nearsoft.farandula.utilities.CabinClassParser;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -54,4 +55,6 @@ public class PassengerHelper {
 
         return ageManager;
     }
+
+
 }
