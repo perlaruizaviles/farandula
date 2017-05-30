@@ -30,8 +30,6 @@ import java.util.stream.Collectors;
 public class FlightService {
 
     @Autowired
-    AirportRepository airportRepository;
-    @Autowired
     FlightHelper flightHelper;
     @Autowired
     PassengerHelper passengerHelper;
