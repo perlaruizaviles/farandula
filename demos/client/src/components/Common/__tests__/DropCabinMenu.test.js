@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'enzyme';
-import DropCabinMenu from '../Common/DropCabinMenu';
+import DropCabinMenu from '../DropCabinMenu';
 import {List, Map} from 'immutable';
 
 describe('Rendering DropCabinMenu ', () => {
