@@ -1,12 +1,14 @@
+
 import React from 'react';
 import {render} from 'enzyme';
 import TextMenu from '../TextMenu';
 import {List} from 'immutable';
 
+
 describe('Rendering TextMenu ', () => {
   const props = {
-    options: List(['round', 'oneWay']),
-    selected: 'round',
+    options: List(['roundTrip', 'oneWay']),
+    selected: 'roundTrip',
     selectType: () => {
     }
   };

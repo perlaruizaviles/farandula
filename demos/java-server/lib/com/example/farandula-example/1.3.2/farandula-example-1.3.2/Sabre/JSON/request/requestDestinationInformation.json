@@ -1,0 +1,15 @@
+{
+  "RPH": "${id}",
+  "DepartureDateTime": "${departureDate}",
+  "OriginLocation": {
+    "LocationCode": "${departureAirport}"
+  },
+  "DestinationLocation": {
+    "LocationCode": "${arrivalAirport}"
+  },
+  "TPA_Extensions": {
+    "SegmentType": {
+      "Code": "O"
+    }
+  }
+}
