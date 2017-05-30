@@ -1,8 +1,7 @@
 import {singularize, titleize} from "inflection";
 
-export const countTravelers = (config) => {
-  let count = config
-    .get('travelers')
+export const countTravelers = (travelers) => {
+  let count = travelers
     .reduce((r, k) => r + k);
   if (count < 0)
     throw new Error("Malformed flight settings");
@@ -10,7 +9,7 @@ export const countTravelers = (config) => {
 };
 
 export const configTravelString = (config) => {
-  let count = countTravelers(config);
+  let count = countTravelers(config.get('travelers'));
   let cabin = config.get('cabin');
 
   if (count < 1) throw new Error('malformed flightSettings: passenger count < 1');

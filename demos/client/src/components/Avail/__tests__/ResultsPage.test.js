@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import TravelResults from '../Avail/ResultsPage';
+import TravelResults from '../ResultsPage';
 
 describe('Rendering TravelResults ', () => {
 

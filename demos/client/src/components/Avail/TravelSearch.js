@@ -19,7 +19,7 @@ class TravelSearch extends React.Component {
   render() {
 
 
-    const {config, loading, actions} = this.props;
+    const {config, filters,loading, actions} = this.props;
 
 
     const properties = {
@@ -34,12 +34,13 @@ class TravelSearch extends React.Component {
       endDate: config.getIn(['dates', 'return']),
       travelers: config.get('travelers'),
       cabin: config.get('cabin'),
-      destinies: config.get('destinies')
+      destinies: config.get('destinies'),
+      limit: filters.getIn(['filters','limit'])
     };
 
 
     const submit = (values) => {
-      actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin));
+      actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin, properties.limit));
     };
 
     const isInvalidForm = (properties) => {
@@ -72,7 +73,7 @@ class TravelSearch extends React.Component {
 
         <Grid columns={3} centered verticalAlign="middle">
           <Grid.Column textAlign="center">
-            <Button.Group className={hideOn(['round', 'oneWay'])}>
+            <Button.Group className={hideOn(['roundTrip', 'oneWay'])}>
               <Button onClick={(e, data) => actions.removeDestiny()}> - </Button>
               <Button.Or text={properties.destinies.size}/>
               <Button onClick={(e, data) => actions.addDestiny()}> + </Button>
@@ -106,7 +107,8 @@ class TravelSearch extends React.Component {
                   <TravelerMenu
                     config={config}
                     options={travelOptions}
-                    travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}/>
+                    travelerTypeCountChange={(travelerType, value) => actions.travelerTypeCountChange(travelerType, value, properties.travelers)}
+                  />
                 </Segment>
               </Dropdown.Menu>
             </Dropdown>
@@ -140,7 +142,8 @@ class TravelSearch extends React.Component {
                   arrivalTime: "00:00:00",
                   type: properties.selectedType,
                   passenger: properties.travelers,
-                  cabin: properties.cabin
+                  cabin: properties.cabin,
+                  limit: properties.limit
                 }) => {
                   actions.availableFlights(search);
                 }
@@ -153,7 +156,8 @@ class TravelSearch extends React.Component {
             </div>
           </Grid.Row>
 
-          <Grid.Row className={hideOn(['round', 'oneWay'])}>
+
+          <Grid.Row className={hideOn(['roundTrip', 'oneWay'])}>
             <Grid.Row>
               <SearchForm
                 onSubmit={submit}

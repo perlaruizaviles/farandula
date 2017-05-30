@@ -10,7 +10,7 @@ const travelOptions = Map({
   maxDate: moment().add(1, "year"),
   travelers: Map({
     'adults': List([18, Infinity]),
-    'child': List([2, 11]),
+    'child': List([2, 17]),
     'seat-infant': List([0, 2]),
     'lap-infant': List([0, 2])
   }),
@@ -19,7 +19,7 @@ const travelOptions = Map({
     fields: List(['iata', 'city', 'name'])
   }),
   dates: Map({
-    'round': List(['depart', 'return']),
+    'roundTrip': List(['depart', 'return']),
     'one-way': List(['depart']),
     'multi-city': List(['depart-n'])
   }),

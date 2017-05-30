@@ -11,11 +11,10 @@ const initialState = {
         'volaris': false,
         'interjet': false
       })
-    }),
-    itinerariesList: List([])
+    })
   }),
   travelConfig: Map({
-    type: 'round',
+    type: 'roundTrip',
     cabin: 'economy',
     travelers: Map({
       'adults': 1,

@@ -7,12 +7,7 @@ ShallowWrapper {
   },
   "length": 1,
   "node": <Card
-    className="orange"
-    style={
-        Object {
-            "position": "fixed",
-          }
-    }>
+    className="orange fixed">
     <CardContent>
         <CardHeader>
             Summary
@@ -88,12 +83,7 @@ ShallowWrapper {
 </Card>,
   "nodes": Array [
     <Card
-      className="orange"
-      style={
-            Object {
-                  "position": "fixed",
-                }
-      }>
+      className="orange fixed">
       <CardContent>
             <CardHeader>
                   Summary
@@ -203,12 +193,7 @@ ShallowWrapper {
       "_pendingStateQueue": null,
       "_renderedComponent": NoopInternalComponent {
         "_currentElement": <Card
-          className="orange"
-          style={
-                    Object {
-                              "position": "fixed",
-                            }
-          }>
+          className="orange fixed">
           <CardContent>
                     <CardHeader>
                               Summary
@@ -284,12 +269,7 @@ ShallowWrapper {
 </Card>,
         "_debugID": 2,
         "_renderedOutput": <Card
-          className="orange"
-          style={
-                    Object {
-                              "position": "fixed",
-                            }
-          }>
+          className="orange fixed">
           <CardContent>
                     <CardHeader>
                               Summary

@@ -27,7 +27,7 @@ const TravelerMenu = ({config, options, travelerTypeCountChange}) => (
               <CounterButtons
                 count={count}
                 typeTraveler={id}
-                travelerTypeCountChange={(travelerType, count) => travelerTypeCountChange(travelerType, count)}/>
+                travelerTypeCountChange={(value) => travelerTypeCountChange(id, value)}/>
             </Grid.Column>
             <Grid.Column width={4} textAlign="right">
               {ageRange}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import SummaryDescription from '../Booking/SummaryDescription';
+import SummaryDescription from '../SummaryDescription';
 
 describe('Rendering SummaryDescription ', () => {
 

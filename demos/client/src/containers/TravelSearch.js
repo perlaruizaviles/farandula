@@ -12,13 +12,14 @@ import {
   removeDestiny,
   searchAirport,
   searchAvailableFlights,
-  travelerTypeCountChange
+  changeTravelerCount
 } from "../actions/travelConfig";
 
 export default connect(
   state => {
     return {
       config: state.travelConfig,
+      filters: state.itineraries,
       loading: state.ajaxCallsInProgress > 0
     };
   },
@@ -27,7 +28,7 @@ export default connect(
       actions:{
         typeChange: (type) => dispatch(changeTravelType(type)),
         dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date)),
-        travelerTypeCountChange: (TravelerType, count) => dispatch(travelerTypeCountChange(TravelerType, count)),
+        travelerTypeCountChange: (TravelerType, value, count, totalTravelers) => dispatch(changeTravelerCount(TravelerType, value, count, totalTravelers)),
         cabinChange: (cabin) => dispatch(cabinChange(cabin)),
         fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),
         toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
