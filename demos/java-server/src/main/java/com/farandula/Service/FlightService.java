@@ -134,6 +134,9 @@ public class FlightService {
                     break;
 
                 case "multiCity":
+                    if("travelport".equals( request.getGds() ))
+                        throw new ParameterException(ParameterException.ParameterErrorType.UNAVAILABLE_REQUEST, "Multi City request is not available for TravelPort");
+
                     if (command.getDepartureAirports().size() == command.getArrivalAirports().size())
                         command.type(FlightType.OPENJAW);
                     else
