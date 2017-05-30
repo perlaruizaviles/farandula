@@ -15,7 +15,7 @@ class SearchSection extends React.Component {
                 onResultSelect={(e, value) => actions.fromAirportChange(value)}
                 results={properties.airports}
                 value={properties.airportFrom.title}
-                onMouseDown={(e, quantum = 'from') => actions.cleanField(quantum)}/>
+                onMouseDown={(e,b, quantum = 'from') => actions.cleanField(quantum)}/>
 
         <Button icon
                 onClick={(event, data, from = properties.airportFrom, to = properties.airportTo) => actions.exchangeDestinations(from, to)}>
@@ -27,7 +27,7 @@ class SearchSection extends React.Component {
                 onResultSelect={(e, value) => actions.toAirportChange(value)}
                 results={properties.airports}
                 value={properties.airportTo.title}
-                onMouseDown={(e, quantum = 'to') => actions.cleanField(quantum)}/>
+                onMouseDown={(e,b, quantum = 'to') => actions.cleanField(quantum)}/>
 
         <DatePicker customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
                     selectsStart
