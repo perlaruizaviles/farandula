@@ -3,104 +3,161 @@ import * as types from "../actionTypes";
 import moment from "moment";
 
 describe('actions', () => {
-  it('Should create an action to changeTravelType for roundTrip', () => {
-    const travelType = 'round';
-    const expectedAction = {
-      type: types.CHANGE_TRAVEL_TYPE,
-      travelType
-    };
-    expect(actions.changeTravelType(travelType)).toEqual(expectedAction);
+
+  describe('changeTravelType', function() {
+
+    const travelType1 = 'round';
+    const travelType2 = 'oneWay';
+
+    it('should have a type of CHANGE_TRAVEL_TYPE', function() {
+      expect(actions.changeTravelType().type).toEqual('CHANGE_TRAVEL_TYPE');
+    });
+
+    it('should pass on the round travel we pass in', function() {
+      expect(actions.changeTravelType(travelType1).travelType).toEqual(travelType1);
+    });
+
+    it('should pass on the oneWay travel we pass in', function() {
+      expect(actions.changeTravelType(travelType2).travelType).toEqual(travelType2);
+    });
   });
 
-  it('Should create an action to changeTravelType for oneWay', () => {
-    const travelType = 'oneWay';
-    const expectedAction = {
-      type: types.CHANGE_TRAVEL_TYPE,
-      travelType
-    };
-    expect(actions.changeTravelType(travelType)).toEqual(expectedAction);
-  });
+  describe('changeTravelDate', function() {
 
-  it('Should create an action to changeTravelDate for depart', () => {
-    const dateType = 'depart';
+    const dateType1 = 'depart';
+    const dateType2 = 'return';
     const date = moment();
-    const expectedAction = {
-        type: types.CHANGE_TRAVEL_DATE,
-        dateType,
-        date
-    };
-    expect(actions.changeTravelDate(dateType, date)).toEqual(expectedAction);
+
+    it('should have a type of CHANGE_TRAVEL_DATE', function() {
+      expect(actions.changeTravelDate().type).toEqual('CHANGE_TRAVEL_DATE');
+    });
+
+    it('should pass on the depart travel we pass in', function() {
+      expect(actions.changeTravelDate(dateType1).dateType).toEqual(dateType1);
+    });
+
+    it('should pass on the return travel we pass in', function() {
+      expect(actions.changeTravelDate(dateType2).dateType).toEqual(dateType2);
+    });
+
+    it('should pass on the travel date we pass in', function() {
+      expect(actions.changeTravelDate(date).dateType).toEqual(date);
+    });
   });
 
-  it('Should create an action to changeTravelDate for return', () => {
-    const dateType = 'return';
-    const date = moment();
-    const expectedAction = {
-        type: types.CHANGE_TRAVEL_DATE,
-        dateType,
-        date
-    };
-    expect(actions.changeTravelDate(dateType, date)).toEqual(expectedAction);
-  });
+  describe('cabinChange', function() {
 
-  it('Should create an action to cabinChange', () => {
     const cabin = 'economy';
-    const expectedAction = {
-        type: types.CHANGE_CABIN,
-        cabin
-    };
-    expect(actions.cabinChange(cabin)).toEqual(expectedAction);
+
+    it('should have a type of CHANGE_CABIN', function() {
+      expect(actions.cabinChange().type).toEqual('CHANGE_CABIN');
+    });
+
+    it('should pass on the economy cabin we pass in', function() {
+      expect(actions.cabinChange(cabin).cabin).toEqual(cabin);
+    });
   });
 
-  it('Should create an action to changeTravelFrom', () => {
-    const airport = {title: 'Mexico City - MEX', description: 'Licenciado Benito Juarez International Airport'};
-    const expectedAction = {
-        type: types.CHANGE_TRAVEL_FROM,
-        airport
+  describe('changeTravelFrom', function() {
+
+    const airport = {
+      title: 'Mexico City - MEX',
+      description: 'Licenciado Benito Juarez International Airport'
     };
-    expect(actions.changeTravelFrom(airport)).toEqual(expectedAction);
+
+    it('should have a type of CHANGE_TRAVEL_FROM', function() {
+      expect(actions.changeTravelFrom().type).toEqual('CHANGE_TRAVEL_FROM');
+    });
+
+    it('should pass on the airport we pass in', function() {
+      expect(actions.changeTravelFrom(airport).airport).toEqual(airport);
+    });
   });
 
-  it('Should create an action to changeTravelTo', () => {
-    const airport = {title: 'Mexico City - MEX', description: 'Licenciado Benito Juarez International Airport'};
-    const expectedAction = {
-        type: types.CHANGE_TRAVEL_TO,
-        airport
+  describe('changeTravelTo', function() {
+
+    const airport = {
+      title: 'Mexico City - MEX',
+      description: 'Licenciado Benito Juarez International Airport'
     };
-    expect(actions.changeTravelTo(airport)).toEqual(expectedAction);
+
+    it('should have a type of CHANGE_TRAVEL_TO', function() {
+      expect(actions.changeTravelTo().type).toEqual('CHANGE_TRAVEL_TO');
+    });
+
+    it('should pass on the airport we pass in', function() {
+      expect(actions.changeTravelTo(airport).airport).toEqual(airport);
+    });
   });
 
-  it('Should create an action to exchangeDestinations', () => {
-    const from = {title: "Mexico City - MEX", description: "Licenciado Benito Juarez International Airport"};
-    const to = {title: "Mexicali - MXL", description: "General Rodolfo Se1nchez Taboada International Airport"};
-    const expectedAction = {
-        type: types.EXCHANGE_DESTINATIONS,
-        from,
-        to
-    };
-    expect(actions.exchangeDestinations(from, to)).toEqual(expectedAction);
+  describe('addDestiny', function() {
+
+    it('should have a type of ADD_DESTINY', function() {
+      expect(actions.addDestiny().type).toEqual('ADD_DESTINY');
+    });
   });
 
-  it('Should create an action to searchAirportSuccess', () => {
-    const airports = [{title: 'Guadalajara - GDL', description: 'Don Miguel Hidalgo Y Costilla International Airport'}];
-    const expectedAction = {
-        type: types.SEARCH_AIRPORT_SUCCESS,
-        airports
-    };
-    expect(actions.searchAirportSuccess(airports)).toEqual(expectedAction);
+  describe('removeDestiny', function() {
+
+    it('should have a type of REMOVE_DESTINY', function() {
+      expect(actions.removeDestiny().type).toEqual('REMOVE_DESTINY');
+    });
   });
 
-  it('Should create an action to cleanTravelFrom', () => {
-    const expectedAction = {
-        type: types.CLEAN_TRAVEL_FROM
+  describe('exchangeDestinations', function() {
+
+    const from = {
+      title: "Mexico City - MEX",
+      description: "Licenciado Benito Juarez International Airport"
     };
-    expect(actions.cleanTravelFrom()).toEqual(expectedAction);
+    const to = undefined;
+
+    it('should have a type of EXCHANGE_DESTINATIONS', function() {
+      expect(actions.exchangeDestinations().type).toEqual('EXCHANGE_DESTINATIONS');
+    });
+
+    it('should pass on the from destination we pass in', function() {
+      expect(actions.exchangeDestinations(from).from).toEqual(from);
+    });
+
+    it('should pass on the to destination we pass in', function() {
+      expect(actions.exchangeDestinations(to).to).toEqual(to);
+    });
   });
 
-  it('Should create an action to cleanTravelTo', () => {
-    const expectedAction = {
-        type: types.CLEAN_TRAVEL_TO
-    };
-    expect(actions.cleanTravelTo()).toEqual(expectedAction);
+  describe('searchAirportSuccess', function() {
+
+    const airports = [{
+      title: 'Guadalajara - GDL',
+      description: 'Don Miguel Hidalgo Y Costilla International Airport'
+    }];
+
+    it('should have a type of SEARCH_AIRPORT_SUCCESS', function() {
+      expect(actions.searchAirportSuccess().type).toEqual('SEARCH_AIRPORT_SUCCESS');
+    });
+
+    it('should pass on the airport we pass in', function() {
+      expect(actions.searchAirportSuccess(airports).airports).toEqual(airports);
+    });
+  });
+
+  describe('searchAvailableFlightsSuccess', function() {
+
+    it('should have a type of SEARCH_AVAILABLE_FLIGHTS_SUCCESS', function() {
+      expect(actions.searchAvailableFlightsSuccess().type).toEqual('SEARCH_AVAILABLE_FLIGHTS_SUCCESS');
+    });
+  });
+
+  describe('cleanTravelFrom', function() {
+
+    it('should have a type of CLEAN_TRAVEL_FROM', function() {
+      expect(actions.cleanTravelFrom().type).toEqual('CLEAN_TRAVEL_FROM');
+    });
+  });
+
+  describe('cleanTravelTo', function() {
+    it('should have a type of CLEAN_TRAVEL_TO', function() {
+      expect(actions.cleanTravelTo().type).toEqual('CLEAN_TRAVEL_TO');
+    });
   });
 });
