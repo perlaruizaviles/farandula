@@ -43,17 +43,6 @@ describe('actions', () => {
     expect(actions.changeTravelDate(dateType, date)).toEqual(expectedAction);
   });
 
-  it('Should create an action to travelerTypeCountChange', () => {
-    const typeTraveler = 'adults';
-    const count = 1;
-    const expectedAction = {
-        type: types.CHANGE_TRAVELER_TYPE_COUNT,
-        typeTraveler,
-        count
-    };
-    expect(actions.travelerTypeCountChange(typeTraveler, count)).toEqual(expectedAction);
-  });
-
   it('Should create an action to cabinChange', () => {
     const cabin = 'economy';
     const expectedAction = {
