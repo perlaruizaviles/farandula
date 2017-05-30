@@ -163,6 +163,7 @@ class TravelSearch extends React.Component {
                 onSubmit={submit}
                 properties={properties}
                 actions={actions}/>
+            </Grid.Row>
           </Grid.Row>
         </Grid>
       </Segment>
