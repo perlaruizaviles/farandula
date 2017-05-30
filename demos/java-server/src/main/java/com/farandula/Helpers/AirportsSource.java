@@ -20,16 +20,21 @@ import org.apache.commons.io.FileUtils;
  */
 public class AirportsSource {
 
-    public static Airport getAirport(String key){
-        return (Airport) airportCodes.get(key).clone();
+    public static Airport getAirport(String key) {
+        if( airportCodes.get(key) == null ){
+            return null;
+        }
+        Airport airport = airportCodes.get(key);
+        return airport;
     }
 
-    public static int getAirportsCount(){
+    public static int getAirportsCount() {
         return airportCodes.size();
     }
 
     private static HashMap<String, Airport> airportCodes = parseAirports();
-    private static HashMap<String, Airport> parseAirports(){
+
+    private static HashMap<String, Airport> parseAirports() {
 
         HashMap<String, Airport> result = new HashMap<String, Airport>();
 
@@ -37,13 +42,13 @@ public class AirportsSource {
 
         Object file = null;
 
-        try{
+        try {
 
             Stream<Path> paths = Files.walk(Paths.get("./src/main/resources"));
             paths.filter(Files::isRegularFile).forEach(System.out::println);
 
             file = parser.parse(FileUtils.readFileToString(new File("./src/main/resources/resultAir.json")));
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -51,7 +56,7 @@ public class AirportsSource {
         JSONArray airportArray = (JSONArray) object.get("airports");
 
 
-        for (int i = 0; i < airportArray.size(); i++){
+        for (int i = 0; i < airportArray.size(); i++) {
 
             JSONObject data = (JSONObject) airportArray.get(i);
 
