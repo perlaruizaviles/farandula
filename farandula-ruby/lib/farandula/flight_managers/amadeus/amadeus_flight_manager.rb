@@ -7,16 +7,16 @@ module Farandula
 
       class AmadeusFlightManager < FlightManager
 
-        attr_accessor :apiKey
+        attr_accessor :api_key
 
-        def initialize( apiKey )
-          @apiKey = apiKey
+        def initialize( api_key )
+          @api_key = api_key
         end 
 
         def get_avail(search_form)
 
           request = Amadeus::Request.new
-          response = request.build_url_request_for!( search_form, @apiKey )
+          response = request.build_url_request_for!( search_form, api_key )
 
         end
 
