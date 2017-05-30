@@ -11,8 +11,7 @@ const initialState = {
         'volaris': false,
         'interjet': false
       })
-    }),
-    itinerariesList: List([])
+    })
   }),
   travelConfig: Map({
     type: 'round',
