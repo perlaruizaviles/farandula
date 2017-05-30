@@ -20,4 +20,15 @@ module Farandula
     TYPES           = [ECONOMY, PREMIUM_ECONOMY, FIRST, BUSINESS ,ECONOMYCOACH, OTHER]
   end
 
+  module PassengerType
+
+    ADULTS        = :adults
+    CHILDREN      = :children
+    INFANTS       = :infants
+    INFANTSONSEAT = :infantsonseat
+
+    TYPES = [ADULTS, CHILDREN, INFANTS, INFANTSONSEAT]
+
+  end 
+
 end

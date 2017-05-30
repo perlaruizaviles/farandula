@@ -59,6 +59,7 @@ class Farandula::SabreRequestTest < Minitest::Test
   end 
 
   def test_that_build_request_for_builds_valid_json 
+    passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new
     search_form = builder
                     .from('CUU')
@@ -67,7 +68,7 @@ class Farandula::SabreRequestTest < Minitest::Test
                     .returning_at(DateTime.new(2017,12,30))
                     .type(:roundtrip)
                     .with_cabin_class('Y')
-                    .with_passenger({name: 'Daniel'})
+                    .with_passenger(passenger)
                     .build!
 
     expected    = FileHelper.load_asset('sabre/request.json')
