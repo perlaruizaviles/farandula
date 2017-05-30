@@ -1,19 +1,18 @@
 import * as actions from "../travelConfig";
-import * as types from "../actionTypes";
 import moment from "moment";
 
 describe('actions', () => {
 
   describe('changeTravelType', function() {
 
-    const travelType1 = 'round';
+    const travelType1 = 'roundTrip';
     const travelType2 = 'oneWay';
 
     it('should have a type of CHANGE_TRAVEL_TYPE', function() {
       expect(actions.changeTravelType().type).toEqual('CHANGE_TRAVEL_TYPE');
     });
 
-    it('should pass on the round travel we pass in', function() {
+    it('should pass on the roundTrip travel we pass in', function () {
       expect(actions.changeTravelType(travelType1).travelType).toEqual(travelType1);
     });
 

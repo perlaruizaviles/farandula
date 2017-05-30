@@ -19,7 +19,7 @@ const travelOptions = Map({
     fields: List(['iata', 'city', 'name'])
   }),
   dates: Map({
-    'round': List(['depart', 'return']),
+    'roundTrip': List(['depart', 'return']),
     'one-way': List(['depart']),
     'multi-city': List(['depart-n'])
   }),

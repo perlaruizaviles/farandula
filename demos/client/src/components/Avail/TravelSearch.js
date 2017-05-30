@@ -73,7 +73,7 @@ class TravelSearch extends React.Component {
 
         <Grid columns={3} centered verticalAlign="middle">
           <Grid.Column textAlign="center">
-            <Button.Group className={hideOn(['round', 'oneWay'])}>
+            <Button.Group className={hideOn(['roundTrip', 'oneWay'])}>
               <Button onClick={(e, data) => actions.removeDestiny()}> - </Button>
               <Button.Or text={properties.destinies.size}/>
               <Button onClick={(e, data) => actions.addDestiny()}> + </Button>
@@ -156,7 +156,7 @@ class TravelSearch extends React.Component {
             </div>
           </Grid.Row>
 
-          <Grid.Row className={hideOn(['round', 'oneWay'])}>
+          <Grid.Row className={hideOn(['roundTrip', 'oneWay'])}>
             <Grid.Row>
               <SearchForm
                 onSubmit={submit}

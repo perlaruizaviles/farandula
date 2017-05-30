@@ -35,9 +35,9 @@ class AvailableFlightsApi {
       limit: search.limit
     };
 
-    if (params.type === "round") {
-      params.arrivalDate = search.arrivalDate;
-      params.arrivalTime = search.arrivalTime;
+    if (params.type === "roundTrip") {
+      params.returnDates = search.arrivalDate;
+      params.returnTimes = search.arrivalTime;
       return params;
     }
 

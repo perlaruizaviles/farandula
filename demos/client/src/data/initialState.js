@@ -14,7 +14,7 @@ const initialState = {
     })
   }),
   travelConfig: Map({
-    type: 'round',
+    type: 'roundTrip',
     cabin: 'economy',
     travelers: Map({
       'adults': 1,
