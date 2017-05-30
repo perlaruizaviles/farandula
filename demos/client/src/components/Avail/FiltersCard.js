@@ -35,7 +35,7 @@ const FiltersCard = ({changeFilterLimit, selectedLimit, airlines, changeAirlines
           })}
         </Card.Description>
       </Card.Content>
-      <Card.Content>
+      <Card.Content style={{display:'none'}}>
         <Card.Meta>
           Airlines:
         </Card.Meta>
