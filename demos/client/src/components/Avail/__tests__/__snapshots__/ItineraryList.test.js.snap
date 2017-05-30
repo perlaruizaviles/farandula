@@ -1,4 +1,4 @@
-exports[`Rendering AirlegDetail  Should create an snapshot for AirlegDetail 1`] = `
+exports[`Rendering ItineraryList  Should create an snapshot for ItineraryList 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],

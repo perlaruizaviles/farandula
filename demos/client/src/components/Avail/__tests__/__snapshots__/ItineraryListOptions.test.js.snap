@@ -1,4 +1,4 @@
-exports[`Rendering AirlegDetail  Should create an snapshot for AirlegDetail 1`] = `
+exports[`Rendering ItineraryListOptions  Should create an snapshot for ItineraryListOptions 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {},
