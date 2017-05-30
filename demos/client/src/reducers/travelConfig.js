@@ -1,6 +1,5 @@
 import * as types from "../actions/actionTypes";
 import {Map} from "immutable";
-import {countTravelers} from "../util/travelConfig";
 import {changeTravelDates} from "../util/dates";
 
 
@@ -14,16 +13,7 @@ const travelConfig = (state = Map({}), action) => {
       return state.set('dates', dates);
 
     case types.CHANGE_TRAVELER_TYPE_COUNT:
-      let count = countTravelers(state);
-      let travelercount = state.getIn(['travelers', action.typeTraveler]);
-
-      if (count >= 6 && action.count > travelercount) return state;
-      if (count > 1) {
-        if (action.count >= 0) state = state.setIn(['travelers', action.typeTraveler], action.count);
-      } else {
-        if (action.count > 0) state = state.setIn(['travelers', action.typeTraveler], action.count);
-      }
-      return state;
+      return state.setIn(['travelers', action.typeTraveler], action.count);
 
     case types.CHANGE_CABIN:
       return state.set('cabin', action.cabin);

@@ -107,7 +107,8 @@ class TravelSearch extends React.Component {
                   <TravelerMenu
                     config={config}
                     options={travelOptions}
-                    travelerTypeCountChange={(travelerType, count) => actions.travelerTypeCountChange(travelerType, count)}/>
+                    travelerTypeCountChange={(travelerType, value) => actions.travelerTypeCountChange(travelerType, value, properties.travelers)}
+                  />
                 </Segment>
               </Dropdown.Menu>
             </Dropdown>

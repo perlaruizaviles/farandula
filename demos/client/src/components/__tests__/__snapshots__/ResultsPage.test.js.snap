@@ -7,34 +7,42 @@ ShallowWrapper {
   },
   "length": 1,
   "node": <Container>
-    <Connect(TravelSearch) />
     <Grid>
-        <GridRow>
-            <GridColumn
-                width={3}>
-                <OptionsTravel />
-            </GridColumn>
-            <GridColumn
-                width={13}>
+        <GridColumn
+            floated="left"
+            width={3}>
+            <Connect(FiltersCard) />
+        </GridColumn>
+        <GridColumn
+            floated="right"
+            width={13}>
+            <GridRow>
+                <Connect(TravelSearch) />
+            </GridRow>
+            <GridRow>
                 <Connect(ItineraryList) />
-            </GridColumn>
-        </GridRow>
+            </GridRow>
+        </GridColumn>
     </Grid>
 </Container>,
   "nodes": Array [
     <Container>
-      <Connect(TravelSearch) />
       <Grid>
-            <GridRow>
-                  <GridColumn
-                        width={3}>
-                        <OptionsTravel />
-                  </GridColumn>
-                  <GridColumn
-                        width={13}>
+            <GridColumn
+                  floated="left"
+                  width={3}>
+                  <Connect(FiltersCard) />
+            </GridColumn>
+            <GridColumn
+                  floated="right"
+                  width={13}>
+                  <GridRow>
+                        <Connect(TravelSearch) />
+                  </GridRow>
+                  <GridRow>
                         <Connect(ItineraryList) />
-                  </GridColumn>
-            </GridRow>
+                  </GridRow>
+            </GridColumn>
       </Grid>
 </Container>,
   ],
@@ -73,34 +81,42 @@ ShallowWrapper {
       "_pendingStateQueue": null,
       "_renderedComponent": NoopInternalComponent {
         "_currentElement": <Container>
-          <Connect(TravelSearch) />
           <Grid>
-                    <GridRow>
-                              <GridColumn
-                                        width={3}>
-                                        <OptionsTravel />
-                              </GridColumn>
-                              <GridColumn
-                                        width={13}>
+                    <GridColumn
+                              floated="left"
+                              width={3}>
+                              <Connect(FiltersCard) />
+                    </GridColumn>
+                    <GridColumn
+                              floated="right"
+                              width={13}>
+                              <GridRow>
+                                        <Connect(TravelSearch) />
+                              </GridRow>
+                              <GridRow>
                                         <Connect(ItineraryList) />
-                              </GridColumn>
-                    </GridRow>
+                              </GridRow>
+                    </GridColumn>
           </Grid>
 </Container>,
         "_debugID": 2,
         "_renderedOutput": <Container>
-          <Connect(TravelSearch) />
           <Grid>
-                    <GridRow>
-                              <GridColumn
-                                        width={3}>
-                                        <OptionsTravel />
-                              </GridColumn>
-                              <GridColumn
-                                        width={13}>
+                    <GridColumn
+                              floated="left"
+                              width={3}>
+                              <Connect(FiltersCard) />
+                    </GridColumn>
+                    <GridColumn
+                              floated="right"
+                              width={13}>
+                              <GridRow>
+                                        <Connect(TravelSearch) />
+                              </GridRow>
+                              <GridRow>
                                         <Connect(ItineraryList) />
-                              </GridColumn>
-                    </GridRow>
+                              </GridRow>
+                    </GridColumn>
           </Grid>
 </Container>,
       },
