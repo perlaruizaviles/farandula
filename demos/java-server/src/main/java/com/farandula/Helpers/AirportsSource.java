@@ -24,7 +24,7 @@ public class AirportsSource {
         if( airportCodes.get(key) == null ){
             return null;
         }
-        Airport airport = airportCodes.get(key);
+        Airport airport = (Airport) airportCodes.get(key).clone();
         return airport;
     }
 
