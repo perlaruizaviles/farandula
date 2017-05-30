@@ -1,8 +1,7 @@
 import React from "react";
-import logo from "../../styles/logo.svg";
 import ItineraryElement from "./ItineraryElement";
 import ItineraryListOptions from "./ItineraryListOptions";
-import {Grid, Item, Segment, Message} from "semantic-ui-react";
+import {Item, Message, Segment} from "semantic-ui-react";
 
 class ItineraryList extends React.Component {
   render() {
@@ -32,7 +31,7 @@ class ItineraryList extends React.Component {
           />
         );
       }
-    }
+    };
 
     return (
       <Segment raised color="orange">
@@ -46,16 +45,12 @@ class ItineraryList extends React.Component {
           {
             (travels)
               ? travels.map((travel) => <ItineraryElement key={Math.random()} itinerary={travel}/>)
-              : <Grid centered textAlign='center'>
-                  <Grid.Row>
-                    <img src={logo} className="App-logo" alt="logo"/>
-                  </Grid.Row>
-                </Grid>
+              : ""
           }
         </Item.Group>
       </Segment>
     )
   }
-};
+}
 
 export default ItineraryList;
