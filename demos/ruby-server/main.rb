@@ -3,6 +3,7 @@ require 'sinatra'
 require 'net/http'
 
 serverUrl = 'https://new-farandula.herokuapp.com'
+roundTripTag = 'roundTrip'
 
 get '/api/airports' do
     pattern = params['pattern']
@@ -28,9 +29,9 @@ get '/api/flights' do
                 '&passenger=' + passenger +
                 '&cabin=' + cabin
     
-    if type == 'round'
-        request = request + '&arrivalDate=' + params['arrivalDate'] + 
-                            '&arrivalTime=' + params['arrivalTime']
+    if type == roundTripTag
+        request = request + '&returnDates=' + params['returnDates'] + 
+                            '&returnTimes=' + params['returnTimes']
     end
     uri = URI(request)
     
