@@ -11,9 +11,9 @@ const Main = ({
       <Menu.Item header onClick={() => push(routes.HOME)}>
         Quantum Farandula
       </Menu.Item>
-      <Menu.Item active={pathname === routes.SUMMARY}
-                 onClick={() => push(routes.SUMMARY)}>
-        Summary
+      <Menu.Item active={pathname === routes.BOOK}
+                 onClick={() => push(routes.BOOK)}>
+        Book
       </Menu.Item>
     </Menu>
     <div>
