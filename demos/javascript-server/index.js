@@ -45,7 +45,7 @@ server.route({
       + '&cabin=' + params["cabin"]
       + '&limit' + params["limit"];
 
-    if (params["type"] === "round") {
+    if (params["type"] === "roundTrip") {
       baseURLRequest += '&returnDates=' + params["returnDates"] + '&returnTimes=' + params["returnTimes"];
     }
 
