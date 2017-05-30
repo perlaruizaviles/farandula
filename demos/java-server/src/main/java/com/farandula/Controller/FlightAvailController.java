@@ -26,26 +26,29 @@ public class FlightAvailController {
     FlightService flightService;
 
     @RequestMapping("/api/flights")
-    public List<FlightItinerary> getAvailableFlights(@Param("departureAirportCode") String departureAirportCode,
-                                                     @Param("departingDate") String departingDate,
-                                                     @Param("departingTime") String departingTime,
-                                                     @Param("arrivalAirportCode") String arrivalAirportCode,
-                                                     @Param("arrivalDate") String arrivalDate,
-                                                     @Param("arrivalTime") String arrivalTime,
+    public List<FlightItinerary> getAvailableFlights(@Param("departingAirportCodes") String departingAirportCodes,
+                                                     @Param("departingDates") String departingDates,
+                                                     @Param("departingTimes") String departingTimes,
+                                                     @Param("arrivalAirportCodes") String arrivalAirportCodes,
+                                                     @Param("returnDates") String returnDates,
+                                                     @Param("returnTimes") String returnTimes,
                                                      @Param("type") String type,
-                                                     @Param("passenger") String passenger){
+                                                     @Param("passenger") String passenger,
+                                                     @Param("cabin") String cabin,
+                                                     @Param("limit") String limit) {
 
-        return flightService.getResponseFromSearch( departureAirportCode,
-                                                    departingDate,
-                                                    departingTime,
-                                                    arrivalAirportCode,
-                                                    arrivalDate,
-                                                    arrivalTime,
-                                                    type,
-                                                    passenger);
+        return flightService.getResponseFromSearch(departingAirportCodes,
+                departingDates,
+                departingTimes,
+                arrivalAirportCodes,
+                returnDates,
+                returnTimes,
+                type,
+                passenger,
+                cabin,
+                limit);
 
     }
-
 
 
 }

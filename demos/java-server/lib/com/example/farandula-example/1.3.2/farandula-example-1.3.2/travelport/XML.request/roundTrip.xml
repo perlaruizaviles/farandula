@@ -1,0 +1,40 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">   <soapenv:Header/>
+    <soapenv:Body>
+        <air:AvailabilitySearchReq AuthorizedBy="user" TargetBranch="P7015254" TraceId="trace" xmlns:air="http://www.travelport.com/schema/air_v34_0">
+            <com:BillingPointOfSaleInfo OriginApplication="UAPI" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+            <air:SearchAirLeg>
+                <air:SearchOrigin>
+                    <com:Airport Code="${departureAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                </air:SearchOrigin>
+                <air:SearchDestination>
+                    <com:Airport Code="${arrivalAirports}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                </air:SearchDestination>
+                <air:SearchDepTime PreferredTime="${departureDate}"/>
+                <air:AirLegModifiers>
+                    <air:PreferredCabins>
+                        <com:CabinClass Type="${classTravel}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                    </air:PreferredCabins>
+                </air:AirLegModifiers>
+            </air:SearchAirLeg>
+            <air:SearchAirLeg>
+                <air:SearchOrigin>
+                    <com:Airport Code="${arrivalAirports}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                </air:SearchOrigin>
+                <air:SearchDestination>
+                    <com:Airport Code="${departureAirport}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                </air:SearchDestination>
+                <air:SearchDepTime PreferredTime="${returningDate}"/>
+                <air:AirLegModifiers>
+                    <air:PreferredCabins>
+                        <com:CabinClass Type="${classTravel}" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                    </air:PreferredCabins>
+                </air:AirLegModifiers>
+            </air:SearchAirLeg>
+            <air:AirSearchModifiers>
+                <air:PreferredProviders>
+                    <com:Provider Code="1G" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>
+                </air:PreferredProviders>
+            </air:AirSearchModifiers>
+        </air:AvailabilitySearchReq>
+    </soapenv:Body>
+</soapenv:Envelope>

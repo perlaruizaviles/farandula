@@ -1,6 +1,7 @@
 package com.farandula.Service;
 
 import com.farandula.Configuration.Application;
+import com.farandula.Helpers.DateParser;
 import com.farandula.Helpers.FlightHelper;
 import com.farandula.Helpers.PassengerHelper;
 import com.farandula.JavaFarandulaApplication;
@@ -36,6 +37,8 @@ public class FlightServiceTest {
 
     @Autowired
     FlightService flightService;
+    @Autowired
+    DateParser dateParser;
 
     static List<Itinerary> itineraryListRoundTrip = new ArrayList<>();
     static List<Itinerary> itineraryListOneWay= new ArrayList<>();
@@ -45,7 +48,7 @@ public class FlightServiceTest {
 
         FlightService flightService = new FlightService();
 
-        LocalDateTime result = flightService.parseDateTime("2011-12-03", "10:15:30");
+        LocalDateTime result = dateParser.parseDateTime("2011-12-03", "10:15:30");
 
         LocalDateTime expected = LocalDateTime.of(2011, 12, 03, 10, 15, 30);
 
