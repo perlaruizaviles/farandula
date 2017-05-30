@@ -28,9 +28,6 @@ class ItineraryElement extends React.Component {
             <Item.Image size='tiny'
                         src='https://www.global-benefits-vision.com/wp-content/uploads/2016/02/Plane-Icon.jpg'/>
             <Item.Content>
-              <Item.Meta>
-                <span className='cinema' style={{background: 'lightgray'}}>Multiple Airlines</span>
-              </Item.Meta>
               <Item.Description>
                 {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg} />)}
               </Item.Description>
