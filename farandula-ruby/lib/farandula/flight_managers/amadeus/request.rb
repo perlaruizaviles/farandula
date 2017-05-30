@@ -11,10 +11,9 @@ module Farandula
         def build_url_request_for!( search_form, apiKey )
 
           #hard coded things
-          #apiKey = "R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA"
-          passengersData = "&adults=1"
           numberOfResults = "&number_of_results=2"
 
+          passengersData = "&adults=#{search_form.passengers.size}"
           cabin = "&travel_class=#{search_form.cabin_class}"
           origin =  "&origin=#{search_form.departure_airport}"
           destination = "&destination=#{search_form.arrival_airport}"
