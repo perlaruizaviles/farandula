@@ -10,7 +10,7 @@ describe('Rendering SummaryDescription ', () => {
     expect(tree).toMatchSnapshot();
   });
   
-  it('Renders Correct SummaryCard', () => {
+  it('Renders Correct SummaryDescription', () => {
     expect(tree.find('Container').length).toBe(1);
   });
 });

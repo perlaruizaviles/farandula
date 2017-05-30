@@ -1,4 +1,4 @@
-exports[`Rendering TravelResults  Should create an snapshot for TravelResults 1`] = `
+exports[`Rendering SearchForm  Should create an snapshot for SearchForm 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],
