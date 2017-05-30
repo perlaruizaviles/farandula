@@ -16,7 +16,6 @@ class ItineraryList extends React.Component {
         } else {
           return (
             <Message warning
-              warning
               icon="warning sign"
               header="Flights not found"
               content="Try a different search"
