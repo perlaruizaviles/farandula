@@ -5,8 +5,24 @@ import {List} from "immutable";
 class AvailableFlightsApi {
 
   static getAvailableFlights(search) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        url: endpoint.TEMP_AVAILABLE_FLIGHTS_URL,
+        responseType: 'json',
+        params: this.handleTravelType(search),
+      }).then((response) => {
+        const flights = response.data;
+        resolve(List(flights));
+      }).catch(e => {
+          reject(e);
+        });
+    });
+  }
 
-    const passenger = `children:${search.passenger.get('child')},infants:${search.passenger.get('lap-infant')},infantsOnSeat:${search.passenger.get('seat-infant')},adults:${search.passenger.get('adults')}`;
+  static handleTravelType(search) {
+
+    const passenger = this.passengerAdapter(search.passenger);
 
     let params = {
       departingAirportCodes: search.departureAirport,
@@ -15,28 +31,30 @@ class AvailableFlightsApi {
       arrivalAirportCodes: search.arrivalAirport,
       type: search.type,
       passenger: passenger,
-      cabin: search.cabin
+      cabin: search.cabin,
+      limit: search.limit
     };
 
-    if (params.type === "round"){
+    if (params.type === "round") {
       params.arrivalDate = search.arrivalDate;
       params.arrivalTime = search.arrivalTime;
+      return params;
     }
 
-    return new Promise((resolve, reject) => {
-      axios({
-        method: 'get',
-        url: endpoint.TEMP_AVAILABLE_FLIGHTS_URL,
-        responseType: 'json',
-        params: params,
-      }).then((response) => {
-        const flights = response.data;
-        resolve(List(flights));
-      })
-        .catch(e => {
-          reject(e);
-        });
-    });
+    if (params.type === "multiCity") {
+      params.departingAirportCodes = search.departingAirports;
+      params.arrivalAirportCodes = search.arrivalAirports;
+      params.departingDates = search.departingDates;
+      params.departingTimes = search.departingTimes;
+      return params;
+    }
+
+    return params;
+  }
+
+  static passengerAdapter(passenger) {
+    return `children:${passenger.get('child')},infants:${passenger.get('lap-infant')},infantsOnSeat:${passenger.get('seat-infant')},adults:${passenger.get('adults')}`;
+
   }
 }
 

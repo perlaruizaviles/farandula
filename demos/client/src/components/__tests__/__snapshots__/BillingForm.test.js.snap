@@ -58,12 +58,11 @@ ShallowWrapper {
         className="equal width fields">
         <div
             className="field">
-            <label>
-                State/Region
-            </label>
             <Field
-                component="select"
+                component={[Function]}
+                label="State/Region*"
                 name="state"
+                type="select"
                 validate={[Function]}>
                 <option />
                 <option
@@ -340,12 +339,11 @@ ShallowWrapper {
         className="equal width fields">
         <div
             className="field">
-            <label>
-                Month
-            </label>
             <Field
-                component="select"
+                component={[Function]}
+                label="Month*"
                 name="month"
+                type="select"
                 validate={[Function]}>
                 <option />
                 <option
@@ -400,12 +398,11 @@ ShallowWrapper {
         </div>
         <div
             className="field">
-            <label>
-                Year
-            </label>
             <Field
-                component="select"
+                component={[Function]}
+                label="Year*"
                 name="year"
+                type="select"
                 validate={[Function]}>
                 <option />
                 <option
@@ -520,12 +517,11 @@ ShallowWrapper {
             className="equal width fields">
             <div
                   className="field">
-                  <label>
-                        State/Region
-                  </label>
                   <Field
-                        component="select"
+                        component={[Function]}
+                        label="State/Region*"
                         name="state"
+                        type="select"
                         validate={[Function]}>
                         <option />
                         <option
@@ -802,12 +798,11 @@ ShallowWrapper {
             className="equal width fields">
             <div
                   className="field">
-                  <label>
-                        Month
-                  </label>
                   <Field
-                        component="select"
+                        component={[Function]}
+                        label="Month*"
                         name="month"
+                        type="select"
                         validate={[Function]}>
                         <option />
                         <option
@@ -862,12 +857,11 @@ ShallowWrapper {
             </div>
             <div
                   className="field">
-                  <label>
-                        Year
-                  </label>
                   <Field
-                        component="select"
+                        component={[Function]}
+                        label="Year*"
                         name="year"
+                        type="select"
                         validate={[Function]}>
                         <option />
                         <option
@@ -1016,12 +1010,11 @@ ShallowWrapper {
                     className="equal width fields">
                     <div
                               className="field">
-                              <label>
-                                        State/Region
-                              </label>
                               <Field
-                                        component="select"
+                                        component={[Function]}
+                                        label="State/Region*"
                                         name="state"
+                                        type="select"
                                         validate={[Function]}>
                                         <option />
                                         <option
@@ -1298,12 +1291,11 @@ ShallowWrapper {
                     className="equal width fields">
                     <div
                               className="field">
-                              <label>
-                                        Month
-                              </label>
                               <Field
-                                        component="select"
+                                        component={[Function]}
+                                        label="Month*"
                                         name="month"
+                                        type="select"
                                         validate={[Function]}>
                                         <option />
                                         <option
@@ -1358,12 +1350,11 @@ ShallowWrapper {
                     </div>
                     <div
                               className="field">
-                              <label>
-                                        Year
-                              </label>
                               <Field
-                                        component="select"
+                                        component={[Function]}
+                                        label="Year*"
                                         name="year"
+                                        type="select"
                                         validate={[Function]}>
                                         <option />
                                         <option
@@ -1478,12 +1469,11 @@ ShallowWrapper {
                     className="equal width fields">
                     <div
                               className="field">
-                              <label>
-                                        State/Region
-                              </label>
                               <Field
-                                        component="select"
+                                        component={[Function]}
+                                        label="State/Region*"
                                         name="state"
+                                        type="select"
                                         validate={[Function]}>
                                         <option />
                                         <option
@@ -1760,12 +1750,11 @@ ShallowWrapper {
                     className="equal width fields">
                     <div
                               className="field">
-                              <label>
-                                        Month
-                              </label>
                               <Field
-                                        component="select"
+                                        component={[Function]}
+                                        label="Month*"
                                         name="month"
+                                        type="select"
                                         validate={[Function]}>
                                         <option />
                                         <option
@@ -1820,12 +1809,11 @@ ShallowWrapper {
                     </div>
                     <div
                               className="field">
-                              <label>
-                                        Year
-                              </label>
                               <Field
-                                        component="select"
+                                        component={[Function]}
+                                        label="Year*"
                                         name="year"
+                                        type="select"
                                         validate={[Function]}>
                                         <option />
                                         <option

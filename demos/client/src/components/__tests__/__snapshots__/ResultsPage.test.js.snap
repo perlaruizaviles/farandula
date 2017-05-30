@@ -8,12 +8,34 @@ ShallowWrapper {
   "length": 1,
   "node": <Container>
     <Connect(TravelSearch) />
-    <Connect(ItineraryList) />
+    <Grid>
+        <GridRow>
+            <GridColumn
+                width={3}>
+                <OptionsTravel />
+            </GridColumn>
+            <GridColumn
+                width={13}>
+                <Connect(ItineraryList) />
+            </GridColumn>
+        </GridRow>
+    </Grid>
 </Container>,
   "nodes": Array [
     <Container>
       <Connect(TravelSearch) />
-      <Connect(ItineraryList) />
+      <Grid>
+            <GridRow>
+                  <GridColumn
+                        width={3}>
+                        <OptionsTravel />
+                  </GridColumn>
+                  <GridColumn
+                        width={13}>
+                        <Connect(ItineraryList) />
+                  </GridColumn>
+            </GridRow>
+      </Grid>
 </Container>,
   ],
   "options": Object {},
@@ -52,12 +74,34 @@ ShallowWrapper {
       "_renderedComponent": NoopInternalComponent {
         "_currentElement": <Container>
           <Connect(TravelSearch) />
-          <Connect(ItineraryList) />
+          <Grid>
+                    <GridRow>
+                              <GridColumn
+                                        width={3}>
+                                        <OptionsTravel />
+                              </GridColumn>
+                              <GridColumn
+                                        width={13}>
+                                        <Connect(ItineraryList) />
+                              </GridColumn>
+                    </GridRow>
+          </Grid>
 </Container>,
         "_debugID": 2,
         "_renderedOutput": <Container>
           <Connect(TravelSearch) />
-          <Connect(ItineraryList) />
+          <Grid>
+                    <GridRow>
+                              <GridColumn
+                                        width={3}>
+                                        <OptionsTravel />
+                              </GridColumn>
+                              <GridColumn
+                                        width={13}>
+                                        <Connect(ItineraryList) />
+                              </GridColumn>
+                    </GridRow>
+          </Grid>
 </Container>,
       },
       "_renderedNodeType": 1,

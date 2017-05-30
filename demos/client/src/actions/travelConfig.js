@@ -45,7 +45,7 @@ export const changeTravelerCount = (travelerType, value, travelers) => {
 			}
 		} 
 	}
-}
+};
 
 export const cabinChange = cabin => {
   return {
@@ -65,6 +65,18 @@ export const changeTravelTo = airport => {
   return {
     type: types.CHANGE_TRAVEL_TO,
     airport
+  };
+};
+
+export const addDestiny = () => {
+  return {
+    type: types.ADD_DESTINY
+  };
+};
+
+export const removeDestiny = () => {
+  return {
+    type: types.REMOVE_DESTINY
   };
 };
 

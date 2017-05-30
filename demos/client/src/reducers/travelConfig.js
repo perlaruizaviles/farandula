@@ -2,6 +2,7 @@ import * as types from "../actions/actionTypes";
 import {Map} from "immutable";
 import {changeTravelDates} from "../util/dates";
 
+
 const travelConfig = (state = Map({}), action) => {
   switch (action.type) {
     case types.CHANGE_TRAVEL_TYPE:
@@ -38,6 +39,18 @@ const travelConfig = (state = Map({}), action) => {
     case types.CLEAN_TRAVEL_TO:
       return state.setIn(['locations', 'to'], {});
 
+    case types.ADD_DESTINY:
+      if (state.get('destinies').size === 5) {
+        return state;
+      }
+      return state.set('destinies', state.get('destinies').push(Math.floor(Math.random() * 10000)));
+
+    case types.REMOVE_DESTINY:
+      if (state.get('destinies').size === 2) {
+        return state;
+      }
+      return state.set('destinies', state.get('destinies').pop());
+      
     default:
       return state;
   }

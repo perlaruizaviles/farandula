@@ -10,11 +10,11 @@ initialize {
         "children": Array [
           Object {
             "attribs": Object {
-              "class": "item",
+              "class": "active item",
             },
             "children": Array [
               Object {
-                "data": "Round Trip",
+                "data": "Round",
                 "next": null,
                 "parent": [Circular],
                 "prev": null,
@@ -63,11 +63,11 @@ initialize {
             "parent": [Circular],
             "prev": Object {
               "attribs": Object {
-                "class": "item",
+                "class": "active item",
               },
               "children": Array [
                 Object {
-                  "data": "Round Trip",
+                  "data": "Round",
                   "next": null,
                   "parent": [Circular],
                   "prev": null,
