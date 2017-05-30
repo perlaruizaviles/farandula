@@ -2,8 +2,14 @@
 
 const Hapi = require('hapi');
 const Wreck = require('wreck');
-let api = {
+const api = {
   path: '/api'
+};
+
+const farandulaApi = {
+  baseURL: 'https://new-farandula.herokuapp.com/api/',
+  airports: 'airports',
+  flights: 'flights'
 };
 
 const server = new Hapi.Server();
@@ -18,7 +24,7 @@ server.route({
   path: api.path + '/airports',
   handler: function (request, reply) {
     let params = request.query;
-    Wreck.get('https://new-farandula.herokuapp.com/api/airports?pattern=' + params["pattern"], (err, payload, res) => {
+    Wreck.get(farandulaApi.baseURL + farandulaApi.airports + '?pattern=' + params["pattern"], (err, payload, res) => {
       reply('' + res);
     });
   }
@@ -29,7 +35,7 @@ server.route({
   path: api.path + '/flights',
   handler: function (request, reply) {
     let params = request.query;
-    let baseURLRequest = 'https://new-farandula.herokuapp.com/api/flights?'
+    let baseURLRequest = farandulaApi.baseURL + farandulaApi.flights + '?'
       + 'departingAirportCodes=' + params["departingAirportCodes"]
       + '&departingDates=' + params["departingDates"]
       + '&departingTimes=' + params["departingTimes"]
@@ -39,7 +45,7 @@ server.route({
       + '&cabin=' + params["cabin"]
       + '&limit' + params["limit"];
 
-    if (params["type"] === "roundTrip") {
+    if (params["type"] === "round") {
       baseURLRequest += '&returnDates=' + params["returnDates"] + '&returnTimes=' + params["returnTimes"];
     }
 
