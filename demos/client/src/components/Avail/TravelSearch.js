@@ -154,12 +154,10 @@ class TravelSearch extends React.Component {
           </Grid.Row>
 
           <Grid.Row className={hideOn(['round', 'oneWay'])}>
-            <Grid.Row>
               <SearchForm
                 onSubmit={submit}
                 properties={properties}
                 actions={actions}/>
-            </Grid.Row>
           </Grid.Row>
         </Grid>
       </Segment>
