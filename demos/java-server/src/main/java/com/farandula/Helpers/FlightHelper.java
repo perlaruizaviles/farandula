@@ -135,4 +135,16 @@ public class FlightHelper {
                 .distinct()
                 .collect(Collectors.toList());
     }
+
+    public int getLimitOfFlightsFromString(String limitString) {
+
+        try {
+            if (limitString == null)
+                throw new NumberFormatException();
+            return Integer.parseInt(limitString);
+
+        } catch (NumberFormatException e) {
+             return 50;
+        }
+    }
 }

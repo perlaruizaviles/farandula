@@ -34,7 +34,8 @@ public class FlightAvailController {
                                                      @Param("returnTimes") String returnTimes,
                                                      @Param("type") String type,
                                                      @Param("passenger") String passenger,
-                                                     @Param("cabin") String cabin) {
+                                                     @Param("cabin") String cabin,
+                                                     @Param("limit") String limit) {
 
         return flightService.getResponseFromSearch(departingAirportCodes,
                 departingDates,
@@ -44,7 +45,8 @@ public class FlightAvailController {
                 returnTimes,
                 type,
                 passenger,
-                cabin);
+                cabin,
+                limit);
 
     }
 

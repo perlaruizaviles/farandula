@@ -50,7 +50,8 @@ public class FlightService {
                                                        String returnTime,
                                                        String type,
                                                        String passenger,
-                                                       String cabin) {
+                                                       String cabin,
+                                                       String limit ) {
 
         Logger.getAnonymousLogger().warning( "Departing Date: " + departingDate );
 
@@ -102,7 +103,7 @@ public class FlightService {
                     .forPassegers(Passenger.infants(ageManager.getInfantAges()))
                     .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
                     .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
-                    .limitTo(50)
+                    .limitTo(flightHelper.getLimitOfFlightsFromString(limit))
                     .preferenceClass(CabinClassParser.getCabinClassType(cabin));
 
             switch (type) {
