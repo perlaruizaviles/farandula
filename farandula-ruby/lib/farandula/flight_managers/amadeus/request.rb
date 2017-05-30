@@ -8,12 +8,22 @@ module Farandula
           date.strftime('%Y-%d-%m')
         end
 
-        def build_url_request_for!( search_form, apiKey )
+        def build_url_request_for!( search_form, api_key )
 
-          #hard coded things
-          numberOfResults = "&number_of_results=2"
+          numberOfResults = "&number_of_results=#{search_form.offset}"
 
-          passengersData = "&adults=#{search_form.passengers.size}"
+          unless search_form.passengers[:adults].nil?
+            passengersData = "&adults=#{search_form.passengers[:adults].size }"
+          end
+
+          unless search_form.passengers[:children].nil?
+            passengersData += "&children=#{search_form.passengers[:children].size }"
+          end
+
+          unless search_form.passengers[:infants].nil?
+            passengersData += "&infants=#{search_form.passengers[:infants].size }"
+          end
+
           cabin = "&travel_class=#{search_form.cabin_class}"
           origin =  "&origin=#{search_form.departure_airport}"
           destination = "&destination=#{search_form.arrival_airport}"
@@ -21,15 +31,16 @@ module Farandula
           date = "&departure_date=#{departingDateSearch}"
 
           apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
-                    "low-fare-search?apikey=#{apiKey}" \
+                    "low-fare-search?apikey=#{api_key}" \
                     "#{cabin}" \
                     "#{origin}" \
                     "#{destination}" \
                     "#{date}" \
                     "#{passengersData}" \
-                    "#{numberOfResults}" \
+                    "#{numberOfResults}"
 
           apiURL
+
         end
 
       end

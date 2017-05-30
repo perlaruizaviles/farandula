@@ -5,7 +5,7 @@ require_relative './lib/farandula/factory.rb'
 
 
 include Farandula
-include Farandula::FlightsManagers::Sabre
+include Farandula::FlightManagers::Sabre
 
 builder     = SearchForm::Builder.new
 search_form = builder

@@ -15,7 +15,7 @@ module Farandula
             build_header(@json)
             build_destination_information(@json, search_form)
             build_travel_preferences(@json, search_form.cabin_class)
-            build_travel_info_summary(@json, search_form.passengers_size)
+            build_travel_info_summary(@json, search_form.passenger_size)
             build_tpa_extensions(@json)
           end
 

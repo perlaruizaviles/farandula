@@ -9,7 +9,7 @@ module Farandula
     attr_accessor :returning_date 
     attr_accessor :passengers
     attr_accessor :cabin_class
-    # attr_accessor :offset
+    attr_accessor :offset
 
     def initialize(
       departure_airport = nil, 
@@ -18,8 +18,9 @@ module Farandula
       returning_date    = nil, 
       passengers        = {}, 
       type              = :oneway, 
-      cabin_class       = :economy)
-      # offset            = nil, 
+      cabin_class       = :economy,
+      offset            = nil
+    )
 
       @type               = type
       @departure_airport  = departure_airport
@@ -28,7 +29,7 @@ module Farandula
       @returning_date     = returning_date 
       @passengers         = passengers
       @cabin_class        = cabin_class
-      # @offset             = offset
+      @offset             = offset
     end 
 
     def roundtrip?
@@ -45,7 +46,7 @@ module Farandula
     
       def initialize      
         @search_form = SearchForm.new
-      end 
+      end
 
       def from(from) 
         @search_form.departure_airport = from
@@ -73,15 +74,18 @@ module Farandula
       end 
 
       #  TODO handle passenger buidling 
-      def with_passenger(passenger) 
-        @search_form.passengers[passenger.type] = passenger
+      def with_passenger(passenger)
+        if @search_form.passengers[passenger.type].nil?
+          @search_form.passengers[passenger.type] =  []
+        end
+        @search_form.passengers[passenger.type] << passenger
         self
       end
 
-      # def limited_results_to(max_results) 
-      #   @search_form.offset = max_results
-      #   self
-      # end
+      def limited_results_to(max_results)
+        @search_form.offset = max_results
+        self
+      end
 
       def with_cabin_class(cabin_class)
         @search_form.cabin_class = cabin_class

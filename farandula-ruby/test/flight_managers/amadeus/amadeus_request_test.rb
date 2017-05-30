@@ -15,6 +15,7 @@ class Farandula::AmadeusRequestTest < Minitest::Test
 
   def test_that_build_request_for_builds_valid_url
 
+    passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new
     search_form = builder
                       .from('CUU')
@@ -23,7 +24,8 @@ class Farandula::AmadeusRequestTest < Minitest::Test
                       .returning_at(DateTime.new(2017,12,30))
                       .type(:roundtrip)
                       .with_cabin_class( :economy)
-                      .with_passenger({name: 'Daniel'})
+                      .with_passenger( passenger )
+                      .limited_results_to( 2 )
                       .build!
 
     expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" \
