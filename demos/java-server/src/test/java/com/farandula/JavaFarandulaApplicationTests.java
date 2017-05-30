@@ -34,7 +34,7 @@ public class JavaFarandulaApplicationTests {
 
     @Test
     public void insertAndFindAnAirport() {
-        Airport myAirport = new Airport(10000, "NearAirport", "CDMX", "Mexico", "CDM");
+        Airport myAirport = new Airport("NearAirport", "CDMX", "Mexico", "CDM");
 
         airportRepository.insert(myAirport);
 
@@ -42,7 +42,6 @@ public class JavaFarandulaApplicationTests {
 
         Assert.assertEquals(1, result.size());
 
-        Assert.assertEquals(10000, result.get(0).getId());
         Assert.assertEquals("NearAirport", result.get(0).getName());
         Assert.assertEquals("CDMX", result.get(0).getCity());
         Assert.assertEquals("Mexico", result.get(0).getCountry());
@@ -57,7 +56,7 @@ public class JavaFarandulaApplicationTests {
         List<Airport> airportsList = new ArrayList<>();
 
         for (int i = 1; i <= 11; i++)
-            airportsList.add(new Airport(i + 10000, "Name" + i, "City" + i, "Country" + i, "AA" + 1));
+            airportsList.add(new Airport("Name" + i, "City" + i, "Country" + i, "AA" + 1));
 
         airportRepository.insert(airportsList);
 
@@ -184,6 +183,21 @@ public class JavaFarandulaApplicationTests {
         for ( int i = 0; i < minSize; i++){
             assertNotEquals(price.get(i).getBasePrice().getAmount(), priceTwo.get(i).getBasePrice().getAmount());
         }
+
+    }
+
+    @Test
+    public void cloningAnAirport() {
+
+        Airport airport = new Airport("Juriquilla", "Queretaro", "Mexico", "JUR");
+
+        Airport airportClone = (Airport) airport.clone();
+
+        assertEquals(airportClone.getName(),"Juriquilla");
+        assertEquals(airportClone.getCity(),"Queretaro");
+        assertEquals(airportClone.getCountry(),"Mexico");
+        assertEquals(airportClone.getIata(),"JUR");
+
 
     }
 
