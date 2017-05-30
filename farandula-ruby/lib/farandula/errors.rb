@@ -4,4 +4,5 @@ module Farandula
   class UnauthorizedError < Error; end
   class FlightManagerNotImplementedError < Error; end
   class CabinClassNotValidError < Error; end
+  class AgeValidationError < Error; end
 end

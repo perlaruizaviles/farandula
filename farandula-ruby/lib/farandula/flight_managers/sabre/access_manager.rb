@@ -13,7 +13,7 @@ module Farandula
       class AccessManager 
         
         attr_reader :access_token, :token_type, :expires_in
-
+        
         def initialize(client_id, client_secret) 
 
           begin 

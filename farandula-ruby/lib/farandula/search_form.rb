@@ -16,7 +16,7 @@ module Farandula
       arrival_airport   = nil, 
       departing_date    = nil, 
       returning_date    = nil, 
-      passengers        = [], 
+      passengers        = {}, 
       type              = :oneway, 
       cabin_class       = :economy)
       # offset            = nil, 
@@ -34,6 +34,11 @@ module Farandula
     def roundtrip?
       @type == :roundtrip
     end
+
+    # TODO review passengers types
+    def passenger_size
+      @passengers.size
+    end 
 
     # Builder helper for Search Form  
     class Builder 
@@ -69,7 +74,7 @@ module Farandula
 
       #  TODO handle passenger buidling 
       def with_passenger(passenger) 
-        @search_form.passengers << passenger
+        @search_form.passengers[passenger.type] = passenger
         self
       end
 
