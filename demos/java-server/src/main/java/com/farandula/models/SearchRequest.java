@@ -1,11 +1,11 @@
 package com.farandula.models;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /**
  * Created by emote on 29/05/17.
@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 public class SearchRequest {
 
     @NotNull
-    @Pattern(regexp = "([A-Z])\\w*,*[A-Z]")
     private
     String departingAirportCodes;
 
@@ -26,7 +25,6 @@ public class SearchRequest {
     String departingTimes;
 
     @NotNull
-    @Pattern(regexp = "([A-Z])\\w*,*[A-Z]")
     private
     String arrivalAirportCodes;
 
@@ -55,6 +53,8 @@ public class SearchRequest {
     @NumberFormat
     private
     String limit;
+
+    private String gds = "";
 
     public String getDepartingAirportCodes() {
         return departingAirportCodes;
@@ -134,5 +134,13 @@ public class SearchRequest {
 
     public void setLimit(String limit) {
         this.limit = limit;
+    }
+
+    public String getGds() {
+        return gds;
+    }
+
+    public void setGds(String gds) {
+        this.gds = gds;
     }
 }

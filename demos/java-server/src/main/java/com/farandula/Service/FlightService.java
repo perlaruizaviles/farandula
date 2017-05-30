@@ -67,7 +67,19 @@ public class FlightService {
 
         Luisa.setSupplier(() -> {
             try {
-                return new SabreFlightManager();
+                switch (request.getGds()){
+                    case "sabre":
+                        return new SabreFlightManager();
+
+                    case "amadeus":
+                        return new AmadeusFlightManager();
+
+                    case "travelport":
+                        return new TravelportFlightManager();
+
+                    default:
+                        return new SabreFlightManager();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
