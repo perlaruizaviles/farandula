@@ -80,7 +80,7 @@ public class JavaFarandulaApplicationTests {
         String returnAirportCodes = "GDL";
 
         String type = "oneWay";
-        String passenger = "children:,infants:,infantsOnSeat:1;2,adults:2";
+        String passenger = "children:0,infants:0,infantsOnSeat:0,adults:2";
 
         String classType = "economy";
 
@@ -105,7 +105,7 @@ public class JavaFarandulaApplicationTests {
         String returnAirportCodes = "CDG";
 
         String type = "roundTrip";
-        String passenger = "children:,infants:,infantsOnSeat:,adults:2";
+        String passenger = "children:0,infants:0,infantsOnSeat:0,adults:2";
 
         String classType = "economy";
 
@@ -126,7 +126,7 @@ public class JavaFarandulaApplicationTests {
         String returnAirportCodes = "GDL,MEX,DFW";
 
         String type = "multiCity";
-        String passenger = "children:,infants:1;2,infantsOnSeat:,adults:2";
+        String passenger = "children:0,infants:0,infantsOnSeat:0,adults:2";
 
         String classType = "economy";
 
@@ -152,7 +152,7 @@ public class JavaFarandulaApplicationTests {
 
 
         String type = "oneWay";
-        String passengerTestOne = "children:4,5,infants:,infantsOnSeat:,adults:2";
+        String passengerTestOne = "children:0,infants:0,infantsOnSeat:0,adults:2";
 
         String classType = "economy";
 
@@ -165,7 +165,7 @@ public class JavaFarandulaApplicationTests {
             price.add(flightItineraries.get(i).getFares());
         }
 
-        String passengerTestTwo = "children:,infants:,infantsOnSeat:,adults:2";
+        String passengerTestTwo = "children:2,infants:0,infantsOnSeat:0,adults:2";
 
         List<FlightItinerary> flightItinerariesTwo = flightService.getResponseFromSearch(departingAirportCodes,
                 departingDate, departingTime, arrivalAirportCodes, returnDate, returnTime, type, passengerTestTwo, classType);
@@ -197,8 +197,6 @@ public class JavaFarandulaApplicationTests {
         assertEquals(airportClone.getCity(),"Queretaro");
         assertEquals(airportClone.getCountry(),"Mexico");
         assertEquals(airportClone.getIata(),"JUR");
-
-
     }
 
 }
