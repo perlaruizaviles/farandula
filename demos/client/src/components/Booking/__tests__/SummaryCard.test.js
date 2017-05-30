@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import SummaryCard from '../Booking/SummaryCard';
+import SummaryCard from '../SummaryCard';
 
 describe('Rendering SummaryCard ', () => {
 

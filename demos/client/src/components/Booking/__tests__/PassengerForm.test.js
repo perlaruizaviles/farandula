@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import PassengerForm from '../Booking/PassengerForm';
+import PassengerForm from '../PassengerForm';
 
 describe('Rendering PassengerForm ', () => {
 

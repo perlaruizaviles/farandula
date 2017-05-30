@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import BillingForm from '../Booking/BillingForm';
+import BillingForm from '../BillingForm';
 
 describe('Rendering BillingForm ', () => {
 
