@@ -13,7 +13,7 @@ class Farandula::AmadeusRequestTest < Minitest::Test
     @request = Amadeus::Request.new
   end
 
-  def test_that_build_request_for_builds_valid_url
+  def test_build_request_for_builds_valid_url
 
     passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new

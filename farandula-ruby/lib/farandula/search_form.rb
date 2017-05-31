@@ -36,11 +36,6 @@ module Farandula
       @type == :roundtrip
     end
 
-    # TODO review passengers types
-    def passenger_size
-      @passengers.size
-    end 
-
     # Builder helper for Search Form  
     class Builder 
     

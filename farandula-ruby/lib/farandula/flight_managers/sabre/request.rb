@@ -1,9 +1,12 @@
-require 'jbuilder'
+require          'jbuilder'
+require_relative '../../constants.rb'
 
 module Farandula
   module FlightManagers
     module Sabre
       class Request
+
+        include Farandula
         
         def format_date(date)
           date.strftime('%FT%T')
@@ -15,7 +18,7 @@ module Farandula
             build_header(@json)
             build_destination_information(@json, search_form)
             build_travel_preferences(@json, search_form.cabin_class)
-            build_travel_info_summary(@json, search_form.passenger_size)
+            build_travel_info_summary(@json, search_form)
             build_tpa_extensions(@json)
           end
 
@@ -101,24 +104,43 @@ module Farandula
 
         end 
 
-        def build_travel_info_summary(json, numberOfPassengers)
+        def build_travel_info_summary(json, search_form)
+
+          total_passengers   = search_form.passengers.map{|_, list| list.size }.reduce(:+)          
+          infants_not_seated = search_form.passengers[:infants]&.size || 0
+
           json.TravelerInfoSummary do 
             json.SeatsRequested do 
-              json.array! [ numberOfPassengers ]
+              json.array! [ total_passengers - infants_not_seated ]
             end 
 
             json.AirTravelerAvail do 
               json.array! [ 1 ] do |_|
                 json.PassengerTypeQuantity do 
-                  json.array! [ 1 ] do |_|
-                    json.Code 'ADT'
-                    json.Quantity numberOfPassengers
+                  json.array! search_form.passengers do |type, list|
+                    json.Code extract_code_for_passenger(type)
+                    json.Quantity list.size
                   end 
                 end 
               end 
             end 
           end
         end 
+
+        def extract_code_for_passenger(passenger_type)
+          case passenger_type
+          when PassengerType::ADULTS
+            'ADT'
+          when PassengerType::CHILDREN
+            'CNN'
+          when PassengerType::INFANTS
+            'INF'
+          when PassengerType::INFANTSONSEAT
+            'INS'
+          else        
+            ''
+          end 
+        end
 
         def build_tpa_extensions(json)
           json.TPA_Extensions do 

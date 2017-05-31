@@ -6,14 +6,14 @@ class Farandula::PassengerTest < Minitest::Test
   include Farandula
 
   
-  def test_that_passenger_construction_fails
+  def test_passenger_construction_fails
     assert_raises (AgeValidationError) { Passenger.new(:adults, 10) }
     assert_raises (AgeValidationError) { Passenger.new(:infants, 10) }
     assert_raises (AgeValidationError) { Passenger.new(:children, 2) }
     assert_raises (AgeValidationError) { Passenger.new(:children, 21) }
   end
 
-  def test_that_passenger_construction_builds_a_correct_passenger
+  def test_passenger_construction_builds_a_correct_passenger
     
     passenger = Passenger.new(:adults, 25)
     assert_equal :adults, passenger.type
