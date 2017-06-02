@@ -26,7 +26,7 @@ class Farandula::AmadeusRequestTest < Minitest::Test
                       .with_cabin_class( :economy)
                       .with_passenger( passenger )
                       .limited_results_to( 2 )
-                      .build!
+                      .build!(false)
 
     expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" \
         "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" \

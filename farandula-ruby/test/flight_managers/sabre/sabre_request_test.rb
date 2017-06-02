@@ -43,7 +43,7 @@ class Farandula::SabreRequestTest < Minitest::Test
   def test_build_travel_info_summary
     passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new
-    search_form = builder.with_passenger(passenger).build!
+    search_form = builder.with_passenger(passenger).build!(false)
 
     @request.build_travel_info_summary(@json, search_form)
     expected = FileHelper.load_asset('sabre/travel-info-summary.json')
@@ -66,7 +66,7 @@ class Farandula::SabreRequestTest < Minitest::Test
                     .with_passenger(passenger3) 
                     .with_passenger(passenger4) 
                     .with_passenger(passenger5) 
-                    .build!
+                    .build!(false)
 
     @request.build_travel_info_summary(@json, search_form)
     expected = FileHelper.load_asset('sabre/travel-info-summary-multiple-passengers.json')
@@ -96,7 +96,7 @@ class Farandula::SabreRequestTest < Minitest::Test
                     .type(:roundtrip)
                     .with_cabin_class('Y')
                     .with_passenger(passenger)
-                    .build!
+                    .build!(false)
 
     expected    = FileHelper.load_asset('sabre/request.json')
     actual      = @request.build_request_for!(search_form) 

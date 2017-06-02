@@ -14,11 +14,11 @@ module Farandula
 
     def validate_age!
       if @type == PassengerType::ADULTS && @age < 18
-        raise AgeValidationError.new
+        raise ValidationError.new("age #{@age} does not correspond to ADULTS type")
       elsif @type == PassengerType::CHILDREN && (@age > 18 || @age < 3)
-        raise AgeValidationError.new
+        raise ValidationError.new("age #{@age} does not correspond to CHILDREN type")
       elsif (@type == PassengerType::INFANTSONSEAT || @type == PassengerType::INFANTS) && @age > 3
-        raise AgeValidationError.new
+        raise ValidationError.new("age #{@age} does not correspond to [INFANTS | INFANTSONSEAT] type")
       end
     end
 

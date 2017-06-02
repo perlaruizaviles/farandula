@@ -7,10 +7,10 @@ class Farandula::PassengerTest < Minitest::Test
 
   
   def test_passenger_construction_fails
-    assert_raises (AgeValidationError) { Passenger.new(:adults, 10) }
-    assert_raises (AgeValidationError) { Passenger.new(:infants, 10) }
-    assert_raises (AgeValidationError) { Passenger.new(:children, 2) }
-    assert_raises (AgeValidationError) { Passenger.new(:children, 21) }
+    assert_raises (ValidationError) { Passenger.new(:adults, 10) }
+    assert_raises (ValidationError) { Passenger.new(:infants, 10) }
+    assert_raises (ValidationError) { Passenger.new(:children, 2) }
+    assert_raises (ValidationError) { Passenger.new(:children, 21) }
   end
 
   def test_passenger_construction_builds_a_correct_passenger
