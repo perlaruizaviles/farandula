@@ -4,10 +4,7 @@ import com.farandula.Exceptions.AirportException;
 import com.farandula.Helpers.AirportsSource;
 import com.farandula.Helpers.FlightHelper;
 import com.farandula.Repositories.AirportRepository;
-import com.farandula.models.Airport;
-import com.farandula.models.Flight;
-import com.farandula.models.FlightSegment;
-import com.farandula.models.ItineraryFares;
+import com.farandula.models.*;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Fares;
 import com.nearsoft.farandula.models.Itinerary;
@@ -146,5 +143,33 @@ public class FlightHelperImpl implements FlightHelper{
         } catch (NumberFormatException e) {
             return 50;
         }
+    }
+
+    public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {
+        //TODO: Build fares object
+
+        List<FlightItinerary> flightItineraries = itineraryList
+                .stream()
+                .map((Itinerary itinerary) -> {
+
+                    Fares fareFromItinerary = itinerary.getPrice();
+                    //TODO Implement sum of all segment's price in case of null on fareFromItinerary
+                    ItineraryFares itineraryFares = ( fareFromItinerary == null )
+                            ? new ItineraryFares()
+                            : this.parseFaresToItineraryFares(fareFromItinerary);
+
+                    List<Flight> flightList = this.getFlightsFromItinerary(itinerary);
+
+                    FlightItinerary flightItinerary = new FlightItinerary(12345, type, flightList, itineraryFares);
+
+                    return flightItinerary;
+                })
+                .collect(Collectors.toList());
+
+        return flightItineraries;
+    }
+
+    public boolean validIataLength(String iata) {
+        return (iata.length() == 3) || (iata.length() == 2);
     }
 }

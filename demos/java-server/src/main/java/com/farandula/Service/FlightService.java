@@ -37,10 +37,10 @@ public class FlightService {
     @Autowired
     DateParser dateParser;
 
-    private void setSupplier(String gds){
+    private void setSupplier(String gds) {
         Luisa.setSupplier(() -> {
             try {
-                switch (gds){
+                switch (gds) {
                     case "sabre":
                         return new SabreFlightManager();
 
@@ -60,8 +60,8 @@ public class FlightService {
         });
     }
 
-    private void setCommandFlightType(SearchCommand command, SearchRequest request) throws ParameterException, FarandulaException{
-        switch ( request.getType() ) {
+    private void setCommandFlightType(SearchCommand command, SearchRequest request) throws ParameterException, FarandulaException {
+        switch (request.getType()) {
             case "oneWay":
                 if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
                     command.type(FlightType.ONEWAY);
@@ -88,7 +88,7 @@ public class FlightService {
                 break;
 
             case "multiCity":
-                if("travelport".equals( request.getGds() ))
+                if ("travelport".equals(request.getGds()))
                     throw new ParameterException(ParameterException.ParameterErrorType.UNAVAILABLE_REQUEST, "Multi City request is not available for TravelPort");
 
                 if (command.getDepartureAirports().size() == command.getArrivalAirports().size())
@@ -102,98 +102,59 @@ public class FlightService {
         }
     }
 
-    public static boolean validIataLength(String iata) {
-        return (iata.length() == 3) || (iata.length() == 2);
-    }
+    public List<String> prepareAirportCodes(String airportCodes) {
 
-    public List<FlightItinerary> getResponseFromSearch( SearchRequest request ) {
-
-        Logger.getAnonymousLogger().warning( "Departing Date: " + request.getDepartingAirportCodes() );
-
-        //Declaring for departing parameters
-        String[] departingDates = request.getDepartingDates().split(",");
-        String[] departingTimes = request.getDepartingTimes().split(",");
-        String[] departingAirportCodeArray = request.getDepartingAirportCodes().split(",");
-        List<FlightItinerary> response = new ArrayList<>();
+        String[] departingAirportCodeArray = airportCodes.split(",");
 
         for (String airportCode : departingAirportCodeArray) {
-            if (!validIataLength(airportCode))
-                return response;
+            if (!flightHelper.validIataLength(airportCode))
+                return new ArrayList<>();
         }
 
-        List<String> departingAirportCodes = Arrays.asList(departingAirportCodeArray);
+        return Arrays.asList(departingAirportCodeArray);
+    }
+
+    public List<LocalDateTime> prepareDepartureDates(String departingDates, String departingTimes) throws ParameterException {
+        return dateParser.parseStringDatesTimes(departingDates.split(","), departingTimes.split(","));
+    }
+
+    public List<FlightItinerary> getResponseFromSearch(SearchRequest request) {
+
+        List<FlightItinerary> response = new ArrayList<>();
+        //Declaring for departing parameters
+        List<String> departingAirportCodes = prepareAirportCodes(request.getDepartingAirportCodes());
 
         //Declaring for returning parameters (Airport code only)
-        String[] arrivalAirportCodesArray = request.getArrivalAirportCodes().split(",");
-        List<String> arrivalAirportCodes = Arrays.asList(arrivalAirportCodesArray);
-
-        for (String airportCode : arrivalAirportCodes) {
-            if (!validIataLength(airportCode))
-                return response;
-        }
-
+        List<String> arrivalAirportCodes = prepareAirportCodes(request.getArrivalAirportCodes());
         setSupplier(request.getGds());
-
-        List<Itinerary> flights;
-
         try {
             AgeManager ageManager = passengerHelper.getPassengersFromString(request.getPassenger());
 
-            SearchCommand command = Luisa.findMeFlights();
-
             //Prepare departure dates
-            List<LocalDateTime> localDepartureDates = dateParser.parseStringDatesTimes(departingDates, departingTimes);
+            List<LocalDateTime> localDepartureDates = prepareDepartureDates(request.getDepartingDates(), request.getDepartingTimes());
 
             //Fill the command with common information
-            command.from(departingAirportCodes)
+            SearchCommand command = Luisa.findMeFlights()
+                    .from(departingAirportCodes)
                     .to(arrivalAirportCodes)
                     .departingAt(localDepartureDates)
                     .forPassegers(Passenger.children(ageManager.getChildAges()))
                     .forPassegers(Passenger.infants(ageManager.getInfantAges()))
                     .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
                     .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
-                    .limitTo(flightHelper.getLimitOfFlightsFromString( request.getLimit() ))
-                    .preferenceClass(CabinClassParser.getCabinClassType( request.getCabin() ));
+                    .limitTo(flightHelper.getLimitOfFlightsFromString(request.getLimit()))
+                    .preferenceClass(CabinClassParser.getCabinClassType(request.getCabin()));
 
             setCommandFlightType(command, request);
-
-            flights = command.execute();
-            response.addAll(this.getFlightItineraryFromItinerary(flights, request.getType()));
+            List<Itinerary> flights = command.execute();
+            response.addAll(flightHelper.getFlightItineraryFromItinerary(flights, request.getType()));
 
         } catch (Exception e) {
-
-            List<String> stackTrace = Arrays.stream(e.getStackTrace())
-                    .map(stackTraceElement -> stackTraceElement.toString() + "\n")
-                    .collect(Collectors.toList());
-
-            Logger.getLogger("Flight Service").warning(stackTrace.toString());
             Logger.getLogger("Flight Service").warning(e.toString());
         }
 
         return response;
     }
 
-    public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {
-        //TODO: Build fares object
 
-        List<FlightItinerary> flightItineraries = itineraryList
-                .stream()
-                .map((Itinerary itinerary) -> {
-
-                    Fares fareFromItinerary = itinerary.getPrice();
-                    //TODO Implement sum of all segment's price in case of null on fareFromItinerary
-                    ItineraryFares itineraryFares = ( fareFromItinerary == null )
-                            ? new ItineraryFares()
-                            : flightHelper.parseFaresToItineraryFares(fareFromItinerary);
-
-                    List<Flight> flightList = flightHelper.getFlightsFromItinerary(itinerary);
-
-                    FlightItinerary flightItinerary = new FlightItinerary(12345, type, flightList, itineraryFares);
-
-                    return flightItinerary;
-                })
-                .collect(Collectors.toList());
-
-        return flightItineraries;
-    }
 }

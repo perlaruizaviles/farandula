@@ -3,10 +3,7 @@ package com.farandula.Helpers;
 import com.farandula.Exceptions.AirportException;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.Service.AirportService;
-import com.farandula.models.Airport;
-import com.farandula.models.Flight;
-import com.farandula.models.FlightSegment;
-import com.farandula.models.ItineraryFares;
+import com.farandula.models.*;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Fares;
 import com.nearsoft.farandula.models.Itinerary;
@@ -36,4 +33,8 @@ public interface FlightHelper {
     List<String> getCabinInformationFromSegment(Segment segment);
 
     int getLimitOfFlightsFromString(String limitString);
+
+    List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type);
+
+    boolean validIataLength(String iata);
 }
