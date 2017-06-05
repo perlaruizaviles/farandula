@@ -19,9 +19,9 @@ module Farandula
 
           url_request = request.build_url_request_for!( search_form, api_key )
 
-          #puts url_request
-
           response = RestClient.get url_request
+
+          response
 
         end
 

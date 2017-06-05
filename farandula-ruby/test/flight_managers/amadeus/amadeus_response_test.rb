@@ -9,7 +9,7 @@ class Farandula::AmadeusResponseTest < Minitest::Test
   include Farandula
   include Farandula::FlightManagers
 
-  def test_that_build_response_is_valid
+  def test_that_build_response_from_amadeus_is_valid
 
     passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new
@@ -24,12 +24,12 @@ class Farandula::AmadeusResponseTest < Minitest::Test
                       .limited_results_to( 2 )
                       .build!
 
-    expectedResponse = ""
-
+    expectedResponse = FileHelper.load_asset('amadeus/response.json')
     manager = Factory.build_flight_manager(:amadeus, {})
     result = manager.get_avail(search_form)
 
-    assert_equal( expectedResponse.downcase , result.downcase )
+    assert_equal( result.code , 200 )
+    assert_equal( expectedResponse , result.body )
 
   end
 
