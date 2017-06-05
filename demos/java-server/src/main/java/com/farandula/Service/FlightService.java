@@ -8,6 +8,7 @@ import com.farandula.Helpers.PassengerHelper;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.models.*;
 import com.nearsoft.farandula.Luisa;
+import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.amadeus.AmadeusFlightManager;
 import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
 import com.nearsoft.farandula.flightmanagers.travelport.TravelportFlightManager;
@@ -59,6 +60,48 @@ public class FlightService {
         });
     }
 
+    private void setCommandFlightType(SearchCommand command, SearchRequest request) throws ParameterException, FarandulaException{
+        switch ( request.getType() ) {
+            case "oneWay":
+                if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
+                    command.type(FlightType.ONEWAY);
+                else
+                    throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for one way trip");
+                break;
+
+            case "roundTrip":
+
+                if (request.getReturnDates().isEmpty() || request.getReturnTimes().isEmpty())
+                    throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_DATES, "Empty returning dates");
+
+                if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
+                    command.type(FlightType.ONEWAY);
+                else
+                    throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for round trip");
+
+                //Prepare departure dates
+                List<LocalDateTime> localReturnDates = dateParser.parseStringDatesTimes(request.getReturnDates(), request.getReturnTimes());
+
+                command
+                        .returningAt(localReturnDates)
+                        .type(FlightType.ROUNDTRIP);
+                break;
+
+            case "multiCity":
+                if("travelport".equals( request.getGds() ))
+                    throw new ParameterException(ParameterException.ParameterErrorType.UNAVAILABLE_REQUEST, "Multi City request is not available for TravelPort");
+
+                if (command.getDepartureAirports().size() == command.getArrivalAirports().size())
+                    command.type(FlightType.OPENJAW);
+                else
+                    throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for muli city trip");
+                break;
+
+            default:
+                break;
+        }
+    }
+
     public static boolean validIataLength(String iata) {
         return (iata.length() == 3) || (iata.length() == 2);
     }
@@ -71,10 +114,11 @@ public class FlightService {
         String[] departingDates = request.getDepartingDates().split(",");
         String[] departingTimes = request.getDepartingTimes().split(",");
         String[] departingAirportCodeArray = request.getDepartingAirportCodes().split(",");
+        List<FlightItinerary> response = new ArrayList<>();
 
         for (String airportCode : departingAirportCodeArray) {
             if (!validIataLength(airportCode))
-                return new ArrayList<>();
+                return response;
         }
 
         List<String> departingAirportCodes = Arrays.asList(departingAirportCodeArray);
@@ -85,7 +129,7 @@ public class FlightService {
 
         for (String airportCode : arrivalAirportCodes) {
             if (!validIataLength(airportCode))
-                return new ArrayList<>();
+                return response;
         }
 
         setSupplier(request.getGds());
@@ -94,7 +138,6 @@ public class FlightService {
 
         try {
             AgeManager ageManager = passengerHelper.getPassengersFromString(request.getPassenger());
-
 
             SearchCommand command = Luisa.findMeFlights();
 
@@ -112,48 +155,10 @@ public class FlightService {
                     .limitTo(flightHelper.getLimitOfFlightsFromString( request.getLimit() ))
                     .preferenceClass(CabinClassParser.getCabinClassType( request.getCabin() ));
 
-            switch ( request.getType() ) {
-                case "oneWay":
-                    if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
-                        command.type(FlightType.ONEWAY);
-                    else
-                        throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for one way trip");
-                    break;
-
-                case "roundTrip":
-
-                    if (request.getReturnDates().isEmpty() || request.getReturnTimes().isEmpty())
-                        throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_DATES, "Empty returning dates");
-
-                    if (command.getDepartureAirports().size() == 1 && command.getArrivalAirports().size() == 1)
-                        command.type(FlightType.ONEWAY);
-                    else
-                        throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for round trip");
-
-                    //Prepare departure dates
-                    List<LocalDateTime> localReturnDates = dateParser.parseStringDatesTimes(request.getReturnDates(), request.getReturnTimes());
-
-                    command
-                            .returningAt(localReturnDates)
-                            .type(FlightType.ROUNDTRIP);
-                    break;
-
-                case "multiCity":
-                    if("travelport".equals( request.getGds() ))
-                        throw new ParameterException(ParameterException.ParameterErrorType.UNAVAILABLE_REQUEST, "Multi City request is not available for TravelPort");
-
-                    if (command.getDepartureAirports().size() == command.getArrivalAirports().size())
-                        command.type(FlightType.OPENJAW);
-                    else
-                        throw new ParameterException(ParameterException.ParameterErrorType.ERROR_ON_AIRPORT_CODES, "Invalid quantity of airport codes for muli city trip");
-                    break;
-
-                default:
-                    break;
-            }
+            setCommandFlightType(command, request);
 
             flights = command.execute();
-            return this.getFlightItineraryFromItinerary(flights, request.getType());
+            response.addAll(this.getFlightItineraryFromItinerary(flights, request.getType()));
 
         } catch (Exception e) {
 
@@ -165,7 +170,7 @@ public class FlightService {
             Logger.getLogger("Flight Service").warning(e.toString());
         }
 
-        return new ArrayList<>();
+        return response;
     }
 
     public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {
