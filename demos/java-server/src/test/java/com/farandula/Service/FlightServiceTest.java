@@ -36,7 +36,7 @@ import static org.junit.Assert.*;
 public class FlightServiceTest {
 
     @Autowired
-    FlightService flightService;
+    FlightHelper flightHelper;
     @Autowired
     DateParser dateParser;
 
@@ -111,7 +111,7 @@ public class FlightServiceTest {
     @Test
     public void parseItineraryIntoFlightItinerary() {
 
-        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryListRoundTrip, "round");
+        List<FlightItinerary> flightItineraries = flightHelper.getFlightItineraryFromItinerary(itineraryListRoundTrip, "round");
 
         assertEquals(itineraryListRoundTrip.size(), flightItineraries.size());
         for( int i = 0; i < flightItineraries.size(); i++ ) {
@@ -124,7 +124,7 @@ public class FlightServiceTest {
     @Test
     public void parseItineraryIntoFlightItineraryOneWay() {
 
-        List<FlightItinerary> flightItineraries = flightService.getFlightItineraryFromItinerary(itineraryListOneWay, "oneWay");
+        List<FlightItinerary> flightItineraries = flightHelper.getFlightItineraryFromItinerary(itineraryListOneWay, "oneWay");
 
         assertEquals(itineraryListOneWay.size(), flightItineraries.size());
 
