@@ -16,7 +16,12 @@ module Farandula
         def get_avail(search_form)
 
           request = Amadeus::Request.new
-          response = request.build_url_request_for!( search_form, api_key )
+
+          url_request = request.build_url_request_for!( search_form, api_key )
+
+          #puts url_request
+
+          response = RestClient.get url_request
 
         end
 

@@ -4,16 +4,12 @@ require 'string_helper'
 require 'minitest/autorun'
 require 'farandula/flight_managers/amadeus/request'
 
-class Farandula::AmadeusRequestTest < Minitest::Test
+class Farandula::AmadeusResponseTest < Minitest::Test
 
   include Farandula
   include Farandula::FlightManagers
 
-  def setup
-    @request = Amadeus::Request.new
-  end
-
-  def test_that_build_request_for_builds_valid_url
+  def test_that_build_response_is_valid
 
     passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new
@@ -28,17 +24,12 @@ class Farandula::AmadeusRequestTest < Minitest::Test
                       .limited_results_to( 2 )
                       .build!
 
-    expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" \
-        "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" \
-        "&travel_class=ECONOMY&origin=CUU" \
-        "&destination=SFO" \
-        "&departure_date=2017-12-24" \
-        "&adults=1" \
-        "&number_of_results=2"
+    expectedResponse = ""
 
-    result = @request.build_url_request_for!( search_form, "R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" )
+    manager = Factory.build_flight_manager(:amadeus, {})
+    result = manager.get_avail(search_form)
 
-    assert_equal( expectedURL.downcase , result.downcase )
+    assert_equal( expectedResponse.downcase , result.downcase )
 
   end
 

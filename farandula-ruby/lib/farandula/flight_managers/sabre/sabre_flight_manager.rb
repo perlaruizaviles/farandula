@@ -16,7 +16,8 @@ module Farandula
         end 
 
         def get_avail(search_form) 
-        	headers = {
+
+          headers = {
             content_type: :json, 
             accept: :json,
             Authorization: @access_manager.build_auth_token
@@ -31,7 +32,17 @@ module Farandula
           )
 
           response
-        end 
+        end
+
+
+        private
+        def build_credentials(client_id, client_secret)
+          encoded_id     = Base64.strict_encode64(client_id)
+          encoded_secret = Base64.strict_encode64(client_secret)
+          encoded        = Base64.strict_encode64("#{encoded_id}:#{encoded_secret}")
+          "Basic #{encoded}"
+        end
+        #private ends
 
       
 

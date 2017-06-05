@@ -5,7 +5,7 @@ module Farandula
       class Request
 
         def format_date(date)
-          date.strftime('%Y-%d-%m')
+          date.strftime('%Y-%m-%d')
         end
 
         def build_url_request_for!( search_form, api_key )
