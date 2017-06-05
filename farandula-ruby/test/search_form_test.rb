@@ -15,13 +15,7 @@ class Farandula::SearchFormTest < Minitest::Test
       builder = SearchForm::Builder.new
       builder.to('CUU').build!
     end 
-
-  end 
-
-
-
-  def test_dates_are_validated
-
+    
     assert_raises_with_message ValidationError, 'departing_date cannot be nil', 'err' do 
       builder = SearchForm::Builder.new
       builder
@@ -29,6 +23,12 @@ class Farandula::SearchFormTest < Minitest::Test
         .to('CUU')
         .build!
     end 
+
+  end 
+
+
+
+  def test_dates_are_validated
 
     assert_raises_with_message ValidationError, 'returning_date cannot be nil', 'err' do 
       builder = SearchForm::Builder.new
