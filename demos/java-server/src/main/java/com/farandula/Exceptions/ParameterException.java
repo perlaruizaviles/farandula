@@ -6,7 +6,7 @@ package com.farandula.Exceptions;
 public class ParameterException extends Exception {
 
     public enum ParameterErrorType{
-        ERROR_ON_DATES, ERROR_ON_AIRPORT_CODES
+        ERROR_ON_DATES, ERROR_ON_AIRPORT_CODES, UNAVAILABLE_REQUEST
     }
 
     ParameterErrorType parameterErrorType;

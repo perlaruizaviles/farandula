@@ -2,6 +2,7 @@ package com.farandula.Helpers;
 
 import com.farandula.Exceptions.AirportException;
 import com.farandula.Repositories.AirportRepository;
+import com.farandula.Service.AirportService;
 import com.farandula.models.Airport;
 import com.farandula.models.Flight;
 import com.farandula.models.FlightSegment;
@@ -31,15 +32,9 @@ public class FlightHelper {
 
     public Flight parseAirlegToFlight(AirLeg airLeg) {
 
-        Airport departureAirport = airportRepository.findByIataLikeIgnoreCase(airLeg.getDepartureAirportCode())
-                .stream()
-                .findFirst()
-                .orElse(null);
+        Airport departureAirport = AirportsSource.getAirport(airLeg.getDepartureAirportCode());
 
-        Airport arrivalAirport = airportRepository.findByIataLikeIgnoreCase(airLeg.getArrivalAirportCode())
-                .stream()
-                .findFirst()
-                .orElse(null);
+        Airport arrivalAirport = AirportsSource.getAirport(airLeg.getArrivalAirportCode());
 
         LocalDateTime departureDate = airLeg.getDepartingDate();
         LocalDateTime arrivalDate = airLeg.getArrivalDate();
@@ -65,28 +60,16 @@ public class FlightHelper {
 
     public FlightSegment parseSegmentToFlightSegment(Segment segment) {
 
-        Airport departureSegmentAirport;
-        Airport arrivalSegmentAirport;
-
-        Optional<Airport> optionalAirportDeparture = airportRepository.findByIataLikeIgnoreCase(segment.getDepartureAirportCode())
-                .stream()
-                .findFirst();
+        Airport departureSegmentAirport = AirportsSource.getAirport(segment.getDepartureAirportCode());
+        Airport arrivalSegmentAirport = AirportsSource.getAirport(segment.getArrivalAirportCode());
 
         try {
 
-            if (optionalAirportDeparture.isPresent()) {
-                departureSegmentAirport = optionalAirportDeparture.get();
-            } else {
+            if (departureSegmentAirport == null) {
                 throw new AirportException(AirportException.AirportErrorType.AIRPORT_NOT_FOUND, "Departure Airpot Not Found");
             }
 
-            Optional<Airport> optionalAirportArrival = airportRepository.findByIataLikeIgnoreCase(segment.getArrivalAirportCode())
-                    .stream()
-                    .findFirst();
-
-            if (optionalAirportArrival.isPresent()) {
-                arrivalSegmentAirport = optionalAirportArrival.get();
-            } else {
+            if (arrivalSegmentAirport == null) {
                 throw new AirportException(AirportException.AirportErrorType.AIRPORT_NOT_FOUND, "Arrival Airpot Not Found");
             }
 

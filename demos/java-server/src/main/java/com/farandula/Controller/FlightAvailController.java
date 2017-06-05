@@ -6,12 +6,15 @@ import com.farandula.Response.FlightResponse;
 import com.farandula.Service.FlightService;
 import com.farandula.models.Flight;
 import com.farandula.models.FlightItinerary;
+import com.farandula.models.SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,28 +29,8 @@ public class FlightAvailController {
     FlightService flightService;
 
     @RequestMapping("/api/flights")
-    public List<FlightItinerary> getAvailableFlights(@Param("departingAirportCodes") String departingAirportCodes,
-                                                     @Param("departingDates") String departingDates,
-                                                     @Param("departingTimes") String departingTimes,
-                                                     @Param("arrivalAirportCodes") String arrivalAirportCodes,
-                                                     @Param("returnDates") String returnDates,
-                                                     @Param("returnTimes") String returnTimes,
-                                                     @Param("type") String type,
-                                                     @Param("passenger") String passenger,
-                                                     @Param("cabin") String cabin,
-                                                     @Param("limit") String limit) {
-
-        return flightService.getResponseFromSearch(departingAirportCodes,
-                departingDates,
-                departingTimes,
-                arrivalAirportCodes,
-                returnDates,
-                returnTimes,
-                type,
-                passenger,
-                cabin,
-                limit);
-
+    public List<FlightItinerary> getAvailableFlights(@Valid SearchRequest request) {
+        return flightService.getResponseFromSearch( request );
     }
 
 
