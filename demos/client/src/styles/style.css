@@ -58,3 +58,12 @@ span.travelTitle {
 	text-decoration: underline;
 	font-size: 16px;
 }
+
+.itineraryExtraSection{
+    text-align: center;
+}
+
+.itineraryPrice{
+    color: #272727;
+    font-weight: bold;
+}
