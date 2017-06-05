@@ -36,6 +36,29 @@ public class FlightService {
     @Autowired
     DateParser dateParser;
 
+    private void setSupplier(String gds){
+        Luisa.setSupplier(() -> {
+            try {
+                switch (gds){
+                    case "sabre":
+                        return new SabreFlightManager();
+
+                    case "amadeus":
+                        return new AmadeusFlightManager();
+
+                    case "travelport":
+                        return new TravelportFlightManager();
+
+                    default:
+                        return new SabreFlightManager();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+    }
+
     public static boolean validIataLength(String iata) {
         return (iata.length() == 3) || (iata.length() == 2);
     }
@@ -65,31 +88,13 @@ public class FlightService {
                 return new ArrayList<>();
         }
 
-        Luisa.setSupplier(() -> {
-            try {
-                switch (request.getGds()){
-                    case "sabre":
-                        return new SabreFlightManager();
-
-                    case "amadeus":
-                        return new AmadeusFlightManager();
-
-                    case "travelport":
-                        return new TravelportFlightManager();
-
-                    default:
-                        return new SabreFlightManager();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        setSupplier(request.getGds());
 
         List<Itinerary> flights;
 
         try {
             AgeManager ageManager = passengerHelper.getPassengersFromString(request.getPassenger());
+
 
             SearchCommand command = Luisa.findMeFlights();
 
