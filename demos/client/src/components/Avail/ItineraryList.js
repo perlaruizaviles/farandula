@@ -2,6 +2,7 @@ import React from "react";
 import ItineraryElement from "./ItineraryElement";
 import ItineraryListOptions from "./ItineraryListOptions";
 import {Item, Message, Segment} from "semantic-ui-react";
+import {airlineNameByAirlegs} from "../../util/itinerary";
 
 class ItineraryList extends React.Component {
   render() {
@@ -44,7 +45,13 @@ class ItineraryList extends React.Component {
           </Item>
           {
             (travels)
-              ? travels.map((travel) => <ItineraryElement key={Math.random()} itinerary={travel}/>)
+              ? travels.map((travel) => {
+                let airline = airlineNameByAirlegs();
+                return (
+                  <ItineraryElement key={Math.random()} 
+                    itinerary={travel}
+                    airline={airline}/>
+                )})
               : ""
           }
         </Item.Group>
