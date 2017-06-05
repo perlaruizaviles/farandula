@@ -1,7 +1,11 @@
+require_relative './constants.rb'
+
 module Farandula 
 
   class SearchForm 
-  
+    
+    include Farandula
+
     attr_accessor :type
     attr_accessor :departure_airport
     attr_accessor :arrival_airport
@@ -36,11 +40,6 @@ module Farandula
       @type == :roundtrip
     end
 
-    # TODO review passengers types
-    def passenger_size
-      @passengers.size
-    end 
-
     # Builder helper for Search Form  
     class Builder 
     
@@ -54,7 +53,7 @@ module Farandula
       end 
       
       def to(to)
-        @search_form.arrival_airport= to   
+        @search_form.arrival_airport = to   
         self 
       end
 
@@ -92,9 +91,59 @@ module Farandula
         self
       end
 
-      def build!
+      def build!(validate = true)
+        if validate
+          validate!  
+        end 
         @search_form
       end 
+
+      protected 
+        def validate!
+          
+          check_not_empty!('departure_airport', @search_form.departure_airport)
+          check_not_empty!('arrival_airport', @search_form.arrival_airport)
+          check_not_nil!('type', @search_form.type)
+          check_not_nil!('departing_date', @search_form.departing_date)
+
+          if @search_form.roundtrip?
+            check_not_nil!('returning_date', @search_form.returning_date)
+          end 
+
+          if !FlightType::TYPES.include?(@search_form.type)
+            raise ValidationError.new("flight type [#{type}] not found")
+          end 
+
+          if (@search_form.departing_date <=> DateTime.now) == -1
+            raise ValidationError.new("departing_date can\'t be in the pass")
+          end 
+
+          if @search_form.roundtrip?
+
+            if (@search_form.departing_date <=> @search_form.returning_date) == 1
+              raise ValidationError.new("returning_date can't be before departing_date")
+            end
+          end
+        end
+        
+
+      private 
+        def check_not_nil!(name , obj) 
+          if obj.nil? 
+            raise ValidationError.new "#{name} cannot be nil"
+          end 
+        end
+
+        def check_not_empty!(name, obj)
+          check_not_nil!(name, obj)
+          if !obj.is_a?(String)
+            raise ValidationError.new "#{name} has to be of type 'string'"
+          end
+
+          if obj.empty?
+            raise ValidationError.new "#{name} cannot be empty"
+          end 
+        end 
 
     end # Builder ends 
   end  # SearchForm ends

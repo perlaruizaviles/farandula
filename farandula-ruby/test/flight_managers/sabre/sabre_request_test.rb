@@ -13,7 +13,7 @@ class Farandula::SabreRequestTest < Minitest::Test
     @json    = Jbuilder.new 
   end
 
-  def test_that_build_flight_info_builds_valid_json
+  def test_build_flight_info
     @request.build_flight_info(@json, 1, 'CUU', DateTime.new(2017,04,24), 'SFO')
     expected = FileHelper.load_asset('sabre/flight-info.json')
     assert_equal(
@@ -22,7 +22,7 @@ class Farandula::SabreRequestTest < Minitest::Test
     )
   end
 
-  def test_that_build_header_builds_a_valid_json    
+  def test_build_header_builds_a_valid_json    
     @request.build_header(@json)
     expected = FileHelper.load_asset('sabre/request-header.json')
     assert_equal(
@@ -31,7 +31,7 @@ class Farandula::SabreRequestTest < Minitest::Test
     )
   end
 
-  def test_that_build_travel_preferences_builds_valid_json
+  def test_build_travel_preferences
     @request.build_travel_preferences(@json, 'B')
     expected = FileHelper.load_asset('sabre/travel-preferences.json')
     assert_equal(
@@ -40,16 +40,43 @@ class Farandula::SabreRequestTest < Minitest::Test
     )
   end
 
-  def test_that_build_travel_info_summary_builds_valid_json
-    @request.build_travel_info_summary(@json, 2)
+  def test_build_travel_info_summary
+    passenger   = Passenger.new(:adults, 25)
+    builder     = SearchForm::Builder.new
+    search_form = builder.with_passenger(passenger).build!(false)
+
+    @request.build_travel_info_summary(@json, search_form)
     expected = FileHelper.load_asset('sabre/travel-info-summary.json')
+    assert_equal(
+      StringHelper.no_space(expected),
+      StringHelper.no_space(@json.target!)
+    )
+  end
+
+  def test_build_travel_info_summary_for_multiple_passengers
+    passenger1  = Passenger.new(:adults, 25)
+    passenger2  = Passenger.new(:adults, 27)
+    passenger3  = Passenger.new(:children, 10)
+    passenger4  = Passenger.new(:infants, 1)
+    passenger5  = Passenger.new(:infantsonseat, 3)
+    builder     = SearchForm::Builder.new
+    search_form = builder
+                    .with_passenger(passenger1) 
+                    .with_passenger(passenger2) 
+                    .with_passenger(passenger3) 
+                    .with_passenger(passenger4) 
+                    .with_passenger(passenger5) 
+                    .build!(false)
+
+    @request.build_travel_info_summary(@json, search_form)
+    expected = FileHelper.load_asset('sabre/travel-info-summary-multiple-passengers.json')
     assert_equal(
       StringHelper.no_space(expected),
       StringHelper.no_space(@json.target!)
     )
   end 
 
-  def test_that_build_tpa_extensions_builds_valid_josn
+  def test_build_tpa_extensions_builds_valid_json
     @request.build_tpa_extensions(@json)
     expected = FileHelper.load_asset('sabre/tpa-extensions.json')    
     assert_equal(
@@ -58,7 +85,7 @@ class Farandula::SabreRequestTest < Minitest::Test
     )
   end 
 
-  def test_that_build_request_for_builds_valid_json 
+  def test_build_request_for
     passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new
     search_form = builder
@@ -69,7 +96,7 @@ class Farandula::SabreRequestTest < Minitest::Test
                     .type(:roundtrip)
                     .with_cabin_class('Y')
                     .with_passenger(passenger)
-                    .build!
+                    .build!(false)
 
     expected    = FileHelper.load_asset('sabre/request.json')
     actual      = @request.build_request_for!(search_form) 

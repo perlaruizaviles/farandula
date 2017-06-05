@@ -5,7 +5,7 @@ module Farandula
     ROUNDTRIP = :roundtrip
     MULTIPLE  = :multiple
 
-    FLIGHT_TYPES = [ONEWAY, ROUNDTRIP, MULTIPLE]
+    TYPES = [ONEWAY, ROUNDTRIP, MULTIPLE]
   end 
 
 
