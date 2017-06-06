@@ -73,3 +73,23 @@ Here are described the general nomenclatures for the project
 
 - `Return` This name is used to indicate the date and time parameters necesaries for the round trip availability search
    _example_: `returnDates`, `returnTimes`
+
+## Airport Information Structure
+ 
+The file `farandula/demos/java-server/src/main/resources/resultAir.json` contains a list of airports with the format:
+```
+{
+    "airports": [
+        {
+            "id": int,
+            "name": string,
+            "city": string,
+			"country": string,
+			"iata": string,
+			"type": string
+        },
+        ...
+        ...
+    ]
+}
+```
