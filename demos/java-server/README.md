@@ -6,7 +6,7 @@
 
 - Documentation
 
-    - [ ] Describe the structure of the `src` directory.
+    - [x] Describe the structure of the `src` directory.
     - [ ] Explain Farandula local maven repository.
     - [ ] Describe general nomencalture for methods, properties, objects, and parameters.
     - [ ] Describe how dependency injection works in the project.    
@@ -84,9 +84,9 @@ The file `farandula/demos/java-server/src/main/resources/resultAir.json` contain
             "id": int,
             "name": string,
             "city": string,
-			"country": string,
-			"iata": string,
-			"type": string
+	    "country": string,
+	    "iata": string,
+	    "type": string
         },
         ...
         ...
