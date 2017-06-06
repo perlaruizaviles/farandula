@@ -56,6 +56,10 @@ Here is an overview of the directory tree with a brief description of what each 
 
 ## Farandula Local Maven repo
 
+## Project Nomenclature
+
+This project has a special nomenclature for the different components. Here is described the main struture for that nomenclature.
+
 ### General
 Here are described the general nomenclatures for the project
 
