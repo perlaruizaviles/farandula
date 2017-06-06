@@ -55,3 +55,17 @@ Here is an overview of the directory tree with a brief description of what each 
         - `resources/` Contains the file resources and file properties needed for run the test
 
 ## Farandula Local Maven repo
+
+### General
+Here are described the general nomenclatures for the project
+
+- `Airport Code` It refers to the IATA airport code used to locate specific airport structures
+
+- `Departing/Departure` This name is used to indicate different components or parameters like dates, times, airport codes
+    _example_: `departingAirportCodes`, `departingDates`, `departingTimes`
+
+- `Arrival` This name is used to indicate the airport code necesary to indicate the arrival airport  
+    _example_: `arrivalAirportCodes`
+
+- `Return` This name is used to indicate the date and time parameters necesaries for the round trip availability search
+   _example_: `returnDates`, `returnTimes`
