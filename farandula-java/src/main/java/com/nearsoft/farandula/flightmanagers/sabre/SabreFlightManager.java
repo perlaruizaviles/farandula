@@ -189,15 +189,15 @@ public class SabreFlightManager implements FlightManager {
             JSONArray error = ctx.read("$..Errors[*]");
             for (Object er : error) {
                 Map<String, Object> map = (Map<String, Object>) ((JSONArray) er).get(0);
-                throwAndLogFactoryExceptions( map.get("ShortText").toString(),
-                        ErrorType.ACCESS_ERROR );
+                throwAndLogFactoryExceptions(map.get("ShortText").toString(),
+                        ErrorType.ACCESS_ERROR);
             }
         }
 
         if (ctx.read("$..errorCode") != null && ((JSONArray) ctx.read("$..errorCode")).size() > 0) {
             JSONArray error = ctx.read("$..errorCode");
 
-            throwAndLogFactoryExceptions( error.get(0).toString(), ErrorType.ACCESS_ERROR );
+            throwAndLogFactoryExceptions(error.get(0).toString(), ErrorType.ACCESS_ERROR);
 
         }
     }
@@ -321,10 +321,8 @@ public class SabreFlightManager implements FlightManager {
 
         //departure
         Map<String, Object> departureAirportData = (Map<String, Object>) getValueOf(segmentMap, "DepartureAirport");
-        Map<String, Object> departureTimeZone = (Map<String, Object>) getValueOf(segmentMap, "DepartureTimeZone");
         //arrival
         Map<String, Object> arrivalAirportData = (Map<String, Object>) getValueOf(segmentMap, "ArrivalAirport");
-        Map<String, Object> arrivalTimeZone = (Map<String, Object>) getValueOf(segmentMap, "ArrivalTimeZone");
 
         //Airleg data
         Segment seg = new Segment();
@@ -352,7 +350,7 @@ public class SabreFlightManager implements FlightManager {
                 (String) getValueOf(segmentMap, "ArrivalDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         seg.setArrivalDate(arrivalDateTime);
 
-        seg.setDuration( Long.parseLong( getValueOf(segmentMap, "ElapsedTime").toString() ) );
+        seg.setDuration(Long.parseLong(getValueOf(segmentMap, "ElapsedTime").toString()));
 
         return seg;
     }
@@ -360,6 +358,6 @@ public class SabreFlightManager implements FlightManager {
 
     private void throwAndLogFactoryExceptions(String message, ErrorType type) throws FarandulaException {
         LOGGER.error(message, FarandulaException.class);
-        throw new FarandulaException( type , message);
+        throw new FarandulaException(type, message);
     }
 }
