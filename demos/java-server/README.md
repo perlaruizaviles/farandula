@@ -7,11 +7,11 @@
 - Documentation
 
     - [x] Describe the structure of the `src` directory.
-    - [ ] Explain Farandula local maven repository.
-    - [ ] Describe general nomencalture for methods, properties, objects, and parameters.
+    - [x] Explain Farandula local maven repository.
+    - [x] Describe general nomencalture used on the project.
     - [ ] Describe how dependency injection works in the project.    
     - [ ] Describe how controllers and services interact with each other.
-    - [ ] Explain how Airport JSON info source is managed.
+    - [x] Explain how Airport JSON info source is managed.
     - [ ] Describe the endpoint structure.
     - [ ] Describe how the response is built.
     - [ ] Describe Helpers purpose.
@@ -94,7 +94,13 @@ Here are described the general nomenclatures for the project
 
 - `Return` This name is used to indicate the date and time parameters necesaries for the round trip availability search
    _example_: `returnDates`, `returnTimes`
-   
+
+- `One Way` This name is used to make reference a trip with only one departing airport and one arrival airport with just one departing date.
+
+- `Round Trip` This name is used to make reference a trp with the same features than the previous trip, but it must be aggregated the returning date and time
+
+- `Multi City` This name is used to make reference a trip with multiple departing airports and arrival airports which make pair between them. For each pair of airports there are a departing date and time. There are no return dates or times on this concept.
+
 ### Models
 Here are described the nomenclarute for the models contained on the project
 
