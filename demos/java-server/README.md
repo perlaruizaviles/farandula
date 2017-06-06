@@ -73,6 +73,24 @@ Here are described the general nomenclatures for the project
 
 - `Return` This name is used to indicate the date and time parameters necesaries for the round trip availability search
    _example_: `returnDates`, `returnTimes`
+   
+### Models
+Here are described the nomenclarute for the models contained on the project
+
+- `Airport` It contains basic information for an airport used on the response.
+	- Info contained: **name**, **city**, **country**, **iata code**
+
+- `FLight` It contains the information corresponding to an _Air Leg_ of the farandula library.
+	- Info contained: **departure airport**, **departureDate**, **arrival airport**, **arrival date** and **segment list**
+
+- `Flight Segment` It contains the information for the segments or stops contained in one airleg. It's the corresponding model for the _Segment_ model on farandula library.
+	- Info contained: **departure airport**, **departureDate**, **arrival airport**, **arrival date**, **marketing airline**, **operation airline**, **airplane data** and **cabin info**
+
+- `FLight Itinerary` It contains the information corresponding to a complete itinerary, airlegs and pricing. It's the corresponding model to the _Itinerary_ model on farandula library.
+	- Info contained: **key**, **type**, **flight list** and **itinerary fares**
+
+- `Itinerary Fares` It contains the price information. It's the corresponding model to the _Fares_ model on farandula library.
+	- Info contained: **base price**, **taxes price** and **total price**
 
 ## Airport Information Structure
  
