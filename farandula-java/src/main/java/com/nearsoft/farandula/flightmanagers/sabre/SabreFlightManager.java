@@ -12,7 +12,6 @@ import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
 import com.nearsoft.farandula.models.*;
-import com.nearsoft.farandula.utilities.GMTFormatter;
 import net.minidev.json.JSONArray;
 import okhttp3.*;
 import org.slf4j.Logger;
@@ -20,10 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -356,21 +352,7 @@ public class SabreFlightManager implements FlightManager {
                 (String) getValueOf(segmentMap, "ArrivalDateTime"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         seg.setArrivalDate(arrivalDateTime);
 
-        //to obtain the Airleg time of this segment.
-        long diffInMinutes = 0;
-        if (getValueOf(departureTimeZone, "GMTOffset").equals(getValueOf(arrivalTimeZone, "GMTOffset"))) {
-            diffInMinutes = Duration.between(departureDateTime, arrivalDateTime)
-                    .toMinutes();
-        } else {
-            String GMT_ZONE_departure = getValueOf(departureTimeZone, "GMTOffset").toString();
-            String GMT_ZONE_arrival = getValueOf(arrivalTimeZone, "GMTOffset").toString();
-            Instant timeStampDeparture = departureDateTime.toInstant(
-                    ZoneOffset.of(GMTFormatter.GMTformatter(GMT_ZONE_departure)));
-            Instant timeStampArrival = arrivalDateTime.toInstant(
-                    ZoneOffset.of(GMTFormatter.GMTformatter(GMT_ZONE_arrival)));
-            diffInMinutes = Duration.between(timeStampDeparture, timeStampArrival).toMinutes();
-        }
-        seg.setDuration(diffInMinutes);
+        seg.setDuration( Long.parseLong( getValueOf(segmentMap, "ElapsedTime").toString() ) );
 
         return seg;
     }
