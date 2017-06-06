@@ -56,6 +56,27 @@ Here is an overview of the directory tree with a brief description of what each 
 
 ## Farandula Local Maven repo
 
+This project uses the Farandula library. For convinience purposes a local maven repository for Farandula was created in the java-server project. When deploying a proyect this step will help the server environment to find Farandula as a maven dependency. To achieve this run the following command on terminal:
+
+    mvn deploy:deploy-file -Dfile=path/to/lib/farandula-1.0.0-SNAPSHOT.jar -DgroupId=com.example -DartifactId=farandula-example -Dpackaging=jar -Dversion=version_number -Durl=file:path/to/repo
+    
+Once done this the pom.xml file should look like this:
+
+	<repositories>
+		<repository>
+			<id>farandula-example</id>
+			<url>file:${project.basedir}/path/to/repo</url>
+		</repository>
+	</repositories>
+    
+Inside your dependencies you should have: 
+
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>farandula-example</artifactId>
+			<version>version_number</version>
+		</dependency>
+
 ## Project Nomenclature
 
 This project has a special nomenclature for the different components. Here is described the main struture for that nomenclature.
