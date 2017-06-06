@@ -33,3 +33,4 @@ Here is an overview of the directory tree with a brief description of what each 
 
 - `farandula/demos/java-server/src/`
 
+## Farandula Local Maven repo
