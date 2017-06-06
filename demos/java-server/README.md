@@ -119,6 +119,60 @@ Here are described the nomenclarute for the models contained on the project
 - `Itinerary Fares` It contains the price information. It's the corresponding model to the _Fares_ model on farandula library.
 	- Info contained: **base price**, **taxes price** and **total price**
 
+## Dependency Injection
+
+For this project, some annotations are used from the Spring framework to implement the dependency injection.
+
+The corresponding annotation for that is _**@Autowired**_
+
+Inside the project there are different interfaces with methods implemented on their corresponding classes. The interfaces are used in the code with the previous annotation on it.
+
+Example of that implementation: 
+
+```
+public class FlightService {
+
+    @Autowired
+    FlightHelper flightHelper;
+    @Autowired
+    PassengerHelper passengerHelper;
+    @Autowired
+    DateParser dateParser;
+
+	...
+```
+The class FlightService uses three different interfaces (dependencies) injected as class variables.
+
+The interface (_FlightHelper_) is the next
+```
+public interface FlightHelper {
+    Flight parseAirlegToFlight(AirLeg airleg);
+
+    FlightSegment parseSegmentToFlightSegment(Segment segment);
+
+    ItineraryFares parseFaresToItineraryFares(Fares fares);
+
+    List<Flight> getFlightsFromItinerary(Itinerary itinerary);
+
+    List<String> getCabinInformationFromSegment(Segment segment);
+
+    int getLimitOfFlightsFromString(String limitString);
+}
+```
+Those methods are implemented on the _FlightHelperImpl_ class, and it is marked with the __**@Component**__ annotation
+
+```
+@Component
+public class FlightHelperImpl implements FlightHelper{
+
+    @Autowired
+    AirportRepository airportRepository;
+
+    public Flight parseAirlegToFlight(AirLeg airLeg) {
+```
+
+We see also the injection of the _AirportRepository_ dependency injection.
+
 ## Airport Information Structure
  
 The file `farandula/demos/java-server/src/main/resources/resultAir.json` contains a list of airports with the format:
