@@ -44,11 +44,14 @@ Here is an overview of the directory tree with a brief description of what each 
                 - `Repositories/` Contains the interfaces with query methods to use in MongoDB data source
                 - `Response/` Contains classes with a response structure (deprecated)
                 - `Service/` Contains the service classes, where the bussiness logic is performed
+                - `JavaFarandulaApplication.java` Class with main method to run the application
         - `resources/` Contains the file resources and file properties for the application
     - `test/` Contains the test for the application classes
         - `java/`
             - `com.farandula/` Package where are located the test classes for the project clases
                 - `Helpers/` Contains the classes with test Helpers, these classes make test over the performance operations
-                - `Service/` Contains the classes with test Services, these classes make test over business logic  
+                - `Service/` Contains the classes with test Services, these classes make test over business logic
+                - `JavaFarandulaApplicationTests.java` Class that contains general tests for the application
+        - `resources/` Contains the file resources and file properties needed for run the test
 
 ## Farandula Local Maven repo
