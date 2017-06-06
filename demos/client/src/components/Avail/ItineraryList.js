@@ -46,7 +46,7 @@ class ItineraryList extends React.Component {
           {
             (travels)
               ? travels.map((travel) => {
-                let airline = airlineNameByAirlegs();
+                let airline = airlineNameByAirlegs(travel.airlegs);
                 return (
                   <ItineraryElement key={Math.random()} 
                     itinerary={travel}

@@ -15,18 +15,27 @@ class ItineraryElement extends React.Component {
     if (this.state.isOpened === 'false') this.setState({isOpened: 'true'});
   };
 
+  logoContent = () => {
+    if(this.state.airline==="multi"){
+      return (<Item.Image size='tiny'
+                      src='https://www.global-benefits-vision.com/wp-content/uploads/2016/02/Plane-Icon.jpg'/>)
+    }
+  }
+
   render() {
     let travel = {
       price: this.state.itinerary.fares.basePrice.amount,
-      airlegs: this.state.itinerary.airlegs
+      airlegs: this.state.itinerary.airlegs,
     };
 
     return (
       <Segment>
         <Item.Group>
           <Item>
-            <Item.Image size='tiny'
-                        src='https://www.global-benefits-vision.com/wp-content/uploads/2016/02/Plane-Icon.jpg'/>
+            <p>
+              {this.logoContent()}
+            </p>
+            
             <Item.Content>
               <Item.Description>
                 {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg} />)}
