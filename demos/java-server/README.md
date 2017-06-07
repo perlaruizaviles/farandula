@@ -6,12 +6,14 @@
 
 - Documentation
 
+    - [ ] Describe the spring boot approach
     - [x] Describe the structure of the `src` directory.
     - [x] Explain Farandula local maven repository.
     - [x] Describe general nomencalture used on the project.
     - [x] Describe how dependency injection works in the project.    
     - [x] Describe how controllers and services interact with each other.
     - [x] Explain how Airport JSON info source is managed.
+    - [ ] Explain the mongo repository implementation
     - [ ] Describe the endpoint structure.
     - [ ] Describe how the response is built.
     - [ ] Describe Helpers purpose.
