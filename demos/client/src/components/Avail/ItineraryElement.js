@@ -5,10 +5,11 @@ import Airleg from "./Airleg";
 import AirlegDetail from "./AirlegDetail";
 import {titleize} from "inflection";
 import * as airlines from "../../data/airlines";
-import logo_aeromexico from "../../assets/images/aeromexico.png";
-import logo_interjet from "../../assets/images/interjet.png";
-import logo_volaris from "../../assets/images/volaris.png";
-import logo_vivaAerobus from "../../assets/images/vivaAerobus.png";
+import logo_aeromexico from "../../assets/images/logos/aeromexico.png";
+import logo_interjet from "../../assets/images/logos/interjet.png";
+import logo_volaris from "../../assets/images/logos/volaris.png";
+import logo_vivaAerobus from "../../assets/images/logos/vivaAerobus.png";
+import logo_plane from "../../assets/images/logos/plane.png"
 
 class ItineraryElement extends React.Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class ItineraryElement extends React.Component {
         return(<Item.Image className="logoAirline"  size='tiny' src={logo_vivaAerobus} />);
 
       default:
-        return (<Item.Image><Icon name='plane' color='orange' size='massive'/></Item.Image>);
+        return (<Item.Image className="logoAirline"  size='tiny' src={logo_plane} />);
     }
   }
 
