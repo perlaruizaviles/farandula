@@ -166,13 +166,13 @@ public class AmadeusFlightManager implements FlightManager {
 
         for (Object result : results) {
 
-            Itinerary itineraryResult = new Itinerary();
-
             Map<String, Object> resultMap = (Map<String, Object>) result;
 
             JSONArray arrayItineraries = (JSONArray) resultMap.get("itineraries");
 
             for (Object itinerary : arrayItineraries) {
+
+                Itinerary itineraryResult = new Itinerary();
 
                 buildAirLegs((Map<String, Object>) itinerary, itineraryResult);
                 //pricing
