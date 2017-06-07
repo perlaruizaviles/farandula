@@ -9,8 +9,8 @@
     - [x] Describe the structure of the `src` directory.
     - [x] Explain Farandula local maven repository.
     - [x] Describe general nomencalture used on the project.
-    - [ ] Describe how dependency injection works in the project.    
-    - [ ] Describe how controllers and services interact with each other.
+    - [x] Describe how dependency injection works in the project.    
+    - [x] Describe how controllers and services interact with each other.
     - [x] Explain how Airport JSON info source is managed.
     - [ ] Describe the endpoint structure.
     - [ ] Describe how the response is built.
@@ -172,6 +172,74 @@ public class FlightHelperImpl implements FlightHelper{
 ```
 
 We see also the injection of the _AirportRepository_ dependency injection.
+
+## Controllers and Service
+This project contains two controllers which exposes one endpoint each one. These endpoint recieve different parameters to perform the corresponding tasks.
+
+In this case is exlained the example of the request for available flights.
+
+The controller that realizes the requests is named _FlightAvailController_ and exposes just one endpoint. It uses the __**@Crossorigin**__ annotation, this for the cors configuration in irder to let all the requests from everywere. Also is marked with the __**@RestController**__ annotation to specify that this controller is going to perform rest responses.
+
+```
+
+@CrossOrigin(origins = "*")
+@RestController
+public class FlightAvailController {
+
+    @Autowired
+    FlightService flightService;
+
+    @RequestMapping("/api/flights")
+    public List<FlightItinerary> getAvailableFlights(@Valid SearchRequest request) {
+        return flightService.getResponseFromSearch( request );
+    }
+}
+
+```
+
+The __**@RequestMapping**__ annotation indicates that every request to _/api/flights_ is going to call the _getAvailableFlights_ function.
+
+The parameter of the function is a very useful model (_SearchRequest_) that help to validate some data. Inside this model there are the variables or parameters necesaries to make a request.
+
+```
+
+//Part of the SearchRequest model
+public class SearchRequest {
+
+    @NotNull
+    private
+    String departingAirportCodes;
+
+    @NotNull
+    private
+    String departingDates;
+
+    @NotNull
+    private
+    String departingTimes;
+
+    @NotNull
+    private
+    String arrivalAirportCodes;
+    ...
+
+```
+This parameter is used on the _flightService_ variable injected as a dependency inside the function call (_getResponseFromSearch_).
+
+With this information contained on the _SearchRequest_, is possible perform a good request to the farandula library on the service.
+
+```
+
+public List<FlightItinerary> getResponseFromSearch(SearchRequest request) {
+
+        List<FlightItinerary> response = new ArrayList<>();
+        //Declaring for departing parameters
+        List<String> departingAirportCodes = prepareAirportCodes(request.getDepartingAirportCodes());
+        
+```
+In the previous code is possible to see the function _getResponseFromSearch_ with the _request_ parameter of type _SearchRequest_. After that, there is a call of a member function of _SearchRequest_ which returns the departing airport codes.
+
+There exist some other ember function of _FlightService_ which use a _SearchRequest_ object or some of the variable values.
 
 ## Airport Information Structure
  
