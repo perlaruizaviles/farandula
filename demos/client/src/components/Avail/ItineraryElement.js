@@ -5,6 +5,10 @@ import Airleg from "./Airleg";
 import AirlegDetail from "./AirlegDetail";
 import {titleize} from "inflection";
 import * as airlines from "../../data/airlines";
+import logo_aeromexico from "../../assets/images/aeromexico.png";
+import logo_interjet from "../../assets/images/interjet.png";
+import logo_volaris from "../../assets/images/volaris.png";
+import logo_vivaAerobus from "../../assets/images/vivaAerobus.png";
 
 class ItineraryElement extends React.Component {
   constructor(props) {
@@ -16,25 +20,32 @@ class ItineraryElement extends React.Component {
 		this.setState({isOpened: (this.state.isOpened === 'true') ? 'false' : 'true'});
   };
 
-	loadLogo = (airlineName) => {
-    const IMG_DIR = '../../../public/images/';
+	loadLogo = (logo) => {
 		return (
 			<Item.Image className="logoAirline" 
 				size='tiny'
-				src={IMG_DIR+airlineName+'.png'} 
+				src={logo} 
 			/>
 		);
 	}
 
   logoComponent = (airline) => {
-    if (airline !== airlines.AEROMEXICO &&
-        airline !== airlines.INTERJET   &&
-        airline !== airlines.VOLARIS    &&
-        airline !== airlines.VAERO) {
-          return (<Item.Image><Icon name='plane' color='orange' size='massive'/></Item.Image>);
-        } else {
-          return (this.loadLogo(airline))
-        }
+    switch (airline) {
+      case airlines.AEROMEXICO:
+        return(<Item.Image className="logoAirline"  size='tiny' src={logo_aeromexico} />);
+    
+      case airlines.INTERJET:
+        return(<Item.Image className="logoAirline"  size='tiny' src={logo_interjet} />);
+
+      case airlines.VOLARIS:
+        return(<Item.Image className="logoAirline"  size='tiny' src={logo_volaris} />);
+
+      case airlines.VAERO:
+        return(<Item.Image className="logoAirline"  size='tiny' src={logo_vivaAerobus} />);
+
+      default:
+        return (<Item.Image><Icon name='plane' color='orange' size='massive'/></Item.Image>);
+    }
   }
 
   render() {
