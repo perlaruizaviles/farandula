@@ -17,11 +17,20 @@ module Farandula
 
           request = Amadeus::Request.new
 
-          url_request = request.build_url_request_for!( search_form, api_key )
+          url_request = request.build_target_url_from_search!( search_form, api_key )
+
+          puts url_request
 
           response = RestClient.get url_request
 
+
+
           response
+
+        end
+
+        def buildItineri
+
 
         end
 

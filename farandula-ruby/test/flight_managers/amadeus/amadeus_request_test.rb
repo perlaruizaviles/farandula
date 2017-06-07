@@ -36,7 +36,7 @@ class Farandula::AmadeusRequestTest < Minitest::Test
         "&adults=1" \
         "&number_of_results=2"
 
-    result = @request.build_url_request_for!( search_form, "R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" )
+    result = @request.build_target_url_from_search!( search_form, "R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" )
 
     assert_equal( expectedURL.downcase , result.downcase )
 

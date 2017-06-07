@@ -8,7 +8,7 @@ module Farandula
           date.strftime('%Y-%m-%d')
         end
 
-        def build_url_request_for!( search_form, api_key )
+        def build_target_url_from_search!( search_form, api_key )
 
           number_of_results = "&number_of_results=#{search_form.offset}"
 

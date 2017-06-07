@@ -102,10 +102,10 @@
       }
     } ],
     "fare" : {
-      "total_price" : "369.95",
+      "total_price" : "375.52",
       "price_per_adult" : {
-        "total_fare" : "369.95",
-        "tax" : "113.95"
+        "total_fare" : "375.52",
+        "tax" : "114.52"
       },
       "restrictions" : {
         "refundable" : false,
