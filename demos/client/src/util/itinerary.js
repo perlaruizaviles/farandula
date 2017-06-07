@@ -1,21 +1,22 @@
 export const airlineNameByAirlegs = airlegs => {
-	let airline;
 	let result;
 
 	airlegs.map((airleg) => {
+		let airline;
 		return(
 			airleg.segments.map((segment) => {
 				if(!airline){
-					airline = segment.airLineMarketingName
+					airline = segment.airLineMarketingName;
+					result = airline;
 				}else{
 					if(airline!==segment.airLineMarketingName) {
-						result = "multi"
+						result = "multiple airlines"
+						return result;
 					}
 				}
 				return result;
 			})
 		);
 	})
-	
 	return result;
 }

@@ -50,6 +50,8 @@ class ItineraryList extends React.Component {
                 return (
                   <ItineraryElement key={Math.random()} 
                     itinerary={travel}
+										price={travel.fares.basePrice.amount}
+										airlegs={travel.airlegs}
                     airline={airline}/>
                 )})
               : ""

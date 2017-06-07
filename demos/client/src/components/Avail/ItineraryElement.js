@@ -1,56 +1,75 @@
 import React from "react";
-import {Button, Item, Segment} from "semantic-ui-react";
+import {Button, Item, Segment, Icon} from "semantic-ui-react";
 import {Collapse} from "react-collapse";
 import Airleg from "./Airleg";
 import AirlegDetail from "./AirlegDetail";
+import {titleize} from "inflection";
+import * as airlines from "../../data/airlines";
 
 class ItineraryElement extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {...props, isOpened: 'false'};
+    this.state = {isOpened: 'false'};
   }
 
   open = () => {
-    if (this.state.isOpened === 'true') this.setState({isOpened: 'false'});
-    if (this.state.isOpened === 'false') this.setState({isOpened: 'true'});
+		this.setState({isOpened: (this.state.isOpened === 'true') ? 'false' : 'true'});
   };
 
-  logoContent = () => {
-    if(this.state.airline==="multi"){
-      return (<Item.Image size='tiny'
-                      src='https://www.global-benefits-vision.com/wp-content/uploads/2016/02/Plane-Icon.jpg'/>)
-    }
+	loadLogo = (url) => {
+		return (
+			<Item.Image className="logoAirline" 
+				size='tiny'
+				src={url} 
+			/>
+		);
+	}
+
+  logoContent = (airline) => {
+
+		switch (airline) {
+			case airlines.AEROMEXICO:
+				return (this.loadLogo('https://sprcdn-prod0-sam.sprinklr.com/9009/http___centreforaviation.com_i-c6c4914b-fc50-43d5-938d-58e90c1fe5aa-1949853016.png'));
+			case airlines.INTERJET:
+				return (this.loadLogo('https://www.seatlink.com/images/logos/no-text/sm/interjet.png'));
+			case airlines.VOLARIS:
+				return (this.loadLogo('http://www.tijuanazonkeys.com.mx/images/socios/volaris.png'));
+			case airlines.VAERO:
+				return (this.loadLogo('https://www.seatlink.com/images/logos/vivaaerobus.png'));
+			default:
+				return (<Item.Image><Icon name='plane' color='orange' size='massive'/></Item.Image>);
+		}
   }
 
   render() {
-    let travel = {
-      price: this.state.itinerary.fares.basePrice.amount,
-      airlegs: this.state.itinerary.airlegs,
-    };
+
+		const {price, airlegs} = this.props;
+
+		let airline = decodeURIComponent(escape(this.props.airline));
 
     return (
       <Segment>
         <Item.Group>
           <Item>
-            <p>
-              {this.logoContent()}
-            </p>
-            
+              {this.logoContent(airline)}
             <Item.Content>
+							<Item.Meta>
+								<span className='cinema'>{titleize(airline)}</span>
+							</Item.Meta>
               <Item.Description>
-                {travel.airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg} />)}
+                {airlegs.map((airleg) => <Airleg key={Math.random()} {...airleg} />)}
               </Item.Description>
               <Item.Extra><Button size='tiny' compact
                color='blue' onClick={this.open}>View details</Button></Item.Extra>
             </Item.Content>
             <Item.Extra className="itineraryExtraSection" style={{width: '15%'}}>
-              <p className="itineraryPrice">USD ${travel.price}</p>
+              <p className="itineraryPrice">USD ${price}</p>
               <center><Button disabled={true} className='orange' content='Book'/></center>
             </Item.Extra>
           </Item>
 
           <Collapse isOpened={this.state.isOpened === 'true'}>
-            {travel.airlegs.map((airleg, index) => <AirlegDetail index={index} key={Math.random()} {...airleg}/>)}
+            {airlegs.map((airleg, index) => <AirlegDetail index={index} key={Math.random()} {...airleg}/>)}
           </Collapse>
         </Item.Group>
       </Segment>
