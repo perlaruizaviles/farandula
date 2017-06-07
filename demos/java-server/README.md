@@ -14,7 +14,7 @@
     - [x] Describe how controllers and services interact with each other.
     - [x] Explain how Airport JSON info source is managed.
     - [x] Explain the mongo repository implementation
-    - [ ] Describe the endpoint structure.
+    - [X] Describe the endpoint structure.
     - [x] Describe how the response is built.
     - [ ] Describe Helper's purpose.
     - [ ] Describe how testing classes is done.
