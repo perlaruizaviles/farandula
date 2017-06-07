@@ -264,6 +264,70 @@ The file `farandula/demos/java-server/src/main/resources/resultAir.json` contain
 ```
 Also, when the class `AirportsSource` inits, it parses the `resultAir.json` and puts it into a HashMap to access it, the airports can be accesed trough the `iata` code with the function `AirportsSource.getAirport(String iataKey)`
 
+## Mongo Repository
+There exists a feature inside the project which perform an airport search into a MongoDB server. This is possible because of the `spring-data-mongo` dependency.
+
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-mongodb</artifactId>
+</dependency>
+```
+
+Working with this library is posible to map objects to MongoDB collections in a easy way.
+
+The feature of airport search on mongodb uses an interface named `AirportRepository` which extends from the interface `MongoRepository` and is annotated with __**@Repository**__. Also, is necesary define the object type to store in a collection (named with the object type name) and the data type of the object key in the collection.
+
+```
+
+@Repository
+public interface AirportRepository extends MongoRepository<Airport, String>{
+...
+
+```
+
+Inside the interface, exsist different methods (without an explicit implementation) which works as operations over the repository. The normal methods defined by the parent interface performs actions like add or retreive elements, but it's also posible to declare methods that perform specific actions in the repository; these methods are called **query methods**.
+
+```
+//Find an airport by city name
+    List<Airport> findByCityLike(@Param("city") String city);
+```
+
+These query methods are able to perform simple operation like the one above, which retreives a list of airports finding the cincidences in the collection by the city.
+
+But in the application was necesary performing a more complex query. It was needed a query that retreive the first 10 airports whith councidences of one string on the iata code, city name or airport name, ignoring the case type.
+
+This query method is the next:
+
+```
+//Find Airport by City name, Airport name or Iata code
+    List<Airport> findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase
+            (
+                @Param("city") String city,
+                @Param("name") String name,
+                @Param("iata") String iata
+            );
+```
+
+It's importan declare the three parameters on the query method. But is necesary find the coincidences of the same string. So, the implementation of this query method is the next on the `AirportService` class.
+
+```
+@Autowired
+    AirportRepository airportRepository;
+
+    public List<Airport> getResponseFromSearch(String pattern){
+        return airportRepository.findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase
+                (
+                        pattern,
+                        pattern,
+                        pattern
+                );
+    }
+```
+The important things here is: The dependency injection of the AirportRepository interface, and the query method call with the same pattern (the string to find in the repository).
+
+The results are returned by the function to the controller and the controller return that result as a JSON.
+
 ## The available flights response
 
 On the `Service/` folder the `FlightService.java` class is found. This class is used by the `FlightAvailController.java` in the `Controller/` folder to return a JSON response with available flight according to an specified seach.
