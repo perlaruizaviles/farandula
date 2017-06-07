@@ -263,3 +263,16 @@ The file `farandula/demos/java-server/src/main/resources/resultAir.json` contain
 }
 ```
 Also, when the class `AirportsSource` inits, it parses the `resultAir.json` and puts it into a HashMap to access it, the airports can be accesed trough the `iata` code with the function `AirportsSource.getAirport(String iataKey)`
+
+## The available flights response
+
+On the `Service/` folder the `FlightService.java` class is found. This class is used by the `FlightAvailController.java` in the `Controller/` folder to return a JSON response with available flight according to an specified seach.
+
+
+	@Autowired
+    FlightService flightService;
+
+    @RequestMapping("/api/flights")
+    public List<FlightItinerary> getAvailableFlights(@Valid SearchRequest request) {
+        return flightService.getResponseFromSearch( request );
+    }
