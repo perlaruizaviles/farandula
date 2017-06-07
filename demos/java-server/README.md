@@ -411,7 +411,7 @@ The results are returned by the function to the controller and the controller re
 
 ## The available flights response
 
-On the `Service/` folder the `FlightService.java` class is found. This class is used by the `FlightAvailController.java` in the `Controller/` folder to return a JSON response with available flight according to an specified seach.
+On the `Service/` folder the `FlightService.java` class is found. This class is used by the `FlightAvailController.java` in the `Controller/` folder to return a JSON response with available flight according to an specified search.
 
 
 	@Autowired
@@ -421,3 +421,294 @@ On the `Service/` folder the `FlightService.java` class is found. This class is 
     public List<FlightItinerary> getAvailableFlights(@Valid SearchRequest request) {
         return flightService.getResponseFromSearch( request );
     }
+    
+You can find the SearchRequest class on `models/` folder.
+
+Correct URL requests would look like this:
+
+- One Way
+	http://farandula-java.herokuapp.com/api/flights?departingAirportCodes=MEX&departingDates=2017-06-07&departingTimes=00:00:00&arrivalAirportCodes=GDL&type=oneWay&passenger=children:,infants:,infantsOnSeat:,adults:2&cabin=economy&gds=travelport 
+
+- Round Trip
+	http://farandula-java.herokuapp.com/api/flights?departingAirportCodes=MEX&departingDates=2017-06-07&departingTimes=00:00:00&arrivalAirportCodes=GDL&returnDates=2017-07-07&returnTimes=00:00:00&type=roundTrip&passenger=children:0,infants:0,infantsOnSeat:0,adults:2&cabin=economy&limit=50&gds=sabre 
+ 
+- Multi City
+	http://farandula-java.herokuapp.com/api/flights?departingAirportCodes=MEX,GDL,DFW&departingDates=2017-06-07,2017-07-07,2017-08-07&departingTimes=00:00:00,00:00:00,00:00:00&arrivalAirportCodes=CUU,MEX,CDG&type=multiCity&passenger=children:0,infants:0,infantsOnSeat:0,adults:2&cabin=economy&limit=25&gds=amadeus 
+
+
+The _getResponseFromSearch_ method on _FlightService_ returns a list of _FlightItineraries_, so in order to create the desired response the _FlightService_ class needs to parse and manage some of the request parameters. To achieve this, some classes in `Helpers/` folder are required. 
+The first step is to prepare our search command aiding us with the Farandula library, and we will use a helper known as Luisa to achieve this:
+
+	SearchCommand command = Luisa.findMeFlights()
+	
+Now we will start building our search command parameter by parameter 
+
+- Preparing AirportCodes:
+	Luisa needs to receive a List of iata Strings for both arrivalAirportCodes and departingAirportCodes. The length for these lists vary depending on which kind of flight is chosen _(1 for oneWay, 2 for roundTrip or 3-5 for multiCity)_.
+	Since both parameters come as String separated by comas, it is necessary to have a function that prepares and returns a validated list of string for each parameter.
+	
+		public List<String> prepareAirportCodes(String airportCodes) {
+
+        		String[] departingAirportCodeArray = airportCodes.split(",");
+
+        		for (String airportCode : departingAirportCodeArray) {
+            			if (!flightHelper.validIataLength(airportCode))
+                			return new ArrayList<>();
+        		}	
+
+        		return Arrays.asList(departingAirportCodeArray);
+		}
+		
+	And both lists would look like this:
+	
+		List<String> departingAirportCodes = prepareAirportCodes(request.getDepartingAirportCodes());        
+        	List<String> arrivalAirportCodes = prepareAirportCodes(request.getArrivalAirportCodes());
+	
+- Preparing the type and number of passengers:
+	Luisa needs to know how many passengers of each type _(children, infants, infantsOnSeat, adults )_ she will find flights for. For this, an implementation of the AgeManager interface is needed.
+		
+		AgeManager ageManager = passengerHelper.getPassengersFromString(request.getPassenger());
+	
+	In this case our injection for _PassengerHelper_ has a method _getPassengerFromString(String passengerString)_ that returns a built AgeManager object.
+	
+	In our example that _passsengerString_ looks like this:
+		
+		children:0,infants:0,infantsOnSeat:0,adults:2
+	
+	Where the colon divides the type of passanger and the quantity of them. Since Luisa needs to know the age of each passenger except for adults, a correct implementation of the _getPassengerFromString(String passengerString)_ would look like this:
+		
+		public AgeManager getPassengersFromString(String passengerStringList) {
+
+		//children:0,infants:0,infantsOnSeat:0,adults:2
+		AgeManager ageManager = new AgeManagerImpl();
+		//TODO: Complementar con tipo de pasajeros y edades
+
+		String[] passengerType = passengerStringList.split(",");
+
+		String[] adults = passengerType[3].split(":");
+		int numberOfAdults = Integer.parseInt(adults[1]);
+
+		//Infants on Seat parse
+		String[] infantsOnSeat = passengerType[2].split(":");
+		String[] infantsOnSeatAgesString;
+
+		if (infantsOnSeat.length == 1 || "0".equals(infantsOnSeat[1])) {
+		    infantsOnSeatAgesString = new String[]{};
+		} else {
+		    int numberOfInfantsOnSeat = Integer.parseInt(infantsOnSeat[1]);
+		    infantsOnSeatAgesString = new String[numberOfInfantsOnSeat];
+		    for (int i = 0; i < numberOfInfantsOnSeat; i++) {
+			infantsOnSeatAgesString[i] = "2";
+		    }
+		}
+
+		int[] infantsOnSeatAges = Arrays.stream(infantsOnSeatAgesString)
+			.mapToInt(Integer::parseInt)
+			.toArray();
+
+		//Children parse
+		String[] children = passengerType[0].split(":");
+		String[] childrenAgesString;
+
+		if (children.length == 1 || "0".equals(children[1])) {
+		    childrenAgesString = new String[]{};
+		} else {
+		    int numberOfChildren = Integer.parseInt(children[1]);
+		    childrenAgesString = new String[numberOfChildren];
+		    for (int i = 0; i < numberOfChildren; i++) {
+			childrenAgesString[i] = "8";
+		    }
+		}
+
+		int[] childrenAges = Arrays.stream(childrenAgesString)
+			.mapToInt(Integer::parseInt)
+			.toArray();
+
+		//Infants parse
+		String[] infants = passengerType[1].split(":");
+		String[] infantsAgesString;
+
+		if (infants.length == 1 || "0".equals(infants[1])) {
+		    infantsAgesString = new String[]{};
+		} else {
+		    int numberOfInfants = Integer.parseInt(infants[1]);
+		    infantsAgesString = new String[numberOfInfants];
+		    for (int i = 0; i < numberOfInfants; i++) {
+			infantsAgesString[i] = "2";
+		    }
+		}
+
+		int[] infantsAges = Arrays.stream(infantsAgesString)
+			.mapToInt(Integer::parseInt)
+			.toArray();
+
+		ageManager.setChildAges(childrenAges);
+		ageManager.setInfantAges(infantsAges);
+		ageManager.setInfantOnSeatAges(infantsOnSeatAges);
+		ageManager.setNumberAdults(numberOfAdults);
+
+		return ageManager;
+	    }
+	    
+- Preparing the limit:
+	The limit refers to the number of results Luisa will throw. So, since the limit will come in String from the parameter it is just a matter of parsing the number into an Integer. _FlightHelper_ injection is used for this.
+	
+		flightHelper.getLimitOfFlightsFromString(request.getLimit())
+	
+	And the method should look as the following:
+	
+		public int getLimitOfFlightsFromString(String limitString) {
+
+		try {
+		    if (limitString == null)
+			throw new NumberFormatException();
+		    return Integer.parseInt(limitString);
+
+		} catch (NumberFormatException e) {
+		    return 50;
+		}
+	    }
+
+- Preparing the Cabin Class:
+	For this parameter, Farandula already has a parser. Its use looks as follows:
+	
+		CabinClassParser.getCabinClassType(request.getCabin());
+		
+- Preparing dates and times:
+	Date and time come split into 2 different parameters, both in String. Using _DateParser_ injection will return both parameters into a LocalDateTime data type as required by Luisa.
+	
+		public List<LocalDateTime> prepareDepartureDates(String departingDates, String departingTimes) throws 			ParameterException {
+		return dateParser.parseStringDatesTimes(departingDates.split(","), departingTimes.split(","));
+	    }
+	The _pareStringDatesTimes_ implementation should look as the following:
+		
+		public List<LocalDateTime> parseStringDatesTimes(String[] dates, String[] times) {
+			
+			    List<LocalDateTime> localDateTimes = new ArrayList<>();
+			    for (int i = 0; i < dates.length; i++) {
+				LocalDateTime dateTime = this.parseDateTime(dates[i], times[i]);
+				localDateTimes.add(dateTime);
+			    }
+			    return localDateTimes;			
+	    	}
+	Further validation can be added.
+	
+- Preparing for the Flight Type:
+	In this step the flight type is set, however Farandula already has an anumeration that can help Luisa. Also, when preparing for the flight type, the developer needs to consider that for round trip to more attributes should be added being these the returnTime and the returnDate. A switch can be used for each case.
+	
+		private void setCommandFlightType(SearchCommand command, SearchRequest request) {
+		switch (request.getType()) {
+		    case "oneWay":			
+			    command.type(FlightType.ONEWAY);			
+			break;
+
+		    case "roundTrip":
+		    
+			List<LocalDateTime> localReturnDates = dateParser.parseStringDatesTimes(request.getReturnDates(), request.getReturnTimes());
+			command
+				.returningAt(localReturnDates)
+				.type(FlightType.ROUNDTRIP);
+			break;
+
+		    case "multiCity":
+		    
+			    command.type(FlightType.OPENJAW);			
+
+		    default:
+			break;
+		}
+	    }
+	
+	Further validation depending on needs should be added.
+
+
+Each of the parameters is parsed and ready for Luisa to use:
+
+	 List<LocalDateTime> localDepartureDates = prepareDepartureDates(request.getDepartingDates(), request.getDepartingTimes());
+
+         //Fill the command with common information
+         SearchCommand command = Luisa.findMeFlights()
+                    .from(departingAirportCodes)
+                    .to(arrivalAirportCodes)
+                    .departingAt(localDepartureDates)
+                    .forPassegers(Passenger.children(ageManager.getChildAges()))
+                    .forPassegers(Passenger.infants(ageManager.getInfantAges()))
+                    .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
+                    .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
+                    .limitTo(flightHelper.getLimitOfFlightsFromString(request.getLimit()))
+                    .preferenceClass(CabinClassParser.getCabinClassType(request.getCabin()));
+         setCommandFlightType(command, request);
+
+When telling Luisa to execute the command Luisa will respond with a list of Farandula's Itinerary Objects. However since _getResponseFromSearch_ method returns a list of FlightItinerary one more parse is needed. Using _flightHelper_ injection will help to create that list.
+
+	List<FlightItinerary> response = new ArrayList<>();
+	List<Itinerary> flights = command.execute();
+        response.addAll(flightHelper.getFlightItineraryFromItinerary(flights, request.getType()));
+	
+The _getFlightItineraryFromItinerary_ method implementation shoulg look as follows:
+	
+	public List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type) {        
+
+		List<FlightItinerary> flightItineraries = itineraryList
+			.stream()
+			.map((Itinerary itinerary) -> {
+
+			    Fares fareFromItinerary = itinerary.getPrice();
+			    
+			    ItineraryFares itineraryFares = ( fareFromItinerary == null )
+				    ? new ItineraryFares()
+				    : this.parseFaresToItineraryFares(fareFromItinerary);
+
+			    List<Flight> flightList = this.getFlightsFromItinerary(itinerary);
+
+			    FlightItinerary flightItinerary = new FlightItinerary(12345, type, flightList, itineraryFares);
+
+			    return flightItinerary;
+			})
+			.collect(Collectors.toList());
+
+		return flightItineraries;
+	}
+
+By doing this, the _FlightService_ is now ready to return the list of FlightItinerary to the controller. A full snippet of the _getResponseFromSearch_ method is shown bellow. 
+
+	public List<FlightItinerary> getResponseFromSearch(SearchRequest request) {
+
+		List<FlightItinerary> response = new ArrayList<>();
+		//Declaring for departing parameters
+		List<String> departingAirportCodes = prepareAirportCodes(request.getDepartingAirportCodes());
+		//Declaring for returning parameters (Airport code only)
+		List<String> arrivalAirportCodes = prepareAirportCodes(request.getArrivalAirportCodes());
+		setSupplier(request.getGds());
+		try {
+		    AgeManager ageManager = passengerHelper.getPassengersFromString(request.getPassenger());
+
+		    //Prepare departure dates
+		    List<LocalDateTime> localDepartureDates = prepareDepartureDates(request.getDepartingDates(), request.getDepartingTimes());
+
+		    //Fill the command with common information
+		    SearchCommand command = Luisa.findMeFlights()
+			    .from(departingAirportCodes)
+			    .to(arrivalAirportCodes)
+			    .departingAt(localDepartureDates)
+			    .forPassegers(Passenger.children(ageManager.getChildAges()))
+			    .forPassegers(Passenger.infants(ageManager.getInfantAges()))
+			    .forPassegers(Passenger.infantsOnSeat(ageManager.getInfantOnSeatAges()))
+			    .forPassegers(Passenger.adults(ageManager.getNumberAdults()))
+			    .limitTo(flightHelper.getLimitOfFlightsFromString(request.getLimit()))
+			    .preferenceClass(CabinClassParser.getCabinClassType(request.getCabin()));
+
+		    setCommandFlightType(command, request);
+		    List<Itinerary> flights = command.execute();
+		    response.addAll(flightHelper.getFlightItineraryFromItinerary(flights, request.getType()));
+
+		} catch (Exception e) {
+		    Logger.getLogger("Flight Service").warning(e.toString());
+		}
+
+		return response;
+	}
+	
+	
+		
+
