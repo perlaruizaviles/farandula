@@ -552,7 +552,7 @@ Now we will start building our search command parameter by parameter
 			ageManager.setNumberAdults(numberOfAdults);
 
 			return ageManager;
-	    	}
+	    }
 	    
 - Preparing the limit:
 
@@ -572,7 +572,7 @@ Now we will start building our search command parameter by parameter
 			} catch (NumberFormatException e) {
 			    return 50;
 			}
-	    	}
+	    }
 
 - Preparing the Cabin Class:
 	For this parameter, Farandula already has a parser. Its use looks as follows:
@@ -584,7 +584,7 @@ Now we will start building our search command parameter by parameter
 	
 		public List<LocalDateTime> prepareDepartureDates(String departingDates, String departingTimes) throws 			ParameterException {
 			return dateParser.parseStringDatesTimes(departingDates.split(","), departingTimes.split(","));
-	    	}
+	    }
 	The _pareStringDatesTimes_ implementation should look as the following:
 		
 		public List<LocalDateTime> parseStringDatesTimes(String[] dates, String[] times) {
@@ -595,10 +595,12 @@ Now we will start building our search command parameter by parameter
 				localDateTimes.add(dateTime);
 			    }
 			    return localDateTimes;			
-	    	}
+	    }
+	    
 	Further validation can be added.
 	
 - Preparing for the Flight Type:
+
 	In this step the flight type is set, however Farandula already has an anumeration that can help Luisa. Also, when preparing for the flight type, the developer needs to consider that for round trip to more attributes should be added being these the returnTime and the returnDate. A switch can be used for each case.
 	
 		private void setCommandFlightType(SearchCommand command, SearchRequest request) {
