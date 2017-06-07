@@ -6,14 +6,14 @@
 
 - Documentation
 
-    - [ ] Describe the spring boot approach
+    - [x] Describe the spring boot approach
     - [x] Describe the structure of the `src` directory.
     - [x] Explain Farandula local maven repository.
     - [x] Describe general nomencalture used on the project.
     - [x] Describe how dependency injection works in the project.    
     - [x] Describe how controllers and services interact with each other.
     - [x] Explain how Airport JSON info source is managed.
-    - [ ] Explain the mongo repository implementation
+    - [x] Explain the mongo repository implementation
     - [ ] Describe the endpoint structure.
     - [ ] Describe how the response is built.
     - [ ] Describe Helpers purpose.
@@ -26,6 +26,87 @@
 - Code
     - [ ] Change the airport source class to a hashmap implementation.
 
+## Spring Boot Approach
+Spring Boot is a micro framework which makes easier to create stand alone Spring based applications [https://projects.spring.io/spring-boot/]. This framework comes with different useful features to work faster.
+
+- It comes with an embed Tomcat, Jetty or another java web server.
+- Provides an optional starter POM to simplify the maven configuration.
+- It configures Spring whenever is possible-
+- No code generation and no xml configuration requiered.
+
+To start a project using Spring Boot is necesary import the next dependencies in the POM file.
+
+```
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.3.RELEASE</version>
+</parent>
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+</dependencies>
+```
+
+The next step is declare the main method to start the application. For this is necessary a class annotated with __**@SpringBootApplication**__ and import the __SpringApplication__ class. 
+
+The example of our application is the next:
+
+```
+@SpringBootApplication
+public class JavaFarandulaApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(JavaFarandulaApplication.class, args);
+	}
+}
+```
+
+### Spring Boot Data REST
+
+The application described is going to implement a RESTful API; for this, is necesary to import other dependencies in the POM file.
+
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-rest</artifactId>
+</dependency>
+```
+
+Once this dependency has been imported, is possible to annotate the controllers of the application with __**@RestController**__. This annotation assumes the response semantic and parse it as REST response (JSON format).
+
+### Spring Boot Maven Plugin
+There exists a maven plugin for Spring Boot which makes easier different tasks on the project. Is easier, for example, run the application or build the packages using this plugin.
+
+The maven plugin usen in the POM file is the next:
+
+```
+<build>
+	<plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+	</plugins>
+</build>
+```
+
+A quick example (used on next chapters) is the command to run the application using the maven plugin for springboot
+
+`mvn spring-boot:run`
+
+### Spring Boot Tests
+There is a dependency dedicated to tests performance, is the `spring-boot-starter-test`. This dependency provides different libraries for testing like JUnit, Hamcrest and Mockito.
+
+The dependency on the POM file must be as the following.
+
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-rest</artifactId>
+</dependency>
+```
 
 ## Source Directory Structure
 
