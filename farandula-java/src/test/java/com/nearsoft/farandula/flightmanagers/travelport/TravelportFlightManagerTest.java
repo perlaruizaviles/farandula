@@ -131,7 +131,7 @@ class TravelportFlightManagerTest {
         return supplierStub;
     }
 
-    @Test
+    //@Test
     public void getAvail_roundTrip() throws FarandulaException, IOException {
 
         Luisa.setSupplier(() -> {
