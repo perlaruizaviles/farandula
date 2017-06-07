@@ -14,7 +14,7 @@
     - [x] Describe how controllers and services interact with each other.
     - [x] Explain how Airport JSON info source is managed.
     - [x] Explain the mongo repository implementation
-    - [ ] Describe the endpoint structure.
+    - [x] Describe the endpoint structure.
     - [ ] Describe how the response is built.
     - [ ] Describe Helpers purpose.
     - [ ] Describe how testing classes is done.
@@ -716,6 +716,94 @@ By doing this, the _FlightService_ is now ready to return the list of FlightItin
 		return response;
 	}
 	
-	
+## Endpoint Structure ##
+In this project, two types of responses are used, the `findFlights` response and the `findAirports` response.
+
+The `findAirports` response returns the airport information with the following definition:
+#### Airport definition
+    "airport": {
+        "city": string,
+        "country" : string,
+        "iata": string,
+        "name": string
+    }
+#### Segment definition
+    "segment": {
+        "airLineMarketingName": string,
+        "airLineOperationName": string,
+        "airplaneData": string,
+        "arrivalAirport": airport,
+        "arrivalDate": int  //unix timestamp seconds
+        "cabinTypes": [ string ],
+        "departureAirport": airport,
+        "departureDate": int //unix timestamp seconds
+        "duration": int  //minutes
+    }
+#### Price definition
+    "price": {
+        "amount": int,
+        "currencyCode": string
+    }
+#### Fares definition
+    "fares": {
+        "basePrice": price,
+        "taxesPrice": price,
+        "totalPrice": price
+    }
+#### Airleg definition
+    "airleg": {
+        "arrivalAirport": airport,
+        "arrivalDate": int, //unix timestamp seconds
+        "departureAirport": airport,
+        "departureDate": int, //unix timestamp seconds
+        "segments": [segment]
+    }
+
+    
+
+The `findFlights` response has three types of responses:
+
+ 1. oneWay
+ 2. roundTrip
+ 3. multicity
+
+#### Roundtrip ###
+    [
+        {
+            "airlegs": [
+                [0]: airleg, //Departing airleg
+                [1]: airleg  //Returning airleg
+            ],
+            "fares": fares,
+            "key": int,
+            "type": string
+        },
+        ...
+        ...
+    ]
+#### Oneway ###
+    [
+        {
+            "airlegs": [
+                [0]: airleg, //Departing airleg
+            ],
+            "fares": fares,
+            "key": int,
+            "type": string
+        },
+        ...
+        ...
+    ]
+#### Multicity ###
+    [
+        {
+            "airlegs": [ airleg ], //limited to 5 airlegs
+            "fares": fares,
+            "key": int,
+            "type": string
+        },
+        ...
+        ...
+    ]
 		
 
