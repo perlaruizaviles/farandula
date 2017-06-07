@@ -16,29 +16,25 @@ class ItineraryElement extends React.Component {
 		this.setState({isOpened: (this.state.isOpened === 'true') ? 'false' : 'true'});
   };
 
-	loadLogo = (url) => {
+	loadLogo = (airlineName) => {
+    const IMG_DIR = '../../../public/images/';
 		return (
 			<Item.Image className="logoAirline" 
 				size='tiny'
-				src={url} 
+				src={IMG_DIR+airlineName+'.png'} 
 			/>
 		);
 	}
 
-  logoContent = (airline) => {
-
-		switch (airline) {
-			case airlines.AEROMEXICO:
-				return (this.loadLogo('https://sprcdn-prod0-sam.sprinklr.com/9009/http___centreforaviation.com_i-c6c4914b-fc50-43d5-938d-58e90c1fe5aa-1949853016.png'));
-			case airlines.INTERJET:
-				return (this.loadLogo('https://www.seatlink.com/images/logos/no-text/sm/interjet.png'));
-			case airlines.VOLARIS:
-				return (this.loadLogo('http://www.tijuanazonkeys.com.mx/images/socios/volaris.png'));
-			case airlines.VAERO:
-				return (this.loadLogo('https://www.seatlink.com/images/logos/vivaaerobus.png'));
-			default:
-				return (<Item.Image><Icon name='plane' color='orange' size='massive'/></Item.Image>);
-		}
+  logoComponent = (airline) => {
+    if (airline !== airlines.AEROMEXICO &&
+        airline !== airlines.INTERJET   &&
+        airline !== airlines.VOLARIS    &&
+        airline !== airlines.VAERO) {
+          return (<Item.Image><Icon name='plane' color='orange' size='massive'/></Item.Image>);
+        } else {
+          return (this.loadLogo(airline))
+        }
   }
 
   render() {
@@ -51,7 +47,7 @@ class ItineraryElement extends React.Component {
       <Segment>
         <Item.Group>
           <Item>
-              {this.logoContent(airline)}
+              {this.logoComponent(airline)}
             <Item.Content>
 							<Item.Meta>
 								<span className='cinema'>{titleize(airline)}</span>
