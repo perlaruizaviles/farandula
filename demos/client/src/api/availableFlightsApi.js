@@ -27,10 +27,9 @@ class AvailableFlightsApi {
     const passenger = this.passengerAdapter(search.passenger);
 
     const GDS = this.getRandomGDS(0, 3);
-    console.log(GDS);
 
     let params = {
-      gds: "",
+      gds: GDS,
       departingAirportCodes: search.departureAirport,
       departingDates: search.departingDate,
       departingTimes: search.departingTime,
