@@ -58,3 +58,21 @@ span.travelTitle {
 	text-decoration: underline;
 	font-size: 16px;
 }
+
+.itineraryExtraSection{
+    text-align: center;
+}
+
+.itineraryPrice{
+    color: #272727;
+    font-weight: bold;
+}
+
+.ui.logoAirline{
+	display: flex;
+	align-items: center;
+}
+
+.ui.items>.item>.image.logoAirline {
+	display: flex;
+}
