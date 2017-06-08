@@ -72,7 +72,7 @@ public class JavaFarandulaApplicationTests {
     @Test
     public void oneWayTest() {
 
-        String departingDate = "2017-06-07";
+        String departingDate = "2017-07-08";
         String departingTime = "00:00:00";
         String departingAirportCodes = "MEX";
 
@@ -110,11 +110,11 @@ public class JavaFarandulaApplicationTests {
 
     @Test
     public void roundTripTest() {
-        String departingDate = "2017-06-07";
+        String departingDate = "2017-07-08";
         String departingTime = "00:00:00";
         String departingAirportCodes = "DFW";
 
-        String returnDate = "2017-07-07";
+        String returnDate = "2017-08-08";
         String returnTime = "00:00:00";
         String arrivalAirportCodes = "CDG";
 
@@ -146,7 +146,7 @@ public class JavaFarandulaApplicationTests {
 
     @Test
     public void multiCityTest() {
-        String departingDate = "2017-06-07,2017-07-07,2017-08-07";
+        String departingDate = "2017-07-08,2017-08-08,2017-09-08";
         String departingTime = "00:00:00,00:00:00,00:00:00";
         String departingAirportCodes = "MEX,CUU,LHR";
 
