@@ -4,7 +4,7 @@ import {Collapse} from "react-collapse";
 import Airleg from "./Airleg";
 import AirlegDetail from "./AirlegDetail";
 import {titleize} from "inflection";
-import logos from "../../data/airlines";
+import logos from "../../data/logos";
 
 class ItineraryElement extends React.Component {
   constructor(props) {
@@ -22,15 +22,11 @@ class ItineraryElement extends React.Component {
 
 		let airline = decodeURIComponent(escape(this.props.airline));
 
-    console.log(logos.get('Multiple Airlines'));
-    console.log('airline: '+airline)
-    console.log(logos.get(airline));
-
     return (
       <Segment>
         <Item.Group>
           <Item>
-              <Item.Image className="logoAirline"  size='tiny' src={logos.get(airline)}/>
+              <Item.Image className="logoAirline"  size='tiny' src={logos.get(airline) ? logos.get(airline) : logos.get('Default')}/>
             <Item.Content>
 							<Item.Meta>
 								<span className='cinema'>{titleize(airline)}</span>

@@ -9,7 +9,7 @@ export const airlineNameByAirlegs = airlegs => {
           airline = segment.airLineMarketingName;
         } else {
           if (airline !== segment.airLineMarketingName) {
-            airline = "multiple airlines"
+            airline = "Multiple Airlines"
           }
         }
         return airline;
