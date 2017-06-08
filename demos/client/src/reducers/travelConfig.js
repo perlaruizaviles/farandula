@@ -43,7 +43,8 @@ const travelConfig = (state = Map({}), action) => {
       if (state.get('destinies').size === 5) {
         return state;
       }
-      return state.set('destinies', state.get('destinies').push(Math.floor(Math.random() * 10000)));
+      let destinies = state.get('destinies');
+      return state.set('destinies', destinies.push(destinies.size));
 
     case types.REMOVE_DESTINY:
       if (state.get('destinies').size === 2) {

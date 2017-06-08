@@ -30,10 +30,10 @@ class AvailableFlightsApi {
 
     let params = {
       gds: GDS,
-      departingAirportCodes: search.departureAirport,
-      departingDates: search.departingDate,
-      departingTimes: search.departingTime,
-      arrivalAirportCodes: search.arrivalAirport,
+      departingAirportCodes: search.departingAirports,
+      departingDates: search.departingDates,
+      departingTimes: search.departingTimes,
+      arrivalAirportCodes: search.arrivalAirports,
       type: search.type,
       passenger: passenger,
       cabin: search.cabin,

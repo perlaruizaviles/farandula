@@ -40,8 +40,11 @@ class TravelSearch extends React.Component {
 
 
     const submit = (values) => {
+      console.log("values",values);
       actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin, properties.limit));
     };
+
+
 
     const isInvalidForm = (properties) => {
       if (properties.airportFrom.title === undefined) {
@@ -62,6 +65,30 @@ class TravelSearch extends React.Component {
       }
       return "";
     }
+
+    function renderTypeOfTrip(type) {
+
+      switch (type){
+        case "oneWay":
+          return <Grid.Row className={hideOn(['multiCity', 'roundTrip'])}>
+            <SearchForm
+              onSubmit={submit}
+              properties={properties}
+              destinies={[666]}
+              actions={actions}/>
+          </Grid.Row>;
+        case "multiCity":
+          return <Grid.Row className={hideOn(['roundTrip', 'oneWay'])}>
+            <SearchForm
+              onSubmit={submit}
+              properties={properties}
+              destinies={properties.destinies}
+              actions={actions}/>
+          </Grid.Row>;
+      }
+
+    }
+
 
     return (
       <Segment raised className='travelSearchSegment'>
@@ -114,57 +141,8 @@ class TravelSearch extends React.Component {
             </Dropdown>
           </Grid.Column>
 
-          <Grid.Row stretched verticalAlign="middle"
-                    className={hideOn(['multiCity'])}>
-            <div className="search-field">
-              <SearchSection properties={properties} actions={actions}/>
-            </div>
+          {renderTypeOfTrip(properties.selectedType)}
 
-            <DatePicker className={hideOn(['oneWay'])}
-                        customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
-                        selectsEnd
-                        minDate={properties.minDate}
-                        maxDate={properties.maxDate}
-                        selected={properties.endDate}
-                        startDate={properties.startDate}
-                        endDate={properties.endDate}
-                        placeholderText="Select date..."
-                        onChange={date => actions.dateChange('return', date)}/>
-
-            <div className="search-field">
-              <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
-                (event, button, search = {
-                  departureAirport: getIata(properties.airportFrom.title),
-                  departingDate: properties.startDate.format('YYYY-MM-DD'),
-                  departingTime: "10:15:30",
-                  arrivalAirport: getIata(properties.airportTo.title),
-                  arrivalDate: properties.endDate.format('YYYY-MM-DD'),
-                  arrivalTime: "00:00:00",
-                  type: properties.selectedType,
-                  passenger: properties.travelers,
-                  cabin: properties.cabin,
-                  limit: properties.limit
-                }) => {
-                  actions.availableFlights(search);
-                }
-              }>
-                <Button.Content visible>Search</Button.Content>
-                <Button.Content hidden>
-                  <Icon name='plane' className='large'/>
-                </Button.Content>
-              </Button>
-            </div>
-          </Grid.Row>
-
-
-          <Grid.Row className={hideOn(['roundTrip', 'oneWay'])}>
-            <Grid.Row>
-              <SearchForm
-                onSubmit={submit}
-                properties={properties}
-                actions={actions}/>
-            </Grid.Row>
-          </Grid.Row>
         </Grid>
       </Segment>
     );
