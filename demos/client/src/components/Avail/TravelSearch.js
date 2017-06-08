@@ -37,7 +37,6 @@ class TravelSearch extends React.Component {
 
 
     const submit = (values) => {
-      console.log("values",values);
       actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin, properties.limit));
     };
 

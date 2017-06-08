@@ -4,24 +4,25 @@ const DEPARTING_AIRPORTS = "departingAirports";
 const ARRIVAL_AIRPORTS = "arrivalAirports";
 const DEPARTING_DATES = "departingDates";
 const DEPARTING_TIMES = "departingTimes";
+const globalDistributedSystems = ['amadeus', 'sabre', 'travelport'];
 
 export function handleRequestData(values, type, passenger, cabin, limit) {
   const search = {
     type: type,
-    passenger: passenger,
+    passenger: passengerAdapter(passenger),
     cabin: cabin,
-    limit: limit
+    limit: limit,
+    gds: getRandomGDS(0, 3),
+    departingAirportCodes: dataAdapter(DEPARTING_AIRPORTS, values),
+    arrivalAirportCodes: dataAdapter(ARRIVAL_AIRPORTS, values),
+    departingDates: dataAdapter(DEPARTING_DATES, values),
+    departingTimes: dataAdapter(DEPARTING_TIMES, values)
   };
 
-  if (values.arrivalDate){
+  if (values.arrivalDate) {
     search.returnDates = values.arrivalDate.format("YYYY-MM-DD");
     search.returnTimes = "00:00:00";
   }
-
-  search.departingAirports = dataAdapter(DEPARTING_AIRPORTS, values);
-  search.arrivalAirports = dataAdapter(ARRIVAL_AIRPORTS, values);
-  search.departingDates = dataAdapter(DEPARTING_DATES, values);
-  search.departingTimes = dataAdapter(DEPARTING_TIMES, values);
 
   return search;
 }
@@ -49,4 +50,16 @@ function dataAdapter(key, values) {
     }
   }
   return properties.slice(1, properties.length);
+}
+
+function passengerAdapter(passenger) {
+  console.log(passenger.toString());
+  return `children:${passenger.getIn('child')},infants:${passenger.getIn('lap-infant')},infantsOnSeat:${passenger.getIn('seat-infant')},adults:${passenger.getIn('adults')}`;
+}
+
+function getRandomGDS(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  const index = Math.floor(Math.random() * (max - min)) + min;
+  return globalDistributedSystems[index];
 }
