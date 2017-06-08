@@ -1,15 +1,10 @@
 import React from "react";
-import {Button, Item, Segment, Icon} from "semantic-ui-react";
+import {Button, Item, Segment} from "semantic-ui-react";
 import {Collapse} from "react-collapse";
 import Airleg from "./Airleg";
 import AirlegDetail from "./AirlegDetail";
 import {titleize} from "inflection";
-import * as airlines from "../../data/airlines";
-import logo_aeromexico from "../../assets/images/logos/aeromexico.png";
-import logo_interjet from "../../assets/images/logos/interjet.png";
-import logo_volaris from "../../assets/images/logos/volaris.png";
-import logo_vivaAerobus from "../../assets/images/logos/vivaAerobus.png";
-import logo_plane from "../../assets/images/logos/plane.png"
+import logos from "../../data/airlines";
 
 class ItineraryElement extends React.Component {
   constructor(props) {
@@ -21,45 +16,21 @@ class ItineraryElement extends React.Component {
 		this.setState({isOpened: (this.state.isOpened === 'true') ? 'false' : 'true'});
   };
 
-	loadLogo = (logo) => {
-		return (
-			<Item.Image className="logoAirline" 
-				size='tiny'
-				src={logo} 
-			/>
-		);
-	}
-
-  logoComponent = (airline) => {
-    switch (airline) {
-      case airlines.AEROMEXICO:
-        return(<Item.Image className="logoAirline"  size='tiny' src={logo_aeromexico} />);
-    
-      case airlines.INTERJET:
-        return(<Item.Image className="logoAirline"  size='tiny' src={logo_interjet} />);
-
-      case airlines.VOLARIS:
-        return(<Item.Image className="logoAirline"  size='tiny' src={logo_volaris} />);
-
-      case airlines.VAERO:
-        return(<Item.Image className="logoAirline"  size='tiny' src={logo_vivaAerobus} />);
-
-      default:
-        return (<Item.Image className="logoAirline"  size='tiny' src={logo_plane} />);
-    }
-  }
-
   render() {
 
 		const {price, airlegs} = this.props;
 
 		let airline = decodeURIComponent(escape(this.props.airline));
 
+    console.log(logos.get('Multiple Airlines'));
+    console.log('airline: '+airline)
+    console.log(logos.get(airline));
+
     return (
       <Segment>
         <Item.Group>
           <Item>
-              {this.logoComponent(airline)}
+              <Item.Image className="logoAirline"  size='tiny' src={logos.get(airline)}/>
             <Item.Content>
 							<Item.Meta>
 								<span className='cinema'>{titleize(airline)}</span>
