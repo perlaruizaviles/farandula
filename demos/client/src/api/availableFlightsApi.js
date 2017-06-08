@@ -41,8 +41,8 @@ class AvailableFlightsApi {
     };
 
     if (params.type === "roundTrip") {
-      params.returnDates = search.arrivalDate;
-      params.returnTimes = search.arrivalTime;
+      params.returnDates = search.returnDates;
+      params.returnTimes = search.returnTimes;
       return params;
     }
 

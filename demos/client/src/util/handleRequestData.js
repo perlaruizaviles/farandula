@@ -13,6 +13,11 @@ export function handleRequestData(values, type, passenger, cabin, limit) {
     limit: limit
   };
 
+  if (values.arrivalDate){
+    search.returnDates = values.arrivalDate.format("YYYY-MM-DD");
+    search.returnTimes = "00:00:00";
+  }
+
   search.departingAirports = dataAdapter(DEPARTING_AIRPORTS, values);
   search.arrivalAirports = dataAdapter(ARRIVAL_AIRPORTS, values);
   search.departingDates = dataAdapter(DEPARTING_DATES, values);
@@ -24,7 +29,7 @@ export function handleRequestData(values, type, passenger, cabin, limit) {
 function dataAdapter(key, values) {
   let properties = "";
   for (let destiny in values) {
-    if (values.hasOwnProperty(destiny)) {
+    if (values.hasOwnProperty(destiny) && destiny !== "arrivalDate") {
       switch (key) {
         case DEPARTING_AIRPORTS:
           properties += "," + getIata(values[destiny].departingAirport.title);

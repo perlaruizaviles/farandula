@@ -3,15 +3,12 @@ import TextMenu from "../Common/TextMenu";
 import travelOptions from "../../data/travelOptions";
 import TravelerMenu from "../Common/TravelerMenu";
 import DropCabinMenu from "../Common/DropCabinMenu";
-import SearchSection from "./SearchSection";
 import SearchForm from "./SearchForm";
 
-import {Button, Dimmer, Dropdown, Grid, Icon, Input, Loader, Segment} from "semantic-ui-react";
-import DatePicker from "react-datepicker";
+import {Button, Dimmer, Dropdown, Grid, Loader, Segment} from "semantic-ui-react";
 import {configTravelString} from "../../util/travelConfig";
 import "react-datepicker/dist/react-datepicker.css";
 
-import {getIata} from "../../util/matcher";
 import {handleRequestData} from "../../util/handleRequestData";
 
 class TravelSearch extends React.Component {
@@ -45,18 +42,6 @@ class TravelSearch extends React.Component {
     };
 
 
-
-    const isInvalidForm = (properties) => {
-      if (properties.airportFrom.title === undefined) {
-        return true;
-      }
-      if (properties.airportTo.title === undefined) {
-        return true;
-      }
-      return properties.startDate === undefined;
-    };
-
-
     function hideOn(types) {
       for (let i = 0; i < types.length; i++) {
         if (properties.selectedType === types[i]) {
@@ -69,20 +54,21 @@ class TravelSearch extends React.Component {
     function renderTypeOfTrip(type) {
 
       switch (type){
-        case "oneWay":
-          return <Grid.Row className={hideOn(['multiCity', 'roundTrip'])}>
-            <SearchForm
-              onSubmit={submit}
-              properties={properties}
-              destinies={[666]}
-              actions={actions}/>
-          </Grid.Row>;
         case "multiCity":
-          return <Grid.Row className={hideOn(['roundTrip', 'oneWay'])}>
+          return <Grid.Row>
             <SearchForm
               onSubmit={submit}
               properties={properties}
               destinies={properties.destinies}
+              actions={actions}/>
+          </Grid.Row>;
+
+        default:
+          return <Grid.Row>
+            <SearchForm
+              onSubmit={submit}
+              properties={properties}
+              destinies={[0]}
               actions={actions}/>
           </Grid.Row>;
       }
