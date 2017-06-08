@@ -11,14 +11,6 @@ export const changeTravelType = type => {
   };
 };
 
-export const changeTravelDate = (dateType, date) => {
-  return {
-    type: types.CHANGE_TRAVEL_DATE,
-    dateType,
-    date
-  };
-};
-
 const changeTravelerState = (typeTraveler, count) => {
   return {
     type: types.CHANGE_TRAVELER_TYPE_COUNT,
@@ -54,20 +46,6 @@ export const cabinChange = cabin => {
   };
 };
 
-export const changeTravelFrom = airport => {
-  return {
-    type: types.CHANGE_TRAVEL_FROM,
-    airport
-  };
-};
-
-export const changeTravelTo = airport => {
-  return {
-    type: types.CHANGE_TRAVEL_TO,
-    airport
-  };
-};
-
 export const addDestiny = () => {
   return {
     type: types.ADD_DESTINY
@@ -77,14 +55,6 @@ export const addDestiny = () => {
 export const removeDestiny = () => {
   return {
     type: types.REMOVE_DESTINY
-  };
-};
-
-export const exchangeDestinations = (from, to) => {
-  return {
-    type: types.EXCHANGE_DESTINATIONS,
-    from,
-    to
   };
 };
 
