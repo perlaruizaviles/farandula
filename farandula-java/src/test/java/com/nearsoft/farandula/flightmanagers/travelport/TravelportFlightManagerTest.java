@@ -4,6 +4,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.soap.MessageFactory;
@@ -12,6 +13,7 @@ import javax.xml.soap.SOAPMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +24,23 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class TravelportFlightManagerTest {
 
+    static LocalDateTime departingDate;
+
+    @BeforeAll
+    public static void setup() {
+
+        LocalDateTime toDay = LocalDateTime.now().plusMonths(1);
+
+        departingDate = LocalDateTime.of(toDay.getYear(), toDay.getMonth(), toDay.getDayOfMonth(), 11, 00, 00);
+
+    }
+
     @Test
     public void fakeAvail_OneWayTrip() throws FarandulaException, IOException {
 
         Luisa.setSupplier(() -> {
             return createTravelPortStub();
         });
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -61,8 +72,6 @@ class TravelportFlightManagerTest {
 
     @Test
     public void buildEnvelopeStringFromSearch() throws FarandulaException {
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         TravelportFlightManager travelport = new TravelportFlightManager();
 
@@ -97,7 +106,7 @@ class TravelportFlightManagerTest {
                 "    <air:SearchDestination>\n" +
                 "        <com:Airport Code=\"CDG\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
                 "    </air:SearchDestination>\n" +
-                "    <air:SearchDepTime PreferredTime=\"2017-07-07\"/>\n" +
+                "    <air:SearchDepTime PreferredTime=\""+  departingDate.format( DateTimeFormatter.ISO_DATE ) + "\"/>\n" +
                 "    <air:AirLegModifiers>\n" +
                 "        <air:PreferredCabins>\n" +
                 "            <com:CabinClass Type=\"ECONOMY\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
@@ -143,7 +152,6 @@ class TravelportFlightManagerTest {
             return null;
         });
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
 

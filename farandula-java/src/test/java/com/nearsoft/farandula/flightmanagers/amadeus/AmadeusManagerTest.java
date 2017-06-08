@@ -5,11 +5,13 @@ import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
 import okhttp3.Request;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by pruiz on 4/20/17.
  */
 class AmadeusManagerTest {
+
+    static LocalDateTime departingDate;
+
+    @BeforeAll
+    public static void setup() {
+
+        LocalDateTime toDay = LocalDateTime.now().plusMonths(1);
+
+        departingDate = LocalDateTime.of(toDay.getYear(), toDay.getMonth(), toDay.getDayOfMonth(), 11, 00, 00);
+
+    }
 
     @Test
     public void fakeAvail_OneWayTrip() throws Exception {
@@ -34,7 +47,6 @@ class AmadeusManagerTest {
             return null;
         });
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<LocalDateTime> listDepartingAt = new ArrayList<>();
         listDepartingAt.add(departingDate);
 
@@ -77,8 +89,6 @@ class AmadeusManagerTest {
 
         initAmadeusSupplierForLuisa();
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
-
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         List<String> toList = new ArrayList<>();
@@ -111,8 +121,6 @@ class AmadeusManagerTest {
     public void realAvail_RoundWayTrip() throws Exception {
 
         initAmadeusSupplierForLuisa();
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -149,8 +157,6 @@ class AmadeusManagerTest {
     public void realAvail_OpenJawTrip() throws Exception {
 
         initAmadeusSupplierForLuisa();
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -198,7 +204,6 @@ class AmadeusManagerTest {
 
         initAmadeusSupplierForLuisa();
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         fromList.add("MEX");
@@ -247,7 +252,6 @@ class AmadeusManagerTest {
                 new AmadeusFlightManager()
         );
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         List<String> toList = new ArrayList<>();
@@ -273,8 +277,8 @@ class AmadeusManagerTest {
                 "&travel_class=ECONOMY" +
                 "&origin=DFW" +
                 "&destination=CDG" +
-                "&departure_date=2017-07-07" +
-                "&return_date=2017-07-08" +
+                "&departure_date=" + departingDate.format(DateTimeFormatter.ISO_DATE).toString() +
+                "&return_date=" + departingDate.plusDays(1).format(DateTimeFormatter.ISO_DATE).toString() +
                 "&adults=1" +
                 "&number_of_results=2";
         assertEquals(expectedURL, searchURL);
@@ -288,7 +292,6 @@ class AmadeusManagerTest {
                 new AmadeusFlightManager()
         );
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 06, 07, 00, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("MEX");
         List<String> toList = new ArrayList<>();
@@ -296,13 +299,16 @@ class AmadeusManagerTest {
 
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
+        List<LocalDateTime> returningList = new ArrayList<>();
+        returningList.add( departingDate.plusMonths(1) );
 
         List<Itinerary> result = Luisa.findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
+                .returningAt( returningList )
                 .forPassegers(Passenger.adults(2))
-                .forPassegers(Passenger.infants(new int[]{1, 2}))
+                .type( FlightType.ROUNDTRIP )
                 .limitTo(50)
                 .execute();
 
@@ -317,7 +323,6 @@ class AmadeusManagerTest {
                 new AmadeusFlightManager()
         );
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         fromList.add("MEX");
@@ -356,7 +361,7 @@ class AmadeusManagerTest {
                 "apikey=" + apiKey +
                 "&travel_class=ECONOMY&origin=DFW" +
                 "&destination=CDG" +
-                "&departure_date=2017-07-07" +
+                "&departure_date=" + departingDate.format(DateTimeFormatter.ISO_DATE).toString() +
                 "&adults=1" +
                 "&number_of_results=2";
 

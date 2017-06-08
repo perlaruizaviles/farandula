@@ -6,6 +6,7 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.*;
 import okhttp3.Request;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -18,6 +19,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SabreFlightManagerTest {
 
+    static LocalDateTime departingDate;
+
+    @BeforeAll
+    public static void setup() {
+
+        LocalDateTime toDay = LocalDateTime.now().plusMonths(1);
+
+        departingDate = LocalDateTime.of(toDay.getYear(), toDay.getMonth(), toDay.getDayOfMonth(), 11, 00, 00);
+
+    }
+
+
     @Test
     public void fakeAvail_OneWayTrip() throws Exception {
 
@@ -29,8 +42,6 @@ public class SabreFlightManagerTest {
             }
             return null;
         });
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -72,7 +83,6 @@ public class SabreFlightManagerTest {
             return null;
         });
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         fromList.add("MEX");
@@ -112,8 +122,6 @@ public class SabreFlightManagerTest {
 
         initSabreSupplierForLuisa();
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
-
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         List<String> toList = new ArrayList<>();
@@ -149,8 +157,6 @@ public class SabreFlightManagerTest {
     public void realAvail_OneWayTripDifferentPassengers() throws Exception {
 
         initSabreSupplierForLuisa();
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<String> fromList = new ArrayList<>();
         fromList.add("MEX");
@@ -189,7 +195,6 @@ public class SabreFlightManagerTest {
 
         initSabreSupplierForLuisa();
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         fromList.add("MEX");
@@ -244,7 +249,6 @@ public class SabreFlightManagerTest {
     @Test
     void buildJsonRequestFromSearch() throws Exception {
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         List<String> toList = new ArrayList<>();
@@ -274,7 +278,6 @@ public class SabreFlightManagerTest {
     @Test
     void buildJsonRequestFromMultiCitySearch() throws Exception {
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         fromList.add("MEX");
@@ -347,9 +350,6 @@ public class SabreFlightManagerTest {
 
     @Test
     public void buildAvailResponse() throws IOException, FarandulaException {
-
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
