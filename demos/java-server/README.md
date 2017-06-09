@@ -814,3 +814,105 @@ The class `DateParser` is used to convert form `LocalDateTime` to `UnixTimeStamp
 The class `FlightHelper` parses all the information required for the Response.
 #### PassengerHelper
 The class `PassengerHelper` takes a list of passangers as a `String` and converts it to an `AgeManager` Object.
+
+## Request example ##
+Here is an example with a oneway request
+
+	api/flights?
+        departingAirportCodes=MEX
+        departingDates=2017-05-31
+        departingTimes=10:15:30
+        arrivalAirportCodes=LHR
+        type=oneWay
+        passenger=children:0,infants:0,infantsOnSeat:0,adults:1
+        cabin=economy
+And this is the response for the request.
+
+    [  
+       {  
+          "airlegs":[  
+             {  
+                "arrivalAirport":{  
+                   "city":"London",
+                   "country":"United Kingdom",
+                   "iata":"LHR",
+                   "name":"London Heathrow Airport"
+                },
+                "arrivalDate":1502292600,
+                "departureAirport":{  
+                   "city":"Mexico City",
+                   "country":"Mexico",
+                   "iata":"MEX",
+                   "name":"Licenciado Benito Juarez International Airport"
+                },
+                "departureDate":1502155680,
+                "segments":[  
+                   {  
+                      "airLineMarketingName":"Avianca - AerovÃ­as del Continente Americano S.A.",
+                      "airLineOperationName":"AV",
+                      "airplaneData":"320",
+                      "arrivalAirport":{  
+                         "city":"Bogota",
+                         "country":"Colombia",
+                         "iata":"BOG",
+                         "name":"El Dorado International Airport"
+                      },
+                      "arrivalDate":1502172000,
+                      "cabinTypes":[  
+                         "ECONOMYCOACH"
+                      ],
+                      "departureAirport":{  
+                         "city":"Mexico City",
+                         "country":"Mexico",
+                         "iata":"MEX",
+                         "name":"Licenciado Benito Juarez International Airport"
+                      },
+                      "departureDate":1502155680,
+                      "duration":272
+                   },
+                   {  
+                      "airLineMarketingName":"Avianca - AerovÃ­as del Continente Americano S.A.",
+                      "airLineOperationName":"AV",
+                      "airplaneData":"788",
+                      "arrivalAirport":{  
+                         "city":"London",
+                         "country":"United Kingdom",
+                         "iata":"LHR",
+                         "name":"London Heathrow Airport"
+                      },
+                      "arrivalDate":1502292600,
+                      "cabinTypes":[  
+                         "ECONOMYCOACH"
+                      ],
+                      "departureAirport":{  
+                         "city":"Bogota",
+                         "country":"Colombia",
+                         "iata":"BOG",
+                         "name":"El Dorado International Airport"
+                      },
+                      "departureDate":1502234040,
+                      "duration":616
+                   }
+                ]
+             }
+          ],
+          "fares":{  
+             "basePrice":{  
+                "amount":1009,
+                "currencyCode":"USD"
+             },
+             "taxesPrice":{  
+                "amount":85.14,
+                "currencyCode":"85.14"
+             },
+             "totalPrice":{  
+                "amount":1094.14,
+                "currencyCode":"USD"
+             }
+          },
+          "key":12345,
+          "type":"oneway"
+       },
+       ...
+       ...
+    ]
