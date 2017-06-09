@@ -277,9 +277,7 @@ public class SabreFlightManager implements FlightManager {
 
     private Itinerary buildAirLegs(Map<String, Object> pricedItinerary, SearchCommand searchCommand) {
 
-        Map<String, Object> airItinerary = (Map<String, Object>) getValueOf(pricedItinerary, "AirItinerary");
-        Map<String, Object> originDestinationOptions = (Map<String, Object>) getValueOf(airItinerary, "OriginDestinationOptions");
-        JSONArray originDestinationOption = (JSONArray) getValueOf(originDestinationOptions, "OriginDestinationOption");
+        JSONArray originDestinationOption = (JSONArray) getValueOf(pricedItinerary, "AirItinerary.OriginDestinationOptions.OriginDestinationOption");
 
         Itinerary itinerary = new Itinerary();
 
