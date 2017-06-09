@@ -814,7 +814,8 @@ The class `FlightHelper` parses all the information required for the Response.
 The class `PassengerHelper` takes a list of passangers as a `String` and converts it to an `AgeManager` Object.
 
 ## Request example ##
-Here is an example with a oneway request
+
+Example with a `oneWay` request
 
 	api/flights?
         departingAirportCodes=MEX
@@ -824,6 +825,7 @@ Here is an example with a oneway request
         type=oneWay
         passenger=children:0,infants:0,infantsOnSeat:0,adults:1
         cabin=economy
+
 And this is the response for the request.
 
     [  
