@@ -43,6 +43,9 @@ Here is an overview of the directory tree with a brief description of what each 
 Here we can look a diagram showing how requests are made and what happens when we receive the response data.
 
 ![Screenshot](Diagram_calls.jpg)
+---
+<p align="center"><img src="Diagram_calls" /></p>
+---
 
 The requests start in the component calling the action through the dispatcher. The action sends the request to the endpoint and receive a JSON. This JSON contains the back-end's response. Finally the action sends this JSON to the reducer where it is integrated to the current state and this updates the components that uses this data.
 
