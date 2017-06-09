@@ -18,7 +18,7 @@
     - [x] Describe how the response is built.
     - [x] Describe Helper's purpose.
     - [ ] Describe how testing classes is done.
-    - [ ] Show example for a simple request.
+    - [x] Show example for a simple request.
    
 - Testing
     - [ ] Add tests for each new flight service members.
