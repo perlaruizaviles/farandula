@@ -28,23 +28,23 @@ const changeTravelerState = (typeTraveler, count) => {
 };
 
 export const changeTravelerCount = (travelerType, value, travelers) => {
-	travelers = travelers.set(travelerType, travelers.get(travelerType) + value);
-	let newTotalTravelers = countTravelers(travelers);
-	let newTravelerCount = travelers.get(travelerType);
-	let attentionTypes = ['lap-infant', 'adults'];
+  travelers = travelers.set(travelerType, travelers.get(travelerType) + value);
+  let newTotalTravelers = countTravelers(travelers);
+  let newTravelerCount = travelers.get(travelerType);
+  let attentionTypes = ['lap-infant', 'adults'];
 
-	return(dispatch) => {
-		if (newTravelerCount >= 0 && newTravelerCount <=6 && newTotalTravelers >= 1 && newTotalTravelers <= 6) {
-			if (attentionTypes.includes(travelerType)){
-				let adultsCount = travelers.get('adults');
-				let lapInfantCount = travelers.get('lap-infant');
+  return (dispatch) => {
+    if (newTravelerCount >= 0 && newTravelerCount <= 6 && newTotalTravelers >= 1 && newTotalTravelers <= 6) {
+      if (attentionTypes.includes(travelerType)) {
+        let adultsCount = travelers.get('adults');
+        let lapInfantCount = travelers.get('lap-infant');
 
-				if(lapInfantCount <= adultsCount) dispatch(changeTravelerState(travelerType, newTravelerCount));
-			} else {
-				dispatch(changeTravelerState(travelerType, newTravelerCount));
-			}
-		} 
-	}
+        if (lapInfantCount <= adultsCount) dispatch(changeTravelerState(travelerType, newTravelerCount));
+      } else {
+        dispatch(changeTravelerState(travelerType, newTravelerCount));
+      }
+    }
+  }
 };
 
 export const cabinChange = cabin => {
