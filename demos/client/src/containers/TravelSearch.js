@@ -1,39 +1,30 @@
 import {connect} from "react-redux";
 import TravelSearch from "../components/Avail/TravelSearch";
 import {
-  addDestiny,
-  cabinChange,
-  changeTravelDate,
-  changeTravelFrom,
-  changeTravelTo,
-  changeTravelType,
-  cleanField,
-  exchangeDestinations,
-  removeDestiny,
-  searchAirport,
-  searchAvailableFlights,
-  changeTravelerCount
+    addDestiny,
+    cabinChange,
+    changeTravelerCount,
+    changeTravelType,
+    cleanField,
+    removeDestiny,
+    searchAirport,
+    searchAvailableFlights
 } from "../actions/travelConfig";
 
 export default connect(
   state => {
     return {
       config: state.travelConfig,
-      filters: state.itineraries,
-      loading: state.ajaxCallsInProgress > 0
+      filters: state.itineraries
     };
   },
   dispatch => {
     return {
       actions:{
         typeChange: (type) => dispatch(changeTravelType(type)),
-        dateChange: (dateType, date) => dispatch(changeTravelDate(dateType, date)),
         travelerTypeCountChange: (TravelerType, value, count, totalTravelers) => dispatch(changeTravelerCount(TravelerType, value, count, totalTravelers)),
         cabinChange: (cabin) => dispatch(cabinChange(cabin)),
-        fromAirportChange: (airport) => dispatch(changeTravelFrom(airport)),
-        toAirportChange: (airport) => dispatch(changeTravelTo(airport)),
         searchAirport: (query, quantum) => dispatch(searchAirport(query, quantum)),
-        exchangeDestinations: (from, to) => dispatch(exchangeDestinations(from, to)),
         availableFlights: (search) => dispatch(searchAvailableFlights(search)),
         cleanField: (quantum) => dispatch(cleanField(quantum)),
         addDestiny: () => dispatch(addDestiny()),

@@ -1,5 +1,4 @@
 import * as actions from "../travelConfig";
-import moment from "moment";
 
 describe('actions', () => {
 
@@ -21,29 +20,6 @@ describe('actions', () => {
     });
   });
 
-  describe('changeTravelDate', function() {
-
-    const dateType1 = 'depart';
-    const dateType2 = 'return';
-    const date = moment();
-
-    it('should have a type of CHANGE_TRAVEL_DATE', function() {
-      expect(actions.changeTravelDate().type).toEqual('CHANGE_TRAVEL_DATE');
-    });
-
-    it('should pass on the depart travel we pass in', function() {
-      expect(actions.changeTravelDate(dateType1).dateType).toEqual(dateType1);
-    });
-
-    it('should pass on the return travel we pass in', function() {
-      expect(actions.changeTravelDate(dateType2).dateType).toEqual(dateType2);
-    });
-
-    it('should pass on the travel date we pass in', function() {
-      expect(actions.changeTravelDate(date).dateType).toEqual(date);
-    });
-  });
-
   describe('cabinChange', function() {
 
     const cabin = 'economy';
@@ -54,38 +30,6 @@ describe('actions', () => {
 
     it('should pass on the economy cabin we pass in', function() {
       expect(actions.cabinChange(cabin).cabin).toEqual(cabin);
-    });
-  });
-
-  describe('changeTravelFrom', function() {
-
-    const airport = {
-      title: 'Mexico City - MEX',
-      description: 'Licenciado Benito Juarez International Airport'
-    };
-
-    it('should have a type of CHANGE_TRAVEL_FROM', function() {
-      expect(actions.changeTravelFrom().type).toEqual('CHANGE_TRAVEL_FROM');
-    });
-
-    it('should pass on the airport we pass in', function() {
-      expect(actions.changeTravelFrom(airport).airport).toEqual(airport);
-    });
-  });
-
-  describe('changeTravelTo', function() {
-
-    const airport = {
-      title: 'Mexico City - MEX',
-      description: 'Licenciado Benito Juarez International Airport'
-    };
-
-    it('should have a type of CHANGE_TRAVEL_TO', function() {
-      expect(actions.changeTravelTo().type).toEqual('CHANGE_TRAVEL_TO');
-    });
-
-    it('should pass on the airport we pass in', function() {
-      expect(actions.changeTravelTo(airport).airport).toEqual(airport);
     });
   });
 
@@ -100,27 +44,6 @@ describe('actions', () => {
 
     it('should have a type of REMOVE_DESTINY', function() {
       expect(actions.removeDestiny().type).toEqual('REMOVE_DESTINY');
-    });
-  });
-
-  describe('exchangeDestinations', function() {
-
-    const from = {
-      title: "Mexico City - MEX",
-      description: "Licenciado Benito Juarez International Airport"
-    };
-    const to = undefined;
-
-    it('should have a type of EXCHANGE_DESTINATIONS', function() {
-      expect(actions.exchangeDestinations().type).toEqual('EXCHANGE_DESTINATIONS');
-    });
-
-    it('should pass on the from destination we pass in', function() {
-      expect(actions.exchangeDestinations(from).from).toEqual(from);
-    });
-
-    it('should pass on the to destination we pass in', function() {
-      expect(actions.exchangeDestinations(to).to).toEqual(to);
     });
   });
 
