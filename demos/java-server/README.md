@@ -813,6 +813,46 @@ The class `FlightHelper` parses all the information required for the Response.
 #### PassengerHelper
 The class `PassengerHelper` takes a list of passangers as a `String` and converts it to an `AgeManager` Object.
 
+## How Classes Test are Done
+In this code, there are several tests to ensure the code performance and functionality. Is very important to explain how these tests are done because some of them require some annotations to work properly.
+
+The main library used to implement the tests is `JUnit`. As is described above, this library is included on the `spring-boot-starter-test` dependency.
+
+One of the most simple tests done in the application is the next:
+
+```
+public class DateParserTest {
+    @Test
+    public void dateToTimestampSeconds() throws Exception {
+        //uses local time obviously
+        LocalDateTime specificDate = LocalDateTime.of(2017, Month.DECEMBER, 2, 10, 10 , 30);
+        assertEquals(1512209430, DateParser.dateToTimestampSeconds(specificDate));
+    }
+}
+```
+
+This code is performed to test part of the DateParser implementation (the `dateToTimeStampSeconds` method).
+
+But there are other examples where is necessary add some extra annotation to ensure a goog execution for the tests.
+
+For making some test for the classes, is necessary inject some dependencies the same way it's done in the application code. This comes with a problem: when the test for the application run, the injected dependencies may be null; it causes a complete fail on the test execution.
+
+To avoid that kind of problems is possible to add some annotations which change the way the test are executed. For example, the __**@SpringBootTest**__ annotation loads the spring context before to execute the tests, this way, is able to avoid the null on the injected dependencies. Also, is added the __**@RunWith**__ annotation, and the parameter for it is `SpringJUnit4ClassRunner.class`  which provides the functionality of the Spring TestContext Framework; this means that the test will run with the specified class in the annotation.
+
+```
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
+public class JavaFarandulaApplicationTests {
+
+    @Autowired
+    AirportRepository airportRepository;
+    ...
+```
+
+The example above is annotated as is mentioned to avoid the null on the `airportRepository` dependency injected.
+
+Visit:  [http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/context/junit4/SpringJUnit4ClassRunner.html](Spring Documentation) for further information about the `SpringJUnit4ClassRunner`.
+
 ## Request example ##
 
 Example with a `oneWay` request
