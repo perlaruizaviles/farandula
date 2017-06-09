@@ -4,9 +4,9 @@
 
 - Documentation
 	- [x] Describe the source achitecture
-	- [ ] Describe how requests are sent to back-end
+	- [x] Describe how requests are sent to back-end
 	- [ ] Describe how JSON response is used
-	- [ ] Describe how testing is done
+	- [x] Describe how testing is done
 
 ## The Source Directory Structure
 
@@ -44,7 +44,7 @@ Here we can look a diagram showing how requests are made and what happens when w
 
 ![Screenshot](Diagram_calls.jpg)
 
-The requests start in the component calling the action through the dispatcher. The action sends the request to the endpoint and receive a JSON as response. This JSON contains the data from either airports or flights depending on what endpoint we used. Finally the action sends this JSON to the reducer where it is integrated to the current state and this updates the components that uses this data.
+The requests start in the component calling the action through the dispatcher. The action sends the request to the endpoint and receive a JSON. This JSON contains the back-end's response. Finally the action sends this JSON to the reducer where it is integrated to the current state and this updates the components that uses this data.
 
 ## JSON from response
 
