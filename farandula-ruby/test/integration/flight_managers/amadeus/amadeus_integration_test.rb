@@ -4,7 +4,7 @@ require 'string_helper'
 require 'minitest/autorun'
 require 'farandula/flight_managers/amadeus/request'
 
-class Farandula::AmadeusResponseTest < Minitest::Test
+class Farandula::AmadeusIntegrationTest < Minitest::Test
 
   include Farandula
   include Farandula::FlightManagers
@@ -19,7 +19,7 @@ class Farandula::AmadeusResponseTest < Minitest::Test
                       .departing_at(DateTime.new(2017,12,24))
                       .returning_at(DateTime.new(2017,12,30))
                       .type(:roundtrip)
-                      .with_cabin_class( :economy)
+                      .with_cabin_class(:economy)
                       .with_passenger( passenger )
                       .limited_results_to( 2 )
                       .build!

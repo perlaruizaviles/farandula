@@ -32,7 +32,7 @@ class Farandula::SabreRequestTest < Minitest::Test
   end
 
   def test_build_travel_preferences
-    @request.build_travel_preferences(@json, 'B')
+    @request.build_travel_preferences(@json, :business)
     expected = FileHelper.load_asset('sabre/travel-preferences.json')
     assert_equal(
       StringHelper.no_space(expected),

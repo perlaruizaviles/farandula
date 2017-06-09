@@ -12,6 +12,20 @@ module Farandula
           date.strftime('%FT%T')
         end 
 
+        def extract_cabin_class(cabin_class)
+          case cabin_class
+          when :economy
+            'Y'
+          when :first
+            'F'
+          when :business
+            'B'
+          else :other
+            'Y'
+          end 
+        end
+
+
         def build_request_for!(search_form)
           @json = Jbuilder.new   
           @json.OTA_AirLowFareSearchRQ do
@@ -25,12 +39,12 @@ module Farandula
           @json.target!
         end   
 
-        def build_travel_preferences(json, cabin)
+        def build_travel_preferences(json, cabin_class)
           json.TravelPreferences do 
             json.ValidInterlineTicket true
             json.CabinPref do 
               json.array! [ 1 ] do |_|
-                json.Cabin cabin
+                json.Cabin extract_cabin_class(cabin_class)
                 json.PreferLevel 'Preferred'
               end 
             end 
