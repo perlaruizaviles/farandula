@@ -7,15 +7,17 @@ import org.springframework.stereotype.Component;
  * Created by Admin on 6/5/17.
  */
 @Component
-public class AgeManagerImpl implements AgeManager{
+public class AgeManagerImpl implements AgeManager {
 
 
     int numberAdults;
-    int [] childAges;
-    int [] infantAges;
-    int [] infantOnSeatAges ;
+    int[] childAges;
+    int[] infantAges;
+    int[] infantOnSeatAges;
 
-    public int getNumberAdults() { return numberAdults; }
+    public int getNumberAdults() {
+        return numberAdults;
+    }
 
     public void setNumberAdults(int numberAdults) {
         this.numberAdults = numberAdults;

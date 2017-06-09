@@ -24,6 +24,9 @@ import static org.junit.matchers.JUnitMatchers.hasItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class JavaFarandulaApplicationTests {
@@ -32,6 +35,11 @@ public class JavaFarandulaApplicationTests {
     AirportRepository airportRepository;
     @Autowired
     FlightService flightService;
+
+    LocalDate today = LocalDate.now();
+    LocalDate weekFromToday = today.plus(7, ChronoUnit.DAYS);
+    LocalDate oneMonthFromToday = weekFromToday.plus(1, ChronoUnit.MONTHS);
+    LocalDate twoMonthsFromToday = weekFromToday.plus(2, ChronoUnit.MONTHS);
 
     @Test
     public void insertAndFindAnAirport() {
@@ -72,7 +80,7 @@ public class JavaFarandulaApplicationTests {
     @Test
     public void oneWayTest() {
 
-        String departingDate = "2017-07-08";
+        String departingDate = weekFromToday.toString();
         String departingTime = "00:00:00";
         String departingAirportCodes = "MEX";
 
@@ -110,11 +118,12 @@ public class JavaFarandulaApplicationTests {
 
     @Test
     public void roundTripTest() {
-        String departingDate = "2017-07-08";
+
+        String departingDate = weekFromToday.toString();
         String departingTime = "00:00:00";
         String departingAirportCodes = "DFW";
 
-        String returnDate = "2017-08-08";
+        String returnDate = oneMonthFromToday.toString();
         String returnTime = "00:00:00";
         String arrivalAirportCodes = "CDG";
 
@@ -146,7 +155,7 @@ public class JavaFarandulaApplicationTests {
 
     @Test
     public void multiCityTest() {
-        String departingDate = "2017-07-08,2017-08-08,2017-09-08";
+        String departingDate = weekFromToday.toString() + "," + oneMonthFromToday.toString() + "," + twoMonthsFromToday.toString();
         String departingTime = "00:00:00,00:00:00,00:00:00";
         String departingAirportCodes = "MEX,CUU,LHR";
 
@@ -186,7 +195,7 @@ public class JavaFarandulaApplicationTests {
 
         int minSize;
 
-        String departingDate = "2017-06-07";
+        String departingDate = weekFromToday.toString();
         String departingTime = "00:00:00";
         String departingAirportCodes = "MEX";
 

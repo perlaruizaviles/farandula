@@ -14,7 +14,7 @@ import java.util.List;
 public interface AirportRepository extends MongoRepository<Airport, String>{
 
     //Find an airport by city name
-    List<Airport> findByCityLike(@Param("city") String city);
+    List<Airport> findByCityLikeIgnoreCase(@Param("city") String city);
 
     //Find Airport by City name, Airport name or Iata code
     List<Airport> findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase
