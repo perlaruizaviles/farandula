@@ -23,8 +23,6 @@
 - Testing
     - [ ] Add tests for each new flight service members.
    
-- Code
-    - [ ] Change the airport source class to a hashmap implementation.
 
 ## Spring Boot Approach
 Spring Boot is a micro framework which makes easier to create stand-alone Spring-based applications [https://projects.spring.io/spring-boot/]. This framework comes with different useful features to work faster.
