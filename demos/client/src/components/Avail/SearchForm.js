@@ -16,7 +16,7 @@ class SearchForm extends React.Component {
 
   render(){
 
-  const {handleSubmit, submitting, properties, destinies, actions, pristine, reset} = this.props;
+  const {handleSubmit, submitting, properties, destinies, actions} = this.props;
 
   function renderOnRoundTrip(type) {
     if (type === "roundTrip"){
@@ -41,9 +41,6 @@ class SearchForm extends React.Component {
 
         <div>
           <button className="ui orange button" type="submit" disabled={submitting}>Search</button>
-          <button className="ui grey basic button" type="button" disabled={pristine || submitting} onClick={reset}>
-            Clear Form
-          </button>
         </div>
       </form>
     </div>

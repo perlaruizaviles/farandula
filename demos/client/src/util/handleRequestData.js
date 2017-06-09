@@ -53,8 +53,7 @@ function dataAdapter(key, values) {
 }
 
 function passengerAdapter(passenger) {
-  console.log(passenger.toString());
-  return `children:${passenger.getIn('child')},infants:${passenger.getIn('lap-infant')},infantsOnSeat:${passenger.getIn('seat-infant')},adults:${passenger.getIn('adults')}`;
+  return `children:${passenger.get('child')},infants:${passenger.get('lap-infant')},infantsOnSeat:${passenger.get('seat-infant')},adults:${passenger.get('adults')}`;
 }
 
 function getRandomGDS(min, max) {

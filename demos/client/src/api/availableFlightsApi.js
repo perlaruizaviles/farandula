@@ -11,7 +11,7 @@ class AvailableFlightsApi {
         method: 'get',
         url: endpoint.AVAILABLE_FLIGHTS_URL,
         responseType: 'json',
-        params: handleRequestData(search),
+        params: search,
       }).then((response) => {
         const flights = response.data;
         resolve(List(flights));
