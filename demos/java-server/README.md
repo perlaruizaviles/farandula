@@ -14,9 +14,9 @@
     - [x] Describe how controllers and services interact with each other.
     - [x] Explain how Airport JSON info source is managed.
     - [x] Explain the mongo repository implementation
-    - [X] Describe the endpoint structure.
+    - [x] Describe the endpoint structure.
     - [x] Describe how the response is built.
-    - [ ] Describe Helper's purpose.
+    - [x] Describe Helper's purpose.
     - [ ] Describe how testing classes is done.
     - [ ] Show example for a simple request.
    
@@ -795,4 +795,22 @@ The `findFlights` response has three types of responses:
         ...
     ]
 		
-
+## Helpers Purpose ##
+Contains the helper interfaces to use around the application
+The classes in Helpers have the purpose to facilitate repetitive tasks that can be used in one or more classes.
+#### Implementation
+- AgeManagerImpl
+- DateParserImpl
+- FlightHelperImpl
+- PassengerHelperImpl
+#### AgeManager
+The class AgeManager woks as a model and the data is inyected by the class PassengerHelper.
+#### AirportSource
+The class AirportSours is used as a secure HashMap and contains as a key the iata code and its value as airport. Contains a list of all available airports.
+This class is not used as an interface like the rest of the classes in the Helper folder because all of its members are static.
+#### DateParser
+The class DateParser is used to convert form `LocalDateTime` to `UnixTimeStamp` seconds and viceversa.
+#### FlightHelper
+The class FlightHelper parses all the information required for the Response.
+#### PassengerHelper
+The class PassengerHelper takes a list of passangers as a String and converts it to an AgeManager Object.
