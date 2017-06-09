@@ -5,7 +5,7 @@ import TravelerMenu from "../Common/TravelerMenu";
 import DropCabinMenu from "../Common/DropCabinMenu";
 import SearchForm from "./SearchForm";
 
-import {Button, Dimmer, Dropdown, Grid, Loader, Segment} from "semantic-ui-react";
+import {Button, Dropdown, Grid, Segment} from "semantic-ui-react";
 import {configTravelString} from "../../util/travelConfig";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -16,7 +16,7 @@ class TravelSearch extends React.Component {
   render() {
 
 
-    const {config, filters,loading, actions} = this.props;
+    const {config, filters, actions} = this.props;
 
 
     const properties = {
@@ -77,11 +77,6 @@ class TravelSearch extends React.Component {
 
     return (
       <Segment raised className='travelSearchSegment'>
-
-
-        <Dimmer active={loading} inverted>
-          <Loader content='Loading'/>
-        </Dimmer>
 
         <Grid columns={3} centered verticalAlign="middle">
           <Grid.Column textAlign="center">

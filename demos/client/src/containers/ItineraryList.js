@@ -9,7 +9,8 @@ export default connect(state => {
       .get('itinerariesList'),
     order: state
       .itineraries
-      .get('order')
+      .get('order'),
+    loading: state.ajaxCallsInProgress > 0
   };
 }, dispatch => {
   return {

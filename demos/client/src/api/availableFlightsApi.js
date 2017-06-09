@@ -1,7 +1,6 @@
 import * as endpoint from "./apiEndpoints";
 import axios from "axios";
 import {List} from "immutable";
-import {handleRequestData} from "../util/handleRequestData";
 
 class AvailableFlightsApi {
 
