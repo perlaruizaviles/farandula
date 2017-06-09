@@ -4,6 +4,7 @@ import {Map} from 'immutable';
 const itineraries = (state = Map({}), action) => {
   switch (action.type) {
     case types.SEARCH_AVAILABLE_FLIGHTS_SUCCESS:
+		state = state.set('order', 'price-low-to-high');
       return state.set('itinerariesList', action.flights);
 
     case types.ORDER_PRICE_ASC:

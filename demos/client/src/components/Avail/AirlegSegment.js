@@ -19,9 +19,9 @@ const AirlegSegment = ({departureAirport, departureDate, arrivalAirport, arrival
 					{ cabinTypes.map((cabin) => titleize(cabin)) } {totalTime}
 				</span>
         {departureAirport.city} ({departureAirport.iata}) &mdash; {arrivalAirport.city } ({arrivalAirport.iata})<br/>
-        {airLineMarketingName} - {airplaneData}<br/>
+        {decodeURIComponent(escape(airLineMarketingName))} - {airplaneData}<br/>
         <span className='gray'>
-					Operated by {airLineOperationName}
+					Operated by {decodeURIComponent(escape(airLineOperationName))}
 				</span>
       </p>
       <Divider/>

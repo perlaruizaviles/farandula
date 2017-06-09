@@ -118,6 +118,7 @@ public class JavaFarandulaApplicationTests {
 
     @Test
     public void roundTripTest() {
+
         String departingDate = weekFromToday.toString();
         String departingTime = "00:00:00";
         String departingAirportCodes = "DFW";
