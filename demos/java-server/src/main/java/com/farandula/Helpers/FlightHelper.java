@@ -3,10 +3,7 @@ package com.farandula.Helpers;
 import com.farandula.Exceptions.AirportException;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.Service.AirportService;
-import com.farandula.models.Airport;
-import com.farandula.models.Flight;
-import com.farandula.models.FlightSegment;
-import com.farandula.models.ItineraryFares;
+import com.farandula.models.*;
 import com.nearsoft.farandula.models.AirLeg;
 import com.nearsoft.farandula.models.Fares;
 import com.nearsoft.farandula.models.Itinerary;
@@ -24,127 +21,20 @@ import java.util.stream.Collectors;
 /**
  * Created by antoniohernandez on 5/16/17.
  */
-@Component
-public class FlightHelper {
+public interface FlightHelper {
+    Flight parseAirlegToFlight(AirLeg airleg);
 
-    @Autowired
-    AirportRepository airportRepository;
+    FlightSegment parseSegmentToFlightSegment(Segment segment);
 
-    public Flight parseAirlegToFlight(AirLeg airLeg) {
+    ItineraryFares parseFaresToItineraryFares(Fares fares);
 
-        Airport departureAirport = AirportsSource.getAirport(airLeg.getDepartureAirportCode());
+    List<Flight> getFlightsFromItinerary(Itinerary itinerary);
 
-        Airport arrivalAirport = AirportsSource.getAirport(airLeg.getArrivalAirportCode());
+    List<String> getCabinInformationFromSegment(Segment segment);
 
-        LocalDateTime departureDate = airLeg.getDepartingDate();
-        LocalDateTime arrivalDate = airLeg.getArrivalDate();
+    int getLimitOfFlightsFromString(String limitString);
 
-        List<FlightSegment> flightSegmentList = airLeg
-                .getSegments()
-                .stream()
-                .map(this::parseSegmentToFlightSegment)
-                .filter(segment -> segment != null)
-                .collect(Collectors.toList());
+    List<FlightItinerary> getFlightItineraryFromItinerary(List<Itinerary> itineraryList, String type);
 
-        Flight flight = new Flight()
-                .setDepartureAirport(departureAirport)
-                .setDepartureDate(departureDate)
-                .setArrivalAirport(arrivalAirport)
-                .setArrivalDate(arrivalDate)
-                .setSegments(flightSegmentList);
-
-        return flight;
-
-    }
-
-
-    public FlightSegment parseSegmentToFlightSegment(Segment segment) {
-
-        Airport departureSegmentAirport = AirportsSource.getAirport(segment.getDepartureAirportCode());
-        Airport arrivalSegmentAirport = AirportsSource.getAirport(segment.getArrivalAirportCode());
-
-        try {
-
-            if (departureSegmentAirport == null) {
-                throw new AirportException(AirportException.AirportErrorType.AIRPORT_NOT_FOUND, "Departure Airpot Not Found");
-            }
-
-            if (arrivalSegmentAirport == null) {
-                throw new AirportException(AirportException.AirportErrorType.AIRPORT_NOT_FOUND, "Arrival Airpot Not Found");
-            }
-
-            LocalDateTime departureSegmentDate = segment.getDepartureDate();
-            LocalDateTime arrivalSegmentDate = segment.getArrivalDate();
-
-            long duration = segment.getDuration();
-
-            String airlineMarketing = segment.getMarketingAirlineName();
-            String airlineOperating = segment.getOperatingAirlineCode();
-            String airplane = segment.getAirplaneData();
-            List<String> cabinTypes = this.getCabinInformationFromSegment(segment);
-
-            FlightSegment flightSegment = new FlightSegment()
-                    .setDepartureAirport(departureSegmentAirport)
-                    .setDepartureDate(departureSegmentDate)
-                    .setArrivalAirport(arrivalSegmentAirport)
-                    .setArrivalDate(arrivalSegmentDate)
-                    .setDuration(duration)
-                    .setAirLineMarketingName(airlineMarketing)
-                    .setAirLineOperationName(airlineOperating)
-                    .setAirplaneData(airplane)
-                    .setCabinTypes(cabinTypes);
-
-            return flightSegment;
-
-        } catch (AirportException e) {
-            Logger.getAnonymousLogger().warning(e.toString());
-            return null;
-        }
-
-    }
-
-    public ItineraryFares parseFaresToItineraryFares(Fares fares) {
-        ItineraryFares itineraryFares = new ItineraryFares();
-
-        itineraryFares.setBasePrice(fares.getBasePrice());
-        itineraryFares.setTaxesPrice(fares.getTaxesPrice());
-        itineraryFares.setTotalPrice(fares.getTotalPrice());
-
-        return itineraryFares;
-    }
-
-    public List<Flight> getFlightsFromItinerary(Itinerary itinerary) {
-        return itinerary.getAirlegs()
-                .stream()
-                .map(airLeg -> this.parseAirlegToFlight(airLeg))
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getCabinInformationFromSegment(Segment segment) {
-
-        if( segment.getSeatsAvailable() == null ){
-            List<String> emptySeat = new ArrayList<>();
-            emptySeat.add("NON_AVAILABLE");
-            return emptySeat;
-        }
-
-        return segment.
-                getSeatsAvailable()
-                .stream()
-                .map(seat -> seat.getClassCabin().toString())
-                .distinct()
-                .collect(Collectors.toList());
-    }
-
-    public int getLimitOfFlightsFromString(String limitString) {
-
-        try {
-            if (limitString == null)
-                throw new NumberFormatException();
-            return Integer.parseInt(limitString);
-
-        } catch (NumberFormatException e) {
-             return 50;
-        }
-    }
+    boolean validIataLength(String iata);
 }

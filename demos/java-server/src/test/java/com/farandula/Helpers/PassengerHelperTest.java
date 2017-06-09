@@ -19,6 +19,7 @@ public class PassengerHelperTest {
     @Autowired
     PassengerHelper passengerHelper;
 
+
     @Test
     public void getPassengersFromString() throws Exception {
         String passengerString = "children:3,infants:2,infantsOnSeat:1,adults:2";

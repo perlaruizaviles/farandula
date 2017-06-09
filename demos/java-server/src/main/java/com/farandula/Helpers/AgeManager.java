@@ -4,42 +4,22 @@ package com.farandula.Helpers;
  * Created by emote on 22/05/17.
  */
 
-public class AgeManager {
+public interface AgeManager {
 
-    private int numberAdults;
-    private int [] childAges;
-    private int [] infantAges;
-    private int [] infantOnSeatAges;
+    int getNumberAdults();
 
-    public int getNumberAdults() {
-        return numberAdults;
-    }
+    void setNumberAdults(int numberAdults);
 
-    public void setNumberAdults(int numberAdults) {
-        this.numberAdults = numberAdults;
-    }
+    int[] getChildAges();
 
-    public int[] getChildAges() {
-        return childAges;
-    }
+    void setChildAges(int[] childAges);
 
-    public void setChildAges(int[] childAges) {
-        this.childAges = childAges;
-    }
+    int[] getInfantAges();
 
-    public int[] getInfantAges() {
-        return infantAges;
-    }
+    void setInfantAges(int[] infantAges);
 
-    public void setInfantAges(int[] infantAges) {
-        this.infantAges = infantAges;
-    }
+    int[] getInfantOnSeatAges();
 
-    public int[] getInfantOnSeatAges() {
-        return infantOnSeatAges;
-    }
+    void setInfantOnSeatAges(int[] infantOnSeatAges);
 
-    public void setInfantOnSeatAges(int[] infantOnSeatAges) {
-        this.infantOnSeatAges = infantOnSeatAges;
-    }
 }
