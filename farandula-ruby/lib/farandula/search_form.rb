@@ -91,6 +91,19 @@ module Farandula
         self
       end
 
+      def in_enconomy_class
+        @search_form.cabin_class = :economy
+      end 
+      
+      def in_businnes_class
+        @search_form.cabin_class = :business
+      end 
+      
+      def in_first_class
+        @search_form.cabin_class = :first
+      end
+
+
       def build!(validate = true)
         if validate
           validate!  
@@ -110,8 +123,12 @@ module Farandula
             check_not_nil!('returning_date', @search_form.returning_date)
           end 
 
+          if !CabinClassType::TYPES.include?(@search_form.cabin_class)
+            raise ValidationError.new("cabin class type [#{@search_form.cabin_class}] not found")
+          end 
+
           if !FlightType::TYPES.include?(@search_form.type)
-            raise ValidationError.new("flight type [#{type}] not found")
+            raise ValidationError.new("flight type [#{@search_form.type}] not found")
           end 
 
           if (@search_form.departing_date <=> DateTime.now) == -1
