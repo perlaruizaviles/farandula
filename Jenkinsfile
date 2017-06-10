@@ -19,14 +19,14 @@ pipeline {
       steps {
         parallel(
           "Frontend": {
-            dir(‘samples/client') {
+            dir('samples/client') {
               sh 'npm prune'
               sh 'npm install'
               sh 'npm test -- -u'
             }
           },
           "Java Backend": {
-            dir(‘samples/java-server') {
+            dir('samples/java-server') {
               sh 'mvn clean package'
             }
           },
@@ -54,7 +54,7 @@ pipeline {
   }
   post {
     always {
-      dir(‘samples/client') {
+      dir('samples/client') {
         sh 'npm prune'
         sh 'rm node_modules -rf'
       }
