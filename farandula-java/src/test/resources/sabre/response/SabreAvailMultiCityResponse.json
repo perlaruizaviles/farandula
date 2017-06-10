@@ -1,0 +1,1429 @@
+{
+  "OTA_AirLowFareSearchRS": {
+    "PricedItineraries": {
+      "PricedItinerary": [
+        {
+          "SequenceNumber": 1,
+          "AirItinerary": {
+            "DirectionInd": "Return",
+            "OriginDestinationOptions": {
+              "OriginDestinationOption": [
+                {
+                  "ElapsedTime": 743,
+                  "FlightSegment": [
+                    {
+                      "DepartureDateTime": "2017-07-07T18:27:00",
+                      "ArrivalDateTime": "2017-07-08T13:50:00",
+                      "StopQuantity": 1,
+                      "FlightNumber": "84",
+                      "ResBookDesigCode": "Y",
+                      "ElapsedTime": 743,
+                      "DepartureAirport": {
+                        "LocationCode": "DFW",
+                        "TerminalID": "E",
+                        "content": ""
+                      },
+                      "ArrivalAirport": {
+                        "LocationCode": "CDG",
+                        "TerminalID": "2E",
+                        "content": ""
+                      },
+                      "OperatingAirline": {
+                        "Code": "DL",
+                        "FlightNumber": "84",
+                        "content": ""
+                      },
+                      "Equipment": [
+                        {
+                          "AirEquipType": "M88",
+                          "ChangeofGauge": true,
+                          "content": ""
+                        }
+                      ],
+                      "MarketingAirline": {
+                        "Code": "DL",
+                        "content": ""
+                      },
+                      "MarriageGrp": "O",
+                      "StopAirports": {
+                        "StopAirport": [
+                          {
+                            "LocationCode": "ATL",
+                            "ArrivalDateTime": "2017-07-07T21:45:00",
+                            "DepartureDateTime": "2017-07-07T23:19:00",
+                            "ElapsedTime": 138,
+                            "Duration": 94,
+                            "GMTOffset": -4,
+                            "Equipment": "764",
+                            "content": ""
+                          }
+                        ]
+                      },
+                      "DepartureTimeZone": {
+                        "GMTOffset": -5
+                      },
+                      "ArrivalTimeZone": {
+                        "GMTOffset": 2
+                      },
+                      "TPA_Extensions": {
+                        "eTicket": {
+                          "Ind": true
+                        },
+                        "Mileage": {
+                          "Amount": 5126
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "ElapsedTime": 250,
+                  "FlightSegment": [
+                    {
+                      "DepartureDateTime": "2017-07-14T19:20:00",
+                      "ArrivalDateTime": "2017-07-14T21:30:00",
+                      "StopQuantity": 0,
+                      "FlightNumber": "8046",
+                      "ResBookDesigCode": "U",
+                      "ElapsedTime": 250,
+                      "DepartureAirport": {
+                        "LocationCode": "MEX",
+                        "TerminalID": "2",
+                        "content": ""
+                      },
+                      "ArrivalAirport": {
+                        "LocationCode": "LAX",
+                        "TerminalID": "B",
+                        "content": ""
+                      },
+                      "OperatingAirline": {
+                        "Code": "AM",
+                        "FlightNumber": "648",
+                        "content": ""
+                      },
+                      "Equipment": [
+                        {
+                          "AirEquipType": "738",
+                          "content": ""
+                        }
+                      ],
+                      "MarketingAirline": {
+                        "Code": "DL",
+                        "content": ""
+                      },
+                      "DisclosureAirline": {
+                        "Code": "AM",
+                        "content": ""
+                      },
+                      "MarriageGrp": "O",
+                      "DepartureTimeZone": {
+                        "GMTOffset": -5
+                      },
+                      "ArrivalTimeZone": {
+                        "GMTOffset": -7
+                      },
+                      "TPA_Extensions": {
+                        "eTicket": {
+                          "Ind": true
+                        },
+                        "Mileage": {
+                          "Amount": 1553
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "ElapsedTime": 402,
+                  "FlightSegment": [
+                    {
+                      "DepartureDateTime": "2017-07-22T19:23:00",
+                      "ArrivalDateTime": "2017-07-23T07:05:00",
+                      "StopQuantity": 0,
+                      "FlightNumber": "58",
+                      "ResBookDesigCode": "Y",
+                      "ElapsedTime": 402,
+                      "DepartureAirport": {
+                        "LocationCode": "BOS",
+                        "TerminalID": "A",
+                        "content": ""
+                      },
+                      "ArrivalAirport": {
+                        "LocationCode": "LHR",
+                        "TerminalID": "3",
+                        "content": ""
+                      },
+                      "OperatingAirline": {
+                        "Code": "DL",
+                        "FlightNumber": "58",
+                        "content": ""
+                      },
+                      "Equipment": [
+                        {
+                          "AirEquipType": "76W",
+                          "content": ""
+                        }
+                      ],
+                      "MarketingAirline": {
+                        "Code": "DL",
+                        "content": ""
+                      },
+                      "MarriageGrp": "O",
+                      "DepartureTimeZone": {
+                        "GMTOffset": -4
+                      },
+                      "ArrivalTimeZone": {
+                        "GMTOffset": 1
+                      },
+                      "TPA_Extensions": {
+                        "eTicket": {
+                          "Ind": true
+                        },
+                        "Mileage": {
+                          "Amount": 3265
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "AirItineraryPricingInfo": [
+            {
+              "LastTicketDate": "2017-05-18",
+              "PricingSource": "ADVJR1",
+              "PricingSubSource": "MIP",
+              "FareReturned": true,
+              "ItinTotalFare": {
+                "BaseFare": {
+                  "Amount": 5573,
+                  "CurrencyCode": "USD",
+                  "DecimalPlaces": 2
+                },
+                "FareConstruction": {
+                  "Amount": 5573,
+                  "CurrencyCode": "NUC",
+                  "DecimalPlaces": 2
+                },
+                "EquivFare": {
+                  "Amount": 5573,
+                  "CurrencyCode": "USD",
+                  "DecimalPlaces": 2
+                },
+                "Taxes": {
+                  "Tax": [
+                    {
+                      "TaxCode": "TOTALTAX",
+                      "Amount": 385.36,
+                      "CurrencyCode": "USD",
+                      "DecimalPlaces": 2,
+                      "content": ""
+                    }
+                  ]
+                },
+                "TotalFare": {
+                  "Amount": 5958.36,
+                  "CurrencyCode": "USD",
+                  "DecimalPlaces": 2
+                }
+              },
+              "PTC_FareBreakdowns": {
+                "PTC_FareBreakdown": [
+                  {
+                    "PassengerTypeQuantity": {
+                      "Code": "ADT",
+                      "Quantity": 1
+                    },
+                    "FareBasisCodes": {
+                      "FareBasisCode": [
+                        {
+                          "BookingCode": "Y",
+                          "AvailabilityBreak": true,
+                          "DepartureAirportCode": "DFW",
+                          "ArrivalAirportCode": "CDG",
+                          "FareComponentBeginAirport": "DFW",
+                          "FareComponentEndAirport": "CDG",
+                          "FareComponentDirectionality": "FROM",
+                          "FareComponentVendorCode": "ATP",
+                          "GovCarrier": "DL",
+                          "content": "Y"
+                        },
+                        {
+                          "BookingCode": "U",
+                          "AvailabilityBreak": true,
+                          "DepartureAirportCode": "MEX",
+                          "ArrivalAirportCode": "LAX",
+                          "FareComponentBeginAirport": "MEX",
+                          "FareComponentEndAirport": "LAX",
+                          "FareComponentDirectionality": "TO",
+                          "FareComponentVendorCode": "ATP",
+                          "GovCarrier": "DL",
+                          "content": "UNNA0SMZ"
+                        },
+                        {
+                          "BookingCode": "Y",
+                          "AvailabilityBreak": true,
+                          "DepartureAirportCode": "BOS",
+                          "ArrivalAirportCode": "LHR",
+                          "FareComponentBeginAirport": "BOS",
+                          "FareComponentEndAirport": "LHR",
+                          "FareComponentDirectionality": "FROM",
+                          "FareComponentVendorCode": "ATP",
+                          "GovCarrier": "DL",
+                          "content": "Y"
+                        }
+                      ]
+                    },
+                    "PassengerFare": {
+                      "BaseFare": {
+                        "Amount": 5573,
+                        "CurrencyCode": "USD"
+                      },
+                      "FareConstruction": {
+                        "Amount": 5573,
+                        "CurrencyCode": "NUC",
+                        "DecimalPlaces": 2
+                      },
+                      "EquivFare": {
+                        "Amount": 5573,
+                        "CurrencyCode": "USD",
+                        "DecimalPlaces": 2
+                      },
+                      "Taxes": {
+                        "Tax": [
+                          {
+                            "TaxCode": "YRI",
+                            "Amount": 125,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "YRI",
+                            "Amount": 125,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "US2",
+                            "CountryCode": "US",
+                            "Amount": 18,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "US2",
+                            "CountryCode": "US",
+                            "Amount": 18,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "US2",
+                            "CountryCode": "US",
+                            "Amount": 18,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "YC",
+                            "CountryCode": "US",
+                            "Amount": 5.5,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XY",
+                            "CountryCode": "US",
+                            "Amount": 7,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XA",
+                            "CountryCode": "US",
+                            "Amount": 3.96,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "AY",
+                            "CountryCode": "US",
+                            "Amount": 5.6,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "AY",
+                            "CountryCode": "US",
+                            "Amount": 5.6,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XD",
+                            "CountryCode": "MX",
+                            "Amount": 44.7,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XF",
+                            "CountryCode": "US",
+                            "Amount": 4.5,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XF",
+                            "CountryCode": "US",
+                            "Amount": 4.5,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          }
+                        ],
+                        "TaxSummary": [
+                          {
+                            "TaxCode": "US2",
+                            "CountryCode": "US",
+                            "Amount": 54,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "YC",
+                            "CountryCode": "US",
+                            "Amount": 5.5,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XY",
+                            "CountryCode": "US",
+                            "Amount": 7,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XA",
+                            "CountryCode": "US",
+                            "Amount": 3.96,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "AY",
+                            "CountryCode": "US",
+                            "Amount": 11.2,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "YRI",
+                            "Amount": 250,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XD",
+                            "CountryCode": "MX",
+                            "Amount": 44.7,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XF",
+                            "CountryCode": "US",
+                            "Amount": 9,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          }
+                        ],
+                        "TotalTax": {
+                          "Amount": 385.36,
+                          "CurrencyCode": "USD",
+                          "DecimalPlaces": 2
+                        }
+                      },
+                      "TotalFare": {
+                        "Amount": 5958.36,
+                        "CurrencyCode": "USD"
+                      },
+                      "TPA_Extensions": {
+                        "Messages": {
+                          "Message": [
+                            {
+                              "AirlineCode": "DL",
+                              "Type": "N",
+                              "FailCode": 0,
+                              "Info": "NONREF/PENALTY APPLIES"
+                            },
+                            {
+                              "Type": "W",
+                              "FailCode": 0,
+                              "Info": "VALIDATING CARRIER - DL"
+                            }
+                          ]
+                        },
+                        "BaggageInformationList": {
+                          "BaggageInformation": [
+                            {
+                              "ProvisionType": "A",
+                              "AirlineCode": "DL",
+                              "Segment": [
+                                {
+                                  "Id": 0
+                                }
+                              ],
+                              "Allowance": [
+                                {
+                                  "Pieces": 1
+                                }
+                              ]
+                            },
+                            {
+                              "ProvisionType": "A",
+                              "AirlineCode": "DL",
+                              "Segment": [
+                                {
+                                  "Id": 1
+                                },
+                                {
+                                  "Id": 2
+                                }
+                              ],
+                              "Allowance": [
+                                {
+                                  "Pieces": 1
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "Endorsements": {
+                      "NonRefundableIndicator": true
+                    },
+                    "TPA_Extensions": {
+                      "FareCalcLine": {
+                        "Info": "DFW DL PAR3474.00/-MEX DL LAX123.00/-BOS DL LON1976.00NUC5573.00END ROE1.00 XFDFW4.5BOS4.5"
+                      }
+                    },
+                    "FareInfos": {
+                      "FareInfo": [
+                        {
+                          "FareReference": "Y",
+                          "TPA_Extensions": {
+                            "SeatsRemaining": {
+                              "Number": 9,
+                              "BelowMin": false
+                            },
+                            "Cabin": {
+                              "Cabin": "Y"
+                            },
+                            "Meal": {
+                              "Code": "RD"
+                            }
+                          }
+                        },
+                        {
+                          "FareReference": "U",
+                          "TPA_Extensions": {
+                            "SeatsRemaining": {
+                              "Number": 7,
+                              "BelowMin": false
+                            },
+                            "Cabin": {
+                              "Cabin": "Y"
+                            },
+                            "Meal": {
+                              "Code": "D"
+                            }
+                          }
+                        },
+                        {
+                          "FareReference": "Y",
+                          "TPA_Extensions": {
+                            "SeatsRemaining": {
+                              "Number": 9,
+                              "BelowMin": false
+                            },
+                            "Cabin": {
+                              "Cabin": "Y"
+                            },
+                            "Meal": {
+                              "Code": "D"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "FareInfos": {
+                "FareInfo": [
+                  {
+                    "FareReference": "Y",
+                    "TPA_Extensions": {
+                      "SeatsRemaining": {
+                        "Number": 9,
+                        "BelowMin": false
+                      },
+                      "Cabin": {
+                        "Cabin": "Y"
+                      },
+                      "Meal": {
+                        "Code": "RD"
+                      }
+                    }
+                  },
+                  {
+                    "FareReference": "U",
+                    "TPA_Extensions": {
+                      "SeatsRemaining": {
+                        "Number": 7,
+                        "BelowMin": false
+                      },
+                      "Cabin": {
+                        "Cabin": "Y"
+                      },
+                      "Meal": {
+                        "Code": "D"
+                      }
+                    }
+                  },
+                  {
+                    "FareReference": "Y",
+                    "TPA_Extensions": {
+                      "SeatsRemaining": {
+                        "Number": 9,
+                        "BelowMin": false
+                      },
+                      "Cabin": {
+                        "Cabin": "Y"
+                      },
+                      "Meal": {
+                        "Code": "D"
+                      }
+                    }
+                  }
+                ]
+              },
+              "TPA_Extensions": {
+                "DivideInParty": {
+                  "Indicator": false
+                },
+                "ValidatingCarrier": [
+                  {
+                    "SettlementMethod": "ARC",
+                    "NewVcxProcess": true,
+                    "Default": {
+                      "Code": "DL"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "TicketingInfo": {
+            "TicketType": "eTicket",
+            "ValidInterline": "Yes"
+          },
+          "TPA_Extensions": {
+            "ValidatingCarrier": {
+              "Code": "DL"
+            },
+            "TagID": "BargainFinderMaxRQ~8b38a673-97e4-4619-8a5c-fb68251b638d~1"
+          }
+        },
+        {
+          "SequenceNumber": 2,
+          "AirItinerary": {
+            "DirectionInd": "Return",
+            "OriginDestinationOptions": {
+              "OriginDestinationOption": [
+                {
+                  "ElapsedTime": 760,
+                  "FlightSegment": [
+                    {
+                      "DepartureDateTime": "2017-07-07T10:05:00",
+                      "ArrivalDateTime": "2017-07-07T14:54:00",
+                      "StopQuantity": 0,
+                      "FlightNumber": "3789",
+                      "ResBookDesigCode": "Y",
+                      "ElapsedTime": 229,
+                      "DepartureAirport": {
+                        "LocationCode": "DFW",
+                        "TerminalID": "E",
+                        "content": ""
+                      },
+                      "ArrivalAirport": {
+                        "LocationCode": "JFK",
+                        "TerminalID": "4",
+                        "content": ""
+                      },
+                      "OperatingAirline": {
+                        "CompanyShortName": "ENDEAVOR AIR DBA DELTA CONNECTION",
+                        "Code": "DL",
+                        "FlightNumber": "3789",
+                        "content": ""
+                      },
+                      "Equipment": [
+                        {
+                          "AirEquipType": "CR9",
+                          "content": ""
+                        }
+                      ],
+                      "MarketingAirline": {
+                        "Code": "DL",
+                        "content": ""
+                      },
+                      "MarriageGrp": "O",
+                      "DepartureTimeZone": {
+                        "GMTOffset": -5
+                      },
+                      "ArrivalTimeZone": {
+                        "GMTOffset": -4
+                      },
+                      "OnTimePerformance": {
+                        "Level": "6"
+                      },
+                      "TPA_Extensions": {
+                        "eTicket": {
+                          "Ind": true
+                        },
+                        "Mileage": {
+                          "Amount": 1391
+                        }
+                      }
+                    },
+                    {
+                      "DepartureDateTime": "2017-07-07T16:20:00",
+                      "ArrivalDateTime": "2017-07-08T05:45:00",
+                      "StopQuantity": 0,
+                      "FlightNumber": "1016",
+                      "ResBookDesigCode": "Y",
+                      "ElapsedTime": 445,
+                      "DepartureAirport": {
+                        "LocationCode": "JFK",
+                        "TerminalID": "1",
+                        "content": ""
+                      },
+                      "ArrivalAirport": {
+                        "LocationCode": "CDG",
+                        "TerminalID": "2E",
+                        "content": ""
+                      },
+                      "OperatingAirline": {
+                        "Code": "AF",
+                        "FlightNumber": "23",
+                        "content": ""
+                      },
+                      "Equipment": [
+                        {
+                          "AirEquipType": "77W",
+                          "content": ""
+                        }
+                      ],
+                      "MarketingAirline": {
+                        "Code": "DL",
+                        "content": ""
+                      },
+                      "DisclosureAirline": {
+                        "Code": "AF",
+                        "content": ""
+                      },
+                      "MarriageGrp": "I",
+                      "DepartureTimeZone": {
+                        "GMTOffset": -4
+                      },
+                      "ArrivalTimeZone": {
+                        "GMTOffset": 2
+                      },
+                      "TPA_Extensions": {
+                        "eTicket": {
+                          "Ind": true
+                        },
+                        "Mileage": {
+                          "Amount": 3635
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "ElapsedTime": 265,
+                  "FlightSegment": [
+                    {
+                      "DepartureDateTime": "2017-07-14T12:30:00",
+                      "ArrivalDateTime": "2017-07-14T14:55:00",
+                      "StopQuantity": 0,
+                      "FlightNumber": "8041",
+                      "ResBookDesigCode": "U",
+                      "ElapsedTime": 265,
+                      "DepartureAirport": {
+                        "LocationCode": "MEX",
+                        "TerminalID": "2",
+                        "content": ""
+                      },
+                      "ArrivalAirport": {
+                        "LocationCode": "LAX",
+                        "TerminalID": "B",
+                        "content": ""
+                      },
+                      "OperatingAirline": {
+                        "Code": "AM",
+                        "FlightNumber": "642",
+                        "content": ""
+                      },
+                      "Equipment": [
+                        {
+                          "AirEquipType": "7S8",
+                          "content": ""
+                        }
+                      ],
+                      "MarketingAirline": {
+                        "Code": "DL",
+                        "content": ""
+                      },
+                      "DisclosureAirline": {
+                        "Code": "AM",
+                        "content": ""
+                      },
+                      "MarriageGrp": "O",
+                      "DepartureTimeZone": {
+                        "GMTOffset": -5
+                      },
+                      "ArrivalTimeZone": {
+                        "GMTOffset": -7
+                      },
+                      "TPA_Extensions": {
+                        "eTicket": {
+                          "Ind": true
+                        },
+                        "Mileage": {
+                          "Amount": 1553
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "ElapsedTime": 380,
+                  "FlightSegment": [
+                    {
+                      "DepartureDateTime": "2017-07-22T21:55:00",
+                      "ArrivalDateTime": "2017-07-23T09:15:00",
+                      "StopQuantity": 0,
+                      "FlightNumber": "4379",
+                      "ResBookDesigCode": "Y",
+                      "ElapsedTime": 380,
+                      "DepartureAirport": {
+                        "LocationCode": "BOS",
+                        "TerminalID": "E",
+                        "content": ""
+                      },
+                      "ArrivalAirport": {
+                        "LocationCode": "LHR",
+                        "TerminalID": "3",
+                        "content": ""
+                      },
+                      "OperatingAirline": {
+                        "Code": "VS",
+                        "FlightNumber": "12",
+                        "content": ""
+                      },
+                      "Equipment": [
+                        {
+                          "AirEquipType": "789",
+                          "content": ""
+                        }
+                      ],
+                      "MarketingAirline": {
+                        "Code": "DL",
+                        "content": ""
+                      },
+                      "DisclosureAirline": {
+                        "Code": "VS",
+                        "content": ""
+                      },
+                      "MarriageGrp": "O",
+                      "DepartureTimeZone": {
+                        "GMTOffset": -4
+                      },
+                      "ArrivalTimeZone": {
+                        "GMTOffset": 1
+                      },
+                      "TPA_Extensions": {
+                        "eTicket": {
+                          "Ind": true
+                        },
+                        "Mileage": {
+                          "Amount": 3265
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "AirItineraryPricingInfo": [
+            {
+              "LastTicketDate": "2017-05-18",
+              "PricingSource": "ADVJR1",
+              "PricingSubSource": "MIP",
+              "FareReturned": true,
+              "ItinTotalFare": {
+                "BaseFare": {
+                  "Amount": 5573,
+                  "CurrencyCode": "USD",
+                  "DecimalPlaces": 2
+                },
+                "FareConstruction": {
+                  "Amount": 5573,
+                  "CurrencyCode": "NUC",
+                  "DecimalPlaces": 2
+                },
+                "EquivFare": {
+                  "Amount": 5573,
+                  "CurrencyCode": "USD",
+                  "DecimalPlaces": 2
+                },
+                "Taxes": {
+                  "Tax": [
+                    {
+                      "TaxCode": "TOTALTAX",
+                      "Amount": 385.36,
+                      "CurrencyCode": "USD",
+                      "DecimalPlaces": 2,
+                      "content": ""
+                    }
+                  ]
+                },
+                "TotalFare": {
+                  "Amount": 5958.36,
+                  "CurrencyCode": "USD",
+                  "DecimalPlaces": 2
+                }
+              },
+              "PTC_FareBreakdowns": {
+                "PTC_FareBreakdown": [
+                  {
+                    "PassengerTypeQuantity": {
+                      "Code": "ADT",
+                      "Quantity": 1
+                    },
+                    "FareBasisCodes": {
+                      "FareBasisCode": [
+                        {
+                          "BookingCode": "Y",
+                          "DepartureAirportCode": "DFW",
+                          "ArrivalAirportCode": "JFK",
+                          "FareComponentBeginAirport": "DFW",
+                          "FareComponentEndAirport": "CDG",
+                          "FareComponentDirectionality": "FROM",
+                          "FareComponentVendorCode": "ATP",
+                          "GovCarrier": "DL",
+                          "content": "Y"
+                        },
+                        {
+                          "BookingCode": "Y",
+                          "AvailabilityBreak": true,
+                          "DepartureAirportCode": "JFK",
+                          "ArrivalAirportCode": "CDG",
+                          "GovCarrier": "DL",
+                          "content": "Y"
+                        },
+                        {
+                          "BookingCode": "U",
+                          "AvailabilityBreak": true,
+                          "DepartureAirportCode": "MEX",
+                          "ArrivalAirportCode": "LAX",
+                          "FareComponentBeginAirport": "MEX",
+                          "FareComponentEndAirport": "LAX",
+                          "FareComponentDirectionality": "TO",
+                          "FareComponentVendorCode": "ATP",
+                          "GovCarrier": "DL",
+                          "content": "UNNA0SMZ"
+                        },
+                        {
+                          "BookingCode": "Y",
+                          "AvailabilityBreak": true,
+                          "DepartureAirportCode": "BOS",
+                          "ArrivalAirportCode": "LHR",
+                          "FareComponentBeginAirport": "BOS",
+                          "FareComponentEndAirport": "LHR",
+                          "FareComponentDirectionality": "FROM",
+                          "FareComponentVendorCode": "ATP",
+                          "GovCarrier": "DL",
+                          "content": "Y"
+                        }
+                      ]
+                    },
+                    "PassengerFare": {
+                      "BaseFare": {
+                        "Amount": 5573,
+                        "CurrencyCode": "USD"
+                      },
+                      "FareConstruction": {
+                        "Amount": 5573,
+                        "CurrencyCode": "NUC",
+                        "DecimalPlaces": 2
+                      },
+                      "EquivFare": {
+                        "Amount": 5573,
+                        "CurrencyCode": "USD",
+                        "DecimalPlaces": 2
+                      },
+                      "Taxes": {
+                        "Tax": [
+                          {
+                            "TaxCode": "YRI",
+                            "Amount": 125,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "YRI",
+                            "Amount": 125,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "US2",
+                            "CountryCode": "US",
+                            "Amount": 18,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "US2",
+                            "CountryCode": "US",
+                            "Amount": 18,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "US2",
+                            "CountryCode": "US",
+                            "Amount": 18,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "YC",
+                            "CountryCode": "US",
+                            "Amount": 5.5,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XY",
+                            "CountryCode": "US",
+                            "Amount": 7,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XA",
+                            "CountryCode": "US",
+                            "Amount": 3.96,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "AY",
+                            "CountryCode": "US",
+                            "Amount": 5.6,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "AY",
+                            "CountryCode": "US",
+                            "Amount": 5.6,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XD",
+                            "CountryCode": "MX",
+                            "Amount": 44.7,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XF",
+                            "CountryCode": "US",
+                            "Amount": 4.5,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XF",
+                            "CountryCode": "US",
+                            "Amount": 4.5,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          }
+                        ],
+                        "TaxSummary": [
+                          {
+                            "TaxCode": "US2",
+                            "CountryCode": "US",
+                            "Amount": 54,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "YC",
+                            "CountryCode": "US",
+                            "Amount": 5.5,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XY",
+                            "CountryCode": "US",
+                            "Amount": 7,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XA",
+                            "CountryCode": "US",
+                            "Amount": 3.96,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "AY",
+                            "CountryCode": "US",
+                            "Amount": 11.2,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "YRI",
+                            "Amount": 250,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XD",
+                            "CountryCode": "MX",
+                            "Amount": 44.7,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          },
+                          {
+                            "TaxCode": "XF",
+                            "CountryCode": "US",
+                            "Amount": 9,
+                            "CurrencyCode": "USD",
+                            "DecimalPlaces": 2,
+                            "content": ""
+                          }
+                        ],
+                        "TotalTax": {
+                          "Amount": 385.36,
+                          "CurrencyCode": "USD",
+                          "DecimalPlaces": 2
+                        }
+                      },
+                      "TotalFare": {
+                        "Amount": 5958.36,
+                        "CurrencyCode": "USD"
+                      },
+                      "TPA_Extensions": {
+                        "Messages": {
+                          "Message": [
+                            {
+                              "AirlineCode": "DL",
+                              "Type": "N",
+                              "FailCode": 0,
+                              "Info": "NONREF/PENALTY APPLIES"
+                            },
+                            {
+                              "Type": "W",
+                              "FailCode": 0,
+                              "Info": "VALIDATING CARRIER - DL"
+                            }
+                          ]
+                        },
+                        "BaggageInformationList": {
+                          "BaggageInformation": [
+                            {
+                              "ProvisionType": "A",
+                              "AirlineCode": "DL",
+                              "Segment": [
+                                {
+                                  "Id": 0
+                                },
+                                {
+                                  "Id": 1
+                                }
+                              ],
+                              "Allowance": [
+                                {
+                                  "Pieces": 1
+                                }
+                              ]
+                            },
+                            {
+                              "ProvisionType": "A",
+                              "AirlineCode": "DL",
+                              "Segment": [
+                                {
+                                  "Id": 2
+                                },
+                                {
+                                  "Id": 3
+                                }
+                              ],
+                              "Allowance": [
+                                {
+                                  "Pieces": 1
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "Endorsements": {
+                      "NonRefundableIndicator": true
+                    },
+                    "TPA_Extensions": {
+                      "FareCalcLine": {
+                        "Info": "DFW DL X/NYC DL PAR M3474.00/-MEX DL LAX123.00/-BOS DL LON1976.00NUC5573.00END ROE1.00 XFDFW4.5JFK4.5"
+                      }
+                    },
+                    "FareInfos": {
+                      "FareInfo": [
+                        {
+                          "FareReference": "Y",
+                          "TPA_Extensions": {
+                            "SeatsRemaining": {
+                              "Number": 9,
+                              "BelowMin": false
+                            },
+                            "Cabin": {
+                              "Cabin": "Y"
+                            },
+                            "Meal": {
+                              "Code": "L"
+                            }
+                          }
+                        },
+                        {
+                          "FareReference": "Y",
+                          "TPA_Extensions": {
+                            "SeatsRemaining": {
+                              "Number": 9,
+                              "BelowMin": false
+                            },
+                            "Cabin": {
+                              "Cabin": "Y"
+                            }
+                          }
+                        },
+                        {
+                          "FareReference": "U",
+                          "TPA_Extensions": {
+                            "SeatsRemaining": {
+                              "Number": 7,
+                              "BelowMin": false
+                            },
+                            "Cabin": {
+                              "Cabin": "Y"
+                            },
+                            "Meal": {
+                              "Code": "L"
+                            }
+                          }
+                        },
+                        {
+                          "FareReference": "Y",
+                          "TPA_Extensions": {
+                            "SeatsRemaining": {
+                              "Number": 9,
+                              "BelowMin": false
+                            },
+                            "Cabin": {
+                              "Cabin": "Y"
+                            },
+                            "Meal": {
+                              "Code": "D"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "FareInfos": {
+                "FareInfo": [
+                  {
+                    "FareReference": "Y",
+                    "TPA_Extensions": {
+                      "SeatsRemaining": {
+                        "Number": 9,
+                        "BelowMin": false
+                      },
+                      "Cabin": {
+                        "Cabin": "Y"
+                      },
+                      "Meal": {
+                        "Code": "L"
+                      }
+                    }
+                  },
+                  {
+                    "FareReference": "Y",
+                    "TPA_Extensions": {
+                      "SeatsRemaining": {
+                        "Number": 9,
+                        "BelowMin": false
+                      },
+                      "Cabin": {
+                        "Cabin": "Y"
+                      }
+                    }
+                  },
+                  {
+                    "FareReference": "U",
+                    "TPA_Extensions": {
+                      "SeatsRemaining": {
+                        "Number": 7,
+                        "BelowMin": false
+                      },
+                      "Cabin": {
+                        "Cabin": "Y"
+                      },
+                      "Meal": {
+                        "Code": "L"
+                      }
+                    }
+                  },
+                  {
+                    "FareReference": "Y",
+                    "TPA_Extensions": {
+                      "SeatsRemaining": {
+                        "Number": 9,
+                        "BelowMin": false
+                      },
+                      "Cabin": {
+                        "Cabin": "Y"
+                      },
+                      "Meal": {
+                        "Code": "D"
+                      }
+                    }
+                  }
+                ]
+              },
+              "TPA_Extensions": {
+                "DivideInParty": {
+                  "Indicator": false
+                },
+                "ValidatingCarrier": [
+                  {
+                    "SettlementMethod": "ARC",
+                    "NewVcxProcess": true,
+                    "Default": {
+                      "Code": "DL"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "TicketingInfo": {
+            "TicketType": "eTicket",
+            "ValidInterline": "Yes"
+          },
+          "TPA_Extensions": {
+            "ValidatingCarrier": {
+              "Code": "DL"
+            },
+            "TagID": "BargainFinderMaxRQ~8b38a673-97e4-4619-8a5c-fb68251b638d~2"
+          }
+        }
+      ]
+    }
+  },
+  "RequestID": "BargainFinderMaxRQ~8b38a673-97e4-4619-8a5c-fb68251b638d",
+  "Page": {
+    "Size": 2,
+    "TotalTags": 50,
+    "Offset": 1
+  },
+  "Links": [
+    {
+      "rel": "self",
+      "href": "https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&enabletagging=true&limit=2&offset=1"
+    },
+    {
+      "rel": "linkTemplate",
+      "href": "https://api.test.sabre.com/<version>/shop/flights?mode=<mode>&limit=<limit>&offset=<offset>&enabletagging=<enabletagging>"
+    },
+    {
+      "rel": "tagLookupLinkTemplate",
+      "href": "https://api.test.sabre.com/<version>/shop/flights/tags/<tagid>?mode=<mode>"
+    },
+    {
+      "rel": "paginatedRequestLinkTemplate",
+      "href": "https://api.test.sabre.com/<version>/shop/flights/<requestid>?mode=<mode>&limit=<limit>&offset=<offset>"
+    },
+    {
+      "rel": "nextResults",
+      "href": "https://api.test.sabre.com/v3.1.0/shop/flights/BargainFinderMaxRQ~8b38a673-97e4-4619-8a5c-fb68251b638d?mode=live&offset=3&limit=2"
+    }
+  ]
+}

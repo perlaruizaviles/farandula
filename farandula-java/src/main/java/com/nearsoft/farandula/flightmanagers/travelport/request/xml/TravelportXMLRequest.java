@@ -1,9 +1,6 @@
 package com.nearsoft.farandula.flightmanagers.travelport.request.xml;
 
-import com.nearsoft.farandula.models.TravelportFlightDetails;
-import com.nearsoft.farandula.models.FlightType;
-import com.nearsoft.farandula.models.SearchCommand;
-import com.nearsoft.farandula.models.Segment;
+import com.nearsoft.farandula.models.*;
 import org.apache.commons.lang3.text.StrSubstitutor;
 
 import java.io.BufferedReader;
@@ -30,6 +27,7 @@ public class TravelportXMLRequest {
         valuesMap.put("passengersNumber", search.getPassengers().size());
         valuesMap.put("classTravel",   search.getCabinClass().equals("") ? "Economy" : search.getCabinClass() );
         valuesMap.put("targetBranch", targetBranchValue);
+
         sub = new StrSubstitutor(valuesMap);
 
         InputStream soapInputStream = TravelportXMLRequest.class
@@ -62,17 +60,17 @@ public class TravelportXMLRequest {
 
         String airlegs = "";
 
-        valuesMap.put("departureAirport", search.getDepartureAirport() );
-        valuesMap.put("arrivalAirport", search.getArrivalAirport() );
-        valuesMap.put("departureDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        valuesMap.put("departureAirport", search.getDepartureAirports().get(0) );
+        valuesMap.put("arrivalAirport", search.getArrivalAirports().get(0) );
+        valuesMap.put("departureDate", search.getDepartingDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE));
         sub = new StrSubstitutor(valuesMap);
         airlegs += sub.replace( leg );
 
         if ( search.getType() == FlightType.ROUNDTRIP ){
 
-            valuesMap.put("departureAirport", search.getArrivalAirport());
-            valuesMap.put("arrivalAirport", search.getDepartureAirport() );
-            valuesMap.put("departureDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+            valuesMap.put("departureAirport", search.getArrivalAirports().get(0));
+            valuesMap.put("arrivalAirport", search.getDepartureAirports().get(0) );
+            valuesMap.put("departureDate", search.getReturningDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE));
             sub = new StrSubstitutor(valuesMap);
             airlegs += sub.replace( leg );
 
@@ -91,7 +89,7 @@ public class TravelportXMLRequest {
 
         valuesMap.clear();
 
-        String carrier = seg.getOperatingAirlineCode() != null ? seg.getOperatingAirlineCode() : seg.getMarketingAirlineCode();;
+        String carrier = seg.getOperatingAirlineCode() != null ? seg.getOperatingAirlineCode() : seg.getMarketingAirlineCode();
         String flightNumber = seg.getOperatingFlightNumber()!= null? seg.getOperatingFlightNumber() : seg.getMarketingFlightNumber();
 
         valuesMap.put("key", seg.getKey() );

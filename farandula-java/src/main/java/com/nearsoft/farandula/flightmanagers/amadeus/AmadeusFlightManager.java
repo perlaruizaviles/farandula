@@ -2,15 +2,16 @@ package com.nearsoft.farandula.flightmanagers.amadeus;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
-import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightManager;
 import com.nearsoft.farandula.models.*;
-import com.nearsoft.farandula.utilities.CurrencyIATACodesHelper;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
@@ -19,12 +20,12 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
 import static com.nearsoft.farandula.utilities.CurrencyIATACodesHelper.buildPrice;
+import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyJson;
 import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
 /**
@@ -32,10 +33,10 @@ import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
  */
 public class AmadeusFlightManager implements FlightManager {
 
-    private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
+    private static Logger LOGGER = LoggerFactory.getLogger(AmadeusFlightManager.class);
     private static String apiKey;
     private static Map<String, String> locationsMap = new HashMap<>();
-    private static Map<String,String> airlinesCodeMap = new HashMap<>();
+    private static Map<String, String> airlinesCodeMap = new HashMap<>();
 
     static {
         Properties props = new Properties();
@@ -48,6 +49,8 @@ public class AmadeusFlightManager implements FlightManager {
         }
     }
 
+    private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
+
     public static void fillReferenceMaps() throws IOException {
         Properties properties = new Properties();
         properties.load(AmadeusFlightManager.class.getResourceAsStream("/amadeus/locations.properties"));
@@ -57,12 +60,16 @@ public class AmadeusFlightManager implements FlightManager {
         }
 
         properties.clear();
-        properties.load( AmadeusFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+        properties.load(AmadeusFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
         for (String key : properties.stringPropertyNames()) {
             String value = properties.getProperty(key);
             airlinesCodeMap.put(key, value);
         }
 
+    }
+
+    public String getApiKey() {
+        return apiKey;
     }
 
     private OkHttpClient buildHttpClient() {
@@ -74,22 +81,61 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
+    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException, IOException {
 
-        try {
-            Request request = buildRequestForAvail(search);
+        List<Itinerary> results = new ArrayList<>();
+        List<String> urlList = buildTargetURLFromSearch(search);
+        //this var is only used in openjaw
+        int maxSize=0;
+
+        for (String url_api : urlList) {
+
+            LOGGER.info("Amadeus URL request : {}", url_api);
+            Request request = buildRequest(url_api);
             InputStream responseStream = sendRequest(request);
-            return parseAvailResponse(responseStream);
 
-        } catch (Exception e) {
-            throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
+            if (results.isEmpty()) {
+                results = parseAvailResponse(responseStream);
+                maxSize = results.size();
+            } else {
+                List<Itinerary> openJawResults = parseAvailResponse(responseStream);
+                if ( openJawResults.size() < maxSize  ) {
+                    maxSize = openJawResults.size();
+                }
+                for (int i = 0; i < maxSize; i++) {
+                    results.get(i).getAirlegs().addAll(openJawResults.get(i).getAirlegs());
+                    Fares pricesSum = sumPrices(results.get(i).getPrice(), openJawResults.get(i).getPrice());
+                    results.get(i).setPrice(pricesSum);
+                }
+            }
+
         }
+
+        LOGGER.info("Amadeus result : {}" , results);
+        return results;
+
+    }
+
+    private Fares sumPrices(Fares price1, Fares price2) {
+
+        Fares sum = new Fares();
+
+        if (price1.getBasePrice().getCurrencyCode().equals(price2.getBasePrice().getCurrencyCode())) {
+            sum.setBasePrice((new Price())
+                    .setAmount(price1.getBasePrice().getAmount() + price2.getBasePrice().getAmount())
+                    .setCurrencyCode(price1.getBasePrice().getCurrencyCode())
+            );
+        }
+
+        return sum;
 
     }
 
     public String getTimeZone(String location_code) throws IOException, FarandulaException {
 
         String url_api = buildLocationURL(location_code);
+        LOGGER.info("Amadeus URL request for timezones : " + url_api);
+
         Request request = buildRequest(url_api);
         Response response = buildHttpClient().newCall(request).execute();
         InputStream responseStream = response.body().byteStream();
@@ -111,30 +157,31 @@ public class AmadeusFlightManager implements FlightManager {
 
     public List<Itinerary> parseAvailResponse(InputStream response) throws IOException {
 
-
         List<Itinerary> itineraries = new ArrayList<>();
+
         ReadContext ctx = JsonPath.parse(response);
+        LOGGER.info("Amadeus response: JSON-BEGIN\n{}\nJSON-END", getPrettyJson(ctx.jsonString() ) ) ;
+
         JSONArray results = ctx.read("$..results[*]");
 
-        for ( Object result : results ){
-
-            Itinerary itineraryResult = new Itinerary();
+        for (Object result : results) {
 
             Map<String, Object> resultMap = (Map<String, Object>) result;
 
             JSONArray arrayItineraries = (JSONArray) resultMap.get("itineraries");
 
-            for ( Object itinerary : arrayItineraries ){
+            for (Object itinerary : arrayItineraries) {
 
-               buildAirLegs((Map<String, Object>) itinerary, itineraryResult );
+                Itinerary itineraryResult = new Itinerary();
 
+                buildAirLegs((Map<String, Object>) itinerary, itineraryResult);
+                //pricing
+                Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
+                itineraryResult.setPrice(getPrices(fareMap));
+
+                //adding each air leg (inbound / outbound) separately, even when they have the same price
+                itineraries.add(itineraryResult);
             }
-
-            //pricing
-            Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
-            itineraryResult.setPrice( getPrices( fareMap ) );
-
-            itineraries.add( itineraryResult );
 
         }
 
@@ -142,40 +189,42 @@ public class AmadeusFlightManager implements FlightManager {
 
     }
 
-    private void buildAirLegs(Map<String, Object> itineraryMap, Itinerary itineraryResult ) {
+    private void buildAirLegs(Map<String, Object> itineraryMap, Itinerary itineraryResult) {
 
         //adds departure leg
         Map<String, Object> outbound = (Map<String, Object>) itineraryMap.get("outbound");
         JSONArray outboundFlights = (JSONArray) outbound.get("flights");
         AirLeg departureLeg = getAirleg(outboundFlights);
-        itineraryResult.setDepartureAirleg( departureLeg );
+        itineraryResult.getAirlegs().add(departureLeg);
 
-        //adds returnings leg
+        //adds returning legs
         Map<String, Object> inbound = (Map<String, Object>) itineraryMap.get("inbound");
-        JSONArray inboundFlights = (JSONArray) inbound.get("flights");
-        AirLeg returnigLeg= getAirleg(inboundFlights);
-        itineraryResult.setReturningAirlegs( returnigLeg );
-
+        if (inbound != null) {
+            JSONArray inboundFlights = (JSONArray) inbound.get("flights");
+            AirLeg returningLeg = getAirleg(inboundFlights);
+            itineraryResult.getAirlegs().add(returningLeg);
+        }
     }
 
     private Fares getPrices(Map<String, Object> pricingInfoData) {
 
         //price
-        Fares fares =  new Fares();
-        Price totalPrice = buildPrice( getValueOf( pricingInfoData , "total_price", String.class ) );
-        fares.setTotalPrice( totalPrice );
+        Fares fares = new Fares();
+        //NOTE: we are using total price as base price
+        Price basePrice = buildPrice(getValueOf(pricingInfoData, "total_price", String.class));
+        fares.setBasePrice(basePrice);
 
-        if ( pricingInfoData.get("price_per_adult") != null  ) {
-            fares.setPricePerAdult( buildPrice( getValueOf(pricingInfoData, "price_per_adult.total_fare", String.class)));
-            fares.setTaxPerAdult( buildPrice( getValueOf(pricingInfoData, "price_per_adult.tax", String.class) ) );
+        if (pricingInfoData.get("price_per_adult") != null) {
+            fares.setPricePerAdult(buildPrice(getValueOf(pricingInfoData, "price_per_adult.total_fare", String.class)));
+            fares.setTaxPerAdult(buildPrice(getValueOf(pricingInfoData, "price_per_adult.tax", String.class)));
         }
 
-        if ( pricingInfoData.get("price_per_child") != null  ) {
-            fares.setPricePerChild( buildPrice(getValueOf(pricingInfoData, "price_per_child.total_fare", String.class)));
-            fares.setTaxPerChild( buildPrice(getValueOf(pricingInfoData, "price_per_child.tax", String.class)));
+        if (pricingInfoData.get("price_per_child") != null) {
+            fares.setPricePerChild(buildPrice(getValueOf(pricingInfoData, "price_per_child.total_fare", String.class)));
+            fares.setTaxPerChild(buildPrice(getValueOf(pricingInfoData, "price_per_child.tax", String.class)));
         }
 
-        if ( pricingInfoData.get("price_per_infant") != null  ) {
+        if (pricingInfoData.get("price_per_infant") != null) {
             fares.setPricePerInfant(buildPrice(getValueOf(pricingInfoData, "price_per_infant.total_fare", String.class)));
             fares.setTaxPerInfant(buildPrice(getValueOf(pricingInfoData, "price_per_infant.tax", String.class)));
         }
@@ -224,39 +273,38 @@ public class AmadeusFlightManager implements FlightManager {
 
         //Airleg information
         Segment seg = new Segment();
-        seg.setAirlineIconPath("");
-        seg.setOperatingAirlineCode((String) segmentMap.get("operating_airline"));
-        seg.setOperatingAirlineName( airlinesCodeMap.get( seg.getOperatingAirlineCode() ) );
-        seg.setOperatingFlightNumber( (String) segmentMap.get("flight_number")  );
+        seg.setOperatingAirlineCode( (String) segmentMap.get("operating_airline"));
+        seg.setOperatingAirlineName( airlinesCodeMap.get(seg.getOperatingAirlineCode()));
+        seg.setOperatingFlightNumber((String) segmentMap.get("flight_number"));
 
-        seg.setMarketingAirlineCode((String) segmentMap.get("marketing_airline"));
-        seg.setMarketingAirlineName( airlinesCodeMap.get( seg.getMarketingAirlineCode() ) );
-        seg.setMarketingFlightNumber((String) segmentMap.get("flight_number"));
+        seg.setMarketingAirlineCode( (String) segmentMap.get("marketing_airline"));
+        seg.setMarketingAirlineName( airlinesCodeMap.get(seg.getMarketingAirlineCode()));
+        seg.setMarketingFlightNumber( (String) segmentMap.get("flight_number"));
 
         seg.setAirplaneData((String) segmentMap.get("aircraft"));
 
-        CabinClassType classTravel =  getCabinClassType( (String) bookingInfoData.get("travel_class") );
+        CabinClassType classTravel = getCabinClassType((String) bookingInfoData.get("travel_class"));
         int numberOfSeats = (int) bookingInfoData.get("seats_remaining");
         List<Seat> seats = new ArrayList<>();
-        for ( int i = 0 ; i < numberOfSeats ; i++ ){
+        for (int i = 0; i < numberOfSeats; i++) {
             Seat seat = new Seat();
             //amadeus does not indicate the seat place
             seat.setPlace("");
-            seat.setClassCabin( classTravel );
-            seats.add( seat );
+            seat.setClassCabin(classTravel);
+            seats.add(seat);
         }
         seg.setSeatsAvailable(seats);
 
         //departure stuff
         seg.setDepartureAirportCode((String) departureAirportData.get("airport"));
-        seg.setDepartureTerminal( (String) departureAirportData.get("terminal")) ;
+        seg.setDepartureTerminal((String) departureAirportData.get("terminal"));
         LocalDateTime departureDateTime = LocalDateTime.parse(
                 (String) segmentMap.get("departs_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         seg.setDepartureDate(departureDateTime);
 
         //arrival stuff
         seg.setArrivalAirportCode((String) arrivalAirportData.get("airport"));
-        seg.setArrivalTerminal( (String) arrivalAirportData.get("terminal") );
+        seg.setArrivalTerminal((String) arrivalAirportData.get("terminal"));
         LocalDateTime arrivalDateTime = LocalDateTime.parse(
                 (String) segmentMap.get("arrives_at"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         seg.setArrivalDate(arrivalDateTime);
@@ -282,8 +330,7 @@ public class AmadeusFlightManager implements FlightManager {
             diffInMinutes = Duration.between(departureDateTime, arrivalDateTime).toMinutes();
         } else {
             if (departureTimeZone.isEmpty() || arrivalTimeZone.isEmpty()) {
-                //todo check this case, what should we do when is impossible to get the zone,
-                // example when location is 'xyz'
+                // example when location is 'xyz'  we fallback to use UTC +0
                 diffInMinutes = 0;
             } else {
                 ZonedDateTime departureWithZone = departureDateTime.atZone(ZoneId.of(departureTimeZone));
@@ -297,12 +344,6 @@ public class AmadeusFlightManager implements FlightManager {
         return seg;
     }
 
-    public Request buildRequestForAvail(SearchCommand search) {
-
-        String url_api = buildTargetURLFromSearch(search);
-        return buildRequest(url_api);
-    }
-
     public Request buildRequest(String url_api) {
         final Request.Builder builder = new Request.Builder();
         builder.url(url_api);
@@ -310,48 +351,71 @@ public class AmadeusFlightManager implements FlightManager {
         return builder.build();
     }
 
-    public String buildTargetURLFromSearch(SearchCommand search) {
-        String departureDate = search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
-        String arrivalDate = search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
-        String apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?";
+    public List<String> buildTargetURLFromSearch(SearchCommand search) {
 
-        apiURL +="apikey=" + apiKey
-                + "&origin=" + search.getDepartureAirport()
-                + "&destination=" + search.getArrivalAirport()
-                + "&departure_date=" + departureDate;
+        List<String> apiResultsList = new ArrayList<>();
 
-        if ( search.getType() == FlightType.ROUNDTRIP) {
-            apiURL += "&return_date=" + arrivalDate;
+        List<String> departureDateList = new ArrayList<>();
+        for (LocalDateTime departing : search.getDepartingDates()) {
+            departureDateList.add(departing.format(DateTimeFormatter.ISO_LOCAL_DATE));
         }
 
-        apiURL += "&adults=" + search.getPassengers().size()
-                + "&number_of_results=" + search.getOffSet();
+        //--->this block is the same for n request on open jaws
+        String apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?"
+                + "apikey=" + apiKey;
 
+        String passengersData = "";
+        for (Map.Entry<PassengerType, List<Passenger>> entry : search.getPassengersMap().entrySet()) {
+            passengersData += "&" + entry.getKey().toString().toLowerCase() + "=" + entry.getValue().size();
+        }
 
+        String numberOfResults = "&number_of_results=" + search.getOffSet();
         //cabins for amadeus.
-        switch ( search.getCabinClass() ){
+        switch (search.getCabinClass()) {
 
             case ECONOMY:
-                apiURL+= "&travel_class=ECONOMY";
+                apiURL += "&travel_class=ECONOMY";
                 break;
 
             case PREMIUM_ECONOMY:
-                apiURL+= "&travel_class=PREMIUM_ECONOMY";
+                apiURL += "&travel_class=PREMIUM_ECONOMY";
                 break;
 
             case FIRST:
-                apiURL+= "&travel_class=FIRST";
+                apiURL += "&travel_class=FIRST";
                 break;
 
             case BUSINESS:
-                apiURL+= "&travel_class=FIRST";
+                apiURL += "&travel_class=FIRST";
                 break;
 
             default:
-                apiURL+= "&travel_class=ECONOMY";
+                apiURL += "&travel_class=ECONOMY";
+        }
+        // --> end of block
+
+
+        for (int i = 0; i < search.getDepartureAirports().size(); i++) {
+            String urlResult =
+                    apiURL
+                            + "&origin=" + search.getDepartureAirports().get(i)
+                            + "&destination=" + search.getArrivalAirports().get(i)
+                            + "&departure_date=" + departureDateList.get(i);
+
+            if (search.getType() == FlightType.ROUNDTRIP) {
+                String arrivalDate = search.getReturningDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                urlResult += "&return_date=" + arrivalDate;
+            }
+
+            urlResult += passengersData;
+            urlResult += numberOfResults;
+
+            apiResultsList.add(urlResult);
+
         }
 
-        return apiURL;
+        return apiResultsList;
+
     }
 
     String buildLocationURL(String location) {

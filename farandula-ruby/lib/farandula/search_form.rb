@@ -1,0 +1,167 @@
+require_relative './constants.rb'
+
+module Farandula 
+
+  class SearchForm 
+    
+    include Farandula
+
+    attr_accessor :type
+    attr_accessor :departure_airport
+    attr_accessor :arrival_airport
+    attr_accessor :departing_date 
+    attr_accessor :returning_date 
+    attr_accessor :passengers
+    attr_accessor :cabin_class
+    attr_accessor :offset
+
+    def initialize(
+      departure_airport = nil, 
+      arrival_airport   = nil, 
+      departing_date    = nil, 
+      returning_date    = nil, 
+      passengers        = {}, 
+      type              = :oneway, 
+      cabin_class       = :economy,
+      offset            = nil
+    )
+
+      @type               = type
+      @departure_airport  = departure_airport
+      @arrival_airport    = arrival_airport
+      @departing_date     = departing_date 
+      @returning_date     = returning_date 
+      @passengers         = passengers
+      @cabin_class        = cabin_class
+      @offset             = offset
+    end 
+
+    def roundtrip?
+      @type == :roundtrip
+    end
+
+    # Builder helper for Search Form  
+    class Builder 
+    
+      def initialize      
+        @search_form = SearchForm.new
+      end
+
+      def from(from) 
+        @search_form.departure_airport = from
+        self
+      end 
+      
+      def to(to)
+        @search_form.arrival_airport = to   
+        self 
+      end
+
+      def departing_at(departing_at)
+        @search_form.departing_date = departing_at
+        self
+      end
+
+      def returning_at(returning_at)
+        @search_form.returning_date = returning_at
+        self
+      end
+
+      def type(type)
+        @search_form.type = type 
+        self 
+      end 
+
+      #  TODO handle passenger buidling 
+      def with_passenger(passenger)
+        if @search_form.passengers[passenger.type].nil?
+          @search_form.passengers[passenger.type] =  []
+        end
+        @search_form.passengers[passenger.type] << passenger
+        self
+      end
+
+      def limited_results_to(max_results)
+        @search_form.offset = max_results
+        self
+      end
+
+      def with_cabin_class(cabin_class)
+        @search_form.cabin_class = cabin_class
+        self
+      end
+
+      def in_enconomy_class
+        @search_form.cabin_class = :economy
+      end 
+      
+      def in_businnes_class
+        @search_form.cabin_class = :business
+      end 
+      
+      def in_first_class
+        @search_form.cabin_class = :first
+      end
+
+
+      def build!(validate = true)
+        if validate
+          validate!  
+        end 
+        @search_form
+      end 
+
+      protected 
+        def validate!
+          
+          check_not_empty!('departure_airport', @search_form.departure_airport)
+          check_not_empty!('arrival_airport', @search_form.arrival_airport)
+          check_not_nil!('type', @search_form.type)
+          check_not_nil!('departing_date', @search_form.departing_date)
+
+          if @search_form.roundtrip?
+            check_not_nil!('returning_date', @search_form.returning_date)
+          end 
+
+          if !CabinClassType::TYPES.include?(@search_form.cabin_class)
+            raise ValidationError.new("cabin class type [#{@search_form.cabin_class}] not found")
+          end 
+
+          if !FlightType::TYPES.include?(@search_form.type)
+            raise ValidationError.new("flight type [#{@search_form.type}] not found")
+          end 
+
+          if (@search_form.departing_date <=> DateTime.now) == -1
+            raise ValidationError.new("departing_date can\'t be in the pass")
+          end 
+
+          if @search_form.roundtrip?
+
+            if (@search_form.departing_date <=> @search_form.returning_date) == 1
+              raise ValidationError.new("returning_date can't be before departing_date")
+            end
+          end
+        end
+        
+
+      private 
+        def check_not_nil!(name , obj) 
+          if obj.nil? 
+            raise ValidationError.new "#{name} cannot be nil"
+          end 
+        end
+
+        def check_not_empty!(name, obj)
+          check_not_nil!(name, obj)
+          if !obj.is_a?(String)
+            raise ValidationError.new "#{name} has to be of type 'string'"
+          end
+
+          if obj.empty?
+            raise ValidationError.new "#{name} cannot be empty"
+          end 
+        end 
+
+    end # Builder ends 
+  end  # SearchForm ends
+end 

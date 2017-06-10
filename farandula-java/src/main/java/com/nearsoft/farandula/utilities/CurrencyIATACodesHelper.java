@@ -2,8 +2,6 @@ package com.nearsoft.farandula.utilities;
 
 import com.nearsoft.farandula.models.Price;
 
-import java.util.Currency;
-
 /**
  * Created by pruiz on 5/14/17.
  */

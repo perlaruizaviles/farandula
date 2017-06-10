@@ -1,9 +1,6 @@
 package com.nearsoft.farandula.flightmanagers.sabre.request.json;
 
-import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
-import com.nearsoft.farandula.models.CabinClassType;
-import com.nearsoft.farandula.models.FlightType;
-import com.nearsoft.farandula.models.SearchCommand;
+import com.nearsoft.farandula.models.*;
 import org.apache.commons.lang3.text.StrSubstitutor;
 
 import java.io.BufferedReader;
@@ -11,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -23,6 +21,7 @@ public class SabreJSONRequest {
     private static StrSubstitutor sub;
 
     private static String getDestinationInformation(SearchCommand search) {
+
         InputStream airLegInputStream = SabreJSONRequest.class
                 .getResourceAsStream("/Sabre/JSON/request/requestDestinationInformation.json");
         String leg = new BufferedReader(new InputStreamReader(airLegInputStream))
@@ -31,19 +30,26 @@ public class SabreJSONRequest {
 
         String destinationsInfo = "";
 
-        valuesMap.put("id",1 );
-        valuesMap.put("departureAirport", search.getDepartureAirport() );
-        valuesMap.put("arrivalAirport", search.getArrivalAirport() );
-        valuesMap.put("departureDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        sub = new StrSubstitutor(valuesMap);
-        destinationsInfo += sub.replace( leg ) ;
+        for ( int i = 0; i < search.getArrivalAirports().size() ; i++  ){
+
+            if ( i != 0 ){
+                destinationsInfo+= ",";
+            }
+
+            valuesMap.put("id", i + 1 );
+            valuesMap.put("departureAirport", search.getDepartureAirports().get(i) );
+            valuesMap.put("arrivalAirport", search.getArrivalAirports().get(i) );
+            valuesMap.put("departureDate", search.getDepartingDates().get(i).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            sub = new StrSubstitutor(valuesMap);
+            destinationsInfo += sub.replace( leg ) ;
+        }
 
         if ( search.getType() == FlightType.ROUNDTRIP ){
 
-            valuesMap.put("id",2 );
-            valuesMap.put("departureAirport", search.getArrivalAirport());
-            valuesMap.put("arrivalAirport", search.getDepartureAirport() );
-            valuesMap.put("departureDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            valuesMap.put("id", search.getArrivalAirports().size()  + 1 );
+            valuesMap.put("departureAirport", search.getArrivalAirports().get( 0 ));
+            valuesMap.put("arrivalAirport", search.getDepartureAirports().get(0) );
+            valuesMap.put("departureDate", search.getReturningDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             sub = new StrSubstitutor(valuesMap);
             destinationsInfo += "," + sub.replace( leg );
 
@@ -54,13 +60,16 @@ public class SabreJSONRequest {
 
     public static String getRequest(SearchCommand search) {
 
-        //TODO in future we can check this using 'handlebars' or another lib, research is required.
+        String result = "";
 
-        valuesMap.put("departureAirport", search.getDepartureAirport());
-        valuesMap.put("arrivalAirport", search.getArrivalAirport());
-        valuesMap.put("passengersNumber", search.getPassengers().size());
-        valuesMap.put("departingDate", search.getDepartingDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        valuesMap.put("returningDate", search.getReturningDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        //passengers information
+        String passengersData = getPassengerDetails( search );
+        valuesMap.put("passengersData", passengersData ) ;
+        String numberOfSeats = search.getPassengers().size() + "" ;
+        if ( search.getPassengersMap().containsKey(PassengerType.INFANTS) ){
+            numberOfSeats = String.valueOf(  search.getPassengers().size() - search.getPassengersMap().get(PassengerType.INFANTS).size() );
+        }
+        valuesMap.put("passengersNumber", numberOfSeats );
 
         String classTravel = "";
         switch ( search.getCabinClass() ){
@@ -73,26 +82,82 @@ public class SabreJSONRequest {
             case OTHER:
                 classTravel = "Y";
         }
-
         valuesMap.put("classTravel", classTravel);
+        //request creation.
+        String header  = new BufferedReader(new InputStreamReader(
+                SabreJSONRequest.class.getResourceAsStream("/Sabre/JSON/request/requestHeader.json") ))
+                .lines()
+                .collect(Collectors.joining("\n") );
+
         StrSubstitutor sub = new StrSubstitutor(valuesMap);
 
-        String header  = new BufferedReader(new InputStreamReader(
-                SabreJSONRequest.class.getClass().getResourceAsStream("/Sabre/JSON/request/requestHeader.json") ))
+        result += sub.replace(header);
+
+        result += getDestinationInformation( search );
+
+        result += sub.replace(
+                new BufferedReader(new InputStreamReader(
+                SabreJSONRequest.class.getResourceAsStream("/Sabre/JSON/request/requestTail.json") ))
                 .lines()
-                .collect(Collectors.joining("\n") );
+                .collect(Collectors.joining("\n") )
+        );
 
-        String destinationInfo = getDestinationInformation( search );
-
-        String tail  = new BufferedReader(new InputStreamReader(
-                SabreJSONRequest.class.getClass().getResourceAsStream("/Sabre/JSON/request/requestTail.json") ))
-                .lines()
-                .collect(Collectors.joining("\n") );
-
-
-        return sub.replace(header +  destinationInfo + tail );
-
+        return result ;
 
     }
+
+
+    private static String getPassengerDetails(SearchCommand search) {
+
+        String passengerDetails = "";
+
+        for (Map.Entry<PassengerType, List<Passenger>> entryType : search.getPassengersMap() .entrySet() ){
+
+            passengerDetails = getPassengerObject(  passengerDetails, entryType );
+
+        }
+
+        return passengerDetails;
+    }
+
+    private static String getPassengerObject(String passengerDetails, Map.Entry<PassengerType, List<Passenger>> entry) {
+
+        if (passengerDetails.isEmpty()) {
+            passengerDetails += "{";
+        } else {
+            passengerDetails += ",{";
+        }
+
+        String seatCode = getPassengerSeatCode( entry.getKey() ) ;
+
+        passengerDetails +=
+                "\"Code\": \"" + seatCode + "\"," +
+                        "\"Quantity\":" + entry.getValue().size();
+
+        passengerDetails += "}";
+        return passengerDetails;
+    }
+
+    private static String getPassengerSeatCode(  PassengerType passengerType ) {
+
+        String passengerTypeString = "";
+        switch ( passengerType ){
+            case ADULTS:
+                passengerTypeString="ADT";
+                break;
+            case CHILDREN:
+                passengerTypeString = "CNN";
+                break;
+            case INFANTS:
+                passengerTypeString = "INF";
+                break;
+            case INFANTSONSEAT:
+                passengerTypeString = "INS";
+        }
+
+        return passengerTypeString;
+
+    }
+
 
 }

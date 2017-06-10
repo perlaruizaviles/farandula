@@ -8,29 +8,32 @@ import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.CurrencyIATACodesHelper;
 import com.nearsoft.farandula.utilities.XmlUtils;
 import okhttp3.OkHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.soap.*;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
+import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
 
 /**
  * Created by pruiz on 4/20/17.
  */
 public class TravelportFlightManager implements FlightManager {
 
+    //Logger
+    private Logger LOGGER = LoggerFactory.getLogger( TravelportFlightManager.class );
     private static String apiKey;
     private static String apiPassword;
     private static String targetBranch;
@@ -63,23 +66,40 @@ public class TravelportFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException {
+    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException, IOException {
 
+
+        SOAPMessage response = null;
+        List<Itinerary> itineraries = new ArrayList<>();
         try {
-            SOAPMessage request = buildRequestForAvail(search);
-            List<Itinerary> itineraries = parseAvailResponse(request, search);
-            return itineraries;
+            response = buildRequestForAvail(search);
 
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            response.writeTo(out);
+            String strResponse = new String(out.toByteArray());
+            LOGGER.info( "Travelport response: XML-BEGIN\n{}\nXML-END", getPrettyXML( strResponse ) );
+
+            itineraries = parseAvailResponse(response, search);
+
+            LOGGER.info( "Travelport results:", itineraries );
+
+            return itineraries;
         } catch (Exception e) {
-            throw new FarandulaException(e, ErrorType.AVAILABILITY_ERROR, "error retrieving availability");
+
+            throwAndLogFactoryExceptions( e.getMessage(), ErrorType.AVAILABILITY_ERROR );
+
         }
 
+        return itineraries;
     }
 
-    public SOAPMessage buildRequestForAvail(SearchCommand search) throws SOAPException, IOException {
+
+    public SOAPMessage buildRequestForAvail(SearchCommand search) throws IOException, SOAPException {
 
         //create SOAP envelope
         String envelope = buildEnvelopeStringFromSearch(search);
+
+        LOGGER.info( "Travelport request: XML-BEGIN\n{}\nXML-END", getPrettyXML( envelope ) );
 
         // Send SOAP Message to SOAP Server
         SOAPMessage message = buildSOAPMessage(envelope);
@@ -163,7 +183,6 @@ public class TravelportFlightManager implements FlightManager {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
             Segment seg = new Segment();
-            seg.setAirlineIconPath("");
             seg.setKey(nodeAttributes.getNamedItem("Key").getNodeValue().toString());
             seg.setMarketingAirlineCode(nodeAttributes.getNamedItem("Carrier").getNodeValue().toString());
             seg.setMarketingAirlineName(airlinesCodeMap.get(seg.getMarketingAirlineCode()));
@@ -193,14 +212,14 @@ public class TravelportFlightManager implements FlightManager {
 
             seg.setDuration(resultFlightsDetails.get(i).getFlightTime());
 
-            getSegmentPrice(seg, resultFlightsDetails.get(i));
+            //getSegmentPrice(seg, resultFlightsDetails.get(i));
 
             connectedSegments.add(seg);
 
             //case when the last segment arrival is the search arrival airport OR
             //case for the returning airleg, i.e case when the arrival segment is the departure airport in search
-            if (seg.getArrivalAirportCode().equals(searchCommand.getArrivalAirport()) ||
-                    seg.getArrivalAirportCode().equals(searchCommand.getDepartureAirport())
+            if (seg.getArrivalAirportCode().equals(searchCommand.getArrivalAirports().get(0)) ||
+                    seg.getArrivalAirportCode().equals(searchCommand.getDepartureAirports().get(0))
                     ) {
 
                 AirLeg leg = new AirLeg();
@@ -212,17 +231,17 @@ public class TravelportFlightManager implements FlightManager {
                 leg.setSegments(connectedSegments);
 
 
-                if ( seg.getArrivalAirportCode().equals( searchCommand.getArrivalAirport() ) ){
+                if ( seg.getArrivalAirportCode().equals( searchCommand.getArrivalAirports().get(0) ) ){
                     itinerary = new Itinerary();
-                    itinerary.setDepartureAirleg( leg );
+                    itinerary.getAirlegs().add( leg );
                     if ( searchCommand.getType() == FlightType.ONEWAY ){
                         itinerariesList.add( itinerary );
                     }
                 }else{
 
-                    if ( seg.getArrivalAirportCode().equals( searchCommand.getDepartureAirport() ) ){
+                    if ( seg.getArrivalAirportCode().equals( searchCommand.getDepartureAirports().get(0) ) ){
                         //this is round trip case
-                        itinerary.setReturningAirlegs( leg );
+                        itinerary.getAirlegs().add( leg );
                         itinerariesList.add( itinerary );
                     }
 
@@ -262,14 +281,12 @@ public class TravelportFlightManager implements FlightManager {
             fares.setTotalPrice( totalPrice );
 
         } else {
-            Logger.getGlobal().log(Level.WARNING, "The segment: " + seg.toString() + " does not have prices.");
+            LOGGER.warn("The segment: " + seg.toString() + " does not have prices.");
         }
     }
 
 
     private void parseAirAvailInfoChild(Segment seg, Node airSegmentNode) {
-        //TODO add logging to the project
-
         Node airAvailInfo = XmlUtils.getNode("air:AirAvailInfo", airSegmentNode.getChildNodes());
         if (airAvailInfo != null) {
             List<Node> bookingCodeInfo = XmlUtils.getNodeList("air:BookingCodeInfo", airAvailInfo.getChildNodes());
@@ -330,4 +347,13 @@ public class TravelportFlightManager implements FlightManager {
 
     }
 
+    public static String getTargetBranch() {
+        return targetBranch;
+    }
+
+
+    private void throwAndLogFactoryExceptions(String message, ErrorType type) throws FarandulaException {
+        LOGGER.error(message, FarandulaException.class);
+        throw new FarandulaException( type , message);
+    }
 }

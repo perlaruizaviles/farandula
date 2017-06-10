@@ -6,16 +6,30 @@ import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.models.*;
 import okhttp3.Request;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SabreFlightManagerTest {
+
+    static LocalDateTime departingDate;
+
+    @BeforeAll
+    public static void setup() {
+
+        LocalDateTime toDay = LocalDateTime.now().plusMonths(1);
+
+        departingDate = LocalDateTime.of(toDay.getYear(), toDay.getMonth(), toDay.getDayOfMonth(), 11, 00, 00);
+
+    }
+
 
     @Test
     public void fakeAvail_OneWayTrip() throws Exception {
@@ -29,20 +43,73 @@ public class SabreFlightManagerTest {
             return null;
         });
 
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(departingDate.plusDays(1));
+
         List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
                 .type(FlightType.ROUNDTRIP)
+                .execute();
+
+        assertTrue(flights.size() > 0);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+
+    }
+
+    @Test
+    public void fakeAvail_MultiCityTrip() throws Exception {
+
+        Luisa.setSupplier(() -> {
+            try {
+                return createSabreStubMultiCity();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        fromList.add("MEX");
+        fromList.add("BOS");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        toList.add("LAX");
+        toList.add("LHR");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add(departingDate.plusDays(7));
+        departingDateList.add(departingDate.plusDays(15));
+
+        List<Itinerary> flights = Luisa.findMeFlights()
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .type(FlightType.OPENJAW)
                 .limitTo(2)
                 .execute();
 
         assertTrue(flights.size() > 0);
 
         assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
@@ -53,6 +120,121 @@ public class SabreFlightManagerTest {
     @Test
     public void realAvail_RoundWayTrip() throws Exception {
 
+        initSabreSupplierForLuisa();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(departingDate.plusDays(1));
+
+        List<Itinerary> flights = Luisa.findMeFlights()
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ROUNDTRIP)
+                .limitTo(10)
+                .preferenceClass(CabinClassType.ECONOMY)
+                .execute();
+
+        assertTrue(flights.size() > 0);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+
+    }
+
+    @Test
+    public void realAvail_OneWayTripDifferentPassengers() throws Exception {
+
+        initSabreSupplierForLuisa();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("MEX");
+        List<String> toList = new ArrayList<>();
+        toList.add("LAX");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<Itinerary> flights = Luisa.findMeFlights()
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(2))
+                .forPassegers(Passenger.children(new int[]{12, 16}))
+                .forPassegers(Passenger.infantsOnSeat(new int[]{1}))
+                .forPassegers(Passenger.infants(new int[1]))
+                .limitTo(5)
+                .preferenceClass(CabinClassType.ECONOMY)
+                .execute();
+
+        assertTrue(flights.size() > 0);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("MEX", airLeg.getDepartureAirportCode());
+            assertEquals("LAX", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+
+    }
+
+
+    @Test
+    public void realAvail_MultiCityTripDifferentPassengers() throws Exception {
+
+        initSabreSupplierForLuisa();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        fromList.add("MEX");
+        fromList.add("BOS");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        toList.add("LAX");
+        toList.add("LHR");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add(departingDate.plusDays(7));
+        departingDateList.add(departingDate.plusDays(15));
+
+        List<Itinerary> flights = Luisa.findMeFlights()
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(2))
+                .forPassegers(Passenger.children(new int[]{12, 16}))
+                //.forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
+                .forPassegers(Passenger.infants(new int[1]))
+                .limitTo(5)
+                .type(FlightType.OPENJAW)
+                .preferenceClass(CabinClassType.ECONOMY)
+                .execute();
+
+        assertTrue(flights.size() > 0);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+
+    }
+
+    private void initSabreSupplierForLuisa() {
         Luisa.setSupplier(() -> {
             try {
                 return createTripManagerSabre();
@@ -61,50 +243,75 @@ public class SabreFlightManagerTest {
             }
             return null;
         });
-
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
-        List<Itinerary> flights = Luisa.findMeFlights()
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
-                .forPassegers(Passenger.adults(1))
-                .type(FlightType.ROUNDTRIP)
-                .limitTo(2) //TODO check limit does not work.
-                .preferenceClass(CabinClassType.ECONOMY)
-                .execute(); //TODO find a better action name for the command execution `andGiveAListOfResults`, `doSearch`, `execute`
-
-        assertTrue(flights.size() > 0);
-
-        assertAll("First should be the best Airleg", () -> {
-            AirLeg airLeg = flights.get(0).getDepartureAirleg();
-            assertEquals("DFW", airLeg.getDepartureAirportCode());
-            assertEquals("CDG", airLeg.getArrivalAirportCode());
-            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
-        });
-
     }
 
 
     @Test
-    void buildJsonFromSearch() throws IOException, FarandulaException, Exception {
+    void buildJsonRequestFromSearch() throws Exception {
 
-        SabreFlightManager manager = new SabreFlightManager();
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
-        SearchCommand search = new SearchCommand(null);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(departingDate.plusDays(1));
+
+        SearchCommand search = new SearchCommand(new SabreFlightManager());
         search
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
 
-        String jsonRequestString = manager.buildJsonFromSearch(search);
+        String jsonRequestString = SabreFlightManager.buildJsonFromSearch(search);
         DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
         String locationCode = jsonRequest.read("$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
         assertEquals("DFW", locationCode);
+
+    }
+
+    @Test
+    void buildJsonRequestFromMultiCitySearch() throws Exception {
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        fromList.add("MEX");
+        fromList.add("BOS");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        toList.add("LAX");
+        toList.add("LHR");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add(departingDate.plusDays(7));
+        departingDateList.add(departingDate.plusDays(15));
+
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(departingDate.plusDays(1));
+        returningDateList.add(departingDate.plusDays(8));
+        returningDateList.add(departingDate.plusDays(16));
+
+        SearchCommand search = new SearchCommand(new SabreFlightManager());
+        search
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.OPENJAW)
+                .limitTo(10);
+
+        String jsonRequestString = SabreFlightManager.buildJsonFromSearch(search);
+        DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
+        String locationCode = jsonRequest.read("$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
+        assertEquals(fromList.get(0), locationCode);
 
     }
 
@@ -126,23 +333,43 @@ public class SabreFlightManagerTest {
 
     }
 
+
+    private SabreFlightManager createSabreStubMultiCity() throws IOException {
+
+        SabreFlightManager supplierStub = new SabreFlightManager() {
+
+            @Override
+            public InputStream sendRequest(Request request) throws IOException, FarandulaException {
+                return this.getClass().getResourceAsStream("/sabre/response/SabreAvailMultiCityResponse.json");
+            }
+
+        };
+        return supplierStub;
+
+    }
+
     @Test
     public void buildAvailResponse() throws IOException, FarandulaException {
 
-        SabreFlightManager manager = new SabreFlightManager();
-        LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand(null);
+        SabreFlightManager manager = new SabreFlightManager();
+        SearchCommand search = new SearchCommand(manager);
         search
-                .from("DFW")
-                .to("CDG")
-                .departingAt(departingDate)
-                .returningAt(departingDate.plusDays(1))
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .returningAt(returningDateList)
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
-
-
         manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json"), search);
 
     }
