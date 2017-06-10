@@ -12,7 +12,7 @@ You’ll need to have Node >= 6 on your machine.
 
 ### Installing
 
-1. Clone this branch or [download the zip](https://github.com/Nearsoft/farandula.git) and navigate to the folder in terminal.
+1. Clone this branch or [download the zip](https://github.com/Nearsoft/farandula/archive/master.zip) and navigate to the folder in terminal.
 
 ```
 cd .../farandula/demos/client/   
