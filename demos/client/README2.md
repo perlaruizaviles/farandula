@@ -48,6 +48,51 @@ Here we can look a diagram showing how requests are made and what happens when w
 
 The requests start in the component calling the action through the dispatcher. The action sends the request to the endpoint and receive a JSON. This JSON contains the back-end's response. Finally the action sends this JSON to the reducer where it is integrated to the current state and this updates the components that uses this data.
 
+### Function for Airports request
+You can find this function in `.../farandula/samples/client/src/api/airportsApi.js`
+
+```
+static searchAirport(query) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        url: endpoint.AIRPORTS_URL,
+        responseType: 'json',
+        params: {
+          pattern: query
+        }
+      }).then((response) => {
+        const airports = response.data.map(e => {
+          return {title: e.city + ' - ' + e.iata, description: e.name}
+        }).slice(0, 5);
+        resolve(Object.assign([], airports));
+      })
+        .catch(e => {
+          reject(e);
+        });
+    });
+  }
+```
+### Function for Flights request
+You can find this function in `.../farandula/samples/client/src/api/availableFlightsApi.js`
+```
+static getAvailableFlights(search) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        url: endpoint.AVAILABLE_FLIGHTS_URL,
+        responseType: 'json',
+        params: this.handleTravelType(search),
+      }).then((response) => {
+        const flights = response.data;
+        resolve(List(flights));
+      }).catch(e => {
+        reject(e);
+      });
+    });
+  }
+```
+
 ## Usage of response in state
 
 Here we can look at our initial state:
