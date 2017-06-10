@@ -1,11 +1,11 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import SearchForm from '../SearchForm';
+import React from "react";
+import {shallow} from "enzyme";
+import SearchForm from "../SearchForm";
 
 describe('Rendering SearchForm ', () => {
 
-  const tree = shallow(<SearchForm />);
-  
+  const tree = shallow( < SearchForm / >);
+
   it('Should create an snapshot for SearchForm', () => {
     expect(tree).toMatchSnapshot();
   });

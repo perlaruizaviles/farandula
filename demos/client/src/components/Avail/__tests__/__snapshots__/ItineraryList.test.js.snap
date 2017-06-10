@@ -9,6 +9,12 @@ ShallowWrapper {
   "node": <Segment
     color="orange"
     raised={true}>
+    <Dimmer
+        active={undefined}
+        inverted={true}>
+        <Loader
+            content="Loading" />
+    </Dimmer>
     <ItemGroup
         divided={true}>
         <Item>
@@ -25,6 +31,12 @@ ShallowWrapper {
     <Segment
       color="orange"
       raised={true}>
+      <Dimmer
+            active={undefined}
+            inverted={true}>
+            <Loader
+                  content="Loading" />
+      </Dimmer>
       <ItemGroup
             divided={true}>
             <Item>
@@ -75,6 +87,12 @@ ShallowWrapper {
         "_currentElement": <Segment
           color="orange"
           raised={true}>
+          <Dimmer
+                    active={undefined}
+                    inverted={true}>
+                    <Loader
+                              content="Loading" />
+          </Dimmer>
           <ItemGroup
                     divided={true}>
                     <Item>
@@ -91,6 +109,12 @@ ShallowWrapper {
         "_renderedOutput": <Segment
           color="orange"
           raised={true}>
+          <Dimmer
+                    active={undefined}
+                    inverted={true}>
+                    <Loader
+                              content="Loading" />
+          </Dimmer>
           <ItemGroup
                     divided={true}>
                     <Item>
