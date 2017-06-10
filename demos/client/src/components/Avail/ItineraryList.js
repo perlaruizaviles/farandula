@@ -1,13 +1,13 @@
 import React from "react";
 import ItineraryElement from "./ItineraryElement";
 import ItineraryListOptions from "./ItineraryListOptions";
-import {Item, Message, Segment} from "semantic-ui-react";
+import {Item, Message, Segment, Dimmer, Loader} from "semantic-ui-react";
 import {airlineNameByAirlegs} from "../../util/itinerary";
 
 class ItineraryList extends React.Component {
   render() {
 
-    const {travels, order, changeOrderPrice} = this.props;
+    const {travels, order, changeOrderPrice, loading} = this.props;
 
     const listHeaderContent = (travels) => {
       if(travels){
@@ -36,6 +36,11 @@ class ItineraryList extends React.Component {
 
     return (
       <Segment raised color="orange">
+
+        <Dimmer active={loading} inverted>
+          <Loader content='Loading'/>
+        </Dimmer>
+
         <Item.Group divided>
           <Item>
             {

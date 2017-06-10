@@ -41,7 +41,17 @@ Here is an overview of the directory tree with a brief description of what each 
 - `farandula/demos/client/src/`
     - `actions/`
         Contains *action types* and *action creators*
+        - `__tests__/` Contains tests for *action types* and *action creators*
+    - `api/` Contains files to connect with the *api*
     - `components/` Contains *presentational components* lacking state
+        - `Avail/` Contains *avail components*
+          - `__tests__/` Contains tests for *avail components*
+        - `Booking/` Contains *booking components*
+          - `__tests__/` Contains tests for *booking components*
+        - `Common/` Contains *common components*
+          - `__tests__/` Contains tests for *common components*
+        - `demos/` Contains *demos components*
+          - `__tests__/` Contains tests for *demos components*
     - `containers/` Contains *container components* which connect *presentational components* with the *store*
     - `data/` Contains concrete data like *options*, *initial configs*, common/extrema inputs, etc
     - `reducers/` Contains *reducers* that map the current *state* and an *action* to a new *state*

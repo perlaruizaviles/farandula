@@ -3,7 +3,7 @@ import AirlegSegment from "./AirlegSegment";
 import {diffFormatted} from "../../util/dates";
 import moment from "moment";
 
-const AirlegDetail = ({index, departureDate, arrivalDate, departureAirport, arrivalAirport, segments}) => {
+const AirlegDetail = ({index, departureDate, arrivalDate, segments}) => {
   let dateStart = moment.unix(segments[0].departureDate).format("dddd, MMMM Do");
   let totalTime = diffFormatted(departureDate, arrivalDate);
   return (

@@ -13,7 +13,7 @@ export const orderPriceDesc = () => {
 };
 
 export const changeOrderPrice = order => {
-  return(dispatch) => {
+  return (dispatch) => {
     if (order === 'price-high-to-low') {
       dispatch(orderPriceDesc());
     } else if (order === 'price-low-to-high') {

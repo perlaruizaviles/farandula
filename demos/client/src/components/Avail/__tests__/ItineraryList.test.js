@@ -1,11 +1,11 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import ItineraryList from '../ItineraryList';
+import React from "react";
+import {shallow} from "enzyme";
+import ItineraryList from "../ItineraryList";
 
 describe('Rendering ItineraryList ', () => {
 
-  const tree = shallow(<ItineraryList />);
-  
+  const tree = shallow( < ItineraryList / >);
+
   it('Should create an snapshot for ItineraryList', () => {
     expect(tree).toMatchSnapshot();
   });

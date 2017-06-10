@@ -11,14 +11,6 @@ export const changeTravelType = type => {
   };
 };
 
-export const changeTravelDate = (dateType, date) => {
-  return {
-    type: types.CHANGE_TRAVEL_DATE,
-    dateType,
-    date
-  };
-};
-
 const changeTravelerState = (typeTraveler, count) => {
   return {
     type: types.CHANGE_TRAVELER_TYPE_COUNT,
@@ -28,43 +20,29 @@ const changeTravelerState = (typeTraveler, count) => {
 };
 
 export const changeTravelerCount = (travelerType, value, travelers) => {
-	travelers = travelers.set(travelerType, travelers.get(travelerType) + value);
-	let newTotalTravelers = countTravelers(travelers);
-	let newTravelerCount = travelers.get(travelerType);
-	let attentionTypes = ['lap-infant', 'adults'];
+  travelers = travelers.set(travelerType, travelers.get(travelerType) + value);
+  let newTotalTravelers = countTravelers(travelers);
+  let newTravelerCount = travelers.get(travelerType);
+  let attentionTypes = ['lap-infant', 'adults'];
 
-	return(dispatch) => {
-		if (newTravelerCount >= 0 && newTravelerCount <=6 && newTotalTravelers >= 1 && newTotalTravelers <= 6) {
-			if (attentionTypes.includes(travelerType)){
-				let adultsCount = travelers.get('adults');
-				let lapInfantCount = travelers.get('lap-infant');
+  return (dispatch) => {
+    if (newTravelerCount >= 0 && newTravelerCount <= 6 && newTotalTravelers >= 1 && newTotalTravelers <= 6) {
+      if (attentionTypes.includes(travelerType)) {
+        let adultsCount = travelers.get('adults');
+        let lapInfantCount = travelers.get('lap-infant');
 
-				if(lapInfantCount <= adultsCount) dispatch(changeTravelerState(travelerType, newTravelerCount));
-			} else {
-				dispatch(changeTravelerState(travelerType, newTravelerCount));
-			}
-		} 
-	}
+        if (lapInfantCount <= adultsCount) dispatch(changeTravelerState(travelerType, newTravelerCount));
+      } else {
+        dispatch(changeTravelerState(travelerType, newTravelerCount));
+      }
+    }
+  }
 };
 
 export const cabinChange = cabin => {
   return {
     type: types.CHANGE_CABIN,
     cabin
-  };
-};
-
-export const changeTravelFrom = airport => {
-  return {
-    type: types.CHANGE_TRAVEL_FROM,
-    airport
-  };
-};
-
-export const changeTravelTo = airport => {
-  return {
-    type: types.CHANGE_TRAVEL_TO,
-    airport
   };
 };
 
@@ -77,14 +55,6 @@ export const addDestiny = () => {
 export const removeDestiny = () => {
   return {
     type: types.REMOVE_DESTINY
-  };
-};
-
-export const exchangeDestinations = (from, to) => {
-  return {
-    type: types.EXCHANGE_DESTINATIONS,
-    from,
-    to
   };
 };
 
