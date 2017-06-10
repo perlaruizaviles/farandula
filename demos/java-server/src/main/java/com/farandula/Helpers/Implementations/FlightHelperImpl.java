@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * Created by enrique on 5/06/17.
  */
 @Component
-public class FlightHelperImpl implements FlightHelper{
+public class FlightHelperImpl implements FlightHelper {
 
     @Autowired
     AirportRepository airportRepository;
@@ -119,7 +119,7 @@ public class FlightHelperImpl implements FlightHelper{
 
     public List<String> getCabinInformationFromSegment(Segment segment) {
 
-        if( segment.getSeatsAvailable() == null ){
+        if (segment.getSeatsAvailable() == null) {
             List<String> emptySeat = new ArrayList<>();
             emptySeat.add("NON_AVAILABLE");
             return emptySeat;
@@ -154,7 +154,7 @@ public class FlightHelperImpl implements FlightHelper{
 
                     Fares fareFromItinerary = itinerary.getPrice();
                     //TODO Implement sum of all segment's price in case of null on fareFromItinerary
-                    ItineraryFares itineraryFares = ( fareFromItinerary == null )
+                    ItineraryFares itineraryFares = (fareFromItinerary == null)
                             ? new ItineraryFares()
                             : this.parseFaresToItineraryFares(fareFromItinerary);
 

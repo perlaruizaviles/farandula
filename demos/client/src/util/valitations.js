@@ -70,7 +70,7 @@ export const alphaNum = value =>
 export const multiCityValidation = values => {
   const errors = {};
   for (let destiny in values) {
-    if (values.hasOwnProperty(destiny)) {
+    if (values.hasOwnProperty(destiny) && destiny !== "arrivalDate") {
       if (JSON.stringify(values[destiny].departingAirport) === JSON.stringify(values[destiny].arrivalAirport)) {
         errors[destiny] = {};
         errors[destiny].departingAirport = "Date error";
@@ -94,6 +94,11 @@ export const multiCityValidation = values => {
         errors[dateNames[i]] = {};
         errors[dateNames[i]].departingDate = "Date error"; //TODO: Compare with all dates
       }
+    }
+  }else if (values.arrivalDate){
+    if (values.arrivalDate.diff(dates[0]) <= 0) {
+      errors.arrivalDate = {};
+      errors.arrivalDate = "Arrival date error";
     }
   }
 

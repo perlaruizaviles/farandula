@@ -14,7 +14,7 @@ import java.util.List;
  * Created by enrique on 5/06/17.
  */
 @Component
-public class DateParserImpl implements DateParser{
+public class DateParserImpl implements DateParser {
 
     public LocalDateTime parseDateTime(String date, String time) {
 

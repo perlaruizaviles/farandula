@@ -1,17 +1,14 @@
 import React from "react";
 import TextMenu from "../Common/TextMenu";
 import travelOptions from "../../data/travelOptions";
-import TravelerMenu from "../Avail/TravelerMenu";
+import TravelerMenu from "../Common/TravelerMenu";
 import DropCabinMenu from "../Common/DropCabinMenu";
-import SearchSection from "./SearchSection";
 import SearchForm from "./SearchForm";
 
-import {Button, Dimmer, Dropdown, Grid, Icon, Input, Loader, Segment} from "semantic-ui-react";
-import DatePicker from "react-datepicker";
+import {Button, Dropdown, Grid, Segment} from "semantic-ui-react";
 import {configTravelString} from "../../util/travelConfig";
 import "react-datepicker/dist/react-datepicker.css";
 
-import {getIata} from "../../util/matcher";
 import {handleRequestData} from "../../util/handleRequestData";
 
 class TravelSearch extends React.Component {
@@ -19,7 +16,7 @@ class TravelSearch extends React.Component {
   render() {
 
 
-    const {config, filters,loading, actions} = this.props;
+    const {config, filters, actions} = this.props;
 
 
     const properties = {
@@ -43,16 +40,6 @@ class TravelSearch extends React.Component {
       actions.availableFlights(handleRequestData(values, properties.selectedType, properties.travelers, properties.cabin, properties.limit));
     };
 
-    const isInvalidForm = (properties) => {
-      if (properties.airportFrom.title === undefined) {
-        return true;
-      }
-      if (properties.airportTo.title === undefined) {
-        return true;
-      }
-      return properties.startDate === undefined;
-    };
-
 
     function hideOn(types) {
       for (let i = 0; i < types.length; i++) {
@@ -63,13 +50,33 @@ class TravelSearch extends React.Component {
       return "";
     }
 
+    function renderTypeOfTrip(type) {
+
+      switch (type){
+        case "multiCity":
+          return <Grid.Row>
+            <SearchForm
+              onSubmit={submit}
+              properties={properties}
+              destinies={properties.destinies}
+              actions={actions}/>
+          </Grid.Row>;
+
+        default:
+          return <Grid.Row>
+            <SearchForm
+              onSubmit={submit}
+              properties={properties}
+              destinies={[0]}
+              actions={actions}/>
+          </Grid.Row>;
+      }
+
+    }
+
+
     return (
       <Segment raised className='travelSearchSegment'>
-
-
-        <Dimmer active={loading} inverted>
-          <Loader content='Loading'/>
-        </Dimmer>
 
         <Grid columns={3} centered verticalAlign="middle">
           <Grid.Column textAlign="center">
@@ -114,57 +121,8 @@ class TravelSearch extends React.Component {
             </Dropdown>
           </Grid.Column>
 
-          <Grid.Row stretched verticalAlign="middle"
-                    className={hideOn(['multiCity'])}>
-            <div className="search-field">
-              <SearchSection properties={properties} actions={actions}/>
-            </div>
+          {renderTypeOfTrip(properties.selectedType)}
 
-            <DatePicker className={hideOn(['oneWay'])}
-                        customInput={<Input icon="calendar outline" style={{width: '150px', color: '#216ba5'}}/>}
-                        selectsEnd
-                        minDate={properties.minDate}
-                        maxDate={properties.maxDate}
-                        selected={properties.endDate}
-                        startDate={properties.startDate}
-                        endDate={properties.endDate}
-                        placeholderText="Select date..."
-                        onChange={date => actions.dateChange('return', date)}/>
-
-            <div className="search-field">
-              <Button animated disabled={isInvalidForm(properties)} className='orange' onClick={
-                (event, button, search = {
-                  departureAirport: getIata(properties.airportFrom.title),
-                  departingDate: properties.startDate.format('YYYY-MM-DD'),
-                  departingTime: "10:15:30",
-                  arrivalAirport: getIata(properties.airportTo.title),
-                  arrivalDate: properties.endDate.format('YYYY-MM-DD'),
-                  arrivalTime: "00:00:00",
-                  type: properties.selectedType,
-                  passenger: properties.travelers,
-                  cabin: properties.cabin,
-                  limit: properties.limit
-                }) => {
-                  actions.availableFlights(search);
-                }
-              }>
-                <Button.Content visible>Search</Button.Content>
-                <Button.Content hidden>
-                  <Icon name='plane' className='large'/>
-                </Button.Content>
-              </Button>
-            </div>
-          </Grid.Row>
-
-
-          <Grid.Row className={hideOn(['roundTrip', 'oneWay'])}>
-            <Grid.Row>
-              <SearchForm
-                onSubmit={submit}
-                properties={properties}
-                actions={actions}/>
-            </Grid.Row>
-          </Grid.Row>
         </Grid>
       </Segment>
     );

@@ -11,7 +11,5 @@ import java.util.Arrays;
  */
 @Component
 public interface PassengerHelper {
-
-    public AgeManager getPassengersFromString(String passengerStringList);
-
+    AgeManager getPassengersFromString(String passengerStringList);
 }
