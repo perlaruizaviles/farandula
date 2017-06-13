@@ -2,7 +2,7 @@ package com.nearsoft.farandula.flightmanagers.travelport;
 
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import com.nearsoft.farandula.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by pruiz on 5/1/17.
  */
-class TravelportFlightManagerTest {
+class TravelportFlightConnectorTest {
 
     static LocalDateTime departingDate;
 
@@ -38,9 +38,7 @@ class TravelportFlightManagerTest {
     @Test
     public void fakeAvail_OneWayTrip() throws FarandulaException, IOException {
 
-        Luisa.setSupplier(() -> {
-            return createTravelPortStub();
-        });
+        FlightConnector travelPortStub = createTravelPortStub();
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -50,7 +48,7 @@ class TravelportFlightManagerTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.using(travelPortStub).findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
@@ -73,9 +71,9 @@ class TravelportFlightManagerTest {
     @Test
     public void buildEnvelopeStringFromSearch() throws FarandulaException {
 
-        TravelportFlightManager travelport = new TravelportFlightManager();
+        TravelportFlightConnector travelport = new TravelportFlightConnector();
 
-        String targetBranch = TravelportFlightManager.getTargetBranch();
+        String targetBranch = TravelportFlightConnector.getTargetBranch();
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -86,7 +84,7 @@ class TravelportFlightManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
 
-        FlightsSearchCommand searchCommand = Luisa.findMeFlights()
+        FlightsSearchCommand searchCommand = Luisa.using(travelport).findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
@@ -119,9 +117,9 @@ class TravelportFlightManagerTest {
     }
 
 
-    private FlightManager createTravelPortStub() {
+    private FlightConnector createTravelPortStub() {
 
-        TravelportFlightManager supplierStub = new TravelportFlightManager() {
+        TravelportFlightConnector supplierStub = new TravelportFlightConnector() {
 
             @Override
             public SOAPMessage sendRequest(SOAPMessage message) throws SOAPException {
@@ -142,15 +140,7 @@ class TravelportFlightManagerTest {
 
     //@Test
     public void getAvail_roundTrip() throws FarandulaException, IOException {
-
-        Luisa.setSupplier(() -> {
-            try {
-                return createManagerTravelport();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        FlightConnector managerTravelport = createManagerTravelport();
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -164,7 +154,8 @@ class TravelportFlightManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+
+        List<Itinerary> flights = Luisa.using(managerTravelport).findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
@@ -192,8 +183,8 @@ class TravelportFlightManagerTest {
 
     }
 
-    private FlightManager createManagerTravelport() {
-        return new TravelportFlightManager();
+    private FlightConnector createManagerTravelport() {
+        return new TravelportFlightConnector();
     }
 
 }

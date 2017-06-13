@@ -2,7 +2,7 @@ package com.nearsoft.farandula.flightmanagers.travelport;
 
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
 import com.nearsoft.farandula.models.*;
 import com.nearsoft.farandula.utilities.CurrencyIATACodesHelper;
@@ -30,10 +30,10 @@ import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
 /**
  * Created by pruiz on 4/20/17.
  */
-public class TravelportFlightManager implements FlightManager {
+public class TravelportFlightConnector implements FlightConnector {
 
     //Logger
-    private Logger LOGGER = LoggerFactory.getLogger( TravelportFlightManager.class );
+    private Logger LOGGER = LoggerFactory.getLogger( TravelportFlightConnector.class );
     private static String apiKey;
     private static String apiPassword;
     private static String targetBranch;
@@ -44,7 +44,7 @@ public class TravelportFlightManager implements FlightManager {
         Properties props = new Properties();
         try {
             url_api = "https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService";
-            props.load(TravelportFlightManager.class.getResourceAsStream("/config.properties"));
+            props.load(TravelportFlightConnector.class.getResourceAsStream("/config.properties"));
             apiKey = props.getProperty("travelport.apiUser");
             apiPassword = props.getProperty("travelport.apiPassword");
             targetBranch = props.getProperty("travelport.targetBranch");
@@ -58,7 +58,7 @@ public class TravelportFlightManager implements FlightManager {
 
     private static void fillAirlinesMap() throws IOException {
         Properties properties = new Properties();
-        properties.load(TravelportFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+        properties.load(TravelportFlightConnector.class.getResourceAsStream("/airlinesCode.properties"));
         for (String key : properties.stringPropertyNames()) {
             String value = properties.getProperty(key);
             airlinesCodeMap.put(key, value);

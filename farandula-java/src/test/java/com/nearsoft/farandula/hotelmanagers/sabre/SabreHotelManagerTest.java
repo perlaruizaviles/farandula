@@ -27,14 +27,10 @@ class SabreHotelManagerTest {
     @Test
     void getAvail() throws FarandulaException, IOException {
 
-        //todo what is better? create a setsupplier for hotels or create another interface
-        /*
-        Luisa.setSupplier(() -> {
-            return createSabreStub();
-        });
-        */
 
-        List<Object> hotels = Luisa.findMeHotels()
+        List<Object> hotels = Luisa
+                .using(createSabreStub())
+                .findMeHotels()
                 .checkhIn( LocalDateTime.now() )
                 .checkOut( LocalDateTime.now().plusDays(3) )
                 .forGuest(GuestType.ADULTS , 2)

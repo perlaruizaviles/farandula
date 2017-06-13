@@ -2,7 +2,7 @@ package com.nearsoft.farandula.models;
 
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,14 +27,14 @@ public class FlightsSearchCommand {
     private List<LocalDateTime> returningDates = new ArrayList<>();
     private Map<PassengerType, List<Passenger>> passengersMap = new HashMap<>();
     private List<Passenger> passengers = new ArrayList<>();
-    private FlightManager flightManager;
+    private FlightConnector flightManager;
 
     //with default values
     private int offSet = 50;
     private CabinClassType CabinClass = CabinClassType.ECONOMY;
     private FlightType type = FlightType.ONEWAY;
 
-    public FlightsSearchCommand(FlightManager flightManager) {
+    public FlightsSearchCommand(FlightConnector flightManager) {
         this.flightManager = flightManager;
     }
 

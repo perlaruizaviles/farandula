@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface FlightManager {
+public interface FlightConnector {
 
     List<Itinerary> getAvail(FlightsSearchCommand search) throws FarandulaException, IOException;
 

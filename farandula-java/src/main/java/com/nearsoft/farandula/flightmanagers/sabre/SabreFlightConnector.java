@@ -9,7 +9,7 @@ import com.nearsoft.farandula.auth.AuthInterceptor;
 import com.nearsoft.farandula.auth.Creds;
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import com.nearsoft.farandula.flightmanagers.sabre.request.json.SabreJSONRequest;
 import com.nearsoft.farandula.models.*;
 import net.minidev.json.JSONArray;
@@ -29,10 +29,10 @@ import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassTyp
 import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyJson;
 import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 
-public class SabreFlightManager implements FlightManager {
+public class SabreFlightConnector implements FlightConnector {
 
     //Log
-    private static Logger LOGGER = LoggerFactory.getLogger(SabreFlightManager.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(SabreFlightConnector.class);
     private static Map<String, String> codeToClassMap = new HashMap<>();
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
     private static String clientId;
@@ -42,7 +42,7 @@ public class SabreFlightManager implements FlightManager {
 
         Properties props = new Properties();
         try {
-            props.load(SabreFlightManager.class.getResourceAsStream("/config.properties"));
+            props.load(SabreFlightConnector.class.getResourceAsStream("/config.properties"));
             clientId = props.getProperty("sabre.client_id");
             clientSecret = props.getProperty("sabre.client_secret");
             fillReferenceMaps();
@@ -54,7 +54,7 @@ public class SabreFlightManager implements FlightManager {
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
     private final AccessManager _accessManager;
 
-    public SabreFlightManager() {
+    public SabreFlightConnector() {
         Creds creds = new Creds(clientId, clientSecret);
         _accessManager = new AccessManager(creds);
     }
@@ -62,7 +62,7 @@ public class SabreFlightManager implements FlightManager {
     private static void fillReferenceMaps() throws IOException {
 
         Properties properties = new Properties();
-        properties.load(SabreFlightManager.class.getResourceAsStream("/Sabre/cabinCodes.properties"));
+        properties.load(SabreFlightConnector.class.getResourceAsStream("/Sabre/cabinCodes.properties"));
         for (String key : properties.stringPropertyNames()) {
             String value = properties.getProperty(key);
             codeToClassMap.put(key, value);
@@ -70,7 +70,7 @@ public class SabreFlightManager implements FlightManager {
 
         properties.clear();
 
-        properties.load(SabreFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+        properties.load(SabreFlightConnector.class.getResourceAsStream("/airlinesCode.properties"));
         for (String key : properties.stringPropertyNames()) {
             String value = properties.getProperty(key);
             airlinesCodeMap.put(key, value);
