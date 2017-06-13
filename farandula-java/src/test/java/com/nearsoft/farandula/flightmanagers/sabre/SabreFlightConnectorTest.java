@@ -146,7 +146,7 @@ public class SabreFlightConnectorTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
 
-        List<Itinerary> flights = Luisa.using( createTripManagerSabre()).findMeFlights()
+        List<Itinerary> flights = Luisa.using(createTripManagerSabre()).findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -212,7 +212,6 @@ public class SabreFlightConnectorTest {
         });
 
     }
-
 
     @Test
     void buildJsonRequestFromSearch() throws Exception {
