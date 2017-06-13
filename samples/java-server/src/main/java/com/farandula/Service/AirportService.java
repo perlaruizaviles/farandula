@@ -3,7 +3,9 @@ package com.farandula.Service;
 import com.farandula.Repositories.AirportRepository;
 import com.farandula.models.Airport;
 import com.farandula.Response.Response;
+import com.farandula.models.FlightItinerary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,16 +14,15 @@ import java.util.List;
  */
 public class AirportService {
 
-    @Autowired
-    AirportRepository airportRepository;
-
-    public List<Airport> getResponseFromSearch(String pattern){
-        return airportRepository.findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase
+    public List<Airport> getResponseFromSearch(AirportRepository airportRepository, String pattern){
+        List<Airport> list = airportRepository.findTop10ByCityLikeIgnoreCaseOrNameLikeIgnoreCaseOrIataLikeIgnoreCase
                 (
                         pattern,
                         pattern,
                         pattern
                 );
+
+        return list;
     }
 
 }
