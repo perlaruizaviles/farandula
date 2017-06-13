@@ -66,7 +66,7 @@ public class TravelportFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException, IOException {
+    public List<Itinerary> getAvail(FlightsSearchCommand search) throws FarandulaException, IOException {
 
 
         SOAPMessage response = null;
@@ -94,7 +94,7 @@ public class TravelportFlightManager implements FlightManager {
     }
 
 
-    public SOAPMessage buildRequestForAvail(SearchCommand search) throws IOException, SOAPException {
+    public SOAPMessage buildRequestForAvail(FlightsSearchCommand search) throws IOException, SOAPException {
 
         //create SOAP envelope
         String envelope = buildEnvelopeStringFromSearch(search);
@@ -128,7 +128,7 @@ public class TravelportFlightManager implements FlightManager {
 
     }
 
-    public String buildEnvelopeStringFromSearch(SearchCommand search) {
+    public String buildEnvelopeStringFromSearch(FlightsSearchCommand search) {
 
         return TravelportXMLRequest.getRequest(search, targetBranch);
 
@@ -155,7 +155,7 @@ public class TravelportFlightManager implements FlightManager {
         return response;
     }
 
-    public List<Itinerary> parseAvailResponse(SOAPMessage response, SearchCommand searchCommand) throws IOException, SOAPException, ParseException {
+    public List<Itinerary> parseAvailResponse(SOAPMessage response, FlightsSearchCommand searchCommand) throws IOException, SOAPException, ParseException {
 
         List<Itinerary> itinerariesList = new ArrayList<>();
         SOAPEnvelope env = response.getSOAPPart().getEnvelope();

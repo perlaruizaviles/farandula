@@ -81,7 +81,7 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException, IOException {
+    public List<Itinerary> getAvail(FlightsSearchCommand search) throws FarandulaException, IOException {
 
         List<Itinerary> results = new ArrayList<>();
         List<String> urlList = buildTargetURLFromSearch(search);
@@ -351,7 +351,7 @@ public class AmadeusFlightManager implements FlightManager {
         return builder.build();
     }
 
-    public List<String> buildTargetURLFromSearch(SearchCommand search) {
+    public List<String> buildTargetURLFromSearch(FlightsSearchCommand search) {
 
         List<String> apiResultsList = new ArrayList<>();
 

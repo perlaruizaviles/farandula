@@ -258,7 +258,7 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager());
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightManager());
         search
                 .from(fromList)
                 .to(toList)
@@ -298,7 +298,7 @@ public class SabreFlightManagerTest {
         returningDateList.add(departingDate.plusDays(8));
         returningDateList.add(departingDate.plusDays(16));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager());
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightManager());
         search
                 .from(fromList)
                 .to(toList)
@@ -325,7 +325,7 @@ public class SabreFlightManagerTest {
 
             @Override
             public InputStream sendRequest(Request request) throws IOException, FarandulaException {
-                return this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json");
+                return this.getClass().getResourceAsStream("/sabre/response/flights/sabreAvailResponse.json");
             }
 
         };
@@ -340,7 +340,7 @@ public class SabreFlightManagerTest {
 
             @Override
             public InputStream sendRequest(Request request) throws IOException, FarandulaException {
-                return this.getClass().getResourceAsStream("/sabre/response/SabreAvailMultiCityResponse.json");
+                return this.getClass().getResourceAsStream("/sabre/response/flights/SabreAvailMultiCityResponse.json");
             }
 
         };
@@ -361,7 +361,7 @@ public class SabreFlightManagerTest {
         returningDateList.add(departingDate.plusDays(1));
 
         SabreFlightManager manager = new SabreFlightManager();
-        SearchCommand search = new SearchCommand(manager);
+        FlightsSearchCommand search = new FlightsSearchCommand(manager);
         search
                 .from(fromList)
                 .to(toList)
@@ -370,7 +370,7 @@ public class SabreFlightManagerTest {
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
-        manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json"), search);
+        manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/flights/sabreAvailResponse.json"), search);
 
     }
 

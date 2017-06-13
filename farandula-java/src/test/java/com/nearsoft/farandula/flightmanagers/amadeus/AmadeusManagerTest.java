@@ -261,7 +261,7 @@ class AmadeusManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
 
-        SearchCommand search = new SearchCommand( Luisa.getInstance() );
+        FlightsSearchCommand search = new FlightsSearchCommand( Luisa.getInstance() );
         search
                 .from( fromList )
                 .to( toList )
@@ -343,7 +343,7 @@ class AmadeusManagerTest {
         returningDateList.add(  departingDate.plusDays(8) );
         returningDateList.add(  departingDate.plusDays(16) );
 
-        SearchCommand search = new SearchCommand(Luisa.getInstance());
+        FlightsSearchCommand search = new FlightsSearchCommand(Luisa.getInstance());
         search
                 .from( fromList )
                 .to( toList )

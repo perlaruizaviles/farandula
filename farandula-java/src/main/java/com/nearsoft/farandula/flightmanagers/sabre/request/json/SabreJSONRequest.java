@@ -20,7 +20,7 @@ public class SabreJSONRequest {
     private static Map valuesMap = new HashMap();
     private static StrSubstitutor sub;
 
-    private static String getDestinationInformation(SearchCommand search) {
+    private static String getDestinationInformation(FlightsSearchCommand search) {
 
         InputStream airLegInputStream = SabreJSONRequest.class
                 .getResourceAsStream("/Sabre/JSON/request/requestDestinationInformation.json");
@@ -58,7 +58,7 @@ public class SabreJSONRequest {
         return destinationsInfo;
     }
 
-    public static String getRequest(SearchCommand search) {
+    public static String getRequest(FlightsSearchCommand search) {
 
         String result = "";
 
@@ -107,7 +107,7 @@ public class SabreJSONRequest {
     }
 
 
-    private static String getPassengerDetails(SearchCommand search) {
+    private static String getPassengerDetails(FlightsSearchCommand search) {
 
         String passengerDetails = "";
 

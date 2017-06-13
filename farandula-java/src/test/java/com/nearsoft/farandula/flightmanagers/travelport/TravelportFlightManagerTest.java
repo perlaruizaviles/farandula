@@ -86,7 +86,7 @@ class TravelportFlightManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
 
-        SearchCommand searchCommand = Luisa.findMeFlights()
+        FlightsSearchCommand searchCommand = Luisa.findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)

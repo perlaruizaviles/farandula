@@ -78,7 +78,7 @@ public class SabreFlightManager implements FlightManager {
 
     }
 
-    public static String buildJsonFromSearch(SearchCommand search) throws IOException {
+    public static String buildJsonFromSearch(FlightsSearchCommand search) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -100,7 +100,7 @@ public class SabreFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException, IOException {
+    public List<Itinerary> getAvail(FlightsSearchCommand search) throws FarandulaException, IOException {
 
         Request request = buildRequestForAvail(search);
         InputStream responseStream = sendRequest(request);
@@ -127,7 +127,7 @@ public class SabreFlightManager implements FlightManager {
     }
 
 
-    private Request buildRequestForAvail(SearchCommand search) throws IOException {
+    private Request buildRequestForAvail(FlightsSearchCommand search) throws IOException {
         final Request.Builder builder = new Request.Builder();
 
         if (search.getOffSet() > 0) {
@@ -147,7 +147,7 @@ public class SabreFlightManager implements FlightManager {
         return response.body().byteStream();
     }
 
-    public List<Itinerary> parseAvailResponse(InputStream response, SearchCommand searchCommand) throws IOException, FarandulaException {
+    public List<Itinerary> parseAvailResponse(InputStream response, FlightsSearchCommand searchCommand) throws IOException, FarandulaException {
 
         ReadContext ctx = JsonPath.parse(response);
 
@@ -275,7 +275,7 @@ public class SabreFlightManager implements FlightManager {
         return cabinsBySegment;
     }
 
-    private Itinerary buildAirLegs(Map<String, Object> pricedItinerary, SearchCommand searchCommand) {
+    private Itinerary buildAirLegs(Map<String, Object> pricedItinerary, FlightsSearchCommand searchCommand) {
 
         JSONArray originDestinationOption = (JSONArray) getValueOf(pricedItinerary, "AirItinerary.OriginDestinationOptions.OriginDestinationOption");
 
