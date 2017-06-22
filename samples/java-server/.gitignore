@@ -1,0 +1,15 @@
+# Created by .ignore support plugin (hsz.mobi)
+#.idea Folder
+.idea
+
+#mvnw files
+mvnw.cmd
+mvnw
+
+#Target folder
+target
+
+#iml file
+javaFarandula.iml
+
+*.DS_Store

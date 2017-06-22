@@ -18,6 +18,7 @@ public class App {
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
+
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         List<String> toList = new ArrayList<>();
@@ -27,7 +28,9 @@ public class App {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
 
+
         List<Itinerary> flightList = Luisa.using(sabre).findMeFlights()
+
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
@@ -35,6 +38,7 @@ public class App {
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(50).execute();
+
 
         System.out.println(flightList);
 
