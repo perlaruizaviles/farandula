@@ -2,11 +2,10 @@ package com.nearsoft.farandula.models;
 
 import com.nearsoft.farandula.exceptions.ErrorType;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.soap.SOAPException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,10 +16,10 @@ import java.util.Map;
 /**
  * Created by pruiz on 4/10/17.
  */
-public class SearchCommand {
+public class FlightsSearchCommand {
 
     //LOGGER
-    public static Logger LOGGER = LoggerFactory.getLogger( SearchCommand.class );
+    public static Logger LOGGER = LoggerFactory.getLogger( FlightsSearchCommand.class );
 
     private List<String> departureAirports = new ArrayList<>();
     private List<String> arrivalAirports = new ArrayList<>();
@@ -28,40 +27,40 @@ public class SearchCommand {
     private List<LocalDateTime> returningDates = new ArrayList<>();
     private Map<PassengerType, List<Passenger>> passengersMap = new HashMap<>();
     private List<Passenger> passengers = new ArrayList<>();
-    private FlightManager flightManager;
+    private FlightConnector flightManager;
 
     //with default values
     private int offSet = 50;
     private CabinClassType CabinClass = CabinClassType.ECONOMY;
     private FlightType type = FlightType.ONEWAY;
 
-    public SearchCommand(FlightManager flightManager) {
+    public FlightsSearchCommand(FlightConnector flightManager) {
         this.flightManager = flightManager;
     }
 
-    public SearchCommand from(List<String> airportCode) {
+    public FlightsSearchCommand from(List<String> airportCode) {
         this.departureAirports = airportCode;
         return this;
     }
 
-    public SearchCommand to(List<String> airportCode) throws FarandulaException {
+    public FlightsSearchCommand to(List<String> airportCode) throws FarandulaException {
         this.arrivalAirports = airportCode;
         return this;
     }
 
-    public SearchCommand departingAt(List<LocalDateTime> departingDate) throws FarandulaException {
+    public FlightsSearchCommand departingAt(List<LocalDateTime> departingDate) throws FarandulaException {
         validDates(departingDate);
         this.departingDates = departingDate;
         return this;
     }
 
-    public SearchCommand returningAt(List<LocalDateTime> returningDate) throws FarandulaException {
+    public FlightsSearchCommand returningAt(List<LocalDateTime> returningDate) throws FarandulaException {
         validDates(returningDate);
         this.returningDates = returningDate;
         return this;
     }
 
-    public SearchCommand forPassegers(List<Passenger> passengerList) throws FarandulaException {
+    public FlightsSearchCommand forPassegers(List<Passenger> passengerList) throws FarandulaException {
 
         if (this.getPassengers().size() + passengerList.size() > 6) {
             throw new FarandulaException(ErrorType.ACCESS_ERROR, "Is not possible to search up to 6 passengers.");
@@ -82,18 +81,18 @@ public class SearchCommand {
         return this;
     }
 
-    public SearchCommand limitTo(int offsetSearch) {
+    public FlightsSearchCommand limitTo(int offsetSearch) {
         this.offSet = offsetSearch;
         return this;
     }
 
-    public SearchCommand type(FlightType roundTrip) throws FarandulaException {
+    public FlightsSearchCommand type(FlightType roundTrip) throws FarandulaException {
 
         this.type = roundTrip;
         return this;
     }
 
-    public SearchCommand preferenceClass(CabinClassType preferenceClass) {
+    public FlightsSearchCommand preferenceClass(CabinClassType preferenceClass) {
         this.CabinClass = preferenceClass;
         return this;
     }
@@ -243,7 +242,7 @@ public class SearchCommand {
 
     @Override
     public String toString() {
-        return "SearchCommand{" +
+        return "FlightsSearchCommand{" +
                 "departureAirports=" + departureAirports +
                 ", arrivalAirports=" + arrivalAirports +
                 ", departingDates=" + departingDates +

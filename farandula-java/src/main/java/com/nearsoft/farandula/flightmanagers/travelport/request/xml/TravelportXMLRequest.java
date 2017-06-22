@@ -22,7 +22,7 @@ public class TravelportXMLRequest {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
-    public static String getRequest(SearchCommand search, String targetBranchValue) {
+    public static String getRequest(FlightsSearchCommand search, String targetBranchValue) {
 
         valuesMap.put("passengersNumber", search.getPassengers().size());
         valuesMap.put("classTravel",   search.getCabinClass().equals("") ? "Economy" : search.getCabinClass() );
@@ -50,7 +50,7 @@ public class TravelportXMLRequest {
 
     }
 
-    private static String getSearchAirLegs(SearchCommand search) {
+    private static String getSearchAirLegs(FlightsSearchCommand search) {
 
         InputStream airLegInputStream = TravelportXMLRequest.class
                 .getResourceAsStream("/travelport/XML.request/requestSearchAirLeg.xml");

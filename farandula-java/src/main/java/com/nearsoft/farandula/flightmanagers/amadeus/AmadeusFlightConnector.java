@@ -3,7 +3,7 @@ package com.nearsoft.farandula.flightmanagers.amadeus;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import com.nearsoft.farandula.models.*;
 import net.minidev.json.JSONArray;
 import okhttp3.OkHttpClient;
@@ -31,9 +31,9 @@ import static com.nearsoft.farandula.utilities.NestedMapsHelper.getValueOf;
 /**
  * Created by pruiz on 4/20/17.
  */
-public class AmadeusFlightManager implements FlightManager {
+public class AmadeusFlightConnector implements FlightConnector {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(AmadeusFlightManager.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(AmadeusFlightConnector.class);
     private static String apiKey;
     private static Map<String, String> locationsMap = new HashMap<>();
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
@@ -41,7 +41,7 @@ public class AmadeusFlightManager implements FlightManager {
     static {
         Properties props = new Properties();
         try {
-            props.load(AmadeusFlightManager.class.getResourceAsStream("/config.properties"));
+            props.load(AmadeusFlightConnector.class.getResourceAsStream("/config.properties"));
             fillReferenceMaps();
             apiKey = props.getProperty("amadeus.apikey");
         } catch (IOException e) {
@@ -53,14 +53,14 @@ public class AmadeusFlightManager implements FlightManager {
 
     public static void fillReferenceMaps() throws IOException {
         Properties properties = new Properties();
-        properties.load(AmadeusFlightManager.class.getResourceAsStream("/amadeus/locations.properties"));
+        properties.load(AmadeusFlightConnector.class.getResourceAsStream("/amadeus/locations.properties"));
         for (String key : properties.stringPropertyNames()) {
             String value = properties.getProperty(key);
             locationsMap.put(key, value);
         }
 
         properties.clear();
-        properties.load(AmadeusFlightManager.class.getResourceAsStream("/airlinesCode.properties"));
+        properties.load(AmadeusFlightConnector.class.getResourceAsStream("/airlinesCode.properties"));
         for (String key : properties.stringPropertyNames()) {
             String value = properties.getProperty(key);
             airlinesCodeMap.put(key, value);
@@ -81,7 +81,7 @@ public class AmadeusFlightManager implements FlightManager {
     }
 
     @Override
-    public List<Itinerary> getAvail(SearchCommand search) throws FarandulaException, IOException {
+    public List<Itinerary> getAvail(FlightsSearchCommand search) throws FarandulaException, IOException {
 
         List<Itinerary> results = new ArrayList<>();
         List<String> urlList = buildTargetURLFromSearch(search);
@@ -351,7 +351,7 @@ public class AmadeusFlightManager implements FlightManager {
         return builder.build();
     }
 
-    public List<String> buildTargetURLFromSearch(SearchCommand search) {
+    public List<String> buildTargetURLFromSearch(FlightsSearchCommand search) {
 
         List<String> apiResultsList = new ArrayList<>();
 

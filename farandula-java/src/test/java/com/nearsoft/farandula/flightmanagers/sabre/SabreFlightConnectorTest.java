@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SabreFlightManagerTest {
+public class SabreFlightConnectorTest {
 
     static LocalDateTime departingDate;
 
@@ -34,14 +34,6 @@ public class SabreFlightManagerTest {
     @Test
     public void fakeAvail_OneWayTrip() throws Exception {
 
-        Luisa.setSupplier(() -> {
-            try {
-                return createSabreStub();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -52,7 +44,7 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(departingDate.plusDays(1));
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.using(createSabreStub()).findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -74,15 +66,6 @@ public class SabreFlightManagerTest {
     @Test
     public void fakeAvail_MultiCityTrip() throws Exception {
 
-        Luisa.setSupplier(() -> {
-            try {
-                return createSabreStubMultiCity();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
-
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
         fromList.add("MEX");
@@ -98,7 +81,7 @@ public class SabreFlightManagerTest {
         departingDateList.add(departingDate.plusDays(7));
         departingDateList.add(departingDate.plusDays(15));
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.using(createSabreStubMultiCity()).findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -120,7 +103,6 @@ public class SabreFlightManagerTest {
     @Test
     public void realAvail_RoundWayTrip() throws Exception {
 
-        initSabreSupplierForLuisa();
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -131,7 +113,7 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(departingDate.plusDays(1));
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.using(createTripManagerSabre()).findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -156,8 +138,6 @@ public class SabreFlightManagerTest {
     @Test
     public void realAvail_OneWayTripDifferentPassengers() throws Exception {
 
-        initSabreSupplierForLuisa();
-
         List<String> fromList = new ArrayList<>();
         fromList.add("MEX");
         List<String> toList = new ArrayList<>();
@@ -166,7 +146,7 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.using(createTripManagerSabre()).findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -193,7 +173,6 @@ public class SabreFlightManagerTest {
     @Test
     public void realAvail_MultiCityTripDifferentPassengers() throws Exception {
 
-        initSabreSupplierForLuisa();
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -210,7 +189,7 @@ public class SabreFlightManagerTest {
         departingDateList.add(departingDate.plusDays(7));
         departingDateList.add(departingDate.plusDays(15));
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.using(createTripManagerSabre()).findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -234,18 +213,6 @@ public class SabreFlightManagerTest {
 
     }
 
-    private void initSabreSupplierForLuisa() {
-        Luisa.setSupplier(() -> {
-            try {
-                return createTripManagerSabre();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
-    }
-
-
     @Test
     void buildJsonRequestFromSearch() throws Exception {
 
@@ -258,7 +225,7 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager());
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector());
         search
                 .from(fromList)
                 .to(toList)
@@ -268,7 +235,7 @@ public class SabreFlightManagerTest {
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
 
-        String jsonRequestString = SabreFlightManager.buildJsonFromSearch(search);
+        String jsonRequestString = SabreFlightConnector.buildJsonFromSearch(search);
         DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
         String locationCode = jsonRequest.read("$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
         assertEquals("DFW", locationCode);
@@ -298,7 +265,7 @@ public class SabreFlightManagerTest {
         returningDateList.add(departingDate.plusDays(8));
         returningDateList.add(departingDate.plusDays(16));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager());
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector());
         search
                 .from(fromList)
                 .to(toList)
@@ -308,24 +275,24 @@ public class SabreFlightManagerTest {
                 .type(FlightType.OPENJAW)
                 .limitTo(10);
 
-        String jsonRequestString = SabreFlightManager.buildJsonFromSearch(search);
+        String jsonRequestString = SabreFlightConnector.buildJsonFromSearch(search);
         DocumentContext jsonRequest = JsonPath.parse(jsonRequestString);
         String locationCode = jsonRequest.read("$.OTA_AirLowFareSearchRQ.OriginDestinationInformation[0].OriginLocation.LocationCode").toString();
         assertEquals(fromList.get(0), locationCode);
 
     }
 
-    private SabreFlightManager createTripManagerSabre() throws IOException, FarandulaException {
-        return new SabreFlightManager();
+    private SabreFlightConnector createTripManagerSabre() throws IOException, FarandulaException {
+        return new SabreFlightConnector();
     }
 
-    private SabreFlightManager createSabreStub() throws IOException {
+    private SabreFlightConnector createSabreStub() throws IOException {
 
-        SabreFlightManager supplierStub = new SabreFlightManager() {
+        SabreFlightConnector supplierStub = new SabreFlightConnector() {
 
             @Override
             public InputStream sendRequest(Request request) throws IOException, FarandulaException {
-                return this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json");
+                return this.getClass().getResourceAsStream("/sabre/response/flights/sabreAvailResponse.json");
             }
 
         };
@@ -334,13 +301,13 @@ public class SabreFlightManagerTest {
     }
 
 
-    private SabreFlightManager createSabreStubMultiCity() throws IOException {
+    private SabreFlightConnector createSabreStubMultiCity() throws IOException {
 
-        SabreFlightManager supplierStub = new SabreFlightManager() {
+        SabreFlightConnector supplierStub = new SabreFlightConnector() {
 
             @Override
             public InputStream sendRequest(Request request) throws IOException, FarandulaException {
-                return this.getClass().getResourceAsStream("/sabre/response/SabreAvailMultiCityResponse.json");
+                return this.getClass().getResourceAsStream("/sabre/response/flights/SabreAvailMultiCityResponse.json");
             }
 
         };
@@ -360,8 +327,8 @@ public class SabreFlightManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(departingDate.plusDays(1));
 
-        SabreFlightManager manager = new SabreFlightManager();
-        SearchCommand search = new SearchCommand(manager);
+        SabreFlightConnector manager = new SabreFlightConnector();
+        FlightsSearchCommand search = new FlightsSearchCommand(manager);
         search
                 .from(fromList)
                 .to(toList)
@@ -370,7 +337,7 @@ public class SabreFlightManagerTest {
                 .forPassegers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
-        manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/sabreAvailResponse.json"), search);
+        manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/flights/sabreAvailResponse.json"), search);
 
     }
 

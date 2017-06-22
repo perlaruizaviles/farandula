@@ -1,5 +1,5 @@
 import com.nearsoft.farandula.Luisa;
-import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
+import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightConnector;
 import com.nearsoft.farandula.models.FlightType;
 import com.nearsoft.farandula.models.Itinerary;
 import com.nearsoft.farandula.models.Passenger;
@@ -11,9 +11,10 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        final SabreFlightManager tripManager = new SabreFlightManager();
+        //TODO this should be created using a fancy pattern ,  like IoC or factory or whatever
+        final SabreFlightConnector sabre = new SabreFlightConnector();
 
-        Luisa.setSupplier(() -> tripManager);
+
 
         LocalDateTime departingDate = LocalDateTime.of(2017, 07, 07, 11, 00, 00);
 
@@ -28,7 +29,8 @@ public class App {
         returningDateList.add(  departingDate.plusDays(1) );
 
 
-        List<Itinerary> flightList = Luisa.findMeFlights()
+        List<Itinerary> flightList = Luisa.using(sabre).findMeFlights()
+
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)

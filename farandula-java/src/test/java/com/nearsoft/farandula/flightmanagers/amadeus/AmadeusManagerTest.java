@@ -2,7 +2,7 @@ package com.nearsoft.farandula.flightmanagers.amadeus;
 
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.FlightManager;
+import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import com.nearsoft.farandula.models.*;
 import okhttp3.Request;
 import org.junit.jupiter.api.BeforeAll;
@@ -36,16 +36,7 @@ class AmadeusManagerTest {
     @Test
     public void fakeAvail_OneWayTrip() throws Exception {
 
-        Luisa.setSupplier(() -> {
-            try {
-                return createAmadeusStub();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (FarandulaException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        FlightConnector amadeusStub = createAmadeusStub();
 
         List<LocalDateTime> listDepartingAt = new ArrayList<>();
         listDepartingAt.add(departingDate);
@@ -56,7 +47,8 @@ class AmadeusManagerTest {
         List<String> toList = new ArrayList<>();
         toList.add("CDG");
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+
+        List<Itinerary> flights = Luisa.using(amadeusStub).findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt( listDepartingAt )
@@ -74,8 +66,8 @@ class AmadeusManagerTest {
 
     }
 
-    private FlightManager createAmadeusStub() throws IOException, FarandulaException {
-        AmadeusFlightManager manager = new AmadeusFlightManager() {
+    private FlightConnector createAmadeusStub() throws IOException, FarandulaException {
+        AmadeusFlightConnector manager = new AmadeusFlightConnector() {
             @Override
             public InputStream sendRequest(Request request) throws IOException, FarandulaException {
                 return this.getClass().getResourceAsStream("/amadeus/response/AmadeusAvailResponse.json");
@@ -87,7 +79,7 @@ class AmadeusManagerTest {
     @Test
     public void realAvail_OneWayTrip() throws Exception {
 
-        initAmadeusSupplierForLuisa();
+
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -96,7 +88,8 @@ class AmadeusManagerTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        AmadeusFlightConnector amadeusFlightConnector = new AmadeusFlightConnector();
+        List<Itinerary> flights = Luisa.using(amadeusFlightConnector).findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
@@ -120,7 +113,7 @@ class AmadeusManagerTest {
     @Test
     public void realAvail_RoundWayTrip() throws Exception {
 
-        initAmadeusSupplierForLuisa();
+
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -130,8 +123,9 @@ class AmadeusManagerTest {
         departingDateList.add(departingDate);
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
+        AmadeusFlightConnector amadeusFlightConnector = new AmadeusFlightConnector();
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        List<Itinerary> flights = Luisa.using(amadeusFlightConnector).findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
@@ -156,7 +150,7 @@ class AmadeusManagerTest {
     @Test
     public void realAvail_OpenJawTrip() throws Exception {
 
-        initAmadeusSupplierForLuisa();
+
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -167,7 +161,8 @@ class AmadeusManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        AmadeusFlightConnector amadeusFlightConnector = new AmadeusFlightConnector();
+        List<Itinerary> flights = Luisa.using(amadeusFlightConnector).findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
@@ -188,21 +183,10 @@ class AmadeusManagerTest {
         });
     }
 
-    private void initAmadeusSupplierForLuisa() {
-        Luisa.setSupplier(() -> {
-            try {
-                return new AmadeusFlightManager();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
-    }
-
     @Test
     public void realAvail_OpenJawTripUsingDifferentPassengers() throws Exception {
 
-        initAmadeusSupplierForLuisa();
+
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -221,7 +205,8 @@ class AmadeusManagerTest {
 
         List<LocalDateTime> returningDateList = new ArrayList<>();
 
-        List<Itinerary> flights = Luisa.findMeFlights()
+        AmadeusFlightConnector amadeusFlightConnector = new AmadeusFlightConnector();
+        List<Itinerary> flights = Luisa.using(amadeusFlightConnector).findMeFlights()
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
@@ -248,9 +233,6 @@ class AmadeusManagerTest {
     @Test
     void buildLinkFromSearch() throws IOException, FarandulaException {
 
-        Luisa.setSupplier(() ->
-                new AmadeusFlightManager()
-        );
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -261,7 +243,7 @@ class AmadeusManagerTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(  departingDate.plusDays(1) );
 
-        SearchCommand search = new SearchCommand( Luisa.getInstance() );
+        FlightsSearchCommand search = new FlightsSearchCommand( new AmadeusFlightConnector() );
         search
                 .from( fromList )
                 .to( toList )
@@ -271,7 +253,8 @@ class AmadeusManagerTest {
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(2);
 
-        String searchURL = ((AmadeusFlightManager)Luisa.getInstance()).buildTargetURLFromSearch(search).get(0);
+        AmadeusFlightConnector amadeusFlightConnector = new AmadeusFlightConnector();
+        String searchURL = amadeusFlightConnector.buildTargetURLFromSearch(search).get(0);
         String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
                 "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" +
                 "&travel_class=ECONOMY" +
@@ -285,12 +268,10 @@ class AmadeusManagerTest {
 
     }
 
+
     //@Test
     void buildLinkFromSearchBUGAIRLINESCODES() throws IOException, FarandulaException {
 
-        Luisa.setSupplier(() ->
-                new AmadeusFlightManager()
-        );
 
         List<String> fromList = new ArrayList<>();
         fromList.add("MEX");
@@ -302,7 +283,8 @@ class AmadeusManagerTest {
         List<LocalDateTime> returningList = new ArrayList<>();
         returningList.add( departingDate.plusMonths(1) );
 
-        List<Itinerary> result = Luisa.findMeFlights()
+        AmadeusFlightConnector amadeusFlightConnector = new AmadeusFlightConnector();
+        List<Itinerary> result = Luisa.using(amadeusFlightConnector).findMeFlights()
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -319,9 +301,7 @@ class AmadeusManagerTest {
     @Test
     void buildLinkFromMultiCitySearch() throws IOException, FarandulaException {
 
-        Luisa.setSupplier(() ->
-                new AmadeusFlightManager()
-        );
+        AmadeusFlightConnector amadeusFlightConnector = new AmadeusFlightConnector();
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -343,7 +323,7 @@ class AmadeusManagerTest {
         returningDateList.add(  departingDate.plusDays(8) );
         returningDateList.add(  departingDate.plusDays(16) );
 
-        SearchCommand search = new SearchCommand(Luisa.getInstance());
+        FlightsSearchCommand search = new FlightsSearchCommand(amadeusFlightConnector);
         search
                 .from( fromList )
                 .to( toList )
@@ -353,9 +333,9 @@ class AmadeusManagerTest {
                 .type(FlightType.OPENJAW)
                 .limitTo(2);
 
-        List<String> searchURLList = ( (AmadeusFlightManager)(Luisa.getInstance()) ).buildTargetURLFromSearch(search);
+        List<String> searchURLList = amadeusFlightConnector.buildTargetURLFromSearch(search);
 
-        String apiKey = ( (AmadeusFlightManager)(Luisa.getInstance()) ).getApiKey();
+        String apiKey = amadeusFlightConnector.getApiKey();
 
         String expectedURL = "https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?" +
                 "apikey=" + apiKey +
@@ -373,7 +353,7 @@ class AmadeusManagerTest {
     @Test
     public void buildAvailResponse() throws IOException {
 
-        AmadeusFlightManager manager = new AmadeusFlightManager();
+        AmadeusFlightConnector manager = new AmadeusFlightConnector();
 
         manager.parseAvailResponse(this.getClass().getResourceAsStream("/amadeus/response/AmadeusAvailResponse.json"));
 

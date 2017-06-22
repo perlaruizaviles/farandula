@@ -1,7 +1,7 @@
 package com.nearsoft.farandula.models;
 
 import com.nearsoft.farandula.exceptions.FarandulaException;
-import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightManager;
+import com.nearsoft.farandula.flightmanagers.sabre.SabreFlightConnector;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ class SearchCommandTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager())
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -62,7 +62,7 @@ class SearchCommandTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(departingDate.plusDays(1));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager())
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
@@ -89,7 +89,7 @@ class SearchCommandTest {
 
         // this is an invalid old date
         assertThrows(FarandulaException.class, () -> {
-            SearchCommand search = new SearchCommand(new SabreFlightManager())
+            FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                     .departingAt(departingDateList);
         });
 
@@ -104,7 +104,7 @@ class SearchCommandTest {
 
         // this is an invalid date
         assertThrows(FarandulaException.class, () -> {
-            SearchCommand search = new SearchCommand(new SabreFlightManager())
+            FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                     .departingAt(departingDateList);
         });
     }
@@ -119,7 +119,7 @@ class SearchCommandTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(LocalDateTime.now().plusDays(2));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager())
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
                 .type(FlightType.ROUNDTRIP);
@@ -141,7 +141,7 @@ class SearchCommandTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(LocalDateTime.now().plusDays(2));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager())
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
                 .type(FlightType.ONEWAY);
@@ -159,7 +159,7 @@ class SearchCommandTest {
         List<LocalDateTime> departingDateList = new ArrayList<>();
         departingDateList.add(departingDate);
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager())
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                 .departingAt(departingDateList)
                 .type(FlightType.ROUNDTRIP);
 
@@ -181,7 +181,7 @@ class SearchCommandTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(LocalDateTime.now().plusDays(2));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager())
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
                 .type(FlightType.ROUNDTRIP);
@@ -203,7 +203,7 @@ class SearchCommandTest {
         List<LocalDateTime> returningDateList = new ArrayList<>();
         returningDateList.add(LocalDateTime.now().plusDays(2));
 
-        SearchCommand search = new SearchCommand(new SabreFlightManager())
+        FlightsSearchCommand search = new FlightsSearchCommand(new SabreFlightConnector())
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
                 .type(FlightType.OPENJAW);
