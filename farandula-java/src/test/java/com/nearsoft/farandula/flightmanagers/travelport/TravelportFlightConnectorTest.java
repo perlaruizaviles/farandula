@@ -6,7 +6,7 @@ import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import com.nearsoft.farandula.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+
 
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPException;
@@ -146,7 +146,7 @@ class TravelportFlightConnectorTest {
         return supplierStub;
     }
 
-    //@Test
+    @Test
     public void getAvail_roundTrip() throws FarandulaException, IOException {
         FlightConnector managerTravelport = createManagerTravelport();
 

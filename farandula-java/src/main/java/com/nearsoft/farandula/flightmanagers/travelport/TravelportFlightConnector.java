@@ -10,6 +10,7 @@ import com.nearsoft.farandula.utilities.XmlUtils;
 import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -23,6 +24,7 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
 import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
@@ -178,7 +180,11 @@ public class TravelportFlightConnector implements FlightConnector {
 
             Node airSegmentNode = list.item(i);
             NamedNodeMap nodeAttributes = airSegmentNode.getAttributes();
-            resultFlightsDetails.get(i).setGroup(nodeAttributes.getNamedItem("Group").getNodeValue().toString());
+            NodeList flightReference = ((Element) airSegmentNode).getElementsByTagName("air:FlightDetailsRef");
+            NamedNodeMap flightDetailsAttributes = flightReference.item(0).getAttributes();
+            TravelportFlightDetails flightDetails = findCorrespondingDeatils(flightDetailsAttributes.getNamedItem("Key").getNodeValue().toString(), resultFlightsDetails);
+
+            flightDetails.setGroup(nodeAttributes.getNamedItem("Group").getNodeValue().toString());
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
@@ -194,23 +200,23 @@ public class TravelportFlightConnector implements FlightConnector {
             //passengers
             parseAirAvailInfoChild(seg, airSegmentNode);
 
-            seg.setAirplaneData(resultFlightsDetails.get(i).getEquipment());
+            seg.setAirplaneData(flightDetails.getEquipment());
 
             //departure data
             seg.setDepartureAirportCode(nodeAttributes.getNamedItem("Origin").getNodeValue().toString());
-            seg.setDepartureTerminal(resultFlightsDetails.get(i).getOriginalTerminal());
+            seg.setDepartureTerminal(flightDetails.getOriginalTerminal());
             LocalDateTime departingDateTime = LocalDateTime.parse(
                     nodeAttributes.getNamedItem("DepartureTime").getNodeValue().toString(), formatter);
             seg.setDepartureDate(departingDateTime);
 
             //arrival data
             seg.setArrivalAirportCode(nodeAttributes.getNamedItem("Destination").getNodeValue().toString());
-            seg.setArrivalTerminal(resultFlightsDetails.get(i).getDestinationTerminal());
+            seg.setArrivalTerminal(flightDetails.getDestinationTerminal());
             LocalDateTime arrivalDateTime = LocalDateTime.parse(
                     nodeAttributes.getNamedItem("ArrivalTime").getNodeValue().toString(), formatter);
             seg.setArrivalDate(arrivalDateTime);
 
-            seg.setDuration(resultFlightsDetails.get(i).getFlightTime());
+            seg.setDuration(flightDetails.getFlightTime());
 
             //getSegmentPrice(seg, resultFlightsDetails.get(i));
 
@@ -253,6 +259,18 @@ public class TravelportFlightConnector implements FlightConnector {
         }
 
         return itinerariesList;
+
+    }
+
+    public TravelportFlightDetails findCorrespondingDeatils(String key, List<TravelportFlightDetails> detailsList ) {
+
+        Optional<TravelportFlightDetails> details = detailsList.stream()
+                    .filter(detail -> detail.getKey().equals(key))
+                    .findFirst();
+        if (details.isPresent()) {
+            return details.get();
+        }
+        return null;
 
     }
 
