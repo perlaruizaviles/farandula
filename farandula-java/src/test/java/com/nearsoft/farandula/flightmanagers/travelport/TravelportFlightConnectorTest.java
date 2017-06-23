@@ -6,6 +6,7 @@ import com.nearsoft.farandula.flightmanagers.FlightConnector;
 import com.nearsoft.farandula.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPException;
@@ -69,6 +70,7 @@ class TravelportFlightConnectorTest {
     }
 
     @Test
+
     public void buildEnvelopeStringFromSearch() throws FarandulaException {
 
         TravelportFlightConnector travelport = new TravelportFlightConnector();
@@ -96,7 +98,7 @@ class TravelportFlightConnectorTest {
         assertEquals("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
                 "    <soapenv:Header/>\n" +
                 "    <soapenv:Body>\n" +
-                "        <air:AvailabilitySearchReq xmlns:air=\"http://www.travelport.com/schema/air_v34_0\" AuthorizedBy=\"user\" TargetBranch=\"" + targetBranch +"\" TraceId=\"trace\">\n" +
+                "        <air:LowFareSearchReq xmlns:air=\"http://www.travelport.com/schema/air_v34_0\" AuthorizedBy=\"user\" SolutionResult=\"true\" TargetBranch=\"" + targetBranch +"\" TraceId=\"trace\">\n" +
                 "            <com:BillingPointOfSaleInfo xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" OriginApplication=\"UAPI\"/><air:SearchAirLeg>\n" +
                 "    <air:SearchOrigin>\n" +
                 "        <com:Airport Code=\"DFW\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
@@ -110,9 +112,15 @@ class TravelportFlightConnectorTest {
                 "            <com:CabinClass Type=\"ECONOMY\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
                 "        </air:PreferredCabins>\n" +
                 "    </air:AirLegModifiers>\n" +
-                "</air:SearchAirLeg></air:AvailabilitySearchReq>\n" +
+                "</air:SearchAirLeg>"+"<air:AirSearchModifiers>\n" +
+                "    <air:PreferredProviders>\n" +
+                "        <com:Provider xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" Code=\"1G\"/>\n" +
+                "    </air:PreferredProviders>\n" +
+                "</air:AirSearchModifiers>\n" +
+                "<com:SearchPassenger xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" BookingTravelerRef=\"gr8AVWGCR064r57Jt0+8bA==\" Code=\"ADT\"/>\n"+"</air:LowFareSearchReq>\n" +
                 "</soapenv:Body>\n" +
                 "</soapenv:Envelope>", request);
+
 
     }
 
