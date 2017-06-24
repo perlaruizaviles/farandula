@@ -35,7 +35,7 @@ import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
 public class TravelportFlightConnector implements FlightConnector {
 
     //Logger
-    private Logger LOGGER = LoggerFactory.getLogger( TravelportFlightConnector.class );
+    private Logger LOGGER = LoggerFactory.getLogger(TravelportFlightConnector.class);
     private static String apiKey;
     private static String apiPassword;
     private static String targetBranch;
@@ -79,16 +79,16 @@ public class TravelportFlightConnector implements FlightConnector {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             response.writeTo(out);
             String strResponse = new String(out.toByteArray());
-            LOGGER.info( "Travelport response: XML-BEGIN\n{}\nXML-END", getPrettyXML( strResponse ) );
+            LOGGER.info("Travelport response: XML-BEGIN\n{}\nXML-END", getPrettyXML(strResponse));
 
             itineraries = parseAvailResponse(response, search);
 
-            LOGGER.info( "Travelport results:", itineraries );
+            LOGGER.info("Travelport results:", itineraries);
 
             return itineraries;
         } catch (Exception e) {
 
-            throwAndLogFactoryExceptions( e.getMessage(), ErrorType.AVAILABILITY_ERROR );
+            throwAndLogFactoryExceptions(e.getMessage(), ErrorType.AVAILABILITY_ERROR);
 
         }
 
@@ -101,7 +101,7 @@ public class TravelportFlightConnector implements FlightConnector {
         //create SOAP envelope
         String envelope = buildEnvelopeStringFromSearch(search);
 
-        LOGGER.info( "Travelport request: XML-BEGIN\n{}\nXML-END", getPrettyXML( envelope ) );
+        LOGGER.info("Travelport request: XML-BEGIN\n{}\nXML-END", getPrettyXML(envelope));
 
         // Send SOAP Message to SOAP Server
         SOAPMessage message = buildSOAPMessage(envelope);
@@ -174,12 +174,69 @@ public class TravelportFlightConnector implements FlightConnector {
 
         //segments
         NodeList list = body.getElementsByTagName("air:AirSegment");
-        List<Segment> connectedSegments = new ArrayList<>();
-        Itinerary itinerary = null;
+
+        //Air pricing solutions (Itinerary equivalent)
+        NodeList solutions = body.getElementsByTagName("air:AirPricingSolution");
+
+        //Map of all segments in xml
+        Map<String, Segment> segmentsMap = createSegmentHashMap(list, resultFlightsDetails);
+
+        for (int i = 0; i < solutions.getLength(); i++) {
+
+            NodeList legsNodes = ((Element)solutions.item(i)).getElementsByTagName("air:Journey");
+
+            Itinerary itinerary = new Itinerary();
+            List<AirLeg> legList = new ArrayList<>();
+
+            for(int j = 0; j < legsNodes.getLength(); j++){
+
+                AirLeg leg = new AirLeg();
+
+                Node legNode = legsNodes.item(j);
+
+                NodeList segNodes = ((Element)legNode).getElementsByTagName("air:AirSegmentRef");
+
+                List<Segment> segmentList = new ArrayList<>();
+
+                for(int k = 0; k < segNodes.getLength(); k++){
+
+                    String segmentKey = segNodes.item(k).getAttributes().getNamedItem("Key").getNodeValue().toString();
+
+                    Segment seg = segmentsMap.get(segmentKey);
+
+                    segmentList.add(seg);
+                }
+
+                leg.setId("TempId");
+                leg.setDepartureAirportCode( segmentList.get(0).getDepartureAirportCode() );
+                leg.setDepartingDate(segmentList.get(0).getDepartureDate());
+                leg.setArrivalAirportCode(segmentList.get(segmentList.size()-1).getArrivalAirportCode());
+                leg.setArrivalDate(segmentList.get(segmentList.size()-1).getArrivalDate());
+                leg.setSegments(segmentList);
+
+                legList.add(leg);
+            }
+
+            itinerary.setAirlegs(legList);
+
+            itinerariesList.add(itinerary);
+        }
+
+
+        return itinerariesList;
+
+    }
+
+    private Map<String, Segment> createSegmentHashMap(NodeList list, List<TravelportFlightDetails> resultFlightsDetails) {
+
+        Map<String, Segment> segmentMap = new HashMap<>();
+
         for (int i = 0; i < list.getLength(); i++) {
 
             Node airSegmentNode = list.item(i);
             NamedNodeMap nodeAttributes = airSegmentNode.getAttributes();
+
+            //Attribute with referenced key to flight details
             NodeList flightReference = ((Element) airSegmentNode).getElementsByTagName("air:FlightDetailsRef");
             NamedNodeMap flightDetailsAttributes = flightReference.item(0).getAttributes();
             TravelportFlightDetails flightDetails = findCorrespondingDeatils(flightDetailsAttributes.getNamedItem("Key").getNodeValue().toString(), resultFlightsDetails);
@@ -218,55 +275,17 @@ public class TravelportFlightConnector implements FlightConnector {
 
             seg.setDuration(flightDetails.getFlightTime());
 
-            //getSegmentPrice(seg, resultFlightsDetails.get(i));
-
-            connectedSegments.add(seg);
-
-            //case when the last segment arrival is the search arrival airport OR
-            //case for the returning airleg, i.e case when the arrival segment is the departure airport in search
-            if (seg.getArrivalAirportCode().equals(searchCommand.getArrivalAirports().get(0)) ||
-                    seg.getArrivalAirportCode().equals(searchCommand.getDepartureAirports().get(0))
-                    ) {
-
-                AirLeg leg = new AirLeg();
-                leg.setId("tempID");
-                leg.setDepartureAirportCode(connectedSegments.get(0).getDepartureAirportCode());
-                leg.setDepartingDate(connectedSegments.get(0).getDepartureDate());
-                leg.setArrivalAirportCode(connectedSegments.get(connectedSegments.size() - 1).getArrivalAirportCode());
-                leg.setArrivalDate(connectedSegments.get(connectedSegments.size() - 1).getArrivalDate());
-                leg.setSegments(connectedSegments);
-
-
-                if ( seg.getArrivalAirportCode().equals( searchCommand.getArrivalAirports().get(0) ) ){
-                    itinerary = new Itinerary();
-                    itinerary.getAirlegs().add( leg );
-                    if ( searchCommand.getType() == FlightType.ONEWAY ){
-                        itinerariesList.add( itinerary );
-                    }
-                }else{
-
-                    if ( seg.getArrivalAirportCode().equals( searchCommand.getDepartureAirports().get(0) ) ){
-                        //this is round trip case
-                        itinerary.getAirlegs().add( leg );
-                        itinerariesList.add( itinerary );
-                    }
-
-                }
-
-                connectedSegments = new ArrayList<>();
-            }
-
+            segmentMap.put(seg.getKey(), seg);
         }
 
-        return itinerariesList;
-
+        return segmentMap;
     }
 
-    public TravelportFlightDetails findCorrespondingDeatils(String key, List<TravelportFlightDetails> detailsList ) {
+    private TravelportFlightDetails findCorrespondingDeatils(String key, List<TravelportFlightDetails> detailsList) {
 
         Optional<TravelportFlightDetails> details = detailsList.stream()
-                    .filter(detail -> detail.getKey().equals(key))
-                    .findFirst();
+                .filter(detail -> detail.getKey().equals(key))
+                .findFirst();
         if (details.isPresent()) {
             return details.get();
         }
@@ -290,13 +309,13 @@ public class TravelportFlightConnector implements FlightConnector {
         NodeList pricessList = body.getElementsByTagName("air:AirPricingSolution");
         Node node = pricessList.item(0);
         if (node != null) {
-            Price base = CurrencyIATACodesHelper.buildPrice( XmlUtils.getAttrByName(node, "BasePrice") );
-            Price taxes = CurrencyIATACodesHelper.buildPrice( XmlUtils.getAttrByName(node, "Taxes"));
-            Price totalPrice = CurrencyIATACodesHelper.buildPrice( XmlUtils.getAttrByName(node, "TotalPrice"));
+            Price base = CurrencyIATACodesHelper.buildPrice(XmlUtils.getAttrByName(node, "BasePrice"));
+            Price taxes = CurrencyIATACodesHelper.buildPrice(XmlUtils.getAttrByName(node, "Taxes"));
+            Price totalPrice = CurrencyIATACodesHelper.buildPrice(XmlUtils.getAttrByName(node, "TotalPrice"));
             Fares fares = new Fares();
-            fares.setBasePrice( base );
-            fares.setTaxesPrice( taxes );
-            fares.setTotalPrice( totalPrice );
+            fares.setBasePrice(base);
+            fares.setTaxesPrice(taxes);
+            fares.setTotalPrice(totalPrice);
 
         } else {
             LOGGER.warn("The segment: " + seg.toString() + " does not have prices.");
@@ -352,8 +371,14 @@ public class TravelportFlightConnector implements FlightConnector {
         currentFly.setDestinationTerminal(nodeAttributes.getNamedItem("DestinationTerminal") == null ? ""
                 : nodeAttributes.getNamedItem("DestinationTerminal").getNodeValue().toString());
 
-        currentFly.setFlightTime(Long.valueOf(nodeAttributes.getNamedItem("FlightTime").getNodeValue().toString()));
-        currentFly.setEquipment(nodeAttributes.getNamedItem("Equipment").getNodeValue().toString());
+        currentFly.setFlightTime(
+                (nodeAttributes.getNamedItem("FlightTime") == null)
+                ? 0L : Long.valueOf(nodeAttributes.getNamedItem("FlightTime").getNodeValue().toString())
+        );
+        currentFly.setEquipment(
+                (nodeAttributes.getNamedItem("Equipment") == null)
+                ? "" : nodeAttributes.getNamedItem("Equipment").getNodeValue().toString()
+        );
         return currentFly;
     }
 
@@ -372,6 +397,6 @@ public class TravelportFlightConnector implements FlightConnector {
 
     private void throwAndLogFactoryExceptions(String message, ErrorType type) throws FarandulaException {
         LOGGER.error(message, FarandulaException.class);
-        throw new FarandulaException( type , message);
+        throw new FarandulaException(type, message);
     }
 }
