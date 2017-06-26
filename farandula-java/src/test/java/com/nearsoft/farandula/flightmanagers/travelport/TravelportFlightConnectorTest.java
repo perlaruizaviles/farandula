@@ -147,6 +147,45 @@ class TravelportFlightConnectorTest {
     }
 
     @Test
+    public void getAvail_oneWay() throws FarandulaException, IOException {
+        FlightConnector managerTravelport = createManagerTravelport();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+
+        List<Itinerary> flights = Luisa.using(managerTravelport).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(1))
+                .type(FlightType.ONEWAY)
+                .limitTo(2)
+                .execute();
+
+        assertNotNull(flights);
+
+        assertTrue(flights.size() > 0);
+
+        AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+
+        assertNotNull(airLeg);
+
+        assertAll("First should be the best Airleg", () -> {
+            assertEquals("DFW", airLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getSegments().get(airLeg.getSegments().size()-1).getArrivalAirportCode());
+            //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getSeatsAvailable() );
+        });
+
+    }
+
+    @Test
     public void getAvail_roundTrip() throws FarandulaException, IOException {
         FlightConnector managerTravelport = createManagerTravelport();
 

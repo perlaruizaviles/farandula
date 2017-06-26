@@ -185,8 +185,11 @@ public class TravelportFlightConnector implements FlightConnector {
 
             NodeList legsNodes = ((Element)solutions.item(i)).getElementsByTagName("air:Journey");
 
+
+
             Itinerary itinerary = new Itinerary();
             List<AirLeg> legList = new ArrayList<>();
+            itinerary.setPrice(parsingFare(solutions.item(i).getAttributes()));
 
             for(int j = 0; j < legsNodes.getLength(); j++){
 
@@ -225,6 +228,32 @@ public class TravelportFlightConnector implements FlightConnector {
 
         return itinerariesList;
 
+    }
+
+    private Fares parsingFare(NamedNodeMap solution) {
+
+        Fares fare = new Fares();
+        String totalPriceString = solution.getNamedItem("TotalPrice") == null ? ""
+                                : solution.getNamedItem("TotalPrice").getNodeValue().toString();
+        String basePriceString = solution.getNamedItem("BasePrice") == null ? ""
+                                : solution.getNamedItem("BasePrice").getNodeValue().toString();
+        String taxesPriceString = solution.getNamedItem("Taxes") == null ? ""
+                                : solution.getNamedItem("Taxes").getNodeValue().toString();
+        fare.setTotalPrice(parsingPrice(totalPriceString));
+        fare.setBasePrice(parsingPrice(basePriceString));
+        fare.setTaxesPrice(parsingPrice(taxesPriceString));
+        return fare;
+    }
+
+    private Price parsingPrice(String priceString) {
+        if (priceString.equals("")) {
+            return null;
+        }
+        Price price = new Price();
+        String [] priceSplitter = priceString.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
+        price.setAmount(Double.parseDouble(priceSplitter[1]+priceSplitter[2]+priceSplitter[3]));
+        price.setCurrencyCode(priceSplitter[0]);
+        return price;
     }
 
     private Map<String, Segment> createSegmentHashMap(NodeList list, List<TravelportFlightDetails> resultFlightsDetails) {
@@ -357,6 +386,7 @@ public class TravelportFlightConnector implements FlightConnector {
             }
         }
     }
+
 
 
     private TravelportFlightDetails getFlightDetails(NamedNodeMap nodeAttributes) {
