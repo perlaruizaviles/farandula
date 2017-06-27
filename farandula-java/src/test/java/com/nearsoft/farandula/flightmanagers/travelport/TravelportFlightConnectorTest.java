@@ -118,8 +118,9 @@ class TravelportFlightConnectorTest {
                 "    <air:PreferredProviders>\n" +
                 "        <com:Provider xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" Code=\"1G\"/>\n" +
                 "    </air:PreferredProviders>\n" +
-                "</air:AirSearchModifiers>" +
-                "<com:SearchPassenger xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" BookingTravelerRef=\"gr8AVWGCR064r57Jt0+8bA==\" Code=\"ADT\" Age=\"0\"/>"+"</air:LowFareSearchReq>\n" +
+                "</air:AirSearchModifiers>"+
+                "<com:SearchPassenger xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" BookingTravelerRef=\"gr8AVWGCR064r57Jt0+8bA==\" Code=\"ADT\" Age=\"0\"/>"+
+                "<air:AirPricingModifiers xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" CurrencyType = \"USD\"/>\n"+"</air:LowFareSearchReq>\n" +
                 "</soapenv:Body>\n" +
                 "</soapenv:Envelope>", request);
 

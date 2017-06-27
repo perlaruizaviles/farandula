@@ -1,3 +1,4 @@
+<air:AirPricingModifiers xmlns:com="http://www.travelport.com/schema/common_v34_0" CurrencyType = "USD"/>
 </air:LowFareSearchReq>
 </soapenv:Body>
 </soapenv:Envelope>
