@@ -1,4 +1,4 @@
-<air:AirSearchModifiers>
+<air:AirSearchModifiers MaxSolutions="${limit}">
     <air:PreferredProviders>
         <com:Provider xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="1G"/>
     </air:PreferredProviders>
