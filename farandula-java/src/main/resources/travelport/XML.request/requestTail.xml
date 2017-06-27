@@ -1,9 +1,3 @@
-<air:AirSearchModifiers>
-    <air:PreferredProviders>
-        <com:Provider xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="1G"/>
-    </air:PreferredProviders>
-</air:AirSearchModifiers>
-<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT"/>
 </air:LowFareSearchReq>
 </soapenv:Body>
 </soapenv:Envelope>

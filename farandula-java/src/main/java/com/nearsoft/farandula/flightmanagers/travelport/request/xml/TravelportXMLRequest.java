@@ -8,7 +8,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -40,14 +42,57 @@ public class TravelportXMLRequest {
 
         String xml = getSearchAirLegs( search );
 
+        //Passengers
+        String passengers = getSearchPassengers(search.getPassengersMap());
+
+        //Search Modifier Fragment
+        soapInputStream = TravelportXMLRequest.class
+                .getResourceAsStream("/travelport/XML.request/searchModifier.xml");
+        String modifier = new BufferedReader(new InputStreamReader(soapInputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
         soapInputStream = TravelportXMLRequest.class
                 .getResourceAsStream("/travelport/XML.request/requestTail.xml");
         String tail = new BufferedReader(new InputStreamReader(soapInputStream))
                 .lines()
                 .collect(Collectors.joining("\n"));
 
-        return header + xml + tail;
+        return header + xml + modifier + passengers + tail;
 
+    }
+
+    private static String getSearchPassengers(Map<PassengerType, List<Passenger>> passengersMap){
+        InputStream passengerInputStream = TravelportXMLRequest.class
+                .getResourceAsStream("/travelport/XML.request/requestPassenger.xml");
+
+        String passengerXML = new BufferedReader(new InputStreamReader(passengerInputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
+        String passengers = "";
+
+        for(Map.Entry<PassengerType, List<Passenger>> entry : passengersMap.entrySet()){
+            passengers += getPassengerDetail(passengerXML, entry);
+        }
+
+        return passengers;
+    }
+
+    private static String getPassengerDetail(String passengerXML, Map.Entry<PassengerType, List<Passenger>> entry){;
+
+        String passengers = "";
+
+        for(Passenger passenger : entry.getValue()){
+            valuesMap.put("passengerType", passenger.getType().getTravelportCode());
+            valuesMap.put("passengerAge", passenger.getAge());
+
+            sub = new StrSubstitutor(valuesMap);
+
+            passengers += sub.replace(passengerXML);
+        }
+
+        return passengers;
     }
 
     private static String getSearchAirLegs(FlightsSearchCommand search) {
