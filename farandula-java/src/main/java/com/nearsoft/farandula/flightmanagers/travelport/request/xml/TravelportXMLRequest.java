@@ -105,11 +105,15 @@ public class TravelportXMLRequest {
 
         String airlegs = "";
 
-        valuesMap.put("departureAirport", search.getDepartureAirports().get(0) );
-        valuesMap.put("arrivalAirport", search.getArrivalAirports().get(0) );
-        valuesMap.put("departureDate", search.getDepartingDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE));
-        sub = new StrSubstitutor(valuesMap);
-        airlegs += sub.replace( leg );
+        for (int i = 0; i<search.getDepartingDates().size(); i++) {
+            valuesMap.put("departureAirport", search.getDepartureAirports().get(i) );
+            valuesMap.put("arrivalAirport", search.getArrivalAirports().get(i) );
+            valuesMap.put("departureDate", search.getDepartingDates().get(i).format(DateTimeFormatter.ISO_LOCAL_DATE));
+            sub = new StrSubstitutor(valuesMap);
+            airlegs += sub.replace( leg );
+        }
+
+
 
         if ( search.getType() == FlightType.ROUNDTRIP ){
 

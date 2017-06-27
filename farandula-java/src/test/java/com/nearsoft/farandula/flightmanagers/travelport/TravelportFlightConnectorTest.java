@@ -149,6 +149,60 @@ class TravelportFlightConnectorTest {
     }
 
     @Test
+    public void getAvail_openJaw() throws FarandulaException, IOException {
+        FlightConnector managerTravelport = createManagerTravelport();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        fromList.add("MEX");
+        fromList.add("SFO");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        toList.add("GDL");
+        toList.add("HMO");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add(departingDate.plusMonths(1));
+        departingDateList.add(departingDate.plusMonths(2));
+
+        List<Itinerary> flights = Luisa.using(managerTravelport).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(3))
+                .forPassegers(Passenger.children(new int[]{8,9}))
+                .type(FlightType.OPENJAW)
+                .limitTo(2)
+                .execute();
+
+        assertNotNull(flights);
+
+        assertTrue(flights.size() > 0);
+
+        AirLeg firstAirLeg = flights.get(0).getAirlegs().get(0);
+        AirLeg midAirLeg = flights.get(0).getAirlegs().get(1);
+        AirLeg lastAirLeg = flights.get(0).getAirlegs().get(2);
+
+        assertNotNull(firstAirLeg);
+        assertNotNull(midAirLeg);
+        assertNotNull(lastAirLeg);
+
+        assertAll("First should be the best Airleg", () -> {
+            assertEquals("DFW", firstAirLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("CDG", firstAirLeg.getSegments().get(firstAirLeg.getSegments().size()-1).getArrivalAirportCode());
+            assertEquals("MEX", midAirLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("GDL", midAirLeg.getSegments().get(midAirLeg.getSegments().size()-1).getArrivalAirportCode());
+            assertEquals("SFO", lastAirLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("HMO", lastAirLeg.getSegments().get(lastAirLeg.getSegments().size()-1).getArrivalAirportCode());
+            //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getSeatsAvailable() );
+
+        });
+
+    }
+
+    @Test
     public void getAvail_oneWay() throws FarandulaException, IOException {
         FlightConnector managerTravelport = createManagerTravelport();
 
