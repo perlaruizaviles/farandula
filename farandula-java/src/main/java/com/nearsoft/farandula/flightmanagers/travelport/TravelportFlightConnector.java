@@ -184,6 +184,9 @@ public class TravelportFlightConnector implements FlightConnector {
 
         for (int i = 0; i < solutions.getLength(); i++) {
 
+            //Seat
+            parseAirAvailInfoChild(solutions.item(i));
+
             NodeList legsNodes = ((Element)solutions.item(i)).getElementsByTagName("air:Journey");
 
             Itinerary itinerary = new Itinerary();
@@ -280,9 +283,6 @@ public class TravelportFlightConnector implements FlightConnector {
             //operating airline data
             parseCodeshareChild(seg, airSegmentNode);
 
-            //Seat
-            parseAirAvailInfoChild(airSegmentNode);
-
             seg.setAirplaneData(flightDetails.getEquipment());
 
             //departure data
@@ -348,7 +348,13 @@ public class TravelportFlightConnector implements FlightConnector {
 
 
     private void parseAirAvailInfoChild(Node airPricingSolution) {
-        List<Node> bookingList = XmlUtils.getNodeList("air:BookingInfo", airPricingSolution.getChildNodes());
+
+        NodeList airPricingInfo = ((Element)airPricingSolution).getElementsByTagName("air:AirPricingInfo");
+
+        if( airPricingInfo.getLength() == 0 )
+            return;
+
+        List<Node> bookingList = XmlUtils.getNodeList("air:BookingInfo", airPricingInfo.item(0).getChildNodes());
 
         for (Node book : bookingList){
             String segmentKey = ((Element) book).getAttribute("SegmentRef");
