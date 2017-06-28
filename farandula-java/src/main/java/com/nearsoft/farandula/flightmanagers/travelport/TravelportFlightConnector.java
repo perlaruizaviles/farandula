@@ -40,6 +40,7 @@ public class TravelportFlightConnector implements FlightConnector {
     private static String apiPassword;
     private static String targetBranch;
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
+    private static Map<String, Segment> segmentMap = new HashMap<>();
     private static String url_api = "";
 
     static {
@@ -179,13 +180,11 @@ public class TravelportFlightConnector implements FlightConnector {
         NodeList solutions = body.getElementsByTagName("air:AirPricingSolution");
 
         //Map of all segments in xml
-        Map<String, Segment> segmentsMap = createSegmentHashMap(list, resultFlightsDetails);
+        createSegmentHashMap(list, resultFlightsDetails);
 
         for (int i = 0; i < solutions.getLength(); i++) {
 
             NodeList legsNodes = ((Element)solutions.item(i)).getElementsByTagName("air:Journey");
-
-
 
             Itinerary itinerary = new Itinerary();
             List<AirLeg> legList = new ArrayList<>();
@@ -205,7 +204,7 @@ public class TravelportFlightConnector implements FlightConnector {
 
                     String segmentKey = segNodes.item(k).getAttributes().getNamedItem("Key").getNodeValue().toString();
 
-                    Segment seg = segmentsMap.get(segmentKey);
+                    Segment seg = segmentMap.get(segmentKey);
 
                     segmentList.add(seg);
                 }
@@ -256,9 +255,7 @@ public class TravelportFlightConnector implements FlightConnector {
         return price;
     }
 
-    private Map<String, Segment> createSegmentHashMap(NodeList list, List<TravelportFlightDetails> resultFlightsDetails) {
-
-        Map<String, Segment> segmentMap = new HashMap<>();
+    private void createSegmentHashMap(NodeList list, List<TravelportFlightDetails> resultFlightsDetails) {
 
         for (int i = 0; i < list.getLength(); i++) {
 
@@ -283,8 +280,8 @@ public class TravelportFlightConnector implements FlightConnector {
             //operating airline data
             parseCodeshareChild(seg, airSegmentNode);
 
-            //passengers
-            parseAirAvailInfoChild(seg, airSegmentNode);
+            //Seat
+            parseAirAvailInfoChild(airSegmentNode);
 
             seg.setAirplaneData(flightDetails.getEquipment());
 
@@ -306,8 +303,6 @@ public class TravelportFlightConnector implements FlightConnector {
 
             segmentMap.put(seg.getKey(), seg);
         }
-
-        return segmentMap;
     }
 
     private TravelportFlightDetails findCorrespondingDeatils(String key, List<TravelportFlightDetails> detailsList) {
@@ -352,27 +347,32 @@ public class TravelportFlightConnector implements FlightConnector {
     }
 
 
-    private void parseAirAvailInfoChild(Segment seg, Node airSegmentNode) {
-        Node airAvailInfo = XmlUtils.getNode("air:AirAvailInfo", airSegmentNode.getChildNodes());
-        if (airAvailInfo != null) {
-            List<Node> bookingCodeInfo = XmlUtils.getNodeList("air:BookingCodeInfo", airAvailInfo.getChildNodes());
-            List<Seat> seatsResult = new ArrayList<>();
-            for (Node node : bookingCodeInfo) {
+    private void parseAirAvailInfoChild(Node airPricingSolution) {
+        List<Node> bookingList = XmlUtils.getNodeList("air:BookingInfo", airPricingSolution.getChildNodes());
 
-                String classCabin = XmlUtils.getAttrByName(node, "CabinClass");
-                String bookingCounts = XmlUtils.getAttrByName(node, "BookingCounts");
+        for (Node book : bookingList){
+            String segmentKey = ((Element) book).getAttribute("SegmentRef");
 
-                for (String seatKey : bookingCounts.split("\\|")) {
+            Segment actualSeg = segmentMap.get(segmentKey);
+
+            if( actualSeg.getSeatsAvailable() == null || actualSeg.getSeatsAvailable().size() == 0 ){
+
+                int bookingCount = Integer.parseInt(((Element) book).getAttribute("BookingCount"));
+                String cabinClass = ((Element) book).getAttribute("CabinClass");
+
+                List<Seat> seatList = new ArrayList<>();
+
+                for(int i = 0; i < bookingCount; i++){
                     Seat seat = new Seat();
-                    seat.setClassCabin(getCabinClassType(classCabin));
-                    seat.setPlace(seatKey);
-                    seatsResult.add(seat);
+                    seat.setClassCabin(getCabinClassType(cabinClass));
+                    //Current Travelport Response does not include place for seat
+                    seat.setPlace("");
+                    seatList.add(seat);
                 }
 
+                actualSeg.setSeatsAvailable(seatList);
             }
-            seg.setSeatsAvailable(seatsResult);
         }
-
     }
 
     private void parseCodeshareChild(Segment seg, Node airSegmentNode) {

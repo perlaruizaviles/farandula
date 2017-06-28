@@ -63,7 +63,7 @@ class TravelportFlightConnectorTest {
             assertEquals("MUC", airLeg.getDepartureAirportCode());
             assertEquals("BCN", airLeg.getArrivalAirportCode());
             //TODO Check implementation of seat request
-            //assertEquals(CabinClassType.BUSINESS, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+            assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
             assertEquals(1, 1);
         });
 
