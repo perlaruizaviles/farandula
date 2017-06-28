@@ -93,7 +93,7 @@ class TravelportFlightConnectorTest {
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
                 .forPassegers(Passenger.adults(1))
-                .limitTo(2);
+                .limitTo(40);
 
         String request = travelport.buildEnvelopeStringFromSearch(searchCommand);
 
@@ -114,7 +114,7 @@ class TravelportFlightConnectorTest {
                 "            <com:CabinClass Type=\"ECONOMY\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
                 "        </air:PreferredCabins>\n" +
                 "    </air:AirLegModifiers>\n" +
-                "</air:SearchAirLeg>"+"<air:AirSearchModifiers>\n" +
+                "</air:SearchAirLeg>"+"<air:AirSearchModifiers MaxSolutions=\"40\">\n" +
                 "    <air:PreferredProviders>\n" +
                 "        <com:Provider xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" Code=\"1G\"/>\n" +
                 "    </air:PreferredProviders>\n" +
@@ -172,10 +172,10 @@ class TravelportFlightConnectorTest {
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
-                .forPassegers(Passenger.adults(3))
-                .forPassegers(Passenger.children(new int[]{8,9}))
+                .forPassegers(Passenger.adults(1))
+                //.forPassegers(Passenger.children(new int[]{8,9}))
                 .type(FlightType.OPENJAW)
-                .limitTo(2)
+                .limitTo(200)
                 .execute();
 
         assertNotNull(flights);

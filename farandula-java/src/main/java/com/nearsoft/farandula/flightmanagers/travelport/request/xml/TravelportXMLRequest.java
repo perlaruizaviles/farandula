@@ -32,11 +32,7 @@ public class TravelportXMLRequest {
 
         sub = new StrSubstitutor(valuesMap);
 
-        InputStream soapInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/requestHeader.xml");
-        String header = new BufferedReader(new InputStreamReader(soapInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
+        String header = getXMLStringFromResource("/travelport/XML.request/requestHeader.xml");
 
         header = sub.replace( header );
 
@@ -46,20 +42,24 @@ public class TravelportXMLRequest {
         String passengers = getSearchPassengers(search.getPassengersMap());
 
         //Search Modifier Fragment
-        soapInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/searchModifier.xml");
-        String modifier = new BufferedReader(new InputStreamReader(soapInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
 
-        soapInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/requestTail.xml");
-        String tail = new BufferedReader(new InputStreamReader(soapInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
+        String modifier = getXMLStringFromResource("/travelport/XML.request/searchModifier.xml");
+        valuesMap.put("limit", search.getOffSet());
+        sub = new StrSubstitutor(valuesMap);
+        modifier = sub.replace(modifier);
+
+        String tail = getXMLStringFromResource("/travelport/XML.request/requestTail.xml");
 
         return header + xml + modifier + passengers + tail;
 
+    }
+
+    private static String getXMLStringFromResource(String resource) {
+        InputStream soapInputStream = TravelportXMLRequest.class.getResourceAsStream(resource);
+        String xml = new BufferedReader(new InputStreamReader(soapInputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
+        return xml;
     }
 
     private static String getSearchPassengers(Map<PassengerType, List<Passenger>> passengersMap){
