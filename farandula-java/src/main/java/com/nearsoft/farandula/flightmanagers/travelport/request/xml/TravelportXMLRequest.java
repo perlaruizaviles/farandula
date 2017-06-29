@@ -84,7 +84,7 @@ public class TravelportXMLRequest {
         String passengers = "";
 
         for(Passenger passenger : entry.getValue()){
-            valuesMap.put("passengerType", passenger.getType().getTravelportCode());
+            valuesMap.put("passengerType", getTravelportCode(passenger.getType()));
             valuesMap.put("passengerAge", passenger.getAge());
 
             sub = new StrSubstitutor(valuesMap);
@@ -157,6 +157,25 @@ public class TravelportXMLRequest {
 
         return header ;
 
+    }
+
+    private static String getTravelportCode(PassengerType type){
+        switch (type){
+            case ADULTS:
+                return "ADT";
+
+            case CHILDREN:
+                return "CHD";
+
+            case INFANTS:
+                return "INF";
+
+            case INFANTSONSEAT:
+                return "INS";
+
+            default:
+                return "ADT";
+        }
     }
 
 }
