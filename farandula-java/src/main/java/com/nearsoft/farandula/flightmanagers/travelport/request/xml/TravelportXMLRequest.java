@@ -97,11 +97,8 @@ public class TravelportXMLRequest {
 
     private static String getSearchAirLegs(FlightsSearchCommand search) {
 
-        InputStream airLegInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/requestSearchAirLeg.xml");
-        String leg = new BufferedReader(new InputStreamReader(airLegInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
+
+        String leg = getXMLStringFromResource("/travelport/XML.request/requestSearchAirLeg.xml");
 
         String airlegs = "";
 

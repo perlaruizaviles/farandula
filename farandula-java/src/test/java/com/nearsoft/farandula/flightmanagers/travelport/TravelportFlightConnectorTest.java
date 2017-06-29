@@ -3,14 +3,16 @@ package com.nearsoft.farandula.flightmanagers.travelport;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightConnector;
+import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
 import com.nearsoft.farandula.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
+import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
 
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -18,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -175,11 +178,11 @@ class TravelportFlightConnectorTest {
                 .forPassegers(Passenger.adults(1))
                 //.forPassegers(Passenger.children(new int[]{8,9}))
                 .type(FlightType.OPENJAW)
-                .limitTo(200)
+                .limitTo(40)
                 .execute();
 
         assertNotNull(flights);
-
+        assert flights.size() <= 40;
         assertTrue(flights.size() > 0);
 
         AirLeg firstAirLeg = flights.get(0).getAirlegs().get(0);
@@ -203,6 +206,44 @@ class TravelportFlightConnectorTest {
 
     }
 
+    @Test
+    public void getAvail_oneWayPrices() throws FarandulaException, IOException {
+        FlightConnector travelPortStub = createTravelPortStub();;
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<Itinerary> flights = Luisa.using(travelPortStub).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(3))
+                .forPassegers(Passenger.children(new int[]{8,9}))
+                .type(FlightType.ONEWAY)
+                .limitTo(2)
+                .execute();
+
+        assertNotNull(flights);
+
+        assertTrue(flights.size() > 0);
+
+        AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+
+        assertNotNull(airLeg);
+
+        assertAll("First should be the best Airleg", () -> {
+            assert flights.get(0).getPrice().getBasePrice().getAmount() == 48.00;
+            assert flights.get(0).getPrice().getTotalPrice().getAmount() == 179.60;
+            assert flights.get(0).getPrice().getTaxesPrice().getAmount() == 106.60;
+        });
+
+    }
     @Test
     public void getAvail_oneWay() throws FarandulaException, IOException {
         FlightConnector managerTravelport = createManagerTravelport();
@@ -241,6 +282,90 @@ class TravelportFlightConnectorTest {
         });
 
     }
+
+    @Test
+    public void getAvail_oneWayDifferentPassengers() throws FarandulaException, IOException {
+        FlightConnector managerTravelport = createManagerTravelport();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<Itinerary> flights = Luisa.using(managerTravelport).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(2))
+                .forPassegers(Passenger.children(new int[]{8}))
+                .forPassegers(Passenger.infantsOnSeat(new int[]{2}))
+                .forPassegers(Passenger.infants(new int[]{1}))
+                .type(FlightType.ONEWAY)
+                .limitTo(2)
+                .execute();
+
+        assertNotNull(flights);
+
+        assertTrue(flights.size() > 0);
+
+        AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+
+        assertNotNull(airLeg);
+
+    }
+
+
+    @Test
+    public void getAvail_roundTripInfantsExceedAdults() throws FarandulaException, IOException {
+            FlightConnector managerTravelport = createManagerTravelport();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
+        FlightsSearchCommand command = Luisa.using(managerTravelport).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
+                .forPassegers(Passenger.adults(1))
+                .forPassegers(Passenger.children(new int[] {8,9}))
+                .forPassegers(Passenger.infants(new int[]{2}))
+                .forPassegers(Passenger.infantsOnSeat(new int[]{1}))
+                .type(FlightType.ROUNDTRIP)
+                .limitTo(2);
+        TravelportFlightConnector managerTravelportConnector = ((TravelportFlightConnector)managerTravelport);
+        List<Itinerary> flights = command
+                .execute();
+
+
+        try {
+            SOAPMessage response = managerTravelportConnector.buildRequestForAvail(command);
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            response.writeTo(out);
+            String strResponse = new String(out.toByteArray());
+            String prettyResponse = getPrettyXML(strResponse);
+            assert prettyResponse.contains("<faultstring>Number of infants must not exceed number of adult                    passengers.</faultstring>");
+            assert flights.size() == 0;
+
+
+        } catch (SOAPException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Test
     public void getAvail_roundTrip() throws FarandulaException, IOException {

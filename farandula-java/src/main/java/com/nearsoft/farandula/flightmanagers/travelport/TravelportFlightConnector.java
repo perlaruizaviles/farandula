@@ -252,9 +252,9 @@ public class TravelportFlightConnector implements FlightConnector {
             return null;
         }
         Price price = new Price();
-        String [] priceSplitter = priceString.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
-        price.setAmount(Double.parseDouble(priceSplitter[1]+priceSplitter[2]+priceSplitter[3]));
-        price.setCurrencyCode(priceSplitter[0]);
+        String amount = priceString.substring(3);
+        price.setAmount(Double.parseDouble(amount));
+        price.setCurrencyCode(priceString.substring(0,2));
         return price;
     }
 
