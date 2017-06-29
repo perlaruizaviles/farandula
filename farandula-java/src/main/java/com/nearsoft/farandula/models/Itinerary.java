@@ -16,7 +16,7 @@ public class Itinerary {
     }
 
     public void setAirlegs( List<AirLeg> airleg) {
-        this.airlegs = airlegs;
+        this.airlegs = airleg;
     }
 
     public Fares getPrice() {

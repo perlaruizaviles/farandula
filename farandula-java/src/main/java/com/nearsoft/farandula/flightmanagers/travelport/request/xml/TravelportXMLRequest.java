@@ -8,7 +8,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -30,41 +32,85 @@ public class TravelportXMLRequest {
 
         sub = new StrSubstitutor(valuesMap);
 
-        InputStream soapInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/requestHeader.xml");
-        String header = new BufferedReader(new InputStreamReader(soapInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
+        String header = getXMLStringFromResource("/travelport/XML.request/requestHeader.xml");
 
         header = sub.replace( header );
 
         String xml = getSearchAirLegs( search );
 
-        soapInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/requestTail.xml");
-        String tail = new BufferedReader(new InputStreamReader(soapInputStream))
+        //Passengers
+        String passengers = getSearchPassengers(search.getPassengersMap());
+
+        //Search Modifier Fragment
+
+        String modifier = getXMLStringFromResource("/travelport/XML.request/searchModifier.xml");
+        valuesMap.put("limit", search.getOffSet());
+        sub = new StrSubstitutor(valuesMap);
+        modifier = sub.replace(modifier);
+
+        String tail = getXMLStringFromResource("/travelport/XML.request/requestTail.xml");
+
+        return header + xml + modifier + passengers + tail;
+
+    }
+
+    private static String getXMLStringFromResource(String resource) {
+        InputStream soapInputStream = TravelportXMLRequest.class.getResourceAsStream(resource);
+        String xml = new BufferedReader(new InputStreamReader(soapInputStream))
+                .lines()
+                .collect(Collectors.joining("\n"));
+        return xml;
+    }
+
+    private static String getSearchPassengers(Map<PassengerType, List<Passenger>> passengersMap){
+        InputStream passengerInputStream = TravelportXMLRequest.class
+                .getResourceAsStream("/travelport/XML.request/requestPassenger.xml");
+
+        String passengerXML = new BufferedReader(new InputStreamReader(passengerInputStream))
                 .lines()
                 .collect(Collectors.joining("\n"));
 
-        return header + xml + tail;
+        String passengers = "";
 
+        for(Map.Entry<PassengerType, List<Passenger>> entry : passengersMap.entrySet()){
+            passengers += getPassengerDetail(passengerXML, entry);
+        }
+
+        return passengers;
+    }
+
+    private static String getPassengerDetail(String passengerXML, Map.Entry<PassengerType, List<Passenger>> entry){;
+
+        String passengers = "";
+
+        for(Passenger passenger : entry.getValue()){
+            valuesMap.put("passengerType", getTravelportCode(passenger.getType()));
+            valuesMap.put("passengerAge", passenger.getAge());
+
+            sub = new StrSubstitutor(valuesMap);
+
+            passengers += sub.replace(passengerXML);
+        }
+
+        return passengers;
     }
 
     private static String getSearchAirLegs(FlightsSearchCommand search) {
 
-        InputStream airLegInputStream = TravelportXMLRequest.class
-                .getResourceAsStream("/travelport/XML.request/requestSearchAirLeg.xml");
-        String leg = new BufferedReader(new InputStreamReader(airLegInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
+
+        String leg = getXMLStringFromResource("/travelport/XML.request/requestSearchAirLeg.xml");
 
         String airlegs = "";
 
-        valuesMap.put("departureAirport", search.getDepartureAirports().get(0) );
-        valuesMap.put("arrivalAirport", search.getArrivalAirports().get(0) );
-        valuesMap.put("departureDate", search.getDepartingDates().get(0).format(DateTimeFormatter.ISO_LOCAL_DATE));
-        sub = new StrSubstitutor(valuesMap);
-        airlegs += sub.replace( leg );
+        for (int i = 0; i<search.getDepartingDates().size(); i++) {
+            valuesMap.put("departureAirport", search.getDepartureAirports().get(i) );
+            valuesMap.put("arrivalAirport", search.getArrivalAirports().get(i) );
+            valuesMap.put("departureDate", search.getDepartingDates().get(i).format(DateTimeFormatter.ISO_LOCAL_DATE));
+            sub = new StrSubstitutor(valuesMap);
+            airlegs += sub.replace( leg );
+        }
+
+
 
         if ( search.getType() == FlightType.ROUNDTRIP ){
 
@@ -111,6 +157,25 @@ public class TravelportXMLRequest {
 
         return header ;
 
+    }
+
+    private static String getTravelportCode(PassengerType type){
+        switch (type){
+            case ADULTS:
+                return "ADT";
+
+            case CHILDREN:
+                return "CHD";
+
+            case INFANTS:
+                return "INF";
+
+            case INFANTSONSEAT:
+                return "INS";
+
+            default:
+                return "ADT";
+        }
     }
 
 }
