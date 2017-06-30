@@ -6,8 +6,8 @@ Farandula is library to unify SDKs and APIs of the major GDS (Sabre, Amadeus, Tr
 - [ ] Getting Started.
 - [x] GDS explanation.
 - [x] Luisa Assistant.
-- [ ] Search Command. (from, to, passengers, flightType, cabin, dates, limit).
-- [ ] Models.
+- [x] Search Command. (from, to, passengers, flightType, cabin, dates, limit).
+- [x] Models.
 - [ ] Flow.
 - [ ] Examples.
 
