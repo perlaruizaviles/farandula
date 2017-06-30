@@ -56,3 +56,24 @@ List<Itinerary> results = Luisa.using(sabre)
                                 .from()
                                 ...;
 ```
+## Search Command
+
+The `FlightSearchCommand` is a Farandula class which purpose resides in retrieving all the required information to build a correct request for the GDSs. For this class the builder design pattern is implemented with the following methods:
+
+- `from`: Receives a String list of departure Airport Codes. When selecting oneWay or roundTrip the length of the list is 1, on the other hand when selected multiCity the list length goes between 2 and 5.
+
+- `to`: Receives a String list of arrival Airport Codes .
+
+- `departingAt`: Receives a LocalDateTime list of departure Date.
+
+- `returningAt`: Receives a LocalDateTime list of arrival Date. This method is only used when selected roundTrip.
+
+- `type`: Receives and sets the FlightType (ONEWAY, ROUNDTRIP, OPENJAW).
+
+- `preferenceClass`: Receives and sets the CabinClassType (ECONOMY, PREMIUM_ECONOMY, FIRST, BUSINESS, ECONOMYCOACH, OTHER).
+
+- `limitTo`: Receives an integer which tells the max number of results expected.
+
+- `forPassengers`: Appends a list of Passengers specifying their type (ADULTS, CHILDREN, INFANTS, INFANTSONSEAT) and how many.
+
+Finally, method `execute` returns the result already parsed and in form of an Itinerary list. See the Models section for more information on Itinerary model.
