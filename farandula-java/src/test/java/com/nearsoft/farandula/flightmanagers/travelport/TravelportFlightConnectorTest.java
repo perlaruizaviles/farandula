@@ -3,13 +3,16 @@ package com.nearsoft.farandula.flightmanagers.travelport;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightConnector;
+import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
 import com.nearsoft.farandula.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
 
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -17,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nearsoft.farandula.utilities.LoggerUtils.getPrettyXML;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -59,9 +63,10 @@ class TravelportFlightConnectorTest {
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
-            assertEquals("DFW", airLeg.getDepartureAirportCode());
-            assertEquals("CDG", airLeg.getArrivalAirportCode());
-            assertEquals(CabinClassType.BUSINESS, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+            assertEquals("MUC", airLeg.getDepartureAirportCode());
+            assertEquals("BCN", airLeg.getArrivalAirportCode());
+            //TODO Check implementation of seat request
+            assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
             assertEquals(1, 1);
         });
 
@@ -69,6 +74,7 @@ class TravelportFlightConnectorTest {
     }
 
     @Test
+
     public void buildEnvelopeStringFromSearch() throws FarandulaException {
 
         TravelportFlightConnector travelport = new TravelportFlightConnector();
@@ -89,14 +95,15 @@ class TravelportFlightConnectorTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .limitTo(2);
+                .forPassegers(Passenger.adults(1))
+                .limitTo(40);
 
         String request = travelport.buildEnvelopeStringFromSearch(searchCommand);
 
         assertEquals("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
                 "    <soapenv:Header/>\n" +
                 "    <soapenv:Body>\n" +
-                "        <air:AvailabilitySearchReq xmlns:air=\"http://www.travelport.com/schema/air_v34_0\" AuthorizedBy=\"user\" TargetBranch=\"" + targetBranch +"\" TraceId=\"trace\">\n" +
+                "        <air:LowFareSearchReq xmlns:air=\"http://www.travelport.com/schema/air_v34_0\" AuthorizedBy=\"user\" SolutionResult=\"true\" TargetBranch=\"" + targetBranch +"\" TraceId=\"trace\">\n" +
                 "            <com:BillingPointOfSaleInfo xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" OriginApplication=\"UAPI\"/><air:SearchAirLeg>\n" +
                 "    <air:SearchOrigin>\n" +
                 "        <com:Airport Code=\"DFW\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
@@ -110,9 +117,16 @@ class TravelportFlightConnectorTest {
                 "            <com:CabinClass Type=\"ECONOMY\" xmlns:com=\"http://www.travelport.com/schema/common_v34_0\"/>\n" +
                 "        </air:PreferredCabins>\n" +
                 "    </air:AirLegModifiers>\n" +
-                "</air:SearchAirLeg></air:AvailabilitySearchReq>\n" +
+                "</air:SearchAirLeg>"+"<air:AirSearchModifiers MaxSolutions=\"40\">\n" +
+                "    <air:PreferredProviders>\n" +
+                "        <com:Provider xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" Code=\"1G\"/>\n" +
+                "    </air:PreferredProviders>\n" +
+                "</air:AirSearchModifiers>"+
+                "<com:SearchPassenger xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" BookingTravelerRef=\"gr8AVWGCR064r57Jt0+8bA==\" Code=\"ADT\" Age=\"0\"/>"+
+                "<air:AirPricingModifiers xmlns:com=\"http://www.travelport.com/schema/common_v34_0\" CurrencyType = \"USD\"/>\n"+"</air:LowFareSearchReq>\n" +
                 "</soapenv:Body>\n" +
                 "</soapenv:Envelope>", request);
+
 
     }
 
@@ -138,7 +152,222 @@ class TravelportFlightConnectorTest {
         return supplierStub;
     }
 
-    //@Test
+    @Test
+    public void getAvail_openJaw() throws FarandulaException, IOException {
+        FlightConnector managerTravelport = createManagerTravelport();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        fromList.add("MEX");
+        fromList.add("SFO");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        toList.add("GDL");
+        toList.add("HMO");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+        departingDateList.add(departingDate.plusMonths(1));
+        departingDateList.add(departingDate.plusMonths(2));
+
+        List<Itinerary> flights = Luisa.using(managerTravelport).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(1))
+                //.forPassegers(Passenger.children(new int[]{8,9}))
+                .type(FlightType.OPENJAW)
+                .limitTo(40)
+                .execute();
+
+        assertNotNull(flights);
+        assert flights.size() <= 40;
+        assertTrue(flights.size() > 0);
+
+        AirLeg firstAirLeg = flights.get(0).getAirlegs().get(0);
+        AirLeg midAirLeg = flights.get(0).getAirlegs().get(1);
+        AirLeg lastAirLeg = flights.get(0).getAirlegs().get(2);
+
+        assertNotNull(firstAirLeg);
+        assertNotNull(midAirLeg);
+        assertNotNull(lastAirLeg);
+
+        assertAll("First should be the best Airleg", () -> {
+            assertEquals("DFW", firstAirLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("CDG", firstAirLeg.getSegments().get(firstAirLeg.getSegments().size()-1).getArrivalAirportCode());
+            assertEquals("MEX", midAirLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("GDL", midAirLeg.getSegments().get(midAirLeg.getSegments().size()-1).getArrivalAirportCode());
+            assertEquals("SFO", lastAirLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("HMO", lastAirLeg.getSegments().get(lastAirLeg.getSegments().size()-1).getArrivalAirportCode());
+            //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getSeatsAvailable() );
+
+        });
+
+    }
+
+    @Test
+    public void getAvail_oneWayPrices() throws FarandulaException, IOException {
+        FlightConnector travelPortStub = createTravelPortStub();;
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<Itinerary> flights = Luisa.using(travelPortStub).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(3))
+                .forPassegers(Passenger.children(new int[]{8,9}))
+                .type(FlightType.ONEWAY)
+                .limitTo(2)
+                .execute();
+
+        assertNotNull(flights);
+
+        assertTrue(flights.size() > 0);
+
+        AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+
+        assertNotNull(airLeg);
+
+        assertAll("First should be the best Airleg", () -> {
+            assert flights.get(0).getPrice().getBasePrice().getAmount() == 48.00;
+            assert flights.get(0).getPrice().getTotalPrice().getAmount() == 179.60;
+            assert flights.get(0).getPrice().getTaxesPrice().getAmount() == 106.60;
+        });
+
+    }
+    @Test
+    public void getAvail_oneWay() throws FarandulaException, IOException {
+        FlightConnector managerTravelport = createManagerTravelport();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<Itinerary> flights = Luisa.using(managerTravelport).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(3))
+                .forPassegers(Passenger.children(new int[]{8,9}))
+                .type(FlightType.ONEWAY)
+                .limitTo(2)
+                .execute();
+
+        assertNotNull(flights);
+
+        assertTrue(flights.size() > 0);
+
+        AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+
+        assertNotNull(airLeg);
+
+        assertAll("First should be the best Airleg", () -> {
+            assertEquals("DFW", airLeg.getSegments().get(0).getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getSegments().get(airLeg.getSegments().size()-1).getArrivalAirportCode());
+            //assertEquals( "Economy/Coach", bestFlight.getSegments().get(0).getSeatsAvailable() );
+        });
+
+    }
+
+    @Test
+    public void getAvail_oneWayDifferentPassengers() throws FarandulaException, IOException {
+        FlightConnector managerTravelport = createManagerTravelport();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<Itinerary> flights = Luisa.using(managerTravelport).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .forPassegers(Passenger.adults(2))
+                .forPassegers(Passenger.children(new int[]{8}))
+                .forPassegers(Passenger.infantsOnSeat(new int[]{2}))
+                .forPassegers(Passenger.infants(new int[]{1}))
+                .type(FlightType.ONEWAY)
+                .limitTo(2)
+                .execute();
+
+        assertNotNull(flights);
+
+        assertTrue(flights.size() > 0);
+
+        AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+
+        assertNotNull(airLeg);
+
+    }
+
+
+    @Test
+    public void getAvail_roundTripInfantsExceedAdults() throws FarandulaException, IOException {
+            FlightConnector managerTravelport = createManagerTravelport();
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+        List<LocalDateTime> returningDateList = new ArrayList<>();
+        returningDateList.add(  departingDate.plusDays(1) );
+
+        FlightsSearchCommand command = Luisa.using(managerTravelport).findMeFlights()
+                .from( fromList )
+                .to( toList )
+                .departingAt(departingDateList)
+                .returningAt( returningDateList )
+                .forPassegers(Passenger.adults(1))
+                .forPassegers(Passenger.children(new int[] {8,9}))
+                .forPassegers(Passenger.infants(new int[]{2}))
+                .forPassegers(Passenger.infantsOnSeat(new int[]{1}))
+                .type(FlightType.ROUNDTRIP)
+                .limitTo(2);
+        TravelportFlightConnector managerTravelportConnector = ((TravelportFlightConnector)managerTravelport);
+        List<Itinerary> flights = command
+                .execute();
+
+
+        try {
+            SOAPMessage response = managerTravelportConnector.buildRequestForAvail(command);
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            response.writeTo(out);
+            String strResponse = new String(out.toByteArray());
+            String prettyResponse = getPrettyXML(strResponse);
+            assert prettyResponse.contains("<faultstring>Number of infants must not exceed number of adult                    passengers.</faultstring>");
+            assert flights.size() == 0;
+
+
+        } catch (SOAPException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
     public void getAvail_roundTrip() throws FarandulaException, IOException {
         FlightConnector managerTravelport = createManagerTravelport();
 
