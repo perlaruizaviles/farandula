@@ -24,13 +24,11 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
                       .limited_results_to( 2 )
                       .build!
 
-    expectedResponse = FileHelper.load_asset('amadeus/response.json')
     manager = Factory.build_flight_manager(:amadeus, {})
-    result = manager.get_avail(search_form)
+    itineraries = manager.get_avail(search_form)
 
-    assert_equal( result.code , 200 )
-
-    manager.build_itinery ( result )
+    assert_equal( itineraries[0].departure_air_legs.departure_airport_code.downcase , 'cuu' )
+    assert_equal( itineraries[0].returning_air_legs.departure_airport_code.downcase , 'sfo' )
 
   end
 

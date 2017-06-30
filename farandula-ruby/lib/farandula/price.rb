@@ -5,7 +5,10 @@ module Farandula
     attr_accessor :amount
     attr_accessor :currency_code
 
-    def initialize(amount, currency_code)
+    def initialize(
+        amount        = nil,
+        currency_code = nil
+    )
       @amount        = amount
       @currency_code = currency_code
     end 

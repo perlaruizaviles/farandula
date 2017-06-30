@@ -28,16 +28,33 @@ module Farandula
           origin =  "&origin=#{search_form.departure_airport}"
           destination = "&destination=#{search_form.arrival_airport}"
           departing_date_search = format_date( search_form.departing_date )
-          date = "&departure_date=#{departing_date_search}"
+          returning_date_search = format_date( search_form.returning_date )
+          departure_date = "&departure_date=#{departing_date_search}"
+          returning_date = "&return_date=#{returning_date_search}"
 
-          apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
-                    "low-fare-search?apikey=#{api_key}" \
-                    "#{cabin}" \
-                    "#{origin}" \
-                    "#{destination}" \
-                    "#{date}" \
-                    "#{passengers_data}" \
-                    "#{number_of_results}"
+          if search_form.type == :roundtrip
+
+            apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
+                      "low-fare-search?apikey=#{api_key}" \
+                      "#{cabin}" \
+                      "#{origin}" \
+                      "#{destination}" \
+                      "#{departure_date}" \
+                      "#{returning_date}" \
+                      "#{passengers_data}" \
+                      "#{number_of_results}"
+
+          elsif
+            apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
+                      "low-fare-search?apikey=#{api_key}" \
+                      "#{cabin}" \
+                      "#{origin}" \
+                      "#{destination}" \
+                      "#{departure_date}" \
+                      "#{passengers_data}" \
+                      "#{number_of_results}"
+
+          end
 
           apiURL
 
