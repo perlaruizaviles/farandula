@@ -20,7 +20,7 @@ class Farandula::AmadeusRequestTest < Minitest::Test
     search_form = builder
                       .from('CUU')
                       .to('SFO')
-                      .departing_at(DateTime.new(2017,12,24))
+                      .departing_at(DateTime.now >> 1 )
                       .type(:oneway)
                       .with_cabin_class( :economy)
                       .with_passenger( passenger )
@@ -31,7 +31,7 @@ class Farandula::AmadeusRequestTest < Minitest::Test
         "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" \
         "&travel_class=ECONOMY&origin=CUU" \
         "&destination=SFO" \
-        "&departure_date=2017-12-24" \
+        "&departure_date=#{Date.today >> 1}" \
         "&adults=1" \
         "&number_of_results=2"
 
