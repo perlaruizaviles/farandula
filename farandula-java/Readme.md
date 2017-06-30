@@ -52,7 +52,7 @@ SabreFlightConnector sabre = new SabreFlightConnector();
 
 //These lines will be explained below
 List<Itinerary> results = Luisa.using(sabre)
-								.findMeFlights()
+				.findMeFlights()
                                 .from()
                                 ...;
 ```
