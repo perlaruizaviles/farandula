@@ -43,3 +43,16 @@ Once the luisa instance based on certain supplier is created, is possible to mak
 SearchCommand command = luisaAssistant.findMeFlights();
 ```
 Example above is using a command variable to hold the search command object returned by the `findMeFlights` method used by the *Luisa* assistant.
+
+A more fluid example for the Luisa assistance could be:
+
+```
+//Create a GDS based connector to be used as flight supplier
+SabreFlightConnector sabre = new SabreFlightConnector();
+
+//These lines will be explained below
+List<Itinerary> results = Luisa.using(sabre)
+								.findMeFlights()
+                                .from()
+                                ...;
+```
