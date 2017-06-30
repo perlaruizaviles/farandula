@@ -29,7 +29,8 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
     result = manager.get_avail(search_form)
 
     assert_equal( result.code , 200 )
-    assert_equal( expectedResponse , result.body )
+
+    manager.build_itinery ( result )
 
   end
 

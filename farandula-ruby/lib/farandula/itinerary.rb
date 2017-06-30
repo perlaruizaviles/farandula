@@ -6,9 +6,10 @@ module Farandula
     attr_accessor :price
 
     def initialize(
-      departure_air_legs,
-      returning_air_legs,
-      price)
+      departure_air_legs  = nil,
+      returning_air_legs  = nil,
+      price               = nil
+    )
     
       @departure_air_legs = departure_air_legs
       @returning_air_legs = returning_air_legs
