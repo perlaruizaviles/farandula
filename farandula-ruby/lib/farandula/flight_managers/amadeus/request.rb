@@ -28,7 +28,7 @@ module Farandula
           origin =  "&origin=#{search_form.departure_airport}"
           destination = "&destination=#{search_form.arrival_airport}"
           departing_date_search = format_date( search_form.departing_date )
-          returning_date_search = format_date( search_form.returning_date )
+          returning_date_search = search_form.returning_date ? format_date( search_form.returning_date ) : nil
           departure_date = "&departure_date=#{departing_date_search}"
           returning_date = "&return_date=#{returning_date_search}"
 
