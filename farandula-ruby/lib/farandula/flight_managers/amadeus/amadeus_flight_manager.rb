@@ -1,8 +1,8 @@
 require 'rest-client'
 require_relative '../flight_manager.rb'
-require 'farandula/itinerary'
-require 'farandula/air_leg'
-require 'farandula/segment'
+require 'farandula/models/itinerary'
+require 'farandula/models/air_leg'
+require 'farandula/models/segment'
 
 module Farandula
   module FlightManagers
@@ -121,6 +121,8 @@ module Farandula
 
 
           #todo duration flight
+
+          puts segment.to_s
 
           segment
 

@@ -31,7 +31,7 @@ class Farandula::AmadeusRequestTest < Minitest::Test
         "apikey=R6gZSs2rk3s39GPUWG3IFubpEGAvUVUA" \
         "&travel_class=ECONOMY&origin=CUU" \
         "&destination=SFO" \
-        "&departure_date=#{Date.today >> 1}" \
+        "&departure_date=#{Date.now >> 1}" \
         "&adults=1" \
         "&number_of_results=2"
 

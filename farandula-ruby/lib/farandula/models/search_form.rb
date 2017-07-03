@@ -1,4 +1,4 @@
-require_relative './constants.rb'
+require 'farandula/constants'
 
 module Farandula 
 

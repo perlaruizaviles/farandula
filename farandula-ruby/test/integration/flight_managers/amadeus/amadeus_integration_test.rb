@@ -16,8 +16,8 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
     search_form = builder
                       .from('CUU')
                       .to('SFO')
-                      .departing_at(DateTime.new(2017,12,24))
-                      .returning_at(DateTime.new(2017,12,30))
+                      .departing_at(DateTime.now + 1  )
+                      .returning_at(DateTime.now >> 1  )
                       .type(:roundtrip)
                       .with_cabin_class(:economy)
                       .with_passenger( passenger )
