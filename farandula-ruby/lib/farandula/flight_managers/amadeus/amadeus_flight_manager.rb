@@ -36,13 +36,17 @@ module Farandula
 
           parsed = JSON.parse(response)
 
+          itinerary_id = 0
+
           parsed["results"].each {|result|
 
             result['itineraries'].each {|itinerary|
 
               itineray_result = Farandula::Itinerary.new
 
-              itineries_list << build_air_legs(itineray_result, itinerary)
+              itinerary_id +=1
+
+              itineries_list << build_air_legs(itineray_result, itinerary, itinerary_id)
 
             }
           }
@@ -52,24 +56,29 @@ module Farandula
         end
 
         private
-        def build_air_legs (itinerary_object, itinerary_json_result)
+        def build_air_legs (itinerary_object, itinerary_json_result, id = nil)
 
-          itinerary_object.departure_air_legs = build_leg(itinerary_json_result['outbound']['flights'])
+          itinerary_object.departure_air_legs = build_leg(itinerary_json_result['outbound']['flights'], 1)
 
           if itinerary_json_result['inbound']
-            itinerary_object.returning_air_legs = build_leg(itinerary_json_result['inbound']['flights'])
+            itinerary_object.returning_air_legs = build_leg(itinerary_json_result['inbound']['flights'], 1)
           end
 
+          itinerary_object.id = id
           itinerary_object
 
         end
 
-        def build_leg (jsonObject)
+        def build_leg (jsonObject, id = nil)
 
-          segments_array = jsonObject.map {|segment| build_segment(segment)}
+          segment_id = 0
+          segments_array = jsonObject.map {|segment|
+            segment_id =+ 1
+            build_segment(segment, segment_id)
+          }
 
           leg = AirLeg.new
-          leg.id = "tempID";
+          leg.id = id;
           leg.departure_airport_code = segments_array[0].departure_airport_code
           leg.departure_date = segments_array[0].departure_date
           leg.arrival_airport_code = segments_array[segments_array.size - 1].arrival_airport_code
@@ -79,7 +88,7 @@ module Farandula
 
         end
 
-        def build_segment(segmentJson)
+        def build_segment(segmentJson, segment_key)
 
           departure_airport_data = segmentJson['origin']
 
@@ -90,6 +99,8 @@ module Farandula
           pricing_info_data = segmentJson['fare']
 
           segment = Farandula::Segment.new
+
+          segment.key = segment_key
 
           segment.operating_airline_code = segmentJson['operating_airline']
           #todo mapping of airlines code
@@ -121,8 +132,6 @@ module Farandula
 
 
           #todo duration flight
-
-          puts segment.to_s
 
           segment
 

@@ -13,6 +13,10 @@ module Farandula
       @currency_code = currency_code
     end 
 
+    def to_s
+      result = ""
+      result << "amount #{amount}, currency code #{currency_code}."
+    end
 
   end  
 

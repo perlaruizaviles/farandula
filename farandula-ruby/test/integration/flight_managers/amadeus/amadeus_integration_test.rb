@@ -27,6 +27,8 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
     manager = Factory.build_flight_manager(:amadeus, {})
     itineraries = manager.get_avail(search_form)
 
+    puts itineraries[0].departure_air_legs.to_s
+
     assert_equal( itineraries[0].departure_air_legs.departure_airport_code.downcase , 'cuu' )
     assert_equal( itineraries[0].returning_air_legs.departure_airport_code.downcase , 'sfo' )
 
