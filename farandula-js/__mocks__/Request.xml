@@ -1,0 +1,35 @@
+const req = `<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="P105356" TraceId="trace">
+            <com:BillingPointOfSaleInfo xmlns:com="http://www.travelport.com/schema/common_v34_0" OriginApplication="UAPI"/>
+      <air:SearchAirLeg>
+    <air:SearchOrigin>
+        <com:Airport xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="DFW"/>
+    </air:SearchOrigin>
+    <air:SearchDestination>
+        <com:Airport xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="CDG"/>
+    </air:SearchDestination>
+    <air:SearchDepTime PreferredTime="2017-08-08"/>
+    <air:AirLegModifiers>
+        <air:PreferredCabins>
+            <com:CabinClass xmlns:com="http://www.travelport.com/schema/common_v34_0" Type="ECONOMY"/>
+        </air:PreferredCabins>
+    </air:AirLegModifiers>
+</air:SearchAirLeg>
+      <air:AirSearchModifiers MaxSolutions="2">
+    <air:PreferredProviders>
+        <com:Provider xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="1G"/>
+    </air:PreferredProviders>
+</air:AirSearchModifiers>
+      <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="0"/>
+      <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="0"/>
+      <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="0"/>
+      <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="8"/>
+      <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="9"/>
+      <air:AirPricingModifiers xmlns:com="http://www.travelport.com/schema/common_v34_0" CurrencyType="USD"/>
+</air:LowFareSearchReq>
+</soapenv:Body>
+</soapenv:Envelope>`
+
+export default req
