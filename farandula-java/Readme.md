@@ -9,7 +9,7 @@ Farandula is library to unify SDKs and APIs of the major GDS (Sabre, Amadeus, Tr
 - [x] Search Command. (from, to, passengers, flightType, cabin, dates, limit).
 - [x] Models.
 - [ ] Flow.
-- [ ] Examples.
+- [x] Examples.
 
 
 ## GDS Explanation
@@ -259,3 +259,234 @@ The information contained in the segment is the following:
 __Note 1.__ Sometimes the airline which offers the flight does not match with the airline who performs the flight, that's the reason of `Operating Airline` and `Marketing Airline`.
 
 __Note 2.__ There could be some extra information depending on the GDS manager. An example is the `Fares` included only in results from the `Travelport` manager.
+
+## Examples
+For all the examples described here, it's important to specify the desired flight manager to Luisa assistant.
+
+### One Way Flight
+First, the flight connector is created to be passed to Luisa Assistant. The Travelport flight connector (GDS manager) will be used in this example.
+
+*Java*
+```
+FlightConnector travelportConnector = new TravelportFlightConnector();
+```
+
+The flight search is the following: A list of itineraries is needed, it must contain results for flights departing from Dallas Forth Worth airport and arriving at Charles de Gaulle airport; the flight must depart on August 8, 2017. The passengers who will travel are two adults and a couple of children (six and eight years old respectively). The preference class is the economy, and only 20 results are required to select a flight.
+
+All the requirements for the one way flight must be specified from the data above. The needed data and chosen values are the following:
+*    `from` - DFW (IATA code for Dallas-Forth Worth airport)
+*    `to` - CDG (IATA code for Charles de Gaulle airport)
+*    `departing at` - 2017/08/08 00:00:00
+*    `for passengers`: two adults and two children (six and eight years)
+*    `preference class`: ECONOMY
+*    `flight type`: ONEWAY
+*    `limit to` 20 results 
+
+The `from`, `to` and `departing at` are values which must be contained in a List of elements. The declaration of these values could be as follows.
+
+*Java*
+```
+//IATA codes must be String values
+List<String> fromList = new ArrayList<>();
+fromList.add("DFW");
+
+List<String> toList = new ArrayList<>();
+toList.add("CDG");
+
+//departing dates must be DateTime values
+List<LocalDateTime> departingAtList = new ArrayList<>();
+LocalDateTime departingDate = LocalDateTime.of(2017, 8, 8, 0, 0, 0);
+departingAtList.add(departingDate);
+```
+
+The value `for passengers` must be managed by the Passenger class, and it contains different methods for adults and the rest of passenger types (children, infants, and infants on the seat). For adults, is just necessary to pass the desired number of adults to `adults` function. For the rest of passengers, the value passed to each function (`children`, `infants` and `infantsOnSeat`) must be an ages array for each passenger.
+
+*Java*
+```
+int numberOfAdults = 2;
+int [] childrenAges = new int[]{6, 8};
+```
+
+*    The preference class type value is provided by the enum `CabinClassTye` (default value is `ECONOMY`).
+*    The flight type is provided by the `FlightType` enum (default value is `ONEWAY`).
+*    The limit must be an `int` value.
+
+*Java*
+```
+//CabinClassType and FlightType can be specified directly to builder
+int limit = 20;
+```
+
+The request using the previous data will return a `List` of `Itinerary` elements.
+
+The result code for that request is the following (Using Luisa assistant):
+
+*Java*
+```
+List<Itinerary> itineraries = Luisa.using(travelportConnector).findMeFlights()
+                                    .from(fromList)
+                                    .to(toList)
+                                    .departingAt(departingAtList)
+                                    .forPassengers(Passenger.adults(numberOfAdults))
+                                    .forPassengers(Passenger.children(childrenAges))
+                                    .preferenceClass(CabinClassType.ECONOMY)
+                                    .type(FlightType.ONEWAY)
+                                    .limitTo(limit)
+                                    .execute();
+```
+
+### Round Trip Flight
+To specify a round trip request on the farandula library is necessary to consider some extra data (return date) and change some fields on the search command.
+
+The flight connector to be used in this example is `Amadeus`.
+
+*Java*
+```
+FlightConnector amadeusConnector = new AmadeusFlightConnector();
+```
+
+The flight search is the following: A list of itineraries is needed, it must contain results for flights departing from Dallas Forth Worth airport and arriving at Charles de Gaulle airport; the flight must depart on August 8, 2017, and return on September 8, 2017. The passengers who will travel are one adult and one infant, the infant requires a seat. The preference class is business, and only 20 results are required to select a flight.
+
+The information to use in the request is the following:
+*    `from` - DFW (IATA code for Dallas Forth Worth airport)
+*    `to` - CDG (IATA code for Charles de Gaulle airport)
+*    `departing at` - 2017/08/08 00:00:00
+*    `returning at` - 2017/09/08 00:00:00
+*    `for passengers`: one adult and one infant on seat (2 year)
+*    `preference class`: BUSINESS
+*    `flight type`: ROUNDTRIP
+*    `limit to` 20 results 
+
+The returning at field must be a list of elements, just as the departing at field.
+
+*Java*
+```
+List<LocalDateTime> returningAtList = new ArrayList<>();
+LocalDateTime returningAt = LocalDateTime.of(2017, 9, 8, 0, 0, 0);
+returningAtList.add(returningAt);
+```
+
+The common fields of one-way example could be declared as the same way.
+
+*Java*
+```
+//IATA codes must be String values
+List<String> fromList = new ArrayList<>();
+fromList.add("DFW");
+
+List<String> toList = new ArrayList<>();
+toList.add("CDG");
+
+//departing dates must be DateTime values
+List<LocalDateTime> departingAtList = new ArrayList<>();
+LocalDateTime departingDate = LocalDateTime.of(2017, 8, 8, 0, 0, 0);
+departingAtList.add(departingDate);
+
+//Passengers
+int numberOfAdults = 1;
+int [] infantOnSeatAges = new int[]{2};
+
+//Limit
+int limit = 20;
+```
+
+The result of calling the request via Luisa assistant must be a list of `Itinerary` elements. The result request is the following:
+
+*Java*
+```
+List<Itinerary> itineraries = Luisa.using(amadeustConnector).findMeFlights()
+                                    .from(fromList)
+                                    .to(toList)
+                                    .departingAt(departingAtList)
+                                    .returningAt(returningAtList)
+                                    .forPassengers(Passenger.adults(numberOfAdults))
+                                    .forPassengers(Passenger.infantsOnSeat(infantOnSeatAges))
+                                    .preferenceClass(CabinClassType.BUSINESS)
+                                    .type(FlightType.ROUNDTRIP)
+                                    .limitTo(limit)
+                                    .execute();
+```
+
+### Open Jaw Flight (Multi-City)
+The open jaw request could be seen as the same request for a one way, but it changes the implementation by adding more elements to each IATA code list and departing dates list.
+
+A quick view for this, for each flight, must exist an element on fromList, toList, and departingAt list.
+
+For this example, the flight connector used is Sabre.
+
+*Java*
+```
+FlightConnector sabreConnector = new SabreFlightConnector();
+```
+
+The flight search is the following: 
+
+A list of itineraries is needed, it must contain results for flights different flights. 
+*    The first flight must depart from Dallas Forth Worth airport and arrive at Charles de Gaulle airport and must depart on August 8, 2017.
+*    The second flight must depart from Mexico City and arrive at Hermosillo city, it must depart on August 20, 2017. 
+*    The third flight must depart from Las Vegas and arrive in Guadalajara city, it must depart on September 8, 2017. 
+    
+The passengers who will travel are two adults, one child (10 years old) and one infant (1-year-old) who do not require a seat. The preference class is economy, and only 20 results are required to select a flight.
+
+The specified data condensed are the following:
+*    `from`: DFW, MEX, LAS (list of departing IATA codes).
+*    `to`: CDG, HMO, GDL (list of arrival IATA codes).
+*    `departing at`: 2017/08/07 00:00:00, 2017/08/20 00:00:00, 2017/09/08 00:00:00 (list of departing date times)
+*    `for passengers`: Two adults, one ten years old children and one infant (one-year-old) who do not require a seat
+*    `preference class`: ECONOMY
+*    `flight type`: OPENJAW
+*    `limit to`: 20
+
+The definition of all the previous data could be as follows:
+
+*Java*
+```
+//From list
+List<String> fromList = new ArrayList<>();
+fromList.add("DFW");
+fromList.add("MEX");
+fromList.add("LAS");
+
+//To list
+List<String> toList = new ArrayList<>();
+toList.add("CDG");
+toList.add("HMO");
+toList.add("GDL");
+
+//Departing at list
+List<LocalDateTime> departingAtList = new ArrayList<>();
+
+LocalDateTime firstDate = LocalDateTime.of(2017, 8, 8, 0, 0, 0);
+departingAtList.add(firstDate);
+
+LocalDateTime secondDate = LocalDateTime.of(2017, 8, 20, 0, 0, 0);
+departingAtList.add(secondDate);
+
+LocalDateTime thirdDate = LocalDateTime.of(2017, 9, 8, 0, 0, 0);
+departingAtList.add(thirdDate);
+
+//Passengers
+int numberOfAdults = 2;
+int [] childrenAges = new int[]{10};
+int [] infantAges = new int[]{1};
+
+//Limit
+int limit = 20;
+```
+
+The request using Luisa assistant is the following;
+
+*Java*
+```
+List<Itinerary> itineraries = Luisa.using(sabreConnector).findMeFlights()
+                                    .from(fromList)
+                                    .to(toList)
+                                    .departingAt(departingAtList)
+                                    .forPassengers(Passenger.adults(numberOfAdults))
+                                    .forPassengers(Passenger.infants(infantAges))
+                                    .forPassengers(Passenger.children(childrenAges))
+                                    .preferenceClass(CabinClassType.ECONOMY)
+                                    .type(FlightType.OPENJAW)
+                                    .limitTo(limit)
+                                    .execute();
+```
