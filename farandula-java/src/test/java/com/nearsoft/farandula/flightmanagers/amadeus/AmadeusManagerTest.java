@@ -93,8 +93,8 @@ class AmadeusManagerTest {
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
-                .forPassegers(Passenger.adults(2))
-                .forPassegers( Passenger.children( new int [] {5,7}) )
+                .forPassengers(Passenger.adults(2))
+                .forPassengers( Passenger.children( new int [] {5,7}) )
                 .preferenceClass(CabinClassType.ECONOMY)
                 .limitTo(2)
                 .execute();
@@ -130,7 +130,7 @@ class AmadeusManagerTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .limitTo(2)
@@ -167,7 +167,7 @@ class AmadeusManagerTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .limitTo(2)
@@ -211,9 +211,9 @@ class AmadeusManagerTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers( Passenger.adults(1) )
-                .forPassegers( Passenger.infants( new int[]{1} ) )
-                .forPassegers( Passenger.children( new int[]{10, 8})  )
+                .forPassengers( Passenger.adults(1) )
+                .forPassengers( Passenger.infants( new int[]{1} ) )
+                .forPassengers( Passenger.children( new int[]{10, 8})  )
                 .type(FlightType.OPENJAW)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .limitTo(3)
@@ -249,7 +249,7 @@ class AmadeusManagerTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(2);
 
@@ -289,7 +289,7 @@ class AmadeusManagerTest {
                 .to(toList)
                 .departingAt(departingDateList)
                 .returningAt( returningList )
-                .forPassegers(Passenger.adults(2))
+                .forPassengers(Passenger.adults(2))
                 .type( FlightType.ROUNDTRIP )
                 .limitTo(50)
                 .execute();
@@ -329,7 +329,7 @@ class AmadeusManagerTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.OPENJAW)
                 .limitTo(2);
 

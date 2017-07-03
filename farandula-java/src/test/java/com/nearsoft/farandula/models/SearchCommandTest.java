@@ -70,8 +70,8 @@ class SearchCommandTest {
                 .type(FlightType.ONEWAY)
                 .limitTo(2)
                 .preferenceClass(CabinClassType.ECONOMY)
-                .forPassegers(Passenger.adults(2))
-                .forPassegers(Passenger.infants(new int[]{1, 2, 1}));
+                .forPassengers(Passenger.adults(2))
+                .forPassengers(Passenger.infants(new int[]{1, 2, 1}));
 
         // more infants than adults, this should throws
         assertThrows(FarandulaException.class, () -> {

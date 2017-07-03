@@ -3,7 +3,6 @@ package com.nearsoft.farandula.flightmanagers.travelport;
 import com.nearsoft.farandula.Luisa;
 import com.nearsoft.farandula.exceptions.FarandulaException;
 import com.nearsoft.farandula.flightmanagers.FlightConnector;
-import com.nearsoft.farandula.flightmanagers.travelport.request.xml.TravelportXMLRequest;
 import com.nearsoft.farandula.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -95,7 +94,7 @@ class TravelportFlightConnectorTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .limitTo(40);
 
         String request = travelport.buildEnvelopeStringFromSearch(searchCommand);
@@ -175,8 +174,8 @@ class TravelportFlightConnectorTest {
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
-                .forPassegers(Passenger.adults(1))
-                //.forPassegers(Passenger.children(new int[]{8,9}))
+                .forPassengers(Passenger.adults(1))
+                //.forPassengers(Passenger.children(new int[]{8,9}))
                 .type(FlightType.OPENJAW)
                 .limitTo(40)
                 .execute();
@@ -223,8 +222,8 @@ class TravelportFlightConnectorTest {
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
-                .forPassegers(Passenger.adults(3))
-                .forPassegers(Passenger.children(new int[]{8,9}))
+                .forPassengers(Passenger.adults(3))
+                .forPassengers(Passenger.children(new int[]{8,9}))
                 .type(FlightType.ONEWAY)
                 .limitTo(2)
                 .execute();
@@ -261,8 +260,8 @@ class TravelportFlightConnectorTest {
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
-                .forPassegers(Passenger.adults(3))
-                .forPassegers(Passenger.children(new int[]{8,9}))
+                .forPassengers(Passenger.adults(3))
+                .forPassengers(Passenger.children(new int[]{8,9}))
                 .type(FlightType.ONEWAY)
                 .limitTo(2)
                 .execute();
@@ -300,10 +299,10 @@ class TravelportFlightConnectorTest {
                 .from( fromList )
                 .to( toList )
                 .departingAt(departingDateList)
-                .forPassegers(Passenger.adults(2))
-                .forPassegers(Passenger.children(new int[]{8}))
-                .forPassegers(Passenger.infantsOnSeat(new int[]{2}))
-                .forPassegers(Passenger.infants(new int[]{1}))
+                .forPassengers(Passenger.adults(2))
+                .forPassengers(Passenger.children(new int[]{8}))
+                .forPassengers(Passenger.infantsOnSeat(new int[]{2}))
+                .forPassengers(Passenger.infants(new int[]{1}))
                 .type(FlightType.ONEWAY)
                 .limitTo(2)
                 .execute();
@@ -340,10 +339,10 @@ class TravelportFlightConnectorTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
-                .forPassegers(Passenger.children(new int[] {8,9}))
-                .forPassegers(Passenger.infants(new int[]{2}))
-                .forPassegers(Passenger.infantsOnSeat(new int[]{1}))
+                .forPassengers(Passenger.adults(1))
+                .forPassengers(Passenger.children(new int[] {8,9}))
+                .forPassengers(Passenger.infants(new int[]{2}))
+                .forPassengers(Passenger.infantsOnSeat(new int[]{1}))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(2);
         TravelportFlightConnector managerTravelportConnector = ((TravelportFlightConnector)managerTravelport);
@@ -389,7 +388,7 @@ class TravelportFlightConnectorTest {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(2)
                 .execute();
