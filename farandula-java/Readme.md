@@ -137,22 +137,6 @@ FlightType is an enum which contains the most common flight types to perform on 
 
 The flight type is specified on the search command and is used by all GDS managers without distinction.
 
-### GuestType
-The GestType is an enum which contains the guest types managed by the library. The types are the following:
-*    `ADULTS`
-*    `CHILDREN`
-
-The guest type is specified on the search command and is used by the GDS managers without distinction.
-
-### HotelSearchCommand
-
-This model is used to perform the hotel search. All the information necessary to make a request with a specific GDS is contained here. Information like the check-in, checkout, guest list and rooms quantity could be filled used some fluent methods.
-*    `checkIn`
-*    `checkOut`
-*    `forGuest`
-*    `rooms`
-
-As the `FlightSeachCommand` model, the `HotelSearchCommand` also contains the `execute` method which starts the hotel search and retrieves the hotel results.
 
 ### Itinerary
 The itinerary model is basically a result from a search request using the `FlightSearchCommand`. It contains the complete information for a flight result.
