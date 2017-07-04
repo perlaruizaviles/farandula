@@ -7,6 +7,7 @@ require 'farandula/models/segment'
 require 'farandula/models/seat'
 require_relative '../../constants.rb'
 require 'time'
+require 'tzinfo'
 
 module Farandula
   module FlightManagers
@@ -17,9 +18,11 @@ module Farandula
         attr_accessor :api_key
 
         def initialize(api_key)
-          @api_key = api_key
+          @api_key          = api_key
 
-          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml" )
+          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "airlinesCode.yml" )
+
+          @locations_map    = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "locations.yml" )
 
         end
 
@@ -149,9 +152,27 @@ module Farandula
           arrival_date_time = format_date ( Time.parse(segmentJson['arrives_at']) )
           segment.arrival_date = arrival_date_time
 
-
           #todo duration flight
+          if @locations_map[segment.departure_airport_code]
+            departure_location = @locations_map[segment.departure_airport_code]
+          end
 
+          if @locations_map[segment.arrival_airport_code ]
+            arrival_location   = @locations_map[segment.arrival_airport_code ]
+          end
+
+          if departure_location.equal? arrival_location
+            duration = arrival_date_time - departure_date_time
+          elsif
+
+            tz = TZInfo::Timezone.get(departure_location)
+            tz2 = TZInfo::Timezone.get(arrival_location)
+            # seconds to minutes
+            duration = ( tz2.local_to_utc( Time.parse(segmentJson['arrives_at']) ) -
+                        tz.local_to_utc( Time.parse (segmentJson['departs_at']) )) /60
+
+          end
+          segment.duration = duration
           segment
 
         end
