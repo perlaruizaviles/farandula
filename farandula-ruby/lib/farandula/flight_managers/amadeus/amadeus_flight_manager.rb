@@ -1,8 +1,11 @@
 require 'rest-client'
+require 'yaml'
 require_relative '../flight_manager.rb'
 require 'farandula/models/itinerary'
 require 'farandula/models/air_leg'
 require 'farandula/models/segment'
+require 'farandula/models/seat'
+require_relative '../../constants.rb'
 
 module Farandula
   module FlightManagers
@@ -14,6 +17,15 @@ module Farandula
 
         def initialize(api_key)
           @api_key = api_key
+
+          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml" )
+
+          #
+          # file        = File.read(File.dirname(__FILE__) + '/../../assets/' + file_name)
+          # parsed      = JSON.parse(file)
+          # @hashCities = Hash.new
+          # @hashCities = parsed["airports"].map { |airport| [airport['iata'].downcase, build_city(airport)] }.to_h
+          #
         end
 
         def get_avail(search_form)
@@ -21,8 +33,6 @@ module Farandula
           request = Amadeus::Request.new
 
           url_request = request.build_target_url_from_search!(search_form, api_key)
-
-          puts url_request
 
           response = RestClient.get url_request
 
@@ -103,18 +113,35 @@ module Farandula
           segment.key = segment_key
 
           segment.operating_airline_code = segmentJson['operating_airline']
-          #todo mapping of airlines code
-          #segment.operating_airline_name =  airlinesCodeMap.get( segment.operating_airline_code )
+          segment.operating_airline_name = @airline_code_map[segment.operating_airline_code]
           segment.operating_flight_number = segmentJson['flight_number']
 
-          segment.marketing_airline_code = segmentJson['marketing_airline']
-          #todo mapping of airlines code
-          #segment.marketing_airline_name =  airlinesCodeMap.get( segment.marketing_airline_code )
+          #if marketing and operating are the same airline
+          if segmentJson['marketing_airline']
+            segment.marketing_airline_code = segmentJson['marketing_airline']
+          elsif
+            segment.marketing_airline_code = segmentJson['operating_airline']
+          end
+          segment.marketing_airline_name =  @airline_code_map[segment.marketing_airline_code]
           segment.marketing_flight_number = segmentJson['flight_number']
 
+          #airplane data stuff i.e. boeing 771
           segment.airplane_data = segmentJson['aircraft']
 
           #todo cabin class stuff as seat class
+          class_travel = get_cabin_class_type( booking_info_data['travel_class'] )
+          number_of_seat = booking_info_data["seats_remaining"].to_i
+
+          seats = []
+          number_of_seat.times do
+            seat = Farandula::Seat.new
+            seat.cabin = class_travel
+            #amadeus does not indicate the seat place
+            seat.place =  ""
+            seats << seat
+          end
+
+          segment.seats_available = seats
 
           #departure stuff
           segment.departure_airport_code = departure_airport_data['airport']
@@ -134,6 +161,27 @@ module Farandula
           #todo duration flight
 
           segment
+
+        end
+
+        def get_cabin_class_type (travel_class_info)
+
+          case travel_class_info.downcase
+            when "economy"
+              CabinClassType::ECONOMY
+            when "business"
+              CabinClassType::BUSINESS
+            when "premiumeconomy"
+              CabinClassType::PREMIUM_ECONOMY
+            when "first"
+              CabinClassType::FIRST
+            when "economy/coach"
+              CabinClassType::ECONOMYCOACH
+            when "premium_economy"
+              CabinClassType::PREMIUM_ECONOMY
+            else
+              CabinClassType::OTHER
+          end
 
         end
 
