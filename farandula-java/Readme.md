@@ -319,13 +319,13 @@ The following example shows how would the code look like in a default implementa
 
 *Java*
 ```
-List<Itinerary> itineraries = Luisa.using(travelportConnector).findMeFlights()
+List<Itinerary> itineraries = Luisa.using().findMeFlights()
                                     .from(fromList)
                                     .to(toList)
                                     .departingAt(departingAtList)                                    
                                     .execute();
 ```
-In this example Luisa is searching flights from the same origin, to the same destination, and at the same departure date as the previous example. Since we are not specifying, passengers, cabin class, flight type, or limit, Luisa will automatically build the search command with their respective defaults. The request will be looking for one way flights available for one adult in economy class and retrieving a maximum number of 50 results. 
+In this example Luisa is searching flights from the same origin, to the same destination, and at the same departure date as the previous example. Since we are not specifying, passengers, cabin class, flight type, or limit, Luisa will automatically build the search command with their respective defaults. The request will be looking for one way flights available for one adult in economy class and retrieving a maximum number of 50 results. Since the `using()` method is empty and it is not receiving any FlightConnector, a Sabre FlightConnector is used as default.  
 
 ### Round Trip Flight
 To specify a round trip request on the farandula library is necessary to consider some extra data (return date) and change some fields on the search command.
