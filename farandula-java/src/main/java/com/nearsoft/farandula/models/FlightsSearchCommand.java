@@ -60,7 +60,7 @@ public class FlightsSearchCommand {
         return this;
     }
 
-    public FlightsSearchCommand forPassegers(List<Passenger> passengerList) throws FarandulaException {
+    public FlightsSearchCommand forPassengers(List<Passenger> passengerList) throws FarandulaException {
 
         if (this.getPassengers().size() + passengerList.size() > 6) {
             throw new FarandulaException(ErrorType.ACCESS_ERROR, "Is not possible to search up to 6 passengers.");
@@ -149,7 +149,7 @@ public class FlightsSearchCommand {
 
         if (this.getPassengers().size() == 0) {
             //case when user does not set any passenger.
-            this.forPassegers(Passenger.adults(1));
+            this.forPassengers(Passenger.adults(1));
         }
 
         // case when there is more infants than adults

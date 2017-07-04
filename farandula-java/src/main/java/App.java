@@ -35,7 +35,7 @@ public class App {
                 .to( toList )
                 .departingAt(departingDateList)
                 .returningAt( returningDateList )
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(50).execute();
 
