@@ -251,7 +251,7 @@ First, the flight connector is created to be passed to Luisa Assistant. The Trav
 FlightConnector travelportConnector = new TravelportFlightConnector();
 ```
 
-The flight search is the following: A list of itineraries is needed, it must contain results for flights departing from Dallas Forth Worth airport and arriving at Charles de Gaulle airport; the flight must depart on August 8, 2017. The passengers who will travel are two adults and a couple of children (six and eight years old respectively). The preference class is the economy, and only 20 results are required to select a flight.
+The flight search is the following: A list of itineraries is needed, it must contain results for flights departing from Dallas Forth Worth airport and arriving at Charles de Gaulle airport; the flight must depart on August 8, 2017. The passengers who will travel are two adults and a couple of children (six and eight years old respectively). The preference class is the economy, and only 20 results are required.
 
 All the requirements for the one way flight must be specified from the data above. The needed data and chosen values are the following:
 *    `from` - DFW (IATA code for Dallas-Forth Worth airport)
@@ -279,7 +279,7 @@ LocalDateTime departingDate = LocalDateTime.of(2017, 8, 8, 0, 0, 0);
 departingAtList.add(departingDate);
 ```
 
-The value `for passengers` must be managed by the Passenger class, and it contains different methods for adults and the rest of passenger types (children, infants, and infants on the seat). For adults, is just necessary to pass the desired number of adults to `adults` function. For the rest of passengers, the value passed to each function (`children`, `infants` and `infantsOnSeat`) must be an ages array for each passenger.
+The value `for passengers` must be managed by the Passenger class, and it contains different methods for adults and the rest of passenger types (children, infants, and infants on the seat). For adults, is just necessary to pass the desired number of adults to `adults` function. For the rest of passengers, the value passed to each function (`children`, `infants` and `infantsOnSeat`) must be an ages array.
 
 *Java*
 ```
@@ -349,7 +349,7 @@ The information to use in the request is the following:
 *    `flight type`: ROUNDTRIP
 *    `limit to` 20 results 
 
-The returning at field must be a list of elements, just as the departing at field.
+The `returning at` field must be a list of elements, just as the `departing at` field.
 
 *Java*
 ```
@@ -413,12 +413,12 @@ FlightConnector sabreConnector = new SabreFlightConnector();
 
 The flight search is the following: 
 
-A list of itineraries is needed, it must contain results for flights different flights. 
+A list of itineraries is needed, it must contain results for flights to different cities. 
 *    The first flight must depart from Dallas Forth Worth airport and arrive at Charles de Gaulle airport and must depart on August 8, 2017.
 *    The second flight must depart from Mexico City and arrive at Hermosillo city, it must depart on August 20, 2017. 
 *    The third flight must depart from Las Vegas and arrive in Guadalajara city, it must depart on September 8, 2017. 
     
-The passengers who will travel are two adults, one child (10 years old) and one infant (1-year-old) without seat. The preference class is economy, and only 20 results are required to select a flight.
+The passengers who will travel are two adults, one child (10 years old) and one infant (1-year-old) without seat. The preference class is economy, and only 20 results are required.
 
 The specified data condensed are the following:
 *    `from`: DFW, MEX, LAS (list of departing IATA codes).
