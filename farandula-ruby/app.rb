@@ -1,6 +1,6 @@
 
 require_relative './lib/farandula/flight_managers/sabre/request.rb'
-require_relative './lib/farandula/search_form.rb'
+require_relative './lib/farandula/dels/search_form.rb'
 require_relative './lib/farandula/factory.rb'
 
 

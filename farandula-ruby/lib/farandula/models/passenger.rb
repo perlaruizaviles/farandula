@@ -1,4 +1,4 @@
-require_relative './constants.rb'
+require 'farandula/constants'
 
 module Farandula
   
@@ -6,7 +6,7 @@ module Farandula
 
     attr_reader :type, :age
     
-    def initialize(type, age)
+    def initialize(type=nil, age=nil)
       @type = type
       @age  = age
       validate_age!
@@ -23,5 +23,11 @@ module Farandula
     end
 
   end
+
+  def to_s
+    result = ""
+    result << "Type #{type}, Age #{age}."
+  end
+
   
 end

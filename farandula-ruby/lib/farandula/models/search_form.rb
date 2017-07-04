@@ -1,4 +1,4 @@
-require_relative './constants.rb'
+require 'farandula/constants'
 
 module Farandula 
 
@@ -162,6 +162,20 @@ module Farandula
           end 
         end 
 
-    end # Builder ends 
+    end # Builder ends
+
+    def to_s
+
+      result = ""
+      result << "departure_airport #{departure_airport}, " \
+                "arrival_airport #{arrival_airport}, " \
+                "departing_date #{departing_date}, " \
+                "returning_date #{returning_date}, " \
+                "type #{type}, " \
+                "cabin_class #{cabin_class}," \
+                "offset #{offset}." \
+
+    end
+
   end  # SearchForm ends
 end 

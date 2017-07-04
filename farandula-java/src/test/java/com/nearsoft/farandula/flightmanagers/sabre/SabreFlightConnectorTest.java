@@ -146,7 +146,7 @@ public class SabreFlightConnectorTest {
                 .to(toList)
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.ROUNDTRIP)
                 .limitTo(10)
                 .preferenceClass(CabinClassType.ECONOMY)
@@ -178,10 +178,10 @@ public class SabreFlightConnectorTest {
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
-                .forPassegers(Passenger.adults(2))
-                .forPassegers(Passenger.children(new int[]{12, 16}))
-                .forPassegers(Passenger.infantsOnSeat(new int[]{1}))
-                .forPassegers(Passenger.infants(new int[1]))
+                .forPassengers(Passenger.adults(2))
+                .forPassengers(Passenger.children(new int[]{12, 16}))
+                .forPassengers(Passenger.infantsOnSeat(new int[]{1}))
+                .forPassengers(Passenger.infants(new int[1]))
                 .limitTo(5)
                 .preferenceClass(CabinClassType.ECONOMY)
                 .execute();
@@ -221,10 +221,10 @@ public class SabreFlightConnectorTest {
                 .from(fromList)
                 .to(toList)
                 .departingAt(departingDateList)
-                .forPassegers(Passenger.adults(2))
-                .forPassegers(Passenger.children(new int[]{12, 16}))
-                //.forPassegers( Passenger.infantsOnSeat( new int[]{1})  )
-                .forPassegers(Passenger.infants(new int[1]))
+                .forPassengers(Passenger.adults(2))
+                .forPassengers(Passenger.children(new int[]{12, 16}))
+                //.forPassengers( Passenger.infantsOnSeat( new int[]{1})  )
+                .forPassengers(Passenger.infants(new int[1]))
                 .limitTo(5)
                 .type(FlightType.OPENJAW)
                 .preferenceClass(CabinClassType.ECONOMY)
@@ -259,7 +259,7 @@ public class SabreFlightConnectorTest {
                 .to(toList)
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
 
@@ -299,7 +299,7 @@ public class SabreFlightConnectorTest {
                 .to(toList)
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.OPENJAW)
                 .limitTo(10);
 
@@ -362,7 +362,7 @@ public class SabreFlightConnectorTest {
                 .to(toList)
                 .departingAt(departingDateList)
                 .returningAt(returningDateList)
-                .forPassegers(Passenger.adults(1))
+                .forPassengers(Passenger.adults(1))
                 .type(FlightType.ONEWAY)
                 .limitTo(2);
         manager.parseAvailResponse(this.getClass().getResourceAsStream("/sabre/response/flights/sabreAvailResponse.json"), search);
