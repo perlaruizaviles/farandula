@@ -1,22 +1,13 @@
 # Farandula Java
 
-Farandula is library to unify SDKs and APIs of the major GDS (Sabre, Amadeus, Travelport). 
-
-- [ ] Installation.
-- [ ] Getting Started.
-- [x] GDS explanation.
-- [x] Luisa Assistant.
-- [x] Search Command. (from, to, passengers, flightType, cabin, dates, limit).
-- [x] Models.
-- [ ] Flow.
-- [x] Examples.
+Farandula is library to unify SDKs and APIs of three of the most popular GDS (Sabre, Amadeus, Travelport). 
 
 
 ## GDS Explanation
 A Global Distribution System is a network operated by a company which main function consists in enabling automated transactions between travel service providers (mainly airlines, hotels and car rental companies) and travel agencies. 
 It can link services, rates and bookings consolidating products and services across all three travel sectors: i.e., airline reservations, hotel reservations, car rentals.
 
-Farandula uses and feeds from three of the main GDS in the world:
+Farandula uses and feeds from three of the most popular GDS in the world:
 
 - Amadeus
 - Travelport
@@ -25,9 +16,9 @@ Farandula uses and feeds from three of the main GDS in the world:
 Each GDS has its own implementation since requests and responses are built different.
 
 ## Luisa Assistant
-Luisa is a class with an assistant role. The main purpose of this class is provide the initial information before to build a search request (for hotels or flights). Luisa implements different methods to make the search components using more intuitive.
+Luisa is a class with an assistant role. The main purpose of this class is provide the initial information before to build a search request (flights). Luisa implements different methods to make the search components using more intuitive.
 
-Luisa has the static method `using` which is used to specify the supplier to be used and return a Luisa instance based on that supplier, this supplier can be for hotel search or flight search.
+Luisa has the static method `using` which is used to specify the supplier to be used and return a Luisa instance based on that supplier.
 
 ```
 //Create a GDS based connector to be used as flight supplier
@@ -37,7 +28,7 @@ SabreFlightConnector sabre = new SabreFlightConnector();
 Luisa luisaAssistant = Luisa.using(sabre);
 ```
 
-Once the luisa instance based on certain supplier is created, is possible to make a request using the `findMe[Fligts/Hotels]`method. This method returns a `SearchCommand` instance (explained in *models* section) ready to start building the corresponding search (explained in *SearchCommand* section).
+Once the luisa instance based on certain supplier is created, is possible to make a request using the `findMeFlights`method. This method returns a `SearchCommand` instance (explained in *models* section) ready to start building the corresponding search (explained in *SearchCommand* section).
 
 ```
 SearchCommand command = luisaAssistant.findMeFlights();
@@ -62,25 +53,25 @@ The `FlightSearchCommand` is a Farandula class which purpose resides in retrievi
 
 - `from`: Receives a String list of departure Airport Codes. When selecting oneWay or roundTrip the length of the list is 1, on the other hand when selected multiCity the list length goes between 2 and 5.
 
-- `to`: Receives a String list of arrival Airport Codes .
+- `to`: Receives a String list of arrival Airport Codes . When selecting oneWay or roundTrip the length of the list is 1, on the other hand when selected multiCity the list length goes between 2 and 5.
 
 - `departingAt`: Receives a LocalDateTime list of departure Date.
 
 - `returningAt`: Receives a LocalDateTime list of arrival Date. This method is only used when selected roundTrip.
 
-- `type`: Receives and sets the FlightType (ONEWAY, ROUNDTRIP, OPENJAW).
+- `type`: Receives and sets the FlightType (ONEWAY, ROUNDTRIP, OPENJAW). Default is set to ONEWAY.
 
-- `preferenceClass`: Receives and sets the CabinClassType (ECONOMY, PREMIUM_ECONOMY, FIRST, BUSINESS, ECONOMYCOACH, OTHER).
+- `preferenceClass`: Receives and sets the CabinClassType (ECONOMY, PREMIUM_ECONOMY, FIRST, BUSINESS, ECONOMYCOACH, OTHER). Default is set to ECONOMY.
 
-- `limitTo`: Receives an integer which tells the max number of results expected.
+- `limitTo`: Receives an integer which tells the maximum number of results expected. Default is set in 50.
 
-- `forPassengers`: Appends a list of Passengers specifying their type (ADULTS, CHILDREN, INFANTS, INFANTSONSEAT) and how many.
+- `forPassengers`: Appends a list of Passengers specifying their type (ADULTS, CHILDREN, INFANTS, INFANTSONSEAT) and how many. When not specifying any passengers a default passenger list of just one adult is set.
 
-Finally, method `execute` returns the result already parsed and in form of an Itinerary list. See the Models section for more information on Itinerary model.
+Finally, method `execute` returns the result already parsed as an Itinerary list. See the Models section for more information on Itinerary model.
 
 ## Models
 ### Airleg
-The Airleg model contains the information about a complete flight. As a brief resume, it contains the information about departure and arrival airports identified by an IATA code (String), as well it contains the departure and arrival dates and times (LocalDateTime). It also contains a list of `Segment` elements to indicate the complete sections of the current flight. An airleg is identified by an id (String).
+The Airleg model contains the information about a complete flight. As a brief summary, it contains the information about departure and arrival airports identified by an IATA code (String), as well it contains the departure and arrival dates and times (LocalDateTime). It also contains a list of `Segment` elements to indicate the complete sections of the current flight. An airleg is identified by an id (String).
 
 ```
 public class AirLeg {
@@ -96,7 +87,7 @@ public class AirLeg {
 ```
 
 ### CabinClassType
-The CabinClassType is an enum which contains the main cabin types to specify on the flight search commands.
+The CabinClassType is an enum which contains the most common cabin types to specify on the flight search commands.
 
 The enum values are the following:
 *    `ECONOMY`
@@ -139,7 +130,7 @@ This model also contains a method to start the available flight search; the `exe
 **Note**: The use and explanation of this model has been described in the previous section
 
 ### FlighType
-FlightType is an enum which contains the main flight types to perform on a search. The types are the following:
+FlightType is an enum which contains the most common flight types to perform on a search. The types are the following:
 *    `ONEWAY`
 *    `ROUNDTRIP`
 *    `OPENJAW` (or multi-city)
@@ -175,7 +166,7 @@ public class Itinerary {
 }
 ```
 
-The airLegs list not only contains the Airlegs corresponding to a result, it contains exactly the number of air legs according to the flight type invoked with the search command. For example, if a `OneWay` flight is invoked, the airLegs must contain just one element.
+The airLegs list not only contains the Airlegs corresponding to a result, it contains exactly the number of air legs according to the flight type invoked with the search command. For example, if a `OneWay` flight is invoked, your result would be a list of n itineraries, where n < limitTo, and in which each itinerary has an airlegs list of just one element. 
 
 This element contains a `Fare` element called price with the general itinerary prices information on it.
 
@@ -203,7 +194,7 @@ Example:
 int [] infantAges = new int[]{1,2};
 List<Passenger> infantList = Passenger.intants(infantAges);
 ```
-
+__Note:__ number of infants (infants on lap) can never be greater than adults, since it actually makes no sense.
 The result list could be used as information for the search command.
 
 ### PassengerType
@@ -261,9 +252,9 @@ __Note 1.__ Sometimes the airline which offers the flight does not match with th
 __Note 2.__ There could be some extra information depending on the GDS manager. An example is the `Fares` included only in results from the `Travelport` manager.
 
 ## Farandula Flow
-The following image depicts how Farandula works and the whole process that takes place in order to retrieve the expected flight results.
+The following image describes how Farandula works and the whole process that takes place in order to retrieve the expected flight results.
 
-![alt text](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=dGl0bGUgRmFyYW5kdWxhCgpMdWlzYS0-U3VwcGxpZXJNYW5hZ2VyOnVzaW5nKGZsaWdodENvbm5lY3RvcikKbm90ZSByaWdodCBvZiAANwU6IFNldHMgYSBHRFMgYXMgaXRzIEYAKg4KAE8PLT4ALgx0aGUgc3BlY2lmaWVkADoMcwCBDQcgbQCBDwYuAIEkCWVhcmNoQ29tbW1hbmQ6IGZpbmRNZQBvBnMoAIEPFwCBZAUgYnVpbGRzIGEgcwA_BSBjbwA_BSwgd2l0aAB8D3JlcXVpcmVtZW50cwoAZg4AgTkJUmV0dXJucyBjb21wbGV0ZQBJDwCBGhlleGVjdXRlKCkASBEAgi0POiBnZXRBdmFpbCgAgS0GQwCBLAYAgnwQAIIEEACCdA8gaXMgYXNrZWQgdG8gZ2V0IGEgcmVzcG9uc2UgZm9yAIJ_BgCCBg0gZnJvbQCDCxIuCgCDTg8tPlJlcXVlc3QAglYGZXI6AIJfBgAPBwCBGB4AgVwRRWFjaACERQUAgnYHcyBhIGRpZmZlcmVudCB3YXkgdG8Agz8GIHRoZWlyAIMgBWVzdCAoVVJMLCBYTUwsIEpTT04pLiAKAIEJDwCCSBMAgzYIYnVpbHQgYW5kIGNvcnJlY3QATwgAgVsTUwCFIgllbmRwb2ludDogc2VuAIFnCQCBCgcpCgAXEi0-AIFfEgCEOQgAgwQKcm9tAFIJAIJZFQCDMAdwYXJzZXI6AAIGAIQdBQATCCgAg1MIAIIpRgBkBQCCZgkAhC8GLgABWS4KAIFTDwCDHRsAgX4FZACFQAppbiBmb3JtIG9mIGFuIEl0aW5lcmFyeSBsaXN0LiAAgzkTAIg6DwCDAgt1bHRzADIeAIdzIGxpcwCKIQUAgH8IaWVzIGEAVAguIAoK&s=roundgreen)
+![alt text](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=dGl0bGUgRmFyYW5kdWxhCgpMdWlzYS0-U3VwcGxpZXJNYW5hZ2VyOnVzaW5nKGZsaWdodENvbm5lY3RvcikKbm90ZSByaWdodCBvZiAANwU6IFNldHMgYSBHRFMgYXMgaXRzIEYAKg4KAE8PLT4ALgx0aGUgc3BlY2lmaWVkADoMcwCBDQcgbQCBDwYuAIEkCWVhcmNoQ29tbW1hbmQ6IGZpbmRNZQBvBnMoAIEPFwCBZAUgYnVpbGRzIGEgcwA_BSBjbwA_BSwgd2l0aAB8D3JlcXVpcmVtZW50cwoAZg4AgTkJUmV0dXJucyBjb21wbGV0ZQBJDwCBGhlleGVjdXRlKCkASBEAgi0POiBnZXRBdmFpbCgAgS0GQwCBLAYAgnwQAIIEEACCdA8gaXMgYXNrZWQgdG8gZ2V0IGEgcmVzcG9uc2UgZm9yAIJ_BgCCBg0gZnJvbQCDCxIuCgCDTg8tPlJlcXVlc3QAglYGZXI6AIJfBgAPBwCBGB4AgVwRRWFjaACERQUAgnYHcyBhIGRpZmZlcmVudCB3YXkgdG8Agz8GIHRoZWlyAIMgBWVzdCAoVVJMLCBYTUwsIEpTT04pLiAKAIEJDwCCSBMAgzYIYnVpbHQgYW5kIGNvcnJlY3QATwgAgVsTUwCFIgllbmRwb2ludDogc2VuAIFnCQCBCgcpCgAXEi0-AIFfEgCEOQgAgwQKcm9tAFIJAIJZFQCDMAdwYXJzZXI6AAIGAIQdBQATCCgAg1MIAIIpRgBkBQCCZgkAhC8GLgCDKSBYTUwgb3IAgwcFAIRhCXMgYXIAgTEHZCBkZXBlbmRpbmcgb24AhFMUAIFZDwCDIxsASgcAhUcJaW4gZm9ybSBvZiBhbiBJdGluZXJhcnkgbGlzdC4gAIM_EwCIQA8AgwgLdWx0cwAyHgCHeSBsaXMAiicFAIB_CGllcyBhAFQILiAKCg&s=roundgreen)
 
 ## Examples
 For all the examples described here, it's important to specify the desired flight manager to Luisa assistant.
@@ -339,6 +330,18 @@ List<Itinerary> itineraries = Luisa.using(travelportConnector).findMeFlights()
                                     .limitTo(limit)
                                     .execute();
 ```
+
+The following example shows how would the code look like in a default implementation (Using Luisa assistant):
+
+*Java*
+```
+List<Itinerary> itineraries = Luisa.using(travelportConnector).findMeFlights()
+                                    .from(fromList)
+                                    .to(toList)
+                                    .departingAt(departingAtList)                                    
+                                    .execute();
+```
+In this example Luisa is searching flights from the same origin, to the same destination, and at the same departure date as the previous example. Since we are not specifying, passengers, cabin class, flight type, or limit, Luisa will automatically build the search command with their respective defaults. The request will be looking for one way flights available for one adult in economy class and retrieving a maximum number of 50 results. 
 
 ### Round Trip Flight
 To specify a round trip request on the farandula library is necessary to consider some extra data (return date) and change some fields on the search command.
@@ -431,13 +434,13 @@ A list of itineraries is needed, it must contain results for flights different f
 *    The second flight must depart from Mexico City and arrive at Hermosillo city, it must depart on August 20, 2017. 
 *    The third flight must depart from Las Vegas and arrive in Guadalajara city, it must depart on September 8, 2017. 
     
-The passengers who will travel are two adults, one child (10 years old) and one infant (1-year-old) who do not require a seat. The preference class is economy, and only 20 results are required to select a flight.
+The passengers who will travel are two adults, one child (10 years old) and one infant (1-year-old) without seat. The preference class is economy, and only 20 results are required to select a flight.
 
 The specified data condensed are the following:
 *    `from`: DFW, MEX, LAS (list of departing IATA codes).
 *    `to`: CDG, HMO, GDL (list of arrival IATA codes).
 *    `departing at`: 2017/08/07 00:00:00, 2017/08/20 00:00:00, 2017/09/08 00:00:00 (list of departing date times)
-*    `for passengers`: Two adults, one ten years old children and one infant (one-year-old) who do not require a seat
+*    `for passengers`: Two adults, one ten years old child, and one-year-old infant without seat
 *    `preference class`: ECONOMY
 *    `flight type`: OPENJAW
 *    `limit to`: 20
