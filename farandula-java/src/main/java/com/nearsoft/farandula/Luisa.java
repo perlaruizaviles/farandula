@@ -35,6 +35,12 @@ public class Luisa {
         return new Luisa(manager);
     }
 
+    public static Luisa using() {
+        SupplierManager manager  = new SupplierManager();
+
+        return new Luisa(manager);
+    }
+
 
     public static Luisa using(HotelManager aSupplier) {
         SupplierManager manager  = new SupplierManager();

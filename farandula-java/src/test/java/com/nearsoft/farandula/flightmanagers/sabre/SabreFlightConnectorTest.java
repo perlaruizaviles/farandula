@@ -101,6 +101,34 @@ public class SabreFlightConnectorTest {
     }
 
     @Test
+    public void defaultAvail_OneWayTrip() throws Exception {
+
+
+        List<String> fromList = new ArrayList<>();
+        fromList.add("DFW");
+        List<String> toList = new ArrayList<>();
+        toList.add("CDG");
+        List<LocalDateTime> departingDateList = new ArrayList<>();
+        departingDateList.add(departingDate);
+
+
+        List<Itinerary> flights = Luisa.using().findMeFlights()
+                .from(fromList)
+                .to(toList)
+                .departingAt(departingDateList)
+                .execute();
+
+        assertTrue(flights.size() > 0 && flights.size() <= 50);
+
+        assertAll("First should be the best Airleg", () -> {
+            AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("DFW", airLeg.getDepartureAirportCode());
+            assertEquals("CDG", airLeg.getArrivalAirportCode());
+            assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
+        });
+
+    }
+    @Test
     public void realAvail_RoundWayTrip() throws Exception {
 
 
