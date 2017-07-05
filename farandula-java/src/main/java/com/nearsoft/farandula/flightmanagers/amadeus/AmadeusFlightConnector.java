@@ -21,6 +21,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
@@ -37,6 +38,7 @@ public class AmadeusFlightConnector implements FlightConnector {
     private static String apiKey;
     private static Map<String, String> locationsMap = new HashMap<>();
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
+    private static AtomicInteger idCount;
 
     static {
         Properties props = new Properties();
@@ -47,6 +49,8 @@ public class AmadeusFlightConnector implements FlightConnector {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        idCount = new AtomicInteger(0);
     }
 
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
@@ -164,6 +168,8 @@ public class AmadeusFlightConnector implements FlightConnector {
 
         JSONArray results = ctx.read("$..results[*]");
 
+        idCount.set(0);
+
         for (Object result : results) {
 
             Map<String, Object> resultMap = (Map<String, Object>) result;
@@ -248,7 +254,7 @@ public class AmadeusFlightConnector implements FlightConnector {
                 .collect(Collectors.toCollection(LinkedList::new));
 
         AirLeg leg = new AirLeg();
-        leg.setId("tempID");
+        leg.setId(idCount.incrementAndGet() + "");
         leg.setDepartureAirportCode(segmentsOutbound.get(0).getDepartureAirportCode());
         leg.setDepartingDate(segmentsOutbound.get(0).getDepartureDate());
         leg.setArrivalAirportCode(segmentsOutbound.get(segmentsOutbound.size() - 1).getArrivalAirportCode());

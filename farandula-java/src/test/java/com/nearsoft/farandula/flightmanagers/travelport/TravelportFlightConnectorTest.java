@@ -62,6 +62,7 @@ class TravelportFlightConnectorTest {
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("1", airLeg.getId());
             assertEquals("MUC", airLeg.getDepartureAirportCode());
             assertEquals("BCN", airLeg.getArrivalAirportCode());
             //TODO Check implementation of seat request
@@ -189,6 +190,8 @@ class TravelportFlightConnectorTest {
         AirLeg lastAirLeg = flights.get(0).getAirlegs().get(2);
 
         assertNotNull(firstAirLeg);
+        assertEquals("1", firstAirLeg.getId());
+
         assertNotNull(midAirLeg);
         assertNotNull(lastAirLeg);
 

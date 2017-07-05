@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
@@ -42,6 +43,7 @@ public class TravelportFlightConnector implements FlightConnector {
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
     private static Map<String, Segment> segmentMap = new HashMap<>();
     private static String url_api = "";
+    private static AtomicInteger idCount;
 
     static {
         Properties props = new Properties();
@@ -55,6 +57,8 @@ public class TravelportFlightConnector implements FlightConnector {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        idCount = new AtomicInteger(0);
     }
 
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
@@ -164,6 +168,8 @@ public class TravelportFlightConnector implements FlightConnector {
         SOAPEnvelope env = response.getSOAPPart().getEnvelope();
         SOAPBody body = env.getBody();
 
+        idCount.set(0);
+
         //flights
         NodeList listFlights = body.getElementsByTagName("air:FlightDetails");
         List<TravelportFlightDetails> resultFlightsDetails = new LinkedList<>();
@@ -212,7 +218,7 @@ public class TravelportFlightConnector implements FlightConnector {
                     segmentList.add(seg);
                 }
 
-                leg.setId("TempId");
+                leg.setId( idCount.incrementAndGet() + "" );
                 leg.setDepartureAirportCode( segmentList.get(0).getDepartureAirportCode() );
                 leg.setDepartingDate(segmentList.get(0).getDepartureDate());
                 leg.setArrivalAirportCode(segmentList.get(segmentList.size()-1).getArrivalAirportCode());
@@ -221,6 +227,7 @@ public class TravelportFlightConnector implements FlightConnector {
 
                 legList.add(leg);
             }
+
 
             itinerary.setAirlegs(legList);
 

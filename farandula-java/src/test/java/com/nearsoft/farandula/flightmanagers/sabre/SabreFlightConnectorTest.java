@@ -56,6 +56,7 @@ public class SabreFlightConnectorTest {
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("1", airLeg.getId());
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
@@ -122,6 +123,7 @@ public class SabreFlightConnectorTest {
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("1", airLeg.getId());
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMYCOACH, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());

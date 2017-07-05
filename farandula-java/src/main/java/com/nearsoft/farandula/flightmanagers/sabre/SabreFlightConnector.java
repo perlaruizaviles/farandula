@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static com.nearsoft.farandula.utilities.CabinClassParser.getCabinClassType;
@@ -37,6 +38,7 @@ public class SabreFlightConnector implements FlightConnector {
     private static Map<String, String> airlinesCodeMap = new HashMap<>();
     private static String clientId;
     private static String clientSecret;
+    private static AtomicInteger idCount;
 
     static {
 
@@ -49,6 +51,8 @@ public class SabreFlightConnector implements FlightConnector {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        idCount = new AtomicInteger(0);
     }
 
     private final OkHttpClient.Builder _builder = new OkHttpClient.Builder();
@@ -156,6 +160,8 @@ public class SabreFlightConnector implements FlightConnector {
         checkForErrors(ctx);
 
         JSONArray pricedItineraries = ctx.read("$..PricedItinerary[*]");
+
+        idCount.set(0);
 
         List<Itinerary> itineraries = new ArrayList<>();
         for (Object pricedItinerary : pricedItineraries) {
@@ -292,7 +298,7 @@ public class SabreFlightConnector implements FlightConnector {
             }
 
             AirLeg leg = new AirLeg();
-            leg.setId("tempID");
+            leg.setId(idCount.incrementAndGet() + "");
             leg.setDepartureAirportCode(segments.get(0).getDepartureAirportCode());
             leg.setDepartingDate(segments.get(0).getDepartureDate());
             leg.setArrivalAirportCode(segments.get(segments.size() - 1).getArrivalAirportCode());

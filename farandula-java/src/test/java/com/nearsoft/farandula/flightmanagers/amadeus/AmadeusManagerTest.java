@@ -59,6 +59,7 @@ class AmadeusManagerTest {
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("1", airLeg.getId());
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
@@ -78,8 +79,6 @@ class AmadeusManagerTest {
 
     @Test
     public void realAvail_OneWayTrip() throws Exception {
-
-
 
         List<String> fromList = new ArrayList<>();
         fromList.add("DFW");
@@ -103,6 +102,7 @@ class AmadeusManagerTest {
 
         assertAll("First should be the best Airleg", () -> {
             AirLeg airLeg = flights.get(0).getAirlegs().get(0);
+            assertEquals("1", airLeg.getId());
             assertEquals("DFW", airLeg.getDepartureAirportCode());
             assertEquals("CDG", airLeg.getArrivalAirportCode());
             assertEquals(CabinClassType.ECONOMY, airLeg.getSegments().get(0).getSeatsAvailable().get(0).getClassCabin());
