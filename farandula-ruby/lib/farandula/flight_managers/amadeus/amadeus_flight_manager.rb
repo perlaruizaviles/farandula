@@ -31,16 +31,43 @@ module Farandula
 
         def get_avail(search_form)
 
-          request = Amadeus::Request.new
-
-          url_request = request.build_target_url_from_search!(search_form, api_key)
+          itinery_results   = []
+          request           = Amadeus::Request.new
+          url_request_list  = request.build_target_url_from_search!(search_form, api_key)
+          max_size          = 0
 
           response = ""
-          url_request.each_with_index {| url, index |
+          url_request_list.each_with_index {| url, index |
+            # request to Amadeus end-point
             response = RestClient.get url
+
+            if itinery_results.empty?
+              itinery_results = build_itineries(response)
+              max_size        = itinery_results.size
+            else
+
+              open_jaws_results =   build_itineries(response)
+              if max_size < open_jaws_results.size
+                  max_size = open_jaws_results.size
+              end
+
+              #todo finish this
+              index=0
+              max_size.times do
+                puts itinery_results[index]
+                index += 1
+
+                # results.get(i).getAirlegs().addAll(openJawResults.get(i).getAirlegs());
+                # Fares pricesSum = sumPrices(results.get(i).getPrice(), openJawResults.get(i).getPrice());
+                # results.get(i).setPrice(pricesSum);
+
+              end
+
+            end
+
           }
 
-          build_itineries(response)
+          itinery_results
 
         end
 
@@ -54,10 +81,7 @@ module Farandula
 
           parsed["results"].each {|result|
 
-            #pricing
-            # Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
-            # itineraryResult.setPrice(getPrices(fareMap));
-
+            # pricing method
             fares = get_prices( result['fare'])
 
             result['itineraries'].each {|itinerary|
@@ -80,10 +104,10 @@ module Farandula
         private
         def build_air_legs (itinerary_object, itinerary_json_result, id = nil)
 
-          itinerary_object.departure_air_legs = build_leg(itinerary_json_result['outbound']['flights'], 1)
+          itinerary_object.air_legs <<  build_leg(itinerary_json_result['outbound']['flights'], 1)
 
           if itinerary_json_result['inbound']
-            itinerary_object.returning_air_legs = build_leg(itinerary_json_result['inbound']['flights'], 1)
+            itinerary_object.air_legs << build_leg(itinerary_json_result['inbound']['flights'], 2)
           end
 
           itinerary_object.id = id

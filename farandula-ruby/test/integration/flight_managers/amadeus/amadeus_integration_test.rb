@@ -34,8 +34,8 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
 
     puts itineraries[0]
 
-    assert_equal( itineraries[0].departure_air_legs.departure_airport_code.downcase , 'cuu' )
-    assert_equal( itineraries[0].returning_air_legs.departure_airport_code.downcase , 'sfo' )
+    assert_equal( itineraries[0].air_legs[0].departure_airport_code.downcase , 'cuu' )
+    assert_equal( itineraries[0].air_legs[1].departure_airport_code.downcase , 'sfo' )
 
   end
 
