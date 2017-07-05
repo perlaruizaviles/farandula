@@ -10,6 +10,8 @@ module Farandula
 
         def build_target_url_from_search!( search_form, api_key )
 
+          api_url_list = []
+
           number_of_results = "&number_of_results=#{search_form.offset}"
 
           unless search_form.passengers[:adults].nil?
@@ -25,39 +27,45 @@ module Farandula
           end
 
           cabin = "&travel_class=#{search_form.cabin_class}"
-          origin =  "&origin=#{search_form.departure_airport}"
-          destination = "&destination=#{search_form.arrival_airport}"
-          departing_date_search = format_date( search_form.departing_date )
-          returning_date_search = search_form.returning_date ? format_date( search_form.returning_date ) : nil
-          departure_date = "&departure_date=#{departing_date_search}"
-          returning_date = "&return_date=#{returning_date_search}"
 
-          if search_form.type == :roundtrip
+          for i in 0...search_form.departure_airport.size
 
-            apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
-                      "low-fare-search?apikey=#{api_key}" \
-                      "#{cabin}" \
-                      "#{origin}" \
-                      "#{destination}" \
-                      "#{departure_date}" \
-                      "#{returning_date}" \
-                      "#{passengers_data}" \
-                      "#{number_of_results}"
+            origin =  "&origin=#{search_form.departure_airport[i]}"
+            destination = "&destination=#{search_form.arrival_airport[i]}"
+            departing_date_search = format_date( search_form.departing_date[i] )
+            returning_date_search = search_form.returning_date[i] ? format_date( search_form.returning_date[i] ) : nil
+            departure_date = "&departure_date=#{departing_date_search}"
+            returning_date = "&return_date=#{returning_date_search}"
 
-          elsif
-            apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
-                      "low-fare-search?apikey=#{api_key}" \
-                      "#{cabin}" \
-                      "#{origin}" \
-                      "#{destination}" \
-                      "#{departure_date}" \
-                      "#{passengers_data}" \
-                      "#{number_of_results}"
+            if search_form.type == :roundtrip
+
+              apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
+                        "low-fare-search?apikey=#{api_key}" \
+                        "#{cabin}" \
+                        "#{origin}" \
+                        "#{destination}" \
+                        "#{departure_date}" \
+                        "#{returning_date}" \
+                        "#{passengers_data}" \
+                        "#{number_of_results}"
+
+            elsif
+              apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
+                        "low-fare-search?apikey=#{api_key}" \
+                        "#{cabin}" \
+                        "#{origin}" \
+                        "#{destination}" \
+                        "#{departure_date}" \
+                        "#{passengers_data}" \
+                        "#{number_of_results}"
+
+            end
+
+            api_url_list << apiURL
 
           end
 
-          apiURL
-
+          api_url_list
         end
 
       end

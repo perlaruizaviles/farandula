@@ -7,10 +7,10 @@ module Farandula
       class Request
 
         include Farandula
-        
+
         def format_date(date)
           date.strftime('%FT%T')
-        end 
+        end
 
         def extract_cabin_class(cabin_class)
           case cabin_class
@@ -22,12 +22,12 @@ module Farandula
             'B'
           else :other
             'Y'
-          end 
+          end
         end
 
 
         def build_request_for!(search_form)
-          @json = Jbuilder.new   
+          @json = Jbuilder.new
           @json.OTA_AirLowFareSearchRQ do
             build_header(@json)
             build_destination_information(@json, search_form)
@@ -37,109 +37,109 @@ module Farandula
           end
 
           @json.target!
-        end   
+        end
 
         def build_travel_preferences(json, cabin_class)
-          json.TravelPreferences do 
+          json.TravelPreferences do
             json.ValidInterlineTicket true
-            json.CabinPref do 
+            json.CabinPref do
               json.array! [ 1 ] do |_|
                 json.Cabin extract_cabin_class(cabin_class)
                 json.PreferLevel 'Preferred'
-              end 
-            end 
+              end
+            end
 
-            json.TPA_Extensions do 
-              json.TripType do 
+            json.TPA_Extensions do
+              json.TripType do
                 json.Value 'Return'
-              end 
+              end
 
-              json.LongConnectTime do 
+              json.LongConnectTime do
                 json.Min 780
                 json.Max 1200
                 json.Enable true
-              end 
+              end
 
-              json.ExcludeCallDirectCarriers do 
+              json.ExcludeCallDirectCarriers do
                 json.Enabled true
               end
-              
-            end
-          end 
-        end 
 
-        def build_destination_information(json, search_form) 
+            end
+          end
+        end
+
+        def build_destination_information(json, search_form)
           elements = [{
-            origin: search_form.departure_airport, 
-            destination: search_form.arrival_airport, 
+            origin: search_form.departure_airport,
+            destination: search_form.arrival_airport,
             date: search_form.departing_date
             }
           ]
-          
+
           if search_form.roundtrip?
             elements << {
-              origin: search_form.arrival_airport, 
-              destination: search_form.departure_airport, 
+              origin: search_form.arrival_airport,
+              destination: search_form.departure_airport,
               date: search_form.returning_date
             }
-          end 
+          end
           # TODO: handle :multiple
 
-          json.OriginDestinationInformation do 
+          json.OriginDestinationInformation do
             json.array! elements.each_with_index.to_a do |(element, idx)|
               build_flight_info(
-                json, 
-                (idx + 1).to_s, 
-                element[:origin], 
-                element[:date], 
+                json,
+                (idx + 1).to_s,
+                element[:origin],
+                element[:date],
                 element[:destination]
               )
-            end 
-          end 
-        end 
-        
+            end
+          end
+        end
 
-        def build_flight_info(json, id, departing_airport, departing_date, destination_airport) 
+
+        def build_flight_info(json, id, departing_airport, departing_date, destination_airport)
           json.RPH id.to_s
-          json.DepartureDateTime format_date(departing_date)
-          json.OriginLocation do 
-            json.LocationCode departing_airport 
-          end 
-
-          json.DestinationLocation do 
-            json.LocationCode destination_airport
-          end 
-
-          json.TPA_Extensions do 
-            json.SegmentType do 
-              json.Code 'O'
-            end 
+          json.DepartureDateTime format_date(departing_date[0])
+          json.OriginLocation do
+            json.LocationCode departing_airport[0]
           end
 
-        end 
+          json.DestinationLocation do
+            json.LocationCode destination_airport[0]
+          end
+
+          json.TPA_Extensions do
+            json.SegmentType do
+              json.Code 'O'
+            end
+          end
+
+        end
 
         def build_travel_info_summary(json, search_form)
 
-          total_passengers   = search_form.passengers.map{|_, list| list.size }.reduce(:+)          
+          total_passengers   = search_form.passengers.map{|_, list| list.size }.reduce(:+)
           infants_not_seated = search_form.passengers[:infants]&.size || 0
 
-          json.TravelerInfoSummary do 
-            json.SeatsRequested do 
+          json.TravelerInfoSummary do
+            json.SeatsRequested do
               json.array! [ total_passengers - infants_not_seated ]
-            end 
+            end
 
-            json.AirTravelerAvail do 
+            json.AirTravelerAvail do
               json.array! [ 1 ] do |_|
-                json.PassengerTypeQuantity do 
+                json.PassengerTypeQuantity do
                   json.array! search_form.passengers do |type, list|
                     json.Code extract_code_for_passenger(type)
                     json.Quantity list.size
-                  end 
-                end 
-              end 
-            end 
+                  end
+                end
+              end
+            end
           end
-        end 
+        end
 
         def extract_code_for_passenger(passenger_type)
           case passenger_type
@@ -151,40 +151,40 @@ module Farandula
             'INF'
           when PassengerType::INFANTSONSEAT
             'INS'
-          else        
+          else
             ''
-          end 
+          end
         end
 
         def build_tpa_extensions(json)
-          json.TPA_Extensions do 
-            json.IntelliSellTransaction do 
-              json.RequestType do 
+          json.TPA_Extensions do
+            json.IntelliSellTransaction do
+              json.RequestType do
                 json.Name '50ITINS'
-              end 
+              end
             end
-          end 
-        end 
+          end
+        end
 
         def build_header(json)
-            
+
           json.Target 'Production'
-          json.POS do 
-            json.Source do 
+          json.POS do
+            json.Source do
               json.array! [ 1 ] do |_|
                 json.PseudoCityCode 'F9CE'
-                json.RequestorID do 
+                json.RequestorID do
                   json.Type  '1'
                   json.ID  '1'
                   json.set! :CompanyName, {}
                 end
-              end 
-            end 
+              end
+            end
           end
 
-        end 
- 
-      end 
+        end
+
+      end
 
     end # Sabre ends
   end # FlightManagers ends

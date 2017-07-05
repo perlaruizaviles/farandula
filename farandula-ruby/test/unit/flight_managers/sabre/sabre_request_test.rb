@@ -14,7 +14,12 @@ class Farandula::SabreRequestTest < Minitest::Test
   end
 
   def test_build_flight_info
-    @request.build_flight_info(@json, 1, 'CUU', DateTime.new(2017,04,24), 'SFO')
+
+    from          = ['CUU']
+    to            = ['SFO']
+    departing_at  = [DateTime.new(2017,04,24)]
+
+    @request.build_flight_info(@json, 1, from, departing_at, to)
     expected = FileHelper.load_asset('sabre/flight-info.json')
     assert_equal(
       StringHelper.no_space(expected),
@@ -22,7 +27,7 @@ class Farandula::SabreRequestTest < Minitest::Test
     )
   end
 
-  def test_build_header_builds_a_valid_json    
+  def test_build_header_builds_a_valid_json
     @request.build_header(@json)
     expected = FileHelper.load_asset('sabre/request-header.json')
     assert_equal(
@@ -61,11 +66,11 @@ class Farandula::SabreRequestTest < Minitest::Test
     passenger5  = Passenger.new(:infantsonseat, 3)
     builder     = SearchForm::Builder.new
     search_form = builder
-                    .with_passenger(passenger1) 
-                    .with_passenger(passenger2) 
-                    .with_passenger(passenger3) 
-                    .with_passenger(passenger4) 
-                    .with_passenger(passenger5) 
+                    .with_passenger(passenger1)
+                    .with_passenger(passenger2)
+                    .with_passenger(passenger3)
+                    .with_passenger(passenger4)
+                    .with_passenger(passenger5)
                     .build!(false)
 
     @request.build_travel_info_summary(@json, search_form)
@@ -74,39 +79,45 @@ class Farandula::SabreRequestTest < Minitest::Test
       StringHelper.no_space(expected),
       StringHelper.no_space(@json.target!)
     )
-  end 
+  end
 
   def test_build_tpa_extensions_builds_valid_json
     @request.build_tpa_extensions(@json)
-    expected = FileHelper.load_asset('sabre/tpa-extensions.json')    
+    expected = FileHelper.load_asset('sabre/tpa-extensions.json')
     assert_equal(
       StringHelper.no_space(expected),
       StringHelper.no_space(@json.target!)
     )
-  end 
+  end
 
   def test_build_request_for
+
+    from          = ['CUU']
+    to            = ['SFO']
+    departing_at  = [DateTime.new(2017,12,24)]
+    returning_at  = [DateTime.new(2017,12,30)]
+
     passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new
     search_form = builder
-                    .from('CUU')
-                    .to('SFO')
-                    .departing_at(DateTime.new(2017,12,24))
-                    .returning_at(DateTime.new(2017,12,30))
+                    .from(from)
+                    .to(to)
+                    .departing_at( departing_at )
+                    .returning_at( returning_at )
                     .type(:roundtrip)
                     .with_cabin_class('Y')
                     .with_passenger(passenger)
                     .build!(false)
 
     expected    = FileHelper.load_asset('sabre/request.json')
-    actual      = @request.build_request_for!(search_form) 
+    actual      = @request.build_request_for!(search_form)
 
-    assert_equal( 
+    assert_equal(
       StringHelper.no_space(expected),
       StringHelper.no_space(actual)
     )
 
-  end 
+  end
 
 
 end

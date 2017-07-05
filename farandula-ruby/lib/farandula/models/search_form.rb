@@ -16,10 +16,10 @@ module Farandula
     attr_accessor :offset
 
     def initialize(
-      departure_airport = nil, 
-      arrival_airport   = nil, 
-      departing_date    = nil, 
-      returning_date    = nil, 
+      departure_airport = [],
+      arrival_airport   = [],
+      departing_date    = [],
+      returning_date    = [],
       passengers        = {}, 
       type              = :oneway, 
       cabin_class       = :economy,
@@ -47,23 +47,23 @@ module Farandula
         @search_form = SearchForm.new
       end
 
-      def from(from) 
-        @search_form.departure_airport = from
+      def from(from)
+        @search_form.departure_airport = @search_form.departure_airport + from
         self
       end 
       
       def to(to)
-        @search_form.arrival_airport = to   
+        @search_form.arrival_airport = @search_form.arrival_airport + to
         self 
       end
 
       def departing_at(departing_at)
-        @search_form.departing_date = departing_at
+        @search_form.departing_date = @search_form.departing_date + departing_at
         self
       end
 
       def returning_at(returning_at)
-        @search_form.returning_date = returning_at
+        @search_form.returning_date = @search_form.returning_date + returning_at
         self
       end
 
@@ -116,11 +116,12 @@ module Farandula
           
           check_not_empty!('departure_airport', @search_form.departure_airport)
           check_not_empty!('arrival_airport', @search_form.arrival_airport)
+          check_not_empty!('departing_date', @search_form.departing_date)
+
           check_not_nil!('type', @search_form.type)
-          check_not_nil!('departing_date', @search_form.departing_date)
 
           if @search_form.roundtrip?
-            check_not_nil!('returning_date', @search_form.returning_date)
+            check_not_empty!('returning_date', @search_form.returning_date)
           end 
 
           if !CabinClassType::TYPES.include?(@search_form.cabin_class)
@@ -131,36 +132,53 @@ module Farandula
             raise ValidationError.new("flight type [#{@search_form.type}] not found")
           end 
 
-          if (@search_form.departing_date <=> DateTime.now) == -1
-            raise ValidationError.new("departing_date can\'t be in the pass")
-          end 
+          valid_departure_date( @search_form.departing_date )
 
           if @search_form.roundtrip?
-
-            if (@search_form.departing_date <=> @search_form.returning_date) == 1
-              raise ValidationError.new("returning_date can't be before departing_date")
-            end
+            valid_returning_date( @search_form)
           end
         end
         
 
       private 
         def check_not_nil!(name , obj) 
-          if obj.nil? 
+
+          if obj.nil?
             raise ValidationError.new "#{name} cannot be nil"
           end 
         end
 
         def check_not_empty!(name, obj)
-          check_not_nil!(name, obj)
-          if !obj.is_a?(String)
-            raise ValidationError.new "#{name} has to be of type 'string'"
-          end
-
           if obj.empty?
             raise ValidationError.new "#{name} cannot be empty"
-          end 
-        end 
+          end
+        end
+
+        def check_is_string (name, obj)
+          obj.each {| element|
+            if !element.is_a?(String)
+              raise ValidationError.new "#{name} has to be of type 'string'"
+            end
+          }
+        end
+
+      def valid_departure_date(departing_dates)
+        departing_dates.each {|date_dep|
+          if (date_dep <=> DateTime.now) == -1
+            raise ValidationError.new("departing_date can\'t be in the pass")
+          end
+        }
+      end
+
+      def valid_returning_date( search_form )
+
+        search_form.departing_date.each_with_index do |element,index|
+          if (search_form.departing_date[index] <=> search_form.returning_date[index]) == 1
+            raise ValidationError.new("returning_date can't be before departing_date")
+          end
+        end
+
+      end
 
     end # Builder ends
 

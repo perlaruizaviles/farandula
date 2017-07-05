@@ -11,13 +11,18 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
 
   def test_that_build_response_from_amadeus_is_valid
 
+    from          = ['CUU']
+    to            = ['SFO']
+    departing_at  = [DateTime.now + 1]
+    returning_at  = [DateTime.now >> 1]
+
     passenger   = Passenger.new(:adults, 25)
     builder     = SearchForm::Builder.new
     search_form = builder
-                      .from('CUU')
-                      .to('SFO')
-                      .departing_at(DateTime.now + 1  )
-                      .returning_at(DateTime.now >> 1  )
+                      .from(from)
+                      .to(to)
+                      .departing_at(departing_at  )
+                      .returning_at(returning_at )
                       .type(:roundtrip)
                       .with_cabin_class(:economy)
                       .with_passenger( passenger )

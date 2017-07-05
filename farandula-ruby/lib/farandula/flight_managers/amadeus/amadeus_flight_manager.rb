@@ -35,7 +35,10 @@ module Farandula
 
           url_request = request.build_target_url_from_search!(search_form, api_key)
 
-          response = RestClient.get url_request
+          response = ""
+          url_request.each_with_index {| url, index |
+            response = RestClient.get url
+          }
 
           build_itineries(response)
 
