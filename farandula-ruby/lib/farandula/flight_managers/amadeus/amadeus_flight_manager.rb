@@ -54,7 +54,9 @@ module Farandula
               #todo finish this
               index=0
               max_size.times do
-                puts itinery_results[index]
+                itinery_results[index].air_legs << open_jaws_results[index].air_legs
+                prices_sum = sum_prices( itinery_results[index].price , open_jaws_results[index].price  )
+                itinery_results.price = prices_sum=
                 index += 1
 
                 # results.get(i).getAirlegs().addAll(openJawResults.get(i).getAirlegs());
@@ -277,6 +279,19 @@ module Farandula
 
         def format_date(date)
           date.strftime('%Y-%m-%dT%H:%M:%S.%L%z')
+        end
+
+        def sum_prices( price1, price2 )
+
+          sum = Farandula::Fares.new
+
+          if price1.base_price.corrency_code == price1.base_price.currency_code
+            sum.base_price = Farandula::Price.new( price1.base_price.amount + price2.base_price.amount,
+                                                   price1.base_price.currency_code )
+          end
+
+          sum
+
         end
 
       end #ends amadeusflightmanager
