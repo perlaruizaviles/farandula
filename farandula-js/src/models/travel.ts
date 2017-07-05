@@ -1,3 +1,4 @@
+import { Passenger } from './passenger'
 export interface Travel<T> {
   departureDate: T
   returnDate?: string
@@ -6,4 +7,6 @@ export interface Travel<T> {
   arrivalAirport: T
   cabinClass: string
   flightType: string
+
+	passengers: Passenger[]
 }
