@@ -176,14 +176,17 @@ public class AmadeusFlightConnector implements FlightConnector {
 
             JSONArray arrayItineraries = (JSONArray) resultMap.get("itineraries");
 
+            Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
+            Fares fares = getPrices(fareMap);
+
             for (Object itinerary : arrayItineraries) {
 
                 Itinerary itineraryResult = new Itinerary();
 
                 buildAirLegs((Map<String, Object>) itinerary, itineraryResult);
                 //pricing
-                Map<String, Object> fareMap = (Map<String, Object>) ((LinkedHashMap) result).get("fare");
-                itineraryResult.setPrice(getPrices(fareMap));
+
+                itineraryResult.setPrice(fares);
 
                 //adding each air leg (inbound / outbound) separately, even when they have the same price
                 itineraries.add(itineraryResult);
