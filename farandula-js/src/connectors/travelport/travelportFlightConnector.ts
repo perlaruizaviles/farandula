@@ -3,6 +3,7 @@ import { Travel } from '../../models/travel'
 import { OneWayTravel } from '../../models/oneWayTravel'
 import { RoundTripTravel } from '../../models/roundTripTravel'
 import { MultiCityTravel } from '../../models/multiCityTravel'
+import { Passenger } from '../../models/passenger'
 import http = require("https")
 
 export class TravelPortFlightConnector implements FlightConnector {
@@ -59,7 +60,7 @@ export class TravelPortFlightConnector implements FlightConnector {
       })
 
       res.on("end", function () {
-        var body = Buffer.concat(chunks,undefined)
+        var body = Buffer.concat(chunks, undefined)
         console.log(body.toString())
         response = body.toString()
       })
@@ -80,7 +81,7 @@ export class TravelPortFlightConnector implements FlightConnector {
         _travel.cabinClass
     )
     + this.getAirSearchModifiers(2)
-    + this.getPassengerRequestSection()
+    + this.getPassengerRequestSection(_travel.passengers)
     + this.getAirPricingModifiers('USD')
     + this.getTailRequest()
 
@@ -88,21 +89,22 @@ export class TravelPortFlightConnector implements FlightConnector {
   }
 
   getRoundTrip(travel:RoundTripTravel): string {
+    var _travel = new RoundTripTravel(travel)
     var request = this.getHeadRequest()
       + this.getAirlegRequest(
-        travel.departureAirport,
-        travel.arrivalAirport,
-        travel.departureDate,
-        travel.cabinClass
+        _travel.departureAirport,
+        _travel.arrivalAirport,
+        _travel.departureDate,
+        _travel.cabinClass
       )
       + this.getAirlegRequest(
-        travel.arrivalAirport,
-        travel.departureAirport,
-        travel.returningDate,
-        travel.cabinClass
+        _travel.arrivalAirport,
+        _travel.departureAirport,
+        _travel.returningDate,
+        _travel.cabinClass
       )
       + this.getAirSearchModifiers(2)
-      + this.getPassengerRequestSection()
+      + this.getPassengerRequestSection(_travel.passengers)
       + this.getAirPricingModifiers('USD')
       + this.getTailRequest()
     
@@ -141,12 +143,12 @@ export class TravelPortFlightConnector implements FlightConnector {
                   </air:SearchAirLeg>`
   }
 
-  private getPassengerRequestSection(): string {
-    return `<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="0" />
-            <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="0" />
-            <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="0" />
-            <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="8" />
-            <com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="9" />`
+  private getPassengerRequestSection(passengers:Passenger[]): string {
+		var passengersSection = ''
+		for (let passenger of passengers) {
+			passengersSection = `<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="${passenger.type}" Age="${passenger.age}" />`
+		}
+    return passengersSection
   }
 
   private getAirSearchModifiers(limit:number): string {
