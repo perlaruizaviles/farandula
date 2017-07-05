@@ -4,19 +4,19 @@ module Farandula
     attr_accessor :id
     attr_accessor :departure_air_legs
     attr_accessor :returning_air_legs
-    attr_accessor :price
+    attr_accessor :fares
 
     def initialize(
       id = nil,
       departure_air_legs  = nil,
       returning_air_legs  = nil,
-      price               = nil
+      fares               = nil
     )
 
       @id                 = id
       @departure_air_legs = departure_air_legs
       @returning_air_legs = returning_air_legs
-      @price              = price
+      @fares              = fares
 
     end
 
@@ -25,7 +25,7 @@ module Farandula
       result << "id #{id}, " \
                 "departure_air_legs #{departure_air_legs.to_s}, " \
                 "returning_air_legs #{returning_air_legs.to_s}, " \
-                "price #{price}."
+                "fares #{fares}."
     end
 
   end 
