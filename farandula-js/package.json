@@ -4,7 +4,7 @@
   "description": "For: Developers that creates integrations with major travel providers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "watch": "tsc --watch"
   },
   "repository": {
@@ -24,7 +24,26 @@
   "homepage": "https://github.com/Nearsoft/farandula#readme",
   "dependencies": {},
   "devDependencies": {
+    "@types/jest": "^20.0.2",
     "@types/node": "^8.0.7",
+    "jest": "^20.0.4",
+    "ts-jest": "^20.0.6",
     "typescript": "^2.4.1"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx"
+    ]
   }
 }
