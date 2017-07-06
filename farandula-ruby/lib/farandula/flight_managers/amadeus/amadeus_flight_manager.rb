@@ -54,7 +54,7 @@ module Farandula
 
             response = RestClient.get url
             @logger.info ( "Amadeus Response: #{ LoggerUtils.get_pretty_json response}." )
-            printf "Amadeus Response: #{ LoggerUtils.get_pretty_json response}."
+            #printf "Amadeus Response: #{ LoggerUtils.get_pretty_json response}."
 
             if itinery_results.empty?
               itinery_results = build_itineries(response)
@@ -63,15 +63,15 @@ module Farandula
 
               open_jaws_results =   build_itineries(response)
               if max_size < open_jaws_results.size
-                  max_size = open_jaws_results.size
+                max_size = open_jaws_results.size
               end
 
               #todo finish this
               index=0
               max_size.times do
                 itinery_results[index].air_legs << open_jaws_results[index].air_legs
-                prices_sum = sum_prices( itinery_results[index].price , open_jaws_results[index].price  )
-                itinery_results.price = prices_sum
+                prices_sum = sum_prices( itinery_results[index].fares , open_jaws_results[index].fares  )
+                itinery_results[index].fares = prices_sum
                 index += 1
               end
 
@@ -274,10 +274,10 @@ module Farandula
 
           currency = pricing_info_data.gsub( /[^a-zA-Z]+/, '' )
           if  ''.eql? currency
-              currency  = "US"
-              amount    = pricing_info_data
+            currency  = "US"
+            amount    = pricing_info_data
           else
-              amount = pricing_info_data.gsub( currency, '')
+            amount = pricing_info_data.gsub( currency, '')
           end
 
           priceResult = Farandula::Price.new
@@ -295,7 +295,7 @@ module Farandula
 
           sum = Farandula::Fares.new
 
-          if price1.base_price.corrency_code == price1.base_price.currency_code
+          if price1.base_price.currency_code == price1.base_price.currency_code
             sum.base_price = Farandula::Price.new( price1.base_price.amount + price2.base_price.amount,
                                                    price1.base_price.currency_code )
           end

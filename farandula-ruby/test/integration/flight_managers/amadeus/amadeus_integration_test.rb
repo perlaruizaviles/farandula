@@ -25,7 +25,7 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
                       .type(:roundtrip)
                       .with_cabin_class(:economy)
                       .with_passenger( passenger )
-                      .limited_results_to( 10 )
+                      .limited_results_to( limit )
                       .build!
 
     manager = Factory.build_flight_manager(:amadeus, {})
@@ -39,4 +39,66 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
 
   end
 
+  def test_one_way_trip
+
+    from          = ['DFW']
+    to            = ['CDG']
+    departing_at  = [DateTime.now + 1]
+    returning_at  = [DateTime.now >> 1]
+    limit = 50
+
+    passenger   = Passenger.new(:adults, 25)
+    builder     = SearchForm::Builder.new
+    search_form = builder
+                      .from(from)
+                      .to(to)
+                      .departing_at(departing_at  )
+                      .returning_at(returning_at )
+                      .type(:oneway)
+                      .with_cabin_class(:economy)
+                      .with_passenger( passenger )
+                      .limited_results_to( limit )
+                      .build!
+
+    manager = Factory.build_flight_manager(:amadeus, {})
+    itineraries = manager.get_avail(search_form)
+
+    assert itineraries.size <= limit
+    #this one checks round-trip
+    assert itineraries[0].air_legs.size == 1
+    assert_equal( itineraries[0].air_legs[0].departure_airport_code.downcase , from[0].downcase )
+
+  end
+
+
+  def test_open_jaw
+
+    from          = ['DFW','MEX','HMO']
+    to            = ['CDG','LAS','LAX']
+    departing_at  = [DateTime.now + 1, DateTime.now + 11, DateTime.now + 21 ]
+    returning_at  = [DateTime.now + 10, DateTime.now + 20, DateTime.now >>1 ]
+    limit = 50
+
+    passenger   = Passenger.new(:adults, 25)
+    builder     = SearchForm::Builder.new
+    search_form = builder
+                      .from(from)
+                      .to(to)
+                      .departing_at(departing_at  )
+                      .returning_at(returning_at )
+                      .type(:openjaw)
+                      .with_cabin_class(:economy)
+                      .with_passenger( passenger )
+                      .limited_results_to( limit )
+                      .build!
+
+    manager = Factory.build_flight_manager(:amadeus, {})
+    itineraries = manager.get_avail(search_form)
+
+    assert itineraries.size <= limit
+    #this one checks openjaw
+    assert itineraries[0].air_legs.size == from.size
+    assert_equal( itineraries[0].air_legs[0].departure_airport_code.downcase , from[0].downcase )
+
+  end
 end
