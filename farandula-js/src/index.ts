@@ -1,22 +1,22 @@
+import { FlightSearchCommand } from './models/flightSearchComand';
+import { IFlightConnector } from './connectors/iFlightConnector';
+import { TravelPortFlightConnector } from './connectors/travelport/travelportFlightConnector';
 import http = require("https")
-import { Travel } from './models/travel'
-import { OneWayTravel } from './models/oneWayTravel'
-import { RoundTripTravel } from './models/roundTripTravel'
-const { TravelPortFlightConnector } = require('./connectors/travelport/travelportFlightConnector')
 
 export class Farandula {
-  private connector:any
+  private connector:IFlightConnector
 
-  constructor(private gds:string, private travel:Travel<any>) {
+  constructor(private gds:string, private flightSearchCommand:FlightSearchCommand) {
     this.setTravelStrategy()
   }
 
   private setTravelStrategy():void {
-    var flightType = this.travel.flightType
+    var flightType = this.flightSearchCommand.type
     this.connector = new TravelPortFlightConnector(flightType)
   }
 
   public getAvailableFlights() {
-    return this.connector.getAvailableFlights(this.travel)
+    console.log(this.flightSearchCommand)
+    return this.connector.getAvailableFlights(this.flightSearchCommand)
   }
 }
