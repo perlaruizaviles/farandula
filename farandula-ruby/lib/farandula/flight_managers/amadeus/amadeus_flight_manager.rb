@@ -73,11 +73,6 @@ module Farandula
                 prices_sum = sum_prices( itinery_results[index].price , open_jaws_results[index].price  )
                 itinery_results.price = prices_sum
                 index += 1
-
-                # results.get(i).getAirlegs().addAll(openJawResults.get(i).getAirlegs());
-                # Fares pricesSum = sumPrices(results.get(i).getPrice(), openJawResults.get(i).getPrice());
-                # results.get(i).setPrice(pricesSum);
-
               end
 
             end
