@@ -7,16 +7,21 @@ require 'farandula/models/segment'
 require 'farandula/models/seat'
 require 'farandula/models/fares'
 require 'farandula/models/price'
-
+require 'farandula/utils/logger_utils'
 require_relative '../../constants.rb'
 require 'time'
 require 'tzinfo'
+require 'logger'
 
 module Farandula
+
   module FlightManagers
+
     module Amadeus
 
       class AmadeusFlightManager < FlightManager
+
+        include Farandula::Utils
 
         attr_accessor :api_key
 
@@ -26,6 +31,10 @@ module Farandula
           @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "airlinesCode.yml")
 
           @locations_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "locations.yml")
+
+          @logger = Logger.new File.new('farandula-ruby.log', 'w')
+
+          @logger.level = Logger::DEBUG
 
         end
 
@@ -38,8 +47,14 @@ module Farandula
 
           response = ""
           url_request_list.each_with_index {| url, index |
+
             # request to Amadeus end-point
+            @logger.info ( "Amadeus Request: #{url}." )
+            printf "Amadeus Request: #{url}."
+
             response = RestClient.get url
+            @logger.info ( "Amadeus Response: #{ LoggerUtils.get_pretty_json response}." )
+            printf "Amadeus Response: #{ LoggerUtils.get_pretty_json response}."
 
             if itinery_results.empty?
               itinery_results = build_itineries(response)
@@ -56,7 +71,7 @@ module Farandula
               max_size.times do
                 itinery_results[index].air_legs << open_jaws_results[index].air_legs
                 prices_sum = sum_prices( itinery_results[index].price , open_jaws_results[index].price  )
-                itinery_results.price = prices_sum=
+                itinery_results.price = prices_sum
                 index += 1
 
                 # results.get(i).getAirlegs().addAll(openJawResults.get(i).getAirlegs());
