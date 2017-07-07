@@ -14,30 +14,24 @@ module Farandula
 
           number_of_results = "&number_of_results=#{search_form.offset}"
 
-          unless search_form.passengers[:adults].nil?
-            passengers_data = "&adults=#{search_form.passengers[:adults].size }"
-          end
+          passengers_data = "&adults=#{search_form.passengers[:adults].size }" if search_form.passengers[:adults]
 
-          unless search_form.passengers[:children].nil?
-            passengers_data += "&children=#{search_form.passengers[:children].size }"
-          end
+          passengers_data += "&children=#{search_form.passengers[:children].size }" if search_form.passengers[:children]
 
-          unless search_form.passengers[:infants].nil?
-            passengers_data += "&infants=#{search_form.passengers[:infants].size }"
-          end
+          passengers_data += "&infants=#{search_form.passengers[:infants].size }" if search_form.passengers[:infants]
 
           cabin = "&travel_class=#{search_form.cabin_class}"
 
-          for i in 0...search_form.departure_airport.size
+          search_form.departure_airport.each_with_index.map {| dep_airport , i |
 
-            origin =  "&origin=#{search_form.departure_airport[i]}"
+            origin =  "&origin=#{dep_airport}"
             destination = "&destination=#{search_form.arrival_airport[i]}"
             departing_date_search = format_date( search_form.departing_date[i] )
             returning_date_search = search_form.returning_date[i] ? format_date( search_form.returning_date[i] ) : nil
             departure_date = "&departure_date=#{departing_date_search}"
             returning_date = "&return_date=#{returning_date_search}"
 
-            if search_form.type == :roundtrip
+            if search_form.roundtrip?
 
               apiURL = "https://api.sandbox.amadeus.com/v1.2/flights/" \
                         "low-fare-search?apikey=#{api_key}" \
@@ -61,11 +55,9 @@ module Farandula
 
             end
 
-            api_url_list << apiURL
+            apiURL
+          }
 
-          end
-
-          api_url_list
         end
 
       end
