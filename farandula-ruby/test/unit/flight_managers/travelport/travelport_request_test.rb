@@ -37,7 +37,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                                 nil
 
 
-    airleg_result = @request.get_airlegs search_form ;
+    airleg_result = @request.get_airlegs search_form
 
     expected =  '<air:SearchAirLeg>' + "\n" +
                 '  <air:SearchOrigin>' + "\n" +
@@ -53,6 +53,52 @@ class Farandula::TravelportRequestTest < Minitest::Test
                 '    </air:PreferredCabins>' + "\n" +
                 '  </air:AirLegModifiers>' + "\n" +
                 '</air:SearchAirLeg>'
+
+    assert_equal expected, airleg_result
+
+  end
+
+  def test_airleg_build_roundtrip()
+
+    search_form = Farandula::SearchForm.new ["DFW"],
+                                            ["CDG"],
+                                            [Date.new(2017,7,10)],
+                                            [Date.new(2017,8,10)],
+                                            [],
+                                            :roundtrip,
+                                            :economy,
+                                            nil
+
+    airleg_result = @request.get_airlegs search_form
+
+    expected =  '<air:SearchAirLeg>' + "\n" +
+        '  <air:SearchOrigin>' + "\n" +
+        '    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+        '  </air:SearchOrigin>' + "\n" +
+        '  <air:SearchDestination>' + "\n" +
+        '    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+        '  </air:SearchDestination>' + "\n" +
+        '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
+        '  <air:AirLegModifiers>' + "\n" +
+        '    <air:PreferredCabins>' + "\n" +
+        '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+        '    </air:PreferredCabins>' + "\n" +
+        '  </air:AirLegModifiers>' + "\n" +
+        '</air:SearchAirLeg>' +
+        '<air:SearchAirLeg>' + "\n" +
+        '  <air:SearchOrigin>' + "\n" +
+        '    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+        '  </air:SearchOrigin>' + "\n" +
+        '  <air:SearchDestination>' + "\n" +
+        '    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+        '  </air:SearchDestination>' + "\n" +
+        '  <air:SearchDepTime PreferredTime="2017-08-10"/>' + "\n" +
+        '  <air:AirLegModifiers>' + "\n" +
+        '    <air:PreferredCabins>' + "\n" +
+        '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+        '    </air:PreferredCabins>' + "\n" +
+        '  </air:AirLegModifiers>' + "\n" +
+        '</air:SearchAirLeg>'
 
     assert_equal expected, airleg_result
 

@@ -28,6 +28,14 @@ module Farandula
             }
 
             result += replace_string str, map
+
+            result += replace_string str, {
+                  departure_airport:  search_form.arrival_airport[i],
+                  arrival_airport:    search_form.departure_airport[i],
+                  departure_date:     search_form.returning_date[i],
+                  class_travel:       search_form.cabin_class.upcase
+            } if search_form.roundtrip?
+
           }
 
           result
