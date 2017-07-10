@@ -28,7 +28,7 @@ module Farandula
         def initialize(api_key)
           @api_key = api_key
 
-          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "airlinesCode.yml")
+          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml")
 
           @locations_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "locations.yml")
 

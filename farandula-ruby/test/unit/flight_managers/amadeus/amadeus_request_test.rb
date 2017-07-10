@@ -4,10 +4,12 @@ require 'string_helper'
 require 'minitest/autorun'
 require 'farandula/flight_managers/amadeus/request'
 
+
 class Farandula::AmadeusRequestTest < Minitest::Test
 
   include Farandula
   include Farandula::FlightManagers
+
 
   def setup
     @request = Amadeus::Request.new

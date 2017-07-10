@@ -14,7 +14,7 @@ module Farandula
         
         attr_reader :access_token, :token_type, :expires_in
         
-        def initialize(client_id, client_secret) 
+        def initialize(client_id, client_secret)
 
           begin 
             payload = {'grant_type' => 'client_credentials'}
@@ -34,15 +34,13 @@ module Farandula
             raise UnauthorizedError.new(e)
           end 
         end
-
-
         def build_auth_token
           "#{@token_type.capitalize} #{@access_token}"
         end 
 
         private 
           def build_credentials(client_id, client_secret) 
-            encoded_id     = Base64.strict_encode64(client_id) 
+            encoded_id     = Base64.strict_encode64(client_id)
             encoded_secret = Base64.strict_encode64(client_secret)
             encoded        = Base64.strict_encode64("#{encoded_id}:#{encoded_secret}")
             "Basic #{encoded}"

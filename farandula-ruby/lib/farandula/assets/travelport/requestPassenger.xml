@@ -1,0 +1,1 @@
+<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="#{passengerType}" Age="#{passengerAge}"/>
