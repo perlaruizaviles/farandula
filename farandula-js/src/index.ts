@@ -15,8 +15,7 @@ export class Farandula {
     this.connector = new TravelPortFlightConnector(flightType)
   }
 
-  public getAvailableFlights() {
-    console.log(this.flightSearchCommand)
-    return this.connector.getAvailableFlights(this.flightSearchCommand)
+  public getAvailableFlights(callback:any) {
+    return this.connector.getAvailableFlights(this.flightSearchCommand, callback)
   }
 }

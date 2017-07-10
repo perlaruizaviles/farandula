@@ -27,8 +27,8 @@ export class TravelPortFlightConnector implements IFlightConnector {
     }
   }
 	
-	private execRequest(body: string): string {
-		var options = {
+	private execRequest(request: string, callback: any): any {
+		let options = {
       "method": "POST",
       "hostname": "americas.universal-api.pp.travelport.com",
       "path": "/B2BGateway/connect/uAPI/AirService",
@@ -37,27 +37,24 @@ export class TravelPortFlightConnector implements IFlightConnector {
         "content-type": "text/xml",
       }
     }
-    var response: string = ''
-    
-    var req = http.request(options, function (res) {
+    let parseXML = this.parseResponse
+    let req = http.request(options, function (res) {
       var chunks = [] as Buffer[]
       res.on("data", function (chunk:Buffer) {
         chunks.push(chunk);
       })
 
       res.on("end", function () {
-        var body = Buffer.concat(chunks, undefined)
-        console.log(body.toString())
-        response = body.toString()
+        let body = Buffer.concat(chunks, undefined)
+        let response = parseXML(Buffer.concat(chunks, undefined).toString(), callback)
       })
     })
 
-    req.write(body);
-    req.end();
-    return response
+    req.write(request)
+    req.end()
 	}
 
-  private getOneWay(flightSearchCommand:FlightSearchCommand): string {
+  private getOneWay(flightSearchCommand:FlightSearchCommand, callback:any): any {
     var _flightSearchCommand = new FlightSearchCommand(flightSearchCommand)
     var request = this.getHeadRequest()
     + this.getAirlegRequest(_flightSearchCommand.searchAirleg[0])
@@ -65,10 +62,10 @@ export class TravelPortFlightConnector implements IFlightConnector {
     + this.getPassengerRequestSection(_flightSearchCommand.passengers)
     + this.getAirPricingModifiers('USD')
     + this.getTailRequest()
-    return this.execRequest(request)
+    this.execRequest(request, callback)
   }
 
-  getRoundTrip(flightSearchCommand:FlightSearchCommand): string {
+  private getRoundTrip(flightSearchCommand:FlightSearchCommand, callback:any): any {
     var _flightSearchCommand = new FlightSearchCommand(flightSearchCommand)
     var departureAirleg:ISearchAirleg = _flightSearchCommand.searchAirleg[0]
 
@@ -79,10 +76,10 @@ export class TravelPortFlightConnector implements IFlightConnector {
       + this.getAirPricingModifiers(_flightSearchCommand.currency)
       + this.getTailRequest()
     
-    return this.execRequest(request)
+    return this.execRequest(request, callback)
   }
 
-  getMultiCity(flightSearchCommand:FlightSearchCommand): string {
+  private getMultiCity(flightSearchCommand:FlightSearchCommand, callback:any): any {
     var _flightSearchCommand = new FlightSearchCommand(flightSearchCommand)
     var request = this.getHeadRequest()
       
@@ -95,7 +92,7 @@ export class TravelPortFlightConnector implements IFlightConnector {
       + this.getAirPricingModifiers(_flightSearchCommand.currency)
       + this.getTailRequest()
 
-    return this.execRequest(request)
+    return this.execRequest(request, callback)
   }
 
   private getHeadRequest(): string {
@@ -177,7 +174,18 @@ export class TravelPortFlightConnector implements IFlightConnector {
       </air:AirSearchModifiers>
       `
   }
+  
   private getAirPricingModifiers(currencyType:string): string {
     return `<air:AirPricingModifiers xmlns:com="http://www.travelport.com/schema/common_v34_0" CurrencyType="${currencyType}" />`
+  }
+
+  public parseResponse(xmlResponse:string, callback:any): any {
+    let parsedResponse: {}
+    let _xmlResponse = xmlResponse
+    let xml2js = require('xml2js')
+    let util = require('util')
+    parsedResponse = xml2js.parseString(_xmlResponse, (err:any, result:any) => {
+      callback(result)
+    })
   }
 }
