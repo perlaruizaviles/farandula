@@ -193,23 +193,23 @@ public class TravelportFlightConnector implements FlightConnector {
             //Seat
             parseAirAvailInfoChild(solutions.item(i));
 
-            NodeList legsNodes = ((Element)solutions.item(i)).getElementsByTagName("air:Journey");
+            NodeList legsNodes = ((Element) solutions.item(i)).getElementsByTagName("air:Journey");
 
             Itinerary itinerary = new Itinerary();
             List<AirLeg> legList = new ArrayList<>();
             itinerary.setPrice(parsingFare(solutions.item(i).getAttributes()));
 
-            for(int j = 0; j < legsNodes.getLength(); j++){
+            for (int j = 0; j < legsNodes.getLength(); j++) {
 
                 AirLeg leg = new AirLeg();
 
                 Node legNode = legsNodes.item(j);
 
-                NodeList segNodes = ((Element)legNode).getElementsByTagName("air:AirSegmentRef");
+                NodeList segNodes = ((Element) legNode).getElementsByTagName("air:AirSegmentRef");
 
                 List<Segment> segmentList = new ArrayList<>();
 
-                for(int k = 0; k < segNodes.getLength(); k++){
+                for (int k = 0; k < segNodes.getLength(); k++) {
 
                     String segmentKey = segNodes.item(k).getAttributes().getNamedItem("Key").getNodeValue().toString();
 
@@ -218,36 +218,33 @@ public class TravelportFlightConnector implements FlightConnector {
                     segmentList.add(seg);
                 }
 
-                leg.setId( idCount.incrementAndGet() + "" );
-                leg.setDepartureAirportCode( segmentList.get(0).getDepartureAirportCode() );
+                leg.setId(idCount.incrementAndGet() + "");
+                leg.setDepartureAirportCode(segmentList.get(0).getDepartureAirportCode());
                 leg.setDepartingDate(segmentList.get(0).getDepartureDate());
-                leg.setArrivalAirportCode(segmentList.get(segmentList.size()-1).getArrivalAirportCode());
-                leg.setArrivalDate(segmentList.get(segmentList.size()-1).getArrivalDate());
+                leg.setArrivalAirportCode(segmentList.get(segmentList.size() - 1).getArrivalAirportCode());
+                leg.setArrivalDate(segmentList.get(segmentList.size() - 1).getArrivalDate());
                 leg.setSegments(segmentList);
 
                 legList.add(leg);
             }
-
 
             itinerary.setAirlegs(legList);
 
             itinerariesList.add(itinerary);
         }
 
-
         return itinerariesList;
-
     }
 
     private Fares parsingFare(NamedNodeMap solution) {
 
         Fares fare = new Fares();
         String totalPriceString = solution.getNamedItem("TotalPrice") == null ? ""
-                                : solution.getNamedItem("TotalPrice").getNodeValue().toString();
+                : solution.getNamedItem("TotalPrice").getNodeValue().toString();
         String basePriceString = solution.getNamedItem("BasePrice") == null ? ""
-                                : solution.getNamedItem("BasePrice").getNodeValue().toString();
+                : solution.getNamedItem("BasePrice").getNodeValue().toString();
         String taxesPriceString = solution.getNamedItem("Taxes") == null ? ""
-                                : solution.getNamedItem("Taxes").getNodeValue().toString();
+                : solution.getNamedItem("Taxes").getNodeValue().toString();
         fare.setTotalPrice(parsingPrice(totalPriceString));
         fare.setBasePrice(parsingPrice(basePriceString));
         fare.setTaxesPrice(parsingPrice(taxesPriceString));
@@ -261,7 +258,7 @@ public class TravelportFlightConnector implements FlightConnector {
         Price price = new Price();
         String amount = priceString.substring(3);
         price.setAmount(Double.parseDouble(amount));
-        price.setCurrencyCode(priceString.substring(0,2));
+        price.setCurrencyCode(priceString.substring(0, 2));
         return price;
     }
 
@@ -275,7 +272,7 @@ public class TravelportFlightConnector implements FlightConnector {
             //Attribute with referenced key to flight details
             NodeList flightReference = ((Element) airSegmentNode).getElementsByTagName("air:FlightDetailsRef");
             NamedNodeMap flightDetailsAttributes = flightReference.item(0).getAttributes();
-            TravelportFlightDetails flightDetails = findCorrespondingDeatils(flightDetailsAttributes.getNamedItem("Key").getNodeValue().toString(), resultFlightsDetails);
+            TravelportFlightDetails flightDetails = findCorrespondingDetails(flightDetailsAttributes.getNamedItem("Key").getNodeValue().toString(), resultFlightsDetails);
 
             flightDetails.setGroup(nodeAttributes.getNamedItem("Group").getNodeValue().toString());
 
@@ -312,7 +309,7 @@ public class TravelportFlightConnector implements FlightConnector {
         }
     }
 
-    private TravelportFlightDetails findCorrespondingDeatils(String key, List<TravelportFlightDetails> detailsList) {
+    private TravelportFlightDetails findCorrespondingDetails(String key, List<TravelportFlightDetails> detailsList) {
 
         Optional<TravelportFlightDetails> details = detailsList.stream()
                 .filter(detail -> detail.getKey().equals(key))
@@ -356,26 +353,26 @@ public class TravelportFlightConnector implements FlightConnector {
 
     private void parseAirAvailInfoChild(Node airPricingSolution) {
 
-        NodeList airPricingInfo = ((Element)airPricingSolution).getElementsByTagName("air:AirPricingInfo");
+        NodeList airPricingInfo = ((Element) airPricingSolution).getElementsByTagName("air:AirPricingInfo");
 
-        if( airPricingInfo.getLength() == 0 )
+        if (airPricingInfo.getLength() == 0)
             return;
 
         List<Node> bookingList = XmlUtils.getNodeList("air:BookingInfo", airPricingInfo.item(0).getChildNodes());
 
-        for (Node book : bookingList){
+        for (Node book : bookingList) {
             String segmentKey = ((Element) book).getAttribute("SegmentRef");
 
             Segment actualSeg = segmentMap.get(segmentKey);
 
-            if( actualSeg.getSeatsAvailable() == null || actualSeg.getSeatsAvailable().size() == 0 ){
+            if (actualSeg.getSeatsAvailable() == null || actualSeg.getSeatsAvailable().size() == 0) {
 
                 int bookingCount = Integer.parseInt(((Element) book).getAttribute("BookingCount"));
                 String cabinClass = ((Element) book).getAttribute("CabinClass");
 
                 List<Seat> seatList = new ArrayList<>();
 
-                for(int i = 0; i < bookingCount; i++){
+                for (int i = 0; i < bookingCount; i++) {
                     Seat seat = new Seat();
                     seat.setClassCabin(getCabinClassType(cabinClass));
                     //Current Travelport Response does not include place for seat
@@ -401,7 +398,6 @@ public class TravelportFlightConnector implements FlightConnector {
     }
 
 
-
     private TravelportFlightDetails getFlightDetails(NamedNodeMap nodeAttributes) {
 
         TravelportFlightDetails currentFly = new TravelportFlightDetails();
@@ -416,11 +412,11 @@ public class TravelportFlightConnector implements FlightConnector {
 
         currentFly.setFlightTime(
                 (nodeAttributes.getNamedItem("FlightTime") == null)
-                ? 0L : Long.valueOf(nodeAttributes.getNamedItem("FlightTime").getNodeValue().toString())
+                        ? 0L : Long.valueOf(nodeAttributes.getNamedItem("FlightTime").getNodeValue().toString())
         );
         currentFly.setEquipment(
                 (nodeAttributes.getNamedItem("Equipment") == null)
-                ? "" : nodeAttributes.getNamedItem("Equipment").getNodeValue().toString()
+                        ? "" : nodeAttributes.getNamedItem("Equipment").getNodeValue().toString()
         );
         return currentFly;
     }
