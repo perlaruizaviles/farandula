@@ -1,5 +1,5 @@
-
 require 'json'
+require 'rexml/document'
 
 module Farandula
   module Utils
@@ -11,7 +11,9 @@ module Farandula
       end
 
       def self.get_pretty_xml(input, indent)
-
+        result = ""
+        doc = REXML::Document.new(input).write(:output => result, :indent => indent)
+        result.gsub("'",'"')
       end
 
     end
