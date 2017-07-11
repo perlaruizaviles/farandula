@@ -1,18 +1,37 @@
+require 'base64'
 module Farandula
   module FlightManagers
     module Travelport
       class Request
-      
+
+
+        def initialize
+          @property_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/travelport/properties/' + "travelportConfig.yml")
+          @api_key = @property_map['travelport.api_user']
+          @api_password = @property_map['travelport.api_password']
+          @target_branch = @property_map['travelport.target_branch']
+        end
+
         def format_date(date)
           date.strftime('%Y-%m-%d')
         end
 
-        def build_request_for!(search_form, target_branch)
-          request = get_head(target_branch) + "\n" +
-          get_airlegs(search_form) + "\n" +
-          get_passengers(search_form.passengers) + "\n" +
-          get_search_modifier(search_form.offset) + "\n" +
-          get_tail()
+        def get_headers
+          {
+              Authorization: "Basic #{get_auth_encoded}",
+              content_type: 'text/xml',
+              accept: 'text/xml'
+          }
+        end
+
+
+        def build_request_for!(search_form)
+          request = get_head(@target_branch) + "\n" +
+              get_airlegs(search_form) + "\n" +
+              get_search_modifier(search_form.offset) + "\n" +
+              get_passengers(search_form.passengers) + "\n" +
+              get_tail()
+
 
         end
 
@@ -94,6 +113,11 @@ module Farandula
               else
                 'ADT'
             end
+          end
+
+          def get_auth_encoded
+            Base64.encode64("#{@api_key}:#{@api_password}").gsub("\n",'')
+
           end
 
       end

@@ -1,41 +1,41 @@
-require_relative '../flightManager.rb'
+require_relative '../flight_manager.rb'
 require 'rest-client'
-require 'base64'
+require_relative 'request'
 
 module Farandula
   module FlightManagers
     module Travelport
       class TravelportFlightManager < FlightManager
 
-        def self.init
-          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml")
-          @property_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/travelport/properties/' + "travelportConfig.yml")
-          @api_key = @property_map['travelport.api_user']
-          @api_password = @property_map['travelport.api_password']
-          @target_branch = @property_map['travelport.target_branch']
-        end        
+
 
         def initialize
           @target_url = 'https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService'
+          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml")
+          @logger = Logger.new File.new('farandula-ruby.log', 'w')
+          @logger.level = Logger::DEBUG
         end
 
         def get_avail(search_form)
-            data = {
-              method: "POST",
-              hostname: "americas.universal-api.pp.travelport.com",
-              path: "/B2BGateway/connect/uAPI/AirService",
-              headers: {
-                authorization: "Basic "+get_auth_encoded(),
-                content_type: "text/xml"
-              }
-            }
-            
+
+          request = Request.new
+
+
+          body = request.build_request_for! search_form
+          puts "BODY: #{body}\n \n"
+          headers = request.get_headers
+          response = RestClient.post(
+              @target_url,
+              body,
+              headers
+          )
+
+          puts "response: #{response}\n \n"
+          response
+
         end
         
-        private 
-        def get_auth_encoded()
-          auth_token = Base64.strict_encode64(@api_key+":"+@api_password)
-        end
+
 
       end # ends TravelportFlightManager
     end # ends Travelport

@@ -5,11 +5,14 @@ require 'minitest/autorun'
 require 'farandula/flight_managers/travelport/request'
 require 'farandula/models/search_form'
 require 'farandula/models/passenger'
+require 'farandula/flight_managers/travelport/travelport_flight_manager'
+
 
 class Farandula::TravelportRequestTest < Minitest::Test
   
   include Farandula
   include Farandula::FlightManagers
+  include Farandula::FlightManagers::Travelport
 
   def setup
     @request  = Travelport::Request.new
@@ -152,6 +155,8 @@ class Farandula::TravelportRequestTest < Minitest::Test
   end
 
   def test_build_request_for()
+
+
     from          = []
     to            = []
     departing_at  = []
@@ -179,12 +184,12 @@ class Farandula::TravelportRequestTest < Minitest::Test
                       .build!(false)
 
     
-    actual = @request.build_request_for!(search_form, 'P105356')
+    actual = @request.build_request_for!(search_form)
 
     expected_request =  @expected_head + "\n" +
                         @expected_airleg + "\n" +
-                        @expected_passengers + "\n" +
                         @expected_search_modifier + "\n" +
+                        @expected_passengers + "\n" +
                         @expected_tail
 
     assert_equal(
@@ -192,5 +197,38 @@ class Farandula::TravelportRequestTest < Minitest::Test
       actual
     )
   end
+
+  def test_get_avail
+    from          = []
+    to            = []
+    departing_at  = []
+
+    from << 'DFW'
+    to << 'CDG'
+    departing_at << ((Date.today >> 1))
+
+    passenger1  = Passenger.new(:adults, 90)
+    passenger2  = Passenger.new(:adults, 38)
+    passenger3  = Passenger.new(:children, 4)
+    passenger4  = Passenger.new(:children, 10)
+    builder     = SearchForm::Builder.new
+    search_form = builder
+                      .from( from )
+                      .to( to )
+                      .departing_at( departing_at)
+                      .type(:oneway)
+                      .with_cabin_class( :economy)
+                      .with_passenger( passenger1 )
+                      .with_passenger( passenger2 )
+                      .with_passenger( passenger3 )
+                      .with_passenger( passenger4 )
+                      .limited_results_to( 50 )
+                      .build!(false)
+    flight_manager = TravelportFlightManager.new
+    result = flight_manager.get_avail search_form
+    refute_nil result, 'Response returned'
+
+  end
+
 
 end
