@@ -13,21 +13,76 @@ class Farandula::TravelportRequestTest < Minitest::Test
 
   def setup
     @request  = Travelport::Request.new
+
+    @expected_head =    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' + "\n" +
+                        '  <soapenv:Header/>' + "\n" +
+                        '  <soapenv:Body>' + "\n" +
+                        '    <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="P105356" TraceId="trace">' + "\n" +
+                        '      <com:BillingPointOfSaleInfo xmlns:com="http://www.travelport.com/schema/common_v34_0" OriginApplication="UAPI"/>'
+  
+    @expected_airleg =  '<air:SearchAirLeg>' + "\n" +
+                        '  <air:SearchOrigin>' + "\n" +
+                        '    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                        '  </air:SearchOrigin>' + "\n" +
+                        '  <air:SearchDestination>' + "\n" +
+                        '    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                        '  </air:SearchDestination>' + "\n" +
+                        '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
+                        '  <air:AirLegModifiers>' + "\n" +
+                        '    <air:PreferredCabins>' + "\n" +
+                        '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                        '    </air:PreferredCabins>' + "\n" +
+                        '  </air:AirLegModifiers>' + "\n" +
+                        '</air:SearchAirLeg>'
+
+    @expected_airleg_roundtrip =  '<air:SearchAirLeg>' + "\n" +
+                                  '  <air:SearchOrigin>' + "\n" +
+                                  '    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '  </air:SearchOrigin>' + "\n" +
+                                  '  <air:SearchDestination>' + "\n" +
+                                  '    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '  </air:SearchDestination>' + "\n" +
+                                  '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
+                                  '  <air:AirLegModifiers>' + "\n" +
+                                  '    <air:PreferredCabins>' + "\n" +
+                                  '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '    </air:PreferredCabins>' + "\n" +
+                                  '  </air:AirLegModifiers>' + "\n" +
+                                  '</air:SearchAirLeg>' +
+                                  '<air:SearchAirLeg>' + "\n" +
+                                  '  <air:SearchOrigin>' + "\n" +
+                                  '    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '  </air:SearchOrigin>' + "\n" +
+                                  '  <air:SearchDestination>' + "\n" +
+                                  '    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '  </air:SearchDestination>' + "\n" +
+                                  '  <air:SearchDepTime PreferredTime="2017-08-10"/>' + "\n" +
+                                  '  <air:AirLegModifiers>' + "\n" +
+                                  '    <air:PreferredCabins>' + "\n" +
+                                  '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '    </air:PreferredCabins>' + "\n" +
+                                  '  </air:AirLegModifiers>' + "\n" +
+                                  '</air:SearchAirLeg>'
+
+        @expected_passengers =  '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="90"/>' + "\n" +
+                                '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="38"/>' + "\n" +
+                                '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="4"/>' + "\n" +
+                                '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="10"/>'
+        
+        @expected_search_modifier =   '<air:AirSearchModifiers MaxSolutions="50">' + "\n" +
+                                      '  <air:PreferredProviders>' + "\n" +
+                                      '    <com:Provider xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="1G"/>' + "\n" +
+                                      '  </air:PreferredProviders>' + "\n" +
+                                      '</air:AirSearchModifiers>'
+
   end
 
   def test_get_head()
     request_result = @request.get_head('P105356')
-    expected =  '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' + "\n" +
-                '  <soapenv:Header/>' + "\n" +
-                '  <soapenv:Body>' + "\n" +
-                '    <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="P105356" TraceId="trace">' + "\n" +
-                '      <com:BillingPointOfSaleInfo xmlns:com="http://www.travelport.com/schema/common_v34_0" OriginApplication="UAPI"/>'
-
-    assert_equal(expected, request_result)
+    assert_equal(@expected_head, request_result)
   end
 
   def test_get_airleg()
-
     search_form = Farandula::SearchForm.new ["DFW"],
                                                 ["CDG"],
                                                 [Date.new(2017,07,10)],
@@ -37,30 +92,11 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                                 :economy,
                                                 nil
 
-
     airleg_result = @request.get_airlegs search_form
-
-    expected =  '<air:SearchAirLeg>' + "\n" +
-                '  <air:SearchOrigin>' + "\n" +
-                '    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-                '  </air:SearchOrigin>' + "\n" +
-                '  <air:SearchDestination>' + "\n" +
-                '    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-                '  </air:SearchDestination>' + "\n" +
-                '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
-                '  <air:AirLegModifiers>' + "\n" +
-                '    <air:PreferredCabins>' + "\n" +
-                '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-                '    </air:PreferredCabins>' + "\n" +
-                '  </air:AirLegModifiers>' + "\n" +
-                '</air:SearchAirLeg>'
-
-    assert_equal expected, airleg_result
-
+    assert_equal @expected_airleg, airleg_result
   end
 
   def test_airleg_build_roundtrip()
-
     search_form = Farandula::SearchForm.new ["DFW"],
                                             ["CDG"],
                                             [Date.new(2017,7,10)],
@@ -71,38 +107,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                             nil
 
     airleg_result = @request.get_airlegs search_form
-
-    expected =  '<air:SearchAirLeg>' + "\n" +
-        '  <air:SearchOrigin>' + "\n" +
-        '    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-        '  </air:SearchOrigin>' + "\n" +
-        '  <air:SearchDestination>' + "\n" +
-        '    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-        '  </air:SearchDestination>' + "\n" +
-        '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
-        '  <air:AirLegModifiers>' + "\n" +
-        '    <air:PreferredCabins>' + "\n" +
-        '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-        '    </air:PreferredCabins>' + "\n" +
-        '  </air:AirLegModifiers>' + "\n" +
-        '</air:SearchAirLeg>' +
-        '<air:SearchAirLeg>' + "\n" +
-        '  <air:SearchOrigin>' + "\n" +
-        '    <com:Airport Code="CDG" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-        '  </air:SearchOrigin>' + "\n" +
-        '  <air:SearchDestination>' + "\n" +
-        '    <com:Airport Code="DFW" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-        '  </air:SearchDestination>' + "\n" +
-        '  <air:SearchDepTime PreferredTime="2017-08-10"/>' + "\n" +
-        '  <air:AirLegModifiers>' + "\n" +
-        '    <air:PreferredCabins>' + "\n" +
-        '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
-        '    </air:PreferredCabins>' + "\n" +
-        '  </air:AirLegModifiers>' + "\n" +
-        '</air:SearchAirLeg>'
-
-    assert_equal expected, airleg_result
-
+    assert_equal expected_airleg_roundtrip, airleg_result
   end
 
   def test_get_passengers
@@ -110,26 +115,48 @@ class Farandula::TravelportRequestTest < Minitest::Test
         :ADULTS     => [Passenger.new(PassengerType::ADULTS, 90), Passenger.new(PassengerType::ADULTS, 38)],
         :CHILDREN   => [Passenger.new(PassengerType::CHILDREN, 4), Passenger.new(PassengerType::CHILDREN, 10)]
     }
-    expected = '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="90"/>' + "\n" +
-        '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="38"/>' + "\n" +
-        '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="4"/>' + "\n" +
-        '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="10"/>'
-
     result = @request.get_passengers passengers_map
-    
-    assert_equal expected, result
+    assert_equal @expected_passengers, result
   end
 
   def test_get_search_modifier()
-    expected =  '<air:AirSearchModifiers MaxSolutions="50">' + "\n" +
-                '  <air:PreferredProviders>' + "\n" +
-                '    <com:Provider xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="1G"/>' + "\n" +
-                '  </air:PreferredProviders>' + "\n" +
-                '</air:AirSearchModifiers>'
-
     actual = @request.get_search_modifier(50)
+    assert_equal(@expected_search_modifier, actual)
+  end
 
-    assert_equal(expected, actual)
+  def test_build_request_for()
+    #search_form
+    from          = []
+    to            = []
+    departing_at  = []
+
+    from << 'CUU'
+    to << 'SFO'
+    departing_at << (DateTime.now >> 1)
+
+    passenger   = Passenger.new(:adults, 25)
+    builder     = SearchForm::Builder.new
+    search_form = builder
+                      .from( from )
+                      .to( to )
+                      .departing_at( departing_at)
+                      .type(:oneway)
+                      .with_cabin_class( :economy)
+                      .with_passenger( passenger )
+                      .limited_results_to( 2 )
+                      .build!(false)
+
+    
+    requestXML = @request.build_request_for!(search_form, 'P0000')
+
+    expected_request =  @expected_head + "\n" +
+                        @expected_airleg + "\n" +
+                        @expected_passengers + "\n" +
+                        @expected_search_modifier + "\n" +
+                        @expected_tail
+
+    puts requestXML
+    
   end
 
 end

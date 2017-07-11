@@ -7,6 +7,15 @@ module Farandula
           date.strftime('%Y-%m-%d')
         end
 
+        def build_request_for!(search_form, target_branch)
+          request = get_head(target_branch) + "\n" +
+          get_airlegs(search_form) + "\n" +
+          get_passengers(search_form.passengers) + "\n" +
+          get_search_modifier(search_form.offset) + "\n" +
+          get_tail()
+
+        end
+
         def get_head(target_branch)
           str = File.read(File.dirname(__FILE__)+'/../../assets/travelport/requestHeader.xml')
           replace_string str, {target_branch: target_branch}
@@ -37,7 +46,6 @@ module Farandula
             } if search_form.roundtrip?
 
           }
-
           result
 
         end
@@ -62,6 +70,10 @@ module Farandula
         def get_search_modifier(limit)
           str = File.read(File.dirname(__FILE__) + '/../../assets/travelport/searchModifier.xml')
           replace_string str, {limit: limit}
+        end
+
+        def get_tail()
+          File.read(File.dirname(__FILE__) + '/../../assets/travelport/requestTail.xml') || "no tail"
         end
 
         private
