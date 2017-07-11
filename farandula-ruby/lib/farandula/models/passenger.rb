@@ -25,8 +25,7 @@ module Farandula
   end
 
   def to_s
-    result = ""
-    result << "Type #{type}, Age #{age}."
+    "Type #{type}, Age #{age}."
   end
 
   

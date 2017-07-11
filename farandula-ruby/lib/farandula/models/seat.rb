@@ -13,8 +13,7 @@ module Farandula
     end 
 
     def to_s
-      result = ""
-      result << "cabin #{cabin}, place code #{place}."
+      "cabin #{cabin}, place code #{place}."
     end
 
   end  
