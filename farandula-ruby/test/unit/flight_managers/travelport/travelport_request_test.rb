@@ -120,4 +120,16 @@ class Farandula::TravelportRequestTest < Minitest::Test
     assert_equal expected, result
   end
 
+  def test_get_search_modifier()
+    expected =  '<air:AirSearchModifiers MaxSolutions="50">' + "\n" +
+                '  <air:PreferredProviders>' + "\n" +
+                '    <com:Provider xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="1G"/>' + "\n" +
+                '  </air:PreferredProviders>' + "\n" +
+                '</air:AirSearchModifiers>'
+
+    actual = @request.get_search_modifier(50)
+
+    assert_equal(expected, actual)
+  end
+
 end

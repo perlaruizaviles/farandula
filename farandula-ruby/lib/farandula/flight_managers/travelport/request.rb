@@ -59,6 +59,11 @@ module Farandula
           result.join("\n")
         end
 
+        def get_search_modifier(limit)
+          str = File.read(File.dirname(__FILE__) + '/../../assets/travelport/searchModifier.xml')
+          replace_string str, {limit: limit}
+        end
+
         private
           def replace_string(file, params)
             file % params
