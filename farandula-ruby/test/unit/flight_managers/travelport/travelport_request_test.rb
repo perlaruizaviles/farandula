@@ -74,12 +74,19 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                       '    <com:Provider xmlns:com="http://www.travelport.com/schema/common_v34_0" Code="1G"/>' + "\n" +
                                       '  </air:PreferredProviders>' + "\n" +
                                       '</air:AirSearchModifiers>'
-
+        
+        @expected_tail =  '<air:AirPricingModifiers xmlns:com="http://www.travelport.com/schema/common_v34_0" CurrencyType = "USD"/>' + "\n" +
+                          '        </air:LowFareSearchReq>' + "\n" +
+                          '        </soapenv:Body>' + "\n" +
+                          '        </soapenv:Envelope>'
   end
 
   def test_get_head()
-    request_result = @request.get_head('P105356')
-    assert_equal(@expected_head, request_result)
+    actual = @request.get_head('P105356')
+    assert_equal(
+      @expected_head,
+      actual
+    )
   end
 
   def test_get_airleg()
@@ -92,8 +99,11 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                                 :economy,
                                                 nil
 
-    airleg_result = @request.get_airlegs search_form
-    assert_equal @expected_airleg, airleg_result
+    actual = @request.get_airlegs search_form
+    assert_equal(
+      @expected_airleg,
+      actual
+    )
   end
 
   def test_airleg_build_roundtrip()
@@ -106,8 +116,11 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                             :economy,
                                             nil
 
-    airleg_result = @request.get_airlegs search_form
-    assert_equal expected_airleg_roundtrip, airleg_result
+    actual = @request.get_airlegs search_form
+    assert_equal(
+      @expected_airleg_roundtrip,
+      actual
+    )
   end
 
   def test_get_passengers
@@ -115,26 +128,42 @@ class Farandula::TravelportRequestTest < Minitest::Test
         :ADULTS     => [Passenger.new(PassengerType::ADULTS, 90), Passenger.new(PassengerType::ADULTS, 38)],
         :CHILDREN   => [Passenger.new(PassengerType::CHILDREN, 4), Passenger.new(PassengerType::CHILDREN, 10)]
     }
-    result = @request.get_passengers passengers_map
-    assert_equal @expected_passengers, result
+    actual = @request.get_passengers passengers_map
+    assert_equal(
+      @expected_passengers,
+      actual
+    )
   end
 
   def test_get_search_modifier()
     actual = @request.get_search_modifier(50)
-    assert_equal(@expected_search_modifier, actual)
+    assert_equal(
+      @expected_search_modifier,
+      actual
+    )
+  end
+
+  def test_get_tail()
+    actual = @request.get_tail()
+    assert_equal(
+      @expected_tail,
+      actual
+    )
   end
 
   def test_build_request_for()
-    #search_form
     from          = []
     to            = []
     departing_at  = []
 
-    from << 'CUU'
-    to << 'SFO'
-    departing_at << (DateTime.now >> 1)
+    from << 'DFW'
+    to << 'CDG'
+    departing_at << (Date.new(2017,07,10))
 
-    passenger   = Passenger.new(:adults, 25)
+    passenger1  = Passenger.new(:adults, 90)
+    passenger2  = Passenger.new(:adults, 38)
+    passenger3  = Passenger.new(:children, 4)
+    passenger4  = Passenger.new(:children, 10)
     builder     = SearchForm::Builder.new
     search_form = builder
                       .from( from )
@@ -142,12 +171,15 @@ class Farandula::TravelportRequestTest < Minitest::Test
                       .departing_at( departing_at)
                       .type(:oneway)
                       .with_cabin_class( :economy)
-                      .with_passenger( passenger )
-                      .limited_results_to( 2 )
+                      .with_passenger( passenger1 )
+                      .with_passenger( passenger2 )
+                      .with_passenger( passenger3 )
+                      .with_passenger( passenger4 )
+                      .limited_results_to( 50 )
                       .build!(false)
 
     
-    requestXML = @request.build_request_for!(search_form, 'P0000')
+    actual = @request.build_request_for!(search_form, 'P105356')
 
     expected_request =  @expected_head + "\n" +
                         @expected_airleg + "\n" +
@@ -155,8 +187,10 @@ class Farandula::TravelportRequestTest < Minitest::Test
                         @expected_search_modifier + "\n" +
                         @expected_tail
 
-    puts requestXML
-    
+    assert_equal(
+      expected_request,
+      actual
+    )
   end
 
 end
