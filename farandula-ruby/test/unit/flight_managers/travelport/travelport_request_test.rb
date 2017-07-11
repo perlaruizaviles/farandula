@@ -227,8 +227,5 @@ class Farandula::TravelportRequestTest < Minitest::Test
     flight_manager = TravelportFlightManager.new
     result = flight_manager.get_avail search_form
     refute_nil result, 'Response returned'
-
   end
-
-
 end

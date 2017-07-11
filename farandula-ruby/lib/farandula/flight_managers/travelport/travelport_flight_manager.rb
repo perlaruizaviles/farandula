@@ -7,8 +7,6 @@ module Farandula
     module Travelport
       class TravelportFlightManager < FlightManager
 
-
-
         def initialize
           @target_url = 'https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService'
           @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml")
@@ -20,9 +18,9 @@ module Farandula
 
           request = Request.new
 
-
           body = request.build_request_for! search_form
-          puts "BODY: #{body}\n \n"
+          #TODO: implement logger
+
           headers = request.get_headers
           response = RestClient.post(
               @target_url,
@@ -30,12 +28,10 @@ module Farandula
               headers
           )
 
-          puts "response: #{response}\n \n"
+          #TODO: implement logger
           response
 
         end
-        
-
 
       end # ends TravelportFlightManager
     end # ends Travelport
