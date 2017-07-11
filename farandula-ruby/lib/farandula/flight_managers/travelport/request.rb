@@ -42,10 +42,42 @@ module Farandula
 
         end
 
-        private
-        def replace_string(file, params)
-          file % params
+        def get_passengers(passengers={})
+          passengers_xml = File.read(File.dirname(__FILE__)+'/../../assets/travelport/requestPassenger.xml')
+
+          result = passengers.each_key.map { |type|
+
+            passengers[type].each.map { |passenger|
+              map = {
+                  passenger_type: (get_travelport_passenger_code passenger.type),
+                  passenger_age:  passenger.age
+              }
+              replace_string passengers_xml, map
+
+            }
+          }
+          result.join("\n")
         end
+
+        private
+          def replace_string(file, params)
+            file % params
+          end
+
+          def get_travelport_passenger_code(passenger_type)
+            case passenger_type
+              when PassengerType::ADULTS
+                'ADT'
+              when PassengerType::CHILDREN
+                'CHD'
+              when PassengerType::INFANTSONSEAT
+                'INS'
+              when PassengerType::INFANTS
+                'INF'
+              else
+                'ADT'
+            end
+          end
 
       end
     end

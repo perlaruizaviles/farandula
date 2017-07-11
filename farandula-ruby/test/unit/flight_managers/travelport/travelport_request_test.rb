@@ -4,6 +4,7 @@ require 'string_helper'
 require 'minitest/autorun'
 require 'farandula/flight_managers/travelport/request'
 require 'farandula/models/search_form'
+require 'farandula/models/passenger'
 
 class Farandula::TravelportRequestTest < Minitest::Test
   
@@ -102,6 +103,21 @@ class Farandula::TravelportRequestTest < Minitest::Test
 
     assert_equal expected, airleg_result
 
+  end
+
+  def test_get_passengers
+    passengers_map = {
+        :ADULTS     => [Passenger.new(PassengerType::ADULTS, 90), Passenger.new(PassengerType::ADULTS, 38)],
+        :CHILDREN   => [Passenger.new(PassengerType::CHILDREN, 4), Passenger.new(PassengerType::CHILDREN, 10)]
+    }
+    expected = '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="90"/>' + "\n" +
+        '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="ADT" Age="38"/>' + "\n" +
+        '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="4"/>' + "\n" +
+        '<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="CHD" Age="10"/>'
+
+    result = @request.get_passengers passengers_map
+    
+    assert_equal expected, result
   end
 
 end

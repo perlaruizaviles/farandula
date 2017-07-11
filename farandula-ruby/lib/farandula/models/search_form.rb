@@ -74,9 +74,7 @@ module Farandula
 
       #  TODO handle passenger buidling 
       def with_passenger(passenger)
-        if @search_form.passengers[passenger.type].nil?
-          @search_form.passengers[passenger.type] =  []
-        end
+        @search_form.passengers[passenger.type] ||= []
         @search_form.passengers[passenger.type] << passenger
         self
       end
