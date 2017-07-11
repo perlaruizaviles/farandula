@@ -1,5 +1,6 @@
 require_relative '../flight_manager.rb'
 require 'rest-client'
+require 'nokogiri'
 require_relative 'request'
 
 module Farandula
@@ -15,7 +16,6 @@ module Farandula
         end
 
         def get_avail(search_form)
-
           request = Request.new
 
           body = request.build_request_for! search_form
