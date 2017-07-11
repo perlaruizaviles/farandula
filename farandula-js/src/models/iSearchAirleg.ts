@@ -3,5 +3,5 @@ export interface ISearchAirleg {
   returningDate?: string
   departureAirport: string
   arrivalAirport: string
-  preferenceClass: string
+  cabinClass: CabinClassType
 }

@@ -9,21 +9,17 @@ export class TravelPortFlightConnector implements IFlightConnector {
   targetBranch = 'P105356'
   url: string = 'https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService'
 
-  public getAvailableFlights:any
-
-  constructor(flightType:string){
-    switch(flightType) {
+  public getAvailableFlights(flightSearchCommand:FlightSearchCommand, callback:any): Itinerary {
+    let _flightSearchCommand = flightSearchCommand
+    switch(_flightSearchCommand.getType()) {
       case 'oneWay': 
-        this.getAvailableFlights = this.getOneWay
-        break;
+        return this.getOneWay(_flightSearchCommand, callback)
       case 'roundTrip': 
-        this.getAvailableFlights = this.getRoundTrip
-        break;
+        return this.getRoundTrip(_flightSearchCommand, callback)
       case 'multicity':
-        this.getAvailableFlights = this.getMultiCity
-        break;
+        return this.getMultiCity(_flightSearchCommand, callback)
       default: 
-        throw new Error("type\'"+flightType+"\' not found")
+        throw new Error("type \'"+_flightSearchCommand.getType+"\' not found")
     }
   }
 	
@@ -55,41 +51,40 @@ export class TravelPortFlightConnector implements IFlightConnector {
 	}
 
   private getOneWay(flightSearchCommand:FlightSearchCommand, callback:any): any {
-    var _flightSearchCommand = new FlightSearchCommand(flightSearchCommand)
+    var _flightSearchCommand = flightSearchCommand
     var request = this.getHeadRequest()
-    + this.getAirlegRequest(_flightSearchCommand.searchAirleg[0])
+    + this.getAirlegRequest(_flightSearchCommand.getAirleg(0))
     + this.getAirSearchModifiers(2)
-    + this.getPassengerRequestSection(_flightSearchCommand.passengers)
+    + this.getPassengerRequestSection(_flightSearchCommand.getPassengers())
     + this.getAirPricingModifiers('USD')
     + this.getTailRequest()
     this.execRequest(request, callback)
   }
 
   private getRoundTrip(flightSearchCommand:FlightSearchCommand, callback:any): any {
-    var _flightSearchCommand = new FlightSearchCommand(flightSearchCommand)
-    var departureAirleg:ISearchAirleg = _flightSearchCommand.searchAirleg[0]
+    var _flightSearchCommand = flightSearchCommand
 
     var request = this.getHeadRequest()
-      + this.getRoundAirlegRequest(_flightSearchCommand.searchAirleg[0])
+      + this.getRoundAirlegRequest(_flightSearchCommand.getAirleg(0))
       + this.getAirSearchModifiers(2)
-      + this.getPassengerRequestSection(_flightSearchCommand.passengers)
-      + this.getAirPricingModifiers(_flightSearchCommand.currency)
+      + this.getPassengerRequestSection(_flightSearchCommand.getPassengers())
+      + this.getAirPricingModifiers(_flightSearchCommand.getCurrency())
       + this.getTailRequest()
     
     return this.execRequest(request, callback)
   }
 
   private getMultiCity(flightSearchCommand:FlightSearchCommand, callback:any): any {
-    var _flightSearchCommand = new FlightSearchCommand(flightSearchCommand)
+    var _flightSearchCommand = flightSearchCommand
     var request = this.getHeadRequest()
-      
-    for (let depDate of _flightSearchCommand.searchAirleg) {
+    
+    for (let depDate of _flightSearchCommand.getAllAirlegs()) {
       request += this.getAirlegRequest(depDate)
     }
 
     request += this.getAirSearchModifiers(2)
-      + this.getPassengerRequestSection(_flightSearchCommand.passengers)
-      + this.getAirPricingModifiers(_flightSearchCommand.currency)
+      + this.getPassengerRequestSection(_flightSearchCommand.getPassengers())
+      + this.getAirPricingModifiers(_flightSearchCommand.getCurrency())
       + this.getTailRequest()
 
     return this.execRequest(request, callback)
@@ -121,7 +116,7 @@ export class TravelPortFlightConnector implements IFlightConnector {
                 <air:SearchDepTime PreferredTime="${searchAirleg.departureDate}" />
                 <air:AirLegModifiers>
                     <air:PreferredCabins>
-                        <com:CabinClass xmlns:com="http://www.travelport.com/schema/common_v34_0" Type="${searchAirleg.preferenceClass}" />
+                        <com:CabinClass xmlns:com="http://www.travelport.com/schema/common_v34_0" Type="${searchAirleg.cabinClass}" />
                     </air:PreferredCabins>
                 </air:AirLegModifiers>
             </air:SearchAirLeg>`
@@ -138,7 +133,7 @@ export class TravelPortFlightConnector implements IFlightConnector {
                 <air:SearchDepTime PreferredTime="${searchAirlegs.departureDate}" />
                 <air:AirLegModifiers>
                     <air:PreferredCabins>
-                        <com:CabinClass xmlns:com="http://www.travelport.com/schema/common_v34_0" Type="${searchAirlegs.preferenceClass}" />
+                        <com:CabinClass xmlns:com="http://www.travelport.com/schema/common_v34_0" Type="${searchAirlegs.cabinClass}" />
                     </air:PreferredCabins>
                 </air:AirLegModifiers>
             </air:SearchAirLeg>
@@ -152,7 +147,7 @@ export class TravelPortFlightConnector implements IFlightConnector {
                 <air:SearchDepTime PreferredTime="${searchAirlegs.returningDate}" />
                 <air:AirLegModifiers>
                     <air:PreferredCabins>
-                        <com:CabinClass xmlns:com="http://www.travelport.com/schema/common_v34_0" Type="${searchAirlegs.preferenceClass}" />
+                        <com:CabinClass xmlns:com="http://www.travelport.com/schema/common_v34_0" Type="${searchAirlegs.cabinClass}" />
                     </air:PreferredCabins>
                 </air:AirLegModifiers>
             </air:SearchAirLeg>`
