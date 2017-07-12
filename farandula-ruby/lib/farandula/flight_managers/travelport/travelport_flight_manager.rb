@@ -11,6 +11,8 @@ module Farandula
 
         Farandula::FlightManagers::Travelport
 
+        attr_reader :flight_details
+
         def initialize
           @target_url = 'https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService'
           @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml")
@@ -33,9 +35,9 @@ module Farandula
               headers
           )
 
-          fill_flight_details! Nokogiri::XML(response)
+          fill_flight_details! Nokogiri::XML(response).remove_namespaces!
 
-          puts @flight_details
+          #puts @flight_details
 
           #TODO: implement logger
           response
@@ -46,9 +48,9 @@ module Farandula
 
         def fill_flight_details!( response )
 
-          detail_list = response.xpath("//air:FlightDetails", "air" => "http://www.travelport.com/schema/air_v34_0")
+          detail_list = response.xpath("//FlightDetails")
 
-          detail_list.each_with_index do |fd_node, i|
+          detail_list.each do |fd_node|
 
             attrs = fd_node.attributes
 

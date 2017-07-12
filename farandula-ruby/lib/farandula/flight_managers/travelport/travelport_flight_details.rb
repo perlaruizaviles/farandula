@@ -4,7 +4,7 @@ module Farandula
       class TravelportFlightDetails
 
         attr_reader :key,
-                    :original_terminal,
+                    :origin_terminal,
                     :destination_terminal,
                     :flight_time,
                     :equipment,
@@ -12,7 +12,7 @@ module Farandula
 
         def initialize(
           key=nil,
-          original_terminal=nil,
+          origin_terminal=nil,
           destination_terminal=nil,
           flight_time=nil,
           equipment=nil,
@@ -20,7 +20,7 @@ module Farandula
         )
 
           @key                  = key
-          @original_terminal    = original_terminal
+          @origin_terminal    = origin_terminal
           @destination_terminal = destination_terminal
           @flight_time          = flight_time
           @equipment            = equipment
