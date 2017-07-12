@@ -1,0 +1,1983 @@
+<?xml version="1.0" encoding="UTF-8"?><SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP:Body>
+        <air:LowFareSearchRsp xmlns:air="http://www.travelport.com/schema/air_v34_0" xmlns:common_v34_0="http://www.travelport.com/schema/common_v34_0" TraceId="trace" TransactionId="378AFC0D0A07643CFEFA26DC3724F184" ResponseTime="11978" DistanceUnits="MI" CurrencyType="USD">
+            <common_v34_0:ResponseMessage Code="4039" Type="Warning" ProviderCode="1G">"Result size exceeded the maximum allowable and some results were discarded. It may be necessary to narrow your search using search modifiers."</common_v34_0:ResponseMessage>
+            <air:FlightDetailsList>
+                <air:FlightDetails Key="q1l3w08Q2BKA0pNoAAAAAA==" Origin="DFW" Destination="MEX" DepartureTime="2017-08-12T19:40:00.000-05:00" ArrivalTime="2017-08-12T22:30:00.000-05:00" FlightTime="170" TravelTime="920" Equipment="EMJ" OriginTerminal="D" DestinationTerminal="2"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA2pNoAAAAAA==" Origin="MEX" Destination="CDG" DepartureTime="2017-08-12T23:55:00.000-05:00" ArrivalTime="2017-08-13T18:00:00.000+02:00" FlightTime="665" TravelTime="920" Equipment="789" OriginTerminal="2" DestinationTerminal="2E"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA4pNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T07:00:00.000-05:00" ArrivalTime="2017-09-12T08:15:00.000-05:00" FlightTime="75" TravelTime="75" Equipment="738" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA6pNoAAAAAA==" Origin="SFO" Destination="GDL" DepartureTime="2017-10-12T23:56:00.000-07:00" ArrivalTime="2017-10-13T05:57:00.000-05:00" FlightTime="241" TravelTime="782" Equipment="738" OriginTerminal="I" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA8pNoAAAAAA==" Origin="GDL" Destination="MEX" DepartureTime="2017-10-13T09:53:00.000-05:00" ArrivalTime="2017-10-13T11:20:00.000-05:00" FlightTime="87" TravelTime="782" Equipment="737" OriginTerminal="1" DestinationTerminal="2"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA+pNoAAAAAA==" Origin="MEX" Destination="HMO" DepartureTime="2017-10-13T12:05:00.000-05:00" ArrivalTime="2017-10-13T12:58:00.000-07:00" FlightTime="173" TravelTime="782" Equipment="737" OriginTerminal="2"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAqqNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T09:05:00.000-05:00" ArrivalTime="2017-09-12T10:20:00.000-05:00" FlightTime="75" TravelTime="75" Equipment="737" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA5qNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T08:00:00.000-05:00" ArrivalTime="2017-09-12T09:17:00.000-05:00" FlightTime="77" TravelTime="77" Equipment="738" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAIrNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T20:30:00.000-05:00" ArrivalTime="2017-09-12T21:47:00.000-05:00" FlightTime="77" TravelTime="77" Equipment="738" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAXrNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T10:55:00.000-05:00" ArrivalTime="2017-09-12T12:13:00.000-05:00" FlightTime="78" TravelTime="78" Equipment="738" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAmrNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T12:00:00.000-05:00" ArrivalTime="2017-09-12T13:18:00.000-05:00" FlightTime="78" TravelTime="78" Equipment="738" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA1rNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T14:50:00.000-05:00" ArrivalTime="2017-09-12T16:08:00.000-05:00" FlightTime="78" TravelTime="78" Equipment="737" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAEsNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T16:05:00.000-05:00" ArrivalTime="2017-09-12T17:23:00.000-05:00" FlightTime="78" TravelTime="78" Equipment="737" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKATsNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T18:00:00.000-05:00" ArrivalTime="2017-09-12T19:18:00.000-05:00" FlightTime="78" TravelTime="78" Equipment="737" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAaqNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T21:00:00.000-05:00" ArrivalTime="2017-09-12T22:18:00.000-05:00" FlightTime="78" TravelTime="78" Equipment="738" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAvsNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T13:50:00.000-05:00" ArrivalTime="2017-09-12T15:11:00.000-05:00" FlightTime="81" TravelTime="81" Equipment="738" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA+sNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T13:10:00.000-05:00" ArrivalTime="2017-09-12T14:32:00.000-05:00" FlightTime="82" TravelTime="82" Equipment="EMJ" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKANtNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T17:00:00.000-05:00" ArrivalTime="2017-09-12T18:22:00.000-05:00" FlightTime="82" TravelTime="82" Equipment="EMJ" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKActNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T19:10:00.000-05:00" ArrivalTime="2017-09-12T20:32:00.000-05:00" FlightTime="82" TravelTime="82" Equipment="EMJ" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKArtNoAAAAAA==" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T22:00:00.000-05:00" ArrivalTime="2017-09-12T23:37:00.000-05:00" FlightTime="97" TravelTime="97" Equipment="EMJ" OriginTerminal="2" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA6tNoAAAAAA==" Origin="GDL" Destination="MEX" DepartureTime="2017-10-13T08:53:00.000-05:00" ArrivalTime="2017-10-13T10:15:00.000-05:00" FlightTime="82" TravelTime="782" Equipment="738" OriginTerminal="1" DestinationTerminal="2"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAeqNoAAAAAA==" Origin="GDL" Destination="MEX" DepartureTime="2017-10-13T12:58:00.000-05:00" ArrivalTime="2017-10-13T14:25:00.000-05:00" FlightTime="87" TravelTime="1018" Equipment="EMJ" OriginTerminal="1" DestinationTerminal="2"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAhqNoAAAAAA==" Origin="MEX" Destination="HMO" DepartureTime="2017-10-13T16:05:00.000-05:00" ArrivalTime="2017-10-13T16:54:00.000-07:00" FlightTime="169" TravelTime="1018" Equipment="737" OriginTerminal="2"/>
+            </air:FlightDetailsList>
+            <air:AirSegmentList>
+                <air:AirSegment Key="q1l3w08Q2BKAzpNoAAAAAA==" Group="0" Carrier="AM" FlightNumber="2683" Origin="DFW" Destination="MEX" DepartureTime="2017-08-12T19:40:00.000-05:00" ArrivalTime="2017-08-12T22:30:00.000-05:00" FlightTime="170" Distance="944" ETicketability="Yes" Equipment="EMJ" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo>AEROLITORAL DBA AEROMEXICO CONNECT</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA0pNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA1pNoAAAAAA==" Group="0" Carrier="AM" FlightNumber="3" Origin="MEX" Destination="CDG" DepartureTime="2017-08-12T23:55:00.000-05:00" ArrivalTime="2017-08-13T18:00:00.000+02:00" FlightTime="665" Distance="5735" ETicketability="Yes" Equipment="789" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA2pNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA3pNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="100" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T07:00:00.000-05:00" ArrivalTime="2017-09-12T08:15:00.000-05:00" FlightTime="75" Distance="272" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA4pNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA5pNoAAAAAA==" Group="2" Carrier="AM" FlightNumber="663" Origin="SFO" Destination="GDL" DepartureTime="2017-10-12T23:56:00.000-07:00" ArrivalTime="2017-10-13T05:57:00.000-05:00" FlightTime="241" Distance="1644" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA6pNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA7pNoAAAAAA==" Group="2" Carrier="AM" FlightNumber="107" Origin="GDL" Destination="MEX" DepartureTime="2017-10-13T09:53:00.000-05:00" ArrivalTime="2017-10-13T11:20:00.000-05:00" FlightTime="87" Distance="272" ETicketability="Yes" Equipment="737" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA8pNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA9pNoAAAAAA==" Group="2" Carrier="AM" FlightNumber="712" Origin="MEX" Destination="HMO" DepartureTime="2017-10-13T12:05:00.000-05:00" ArrivalTime="2017-10-13T12:58:00.000-07:00" FlightTime="173" Distance="997" ETicketability="Yes" Equipment="737" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA+pNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKApqNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="120" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T09:05:00.000-05:00" ArrivalTime="2017-09-12T10:20:00.000-05:00" FlightTime="75" Distance="272" ETicketability="Yes" Equipment="737" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAqqNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA4qNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="276" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T08:00:00.000-05:00" ArrivalTime="2017-09-12T09:17:00.000-05:00" FlightTime="77" Distance="272" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA5qNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAHrNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="466" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T20:30:00.000-05:00" ArrivalTime="2017-09-12T21:47:00.000-05:00" FlightTime="77" Distance="272" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAIrNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAWrNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="108" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T10:55:00.000-05:00" ArrivalTime="2017-09-12T12:13:00.000-05:00" FlightTime="78" Distance="272" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAXrNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAlrNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="156" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T12:00:00.000-05:00" ArrivalTime="2017-09-12T13:18:00.000-05:00" FlightTime="78" Distance="272" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAmrNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA0rNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="228" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T14:50:00.000-05:00" ArrivalTime="2017-09-12T16:08:00.000-05:00" FlightTime="78" Distance="272" ETicketability="Yes" Equipment="737" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA1rNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKADsNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="252" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T16:05:00.000-05:00" ArrivalTime="2017-09-12T17:23:00.000-05:00" FlightTime="78" Distance="272" ETicketability="Yes" Equipment="737" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAEsNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKASsNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="126" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T18:00:00.000-05:00" ArrivalTime="2017-09-12T19:18:00.000-05:00" FlightTime="78" Distance="272" ETicketability="Yes" Equipment="737" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKATsNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAZqNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="160" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T21:00:00.000-05:00" ArrivalTime="2017-09-12T22:18:00.000-05:00" FlightTime="78" Distance="272" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAaqNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAusNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="214" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T13:50:00.000-05:00" ArrivalTime="2017-09-12T15:11:00.000-05:00" FlightTime="81" Distance="272" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAvsNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA9sNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="286" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T13:10:00.000-05:00" ArrivalTime="2017-09-12T14:32:00.000-05:00" FlightTime="82" Distance="272" ETicketability="Yes" Equipment="EMJ" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo>AEROLITORAL DBA AEROMEXICO CONNECT</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA+sNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAMtNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="224" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T17:00:00.000-05:00" ArrivalTime="2017-09-12T18:22:00.000-05:00" FlightTime="82" Distance="272" ETicketability="Yes" Equipment="EMJ" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo>AEROLITORAL DBA AEROMEXICO CONNECT</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKANtNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAbtNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="128" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T19:10:00.000-05:00" ArrivalTime="2017-09-12T20:32:00.000-05:00" FlightTime="82" Distance="272" ETicketability="Yes" Equipment="EMJ" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo>AEROLITORAL DBA AEROMEXICO CONNECT</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKActNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAqtNoAAAAAA==" Group="1" Carrier="AM" FlightNumber="186" Origin="MEX" Destination="GDL" DepartureTime="2017-09-12T22:00:00.000-05:00" ArrivalTime="2017-09-12T23:37:00.000-05:00" FlightTime="97" Distance="272" ETicketability="Yes" Equipment="EMJ" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo>AEROLITORAL DBA AEROMEXICO CONNECT</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKArtNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA5tNoAAAAAA==" Group="2" Carrier="AM" FlightNumber="225" Origin="GDL" Destination="MEX" DepartureTime="2017-10-13T08:53:00.000-05:00" ArrivalTime="2017-10-13T10:15:00.000-05:00" FlightTime="82" Distance="272" ETicketability="Yes" Equipment="738" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA6tNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAdqNoAAAAAA==" Group="2" Carrier="AM" FlightNumber="105" Origin="GDL" Destination="MEX" DepartureTime="2017-10-13T12:58:00.000-05:00" ArrivalTime="2017-10-13T14:25:00.000-05:00" FlightTime="87" Distance="272" ETicketability="Yes" Equipment="EMJ" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo>AEROLITORAL DBA AEROMEXICO CONNECT</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAeqNoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAgqNoAAAAAA==" Group="2" Carrier="AM" FlightNumber="706" Origin="MEX" Destination="HMO" DepartureTime="2017-10-13T16:05:00.000-05:00" ArrivalTime="2017-10-13T16:54:00.000-07:00" FlightTime="169" Distance="997" ETicketability="Yes" Equipment="737" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAhqNoAAAAAA=="/>
+                </air:AirSegment>
+            </air:AirSegmentList>
+            <air:FareInfoList>
+                <air:FareInfo Key="q1l3w08Q2BKAIqNoAAAAAA==" FareBasis="IONNL0PM" PassengerTypeCode="ADT" Origin="DFW" Destination="MEX" EffectiveDate="2017-07-12T17:04:00.000+01:00" DepartureDate="2017-08-12" Amount="USD412.00" NegotiatedFare="false">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG051kDt6POLdTVyDWKw2reO+zQu0ZscBMSQ5KgtYRPan224blHFZlO2TdgsYdTzZyP3kqeWiX4qRS98CIbRqMTJch6v9tEaRJgF5C/YIEuJEelqJH7JsYjGL5fr06N/13ezRW8vSBNa8ZUmwC02UUzMsn5zl7QbIRajRkhORl5Y0+RM85JzK1owZHir5wkVQHOuKXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8DnnUuWXdZ/ivzOoqKdr8JoSJ/HJ9mjemgzpsdKj28selkKfoRXTlgI5JyDRnazR2YnXOpRJLy/Bxbuaf711T9cuVuG0bsK6zw</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKAPqNoAAAAAA==" FareBasis="YOAP" PassengerTypeCode="ADT" Origin="MEX" Destination="CDG" EffectiveDate="2017-07-12T17:04:00.000+01:00" DepartureDate="2017-08-12" Amount="USD2190.00" NegotiatedFare="false">
+                    <air:FareSurcharge Key="q1l3w08Q2BKAQqNoAAAAAA==" Type="Other" Amount="NUC189.00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG050YrFZ2txsEb1wRDlyV2e62GqxwKzgb8d/AuK7iuLTdMg7w/Jw4c0KHgGi31eRm1BKF/oTXxxF6MeJYtF79PC3YfoLT9JoAKrPVW5TpURjX8TJhPzxD7Oc5AoaSrPFp62/qNbjwzJx7oo0sKBvhNXxacp4GLAoC0jLH3MMcrxt1ps869eStP5yQv4Xvb2u1Qx+/he9va7VDH7+F729rtUMfv4Xvb2u1Qx+/he9va7VDHzQapDbCAMr/In8cn2aN6aCXLmrFneovA3Tm1K4WiuAkCcnT3OM2Pe8/uCk6ZI+Bho7ZBDXCHw0MoJJ7EVXf5HLhl+CoPNM+1A==</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKARqNoAAAAAA==" FareBasis="ES3RSL" PassengerTypeCode="ADT" Origin="MEX" Destination="GDL" EffectiveDate="2017-07-12T17:04:00.000+01:00" DepartureDate="2017-09-12" Amount="USD92.00" NegotiatedFare="false" NotValidBefore="2017-09-12" NotValidAfter="2017-09-12">
+                    <air:FareSurcharge Key="q1l3w08Q2BKASqNoAAAAAA==" Type="Other" Amount="NUC40.00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG052fPlyBGOiCtkbZx7ep7SBKeO4T8C+2wZ+3L2JLg1ymXAGWabmN73MubOFeZKVmEq2F/oTXxxF6MeJYtF79PC3YfoLT9JoAKrPVW5TpURjX8TJhPzxD7Oc50HL6K2QP9avqNbjwzJx7oo0sKBvhNXxacp4GLAoC0jIzn951HtudLs869eStP5yQv4Xvb2u1Qx+/he9va7VDH7+F729rtUMfv4Xvb2u1Qx+/he9va7VDHzQapDbCAMr/In8cn2aN6aCXLmrFneovA0cShbxJIajO00Tk5BgBtDHJHEU8SGOEH5pM/QbZp7MgoJJ7EVXf5HLhl+CoPNM+1A==</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKATqNoAAAAAA==" FareBasis="TOLNA0SL" PassengerTypeCode="ADT" Origin="SFO" Destination="GDL" EffectiveDate="2017-07-12T17:04:00.000+01:00" DepartureDate="2017-10-12" Amount="USD157.00" NegotiatedFare="false">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG052fPlyBGOiCtpQoSFN0DVIRbMwTTa/a8U5KgtYRPan22ynho+lLVmxb7Jez5baeMFGSewuWvoBvm8CIbRqMTJch6v9tEaRJgF5C/YIEuJEelqJH7JsYjGL5IP7WvybQVlxW8vSBNa8ZUmnWyFpl55B9b9Gh0V86rTIerSPr3ohY/M85JzK1owZHir5wkVQHOuKXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8DnnUuWXdZ/ivzOoqKdr8JoSJ/HJ9mjemgzpsdKj28selkKfoRXTlgI3G5JOceF9Xxr1hOjr6S6G1buaf711T9cuVuG0bsK6zw</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKAUqNoAAAAAA==" FareBasis="TSSL" PassengerTypeCode="ADT" Origin="GDL" Destination="HMO" EffectiveDate="2017-07-12T17:04:00.000+01:00" DepartureDate="2017-10-13" Amount="USD232.00" NegotiatedFare="false" NotValidBefore="2017-10-13" NotValidAfter="2017-10-13">
+                    <air:FareSurcharge Key="q1l3w08Q2BKAVqNoAAAAAA==" Type="Other" Amount="NUC40.00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG050PoJuQe3EqUsl6KBhmopT1UwtPm3jeGkwV8muvAfNwsiyjm2lFtYcNnspFrnSnqPPq/20RpEmAXlby9IE1rxlSp7GoYpQef1gYmtXMshoI2tc2H8/i1a5szcU/YrbcPbVJ6dYYb68oBzyy/Q52QOiIlQ2zr98lA4RW6v+oszXZxURD5kuaXyEyly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA2+QKPIWaRvqOKPuQR7CSeK3EdbqPPDZRqy0bLZolbZLOU3uZMyD02HEbtA7gQqWcxefEa2GGYlRFI9GpmIZHDEIdY8YgIo/rw==</air:FareRuleKey>
+                </air:FareInfo>
+            </air:FareInfoList>
+            <air:RouteList>
+                <air:Route Key="q1l3w08Q2BKAzyNoAAAAAA==">
+                    <air:Leg Key="q1l3w08Q2BKA/pNoAAAAAA==" Group="0" Origin="DFW" Destination="PAR"/>
+                </air:Route>
+                <air:Route Key="q1l3w08Q2BKA0yNoAAAAAA==">
+                    <air:Leg Key="q1l3w08Q2BKAAqNoAAAAAA==" Group="1" Origin="MEX" Destination="GDL"/>
+                </air:Route>
+                <air:Route Key="q1l3w08Q2BKA1yNoAAAAAA==">
+                    <air:Leg Key="q1l3w08Q2BKABqNoAAAAAA==" Group="2" Origin="SFO" Destination="HMO"/>
+                </air:Route>
+            </air:RouteList>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAypNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H15M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA3pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKACqNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA3pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAoqNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H15M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKApqNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKArqNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKApqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA3qNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H17M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA4qNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA6qNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA4qNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAGrNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H17M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAHrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAJrNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAHrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAVrNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAWrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAYrNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAWrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAkrNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAlrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAnrNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAlrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAzrNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA0rNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA2rNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA0rNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKACsNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKADsNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAFsNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKADsNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKARsNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKASsNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAUsNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKASsNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAgsNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAZqNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAhsNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAZqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAtsNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H21M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAusNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAwsNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAusNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA8sNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H22M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9sNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA/sNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9sNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKALtNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H22M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAMtNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAOtNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAMtNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAatNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H22M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAbtNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAdtNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAbtNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAptNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H37M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqtNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAstNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAqtNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA7pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA4tNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H15M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA3pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA7tNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA3pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAHuNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H15M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKApqNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAIuNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKApqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAUuNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H17M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA4qNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAVuNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA4qNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAhuNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H17M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAHrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAiuNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAHrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAuuNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAWrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAvuNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAWrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA7uNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAlrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA8uNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAlrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAIvNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA0rNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAJvNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA0rNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAVvNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKADsNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAWvNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKADsNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAivNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKASsNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAjvNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKASsNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAvvNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAZqNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAwvNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAZqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA8vNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H21M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAusNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA9vNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAusNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAJwNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H22M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9sNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAKwNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9sNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAWwNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H22M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAMtNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAXwNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAMtNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAjwNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H22M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAbtNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAkwNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAbtNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAwwNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H37M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqtNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT13H2M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAxwNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAqtNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5tNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA9pNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA9wNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H15M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA3pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA+wNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA3pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAKxNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H15M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKApqNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKALxNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKApqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAXxNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H17M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA4qNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAYxNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA4qNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAkxNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H17M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAHrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAlxNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAHrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAxxNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAWrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAyxNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAWrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA+xNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAlrNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA/xNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAlrNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKALyNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA0rNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAMyNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA0rNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAYyNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKADsNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAZyNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKADsNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAlyNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKASsNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAmyNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKASsNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAyyNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68">
+                <air:Journey TravelTime="P0DT15H20M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT1H18M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAZqNoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H58M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKA/pNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAAqNoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKABqNoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAJqNoAAAAAA==" TotalPrice="USD3187.68" BasePrice="USD3083.00" ApproximateTotalPrice="USD3187.68" ApproximateBasePrice="USD3083.00" Taxes="USD104.68" ApproximateTaxes="USD104.68" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKAIqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKATqNoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAUqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAIqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAzpNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA1pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="E" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAZqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKATqNoAAAAAA==" SegmentRef="q1l3w08Q2BKA5pNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAdqNoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="T" BookingCount="2" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAUqNoAAAAAA==" SegmentRef="q1l3w08Q2BKAgqNoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="US" Amount="USD36.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="SFO"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="UK" Amount="USD26.60"/>
+                    <air:TaxInfo Category="XV" Amount="USD26.38"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP /-MEX AM GDL Q40.00 51.50ES3RSL /-SFO AM GDL 157.00TOLNA0SL AM X/MEX AM HMO Q GDLHMO40.00 192.00TSSL NUC3082.50END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:CancelPenalty>
+                        <air:Amount>USD58.00</air:Amount>
+                    </air:CancelPenalty>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+                <air:Connection SegmentIndex="3"/>
+                <air:Connection SegmentIndex="4"/>
+            </air:AirPricingSolution>
+        </air:LowFareSearchRsp>
+    </SOAP:Body>
+</SOAP:Envelope>

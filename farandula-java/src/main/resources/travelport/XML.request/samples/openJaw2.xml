@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="UTF-8"?><SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP:Body>
+        <air:LowFareSearchRsp xmlns:air="http://www.travelport.com/schema/air_v34_0" xmlns:common_v34_0="http://www.travelport.com/schema/common_v34_0" TraceId="trace" TransactionId="379C77F80A07643CFEFA26DCAFB15EFF" ResponseTime="13370" DistanceUnits="MI" CurrencyType="USD">
+            <common_v34_0:ResponseMessage Code="4039" Type="Warning" ProviderCode="1G">"Result size exceeded the maximum allowable and some results were discarded. It may be necessary to narrow your search using search modifiers."</common_v34_0:ResponseMessage>
+            <air:FlightDetailsList>
+                <air:FlightDetails Key="q1l3w08Q2BKAnjdoAAAAAA==" Origin="LAS" Destination="JFK" DepartureTime="2017-08-12T21:55:00.000-07:00" ArrivalTime="2017-08-13T05:50:00.000-04:00" FlightTime="295" TravelTime="295" Equipment="320" OnTimePerformance="90" OriginTerminal="3" DestinationTerminal="4"/>
+                <air:FlightDetails Key="q1l3w08Q2BKApjdoAAAAAA==" Origin="LAX" Destination="HNL" DepartureTime="2017-09-12T07:00:00.000-07:00" ArrivalTime="2017-09-12T10:00:00.000-10:00" FlightTime="360" TravelTime="360" Equipment="332" OnTimePerformance="80" OriginTerminal="5" DestinationTerminal="Z"/>
+                <air:FlightDetails Key="q1l3w08Q2BKArjdoAAAAAA==" Origin="SHA" Destination="GMP" DepartureTime="2017-10-12T18:00:00.000+08:00" ArrivalTime="2017-10-12T21:00:00.000+09:00" FlightTime="120" TravelTime="970" Equipment="333" OriginTerminal="1" DestinationTerminal="I"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAtjdoAAAAAA==" Origin="ICN" Destination="NRT" DepartureTime="2017-10-13T09:00:00.000+09:00" ArrivalTime="2017-10-13T11:10:00.000+09:00" FlightTime="130" TravelTime="970" Equipment="77L" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA2kdoAAAAAA==" Origin="LAX" Destination="HNL" DepartureTime="2017-09-12T18:05:00.000-07:00" ArrivalTime="2017-09-12T21:05:00.000-10:00" FlightTime="360" TravelTime="360" Equipment="332" OnTimePerformance="70" OriginTerminal="5" DestinationTerminal="Z"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAZldoAAAAAA==" Origin="LAX" Destination="HNL" DepartureTime="2017-09-12T10:00:00.000-07:00" ArrivalTime="2017-09-12T13:10:00.000-10:00" FlightTime="370" TravelTime="370" Equipment="332" OnTimePerformance="70" OriginTerminal="5" DestinationTerminal="Z"/>
+                <air:FlightDetails Key="q1l3w08Q2BKA8ldoAAAAAA==" Origin="ICN" Destination="NRT" DepartureTime="2017-10-13T10:00:00.000+09:00" ArrivalTime="2017-10-13T12:10:00.000+09:00" FlightTime="130" TravelTime="1030" Equipment="321" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKAhndoAAAAAA==" Origin="ICN" Destination="NRT" DepartureTime="2017-10-13T15:25:00.000+09:00" ArrivalTime="2017-10-13T17:50:00.000+09:00" FlightTime="145" TravelTime="1370" Equipment="321" DestinationTerminal="1"/>
+                <air:FlightDetails Key="q1l3w08Q2BKADkdoAAAAAA==" Origin="ICN" Destination="NRT" DepartureTime="2017-10-13T18:50:00.000+09:00" ArrivalTime="2017-10-13T21:10:00.000+09:00" FlightTime="140" TravelTime="1570" Equipment="321" DestinationTerminal="1"/>
+            </air:FlightDetailsList>
+            <air:AirSegmentList>
+                <air:AirSegment Key="q1l3w08Q2BKAmjdoAAAAAA==" Group="0" Carrier="VX" FlightNumber="260" Origin="LAS" Destination="JFK" DepartureTime="2017-08-12T21:55:00.000-07:00" ArrivalTime="2017-08-13T05:50:00.000-04:00" FlightTime="295" Distance="2225" ETicketability="Yes" Equipment="320" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="L" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAnjdoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAojdoAAAAAA==" Group="1" Carrier="HA" FlightNumber="1" Origin="LAX" Destination="HNL" DepartureTime="2017-09-12T07:00:00.000-07:00" ArrivalTime="2017-09-12T10:00:00.000-10:00" FlightTime="360" Distance="2553" ETicketability="Yes" Equipment="332" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKApjdoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAqjdoAAAAAA==" Group="2" Carrier="OZ" FlightNumber="3625" Origin="SHA" Destination="GMP" DepartureTime="2017-10-12T18:00:00.000+08:00" ArrivalTime="2017-10-12T21:00:00.000+09:00" FlightTime="120" Distance="525" ETicketability="Yes" Equipment="333" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="No polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="A" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKArjdoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAsjdoAAAAAA==" Group="2" Carrier="OZ" FlightNumber="102" Origin="ICN" Destination="NRT" DepartureTime="2017-10-13T09:00:00.000+09:00" ArrivalTime="2017-10-13T11:10:00.000+09:00" FlightTime="130" Distance="758" ETicketability="Yes" Equipment="77L" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="No polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="A" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAtjdoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA1kdoAAAAAA==" Group="1" Carrier="HA" FlightNumber="9" Origin="LAX" Destination="HNL" DepartureTime="2017-09-12T18:05:00.000-07:00" ArrivalTime="2017-09-12T21:05:00.000-10:00" FlightTime="360" Distance="2553" ETicketability="Yes" Equipment="332" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA2kdoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAYldoAAAAAA==" Group="1" Carrier="HA" FlightNumber="3" Origin="LAX" Destination="HNL" DepartureTime="2017-09-12T10:00:00.000-07:00" ArrivalTime="2017-09-12T13:10:00.000-10:00" FlightTime="370" Distance="2553" ETicketability="Yes" Equipment="332" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAZldoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKA7ldoAAAAAA==" Group="2" Carrier="OZ" FlightNumber="104" Origin="ICN" Destination="NRT" DepartureTime="2017-10-13T10:00:00.000+09:00" ArrivalTime="2017-10-13T12:10:00.000+09:00" FlightTime="130" Distance="758" ETicketability="Yes" Equipment="321" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="No polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="A" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKA8ldoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKAgndoAAAAAA==" Group="2" Carrier="OZ" FlightNumber="106" Origin="ICN" Destination="NRT" DepartureTime="2017-10-13T15:25:00.000+09:00" ArrivalTime="2017-10-13T17:50:00.000+09:00" FlightTime="145" Distance="758" ETicketability="Yes" Equipment="321" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="No polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="A" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKAhndoAAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="q1l3w08Q2BKACkdoAAAAAA==" Group="2" Carrier="OZ" FlightNumber="108" Origin="ICN" Destination="NRT" DepartureTime="2017-10-13T18:50:00.000+09:00" ArrivalTime="2017-10-13T21:10:00.000+09:00" FlightTime="140" Distance="758" ETicketability="Yes" Equipment="321" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="No polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="A" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="q1l3w08Q2BKADkdoAAAAAA=="/>
+                </air:AirSegment>
+            </air:AirSegmentList>
+            <air:FareInfoList>
+                <air:FareInfo Key="q1l3w08Q2BKA2jdoAAAAAA==" FareBasis="MVUN4" PassengerTypeCode="ADT" Origin="LAS" Destination="JFK" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-08-12" Amount="USD331.00" NegotiatedFare="false" NotValidBefore="2017-08-12" NotValidAfter="2017-08-12">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA34HcnFh2Zi8M3ExqSoG052opmM5arCHLA09HBU6yLflQu0ZscBMSQ7AvMKi/VPtciT7QY/nZBUCgGi31eRm1BKF/oTXxxF6MWLgFn3B9sPdTbLfyOqQkjkoW3UNpGWfove1Dq2W8S8jYO9FlwB7O8vqNbjwzJx7ogtvCItYneVBylUI2zDbhk7PMIdESGT/YpfsG9hT/j3bv4qFktJEGPUDi4tOncr2YLwVrt9K3HfiXmtEMKkpnigfxA+19zslRrbH0AOR7LeIgk5FIej5002GBpf0U/nG2I3GqL2j0GkBRRYQSJI7xoGY1z9yQ/ycMjQapDbCAMr/v4Xvb2u1Qx+/he9va7VDH7+F729rtUMfUeheje7bAE8=</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKA7jdoAAAAAA==" FareBasis="ILX0OT" PassengerTypeCode="ADT" Origin="LAX" Destination="HNL" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-09-12" Amount="USD269.00" NegotiatedFare="false" NotValidBefore="2017-09-12" NotValidAfter="2017-09-12">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA/V2qDk5IUAdM3ExqSoG052bX8PUR3vFjbFkUU0SF84683f1UwCbb2XAvMKi/VPtck06lt8KXNWRJ6qK+7m95h4HiUlMU1nRrur/bRGkSYBehf6E18cRejExEdztRzIN6wJwdpmmwZfvddzKpJguQ0zqkp0FEw0raLFPDtAvktx0mrMWOW7buBW+dM4TVIZvsE7zhAwXaHQof+fGfBPEd9G4bSZVcR9MkdqVbhyJ5ABjccvr40e6Z345j2R0DFbuUQG5R5zsYTmYNE6OiasNuMlgCZO/dy3EojdjvpXwVxhQ2KjQgTFDSY6ZF1xP4WDjrjzD4Wdjal2fly5qxZ3qLwOXLmrFneovA5cuasWd6i8DUAh2WcSFc+w=</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKAekdoAAAAAA==" FareBasis="KLOCK" PassengerTypeCode="ADT" Origin="SHA" Destination="GMP" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-10-12" Amount="USD108.00" NegotiatedFare="false">
+                    <air:FareTicketDesignator Value="CH25"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAwPqqYQVjKYKM3ExqSoG051CXzYmWcQEyRjh4vlWtqg2abvfXqtwnkT/yqZm8ZlXA30regipXHaDMs27mIFq5v2F/oTXxxF6MeJYtF79PC3YTbLfyOqQkjnVW5TpURjX8b0Lv6ardHADWTORXHh+GFDqNbjwzJx7oo0sKBvhNXxagChwx7naS9HQ+TDaLomTBJfsG9hT/j3bv4Xvb2u1Qx+/he9va7VDH7+F729rtUMfv4Xvb2u1Qx+/he9va7VDHzQapDbCAMr/In8cn2aN6aCXLmrFneovA8mQgAg+GGXS00Tk5BgBtDG3vjEnj5P2SoYurDpLXqvmOKPuQR7CSeIaczJ2R5jbzCgMXr7PMH/A</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKAjkdoAAAAAA==" FareBasis="KLOKJ" PassengerTypeCode="ADT" Origin="ICN" Destination="NRT" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-10-13" Amount="USD124.00" NegotiatedFare="false">
+                    <air:FareTicketDesignator Value="CH25"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAwPqqYQVjKYKM3ExqSoG051/LuxYWVyv3u1bjuBoMBptbMwTTa/a8U7/yqZm8ZlXAweZvkDppjsF09tX1rBlMQmF/oTXxxF6MeJYtF79PC3YTbLfyOqQkjm7eP3a4bhHZOWG5/LWx17ekYZmz20ObjXqNbjwzJx7oo0sKBvhNXxaO7BZ6luG/1sM1x4PNzPRKpfsG9hT/j3bv4Xvb2u1Qx+/he9va7VDH7+F729rtUMfv4Xvb2u1Qx+/he9va7VDHzQapDbCAMr/In8cn2aN6aCXLmrFneovA8mQgAg+GGXS00Tk5BgBtDGpRS8oC3oT6ge4WDLIEPEVOKPuQR7CSeIaczJ2R5jbzCgMXr7PMH/A</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKALkdoAAAAAA==" FareBasis="MVUN4" PassengerTypeCode="INF" Origin="LAS" Destination="JFK" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-08-12" Amount="USD0.00" NegotiatedFare="false">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA34HcnFh2Zi8M3ExqSoG052opmM5arCHLDJ55QkQmQKPkeqLqw6QHQ9+83GsLGwisx6I0Yq9dLrNZbloL50akhHq/20RpEmAXoX+hNfHEXoxtRxhutzErJPk/LPLS6tQoOV1LgMuvomjYXVTt9Z6KSCDDdUD6r+So1tKdTorvVqeXJPuThgXIvUmRs0QBLqYVTMURFXk0aLEVkEoGig14gVbJzSomMiXDmtA+czAxiLh4mpIyW8IVx++MzbcY3eUzRclpeGFZZyOiYqD1taBKM/kU5XhkmBTQqB4YfnmbIZOv2zRPFa1hnvzOoqKdr8JofwBShF29N4Sv4Xvb2u1Qx+/he9va7VDH3C6Ft4pH9C6</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKAPkdoAAAAAA==" FareBasis="ILX0OT" PassengerTypeCode="INF" Origin="LAX" Destination="HNL" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-09-12" Amount="USD0.00" NegotiatedFare="false" NotValidBefore="2017-09-12" NotValidAfter="2017-09-12">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA/V2qDk5IUAdM3ExqSoG052bX8PUR3vFjTS3xK9NBfdPkeqLqw6QHQ94vRNLVuelXd12Q0v2stSyKkm0qjUEZiuF/oTXxxF6MWLgFn3B9sPdUNprR/h9jc+GBpf0U/nG2Ew8cVxWdoDCjDC3rTjJ9BRDxXO2ZkIT/oMN1QPqv5KjMaNpBxncjSgCcHaZpsGX76g3/nrS97r9D+5fHiOjfdiF/oTXxxF6MRdVAmZB4NevHZNO0IOqY3Z2IR3S0ESs448bDnSSaqGfwcokJsEL1DbW8u2T0L3nTGEnQ1yMHTz1aupfEQCAhWSc0Tc8LgtvHYq+cJFUBzrily5qxZ3qLwOXLmrFneovA5cuasWd6i8D5GwF8kqQiiA=</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKAQkdoAAAAAA==" FareBasis="KLOCK" PassengerTypeCode="INF" Origin="SHA" Destination="GMP" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-10-12" Amount="USD14.00" NegotiatedFare="false">
+                    <air:FareTicketDesignator Value="IN90"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAwPqqYQVjKYKM3ExqSoG051CXzYmWcQEyfzvnEGWqpnVeO4T8C+2wZ8RHrzWZukgthYrCqao0KcgvWQVqDmhjfjq/20RpEmAXlby9IE1rxlSB8gAoHUpUazAugIfNuYDIXPhRb94CQd1j+jXteQj8ufg2BMJ0qOmdTyy/Q52QOiIpKnZFO4lbICJLeRHbwxbC5fx78/bpLCtly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA2+QKPIWaRvqOKPuQR7CSeK3EdbqPPDZRjX+eV5PU6VVmtvuVeuIXHdFanL8pABo0helCVTzOgirtEhwwxJqyK5k1nqnRf3DAORsBfJKkIog</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKARkdoAAAAAA==" FareBasis="KLOKJ" PassengerTypeCode="INF" Origin="ICN" Destination="NRT" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-10-13" Amount="USD17.00" NegotiatedFare="false">
+                    <air:FareTicketDesignator Value="IN90"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAwPqqYQVjKYKM3ExqSoG051/LuxYWVyv3nB7A2ZjPlvlXFa10/BAdWQRHrzWZukgtr0LcbYzVk0+nspFrnSnqPPq/20RpEmAXlby9IE1rxlSB8gAoHUpUazTpgHkBzhsKDI1BC6MASOzrDbPVAWIOmXg2BMJ0qOmdTyy/Q52QOiIXGtFs6pR9GpqvGDGwiNv9Zfx78/bpLCtly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA2+QKPIWaRvqOKPuQR7CSeK3EdbqPPDZRjX+eV5PU6VVmtvuVeuIXHfkMG/IJBAfCa4B1EEPh64BtEhwwxJqyK5k1nqnRf3DAORsBfJKkIog</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKA8jdoAAAAAA==" FareBasis="KLOCK" PassengerTypeCode="ADT" Origin="SHA" Destination="GMP" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-10-12" Amount="USD144.00" NegotiatedFare="false">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAwPqqYQVjKYKM3ExqSoG051CXzYmWcQEye5Q8WbyWSW2abvfXqtwnkT/yqZm8ZlXA30regipXHaDMs27mIFq5v2F/oTXxxF6MeJYtF79PC3YfoLT9JoAKrPVW5TpURjX8b0Lv6ardHADWTORXHh+GFDqNbjwzJx7oo0sKBvhNXxagChwx7naS9EMcuw0N6e2FM869eStP5yQv4Xvb2u1Qx+/he9va7VDH7+F729rtUMfv4Xvb2u1Qx+/he9va7VDHzQapDbCAMr/In8cn2aN6aCXLmrFneovA8mQgAg+GGXS00Tk5BgBtDGhj9NBCK7T+YYurDpLXqvmOKPuQR7CSeIaczJ2R5jbzCgMXr7PMH/A</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="q1l3w08Q2BKA9jdoAAAAAA==" FareBasis="KLOKJ" PassengerTypeCode="ADT" Origin="ICN" Destination="NRT" EffectiveDate="2017-07-12T17:23:00.000+01:00" DepartureDate="2017-10-13" Amount="USD165.00" NegotiatedFare="false">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>0</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAwPqqYQVjKYKM3ExqSoG051/LuxYWVyv3mDqJE2Iol8/bMwTTa/a8U7/yqZm8ZlXAweZvkDppjsF09tX1rBlMQmF/oTXxxF6MeJYtF79PC3YfoLT9JoAKrO7eP3a4bhHZOWG5/LWx17ekYZmz20ObjXqNbjwzJx7oo0sKBvhNXxaO7BZ6luG/1tgKCAl6GM5gc869eStP5yQv4Xvb2u1Qx+/he9va7VDH7+F729rtUMfv4Xvb2u1Qx+/he9va7VDHzQapDbCAMr/In8cn2aN6aCXLmrFneovA8mQgAg+GGXS00Tk5BgBtDHvx8jXL4QAnAe4WDLIEPEVOKPuQR7CSeIaczJ2R5jbzCgMXr7PMH/A</air:FareRuleKey>
+                </air:FareInfo>
+            </air:FareInfoList>
+            <air:RouteList>
+                <air:Route Key="q1l3w08Q2BKAOpdoAAAAAA==">
+                    <air:Leg Key="q1l3w08Q2BKAujdoAAAAAA==" Group="0" Origin="LAS" Destination="NYC"/>
+                </air:Route>
+                <air:Route Key="q1l3w08Q2BKAPpdoAAAAAA==">
+                    <air:Leg Key="q1l3w08Q2BKAvjdoAAAAAA==" Group="1" Origin="LAX" Destination="HNL"/>
+                </air:Route>
+                <air:Route Key="q1l3w08Q2BKAQpdoAAAAAA==">
+                    <air:Leg Key="q1l3w08Q2BKAwjdoAAAAAA==" Group="2" Origin="SHA" Destination="TYO"/>
+                </air:Route>
+            </air:RouteList>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAljdoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H0M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAojdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAxjdoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAIkdoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAakdoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAskdoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA0kdoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H0M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA3kdoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAAldoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAHldoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAPldoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAXldoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAYldoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT16H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAaldoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAjldoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAqldoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAyldoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAsjdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA6ldoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H0M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAojdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT17H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA9ldoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAGmdoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKANmdoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAVmdoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAdmdoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H0M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT17H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAemdoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAnmdoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAumdoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA2mdoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKA+mdoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAYldoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT17H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA/mdoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAIndoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAPndoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAXndoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA7ldoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAfndoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H0M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAojdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT22H50M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgndoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAindoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKArndoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAyndoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA6ndoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKACodoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H0M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT22H50M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgndoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKADodoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAModoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKATodoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAbodoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKA1kdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAjodoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAYldoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT22H50M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAgndoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAkodoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAtodoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA0odoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA8odoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAYldoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAgndoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="q1l3w08Q2BKAEpdoAAAAAA==" TotalPrice="USD4481.40" BasePrice="CNY24410" ApproximateTotalPrice="USD4481.40" ApproximateBasePrice="USD3590.00" EquivalentBasePrice="USD3590.00" Taxes="USD891.40" ApproximateTaxes="USD891.40">
+                <air:Journey TravelTime="P0DT4H55M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P0DT6H0M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAojdoAAAAAA=="/>
+                </air:Journey>
+                <air:Journey TravelTime="P1DT2H10M0S">
+                    <air:AirSegmentRef Key="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:AirSegmentRef Key="q1l3w08Q2BKACkdoAAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="q1l3w08Q2BKAujdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAvjdoAAAAAA=="/>
+                <air:LegRef Key="q1l3w08Q2BKAwjdoAAAAAA=="/>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAFpdoAAAAAA==" TotalPrice="USD1135.20" BasePrice="CNY6180" ApproximateTotalPrice="USD1135.20" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD226.20" ApproximateTaxes="USD226.20" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKACkdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="CN" Amount="USD13.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAMkdoAAAAAA==" TotalPrice="USD44.00" BasePrice="CNY210" ApproximateTotalPrice="USD44.00" ApproximateBasePrice="USD31.00" EquivalentBasePrice="USD31.00" Taxes="USD13.00" ApproximateTaxes="USD13.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKALkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAPkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAQkdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKARkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKALkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAPkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAQkdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKARkdoAAAAAA==" SegmentRef="q1l3w08Q2BKACkdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="YQ" Amount="USD1.80"/>
+                    <air:FareCalc>LAS VX NYC 0.00MVUN4 /-LAX HA HNL 0.00ILX0OT /-SHA OZ SEL 14.18KLOCK/IN90 OZ TYO 16.22KLOKJ/IN90 NUC30.40END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INF" Age="1"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKAfkdoAAAAAA==" TotalPrice="USD1045.00" BasePrice="CNY5660" ApproximateTotalPrice="USD1045.00" ApproximateBasePrice="USD832.00" EquivalentBasePrice="USD832.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAekdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKAjkdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAekdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAjkdoAAAAAA==" SegmentRef="q1l3w08Q2BKACkdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 106.42KLOCK/CH25 OZ TYO 121.71KLOKJ/CH25 NUC818.63END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="q1l3w08Q2BKA3jdoAAAAAA==" TotalPrice="USD1122.00" BasePrice="CNY6180" ApproximateTotalPrice="USD1122.00" ApproximateBasePrice="USD909.00" EquivalentBasePrice="USD909.00" Taxes="USD213.00" ApproximateTaxes="USD213.00" LatestTicketingTime="2017-07-13" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="OZ" ProviderCode="1G">
+                    <air:FareInfoRef Key="q1l3w08Q2BKA2jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA7jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA8jdoAAAAAA=="/>
+                    <air:FareInfoRef Key="q1l3w08Q2BKA9jdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="M" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA2jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAmjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="I" BookingCount="7" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA7jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAojdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA8jdoAAAAAA==" SegmentRef="q1l3w08Q2BKAqjdoAAAAAA=="/>
+                    <air:BookingInfo BookingCode="K" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA9jdoAAAAAA==" SegmentRef="q1l3w08Q2BKACkdoAAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD11.20"/>
+                    <air:TaxInfo Category="BP" Amount="USD25.00"/>
+                    <air:TaxInfo Category="YQ" Amount="USD176.80"/>
+                    <air:FareCalc>LAS VX NYC 325.58MVUN4 /-LAX HA HNL 264.92ILX0OT /-SHA OZ SEL 141.89KLOCK OZ TYO 162.28KLOKJ NUC894.67END ROE6.90652</air:FareCalc>
+                    <air:PassengerType Code="INS" Age="2"/>
+                    <air:ChangePenalty>
+                        <air:Amount>USD200.00</air:Amount>
+                    </air:ChangePenalty>
+                </air:AirPricingInfo>
+                <air:Connection ChangeOfAirport="true" SegmentIndex="2"/>
+            </air:AirPricingSolution>
+        </air:LowFareSearchRsp>
+    </SOAP:Body>
+</SOAP:Envelope>

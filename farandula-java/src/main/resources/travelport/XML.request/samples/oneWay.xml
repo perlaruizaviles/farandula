@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP:Body>
+        <air:LowFareSearchRsp xmlns:air="http://www.travelport.com/schema/air_v34_0" xmlns:common_v34_0="http://www.travelport.com/schema/common_v34_0" TraceId="trace" TransactionId="37A0B7310A07643BE8D907573C43652D" ResponseTime="5576" DistanceUnits="MI" CurrencyType="USD">
+            <common_v34_0:ResponseMessage Code="4039" Type="Warning" ProviderCode="1G">"Result size exceeded the maximum allowable and some results were discarded. It may be necessary to narrow your search using search modifiers."</common_v34_0:ResponseMessage>
+            <air:FlightDetailsList>
+                <air:FlightDetails Key="ZGf7Y07Q2BKA3p0CCAAAAA==" Origin="DFW" Destination="MEX" DepartureTime="2017-08-12T19:40:00.000-05:00" ArrivalTime="2017-08-12T22:30:00.000-05:00" FlightTime="170" TravelTime="2080" Equipment="EMJ" OriginTerminal="D" DestinationTerminal="2"/>
+                <air:FlightDetails Key="ZGf7Y07Q2BKA5p0CCAAAAA==" Origin="MEX" Destination="CDG" DepartureTime="2017-08-13T19:25:00.000-05:00" ArrivalTime="2017-08-14T13:20:00.000+02:00" FlightTime="655" TravelTime="2080" Equipment="388" OriginTerminal="1" DestinationTerminal="2E"/>
+                <air:FlightDetails Key="ZGf7Y07Q2BKARq0CCAAAAA==" Origin="DFW" Destination="MEX" DepartureTime="2017-08-12T12:40:00.000-05:00" ArrivalTime="2017-08-12T15:30:00.000-05:00" FlightTime="170" TravelTime="1340" Equipment="EMJ" OriginTerminal="D" DestinationTerminal="2"/>
+                <air:FlightDetails Key="ZGf7Y07Q2BKATq0CCAAAAA==" Origin="MEX" Destination="CDG" DepartureTime="2017-08-12T23:55:00.000-05:00" ArrivalTime="2017-08-13T18:00:00.000+02:00" FlightTime="665" TravelTime="1340" Equipment="789" OriginTerminal="2" DestinationTerminal="2E"/>
+            </air:FlightDetailsList>
+            <air:AirSegmentList>
+                <air:AirSegment Key="ZGf7Y07Q2BKA2p0CCAAAAA==" Group="0" Carrier="AM" FlightNumber="2683" Origin="DFW" Destination="MEX" DepartureTime="2017-08-12T19:40:00.000-05:00" ArrivalTime="2017-08-12T22:30:00.000-05:00" FlightTime="170" Distance="944" ETicketability="Yes" Equipment="EMJ" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo>AEROLITORAL DBA AEROMEXICO CONNECT</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="ZGf7Y07Q2BKA3p0CCAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="ZGf7Y07Q2BKA4p0CCAAAAA==" Group="0" Carrier="AM" FlightNumber="6103" Origin="MEX" Destination="CDG" DepartureTime="2017-08-13T19:25:00.000-05:00" ArrivalTime="2017-08-14T13:20:00.000+02:00" FlightTime="655" Distance="5735" ETicketability="Yes" Equipment="388" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo OperatingCarrier="AF" OperatingFlightNumber="179">AIR FRANCE</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="ZGf7Y07Q2BKA5p0CCAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="ZGf7Y07Q2BKAQq0CCAAAAA==" Group="0" Carrier="AM" FlightNumber="2689" Origin="DFW" Destination="MEX" DepartureTime="2017-08-12T12:40:00.000-05:00" ArrivalTime="2017-08-12T15:30:00.000-05:00" FlightTime="170" Distance="944" ETicketability="Yes" Equipment="EMJ" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:CodeshareInfo>AEROLITORAL DBA AEROMEXICO CONNECT</air:CodeshareInfo>
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="ZGf7Y07Q2BKARq0CCAAAAA=="/>
+                </air:AirSegment>
+                <air:AirSegment Key="ZGf7Y07Q2BKASq0CCAAAAA==" Group="0" Carrier="AM" FlightNumber="3" Origin="MEX" Destination="CDG" DepartureTime="2017-08-12T23:55:00.000-05:00" ArrivalTime="2017-08-13T18:00:00.000+02:00" FlightTime="665" Distance="5735" ETicketability="Yes" Equipment="789" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="S" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+                    <air:AirAvailInfo ProviderCode="1G"/>
+                    <air:FlightDetailsRef Key="ZGf7Y07Q2BKATq0CCAAAAA=="/>
+                </air:AirSegment>
+            </air:AirSegmentList>
+            <air:FareInfoList>
+                <air:FareInfo Key="ZGf7Y07Q2BKAKq0CCAAAAA==" FareBasis="HONNF0SL" PassengerTypeCode="CNN" Origin="DFW" Destination="MEX" EffectiveDate="2017-07-12T17:27:00.000+01:00" DepartureDate="2017-08-12" Amount="USD311.00" NegotiatedFare="false">
+                    <air:FareTicketDesignator Value="CH00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="ZGf7Y07Q2BKAKq0CCAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG051kDt6POLdTV9vl87huR9ULQu0ZscBMSQ5KgtYRPan22wROVTOBLKCk/sRglRB3Qe4qeWiX4qRS98CIbRqMTJch6v9tEaRJgF5aeijkgxpswqJH7JsYjGL5IP7WvybQVlxW8vSBNa8ZUmwC02UUzMsn5zl7QbIRajSCv7AVK5dP6dMs46uo4gLhir5wkVQHOuKXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8DnnUuWXdZ/ivzOoqKdr8JoSJ/HJ9mjemgzpsdKj28sen1OLjcwWy/+HG5JOceF9XxnXOpRJLy/Bxbuaf711T9cuVuG0bsK6zw</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="ZGf7Y07Q2BKALq0CCAAAAA==" FareBasis="BOKAP" PassengerTypeCode="CNN" Origin="MEX" Destination="CDG" EffectiveDate="2017-07-12T17:27:00.000+01:00" DepartureDate="2017-08-12" Amount="USD1380.00" NegotiatedFare="false">
+                    <air:FareTicketDesignator Value="CH15"/>
+                    <air:FareSurcharge Key="ZGf7Y07Q2BKAMq0CCAAAAA==" Type="Other" Amount="NUC189.00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="ZGf7Y07Q2BKALq0CCAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG050YrFZ2txsEb8RghIkMWiJoGdZstTApXdDAuK7iuLTdMjsSIg2JWHJc9g8h5cF2voYHiUlMU1nRrssiOHFaFMf8hf6E18cRejETbLEjwJ+RtmiNXJuCVeTkcS8WsLHLvBjqkp0FEw0raOCbZ1nsUQQByUyKtLQjyetKqVKlG7CSg7cHhghHI+LHy5YV9dV3U4CXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAzzD4Wdjal2fNB7k5cLzH1XA2bCATsypC7RIcMMSasiuA8Vo7VrDzZig3OhT6wDzkgU5y1XvqInVtEhwwxJqyK5ggPP2brlwpORsBfJKkIog</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="ZGf7Y07Q2BKAAq0CCAAAAA==" FareBasis="HONNF0SL" PassengerTypeCode="ADT" Origin="DFW" Destination="MEX" EffectiveDate="2017-07-12T17:27:00.000+01:00" DepartureDate="2017-08-12" Amount="USD311.00" NegotiatedFare="false">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="ZGf7Y07Q2BKAAq0CCAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG051kDt6POLdTV9vl87huR9ULQu0ZscBMSQ5KgtYRPan22wROVTOBLKCk/sRglRB3Qe4qeWiX4qRS98CIbRqMTJch6v9tEaRJgF5C/YIEuJEelqJH7JsYjGL5IP7WvybQVlxW8vSBNa8ZUmwC02UUzMsn5zl7QbIRajSCv7AVK5dP6c85JzK1owZHir5wkVQHOuKXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8DnnUuWXdZ/ivzOoqKdr8JoSJ/HJ9mjemgzpsdKj28selkKfoRXTlgI3G5JOceF9XxnXOpRJLy/Bxbuaf711T9cuVuG0bsK6zw</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="ZGf7Y07Q2BKABq0CCAAAAA==" FareBasis="BOKAP" PassengerTypeCode="ADT" Origin="MEX" Destination="CDG" EffectiveDate="2017-07-12T17:27:00.000+01:00" DepartureDate="2017-08-12" Amount="USD1590.00" NegotiatedFare="false">
+                    <air:FareSurcharge Key="ZGf7Y07Q2BKACq0CCAAAAA==" Type="Other" Amount="NUC189.00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="ZGf7Y07Q2BKABq0CCAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG050YrFZ2txsEbwHj9H+dhqxZGqxwKzgb8d/AuK7iuLTdMjsSIg2JWHJc9g8h5cF2voYHiUlMU1nRrssiOHFaFMf8hf6E18cRejGVqfCTByZWB2iNXJuCVeTkcS8WsLHLvBjqkp0FEw0raOCbZ1nsUQQByUyKtLQjyeuebNLv4aa+7DQsVF2Q7Xpfy5YV9dV3U4CXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAzzD4Wdjal2fNB7k5cLzH1XA2bCATsypC7RIcMMSasiuA8Vo7VrDzZj7HiVb3hxQGAU5y1XvqInVtEhwwxJqyK5ggPP2brlwpORsBfJKkIog</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="ZGf7Y07Q2BKAjq0CCAAAAA==" FareBasis="IONNL0PM" PassengerTypeCode="CNN" Origin="DFW" Destination="MEX" EffectiveDate="2017-07-12T17:27:00.000+01:00" DepartureDate="2017-08-12" Amount="USD412.00" NegotiatedFare="false">
+                    <air:FareTicketDesignator Value="CH00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="ZGf7Y07Q2BKAjq0CCAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG051kDt6POLdTVyDWKw2reO+zQu0ZscBMSQ5KgtYRPan224blHFZlO2TdgsYdTzZyP3kqeWiX4qRS98CIbRqMTJch6v9tEaRJgF5aeijkgxpswqJH7JsYjGL5fr06N/13ezRW8vSBNa8ZUmwC02UUzMsn5zl7QbIRajRkhORl5Y0+RNMs46uo4gLhir5wkVQHOuKXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8DnnUuWXdZ/ivzOoqKdr8JoSJ/HJ9mjemgzpsdKj28sen1OLjcwWy/+JJyDRnazR2YnXOpRJLy/Bxbuaf711T9cuVuG0bsK6zw</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="ZGf7Y07Q2BKAkq0CCAAAAA==" FareBasis="YOAP" PassengerTypeCode="CNN" Origin="MEX" Destination="CDG" EffectiveDate="2017-07-12T17:27:00.000+01:00" DepartureDate="2017-08-12" Amount="USD1890.00" NegotiatedFare="false">
+                    <air:FareTicketDesignator Value="CH15"/>
+                    <air:FareSurcharge Key="ZGf7Y07Q2BKAlq0CCAAAAA==" Type="Other" Amount="NUC189.00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="ZGf7Y07Q2BKAkq0CCAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG050YrFZ2txsEb1e8tTml6ur5GdZstTApXdDAuK7iuLTdMg7w/Jw4c0KHgGi31eRm1BKF/oTXxxF6MeJYtF79PC3Y84PrlTL+yY3VW5TpURjX8TJhPzxD7Oc5AoaSrPFp62/qNbjwzJx7oo0sKBvhNXxacp4GLAoC0jJ582oBh9jJOhZQDCIIEeLrv4Xvb2u1Qx+/he9va7VDH7+F729rtUMfv4Xvb2u1Qx+/he9va7VDHzQapDbCAMr/In8cn2aN6aCXLmrFneovA3Tm1K4WiuAkCcnT3OM2Pe8HmCwZV/gVHY7ZBDXCHw0MoJJ7EVXf5HLhl+CoPNM+1A==</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="ZGf7Y07Q2BKAZq0CCAAAAA==" FareBasis="IONNL0PM" PassengerTypeCode="ADT" Origin="DFW" Destination="MEX" EffectiveDate="2017-07-12T17:27:00.000+01:00" DepartureDate="2017-08-12" Amount="USD412.00" NegotiatedFare="false">
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="ZGf7Y07Q2BKAZq0CCAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG051kDt6POLdTVyDWKw2reO+zQu0ZscBMSQ5KgtYRPan224blHFZlO2TdgsYdTzZyP3kqeWiX4qRS98CIbRqMTJch6v9tEaRJgF5C/YIEuJEelqJH7JsYjGL5fr06N/13ezRW8vSBNa8ZUmwC02UUzMsn5zl7QbIRajRkhORl5Y0+RM85JzK1owZHir5wkVQHOuKXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8DnnUuWXdZ/ivzOoqKdr8JoSJ/HJ9mjemgzpsdKj28selkKfoRXTlgI5JyDRnazR2YnXOpRJLy/Bxbuaf711T9cuVuG0bsK6zw</air:FareRuleKey>
+                </air:FareInfo>
+                <air:FareInfo Key="ZGf7Y07Q2BKAaq0CCAAAAA==" FareBasis="YOAP" PassengerTypeCode="ADT" Origin="MEX" Destination="CDG" EffectiveDate="2017-07-12T17:27:00.000+01:00" DepartureDate="2017-08-12" Amount="USD2190.00" NegotiatedFare="false">
+                    <air:FareSurcharge Key="ZGf7Y07Q2BKAbq0CCAAAAA==" Type="Other" Amount="NUC189.00"/>
+                    <air:BaggageAllowance>
+                        <air:NumberOfPieces>2</air:NumberOfPieces>
+                        <air:MaxWeight/>
+                    </air:BaggageAllowance>
+                    <air:FareRuleKey FareInfoRef="ZGf7Y07Q2BKAaq0CCAAAAA==" ProviderCode="1G">6UUVoSldxwgTmNHWyKQ7WcbKj3F8T9EyxsqPcXxP0TIjSPOlaHfQe5cuasWd6i8Dly5qxZ3qLwOXLmrFneovA5cuasWd6i8Dly5qxZ3qLwOXLmrFneovAznioI+llHasM3ExqSoG050YrFZ2txsEb1wRDlyV2e62GqxwKzgb8d/AuK7iuLTdMg7w/Jw4c0KHgGi31eRm1BKF/oTXxxF6MeJYtF79PC3YfoLT9JoAKrPVW5TpURjX8TJhPzxD7Oc5AoaSrPFp62/qNbjwzJx7oo0sKBvhNXxacp4GLAoC0jLH3MMcrxt1ps869eStP5yQv4Xvb2u1Qx+/he9va7VDH7+F729rtUMfv4Xvb2u1Qx+/he9va7VDHzQapDbCAMr/In8cn2aN6aCXLmrFneovA3Tm1K4WiuAkCcnT3OM2Pe8/uCk6ZI+Bho7ZBDXCHw0MoJJ7EVXf5HLhl+CoPNM+1A==</air:FareRuleKey>
+                </air:FareInfo>
+            </air:FareInfoList>
+            <air:RouteList>
+                <air:Route Key="ZGf7Y07Q2BKAoq0CCAAAAA==">
+                    <air:Leg Key="ZGf7Y07Q2BKA6p0CCAAAAA==" Group="0" Origin="DFW" Destination="PAR"/>
+                </air:Route>
+            </air:RouteList>
+            <air:AirPricingSolution Key="ZGf7Y07Q2BKA1p0CCAAAAA==" TotalPrice="USD9229.50" BasePrice="USD9085.00" ApproximateTotalPrice="USD9229.50" ApproximateBasePrice="USD9085.00" Taxes="USD144.50" ApproximateTaxes="USD144.50">
+                <air:Journey TravelTime="P1DT10H40M0S">
+                    <air:AirSegmentRef Key="ZGf7Y07Q2BKA2p0CCAAAAA=="/>
+                    <air:AirSegmentRef Key="ZGf7Y07Q2BKA4p0CCAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="ZGf7Y07Q2BKA6p0CCAAAAA=="/>
+                <air:AirPricingInfo Key="ZGf7Y07Q2BKA7p0CCAAAAA==" TotalPrice="USD1929.90" BasePrice="USD1901.00" ApproximateTotalPrice="USD1929.90" ApproximateBasePrice="USD1901.00" Taxes="USD28.90" ApproximateTaxes="USD28.90" LatestTicketingTime="2017-07-15" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="ZGf7Y07Q2BKAAq0CCAAAAA=="/>
+                    <air:FareInfoRef Key="ZGf7Y07Q2BKABq0CCAAAAA=="/>
+                    <air:BookingInfo BookingCode="H" BookingCount="7" CabinClass="Economy" FareInfoRef="ZGf7Y07Q2BKAAq0CCAAAAA==" SegmentRef="ZGf7Y07Q2BKA2p0CCAAAAA=="/>
+                    <air:BookingInfo BookingCode="B" BookingCount="7" CabinClass="Economy" FareInfoRef="ZGf7Y07Q2BKABq0CCAAAAA==" SegmentRef="ZGf7Y07Q2BKA4p0CCAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD5.60"/>
+                    <air:TaxInfo Category="US" Amount="USD18.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="DFW"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="YR" Amount="USD0.80"/>
+                    <air:FareCalc>DFW AM MEX 311.00HONNF0SL AM PAR Q189.00 1401.00BOKAP NUC1901.00END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="ZGf7Y07Q2BKAFq0CCAAAAA==" TotalPrice="USD1719.90" BasePrice="USD1691.00" ApproximateTotalPrice="USD1719.90" ApproximateBasePrice="USD1691.00" Taxes="USD28.90" ApproximateTaxes="USD28.90" LatestTicketingTime="2017-07-15" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="ZGf7Y07Q2BKAKq0CCAAAAA=="/>
+                    <air:FareInfoRef Key="ZGf7Y07Q2BKALq0CCAAAAA=="/>
+                    <air:BookingInfo BookingCode="H" BookingCount="7" CabinClass="Economy" FareInfoRef="ZGf7Y07Q2BKAKq0CCAAAAA==" SegmentRef="ZGf7Y07Q2BKA2p0CCAAAAA=="/>
+                    <air:BookingInfo BookingCode="B" BookingCount="7" CabinClass="Economy" FareInfoRef="ZGf7Y07Q2BKALq0CCAAAAA==" SegmentRef="ZGf7Y07Q2BKA4p0CCAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD5.60"/>
+                    <air:TaxInfo Category="US" Amount="USD18.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="DFW"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="YR" Amount="USD0.80"/>
+                    <air:FareCalc>DFW AM MEX 311.00HONNF0SL/CH00 AM PAR Q189.00 1190.85BOKAP/CH15 NUC1690.85END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:PassengerType Code="CNN"/>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+            </air:AirPricingSolution>
+            <air:AirPricingSolution Key="ZGf7Y07Q2BKAPq0CCAAAAA==" TotalPrice="USD12554.50" BasePrice="USD12410.00" ApproximateTotalPrice="USD12554.50" ApproximateBasePrice="USD12410.00" Taxes="USD144.50" ApproximateTaxes="USD144.50">
+                <air:Journey TravelTime="P0DT22H20M0S">
+                    <air:AirSegmentRef Key="ZGf7Y07Q2BKAQq0CCAAAAA=="/>
+                    <air:AirSegmentRef Key="ZGf7Y07Q2BKASq0CCAAAAA=="/>
+                </air:Journey>
+                <air:LegRef Key="ZGf7Y07Q2BKA6p0CCAAAAA=="/>
+                <air:AirPricingInfo Key="ZGf7Y07Q2BKAUq0CCAAAAA==" TotalPrice="USD2630.90" BasePrice="USD2602.00" ApproximateTotalPrice="USD2630.90" ApproximateBasePrice="USD2602.00" Taxes="USD28.90" ApproximateTaxes="USD28.90" LatestTicketingTime="2017-07-15" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="ZGf7Y07Q2BKAZq0CCAAAAA=="/>
+                    <air:FareInfoRef Key="ZGf7Y07Q2BKAaq0CCAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="ZGf7Y07Q2BKAZq0CCAAAAA==" SegmentRef="ZGf7Y07Q2BKAQq0CCAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="ZGf7Y07Q2BKAaq0CCAAAAA==" SegmentRef="ZGf7Y07Q2BKASq0CCAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD5.60"/>
+                    <air:TaxInfo Category="US" Amount="USD18.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="DFW"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="YR" Amount="USD0.80"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM AM PAR Q189.00 2001.00YOAP NUC2602.00END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                    <air:PassengerType Code="ADT" Age="0"/>
+                </air:AirPricingInfo>
+                <air:AirPricingInfo Key="ZGf7Y07Q2BKAeq0CCAAAAA==" TotalPrice="USD2330.90" BasePrice="USD2302.00" ApproximateTotalPrice="USD2330.90" ApproximateBasePrice="USD2302.00" Taxes="USD28.90" ApproximateTaxes="USD28.90" LatestTicketingTime="2017-07-15" PricingMethod="Guaranteed" ETicketability="Yes" PlatingCarrier="AM" ProviderCode="1G">
+                    <air:FareInfoRef Key="ZGf7Y07Q2BKAjq0CCAAAAA=="/>
+                    <air:FareInfoRef Key="ZGf7Y07Q2BKAkq0CCAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="ZGf7Y07Q2BKAjq0CCAAAAA==" SegmentRef="ZGf7Y07Q2BKAQq0CCAAAAA=="/>
+                    <air:BookingInfo BookingCode="Y" BookingCount="7" CabinClass="Economy" FareInfoRef="ZGf7Y07Q2BKAkq0CCAAAAA==" SegmentRef="ZGf7Y07Q2BKASq0CCAAAAA=="/>
+                    <air:TaxInfo Category="AY" Amount="USD5.60"/>
+                    <air:TaxInfo Category="US" Amount="USD18.00"/>
+                    <air:TaxInfo Category="XF" Amount="USD4.50">
+                        <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="DFW"/>
+                    </air:TaxInfo>
+                    <air:TaxInfo Category="YR" Amount="USD0.80"/>
+                    <air:FareCalc>DFW AM MEX 412.00IONNL0PM/CH00 AM PAR Q189.00 1700.85YOAP/CH15 NUC2301.85END ROE1.0</air:FareCalc>
+                    <air:PassengerType Code="CNN"/>
+                    <air:PassengerType Code="CNN"/>
+                </air:AirPricingInfo>
+                <air:Connection SegmentIndex="0"/>
+            </air:AirPricingSolution>
+        </air:LowFareSearchRsp>
+    </SOAP:Body>
+</SOAP:Envelope>
