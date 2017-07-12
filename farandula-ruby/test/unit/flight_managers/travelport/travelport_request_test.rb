@@ -222,7 +222,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                       .with_passenger( passenger2 )
                       .with_passenger( passenger3 )
                       .with_passenger( passenger4 )
-                      .limited_results_to( 50 )
+                      .limited_results_to( 2 )
                       .build!(false)
     flight_manager = TravelportFlightManager.new
     result = flight_manager.get_avail search_form

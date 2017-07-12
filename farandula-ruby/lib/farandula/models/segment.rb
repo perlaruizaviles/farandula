@@ -50,7 +50,7 @@ module Farandula
       result = ""
       result << "Key #{key}, " \
                 "operating_airline_code #{operating_airline_code}, " \
-                "operating_flight_number #{operating_flight_number}, " \
+                "operating_airline_name #{operating_airline_name}, " \
                 "operating_flight_number #{operating_flight_number}, " \
                 "marketing_airline_code #{marketing_airline_code}, " \
                 "marketing_airline_name #{marketing_airline_name}, " \
