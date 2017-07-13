@@ -8,7 +8,7 @@ module Farandula
       attr_accessor :segments
       attr_accessor :price
 
-      def initalize(
+      def initialize(
         id                      = nil,
         departure_airport_code  = nil,
         departure_date          = nil,
@@ -29,16 +29,13 @@ module Farandula
       end
 
       def to_s
-
-        result = ""
-        result << "id #{id}, " \
-                  "departure_airport_code #{departure_airport_code}, " \
-                  "departure_date #{departure_date}, " \
-                  "arrival_airport_code #{arrival_airport_code}, " \
-                  "arrival_date #{arrival_date}, " \
-                  "segments #{segments.to_s}, " \
-                  "price #{price}."
-
+        "id #{id}, " \
+        "departure_airport_code #{departure_airport_code}, " \
+        "departure_date #{departure_date}, " \
+        "arrival_airport_code #{arrival_airport_code}, " \
+        "arrival_date #{arrival_date}, " \
+        "segments #{segments.to_s}, " \
+        "price #{price}."
       end
   end
   

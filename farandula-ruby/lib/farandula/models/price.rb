@@ -14,8 +14,7 @@ module Farandula
     end 
 
     def to_s
-      result = ""
-      result << "amount #{amount}, currency code #{currency_code}."
+      "amount #{amount}, currency code #{currency_code}."
     end
 
   end  
