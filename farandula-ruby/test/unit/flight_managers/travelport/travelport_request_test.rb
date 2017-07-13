@@ -227,42 +227,9 @@ class Farandula::TravelportRequestTest < Minitest::Test
     flight_manager = TravelportFlightManager.new
     result = flight_manager.get_avail search_form
     refute_nil result, 'Response returned'
-  end
-
-  def test_flight_details
-    from          = []
-    to            = []
-    departing_at  = []
-
-    from << 'DFW'
-    to << 'CDG'
-    departing_at << ((Date.today >> 1))
-
-    passenger1  = Passenger.new(:adults, 90)
-    passenger2  = Passenger.new(:adults, 38)
-    passenger3  = Passenger.new(:children, 4)
-    passenger4  = Passenger.new(:children, 10)
-    builder     = SearchForm::Builder.new
-    search_form = builder
-                      .from( from )
-                      .to( to )
-                      .departing_at( departing_at)
-                      .type(:oneway)
-                      .with_cabin_class( :economy)
-                      .with_passenger( passenger1 )
-                      .with_passenger( passenger2 )
-                      .with_passenger( passenger3 )
-                      .with_passenger( passenger4 )
-                      .limited_results_to( 50 )
-                      .build!(false)
-    flight_manager = TravelportFlightManager.new
-    result = flight_manager.get_avail search_form
-
-
-
-    refute_nil result, 'Response returned'
     assert flight_manager.flight_details.length > 0
-
   end
+
+
 
 end

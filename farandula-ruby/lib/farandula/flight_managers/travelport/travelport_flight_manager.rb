@@ -65,19 +65,20 @@ module Farandula
           solution_node_list = response.xpath('//AirPricingSolution')
           itinerary_list = solution_node_list.map { |solution|
 
-            itinerary = Itinerary.new
+            itinerary          = Itinerary.new
+            itinerary.id       = 'tempID'
             itinerary.air_legs = solution.xpath('Journey').map do |journey|
               airleg = AirLeg.new
-              airleg.segments = journey.xpath('AirSegmentRef').map do |segment_ref|
-                @segments_map[segment_ref.attr('Key').to_s]
+              airleg.segments               = journey.xpath('AirSegmentRef').map do |segment_ref|
+                                                @segments_map[segment_ref.attr('Key').to_s]
               end
               #TODO: Autoincrement ID
               airleg.id                     = '0'
               #
-              airleg.departure_airport_code = airleg.first.departure_airport_code
-              airleg.departure_date         = airleg.first.departure_date
-              airleg.arrival_airport_code   = airleg.last.arrival_airport_code
-              airleg.arrival_date           = airleg.last.arrival_date
+              airleg.departure_airport_code = airleg.segments.first.departure_airport_code
+              airleg.departure_date         = airleg.segments.first.departure_date
+              airleg.arrival_airport_code   = airleg.segments.last.arrival_airport_code
+              airleg.arrival_date           = airleg.segments.last.arrival_date
               airleg
             end
             itinerary
@@ -110,9 +111,9 @@ module Farandula
             segment.arrival_date = segment_node.attr('ArrivalTime').to_s
             segment.duration = segment_node.attr('FlightTime').to_s
             @segments_map[segment.key] = segment
-            puts segment
+
           end
-          puts @segments_map
+
         end
 
 
