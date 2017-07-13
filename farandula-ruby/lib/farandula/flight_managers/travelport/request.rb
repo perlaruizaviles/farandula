@@ -26,26 +26,22 @@ module Farandula
 
 
         def build_request_for!(search_form)
-          request = get_head(@target_branch) + "\n" +
-              get_airlegs(search_form) + "\n" +
-              get_search_modifier(search_form.offset) + "\n" +
-              get_passengers(search_form.passengers) + "\n" +
-              get_tail()
-
-
+          get_head(@target_branch) + "\n" +
+          get_airlegs(search_form) + "\n" +
+          get_search_modifier(search_form.offset) + "\n" +
+          get_passengers(search_form.passengers) + "\n" +
+          get_tail()
         end
 
         def get_head(target_branch)
           str = File.read(File.dirname(__FILE__)+'/../../assets/travelport/requestHeader.xml')
-          replace_string str, {target_branch: target_branch}
+          str = replace_string(str, {target_branch: target_branch})
+          str.gsub!("\r", "")
         end
 
         def get_airlegs(search_form)
-
           str = File.read(File.dirname(__FILE__)+'/../../assets/travelport/requestSearchAirleg.xml')
-
           result = ""
-
           search_form.departure_airport.each_with_index {|leg, i|
 
             map = {
@@ -65,8 +61,7 @@ module Farandula
             } if search_form.roundtrip?
 
           }
-          result
-
+          result.gsub!("\r", "")
         end
 
         def get_passengers(passengers={})
@@ -83,16 +78,18 @@ module Farandula
 
             }
           }
-          result.join("\n")
+          str = result.join("\n")
         end
 
         def get_search_modifier(limit)
           str = File.read(File.dirname(__FILE__) + '/../../assets/travelport/searchModifier.xml')
-          replace_string str, {limit: limit}
+          str = replace_string(str, {limit: limit})
+          str.gsub!("\r", "")
         end
 
-        def get_tail()
-          File.read(File.dirname(__FILE__) + '/../../assets/travelport/requestTail.xml') || "no tail"
+        def get_tail
+          str = File.read(File.dirname(__FILE__) + '/../../assets/travelport/requestTail.xml')
+          str.gsub!("\r","")
         end
 
         private
@@ -117,9 +114,7 @@ module Farandula
 
           def get_auth_encoded
             Base64.encode64("#{@api_key}:#{@api_password}").gsub("\n",'')
-
           end
-
       end
     end
   end
