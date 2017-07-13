@@ -4,14 +4,18 @@ require 'nokogiri'
 require_relative 'request'
 require_relative '../../utils/logger_utils'
 require_relative '../../models/segment'
+require_relative 'travelport_flight_details'
 
 module Farandula
   module FlightManagers
     module Travelport
       class TravelportFlightManager < FlightManager
 
+
         include Farandula
         include Farandula::Utils
+        Farandula::FlightManagers::Travelport
+        attr_reader :flight_details
 
 
         def initialize
@@ -20,6 +24,8 @@ module Farandula
           @logger = Logger.new File.new('farandula-ruby.log', 'w')
           @logger.level = Logger::DEBUG
           @segments_map = {}
+          @flight_details = {}
+
         end
 
         def get_avail(search_form)
@@ -34,6 +40,10 @@ module Farandula
               body,
               headers
           )
+
+          fill_flight_details! Nokogiri::XML(response).remove_namespaces!
+
+          #puts @flight_details
 
           #TODO: implement logger
           puts "RESPONSE \n #{LoggerUtils.get_pretty_xml response, 2} \n END RESPONSE \n"
@@ -76,6 +86,31 @@ module Farandula
         end
 
         def fill_flight_segments segment_node_list
+
+        end
+
+        private
+
+        def fill_flight_details!( response )
+
+          detail_list = response.xpath("//FlightDetails")
+
+          detail_list.each do |fd_node|
+
+            attrs = fd_node.attributes
+
+            current = TravelportFlightDetails.new(
+                attrs["Key"].to_s,
+                attrs["OriginTerminal"].to_s,
+                attrs["DestinationTerminal"].to_s,
+                attrs["FlightTime"].to_s,
+                attrs["Equipment"].to_s,
+                nil
+            )
+
+            @flight_details[current.key] = current
+
+          end
 
         end
 
