@@ -157,7 +157,7 @@ public class JavaFarandulaApplicationTests {
     public void multiCityTest() {
         String departingDate = weekFromToday.toString() + "," + oneMonthFromToday.toString() + "," + twoMonthsFromToday.toString();
         String departingTime = "00:00:00,00:00:00,00:00:00";
-        String departingAirportCodes = "MEX,CUU,LHR";
+        String departingAirportCodes = "MEX,CUU,CDG";
 
         String returnDate = "";
         String returnTime = "";
@@ -167,7 +167,7 @@ public class JavaFarandulaApplicationTests {
         String passenger = "children:0,infants:0,infantsOnSeat:0,adults:2";
 
         String classType = "economy";
-        String limit = "50";
+        String limit = "25";
 
         SearchRequest request = new SearchRequest();
 
