@@ -1,17 +1,17 @@
 module Farandula
-  
+
   module FlightType
     ONEWAY    = :oneway
     ROUNDTRIP = :roundtrip
-    MULTIPLE  = :multiple
+    OPENJAW  = :openjaw
 
-    TYPES = [ONEWAY, ROUNDTRIP, MULTIPLE]
-  end 
+    TYPES = [ONEWAY, ROUNDTRIP, OPENJAW]
+  end
 
 
   module CabinClassType
 
-    ECONOMY         = :economy 
+    ECONOMY         = :economy
     PREMIUM_ECONOMY = :premium_economy
     FIRST           = :first
     BUSINESS        = :business
@@ -29,6 +29,6 @@ module Farandula
 
     TYPES = [ADULTS, CHILDREN, INFANTS, INFANTSONSEAT]
 
-  end 
+  end
 
 end

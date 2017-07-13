@@ -30,8 +30,7 @@ module Farandula
     end 
 
     def to_s
-      result = ""
-      result << "Fares { basePrice= #{base_price} }"
+      "Fares { basePrice= #{base_price} }"
     end
 
   end  

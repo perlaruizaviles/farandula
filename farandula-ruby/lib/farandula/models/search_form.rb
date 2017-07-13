@@ -1,60 +1,62 @@
 require 'farandula/constants'
+require 'farandula/utils/exceptions_helper'
 
-module Farandula 
+module Farandula
 
-  class SearchForm 
-    
+  class SearchForm
+
     include Farandula
+    include Farandula::Utils
 
     attr_accessor :type
     attr_accessor :departure_airport
     attr_accessor :arrival_airport
-    attr_accessor :departing_date 
-    attr_accessor :returning_date 
+    attr_accessor :departing_date
+    attr_accessor :returning_date
     attr_accessor :passengers
     attr_accessor :cabin_class
     attr_accessor :offset
 
     def initialize(
-      departure_airport = [],
-      arrival_airport   = [],
-      departing_date    = [],
-      returning_date    = [],
-      passengers        = {}, 
-      type              = :oneway, 
-      cabin_class       = :economy,
-      offset            = nil
+        departure_airport = [],
+        arrival_airport   = [],
+        departing_date    = [],
+        returning_date    = [],
+        passengers        = {},
+        type              = :oneway,
+        cabin_class       = :economy,
+        offset            = nil
     )
 
       @type               = type
       @departure_airport  = departure_airport
       @arrival_airport    = arrival_airport
-      @departing_date     = departing_date 
-      @returning_date     = returning_date 
+      @departing_date     = departing_date
+      @returning_date     = returning_date
       @passengers         = passengers
       @cabin_class        = cabin_class
       @offset             = offset
-    end 
+    end
 
     def roundtrip?
       @type == :roundtrip
     end
 
-    # Builder helper for Search Form  
-    class Builder 
-    
-      def initialize      
+    # Builder helper for Search Form
+    class Builder
+
+      def initialize
         @search_form = SearchForm.new
       end
 
       def from(from)
         @search_form.departure_airport = @search_form.departure_airport + from
         self
-      end 
-      
+      end
+
       def to(to)
         @search_form.arrival_airport = @search_form.arrival_airport + to
-        self 
+        self
       end
 
       def departing_at(departing_at)
@@ -68,11 +70,11 @@ module Farandula
       end
 
       def type(type)
-        @search_form.type = type 
-        self 
-      end 
+        @search_form.type = type
+        self
+      end
 
-      #  TODO handle passenger buidling 
+      #  TODO handle passenger buidling
       def with_passenger(passenger)
         @search_form.passengers[passenger.type] ||= []
         @search_form.passengers[passenger.type] << passenger
@@ -91,12 +93,12 @@ module Farandula
 
       def in_enconomy_class
         @search_form.cabin_class = :economy
-      end 
-      
+      end
+
       def in_businnes_class
         @search_form.cabin_class = :business
-      end 
-      
+      end
+
       def in_first_class
         @search_form.cabin_class = :first
       end
@@ -104,66 +106,75 @@ module Farandula
 
       def build!(validate = true)
         if validate
-          validate!  
-        end 
+          validate!
+        end
         @search_form
-      end 
+      end
 
-      protected 
-        def validate!
-          
-          check_not_empty!('departure_airport', @search_form.departure_airport)
-          check_not_empty!('arrival_airport', @search_form.arrival_airport)
-          check_not_empty!('departing_date', @search_form.departing_date)
+      protected
+      def validate!
 
-          check_not_nil!('type', @search_form.type)
+        check_not_empty!('departure_airport', @search_form.departure_airport)
+        check_not_empty!('arrival_airport', @search_form.arrival_airport)
+        check_not_empty!('departing_date', @search_form.departing_date)
 
-          if @search_form.roundtrip?
-            check_not_empty!('returning_date', @search_form.returning_date)
-          end 
+        check_not_nil!('type', @search_form.type)
 
-          if !CabinClassType::TYPES.include?(@search_form.cabin_class)
-            raise ValidationError.new("cabin class type [#{@search_form.cabin_class}] not found")
-          end 
+        if @search_form.roundtrip?
+          check_not_empty!('returning_date', @search_form.returning_date)
+        end
 
-          if !FlightType::TYPES.include?(@search_form.type)
-            raise ValidationError.new("flight type [#{@search_form.type}] not found")
-          end 
+        if !CabinClassType::TYPES.include?(@search_form.cabin_class)
+          message = "cabin class type [#{@search_form.cabin_class}] not found"
+          Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
+        end
 
-          valid_departure_date( @search_form.departing_date )
+        if !FlightType::TYPES.include?(@search_form.type)
 
-          if @search_form.roundtrip?
-            valid_returning_date( @search_form)
+          message = "flight type [#{@search_form.type}] not found"
+          Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
+
+        end
+
+        valid_departure_date( @search_form.departing_date )
+
+        if @search_form.roundtrip?
+          valid_returning_date( @search_form)
+        end
+      end
+
+
+      private
+      def check_not_nil!(name , obj)
+
+        if obj.nil?
+          message = "#{name} cannot be nil"
+          Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
+        end
+      end
+
+      def check_not_empty!(name, obj)
+        if obj.empty?
+          message = "#{name} cannot be empty"
+          Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
+
+        end
+      end
+
+      def check_is_string (name, obj)
+        obj.each {| element|
+          if !element.is_a?(String)
+            message = "#{name} has to be of type 'string'"
+            Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
           end
-        end
-        
-
-      private 
-        def check_not_nil!(name , obj) 
-
-          if obj.nil?
-            raise ValidationError.new "#{name} cannot be nil"
-          end 
-        end
-
-        def check_not_empty!(name, obj)
-          if obj.empty?
-            raise ValidationError.new "#{name} cannot be empty"
-          end
-        end
-
-        def check_is_string (name, obj)
-          obj.each {| element|
-            if !element.is_a?(String)
-              raise ValidationError.new "#{name} has to be of type 'string'"
-            end
-          }
-        end
+        }
+      end
 
       def valid_departure_date(departing_dates)
         departing_dates.each {|date_dep|
           if (date_dep <=> DateTime.now) == -1
-            raise ValidationError.new("departing_date can\'t be in the pass")
+            message = "departing_date can\'t be in the pass"
+            Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
           end
         }
       end
@@ -172,7 +183,8 @@ module Farandula
 
         search_form.departing_date.each_with_index do |element,index|
           if (search_form.departing_date[index] <=> search_form.returning_date[index]) == 1
-            raise ValidationError.new("returning_date can't be before departing_date")
+            message = "returning_date can't be before departing_date"
+            Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
           end
         end
 
@@ -181,17 +193,14 @@ module Farandula
     end # Builder ends
 
     def to_s
-
-      result = ""
-      result << "departure_airport #{departure_airport}, " \
-                "arrival_airport #{arrival_airport}, " \
-                "departing_date #{departing_date}, " \
-                "returning_date #{returning_date}, " \
-                "type #{type}, " \
-                "cabin_class #{cabin_class}," \
-                "offset #{offset}." \
-
+      "departure_airport #{departure_airport}, " \
+      "arrival_airport #{arrival_airport}, " \
+      "departing_date #{departing_date}, " \
+      "returning_date #{returning_date}, " \
+      "type #{type}, " \
+      "cabin_class #{cabin_class}," \
+      "offset #{offset}." \
     end
 
   end  # SearchForm ends
-end 
+end
