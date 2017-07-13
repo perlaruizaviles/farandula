@@ -9,6 +9,7 @@ require_relative '../../models/air_leg'
 require_relative 'travelport_flight_details'
 require_relative '../../models/price'
 require_relative '../../models/fares'
+require_relative '../../models/seat'
 
 module Farandula
   module FlightManagers
@@ -61,7 +62,7 @@ module Farandula
         def fill_flight_itineraries! response
           solution_node_list = response.xpath('//AirPricingSolution')
           itinerary_list = solution_node_list.map { |solution|
-
+            get_seats solution
             itinerary          = Itinerary.new
             itinerary.id       = 'tempID'
             itinerary.fares    = parse_fare solution
@@ -98,6 +99,23 @@ module Farandula
           Fares.new(parse_price(base_price_string),
                     parse_price(taxes_string),
                     parse_price(total_price_string))
+        end
+
+        def get_seats solution_node
+          puts "INICIA METODO"
+          pricing_info = solution_node.xpath('AirPricingInfo').first
+          booking_info_list = pricing_info.xpath('BookingInfo')
+          puts "booking info: #{booking_info_list}"
+          booking_info_list.each do |booking|
+            segment = @segments_map[booking.attr('SegmentRef').to_s]
+              puts "ENTRA"
+              booking_count = booking.attr('BookingCount').to_i
+              cabin_class   = booking.attr('CabinClass').to_s
+              booking_count.times do
+                seat = Seat.new(cabin_class, '')
+                @segments_map[booking.attr('SegmentRef').to_s].seats_available << seat
+            end
+          end
         end
 
         def fill_flight_segments! response
