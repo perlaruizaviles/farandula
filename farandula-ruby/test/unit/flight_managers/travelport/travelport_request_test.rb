@@ -155,8 +155,6 @@ class Farandula::TravelportRequestTest < Minitest::Test
   end
 
   def test_build_request_for()
-
-
     from          = []
     to            = []
     departing_at  = []
@@ -230,6 +228,32 @@ class Farandula::TravelportRequestTest < Minitest::Test
     assert flight_manager.flight_details.length > 0
   end
 
+  def test_check_fares
+    response = File.read(File.dirname(__FILE__) + '/../../../assets/travelport/response.xml')
+    flight_manager = TravelportFlightManager.new
+    itinerary_list = flight_manager.parse_response response
 
+    actual_total = itinerary_list[0].fares.total_price.amount
+    expected_total = 6422.40
+
+    actual_base = itinerary_list[0].fares.base_price.amount
+    expected_base = 5554.00
+
+    actual_taxes = itinerary_list[0].fares.taxes_price.amount
+    expected_taxes = 868.40
+
+    actual_total_currency = itinerary_list[0].fares.total_price.currency_code
+    actual_base_currency = itinerary_list[0].fares.base_price.currency_code
+    actual_taxes_currency = itinerary_list[0].fares.taxes_price.currency_code
+    expected_currency_code = "USD"
+
+    assert_equal(expected_total, actual_total)
+    assert_equal(expected_base, actual_base)
+    assert_equal(expected_taxes, actual_taxes)
+
+    assert_equal(expected_currency_code, actual_total_currency)
+    assert_equal(expected_currency_code, actual_base_currency)
+    assert_equal(expected_currency_code, actual_taxes_currency)
+  end
 
 end

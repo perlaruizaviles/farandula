@@ -7,6 +7,8 @@ require_relative '../../models/segment'
 require_relative '../../models/itinerary'
 require_relative '../../models/air_leg'
 require_relative 'travelport_flight_details'
+require_relative '../../models/price'
+require_relative '../../models/fares'
 
 module Farandula
   module FlightManagers
@@ -42,15 +44,11 @@ module Farandula
               body,
               headers
           )
-
-
-
           #puts @flight_details
 
           #TODO: implement logger
           puts "RESPONSE \n #{LoggerUtils.get_pretty_xml response, 2} \n END RESPONSE \n"
           parse_response response
-          response
         end
 
         def parse_response response
@@ -58,7 +56,6 @@ module Farandula
           fill_flight_details! xml_response
           fill_flight_segments! xml_response
           fill_flight_itineraries! xml_response
-
         end
 
         def fill_flight_itineraries! response
@@ -67,6 +64,7 @@ module Farandula
 
             itinerary          = Itinerary.new
             itinerary.id       = 'tempID'
+            itinerary.fares    = parse_fare solution
             itinerary.air_legs = solution.xpath('Journey').map do |journey|
               airleg = AirLeg.new
               airleg.segments               = journey.xpath('AirSegmentRef').map do |segment_ref|
@@ -85,6 +83,21 @@ module Farandula
           }
           puts "HERE IS THE LIST: \n#{itinerary_list}\n LIST END"
           itinerary_list
+        end
+
+        def parse_price price_string
+          currency  = price_string[0..2]
+          amount    = price_string[3..-1]
+          Price.new(amount.to_f, currency)
+        end
+
+        def parse_fare solution_node
+          total_price_string  = solution_node.attr('TotalPrice').to_s if solution_node.to_s.include? 'TotalPrice'
+          base_price_string   = solution_node.attr('BasePrice').to_s if solution_node.to_s.include? 'BasePrice'
+          taxes_string        = solution_node.attr('Taxes').to_s if solution_node.to_s.include? 'Taxes'
+          Fares.new(parse_price(base_price_string),
+                    parse_price(taxes_string),
+                    parse_price(total_price_string))
         end
 
         def fill_flight_segments! response

@@ -1,0 +1,225 @@
+<SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP:Body>
+    <air:LowFareSearchRsp TraceId="trace" TransactionId="3E0B065D0A07643CFEFA26DCE8CF2D4C" ResponseTime="3503" DistanceUnits="MI" CurrencyType="USD" xmlns:air="http://www.travelport.com/schema/air_v34_0" xmlns:common_v34_0="http://www.travelport.com/schema/common_v34_0">
+      <common_v34_0:ResponseMessage Code="4039" Type="Warning" ProviderCode="1G">
+        "Result size exceeded the maximum allowable and some results were
+        discarded. It may be necessary to narrow your search using search
+        modifiers."
+      </common_v34_0:ResponseMessage>
+      <air:FlightDetailsList>
+        <air:FlightDetails Key="q1l3w08Q2BKAJTRZBAAAAA==" Origin="DFW" Destination="ORD" DepartureTime="2017-08-13T17:39:00.000-05:00" ArrivalTime="2017-08-13T20:10:00.000-05:00" FlightTime="151" TravelTime="1096" Equipment="739" OriginTerminal="E" DestinationTerminal="1"/>
+        <air:FlightDetails Key="q1l3w08Q2BKALTRZBAAAAA==" Origin="ORD" Destination="WAW" DepartureTime="2017-08-13T21:25:00.000-05:00" ArrivalTime="2017-08-14T13:30:00.000+02:00" FlightTime="545" TravelTime="1096" Equipment="788" OriginTerminal="5"/>
+        <air:FlightDetails Key="q1l3w08Q2BKANTRZBAAAAA==" Origin="WAW" Destination="CDG" DepartureTime="2017-08-14T16:30:00.000+02:00" ArrivalTime="2017-08-14T18:55:00.000+02:00" FlightTime="145" TravelTime="1096" Equipment="734" DestinationTerminal="1"/>
+        <air:FlightDetails Key="q1l3w08Q2BKAiTRZBAAAAA==" Origin="WAW" Destination="CDG" DepartureTime="2017-08-14T19:55:00.000+02:00" ArrivalTime="2017-08-14T22:20:00.000+02:00" FlightTime="145" TravelTime="1301" Equipment="E75" DestinationTerminal="1"/>
+      </air:FlightDetailsList>
+      <air:AirSegmentList>
+        <air:AirSegment Key="q1l3w08Q2BKAITRZBAAAAA==" Group="0" Carrier="LO" FlightNumber="4352" Origin="DFW" Destination="ORD" DepartureTime="2017-08-13T17:39:00.000-05:00" ArrivalTime="2017-08-13T20:10:00.000-05:00" FlightTime="151" Distance="799" ETicketability="Yes" Equipment="739" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Cached status used. Polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="P" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+          <air:CodeshareInfo OperatingCarrier="UA" OperatingFlightNumber="1524">
+            UNITED AIRLINES INC
+          </air:CodeshareInfo>
+          <air:AirAvailInfo ProviderCode="1G"/>
+          <air:FlightDetailsRef Key="q1l3w08Q2BKAJTRZBAAAAA=="/>
+        </air:AirSegment>
+        <air:AirSegment Key="q1l3w08Q2BKAKTRZBAAAAA==" Group="0" Carrier="LO" FlightNumber="4" Origin="ORD" Destination="WAW" DepartureTime="2017-08-13T21:25:00.000-05:00" ArrivalTime="2017-08-14T13:30:00.000+02:00" FlightTime="545" Distance="4675" ETicketability="Yes" Equipment="788" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Cached status used. Polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="P" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+          <air:AirAvailInfo ProviderCode="1G"/>
+          <air:FlightDetailsRef Key="q1l3w08Q2BKALTRZBAAAAA=="/>
+        </air:AirSegment>
+        <air:AirSegment Key="q1l3w08Q2BKAMTRZBAAAAA==" Group="0" Carrier="LO" FlightNumber="335" Origin="WAW" Destination="CDG" DepartureTime="2017-08-14T16:30:00.000+02:00" ArrivalTime="2017-08-14T18:55:00.000+02:00" FlightTime="145" Distance="830" ETicketability="Yes" Equipment="734" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Cached status used. Polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="P" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+          <air:AirAvailInfo ProviderCode="1G"/>
+          <air:FlightDetailsRef Key="q1l3w08Q2BKANTRZBAAAAA=="/>
+        </air:AirSegment>
+        <air:AirSegment Key="q1l3w08Q2BKAhTRZBAAAAA==" Group="0" Carrier="LO" FlightNumber="333" Origin="WAW" Destination="CDG" DepartureTime="2017-08-14T19:55:00.000+02:00" ArrivalTime="2017-08-14T22:20:00.000+02:00" FlightTime="145" Distance="830" ETicketability="Yes" Equipment="E75" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Cached status used. Polled avail exists" OptionalServicesIndicator="false" AvailabilitySource="P" AvailabilityDisplayType="Fare Shop/Optimal Shop">
+          <air:AirAvailInfo ProviderCode="1G"/>
+          <air:FlightDetailsRef Key="q1l3w08Q2BKAiTRZBAAAAA=="/>
+        </air:AirSegment>
+      </air:AirSegmentList>
+      <air:FareInfoList>
+        <air:FareInfo Key="q1l3w08Q2BKA3TRZBAAAAA==" FareBasis="M1HWRED" PassengerTypeCode="CNN" Origin="DFW" Destination="CDG" EffectiveDate="2017-07-13T23:21:00.000+01:00" DepartureDate="2017-08-13" Amount="USD1190.00" NegotiatedFare="false">
+          <air:FareTicketDesignator Value="CH25"/>
+          <air:BaggageAllowance>
+            <air:NumberOfPieces>
+              1
+            </air:NumberOfPieces>
+            <air:MaxWeight/>
+          </air:BaggageAllowance>
+          <air:FareRuleKey FareInfoRef="q1l3w08Q2BKA3TRZBAAAAA==" ProviderCode="1G">
+            gws-eJxNTkkOwzAIfEw0d8CpXN8c2aU9tFSqWkW55P/PCHYSqYhl0MBAzlmII0UO+c8GrMPzDfsVwCAepd7BnEguYG8XEBHjxY/5c6voGlcOzlhn9xr6nIomL9BRaaeaYem56gw6hF0yoJ1Gg76BE0xfh1bMJI3tsDsfFEX4pxtNNCsD
+          </air:FareRuleKey>
+          <air:Brand Key="q1l3w08Q2BKASURZBAAAAA==" BrandID="12292"/>
+        </air:FareInfo>
+        <air:FareInfo Key="q1l3w08Q2BKAWTRZBAAAAA==" FareBasis="M1HWRED" PassengerTypeCode="ADT" Origin="DFW" Destination="CDG" EffectiveDate="2017-07-13T23:21:00.000+01:00" DepartureDate="2017-08-13" Amount="USD1587.00" NegotiatedFare="false">
+          <air:BaggageAllowance>
+            <air:NumberOfPieces>
+              1
+            </air:NumberOfPieces>
+            <air:MaxWeight/>
+          </air:BaggageAllowance>
+          <air:FareRuleKey FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" ProviderCode="1G">
+            gws-eJxNTssKg0AM/BiZ+yRaVm8rrtFDu4ViES/9/89odrXQkMckEyaJMSolMEgb/6zBp7k/kd8TkKEeU1ogtz6QEG8PkBQ8ZN1fc0LV6KV1Jlf2rFr3TG3wAuuMJ1UMR83JdvASdklFOY0CfYAfGDeHeUybDl057C4XxQD/9AtOmSsB
+          </air:FareRuleKey>
+          <air:Brand Key="q1l3w08Q2BKAUURZBAAAAA==" BrandID="12292"/>
+        </air:FareInfo>
+      </air:FareInfoList>
+      <air:RouteList>
+        <air:Route Key="q1l3w08Q2BKAQURZBAAAAA==">
+          <air:Leg Key="q1l3w08Q2BKAOTRZBAAAAA==" Group="0" Origin="DFW" Destination="PAR"/>
+        </air:Route>
+      </air:RouteList>
+      <air:AirPricingSolution Key="q1l3w08Q2BKAHTRZBAAAAA==" TotalPrice="USD6422.40" BasePrice="USD5554.00" ApproximateTotalPrice="USD6422.40" ApproximateBasePrice="USD5554.00" Taxes="USD868.40" ApproximateTaxes="USD868.40">
+        <air:Journey TravelTime="P0DT18H16M0S">
+          <air:AirSegmentRef Key="q1l3w08Q2BKAITRZBAAAAA=="/>
+          <air:AirSegmentRef Key="q1l3w08Q2BKAKTRZBAAAAA=="/>
+          <air:AirSegmentRef Key="q1l3w08Q2BKAMTRZBAAAAA=="/>
+        </air:Journey>
+        <air:LegRef Key="q1l3w08Q2BKAOTRZBAAAAA=="/>
+        <air:AirPricingInfo Key="q1l3w08Q2BKAPTRZBAAAAA==" TotalPrice="USD1804.10" BasePrice="USD1587.00" ApproximateTotalPrice="USD1804.10" ApproximateBasePrice="USD1587.00" Taxes="USD217.10" ApproximateTaxes="USD217.10" LatestTicketingTime="2017-08-13" PricingMethod="Guaranteed" Refundable="true" ETicketability="Yes" PlatingCarrier="LO" ProviderCode="1G">
+          <air:FareInfoRef Key="q1l3w08Q2BKAWTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="4" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAITRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAKTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAMTRZBAAAAA=="/>
+          <air:TaxInfo Category="AY" Amount="USD5.60"/>
+          <air:TaxInfo Category="US" Amount="USD18.00"/>
+          <air:TaxInfo Category="XF" Amount="USD4.50">
+            <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="ORD"/>
+          </air:TaxInfo>
+          <air:TaxInfo Category="ND" Amount="USD0.10"/>
+          <air:TaxInfo Category="XW" Amount="USD16.20"/>
+          <air:TaxInfo Category="YQ" Amount="USD172.70"/>
+          <air:FareCalc>
+            DFW LO X/CHI LO X/WAW LO PAR 1587.00M1HWRED NUC1587.00END ROE1.0
+          </air:FareCalc>
+          <air:PassengerType Code="ADT" Age="90"/>
+        </air:AirPricingInfo>
+        <air:AirPricingInfo Key="q1l3w08Q2BKAmTRZBAAAAA==" TotalPrice="USD1804.10" BasePrice="USD1587.00" ApproximateTotalPrice="USD1804.10" ApproximateBasePrice="USD1587.00" Taxes="USD217.10" ApproximateTaxes="USD217.10" LatestTicketingTime="2017-08-13" PricingMethod="Guaranteed" Refundable="true" ETicketability="Yes" PlatingCarrier="LO" ProviderCode="1G">
+          <air:FareInfoRef Key="q1l3w08Q2BKAWTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="4" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAITRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAKTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAMTRZBAAAAA=="/>
+          <air:TaxInfo Category="AY" Amount="USD5.60"/>
+          <air:TaxInfo Category="US" Amount="USD18.00"/>
+          <air:TaxInfo Category="XF" Amount="USD4.50">
+            <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="ORD"/>
+          </air:TaxInfo>
+          <air:TaxInfo Category="ND" Amount="USD0.10"/>
+          <air:TaxInfo Category="XW" Amount="USD16.20"/>
+          <air:TaxInfo Category="YQ" Amount="USD172.70"/>
+          <air:FareCalc>
+            DFW LO X/CHI LO X/WAW LO PAR 1587.00M1HWRED NUC1587.00END ROE1.0
+          </air:FareCalc>
+          <air:PassengerType Code="ADT" Age="38"/>
+        </air:AirPricingInfo>
+        <air:AirPricingInfo Key="q1l3w08Q2BKAwTRZBAAAAA==" TotalPrice="USD1407.10" BasePrice="USD1190.00" ApproximateTotalPrice="USD1407.10" ApproximateBasePrice="USD1190.00" Taxes="USD217.10" ApproximateTaxes="USD217.10" LatestTicketingTime="2017-08-13" PricingMethod="Guaranteed" Refundable="true" ETicketability="Yes" PlatingCarrier="LO" ProviderCode="1G">
+          <air:FareInfoRef Key="q1l3w08Q2BKA3TRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="4" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA3TRZBAAAAA==" SegmentRef="q1l3w08Q2BKAITRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA3TRZBAAAAA==" SegmentRef="q1l3w08Q2BKAKTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA3TRZBAAAAA==" SegmentRef="q1l3w08Q2BKAMTRZBAAAAA=="/>
+          <air:TaxInfo Category="AY" Amount="USD5.60"/>
+          <air:TaxInfo Category="US" Amount="USD18.00"/>
+          <air:TaxInfo Category="XF" Amount="USD4.50">
+            <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="ORD"/>
+          </air:TaxInfo>
+          <air:TaxInfo Category="ND" Amount="USD0.10"/>
+          <air:TaxInfo Category="XW" Amount="USD16.20"/>
+          <air:TaxInfo Category="YQ" Amount="USD172.70"/>
+          <air:FareCalc>
+            DFW LO X/CHI LO X/WAW LO PAR 1190.25M1HWRED/CH25 NUC1190.25END
+            ROE1.0
+          </air:FareCalc>
+          <air:PassengerType Code="CNN"/>
+          <air:PassengerType Code="CNN"/>
+        </air:AirPricingInfo>
+        <air:Connection SegmentIndex="0"/>
+        <air:Connection SegmentIndex="1"/>
+      </air:AirPricingSolution>
+      <air:AirPricingSolution Key="q1l3w08Q2BKAFURZBAAAAA==" TotalPrice="USD6422.40" BasePrice="USD5554.00" ApproximateTotalPrice="USD6422.40" ApproximateBasePrice="USD5554.00" Taxes="USD868.40" ApproximateTaxes="USD868.40">
+        <air:Journey TravelTime="P0DT21H41M0S">
+          <air:AirSegmentRef Key="q1l3w08Q2BKAITRZBAAAAA=="/>
+          <air:AirSegmentRef Key="q1l3w08Q2BKAKTRZBAAAAA=="/>
+          <air:AirSegmentRef Key="q1l3w08Q2BKAhTRZBAAAAA=="/>
+        </air:Journey>
+        <air:LegRef Key="q1l3w08Q2BKAOTRZBAAAAA=="/>
+        <air:AirPricingInfo Key="q1l3w08Q2BKAGURZBAAAAA==" TotalPrice="USD1804.10" BasePrice="USD1587.00" ApproximateTotalPrice="USD1804.10" ApproximateBasePrice="USD1587.00" Taxes="USD217.10" ApproximateTaxes="USD217.10" LatestTicketingTime="2017-08-13" PricingMethod="Guaranteed" Refundable="true" ETicketability="Yes" PlatingCarrier="LO" ProviderCode="1G">
+          <air:FareInfoRef Key="q1l3w08Q2BKAWTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="4" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAITRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAKTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAhTRZBAAAAA=="/>
+          <air:TaxInfo Category="AY" Amount="USD5.60"/>
+          <air:TaxInfo Category="US" Amount="USD18.00"/>
+          <air:TaxInfo Category="XF" Amount="USD4.50">
+            <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="ORD"/>
+          </air:TaxInfo>
+          <air:TaxInfo Category="ND" Amount="USD0.10"/>
+          <air:TaxInfo Category="XW" Amount="USD16.20"/>
+          <air:TaxInfo Category="YQ" Amount="USD172.70"/>
+          <air:FareCalc>
+            DFW LO X/CHI LO X/WAW LO PAR 1587.00M1HWRED NUC1587.00END ROE1.0
+          </air:FareCalc>
+          <air:PassengerType Code="ADT" Age="90"/>
+        </air:AirPricingInfo>
+        <air:AirPricingInfo Key="q1l3w08Q2BKAXTRZBAAAAA==" TotalPrice="USD1804.10" BasePrice="USD1587.00" ApproximateTotalPrice="USD1804.10" ApproximateBasePrice="USD1587.00" Taxes="USD217.10" ApproximateTaxes="USD217.10" LatestTicketingTime="2017-08-13" PricingMethod="Guaranteed" Refundable="true" ETicketability="Yes" PlatingCarrier="LO" ProviderCode="1G">
+          <air:FareInfoRef Key="q1l3w08Q2BKAWTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="4" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAITRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAKTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKAWTRZBAAAAA==" SegmentRef="q1l3w08Q2BKAhTRZBAAAAA=="/>
+          <air:TaxInfo Category="AY" Amount="USD5.60"/>
+          <air:TaxInfo Category="US" Amount="USD18.00"/>
+          <air:TaxInfo Category="XF" Amount="USD4.50">
+            <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="ORD"/>
+          </air:TaxInfo>
+          <air:TaxInfo Category="ND" Amount="USD0.10"/>
+          <air:TaxInfo Category="XW" Amount="USD16.20"/>
+          <air:TaxInfo Category="YQ" Amount="USD172.70"/>
+          <air:FareCalc>
+            DFW LO X/CHI LO X/WAW LO PAR 1587.00M1HWRED NUC1587.00END ROE1.0
+          </air:FareCalc>
+          <air:PassengerType Code="ADT" Age="38"/>
+        </air:AirPricingInfo>
+        <air:AirPricingInfo Key="q1l3w08Q2BKA4TRZBAAAAA==" TotalPrice="USD1407.10" BasePrice="USD1190.00" ApproximateTotalPrice="USD1407.10" ApproximateBasePrice="USD1190.00" Taxes="USD217.10" ApproximateTaxes="USD217.10" LatestTicketingTime="2017-08-13" PricingMethod="Guaranteed" Refundable="true" ETicketability="Yes" PlatingCarrier="LO" ProviderCode="1G">
+          <air:FareInfoRef Key="q1l3w08Q2BKA3TRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="4" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA3TRZBAAAAA==" SegmentRef="q1l3w08Q2BKAITRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA3TRZBAAAAA==" SegmentRef="q1l3w08Q2BKAKTRZBAAAAA=="/>
+          <air:BookingInfo BookingCode="M" BookingCount="9" CabinClass="Economy" FareInfoRef="q1l3w08Q2BKA3TRZBAAAAA==" SegmentRef="q1l3w08Q2BKAhTRZBAAAAA=="/>
+          <air:TaxInfo Category="AY" Amount="USD5.60"/>
+          <air:TaxInfo Category="US" Amount="USD18.00"/>
+          <air:TaxInfo Category="XF" Amount="USD4.50">
+            <common_v34_0:TaxDetail Amount="USD4.50" OriginAirport="ORD"/>
+          </air:TaxInfo>
+          <air:TaxInfo Category="ND" Amount="USD0.10"/>
+          <air:TaxInfo Category="XW" Amount="USD16.20"/>
+          <air:TaxInfo Category="YQ" Amount="USD172.70"/>
+          <air:FareCalc>
+            DFW LO X/CHI LO X/WAW LO PAR 1190.25M1HWRED/CH25 NUC1190.25END
+            ROE1.0
+          </air:FareCalc>
+          <air:PassengerType Code="CNN"/>
+          <air:PassengerType Code="CNN"/>
+        </air:AirPricingInfo>
+        <air:Connection SegmentIndex="0"/>
+        <air:Connection SegmentIndex="1"/>
+      </air:AirPricingSolution>
+      <air:BrandList>
+        <air:Brand Key="q1l3w08Q2BKAWURZBAAAAA==" BrandID="12292" Name="Economy" BrandedDetailsAvailable="true" Carrier="LO">
+          <air:Title Type="External">
+            Economy
+          </air:Title>
+          <air:Title Type="Short">
+            Economy
+          </air:Title>
+          <air:Text Type="MarketingAgent">
+            Economy Class - check in one bag max 23kg - complimentary snacks and
+            drinks on board ...
+          </air:Text>
+          <air:Text Type="Strapline">
+            The best fares
+          </air:Text>
+          <air:ImageLocation Type="Agent" ImageWidth="150" ImageHeight="150">
+            https://cdn.travelport.com/lotpolishairlines/LO_general_medium_13833.jpg
+          </air:ImageLocation>
+          <air:ImageLocation Type="Consumer" ImageWidth="150" ImageHeight="150">
+            https://cdn.travelport.com/lotpolishairlines/LO_general_medium_13833.jpg
+          </air:ImageLocation>
+        </air:Brand>
+      </air:BrandList>
+    </air:LowFareSearchRsp>
+  </SOAP:Body>
+</SOAP:Envelope>
