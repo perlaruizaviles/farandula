@@ -54,7 +54,7 @@ module Farandula
             segment.marketing_airline_code = segment_node.attr('Carrier').to_s
             segment.operating_airline_code = code_share_info.attr('OperatingCarrier').to_s if code_share_info.to_s.include? 'OperatingCarrier'
             segment.operating_flight_number = code_share_info.attr('OperatingFlightNumber').to_s if code_share_info.to_s.include? 'OperatingFlightNumber'
-            segment.marketing_airline_name = @airline_code_map[segment.marketing_airline_code]
+            segment.marketing_airline_name = code_share_info.to_s.include? 'OperatingCarrier' ? @airline_code_map[segment.marketing_airline_code] : code_share_info.text
             segment.operating_airline_name = @airline_code_map[segment.operating_airline_code]
             # TODO: Get airplane data from flight details
             segment.airplane_data = ''
@@ -67,10 +67,12 @@ module Farandula
             segment.arrival_airport_code = segment_node.attr('Destination').to_s
             segment.arrival_date = segment_node.attr('ArrivalTime').to_s
             segment.duration = segment_node.attr('FlightTime').to_s
+            @segments_map[segment.key] = segment
             puts "-----------------------PARSER_SEGMENT:-----------------------"
             puts segment
             print "\n"
           end
+          puts @segments_map
         end
 
         def fill_flight_segments segment_node_list

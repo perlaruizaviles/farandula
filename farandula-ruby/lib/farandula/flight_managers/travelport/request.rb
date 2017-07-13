@@ -36,7 +36,7 @@ module Farandula
         def get_head(target_branch)
           str = File.read(File.dirname(__FILE__)+'/../../assets/travelport/requestHeader.xml')
           str = replace_string(str, {target_branch: target_branch})
-          str.gsub!("\r", "")
+          #str.gsub!("\r", "")
         end
 
         def get_airlegs(search_form)
@@ -61,7 +61,8 @@ module Farandula
             } if search_form.roundtrip?
 
           }
-          result.gsub!("\r", "")
+          result
+          #result.gsub!("\r", "")
         end
 
         def get_passengers(passengers={})
@@ -84,12 +85,12 @@ module Farandula
         def get_search_modifier(limit)
           str = File.read(File.dirname(__FILE__) + '/../../assets/travelport/searchModifier.xml')
           str = replace_string(str, {limit: limit})
-          str.gsub!("\r", "")
+          #str.gsub!("\r", "")
         end
 
         def get_tail
           str = File.read(File.dirname(__FILE__) + '/../../assets/travelport/requestTail.xml')
-          str.gsub!("\r","")
+          #str.gsub!("\r","")
         end
 
         private
