@@ -256,4 +256,14 @@ class Farandula::TravelportRequestTest < Minitest::Test
     assert_equal(expected_currency_code, actual_taxes_currency)
   end
 
+  def test_available_seats
+    response = File.read(File.dirname(__FILE__) + '/../../../assets/travelport/response.xml')
+    flight_manager = TravelportFlightManager.new
+    itinerary_list = flight_manager.parse_response response
+    actual_seat = itinerary_list[0].air_legs[0].segments[0].seats_available[0]
+
+    assert_equal('Economy', actual_seat.cabin)
+
+  end
+
 end

@@ -61,7 +61,7 @@ module Farandula
 
         def fill_flight_itineraries! response
           solution_node_list = response.xpath('//AirPricingSolution')
-          itinerary_list = solution_node_list.map { |solution|
+          itinerary_list = solution_node_list.map do |solution|
             get_seats solution
             itinerary          = Itinerary.new
             itinerary.id       = 'tempID'
@@ -81,7 +81,7 @@ module Farandula
               airleg
             end
             itinerary
-          }
+          end
           puts "HERE IS THE LIST: \n#{itinerary_list}\n LIST END"
           itinerary_list
         end
