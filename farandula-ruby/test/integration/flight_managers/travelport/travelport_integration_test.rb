@@ -63,7 +63,7 @@ class Farandula::TravelportIntegrationTest < Minitest::Test
                       .departing_at( departing_at)
                       .returning_at( returning_at )
                       .type(:roundtrip)
-                      .with_cabin_class( :premium_economy)
+                      .with_cabin_class( :economy)
                       .with_passenger( passenger1 )
                       .with_passenger( passenger2 )
                       .with_passenger( passenger3 )
