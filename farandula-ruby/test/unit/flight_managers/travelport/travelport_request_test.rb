@@ -20,7 +20,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
     @expected_head =    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' + "\n" +
                         '  <soapenv:Header/>' + "\n" +
                         '  <soapenv:Body>' + "\n" +
-                        '    <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="P105356" TraceId="trace">' + "\n" +
+                        '    <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="P7036596" TraceId="trace">' + "\n" +
                         '      <com:BillingPointOfSaleInfo xmlns:com="http://www.travelport.com/schema/common_v34_0" OriginApplication="UAPI"/>'
   
     @expected_airleg =  '<air:SearchAirLeg>' + "\n" +
@@ -85,7 +85,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
   end
 
   def test_get_head()
-    actual = @request.get_head('P105356')
+    actual = @request.get_head('P7036596')
     assert_equal(
       @expected_head,
       actual
