@@ -33,7 +33,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                         '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
                         '  <air:AirLegModifiers>' + "\n" +
                         '    <air:PreferredCabins>' + "\n" +
-                        '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                        '      <com:CabinClass Type="Economy" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
                         '    </air:PreferredCabins>' + "\n" +
                         '  </air:AirLegModifiers>' + "\n" +
                         '</air:SearchAirLeg>'
@@ -48,7 +48,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                   '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
                                   '  <air:AirLegModifiers>' + "\n" +
                                   '    <air:PreferredCabins>' + "\n" +
-                                  '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '      <com:CabinClass Type="Economy" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
                                   '    </air:PreferredCabins>' + "\n" +
                                   '  </air:AirLegModifiers>' + "\n" +
                                   '</air:SearchAirLeg>' +
@@ -62,7 +62,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                   '  <air:SearchDepTime PreferredTime="2017-08-10"/>' + "\n" +
                                   '  <air:AirLegModifiers>' + "\n" +
                                   '    <air:PreferredCabins>' + "\n" +
-                                  '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '      <com:CabinClass Type="Economy" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
                                   '    </air:PreferredCabins>' + "\n" +
                                   '  </air:AirLegModifiers>' + "\n" +
                                   '</air:SearchAirLeg>'

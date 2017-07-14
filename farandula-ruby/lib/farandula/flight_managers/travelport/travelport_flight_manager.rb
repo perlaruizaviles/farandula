@@ -1,5 +1,6 @@
 require_relative '../flight_manager.rb'
 require 'rest-client'
+
 require 'nokogiri'
 require_relative 'request'
 require_relative '../../utils/logger_utils'
@@ -10,6 +11,7 @@ require_relative 'travelport_flight_details'
 require_relative '../../models/price'
 require_relative '../../models/fares'
 require_relative '../../models/seat'
+
 
 module Farandula
   module FlightManagers
@@ -26,7 +28,7 @@ module Farandula
         def initialize
           @target_url = 'https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService'
           @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml")
-          @logger = Logger.new File.new('farandula-ruby.log', 'w')
+          @logger = Logger.new File.new('farandula-ruby.log', File::WRONLY | File::APPEND | File::CREAT)
           @logger.level = Logger::DEBUG
           @segments_map = {}
           @flight_details = {}
@@ -37,7 +39,8 @@ module Farandula
           request = Request.new
 
           body = request.build_request_for! search_form
-          #TODO: implement logger
+          @logger.debug ("REQUEST \n #{LoggerUtils.get_pretty_xml body, 2} \n END REQUEST \n")
+
 
           headers = request.get_headers
           response = RestClient.post(
@@ -45,10 +48,7 @@ module Farandula
               body,
               headers
           )
-          #puts @flight_details
-
-          #TODO: implement logger
-          puts "RESPONSE \n #{LoggerUtils.get_pretty_xml response, 2} \n END RESPONSE \n"
+          @logger.debug ("RESPONSE \n #{LoggerUtils.get_pretty_xml response, 2} \n END RESPONSE \n")
           parse_response response
         end
 
@@ -82,7 +82,7 @@ module Farandula
             end
             itinerary
           end
-          puts "HERE IS THE LIST: \n#{itinerary_list}\n LIST END"
+          #puts "HERE IS THE LIST: \n#{itinerary_list}\n LIST END"
           itinerary_list
         end
 
@@ -102,13 +102,13 @@ module Farandula
         end
 
         def get_seats solution_node
-          puts "INICIA METODO"
+
           pricing_info = solution_node.xpath('AirPricingInfo').first
           booking_info_list = pricing_info.xpath('BookingInfo')
-          puts "booking info: #{booking_info_list}"
+
           booking_info_list.each do |booking|
             segment = @segments_map[booking.attr('SegmentRef').to_s]
-              puts "ENTRA"
+
               booking_count = booking.attr('BookingCount').to_i
               cabin_class   = booking.attr('CabinClass').to_s
               booking_count.times do

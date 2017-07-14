@@ -48,7 +48,7 @@ module Farandula
                 departure_airport:  search_form.departure_airport[i],
                 arrival_airport:    search_form.arrival_airport[i],
                 departure_date:     search_form.departing_date[i],
-                class_travel:       search_form.cabin_class.upcase
+                class_travel:       (get_travelport_cabin_class (search_form.cabin_class))
             }
 
             result += replace_string str, map
@@ -57,7 +57,7 @@ module Farandula
                   departure_airport:  search_form.arrival_airport[i],
                   arrival_airport:    search_form.departure_airport[i],
                   departure_date:     search_form.returning_date[i],
-                  class_travel:       search_form.cabin_class.upcase
+                  class_travel:        (get_travelport_cabin_class (search_form.cabin_class))
             } if search_form.roundtrip?
 
           }
@@ -110,6 +110,23 @@ module Farandula
                 'INF'
               else
                 'ADT'
+            end
+          end
+
+          def get_travelport_cabin_class(cabin_class_type)
+            case cabin_class_type
+              when CabinClassType::ECONOMY
+                'Economy'
+              when CabinClassType::PREMIUM_ECONOMY
+                'PremiumEconomy'
+              when CabinClassType::FIRST
+                'First'
+              when CabinClassType::BUSINESS
+                'Business'
+              when CabinClassType::OTHER
+                'PremiumFirst'
+              else
+                'Economy'
             end
           end
 
