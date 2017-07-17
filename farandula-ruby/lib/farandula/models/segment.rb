@@ -8,7 +8,7 @@ module Farandula
                   :arrival_airport_code, :arrival_terminal, :arrival_date,
                   :airplane_data, :duration, :seats_available
 
-    def initialize (
+    def initialize(
         key                     = nil,
         operating_airline_code  = nil,
         operating_airline_name  = nil,

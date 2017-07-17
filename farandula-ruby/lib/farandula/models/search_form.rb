@@ -163,7 +163,7 @@ module Farandula
         end
       end
 
-      def check_is_string (name, obj)
+      def check_is_string(name, obj)
         obj.each {| element|
           if !element.is_a?(String)
             message = "#{name} has to be of type 'string'"

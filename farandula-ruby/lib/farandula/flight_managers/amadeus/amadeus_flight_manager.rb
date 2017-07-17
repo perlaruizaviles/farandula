@@ -78,7 +78,7 @@ module Farandula
 
         end
 
-        def build_itineries (response)
+        def build_itineries(response)
 
           itineries_list = []
 
@@ -103,7 +103,7 @@ module Farandula
         end
 
         private
-        def build_air_legs (itinerary_object, itinerary_json_result, id = nil)
+        def build_air_legs(itinerary_object, itinerary_json_result, id = nil)
 
           itinerary_object.air_legs << build_leg(itinerary_json_result['outbound']['flights'], 1)
 
@@ -117,7 +117,7 @@ module Farandula
 
         end
 
-        def build_leg (jsonObject, id = nil)
+        def build_leg(jsonObject, id = nil)
 
           segments_array = jsonObject.each_with_index.map {|segment, segment_id| build_segment(segment, segment_id) }
 
@@ -193,7 +193,7 @@ module Farandula
 
         end
 
-        def get_cabin_class_type (travel_class_info)
+        def get_cabin_class_type(travel_class_info)
 
           case travel_class_info.downcase
             when "economy"
@@ -214,7 +214,7 @@ module Farandula
 
         end
 
-        def get_prices (fare)
+        def get_prices(fare)
 
           fares = Farandula::Fares.new
 

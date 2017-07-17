@@ -9,7 +9,7 @@ module Farandula
       @@logger = Logger.new File.new('farandula-ruby-errors.log', 'w')
       @@logger.level = Logger::DEBUG
 
-      def self.handle_exceptions ( class_exception, message )
+      def self.handle_exceptions( class_exception, message )
 
         @@logger.error( message )
         printf message
