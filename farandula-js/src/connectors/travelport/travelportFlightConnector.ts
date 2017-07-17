@@ -4,6 +4,7 @@ import { ISearchAirleg } from '../../models/iSearchAirleg'
 import { IFlightConnector } from '../iFlightConnector'
 import { IItinerary } from '../../models/iItinerary'
 import { FlightTypes } from '../../flightTypes';
+import { TravelportConfig } from './travelportConfig';
 import http = require("https")
 
 export class TravelPortFlightConnector implements IFlightConnector {
@@ -26,30 +27,32 @@ export class TravelPortFlightConnector implements IFlightConnector {
   }
 	
 	private execRequest(request: string, callback: any): any {
-		let options = {
-      "method": "POST",
-      "hostname": "americas.universal-api.pp.travelport.com",
-      "path": "/B2BGateway/connect/uAPI/AirService",
+    let auth = TravelportConfig.getBasicAuth()
+    
+    let options = {
+      "method": 'POST',
+      "hostname": TravelportConfig.hostname,
+      "path": TravelportConfig.path,
       "headers": {
-        "authorization": "Basic VW5pdmVyc2FsIEFQSS91QVBJLTY1NjUyMzc4ODpuRWRlS1lFZ2EyZmdCdGFBajg0RXJmSjlr",
+        "authorization": `Basic ${auth}`,
         "content-type": "text/xml",
-      }
+      }     
     }
-    let parseXML = this.parseResponse
-    let req = http.request(options, function (res) {
-      var chunks = [] as Buffer[]
-      res.on("data", function (chunk:Buffer) {
-        chunks.push(chunk);
-      })
 
-      res.on("end", function () {
-        let body = Buffer.concat(chunks, undefined)
-        let response = parseXML(Buffer.concat(chunks, undefined).toString(), callback)
+    let req = http.request(options, (res) => {
+      let body = ''
+      res.on('data', (chunk) => {
+        body += chunk
+      })
+      res.on('end', () => {
+        this.parseResponse(body, callback)
       })
     })
-
+    req.on('error', (e) => {
+      console.error(e)
+    })
     req.write(request)
-    req.end()
+    req.end();
 	}
 
   private getOneWay(searchCommand:SearchCommand, callback:any): any {
@@ -60,6 +63,7 @@ export class TravelPortFlightConnector implements IFlightConnector {
     + this.getPassengerRequestSection(_searchCommand.Passengers)
     + this.getAirPricingModifiers(_searchCommand.Currency.toString())
     + this.getTailRequest()
+
     this.execRequest(request, callback)
   }
 
@@ -97,7 +101,7 @@ export class TravelPortFlightConnector implements IFlightConnector {
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
           <soapenv:Header />
           <soapenv:Body>
-              <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="${this.targetBranch}" TraceId="trace">
+              <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="${TravelportConfig.branch}" TraceId="trace">
                   <com:BillingPointOfSaleInfo xmlns:com="http://www.travelport.com/schema/common_v34_0" OriginApplication="UAPI" />`
   }
 
@@ -177,6 +181,7 @@ export class TravelPortFlightConnector implements IFlightConnector {
   }
 
   public parseResponse(xmlResponse:string, callback:any): any {
+    console.log('PARSING')
     let parsedResponse: {}
     let _xmlResponse = xmlResponse
     let xml2js = require('xml2js')
