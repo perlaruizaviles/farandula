@@ -6,35 +6,29 @@ import { TravelPortFlightConnector } from '../connectors/travelport/travelportFl
 describe('SearchCommand', () => {
   let passengers:IPassenger[] = [{ type:'ADT', age:50 }]
   test('Build one-way search command', () => {
-    
-    let expected:SearchCommand = {
-      _flightConnector: {
-        targetBranch: 'P105356',
-        url: 'https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService' 
-      },
-      _departureAirports: ['HMO'],
-      _arrivalAirports: ['MEX'],
-      _passengers: [{ type: 'ADT', age:50}],
-      _flightType: 'oneWay',
-      _currency: 'USD',
-      _offset: 50,
-      _cabinClass: CabinClass.ECONOMY
+    let expected = {
+      _departureAirports:['HMO'],
+      _arrivalAirports:['MEX'],
+      _departingDates:['2017-08-24'],
+      _cabinClass:CabinClass.ECONOMY,
+      _currency:'USD',
+      _flightConnector: new TravelPortFlightConnector(),
+      _flightType:'oneWay',
+      _limit:50,
+      _passengers:passengers
     }
 
     let travelportConnector = new TravelPortFlightConnector()
-    
     let actual:SearchCommand = new SearchCommand(travelportConnector)
       .setDepartureAirports(['HMO'])
       .setArrivalAirports(['MEX'])
-      .setPassengers(passengers)
-      .setType('oneWay')
-      .setCurrency('USD')
-      .setLimit(50)
+      .setDepartingDates(['2017-08-24'])
       .setPreferenceClass(CabinClass.ECONOMY)
+      .setCurrency('USD')
+      .setType('oneWay')
+      .setLimit(50)
+      .setPassengers(passengers)
       
-    console.log(actual)
-    console.log('////')
-    console.log(expected)
-    expected(actual).toMatchObject(expected)
+    expect(actual).toEqual(expected)
   })
 })

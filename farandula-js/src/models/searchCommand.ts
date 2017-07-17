@@ -14,7 +14,7 @@ export class SearchCommand {
   
   //default values
   private _currency: string = 'USD'
-  private _offset: number = 50
+  private _limit: number = 50
   private _cabinClass: CabinClass = CabinClass.ECONOMY
 
   constructor(private _flightConnector:IFlightConnector) {}
@@ -49,7 +49,7 @@ export class SearchCommand {
   }
 
   public setLimit(limit:number): SearchCommand {
-    this._offset = limit
+    this._limit = limit
     return this
   }
 
@@ -97,7 +97,7 @@ export class SearchCommand {
   }
 
   public get Limit(): number {
-    return this._offset
+    return this._limit
   }
 
   public get PreferenceClass(): CabinClass {
