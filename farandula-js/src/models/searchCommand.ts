@@ -43,7 +43,7 @@ export class SearchCommand {
   public setPassengers(passengers:IPassenger[]): SearchCommand {
     if (passengers.length > 6) {
       throw new Error('Is not possible to search for more than 6 passengers')
-    } else if (passengers.length <=0){
+    } else if (passengers.length <=0) {
       throw new Error('Should be at least one passenger')
     } else {
       this._passengers = passengers
@@ -76,6 +76,7 @@ export class SearchCommand {
   }
 
   public execute(callback:any): IItinerary[] {
+    this.verifyObjectBuilt()
     return this._flightConnector.getAvailableFlights(this, callback)
   }
 
@@ -141,5 +142,15 @@ export class SearchCommand {
       airlegs.push(newAirleg)
     }
     return airlegs
+  }
+
+  public verifyObjectBuilt(): boolean {
+    if (this._arrivalAirports == undefined) throw new Error('\'arrivalAirports\' missing')
+    if (this._departingDates == undefined) throw new Error('\'departingDates\' missing')
+    if (this._departureAirports == undefined) throw new Error('\'departureAirports\' missing')
+    if (this._flightType == undefined) throw new Error('\'flightType missing\'')
+    if (this._passengers == undefined) throw new Error('\'passengers\' missing')
+    if (this._flightType == FlightTypes.ROUNDTRIP && this._returnDate == undefined) throw new Error('\'returnDate\' missing')
+    return true
   }
 }
