@@ -3,6 +3,7 @@ import { SearchCommand } from '../../models/searchCommand'
 import { ISearchAirleg } from '../../models/iSearchAirleg'
 import { IFlightConnector } from '../iFlightConnector'
 import { IItinerary } from '../../models/iItinerary'
+import { FlightTypes } from '../../flightTypes';
 import http = require("https")
 
 export class TravelPortFlightConnector implements IFlightConnector {
@@ -13,11 +14,11 @@ export class TravelPortFlightConnector implements IFlightConnector {
   public getAvailableFlights(searchCommand:SearchCommand, callback:any): IItinerary {
     let _searchCommand = searchCommand
     switch(_searchCommand.Type) {
-      case 'oneWay': 
+      case FlightTypes.ONEWAY: 
         return this.getOneWay(_searchCommand, callback)
-      case 'roundTrip': 
+      case FlightTypes.ROUNDTRIP: 
         return this.getRoundTrip(_searchCommand, callback)
-      case 'multicity':
+      case FlightTypes.JAW:
         return this.getMultiCity(_searchCommand, callback)
       default: 
         throw new Error("type \'"+_searchCommand.Type+"\' not found")

@@ -1,3 +1,4 @@
+import { FlightTypes } from '../flightTypes';
 import { IPassenger } from './iPassenger'
 import { ISearchAirleg } from './iSearchAirleg'
 import { IFlightConnector } from '../connectors/iFlightConnector'
@@ -10,7 +11,7 @@ export class SearchCommand {
   private _departingDates: string[]
   private _returnDate: string
   private _passengers: IPassenger[]
-  private _flightType: string
+  private _flightType: FlightTypes
   
   //default values
   private _currency: string = 'USD'
@@ -41,7 +42,9 @@ export class SearchCommand {
 
   public setPassengers(passengers:IPassenger[]): SearchCommand {
     if (passengers.length > 6) {
-      throw new Error("Is not possible to search for more than 6 passengers")
+      throw new Error('Is not possible to search for more than 6 passengers')
+    } else if (passengers.length <=0){
+      throw new Error('Should be at least one passenger')
     } else {
       this._passengers = passengers
     }
@@ -49,11 +52,15 @@ export class SearchCommand {
   }
 
   public setLimit(limit:number): SearchCommand {
-    this._limit = limit
+    if (limit <=0) {
+      throw new Error('Limit cannot be 0 or negative')
+    } else {
+      this._limit = limit
+    }
     return this
   }
 
-  public setType(type:string): SearchCommand {
+  public setType(type:FlightTypes): SearchCommand {
     this._flightType = type
     return this
   }

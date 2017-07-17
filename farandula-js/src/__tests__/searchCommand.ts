@@ -2,6 +2,7 @@ import { CabinClass } from '../models/cabinClass'
 import { IPassenger } from '../models/iPassenger'
 import { SearchCommand } from '../models/searchCommand'
 import { TravelPortFlightConnector } from '../connectors/travelport/travelportFlightConnector'
+import { FlightTypes } from '../flightTypes';
 
 describe('SearchCommand', () => {
   let passengers:IPassenger[] = [{ type:'ADT', age:50 }]
@@ -13,7 +14,8 @@ describe('SearchCommand', () => {
       _cabinClass:CabinClass.ECONOMY,
       _currency:'USD',
       _flightConnector: new TravelPortFlightConnector(),
-      _flightType:'oneWay',
+      _flightType:FlightTypes.ONEWAY,
+      _returningDate: undefined,
       _limit:50,
       _passengers:passengers
     }
@@ -25,7 +27,7 @@ describe('SearchCommand', () => {
       .setDepartingDates(['2017-08-24'])
       .setPreferenceClass(CabinClass.ECONOMY)
       .setCurrency('USD')
-      .setType('oneWay')
+      .setType(FlightTypes.ONEWAY)
       .setLimit(50)
       .setPassengers(passengers)
       

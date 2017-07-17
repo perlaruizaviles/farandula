@@ -1,5 +1,5 @@
-class FlightTypes {
-  static readonly ONEWAY    = 'ONEWAY'
-  static readonly ROUNDTRIP = 'ROUNDTRIP'
-  static readonly JAW       = 'JAW' 
+export enum FlightTypes {
+  ONEWAY = 'ONEWAY',
+  ROUNDTRIP = 'ROUNDTRIP',
+  JAW = 'JAW' 
 }
