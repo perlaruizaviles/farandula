@@ -10,7 +10,7 @@ export class SearchCommand {
   private _departingDates: string[]
   private _returnDate: string
   private _passengers: IPassenger[]
-  private _flightType: FlightTypes
+  private _flightType: string
   
   //default values
   private _currency: string = 'USD'

@@ -1,15 +1,14 @@
-import { IFlightConnector } from './connectors/iFlightConnector';
-import { FlightSearchCommand } from './models/flightSearchComand';
+import { IFlightConnector } from './connectors/iFlightConnector'
+import { SearchCommand } from './models/searchCommand'
 
-class Luisa {
-
+export class Luisa {
   private flightConnector:IFlightConnector
-  
-  public use(flightConnector:IFlightConnector): void {
+  public use(flightConnector:IFlightConnector): Luisa {
     this.flightConnector = flightConnector
+    return this
   }
 
-  public getFlights(): FlightSearchCommand {
-    return new FlightSearchCommand(this.flightConnector)
+  public getFlights(): SearchCommand {
+    return new SearchCommand(this.flightConnector)
   }
 }

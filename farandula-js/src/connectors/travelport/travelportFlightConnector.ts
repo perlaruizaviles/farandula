@@ -1,7 +1,8 @@
-import { Passenger } from '../../models/passenger'
-import { FlightSearchCommand } from '../../models/flightSearchComand';
-import { ISearchAirleg } from '../../models/iSearchAirleg';
-import { IFlightConnector } from '../iFlightConnector';
+import { IPassenger } from '../../models/iPassenger'
+import { SearchCommand } from '../../models/searchCommand'
+import { ISearchAirleg } from '../../models/iSearchAirleg'
+import { IFlightConnector } from '../iFlightConnector'
+import { IItinerary } from '../../models/iItinerary'
 import http = require("https")
 
 export class TravelPortFlightConnector implements IFlightConnector {
@@ -9,17 +10,17 @@ export class TravelPortFlightConnector implements IFlightConnector {
   targetBranch = 'P105356'
   url: string = 'https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService'
 
-  public getAvailableFlights(flightSearchCommand:FlightSearchCommand, callback:any): Itinerary {
-    let _flightSearchCommand = flightSearchCommand
-    switch(_flightSearchCommand.getType()) {
+  public getAvailableFlights(searchCommand:SearchCommand, callback:any): IItinerary {
+    let _searchCommand = searchCommand
+    switch(_searchCommand.Type) {
       case 'oneWay': 
-        return this.getOneWay(_flightSearchCommand, callback)
+        return this.getOneWay(_searchCommand, callback)
       case 'roundTrip': 
-        return this.getRoundTrip(_flightSearchCommand, callback)
+        return this.getRoundTrip(_searchCommand, callback)
       case 'multicity':
-        return this.getMultiCity(_flightSearchCommand, callback)
+        return this.getMultiCity(_searchCommand, callback)
       default: 
-        throw new Error("type \'"+_flightSearchCommand.getType+"\' not found")
+        throw new Error("type \'"+_searchCommand.Type+"\' not found")
     }
   }
 	
@@ -50,41 +51,41 @@ export class TravelPortFlightConnector implements IFlightConnector {
     req.end()
 	}
 
-  private getOneWay(flightSearchCommand:FlightSearchCommand, callback:any): any {
-    var _flightSearchCommand = flightSearchCommand
+  private getOneWay(searchCommand:SearchCommand, callback:any): any {
+    var _searchCommand = searchCommand
     var request = this.getHeadRequest()
-    + this.getAirlegRequest(_flightSearchCommand.getAirleg(0))
+    + this.getAirlegRequest(_searchCommand.getAirleg(0))
     + this.getAirSearchModifiers(2)
-    + this.getPassengerRequestSection(_flightSearchCommand.getPassengers())
-    + this.getAirPricingModifiers('USD')
+    + this.getPassengerRequestSection(_searchCommand.Passengers)
+    + this.getAirPricingModifiers(_searchCommand.Currency.toString())
     + this.getTailRequest()
     this.execRequest(request, callback)
   }
 
-  private getRoundTrip(flightSearchCommand:FlightSearchCommand, callback:any): any {
-    var _flightSearchCommand = flightSearchCommand
+  private getRoundTrip(searchCommand:SearchCommand, callback:any): any {
+    var _searchCommand = searchCommand
 
     var request = this.getHeadRequest()
-      + this.getRoundAirlegRequest(_flightSearchCommand.getAirleg(0))
+      + this.getRoundAirlegRequest(_searchCommand.getAirleg(0))
       + this.getAirSearchModifiers(2)
-      + this.getPassengerRequestSection(_flightSearchCommand.getPassengers())
-      + this.getAirPricingModifiers(_flightSearchCommand.getCurrency())
+      + this.getPassengerRequestSection(_searchCommand.Passengers)
+      + this.getAirPricingModifiers(_searchCommand.Currency.toString())
       + this.getTailRequest()
     
     return this.execRequest(request, callback)
   }
 
-  private getMultiCity(flightSearchCommand:FlightSearchCommand, callback:any): any {
-    var _flightSearchCommand = flightSearchCommand
+  private getMultiCity(searchCommand:SearchCommand, callback:any): any {
+    var _searchCommand = searchCommand
     var request = this.getHeadRequest()
     
-    for (let depDate of _flightSearchCommand.getAllAirlegs()) {
+    for (let depDate of _searchCommand.getAllAirlegs()) {
       request += this.getAirlegRequest(depDate)
     }
 
     request += this.getAirSearchModifiers(2)
-      + this.getPassengerRequestSection(_flightSearchCommand.getPassengers())
-      + this.getAirPricingModifiers(_flightSearchCommand.getCurrency())
+      + this.getPassengerRequestSection(_searchCommand.Passengers)
+      + this.getAirPricingModifiers(_searchCommand.Currency.toString())
       + this.getTailRequest()
 
     return this.execRequest(request, callback)
@@ -153,7 +154,7 @@ export class TravelPortFlightConnector implements IFlightConnector {
             </air:SearchAirLeg>`
   }
 
-  private getPassengerRequestSection(passengers:Passenger[]): string {
+  private getPassengerRequestSection(passengers:IPassenger[]): string {
 		var passengersSection = ''
 		for (let passenger of passengers) {
 			passengersSection += `<com:SearchPassenger xmlns:com="http://www.travelport.com/schema/common_v34_0" BookingTravelerRef="gr8AVWGCR064r57Jt0+8bA==" Code="${passenger.type}" Age="${passenger.age}" />`
