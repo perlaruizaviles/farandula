@@ -14,7 +14,7 @@ module Farandula
         
         attr_reader :access_token, :token_type, :expires_in
         
-        def initialize(client_id, client_secret) 
+        def initialize(client_id, client_secret)
 
           begin 
             payload = {'grant_type' => 'client_credentials'}

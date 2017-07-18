@@ -11,8 +11,11 @@ module Farandula
       class SabreFlightManager < FlightManager
 
         def initialize(creds)
-          @access_manager = AccessManager.new(creds[:client_id], creds[:client_secret])
-          @target_url = creds[:target_url]
+          @access_manager = AccessManager.new(creds[:client_id], creds[:client_secret] )
+          # maps
+          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "airlinesCode.yml")
+          @airline_cabin_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/sabre/' + "cabins.yml")
+
         end 
 
         def get_avail(search_form) 
@@ -23,15 +26,17 @@ module Farandula
             Authorization: @access_manager.build_auth_token
           }
 
-          request = ::Request.new
+          request = Sabre::Request.new
 
           response = RestClient.post(
-            @target_url,
+            'https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=50&offset=1',
             request.build_request_for!(search_form),
             headers
           )
 
-          response
+          build_itineries( response, search_form  )
+
+          # response
         end
 
 
@@ -42,6 +47,13 @@ module Farandula
           encoded        = Base64.strict_encode64("#{encoded_id}:#{encoded_secret}")
           "Basic #{encoded}"
         end
+
+        def build_itineries( response , search_command )
+
+            itineraries_list = []
+
+        end
+
         #private ends
 
       
