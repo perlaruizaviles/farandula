@@ -20,7 +20,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
     @expected_head =    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' + "\n" +
                         '  <soapenv:Header/>' + "\n" +
                         '  <soapenv:Body>' + "\n" +
-                        '    <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="P105356" TraceId="trace">' + "\n" +
+                        '    <air:LowFareSearchReq xmlns:air="http://www.travelport.com/schema/air_v34_0" AuthorizedBy="user" SolutionResult="true" TargetBranch="P7036596" TraceId="trace">' + "\n" +
                         '      <com:BillingPointOfSaleInfo xmlns:com="http://www.travelport.com/schema/common_v34_0" OriginApplication="UAPI"/>'
   
     @expected_airleg =  '<air:SearchAirLeg>' + "\n" +
@@ -33,7 +33,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                         '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
                         '  <air:AirLegModifiers>' + "\n" +
                         '    <air:PreferredCabins>' + "\n" +
-                        '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                        '      <com:CabinClass Type="Economy" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
                         '    </air:PreferredCabins>' + "\n" +
                         '  </air:AirLegModifiers>' + "\n" +
                         '</air:SearchAirLeg>'
@@ -48,7 +48,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                   '  <air:SearchDepTime PreferredTime="2017-07-10"/>' + "\n" +
                                   '  <air:AirLegModifiers>' + "\n" +
                                   '    <air:PreferredCabins>' + "\n" +
-                                  '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '      <com:CabinClass Type="Economy" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
                                   '    </air:PreferredCabins>' + "\n" +
                                   '  </air:AirLegModifiers>' + "\n" +
                                   '</air:SearchAirLeg>' +
@@ -62,7 +62,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
                                   '  <air:SearchDepTime PreferredTime="2017-08-10"/>' + "\n" +
                                   '  <air:AirLegModifiers>' + "\n" +
                                   '    <air:PreferredCabins>' + "\n" +
-                                  '      <com:CabinClass Type="ECONOMY" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
+                                  '      <com:CabinClass Type="Economy" xmlns:com="http://www.travelport.com/schema/common_v34_0"/>' + "\n" +
                                   '    </air:PreferredCabins>' + "\n" +
                                   '  </air:AirLegModifiers>' + "\n" +
                                   '</air:SearchAirLeg>'
@@ -85,7 +85,7 @@ class Farandula::TravelportRequestTest < Minitest::Test
   end
 
   def test_get_head()
-    actual = @request.get_head('P105356')
+    actual = @request.get_head('P7036596')
     assert_equal(
       @expected_head,
       actual
@@ -155,8 +155,6 @@ class Farandula::TravelportRequestTest < Minitest::Test
   end
 
   def test_build_request_for()
-
-
     from          = []
     to            = []
     departing_at  = []
@@ -222,46 +220,49 @@ class Farandula::TravelportRequestTest < Minitest::Test
                       .with_passenger( passenger2 )
                       .with_passenger( passenger3 )
                       .with_passenger( passenger4 )
-                      .limited_results_to( 50 )
+                      .limited_results_to( 2 )
                       .build!(false)
     flight_manager = TravelportFlightManager.new
     result = flight_manager.get_avail search_form
-    refute_nil result, 'Response returned'
-  end
-
-  def test_flight_details
-    from          = []
-    to            = []
-    departing_at  = []
-
-    from << 'DFW'
-    to << 'CDG'
-    departing_at << ((Date.today >> 1))
-
-    passenger1  = Passenger.new(:adults, 90)
-    passenger2  = Passenger.new(:adults, 38)
-    passenger3  = Passenger.new(:children, 4)
-    passenger4  = Passenger.new(:children, 10)
-    builder     = SearchForm::Builder.new
-    search_form = builder
-                      .from( from )
-                      .to( to )
-                      .departing_at( departing_at)
-                      .type(:oneway)
-                      .with_cabin_class( :economy)
-                      .with_passenger( passenger1 )
-                      .with_passenger( passenger2 )
-                      .with_passenger( passenger3 )
-                      .with_passenger( passenger4 )
-                      .limited_results_to( 50 )
-                      .build!(false)
-    flight_manager = TravelportFlightManager.new
-    result = flight_manager.get_avail search_form
-
-    puts flight_manager.flight_details
-
     refute_nil result, 'Response returned'
     assert flight_manager.flight_details.length > 0
+  end
+
+  def test_check_fares
+    response = File.read(File.dirname(__FILE__) + '/../../../assets/travelport/response.xml')
+    flight_manager = TravelportFlightManager.new
+    itinerary_list = flight_manager.parse_response response
+
+    actual_total = itinerary_list[0].fares.total_price.amount
+    expected_total = 6422.40
+
+    actual_base = itinerary_list[0].fares.base_price.amount
+    expected_base = 5554.00
+
+    actual_taxes = itinerary_list[0].fares.taxes_price.amount
+    expected_taxes = 868.40
+
+    actual_total_currency = itinerary_list[0].fares.total_price.currency_code
+    actual_base_currency = itinerary_list[0].fares.base_price.currency_code
+    actual_taxes_currency = itinerary_list[0].fares.taxes_price.currency_code
+    expected_currency_code = "USD"
+
+    assert_equal(expected_total, actual_total)
+    assert_equal(expected_base, actual_base)
+    assert_equal(expected_taxes, actual_taxes)
+
+    assert_equal(expected_currency_code, actual_total_currency)
+    assert_equal(expected_currency_code, actual_base_currency)
+    assert_equal(expected_currency_code, actual_taxes_currency)
+  end
+
+  def test_available_seats
+    response = File.read(File.dirname(__FILE__) + '/../../../assets/travelport/response.xml')
+    flight_manager = TravelportFlightManager.new
+    itinerary_list = flight_manager.parse_response response
+    actual_seat = itinerary_list[0].air_legs[0].segments[0].seats_available[0]
+
+    assert_equal('Economy', actual_seat.cabin)
 
   end
 

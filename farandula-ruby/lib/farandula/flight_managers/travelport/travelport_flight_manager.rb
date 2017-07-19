@@ -1,32 +1,46 @@
 require_relative '../flight_manager.rb'
 require 'rest-client'
+
 require 'nokogiri'
 require_relative 'request'
+require_relative '../../utils/logger_utils'
+require_relative '../../models/segment'
+require_relative '../../models/itinerary'
+require_relative '../../models/air_leg'
 require_relative 'travelport_flight_details'
+require_relative '../../models/price'
+require_relative '../../models/fares'
+require_relative '../../models/seat'
+
 
 module Farandula
   module FlightManagers
     module Travelport
       class TravelportFlightManager < FlightManager
 
-        Farandula::FlightManagers::Travelport
 
+        include Farandula
+        include Farandula::Utils
+        Farandula::FlightManagers::Travelport
         attr_reader :flight_details
+
 
         def initialize
           @target_url = 'https://americas.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/AirService'
           @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/' + "airlinesCode.yml")
-          @logger = Logger.new File.new('farandula-ruby.log', 'w')
+          @logger = Logger.new File.new('farandula-ruby.log', File::WRONLY | File::APPEND | File::CREAT)
           @logger.level = Logger::DEBUG
-
+          @segments_map = {}
           @flight_details = {}
+
         end
 
         def get_avail(search_form)
           request = Request.new
 
           body = request.build_request_for! search_form
-          #TODO: implement logger
+          @logger.debug ("REQUEST \n #{LoggerUtils.get_pretty_xml body, 2} \n END REQUEST \n")
+
 
           headers = request.get_headers
           response = RestClient.post(
@@ -34,17 +48,106 @@ module Farandula
               body,
               headers
           )
+          @logger.debug ("RESPONSE \n #{LoggerUtils.get_pretty_xml response, 2} \n END RESPONSE \n")
+          parse_response response
+        end
 
-          fill_flight_details! Nokogiri::XML(response).remove_namespaces!
+        def parse_response response
+          xml_response = Nokogiri::XML(response).remove_namespaces!
+          fill_flight_details! xml_response
+          fill_flight_segments! xml_response
+          fill_flight_itineraries! xml_response
+        end
 
-          #puts @flight_details
+        def fill_flight_itineraries! response
+          solution_node_list = response.xpath('//AirPricingSolution')
+          itinerary_list = solution_node_list.map do |solution|
+            get_seats solution
+            itinerary          = Itinerary.new
+            itinerary.id       = 'tempID'
+            itinerary.fares    = parse_fare solution
+            itinerary.air_legs = solution.xpath('Journey').map do |journey|
+              airleg = AirLeg.new
+              airleg.segments               = journey.xpath('AirSegmentRef').map do |segment_ref|
+                                                @segments_map[segment_ref.attr('Key').to_s]
+              end
+              #TODO: Autoincrement ID
+              airleg.id                     = '0'
+              #
+              airleg.departure_airport_code = airleg.segments.first.departure_airport_code
+              airleg.departure_date         = airleg.segments.first.departure_date
+              airleg.arrival_airport_code   = airleg.segments.last.arrival_airport_code
+              airleg.arrival_date           = airleg.segments.last.arrival_date
+              airleg
+            end
+            itinerary
+          end
+          #puts "HERE IS THE LIST: \n#{itinerary_list}\n LIST END"
+          itinerary_list
+        end
 
-          #TODO: implement logger
-          response
+        def parse_price price_string
+          currency  = price_string[0..2]
+          amount    = price_string[3..-1]
+          Price.new(amount.to_f, currency)
+        end
+
+        def parse_fare solution_node
+          total_price_string  = solution_node.attr('TotalPrice').to_s if solution_node.to_s.include? 'TotalPrice'
+          base_price_string   = solution_node.attr('BasePrice').to_s if solution_node.to_s.include? 'BasePrice'
+          taxes_string        = solution_node.attr('Taxes').to_s if solution_node.to_s.include? 'Taxes'
+          Fares.new(parse_price(base_price_string),
+                    parse_price(taxes_string),
+                    parse_price(total_price_string))
+        end
+
+        def get_seats solution_node
+
+          pricing_info = solution_node.xpath('AirPricingInfo').first
+          booking_info_list = pricing_info.xpath('BookingInfo')
+
+          booking_info_list.each do |booking|
+            segment = @segments_map[booking.attr('SegmentRef').to_s]
+
+              booking_count = booking.attr('BookingCount').to_i
+              cabin_class   = booking.attr('CabinClass').to_s
+              booking_count.times do
+                seat = Seat.new(cabin_class, '')
+                @segments_map[booking.attr('SegmentRef').to_s].seats_available << seat
+            end
+          end
+        end
+
+        def fill_flight_segments! response
+          #TODO: Refactor segment setting properties
+          segment_node_list = response.xpath('//AirSegment')
+          segment_node_list.each do |segment_node|
+
+            segment = Segment.new
+            code_share_info = segment_node.xpath('CodeshareInfo')
+            flight_details_key = segment_node.xpath('FlightDetailsRef').attr('Key').to_s
+            segment.key = segment_node.attr('Key').to_s
+            segment.marketing_airline_code = segment_node.attr('Carrier').to_s
+            segment.operating_airline_code = code_share_info.attr('OperatingCarrier').to_s if code_share_info.to_s.include? 'OperatingCarrier'
+            segment.operating_flight_number = code_share_info.attr('OperatingFlightNumber').to_s if code_share_info.to_s.include? 'OperatingFlightNumber'
+            segment.marketing_airline_name = code_share_info.to_s.include? 'OperatingCarrier' ? @airline_code_map[segment.marketing_airline_code] : code_share_info.text
+            segment.operating_airline_name = @airline_code_map[segment.operating_airline_code]
+            segment.airplane_data = @flight_details[flight_details_key].equipment
+            segment.departure_terminal = @flight_details[flight_details_key].origin_terminal
+            segment.arrival_terminal = @flight_details[flight_details_key].destination_terminal
+            segment.marketing_flight_number = segment_node.attr('FlightNumber').to_s
+            segment.departure_airport_code = segment_node.attr('Origin').to_s
+            segment.departure_date = Time.parse segment_node.attr('DepartureTime').to_s
+            segment.arrival_airport_code = segment_node.attr('Destination').to_s
+            segment.arrival_date = segment_node.attr('ArrivalTime').to_s
+            segment.duration = segment_node.attr('FlightTime').to_s
+            @segments_map[segment.key] = segment
+
+          end
 
         end
 
-        private
+
 
         def fill_flight_details!( response )
 

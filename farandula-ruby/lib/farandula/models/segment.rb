@@ -47,22 +47,25 @@ module Farandula
     end
 
     def to_s
-      "Key #{key}, " \
-      "operating_airline_code #{operating_airline_code}, " \
-      "operating_flight_number #{operating_flight_number}, " \
-      "operating_flight_number #{operating_flight_number}, " \
-      "marketing_airline_code #{marketing_airline_code}, " \
-      "marketing_airline_name #{marketing_airline_name}, " \
-      "marketing_flight_number #{marketing_flight_number}, " \
-      "departure_airport_code #{departure_airport_code}, " \
-      "departure_terminal #{departure_terminal}, " \
-      "departure_date #{departure_date}, " \
-      "arrival_airport_code #{arrival_airport_code}, " \
-      "arrival_terminal #{arrival_terminal}, " \
-      "arrival_date #{arrival_date}, " \
-      "airplane_data #{airplane_data}, " \
-      "duration #{duration} " \
-      "seats_available #{seats_available.to_s}. "
+
+      result = ""
+      result << "Key #{key}, " \
+                "operating_airline_code #{operating_airline_code}, " \
+                "operating_airline_name #{operating_airline_name}, " \
+                "operating_flight_number #{operating_flight_number}, " \
+                "marketing_airline_code #{marketing_airline_code}, " \
+                "marketing_airline_name #{marketing_airline_name}, " \
+                "marketing_flight_number #{marketing_flight_number}, " \
+                "departure_airport_code #{departure_airport_code}, " \
+                "departure_terminal #{departure_terminal}, " \
+                "departure_date #{departure_date}, " \
+                "arrival_airport_code #{arrival_airport_code}, " \
+                "arrival_terminal #{arrival_terminal}, " \
+                "arrival_date #{arrival_date}, " \
+                "airplane_data #{airplane_data}, " \
+                "duration #{duration} " \
+                "seats_available #{seats_available.to_s}. "
+
     end
 
 
