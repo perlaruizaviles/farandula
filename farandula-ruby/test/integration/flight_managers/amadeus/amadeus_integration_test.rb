@@ -101,4 +101,8 @@ class Farandula::AmadeusIntegrationTest < Minitest::Test
     assert_equal( itineraries[0].air_legs[0].departure_airport_code.downcase , from[0].downcase )
 
   end
+
+  def test_1
+    assert 1 == 1
+  end
 end
