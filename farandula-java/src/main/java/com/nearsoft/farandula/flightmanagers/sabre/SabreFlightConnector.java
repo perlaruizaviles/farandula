@@ -174,10 +174,10 @@ public class SabreFlightConnector implements FlightConnector {
             }
 
             ArrayList<List<Map>> cabinsBySegment = extractCabinsInfo(airItineraryPricingInfo);
-            getSeats(itinerary.getAirlegs().get(0), cabinsBySegment);
 
-            if (searchCommand.getType() == FlightType.ROUNDTRIP)
-                getSeats(itinerary.getAirlegs().get(1), cabinsBySegment);
+            for(AirLeg leg : itinerary.getAirlegs()){
+                getSeats(leg, cabinsBySegment);
+            }
 
             //getting prices
             Fares faresIti = extractFaresInfo(airItineraryPricingInfo);
