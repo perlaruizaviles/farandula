@@ -11,7 +11,7 @@ module Farandula
       to = ['CDG']
       departing_at = [DateTime.now + 1]
       returning_at = [DateTime.now >> 1]
-      limit = 50
+      limit = 2
 
       passenger = Passenger.new(:adults, 25)
       builder = SearchForm::Builder.new
@@ -27,15 +27,19 @@ module Farandula
                         .build!
 
       manager = Factory.build_flight_manager(:sabre, {
-          client_id: 'V1:zej6hju9ltib108l:DEVCENTER:EXT',
-          client_secret: 'wLPi0Sy2',
-          target_url: 'https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&limit=50&offset=1'
-      }
+            client_id: 'V1:zej6hju9ltib108l:DEVCENTER:EXT',
+            client_secret: 'wLPi0Sy2'
+          }
       )
 
       itineraries = manager.get_avail(search_form)
 
-      assert itineraries.size == 0
+      puts itineraries[0].air_legs[0]
+
+      assert itineraries.size <= limit
+      assert_equal itineraries[0].air_legs[0].departure_airport_code, from[0]
+      assert_equal itineraries[0].air_legs[0].arrival_airport_code, to[0]
+      assert_equal itineraries[0].air_legs.size , 1
 
     end
 
