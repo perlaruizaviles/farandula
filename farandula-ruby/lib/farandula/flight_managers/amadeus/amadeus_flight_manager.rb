@@ -32,7 +32,7 @@ module Farandula
 
           @locations_map    = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "locations.yml")
 
-          @logger           = Logger.new File.new('farandula-ruby.log', 'w')
+          @logger           = Logger.new File.new('farandula-ruby.log', File::WRONLY | File::APPEND | File::CREAT)
 
           @logger.level     = Logger::DEBUG
 

@@ -22,11 +22,11 @@ module Farandula
         def initialize(creds)
           @access_manager = AccessManager.new(creds[:client_id], creds[:client_secret] )
           # maps
-          @airline_code_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "airlinesCode.yml")
-          @airline_cabin_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/sabre/' + "cabins.yml")
+          @airline_code_map   = YAML.load_file(File.dirname(__FILE__) + '/../../assets/amadeus/' + "airlinesCode.yml")
+          @airline_cabin_map  = YAML.load_file(File.dirname(__FILE__) + '/../../assets/sabre/' + "cabins.yml")
 
-          @logger           = Logger.new File.new('farandula-ruby.log', 'w')
-          @logger.level     = Logger::DEBUG
+          @logger             = Logger.new File.new('farandula-ruby.log', File::WRONLY | File::APPEND | File::CREAT)
+          @logger.level       = Logger::DEBUG
 
         end 
 
@@ -45,18 +45,15 @@ module Farandula
               Authorization: @access_manager.build_auth_token
           }
 
-          request = Sabre::Request.new
-
           url = 'https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&enabletagging=true&limit=50&offset=1'
           if search_form.offset
             url = "https://api.test.sabre.com/v3.1.0/shop/flights?mode=live&enabletagging=true&limit=#{search_form.offset}&offset=1"
           end
-          @logger.info ("Sabre endpoint: #{url}.\n")
-          printf "Sabre endpoint: #{url}\n."
 
+          request = Sabre::Request.new
           request_json = request.build_request_for!(search_form)
-          @logger.info ("Sabre Request: #{request_json}.")
-          printf "Sabre Request: #{request_json}."
+          @logger.info ("Sabre Request: #{request_json}.\n")
+          printf "Sabre Request: #{request_json}\n."
 
           RestClient.post(
               url,
@@ -75,7 +72,7 @@ module Farandula
 
         def build_itineraries( response  )
 
-          @logger.info ("Sabre Response: #{ Farandula::Utils::LoggerUtils.get_pretty_json response}.")
+          @logger.info ("Sabre Response: #{ Farandula::Utils::LoggerUtils.get_pretty_json response}.\n")
 
           parsed = JSON.parse( response )
 
