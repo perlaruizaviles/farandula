@@ -7,8 +7,9 @@ module Farandula
                     :origin_terminal,
                     :destination_terminal,
                     :flight_time,
-                    :equipment,
-                    :group
+                    :equipment
+
+        attr_accessor :group
 
         def initialize(
           key=nil,
@@ -29,8 +30,12 @@ module Farandula
         end
 
         def to_s
-          #TODO: Finish to_s implementation
-          "Key: #{key}"
+          "Key: #{@key},"\
+          "Origin terminal: #{@origin_terminal},"\
+          "Destination terminal: #{@destination_terminal},"\
+          "Flight time: #{@flight_time},"\
+          "Equipment: #{@equipment},"\
+          "Group: #{@group}"
         end
 
       end
