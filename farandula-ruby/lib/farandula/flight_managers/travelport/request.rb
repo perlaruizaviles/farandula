@@ -42,7 +42,7 @@ module Farandula
         def get_airlegs(search_form)
           str = File.read(File.dirname(__FILE__)+'/../../assets/travelport/requestSearchAirleg.xml')
           result = ""
-          search_form.departure_airport.each_with_index {|leg, i|
+          search_form.departure_airport.each_with_index do |leg, i|
 
             map = {
                 departure_airport:  search_form.departure_airport[i],
@@ -59,38 +59,31 @@ module Farandula
                   departure_date:     search_form.returning_date[i],
                   class_travel:        (get_travelport_cabin_class (search_form.cabin_class))
             } if search_form.roundtrip?
-
-          }
+          end
           result
-          #result.gsub!("\r", "")
         end
 
         def get_passengers(passengers={})
           passengers_xml = File.read(File.dirname(__FILE__)+'/../../assets/travelport/requestPassenger.xml')
-
-          result = passengers.each_key.map { |type|
-
-            passengers[type].each.map { |passenger|
+          result = passengers.each_key.map do |type|
+            passengers[type].each.map do |passenger|
               map = {
                   passenger_type: (get_travelport_passenger_code passenger.type),
                   passenger_age:  passenger.age
               }
               replace_string passengers_xml, map
-
-            }
-          }
-          str = result.join("\n")
+            end
+          end
+          result.join("\n")
         end
 
         def get_search_modifier(limit)
           str = File.read(File.dirname(__FILE__) + '/../../assets/travelport/searchModifier.xml')
           str = replace_string(str, {limit: limit})
-          #str.gsub!("\r", "")
         end
 
         def get_tail
           str = File.read(File.dirname(__FILE__) + '/../../assets/travelport/requestTail.xml')
-          #str.gsub!("\r","")
         end
 
         private

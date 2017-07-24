@@ -1,6 +1,5 @@
 require_relative '../flight_manager.rb'
 require 'rest-client'
-
 require 'nokogiri'
 require_relative 'request'
 require_relative '../../utils/logger_utils'
@@ -12,16 +11,14 @@ require_relative '../../models/price'
 require_relative '../../models/fares'
 require_relative '../../models/seat'
 
-
 module Farandula
   module FlightManagers
     module Travelport
       class TravelportFlightManager < FlightManager
 
-
         include Farandula
         include Farandula::Utils
-        Farandula::FlightManagers::Travelport
+        include Farandula::FlightManagers::Travelport
         attr_reader :flight_details
 
 
@@ -39,8 +36,7 @@ module Farandula
           request = Request.new
 
           body = request.build_request_for! search_form
-          @logger.debug ("REQUEST \n #{LoggerUtils.get_pretty_xml body, 2} \n END REQUEST \n")
-
+          @logger.debug("REQUEST \n #{LoggerUtils.get_pretty_xml(body)} \n END REQUEST \n")
 
           headers = request.get_headers
           response = RestClient.post(
@@ -48,7 +44,7 @@ module Farandula
               body,
               headers
           )
-          @logger.debug ("RESPONSE \n #{LoggerUtils.get_pretty_xml response, 2} \n END RESPONSE \n")
+          @logger.debug ("RESPONSE \n #{LoggerUtils.get_pretty_xml(response)} \n END RESPONSE \n")
           parse_response response
         end
 
@@ -61,19 +57,17 @@ module Farandula
 
         def fill_flight_itineraries! response
           solution_node_list = response.xpath('//AirPricingSolution')
-          itinerary_list = solution_node_list.map do |solution|
+          itinerary_list = solution_node_list.each_with_index.map do |solution, solution_index|
             get_seats solution
             itinerary          = Itinerary.new
-            itinerary.id       = 'tempID'
+            itinerary.id       = solution_index
             itinerary.fares    = parse_fare solution
-            itinerary.air_legs = solution.xpath('Journey').map do |journey|
+            itinerary.air_legs = solution.xpath('Journey').each_with_index.map do |journey, journey_index|
               airleg = AirLeg.new
               airleg.segments               = journey.xpath('AirSegmentRef').map do |segment_ref|
                                                 @segments_map[segment_ref.attr('Key').to_s]
               end
-              #TODO: Autoincrement ID
-              airleg.id                     = '0'
-              #
+              airleg.id                     = journey_index
               airleg.departure_airport_code = airleg.segments.first.departure_airport_code
               airleg.departure_date         = airleg.segments.first.departure_date
               airleg.arrival_airport_code   = airleg.segments.last.arrival_airport_code
@@ -82,7 +76,6 @@ module Farandula
             end
             itinerary
           end
-          #puts "HERE IS THE LIST: \n#{itinerary_list}\n LIST END"
           itinerary_list
         end
 
@@ -107,22 +100,18 @@ module Farandula
           booking_info_list = pricing_info.xpath('BookingInfo')
 
           booking_info_list.each do |booking|
-            segment = @segments_map[booking.attr('SegmentRef').to_s]
-
-              booking_count = booking.attr('BookingCount').to_i
-              cabin_class   = booking.attr('CabinClass').to_s
-              booking_count.times do
-                seat = Seat.new(cabin_class, '')
-                @segments_map[booking.attr('SegmentRef').to_s].seats_available << seat
+            booking_count = booking.attr('BookingCount').to_i
+            cabin_class   = booking.attr('CabinClass').to_s
+            booking_count.times do
+              seat = Seat.new(cabin_class, '')
+              @segments_map[booking.attr('SegmentRef').to_s].seats_available << seat
             end
           end
         end
 
         def fill_flight_segments! response
-          #TODO: Refactor segment setting properties
           segment_node_list = response.xpath('//AirSegment')
-          segment_node_list.each do |segment_node|
-
+          segment_array = segment_node_list.map do |segment_node|
             segment = Segment.new
             code_share_info = segment_node.xpath('CodeshareInfo')
             flight_details_key = segment_node.xpath('FlightDetailsRef').attr('Key').to_s
@@ -141,37 +130,27 @@ module Farandula
             segment.arrival_airport_code = segment_node.attr('Destination').to_s
             segment.arrival_date = segment_node.attr('ArrivalTime').to_s
             segment.duration = segment_node.attr('FlightTime').to_s
-            @segments_map[segment.key] = segment
-
+            [segment.key , segment]
           end
-
+          @segments_map = segment_array.to_h
         end
-
-
 
         def fill_flight_details!( response )
-
-          detail_list = response.xpath("//FlightDetails")
-
-          detail_list.each do |fd_node|
-
+          detail_list = response.xpath('//FlightDetails')
+          detail_array = detail_list.map do |fd_node|
             attrs = fd_node.attributes
-
             current = TravelportFlightDetails.new(
-                attrs["Key"].to_s,
-                attrs["OriginTerminal"].to_s,
-                attrs["DestinationTerminal"].to_s,
-                attrs["FlightTime"].to_s,
-                attrs["Equipment"].to_s,
+                attrs['Key'].to_s,
+                attrs['OriginTerminal'].to_s,
+                attrs['DestinationTerminal'].to_s,
+                attrs['FlightTime'].to_s,
+                attrs['Equipment'].to_s,
                 nil
             )
-
-            @flight_details[current.key] = current
-
+            [current.key, current]
           end
-
+          @flight_details = detail_array.to_h
         end
-
       end # ends TravelportFlightManager
     end # ends Travelport
   end # ends FlightManagers
