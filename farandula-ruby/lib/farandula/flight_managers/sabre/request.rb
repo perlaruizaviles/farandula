@@ -98,7 +98,6 @@ module Farandula
 
           json.OriginDestinationInformation do
             json.array! elements.each_with_index.to_a do |(element, idx)|
-              puts "element -> #{element}"
               build_flight_info(
                 json,
                 (idx + 1).to_s,
