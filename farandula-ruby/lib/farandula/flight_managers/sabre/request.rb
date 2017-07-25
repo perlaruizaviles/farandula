@@ -69,24 +69,36 @@ module Farandula
         end
 
         def build_destination_information(json, search_form)
-          elements = [{
-            origin: search_form.departure_airport,
-            destination: search_form.arrival_airport,
-            date: search_form.departing_date
+
+          elements = []
+          search_form.departure_airport.each_with_index do| dep_airport, index |
+           elements <<
+            {
+                origin: dep_airport,
+                destination: search_form.arrival_airport[index],
+                date: search_form.departing_date[index]
             }
-          ]
+          end
+
+          # elements = [{
+          #   origin: search_form.departure_airport,
+          #   destination: search_form.arrival_airport,
+          #   date: search_form.departing_date
+          #   }
+          # ]
 
           if search_form.roundtrip?
             elements << {
-              origin: search_form.arrival_airport,
-              destination: search_form.departure_airport,
-              date: search_form.returning_date
+              origin: search_form.arrival_airport[0],
+              destination: search_form.departure_airport[0],
+              date: search_form.returning_date[0]
             }
           end
           # TODO: handle :multiple
 
           json.OriginDestinationInformation do
             json.array! elements.each_with_index.to_a do |(element, idx)|
+              puts "element -> #{element}"
               build_flight_info(
                 json,
                 (idx + 1).to_s,
@@ -101,13 +113,13 @@ module Farandula
 
         def build_flight_info(json, id, departing_airport, departing_date, destination_airport)
           json.RPH id.to_s
-          json.DepartureDateTime format_date(departing_date[0])
+          json.DepartureDateTime format_date(departing_date)
           json.OriginLocation do
-            json.LocationCode departing_airport[0]
+            json.LocationCode departing_airport
           end
 
           json.DestinationLocation do
-            json.LocationCode destination_airport[0]
+            json.LocationCode destination_airport
           end
 
           json.TPA_Extensions do

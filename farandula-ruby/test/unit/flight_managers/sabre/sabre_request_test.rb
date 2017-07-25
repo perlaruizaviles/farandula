@@ -7,10 +7,10 @@ class Farandula::SabreRequestTest < Minitest::Test
 
   include Farandula
   include Farandula::FlightManagers
-  
+
   def setup
     @request = Sabre::Request.new
-    @json    = Jbuilder.new 
+    @json    = Jbuilder.new
   end
 
   def test_build_flight_info
@@ -19,7 +19,7 @@ class Farandula::SabreRequestTest < Minitest::Test
     to            = ['SFO']
     departing_at  = [DateTime.new(2017,04,24)]
 
-    @request.build_flight_info(@json, 1, from, departing_at, to)
+    @request.build_flight_info(@json, 1, from[0], departing_at[0], to[0])
     expected = FileHelper.load_asset('sabre/flight-info.json')
     assert_equal(
       StringHelper.no_space(expected),
@@ -111,6 +111,9 @@ class Farandula::SabreRequestTest < Minitest::Test
 
     expected    = FileHelper.load_asset('sabre/request.json')
     actual      = @request.build_request_for!(search_form)
+
+    puts "expected #{expected}"
+    puts "actual #{actual}"
 
     assert_equal(
       StringHelper.no_space(expected),
