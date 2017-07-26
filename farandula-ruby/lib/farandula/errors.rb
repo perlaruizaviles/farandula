@@ -8,5 +8,5 @@ module Farandula
   class ActionUnsupported < Error; end
   class CabinClassNotValidError < Error; end
   class ValidationError < Error; end
-  
+  class SearchFormFormatError < Error; end
 end

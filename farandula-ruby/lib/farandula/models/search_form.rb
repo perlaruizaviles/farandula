@@ -2,9 +2,7 @@ require 'farandula/constants'
 require 'farandula/utils/exceptions_helper'
 
 module Farandula
-
   class SearchForm
-
     include Farandula
     include Farandula::Utils
 
@@ -44,7 +42,6 @@ module Farandula
 
     # Builder helper for Search Form
     class Builder
-
       def initialize
         @search_form = SearchForm.new
       end
@@ -103,17 +100,14 @@ module Farandula
         @search_form.cabin_class = :first
       end
 
-
       def build!(validate = true)
-        if validate
-          validate!
-        end
+        validate! if validate
         @search_form
       end
 
       protected
-      def validate!
 
+      def validate!
         check_not_empty!('departure_airport', @search_form.departure_airport)
         check_not_empty!('arrival_airport', @search_form.arrival_airport)
         check_not_empty!('departing_date', @search_form.departing_date)
@@ -124,72 +118,69 @@ module Farandula
           check_not_empty!('returning_date', @search_form.returning_date)
         end
 
-        if !CabinClassType::TYPES.include?(@search_form.cabin_class)
+        unless CabinClassType::TYPES.include?(@search_form.cabin_class)
           message = "cabin class type [#{@search_form.cabin_class}] not found"
-          Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
+          Farandula::Utils::ExceptionsHelper.handle_exceptions(ValidationError.new(message), message)
+        end
+        num_passengers = 0
+        @search_form.passengers.each { |passengers| num_passengers += passengers[1].length }
+        if num_passengers > 6
+          message = "Requests can't handle more than six passengers"
+          Farandula::Utils::ExceptionsHelper.handle_exceptions(SearchFormFormatError.new(message), message)
         end
 
-        if !FlightType::TYPES.include?(@search_form.type)
+        unless FlightType::TYPES.include?(@search_form.type)
 
           message = "flight type [#{@search_form.type}] not found"
-          Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
+          Farandula::Utils::ExceptionsHelper.handle_exceptions(ValidationError.new(message), message)
 
         end
 
-        valid_departure_date( @search_form.departing_date )
+        valid_departure_date(@search_form.departing_date)
 
-        if @search_form.roundtrip?
-          valid_returning_date( @search_form)
-        end
+        valid_returning_date(@search_form) if @search_form.roundtrip?
       end
 
-
       private
-      def check_not_nil!(name , obj)
 
-        if obj.nil?
-          message = "#{name} cannot be nil"
-          Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
-        end
+      def check_not_nil!(name, obj)
+        return nil unless obj.nil?
+        message = "#{name} cannot be nil"
+        Farandula::Utils::ExceptionsHelper.handle_exceptions(ValidationError.new(message), message)
       end
 
       def check_not_empty!(name, obj)
-        if obj.empty?
-          message = "#{name} cannot be empty"
-          Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
-
-        end
+        return nil unless obj.empty?
+        message = "#{name} cannot be empty"
+        Farandula::Utils::ExceptionsHelper.handle_exceptions(ValidationError.new(message), message)
       end
 
       def check_is_string(name, obj)
-        obj.each {| element|
-          if !element.is_a?(String)
+        obj.each do |element|
+          unless element.is_a?(String)
             message = "#{name} has to be of type 'string'"
-            Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
+            Farandula::Utils::ExceptionsHelper.handle_exceptions(ValidationError.new(message), message)
           end
-        }
+        end
       end
 
       def valid_departure_date(departing_dates)
-        departing_dates.each {|date_dep|
+        departing_dates.each do |date_dep|
           if (date_dep <=> DateTime.now) == -1
             message = "departing_date can\'t be in the pass"
-            Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
-          end
-        }
-      end
-
-      def valid_returning_date( search_form )
-
-        search_form.departing_date.each_with_index do |element,index|
-          if (search_form.departing_date[index] <=> search_form.returning_date[index]) == 1
-            message = "returning_date can't be before departing_date"
-            Farandula::Utils::ExceptionsHelper.handle_exceptions( ValidationError.new(message),message)
+            Farandula::Utils::ExceptionsHelper.handle_exceptions(ValidationError.new(message), message)
           end
         end
-
       end
 
+      def valid_returning_date(search_form)
+        search_form.departing_date.each_with_index do |_element, index|
+          if (search_form.departing_date[index] <=> search_form.returning_date[index]) == 1
+            message = "returning_date can't be before departing_date"
+            Farandula::Utils::ExceptionsHelper.handle_exceptions(ValidationError.new(message), message)
+          end
+        end
+      end
     end # Builder ends
 
     def to_s
@@ -201,6 +192,5 @@ module Farandula
       "cabin_class #{cabin_class}," \
       "offset #{offset}." \
     end
-
-  end  # SearchForm ends
+  end # SearchForm ends
 end
