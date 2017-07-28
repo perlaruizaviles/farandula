@@ -4,7 +4,7 @@ module Farandula
     module Travelport
       class Request
         def initialize
-          @property_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/travelport/properties/' + 'travelportConfig.yml')
+          @property_map = YAML.load_file(File.dirname(__FILE__) + '/../../assets/travelport/properties/travelportConfig.yml')
           @api_key = @property_map['travelport.api_user']
           @api_password = @property_map['travelport.api_password']
           @target_branch = @property_map['travelport.target_branch']
