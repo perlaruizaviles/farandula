@@ -1,45 +1,48 @@
-class Airport
+module Farandula_sample
 
-	def initialize (airportName, city, country, iata)
-		@airportName = airportName
-		@city = city
-		@country = country
-		@iata = iata
-	end
+  class Airport
+
+    def initialize (airportName, city, country, iata)
+      @airportName = airportName
+      @city = city
+      @country = country
+      @iata = iata
+    end
 
 
-	# getter
-	def airportName
-	  @airportName
-	end
+    # getter
+    def airportName
+      @airportName
+    end
 
-	# setter
-	def airportName=(value)
-	  @airportName= value
-	end
+    # setter
+    def airportName=(value)
+      @airportName= value
+    end
 
-	def city
-	  @city
-	end
+    def city
+      @city
+    end
 
-	def city=(value)
-	  @city = value
-	end
+    def city=(value)
+      @city = value
+    end
 
-	def country
-	  @country
-	end
+    def country
+      @country
+    end
 
-	def country=(value)
-	  @country = value
-	end
+    def country=(value)
+      @country = value
+    end
 
-	def iata
-	  @iata
-	end
+    def iata
+      @iata
+    end
 
-	def iata=(value)
-	  @iata = value
-	end
+    def iata=(value)
+      @iata = value
+    end
 
+  end
 end

@@ -1,4 +1,4 @@
-module Farandula
+module Farandula_sample
   class Assets
 
     def self.load_file(file_name)

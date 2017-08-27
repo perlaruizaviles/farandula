@@ -1,4 +1,4 @@
-module Farandula
+module Farandula_sample
 	class DateParser
 
 		def dateToTimesstampSeconds(date)
