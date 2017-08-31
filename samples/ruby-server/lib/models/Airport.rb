@@ -1,14 +1,12 @@
-module Farandula_sample
-
+module FarandulaSample
   class Airport
 
-    def initialize (airportName, city, country, iata)
-      @airportName = airportName
-      @city = city
-      @country = country
-      @iata = iata
+    def initialize (airportName= nil, city=nil, country=nil, iata=nil)
+      @airportName  = airportName
+      @city         = city
+      @country      = country
+      @iata         = iata
     end
-
 
     # getter
     def airportName

@@ -1,5 +1,6 @@
 export const airlineNameByAirlegs = airlegs => {
 
+    debugger
   let airline;
 
   airlegs.map((airleg) => {

@@ -1,4 +1,4 @@
-module Farandula_sample
+module FarandulaSample
 
   class City
     attr_accessor :name
@@ -7,10 +7,10 @@ module Farandula_sample
     attr_accessor :iata
 
     def initialize(
-        name = nil,
-        city = nil,
+        name    = nil,
+        city    = nil,
         country = nil,
-        iata = nil
+        iata    = nil
     )
       @name     = name
       @city     = city

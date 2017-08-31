@@ -12,7 +12,8 @@ class AvailableFlightsApi {
         responseType: 'json',
         params: search,
       }).then((response) => {
-        const flights = response.data;
+        debugger
+          const flights = response.data;
         resolve(List(flights));
       }).catch(e => {
         reject(e);

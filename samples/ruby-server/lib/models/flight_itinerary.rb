@@ -1,11 +1,11 @@
-module Farandula_sample
-  class FlighItinerary
+module FarandulaSample
+  class FlightItinerary
 
     def initialize (key, type, flights, fares)
-      @key = key
-      @type = type
-      @airlegs = flights
-      @fares = fares
+      @key      = key
+      @type     = type
+      @airlegs  = flights
+      @fares    = fares
     end
 
     # getter

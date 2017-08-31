@@ -1,24 +1,32 @@
 require 'sinatra'
 require 'net/http'
 require 'active_support/all'
+require 'jbuilder'
 require 'farandula'
 require_relative 'helpers/assets'
 require_relative 'helpers/builders'
+require_relative 'models/flight_itinerary'
+require_relative '../lib/helpers/flight_helper'
 
-include Farandula_sample
+include FarandulaSample
 
 builder = Builders.new
 
-get '/city_to_code' do
+get '/airports' do
 
-  query = params[:city].downcase
-  builder.hashCities.select { |key, value|
-    value.city.include? query
-  }.to_json
+  response['Access-Control-Allow-Origin'] = '*'
+
+  query = params[:pattern].downcase
+
+  builder.hashCities.select do |value|
+    (value.name.include? query) || (value.city.include? query) || (value.iata.include? query)
+  end.to_a.to_json
 
 end
 
-get '/get_flights' do
+get '/flights' do
+
+  response['Access-Control-Allow-Origin'] = '*'
 
   departingAirportCodes = params['departingAirportCodes']
   departingDates        = params['departingDates']
@@ -50,6 +58,6 @@ get '/get_flights' do
 
   })
 
-  manager.get_avail(search_form).to_json
+  ItineraryHelper.get_flight_itinerary_from_itinerary( manager.get_avail(search_form), search_form.type ).to_json
 
 end
